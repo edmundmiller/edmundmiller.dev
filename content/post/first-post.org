@@ -1,6 +1,0 @@
----
-title: "First Post"
-date: 2019-01-12T00:30:00-06:00
-draft: true
----
-
