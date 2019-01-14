@@ -1,5 +1,55 @@
-baseURL = "http://example.org/"
+baseURL = "https://emiller88.github.io/"
 languageCode = "en-us"
+
 title = "Edmund Miller"
 theme = "hyde-hyde"
-markup = "org"
+
+googleAnalytics = "UA-107034006-4"
+enableRobotsTXT = true
+
+[params]
+    author = "Edmund Miller"
+    title = "Edmund Miller"
+    # description = "..."
+    authorimage = "/img/emiller.png"
+    dateformat = "2006-01-02"
+
+    # sidebar, copyright & license
+    copyright = "Edmund Miller"
+    license = "CC BY-SA 4.0"
+    licenseURL = "https://creativecommons.org/licenses/by-sa/4.0"
+    showBuiltWith = true
+
+    # https://highlightjs.org
+    highlightjs = true
+    highlightjsstyle = "github"
+
+    markup = "org"
+    relatedPosts = true
+    toc = "tocbot"
+
+
+[params.social]
+    keybase = "emiller88"
+    gitlab = "Emiller88"
+    github = "Emiller88"
+    linkedin = "edmund-miller-01974a105"
+    twitter = "e_miller88"
+    email = "edmund.a.miller@gmail.com"
+
+## Main Menu
+[[menu.main]]
+    name = "Posts"
+    weight = 100
+    identifier = "posts"
+    url = "/posts/"
+[[menu.main]]
+    name = "Portfolio"
+    identifier = "portfolio"
+    weight = 200
+    url = "/portfolio/"
+[[menu.main]]
+    name = "About"
+    identifier = "about"
+    weight = 300
+    url = "/about/"
