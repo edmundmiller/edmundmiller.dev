@@ -5,6 +5,17 @@
 #+TAGS: vscode, react, tutorial
 #+DESCRIPTION: Getting Started in React
 ** Introduction
+I recently was helping a friend start building a website, and in hopes of
+boosting his resume, chose to build it in [[https://reactjs.org][React]], and because I think the best
+way to master something is to teach it. I had picked up the frame work through
+work, and I recommend [[https://react.holiday][React Holiday]] for anyone trying to pick it up with just a
+few minutes a day to spare. The title came from the number of friends that I
+have that have learned the popular framework and then been able to move out of
+their parent's house. I also was inspired by the [[https://www.hntrends.com][Hacker News Hiring Trends]] which
+claims react has been the most popular skill requested for 20 months and made up
+27% of all job postings in December 2018. Because of the surplus of tutorials
+that seem to teach you ~Just Enough~ ™. Hopefully this post will be enough to
+get you going from zero to out of your parent's house.
 ** Create a GitHub
 ** Install git
 ** Vscode
