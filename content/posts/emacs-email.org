@@ -2,9 +2,9 @@
 #+DATE: 2019-01-20T22:49:01-06:00
 #+PUBLISHDATE: 2019-01-20T22:49:01-06:00
 #+TAGS: emacs, email, notmuch, doom, ubuntu
-#+DESCRIPTION: Setting up email in Emacs
+#+DESCRIPTION: Setting up Email in Emacs
 
-* Introduction
+** Introduction
 Like most people these days I have quite a few email addresses, personal, old
 personal email, and school. In the past I've tried using Emacs to manage all of
 these in one place. However, when I added a work email account into the mix that
@@ -23,7 +23,7 @@ feel fragile.
 **** Notmuch config of my dotfiles:
 - [[https://github.com/Emiller88/dotfiles/tree/master/shell/notmuch]]
 
-* Fetching the Mail
+** Fetching the Mail
 In the past I've tried [[https://github.com/OfflineIMAP/offlineimap][offlineimap]] but it's slow when you have to pull down
 years and years of email. So I first started with [[https://wiki.archlinux.org/index.php/Isync][mbsync]](I've used the arch wiki
 because it explains more than the actual documentation in my opinion).
@@ -98,7 +98,7 @@ exclude_tags=trash;deleted;spam;
 synchronize_flags=true
 #+end_src
 
-* Checking Mail in the Background
+** Checking Mail in the Background
 Next we need to setup the mail to be ran in the background every so often. This
 [[https://bostonenginerd.com/posts/notmuch-of-a-mail-setup-part-1-mbsync-msmtp-and-systemd/%0A][guide]] has a great setup for it.
 
@@ -142,7 +142,7 @@ The ~gmi sync~ command does a ~push~ followed by a ~pull~ so the tags from the
 local overwrite anything that's on the remote. So later we'll write rules to tag
 the new mail coming in.
 
-* Tagging the Mail
+** Tagging the Mail
 The next step is to tag the mail. For that I use ~notmuch~. I tried ~mu~ in
 the past but it works by moving the emails into various dirs instead of just
 tagging them and I found it messed with how the remote emails were treated too
@@ -209,7 +209,7 @@ and ignores anything with the ~Trash~ tag.
 tags=new
 ignore=Trash;*.json;
 #+end_src
-* Deleting Email
+** Deleting Email
 Notmuch by default doesn't tag things with ~+trash~ which makes gmail move the
 emails to the trash. Here's a snippet that does that. I have this bound to ~d~.
 #+begin_src emacs-lisp
@@ -218,7 +218,7 @@ emails to the trash. Here's a snippet that does that. I have this bound to ~d~.
   (notmuch-search-add-tag (list "+trash" "-inbox" "-unread"))
   (notmuch-tree-next-message))
 #+end_src
-* WIP: Sending Email
+** WIP: Sending Email
 WIP: Currently I can only get this to work with my primary email address.
 
 To set this up we'll need to get started with pass. I suggest you have a look at
