@@ -1,0 +1,23 @@
+#+TITLE: #+TITLE: Learn Just Enough React to Move Out of your Parent's House: A Millennial's Guide to the 2019 Job Market
+#+DATE: 2019-05-26T22:05:12-05:00
+#+PUBLISHDATE: 2019-05-26T22:05:12-05:00
+#+DRAFT: true
+#+TAGS: vscode, react, tutorial
+#+DESCRIPTION: Getting Started in React
+** Introduction
+** Create a GitHub
+** Install git
+** Vscode
+*** Fira Code
+*** Install nodejs
+*** prettier
+*** eslint
+*** Set up terminal
+** GitHub Repo
+** How to run demo
+** GH Pages
+https://github.com/gitname/react-gh-pages
+** create-react
+** CircleCI
+** Intro to react
+** React bootstrap

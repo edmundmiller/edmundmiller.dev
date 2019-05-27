@@ -1,7 +1,7 @@
 #+TITLE: Emacs Email Config
 #+DATE: 2019-01-20T22:49:01-06:00
 #+PUBLISHDATE: 2019-01-20T22:49:01-06:00
-#+TAGS: emacs, email, notmuch, doom, ubuntu
+#+TAGS: emacs, email, notmuch, doom, ubuntu, tutorial
 #+DESCRIPTION: Setting up Email in Emacs
 
 ** Introduction
