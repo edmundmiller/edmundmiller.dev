@@ -12,8 +12,8 @@ work, and I recommend [[https://react.holiday][React Holiday]] for anyone trying
 few minutes a day to spare. The title came from the number of friends that I
 have that have learned the popular framework and then been able to move out of
 their parent's house. I also was inspired by the [[https://www.hntrends.com][Hacker News Hiring Trends]] which
-claims react has been the most popular skill requested for 20 months and made up
-27% of all job postings in December 2018. Because of the surplus of tutorials
+claims react has been the most popular skill requested for 22 months and made up
+28% of all job postings in March 2019. Because of the surplus of tutorials
 that seem to teach you ~Just Enough~ ™. Hopefully this post will be enough to
 get you going from zero to out of your parent's house.
 ** Create a GitHub
