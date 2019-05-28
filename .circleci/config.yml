@@ -30,7 +30,7 @@ jobs:
             git config user.name "Deployment Bot"
             git add .
             git commit --allow-empty -m "Trigger deployment"
-            git push -q git@github.com:emiller88.github.io.git master
+            git push -q git@github.com:Emiller88/emiller88.github.io.git master
 
 workflows:
   version: 2
