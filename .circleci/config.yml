@@ -36,6 +36,11 @@ jobs:
             git commit --allow-empty -m "Trigger deployment"
             git push -q git@github.com:Emiller88/emiller88.github.io.git master
 
+general:
+  branches:
+    ignore:
+      - master
+
 workflows:
   version: 2
   main:
