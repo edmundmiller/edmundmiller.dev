@@ -9,7 +9,7 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "12:70:02:70:21:2d:25:bf:d0:46:3b:8c:17:50:ff:8c"
+            - "9e:55:66:8a:63:5c:96:b6:1d:c6:aa:07:6e:53:0d:44"
       - run: apk update && apk add git
       - checkout
       - run: git submodule sync && git submodule update --init
