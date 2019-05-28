@@ -26,7 +26,7 @@ jobs:
       #       --empty-alt-ignore --disable-external
       - deploy:
           name: Deploy to Github Pages
-          working_directory: $HUGO_BUILD_DIR
+          working_directory: ~/emiller88.github.io/public
           command: |
             git config credential.helper 'cache --timeout=120'
             git config user.email "edmund.a.miller@protonmail.com"
