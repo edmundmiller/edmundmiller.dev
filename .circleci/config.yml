@@ -16,7 +16,6 @@ jobs:
           name: Get current site
           working_directory: ~/
           command: git clone -b master git@github.com:Emiller88/emiller88.github.io.git $HUGO_BUILD_DIR
-      - run: git submodule sync && git submodule update --init
       - run:
           name: Build site
           command: HUGO_ENV=production hugo -v -d $HUGO_BUILD_DIR -t hyde-hyde
