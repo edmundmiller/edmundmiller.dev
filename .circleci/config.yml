@@ -16,11 +16,11 @@ jobs:
       - run:
           name: Build site
           command: HUGO_ENV=production hugo -v -d $HUGO_BUILD_DIR -t hyde-hyde
-      - run:
-          name: Test generated HTML files
-          command: |
-            htmlproofer $HUGO_BUILD_DIR --allow-hash-href --check-html \
-            --empty-alt-ignore --disable-external
+      # - run:
+      #     name: Test generated HTML files
+      #     command: |
+      #       htmlproofer $HUGO_BUILD_DIR --allow-hash-href --check-html \
+      #       --empty-alt-ignore --disable-external
       - deploy:
           name: Deploy to Github Pages
           working_directory: ~/public
