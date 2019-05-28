@@ -1,0 +1,42 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: cibuilds/hugo:latest
+    working_directory: ~/hugo
+    environment:
+      HUGO_BUILD_DIR: ~/hugo/public
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "32:ea:99:c6:ae:7e:62:1d:67:21:3a:e4:bb:34:d0:59"
+      - run: apk update && apk add git
+      - checkout
+      - run: git submodule sync && git submodule update --init
+      - run:
+          name: Build site
+          command: HUGO_ENV=production hugo -v -d $HUGO_BUILD_DIR -t hyde-hyde
+      - run:
+          name: Test generated HTML files
+          command: |
+            htmlproofer $HUGO_BUILD_DIR --allow-hash-href --check-html \
+            --empty-alt-ignore --disable-external
+      - deploy:
+          name: Deploy to Github Pages
+          working_directory: ~/public
+          command: |
+            git config credential.helper 'cache --timeout=120'
+            git config user.email "edmund.a.miller@protonmail.com"
+            git config user.name "Deployment Bot"
+            git add .
+            git commit --allow-empty -m "Trigger deployment"
+            git push -q git@github.com:emiller88.github.io.git master
+
+workflows:
+  version: 2
+  main:
+    jobs:
+    - build:
+        filters:
+          branches:
+            only: master
