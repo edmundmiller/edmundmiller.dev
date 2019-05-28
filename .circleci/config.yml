@@ -12,13 +12,14 @@ jobs:
             - "12:70:02:70:21:2d:25:bf:d0:46:3b:8c:17:50:ff:8c"
       - run: apk update && apk add git
       - checkout
+      - run: git submodule sync && git submodule update --init
       - run:
           name: Get current site
           working_directory: ~/
-          command: git clone -b master git@github.com:Emiller88/emiller88.github.io.git $HUGO_BUILD_DIR
+          command: git clone -b master git@github.com:Emiller88/emiller88.github.io.git ~/public
       - run:
           name: Build site
-          command: HUGO_ENV=production hugo -v -d $HUGO_BUILD_DIR -t hyde-hyde
+          command: HUGO_ENV=production hugo -v -d ~/public -t hyde-hyde
       # - run:
       #     name: Test generated HTML files
       #     command: |
@@ -26,7 +27,7 @@ jobs:
       #       --empty-alt-ignore --disable-external
       - deploy:
           name: Deploy to Github Pages
-          working_directory: ~/emiller88.github.io/public
+          working_directory: ~/public
           command: |
             git config credential.helper 'cache --timeout=120'
             git config user.email "edmund.a.miller@protonmail.com"
