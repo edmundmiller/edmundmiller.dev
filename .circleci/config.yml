@@ -3,15 +3,19 @@ jobs:
   build:
     docker:
       - image: cibuilds/hugo:latest
-    working_directory: ~/hugo
+    working_directory: ~/emiller88.github.io
     environment:
-      HUGO_BUILD_DIR: ~/hugo/public
+      HUGO_BUILD_DIR: ~/emiller88.github.io/public
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "c1:37:13:61:6d:b8:fc:4c:59:87:d5:a2:f0:90:24:df"
+            - "12:70:02:70:21:2d:25:bf:d0:46:3b:8c:17:50:ff:8c"
       - run: apk update && apk add git
       - checkout
+      - run:
+          name: Get current site
+          working_directory: ~/
+          command: git clone -b master git@github.com:Emiller88/emiller88.github.io.git $HUGO_BUILD_DIR
       - run: git submodule sync && git submodule update --init
       - run:
           name: Build site
@@ -39,4 +43,4 @@ workflows:
     - build:
         filters:
           branches:
-            only: master
+            only: source
