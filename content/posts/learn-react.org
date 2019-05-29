@@ -1,4 +1,4 @@
-#+TITLE: #+TITLE: Learn Just Enough React to Move Out of your Parent's House: A Millennial's Guide to the 2019 Job Market
+#+TITLE: Learn Just Enough React to Move Out of your Parent's House: A Millennial's Guide to the 2019 Job Market
 #+DATE: 2019-05-26T22:05:12-05:00
 #+PUBLISHDATE: 2019-05-26T22:05:12-05:00
 #+DRAFT: false
