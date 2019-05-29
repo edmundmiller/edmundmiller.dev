@@ -3,7 +3,9 @@
 #+PUBLISHDATE: 2019-05-26T22:05:12-05:00
 #+DRAFT: false
 #+TAGS: vscode, react, tutorial
+#+CATEGORIES: Development
 #+DESCRIPTION: Getting Started in React
+
 ** Introduction
 I recently was helping a friend start building a website, and in hopes of
 boosting his resume, chose to build it in [[https://reactjs.org][React]], and because I think the best
