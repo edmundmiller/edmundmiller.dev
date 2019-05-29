@@ -4,7 +4,7 @@
 #+DRAFT: nil
 #+TAGS: development, qmk, keyboard, emacs
 #+CATEGORIES: Development
-#+DESCRIPTION: Three Kill-Rings for the Emacs-kings under the sky
+#+DESCRIPTION: With a bonuis ESC on tap
 I grew up in a household where ~CTRL~ has been mapped to ~Caps Lock~ on every
 computer. It was just something I had never questioned until recently. As a
 heavy ~CTRL~ user between Emacs and terminal apps now, I understand.I thought
