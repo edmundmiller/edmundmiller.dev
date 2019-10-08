@@ -49,6 +49,11 @@ enableRobotsTXT = true
     weight = 200
     url = "/portfolio/"
 [[menu.main]]
+    name = "Presentations"
+    identifier = "presentations"
+    weight = 200
+    url = "/presentations/"
+[[menu.main]]
     name = "About"
     identifier = "about"
     weight = 300
