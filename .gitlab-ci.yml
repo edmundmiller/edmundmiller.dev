@@ -22,6 +22,7 @@ pages:
     paths:
       - _cache
       - .stack
+      - public
   script:
     - stack exec site build
   artifacts:
