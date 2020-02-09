@@ -11,8 +11,7 @@ documentation https://docs.gitlab.com/ce/user/project/pages/.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-**Table of Contents** _generated with [DocToc](https://github.com/thlorenz/doctoc)_
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [GitLab CI](#gitlab-ci)
 - [Building locally](#building-locally)
@@ -78,10 +77,9 @@ If you forked this project for your own use, please go to your project's
 unless you want to contribute back to the upstream project.
 
 ## Getting help
-
-- [Tutorials](https://jaspervdj.be/hakyll/tutorials.html)
-- [Google discussion group](https://groups.google.com/forum/#!forum/hakyll)
-- [Hakyll on StackOverflow](https://stackoverflow.com/questions/tagged/hakyll)
+* [Tutorials](https://jaspervdj.be/hakyll/tutorials.html)
+* [Google discussion group](https://groups.google.com/forum/#!forum/hakyll)
+* [Hakyll on StackOverflow](https://stackoverflow.com/questions/tagged/hakyll)
 
 ---
 

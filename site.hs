@@ -5,8 +5,13 @@ import           Hakyll
 
 
 --------------------------------------------------------------------------------
+config :: Configuration
+config = defaultConfiguration {
+    destinationDirectory = "public"
+}
+
 main :: IO ()
-main = hakyll $ do
+main = hakyllWith config $ do
     match "images/*" $ do
         route   idRoute
         compile copyFileCompiler
