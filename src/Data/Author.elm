@@ -17,9 +17,9 @@ type alias Author =
 
 all : List Author
 all =
-    [ { name = "Dillon Kearns"
-      , avatar = Pages.images.author.dillon
-      , bio = "Elm developer and educator. Founder of Incremental Elm Consulting."
+    [ { name = "Edmund Miller"
+      , avatar = Pages.images.author.edmund
+      , bio = "Walking the line between Vim & Emacs, and Computer Science & Biology."
       }
     ]
 
