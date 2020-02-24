@@ -3,7 +3,7 @@ image: node
 pages:
   script:
     - npm install
-    - npm build
+    - npm run build
     - mv dist public
   artifacts:
     paths:
