@@ -1,13 +1,13 @@
 {
-  "name": "elm-pages-example",
+  "name": "edmund-miller-personal-site",
   "version": "1.0.0",
-  "description": "Example site built with elm-pages.",
+  "description": "Person Site of Edmund Miller",
   "scripts": {
     "start": "elm-pages develop",
     "serve": "npm run build && http-server ./dist -a localhost -p 3000 -c-1",
     "build": "elm-pages build"
   },
-  "author": "Dillon Kearns",
+  "author": "Edmund Miller",
   "license": "BSD-3",
   "dependencies": {
     "elm-pages": "1.2.5",
