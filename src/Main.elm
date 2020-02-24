@@ -37,12 +37,12 @@ manifest =
     , categories = [ Pages.Manifest.Category.education ]
     , displayMode = Manifest.Standalone
     , orientation = Manifest.Portrait
-    , description = "elm-pages-starter - A statically typed site generator."
+    , description = "Edmund Miller's Personal Website"
     , iarcRatingId = Nothing
-    , name = "elm-pages-starter"
+    , name = "Edmund Miller"
     , themeColor = Just Color.white
     , startUrl = pages.index
-    , shortName = Just "elm-pages-starter"
+    , shortName = Just "Edmund Miller"
     , sourceIcon = images.iconPng
     }
 
@@ -283,7 +283,7 @@ header currentPath =
                 , label =
                     Element.row [ Font.size 30, Element.spacing 16 ]
                         [ DocumentSvg.view
-                        , Element.text "elm-pages-starter"
+                        , Element.text "Edmund Miller"
                         ]
                 }
             , Element.row [ Element.spacing 15 ]
@@ -338,7 +338,7 @@ head metadata =
                 Metadata.Page meta ->
                     Seo.summaryLarge
                         { canonicalUrlOverride = Nothing
-                        , siteName = "elm-pages-starter"
+                        , siteName = "Edmund Miller"
                         , image =
                             { url = images.iconPng
                             , alt = "elm-pages logo"
@@ -391,7 +391,7 @@ head metadata =
                     in
                     Seo.summary
                         { canonicalUrlOverride = Nothing
-                        , siteName = "elm-pages-starter"
+                        , siteName = "Edmund Miller"
                         , image =
                             { url = meta.avatar
                             , alt = meta.name ++ "'s elm-pages articles."

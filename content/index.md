@@ -1,5 +1,5 @@
 ---
-title: elm-pages-starter - a simple blog starter
+title: Edmund Miller
 type: page
 ---
 
