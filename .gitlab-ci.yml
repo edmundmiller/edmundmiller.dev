@@ -1,15 +1,15 @@
-image: node
+# image: node
 
-pages:
-  script:
-    - npm install
-    - npm run build
-    - mv dist public
-  artifacts:
-    paths:
-      - public
-  cache:
-    paths:
-      - node_modules
-  only:
-    - master
+# pages:
+#   script:
+#     - npm install
+#     - npm run build
+#     - mv dist public
+#   artifacts:
+#     paths:
+#       - public
+#   cache:
+#     paths:
+#       - node_modules
+#   only:
+#     - master
