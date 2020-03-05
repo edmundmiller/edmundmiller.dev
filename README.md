@@ -1,33 +1,29 @@
-# elm-pages-starter
+# Gridsome Blog Starter
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/dillonkearns/elm-pages-starter)
+> A simple, hackable & minimalistic starter for Gridsome that uses Markdown for content.
 
-This is an example repo to get you up and running with `elm-pages`.
+## Features
+- Beautiful and simple design.
+- Markdown for content.
+- Tags support.
+- Dark / Light toggle.
+- CSS variables, SCSS & BEM for styling.
+- 100, 100, 100, 100 score on Google Lighthouse.
+- Uses same front-matter fields as Dev.to.
 
-The entrypoint file is `index.js`. That file imports `src/Main.elm`. The `content` folder is turned into your static pages. The rest is mostly determined by logic in the Elm code! Learn more with the resources below.
+## Demo URL
 
-## Setup Instructions
-Click "Use this template" on this Github page to fork the repo.
+https://gridsome-starter-blog.netlify.com
 
-Or git clone it:
+## Install
 
-```
-git clone git@github.com:dillonkearns/elm-pages-starter.git
-```
+### 1. Install Gridsome CLI tool if you don't have
 
-Then install and run the dev server
+`npm install --global @gridsome/cli`
 
-```
-cd elm-pages-starter
-npm install
-npm start # starts a local dev server using `elm-pages develop`
-```
+### 2. Install this starter
 
-From there you can tweak the `content` folder or change the `src/Main.elm` file.
-
-
-## Learn more about `elm-pages`
-
-- Documentation site: https://elm-pages.com
-- [Elm Package docs](https://package.elm-lang.org/packages/dillonkearns/elm-pages/latest/)
-- [`elm-pages` blog](https://elm-pages.com/blog)
+1. `gridsome create my-gridsome-site https://github.com/gridsome/gridsome-starter-blog.git`
+2. `cd my-gridsome-site` to open folder
+3. `gridsome develop` to start local dev server at `http://localhost:8080`
+4. Happy coding 🎉🙌
