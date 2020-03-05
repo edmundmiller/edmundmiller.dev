@@ -4,7 +4,6 @@ description: "Setting up Email in Emacs with mbsync, and Notmuch"
 date: 2019-01-20 22:49:01
 published: true
 author: "Edmund Miller"
-slug: eamcs-email
 tags: ["emacs", "email", "notmuch", "doom", "ubuntu", "tutorial"]
 ---
 
@@ -22,13 +21,13 @@ feel fragile.
 
 ### Guides:
 
--   [Notmuch of a mail setup Part 1- mbsync, msmtp and systemd](https://bostonenginerd.com/posts/notmuch-of-a-mail-setup-part-1-mbsync-msmtp-and-systemd/)
--   <http://www.macs.hw.ac.uk/~rs46/posts/2014-01-13-mu4e-email-client.html>
--   <https://youtu.be/obY1um6ehDM>
+- [Notmuch of a mail setup Part 1- mbsync, msmtp and systemd](https://bostonenginerd.com/posts/notmuch-of-a-mail-setup-part-1-mbsync-msmtp-and-systemd/)
+- <http://www.macs.hw.ac.uk/~rs46/posts/2014-01-13-mu4e-email-client.html>
+- <https://youtu.be/obY1um6ehDM>
 
 ### Notmuch config of my dotfiles:
 
--   <https://github.com/Emiller88/dotfiles/tree/master/shell/notmuch>
+- <https://github.com/Emiller88/dotfiles/tree/master/shell/notmuch>
 
 # Fetching the Mail
 
