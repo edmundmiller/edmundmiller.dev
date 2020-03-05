@@ -1,7 +1,7 @@
 ---
 title: "Personal Site Rewrite"
 description: ""
-date: 2019-01-20 22:49:01
+date: 2020-03-05 22:49:01
 published: true
 author: "Edmund Miller"
 tags: ["Vuejs"]
