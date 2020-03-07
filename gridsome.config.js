@@ -36,6 +36,27 @@ module.exports = {
           }
         }
       }
+    },
+    {
+      use: "gridsome-plugin-rss",
+      options: {
+        contentTypeName: "BlogPost",
+        feedOptions: {
+          title: "Edmund Miller Blog",
+          feed_url: "https://edmundmiller.dev/rss.xml",
+          site_url: "https://edmundmiller.dev"
+        },
+        feedItemOptions: node => ({
+          title: node.title,
+          description: node.description,
+          url: "https://edmundmiller.dev/" + node.slug,
+          author: node.fields.author
+        }),
+        output: {
+          dir: "./static",
+          name: "rss.xml"
+        }
+      }
     }
   ],
 
