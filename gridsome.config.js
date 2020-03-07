@@ -57,6 +57,17 @@ module.exports = {
           name: "rss.xml"
         }
       }
+    },
+    {
+      use: "gridsome-plugin-tailwindcss",
+      options: {
+        tailwindConfig: "tailwind.config.js",
+        purgeConfig: {},
+        presetEnvConfig: {},
+        shouldPurge: true,
+        shouldImport: true,
+        shouldTimeTravel: true
+      }
     }
   ],
 
