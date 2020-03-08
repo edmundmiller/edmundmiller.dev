@@ -40,7 +40,7 @@ module.exports = {
     {
       use: "gridsome-plugin-rss",
       options: {
-        contentTypeName: "BlogPost",
+        contentTypeName: "Post",
         feedOptions: {
           title: "Edmund Miller Blog",
           feed_url: "https://edmundmiller.dev/rss.xml",
@@ -50,7 +50,7 @@ module.exports = {
           title: node.title,
           description: node.description,
           url: "https://edmundmiller.dev/" + node.slug,
-          author: node.fields.author
+          author: node.author
         }),
         output: {
           dir: "./static",
