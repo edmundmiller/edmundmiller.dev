@@ -5,63 +5,63 @@
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
 module.exports = {
-  siteName: "Edmund Miller",
-  siteUrl: "https://edmundmiller.dev",
+  siteName: 'Edmund Miller',
+  siteUrl: 'https://edmundmiller.dev',
   // siteDescription:
   //   "",
 
   templates: {
-    Post: "/:title",
-    Tag: "/tag/:id"
+    Post: '/:title',
+    Tag: '/tag/:id'
   },
 
   plugins: [
     {
-      use: "@gridsome/plugin-google-analytics",
+      use: '@gridsome/plugin-google-analytics',
       options: {
-        id: "UA-107034006-4"
+        id: 'UA-107034006-4'
       }
     },
     {
       // Create posts from markdown files
-      use: "@gridsome/source-filesystem",
+      use: '@gridsome/source-filesystem',
       options: {
-        typeName: "Post",
-        path: "content/posts/*.md",
+        typeName: 'Post',
+        path: 'content/posts/*.md',
         refs: {
           // Creates a GraphQL collection from 'tags' in front-matter and adds a reference.
           tags: {
-            typeName: "Tag",
+            typeName: 'Tag',
             create: true
           }
         }
       }
     },
     {
-      use: "gridsome-plugin-rss",
+      use: 'gridsome-plugin-rss',
       options: {
-        contentTypeName: "Post",
+        contentTypeName: 'Post',
         feedOptions: {
-          title: "Edmund Miller Blog",
-          feed_url: "https://edmundmiller.dev/rss.xml",
-          site_url: "https://edmundmiller.dev"
+          title: 'Edmund Miller Blog',
+          feed_url: 'https://edmundmiller.dev/rss.xml',
+          site_url: 'https://edmundmiller.dev'
         },
-        feedItemOptions: node => ({
+        feedItemOptions: (node) => ({
           title: node.title,
           description: node.description,
-          url: "https://edmundmiller.dev/" + node.slug,
+          url: 'https://edmundmiller.dev/' + node.slug,
           author: node.author
         }),
         output: {
-          dir: "./static",
-          name: "rss.xml"
+          dir: './static',
+          name: 'rss.xml'
         }
       }
     },
     {
-      use: "gridsome-plugin-tailwindcss",
+      use: 'gridsome-plugin-tailwindcss',
       options: {
-        tailwindConfig: "tailwind.config.js",
+        tailwindConfig: 'tailwind.config.js',
         purgeConfig: {},
         presetEnvConfig: {},
         shouldPurge: true,
@@ -74,10 +74,10 @@ module.exports = {
   transformers: {
     //Add markdown support to all file-system sources
     remark: {
-      externalLinksTarget: "_blank",
-      externalLinksRel: ["nofollow", "noopener", "noreferrer"],
-      anchorClassName: "icon icon-link",
-      plugins: ["@gridsome/remark-prismjs"]
+      externalLinksTarget: '_blank',
+      externalLinksRel: ['nofollow', 'noopener', 'noreferrer'],
+      anchorClassName: 'icon icon-link',
+      plugins: ['@gridsome/remark-prismjs']
     }
   }
 };
