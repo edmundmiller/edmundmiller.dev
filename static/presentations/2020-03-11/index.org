@@ -1,0 +1,275 @@
+#+TITLE: Snakemake Workshop
+#+AUTHOR: Edmund Miller
+#+REVEAL_THEME: white
+#+OPTIONS: reveal_title_slide:nil
+#+OPTIONS: num:nil
+#+OPTIONS: toc:nil
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_HLEVEL: 2
+* Snakemake
+* Setting up
+** Download Vscode
+*** Extensions
+- [[https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh][Remote extension]]
+On Remote:
+- [[https://marketplace.visualstudio.com/items?itemName=alping.vscode-snakemake][Snakemake extension]]
+** Logging into promoter
+*** Using VSCode Remote extension :suhana:
+NOTE: YOU MUST BE ON ~COMETNET~
+#+BEGIN_SRC shell
+test@promoter
+test123
+#+END_SRC
+** Creating a new workflow with ~cookiecutter~
+*** Open a terminal
+- ~Ctrl + Shift + `~
+- Use <your-name> for ~repo_name~
+#+BEGIN_SRC shell
+cookiecutter gl:functional-genomics/cookiecutter-snakemake-workflow
+cd <your_name>
+make install
+#+END_SRC
+*** Running ~snakemake~ for the first time
+#+BEGIN_SRC shell
+make dry
+# Equivalent to
+poetry run snakemake -n --use-conda --use-singularity -j 4 --report report.html
+#+END_SRC
+- Right click on ~report.html~ and download it locally
+- Open the report in a browser locally
+* Writing a workflow
+** Step 0: Download the data
+*** Open ~workflow/Snakefile~
+#+BEGIN_SRC snakemake
+rule bwa_map:
+    output:
+        "data/samples/A.fastq"
+    shell:
+        """
+        wget https://github.com/snakemake/snakemake-tutorial-data/archive/v5.4.5.tar.gz
+        tar --wildcards -xf v5.4.5.tar.gz --strip 1 "*/data"
+        """
+#+END_SRC
+** [[https://snakemake.readthedocs.io/en/stable/tutorial/basics.html#step-1-mapping-reads][Step 1: Mapping reads]]
+*** Open ~workflow/Snakefile~
+#+BEGIN_SRC snakemake
+rule bwa_map:
+    input:
+        "/home/test/data/genome.fa",
+        "/home/test/data/samples/A.fastq"
+    output:
+        "results/mapped_reads/A.bam"
+    conda:
+        "./envs/bwa.yml"
+    shell:
+        "bwa mem {input} | samtools view -Sb - > {output}"
+#+END_SRC
+*** Open ~workflow/envs/bwa.yml~
+#+BEGIN_SRC yaml
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - bwa ==0.7.17
+  - samtools ==1.9
+  - picard ==2.20.1
+#+END_SRC
+*** Run
+#+BEGIN_SRC shell
+make dry rule=results/mapped_reads/A.bam
+make smk rule=results/mapped_reads/A.bam
+#+END_SRC
+** [[https://snakemake.readthedocs.io/en/stable/tutorial/basics.html#step-2-generalizing-the-read-mapping-rule][Step 2: Generalizing the read mapping rule]]
+*** ~workflow/Snakefile~
+#+BEGIN_SRC snakemake
+rule bwa_map:
+    input:
+        "data/genome.fa",
+        "data/samples/{sample}.fastq"
+    output:
+        "results/mapped_reads/{sample}.bam"
+    conda:
+        "./envs/bwa.yml"
+    shell:
+        "bwa mem {input} | samtools view -Sb - > {output}"
+#+END_SRC
+*** Run
+#+BEGIN_SRC shell
+make smk rule=results/mapped_reads/B.bam
+make smk rule="results/mapped_reads/A.bam results/mapped_reads/B.bam"
+make smk rule="mapped_reads/{A,B}.bam"
+#+END_SRC
+** [[https://snakemake.readthedocs.io/en/stable/tutorial/basics.html#step-3-sorting-read-alignments][Step 3: Sorting read alignments]]
+- Note that Snakemake automatically creates missing directories before jobs are executed.
+#+BEGIN_SRC snakemake
+rule samtools_sort:
+    input:
+        "results/mapped_reads/{sample}.bam"
+    output:
+        "results/sorted_reads/{sample}.bam"
+    conda:
+        "envs/sam.yml"
+    shell:
+        "samtools sort -T results/sorted_reads/{wildcards.sample} "
+        "-O bam {input} > {output}"
+#+END_SRC
+*** Open ~workflow/envs/bwa.yml~
+#+BEGIN_SRC yaml
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - samtools ==1.9
+#+END_SRC
+** [[https://snakemake.readthedocs.io/en/stable/tutorial/basics.html#step-4-indexing-read-alignments-and-visualizing-the-dag-of-jobs][Step 4: Indexing read alignments and visualizing the DAG of jobs]]
+*** ~workflow/Snakefile~
+#+BEGIN_SRC snakemake
+rule samtools_index:
+    input:
+        "results/sorted_reads/{sample}.bam"
+    output:
+        "results/sorted_reads/{sample}.bam.bai"
+    conda:
+        "envs/sam.yml"
+    shell:
+        "samtools index {input}"
+#+END_SRC
+*** Update all rule
+~workflow/Snakefile~
+#+BEGIN_SRC snakemake
+rule all:
+    input:
+        "results/sorted_reads/A.bam.bai",
+        "results/sorted_reads/B.bam.bai",
+        "results/sorted_reads/C.bam.bai",
+#+END_SRC
+*** Run
+#+BEGIN_SRC shell
+make smk
+make report
+#+END_SRC
+- Download ~report.html~
+** [[https://snakemake.readthedocs.io/en/stable/tutorial/basics.html#step-5-calling-genomic-variants][Step 5: Calling genomic variants]]
+*** ~expand~
+#+BEGIN_SRC snakemake
+expand("sorted_reads/{sample}.bam", sample=SAMPLES)
+#+END_SRC
+Returns:
+#+BEGIN_SRC python
+["sorted_reads/A.bam", "sorted_reads/B.bam"]
+#+END_SRC
+*** A more complicated expand
+#+BEGIN_SRC snakemake
+expand("sorted_reads/{sample}.{replicate}.bam", sample=SAMPLES, replicate=[0, 1])
+#+END_SRC
+Returns:
+#+BEGIN_SRC python
+["sorted_reads/A.0.bam", "sorted_reads/A.1.bam", "sorted_reads/B.0.bam", "sorted_reads/B.1.bam"]
+#+END_SRC
+*** Defining Samples
+#+BEGIN_SRC snakemake
+SAMPLES = ["A", "B", "C"]
+#+END_SRC
+*** Rule for calling variants
+~workflow/Snakefile~
+#+BEGIN_SRC snakemake
+rule bcftools_call:
+    input:
+        fa="data/genome.fa",
+        bam=expand("results/sorted_reads/{sample}.bam", sample=SAMPLES),
+        bai=expand("results/sorted_reads/{sample}.bam.bai", sample=SAMPLES)
+    output:
+        "calls/all.vcf"
+    conda:
+        "../envs/bcf.yml"
+    shell:
+        "samtools mpileup -g -f {input.fa} {input.bam} | "
+        "bcftools call -mv - > {output}"
+#+END_SRC
+*** ~workflow/envs/bcf.yml~
+#+BEGIN_SRC yaml
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - samtools ==1.9
+  - bcftools ==1.9
+#+END_SRC
+** [[https://snakemake.readthedocs.io/en/stable/tutorial/basics.html#step-6-using-custom-scripts][Step 6: Using custom scripts]]
+*** In ~workflow/Snakefile~
+#+BEGIN_SRC snakemake
+rule plot_quals:
+    input:
+        "results/calls/all.vcf"
+    output:
+        report("results/plots/quals.svg")
+    conda:
+        "../envs/plot.py"
+    script:
+        "scripts/plot-quals.py"
+#+END_SRC
+*** ~workflow/scripts/plot-quals.py~
+#+BEGIN_SRC python
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+from pysam import VariantFile
+
+quals = [record.qual for record in VariantFile(snakemake.input[0])]
+plt.hist(quals)
+
+plt.savefig(snakemake.output[0])
+#+END_SRC 
+*** ~workflow/envs/plot.yml~
+#+BEGIN_SRC yaml
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - matplotlib
+  - pysam
+#+END_SRC
+*** Using this with R
+- [[https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#external-scripts][External scripts docs]]
+- R, Rmd, or ipynb
+#+BEGIN_SRC R
+do_something <- function(data_path, out_path, threads, myparam) {
+    # R code
+}
+
+do_something(snakemake@input[[1]],
+             snakemake@output[[1]],
+             snakemake@threads,
+             snakemake@config[["myparam"]])
+#+END_SRC
+** [[https://snakemake.readthedocs.io/en/stable/tutorial/basics.html#step-7-adding-a-target-rule][Step 7: Adding a target rule]]
+*** ~workflow/Snakefile~
+#+BEGIN_SRC snakemake
+rule all:
+    input:
+        "plots/quals.svg"
+#+END_SRC
+*** Run it
+#+BEGIN_SRC shell
+make smk
+make report
+#+END_SRC
+** Taking it to the Cluster
+#+BEGIN_SRC shell
+ssh eam150030@ganymede
+cd scratch
+git clone https://gitlab.com/functional-genomics/analysis/snakemake-tutorial.git
+cd snakemake-tutorial
+# pip install cookiecutter
+make profile
+module add singlarity/2.4.5
+make cluster
+#+END_SRC
+* nf-core preview
+#+BEGIN_SRC shell
+nextflow run nf-core/rnaseq -profile <docker/singularity/conda> --reads '*_R{1,2}.fastq.gz' --genome GRCh37
+#+END_SRC

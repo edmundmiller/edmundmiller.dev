@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Snakemake Workshop</title>
+<meta name="author" content="(Edmund Miller)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/css/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/css/theme/white.css" id="theme"/>
+
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'https://cdn.jsdelivr.net/npm/reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section>
+<section id="slide-org020893d">
+<h2 id="org020893d">Snakemake</h2>
+</section>
+</section>
+<section>
+<section id="slide-org25185cf">
+<h2 id="org25185cf">Setting up</h2>
+<div class="outline-text-2" id="text-org25185cf">
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orgb85ed6a">
+<h3 id="orgb85ed6a">Download Vscode</h3>
+<div class="outline-text-3" id="text-orgb85ed6a">
+</div>
+</section>
+<section id="slide-org155ee63">
+<h4 id="org155ee63">Extensions</h4>
+<ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh">Remote extension</a></li>
+
+</ul>
+<p>
+On Remote:
+</p>
+<ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=alping.vscode-snakemake">Snakemake extension</a></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org73f92f6">
+<h3 id="org73f92f6">Logging into promoter</h3>
+<div class="outline-text-3" id="text-org73f92f6">
+</div>
+</section>
+<section id="slide-orgfa59932">
+<h4 id="orgfa59932">Using VSCode Remote extension&#xa0;&#xa0;&#xa0;<span class="tag"><span class="suhana">suhana</span></span></h4>
+<p>
+NOTE: YOU MUST BE ON <code>COMETNET</code>
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><code trim>test@promoter
+test123
+</code></pre>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orgbff9e28">
+<h3 id="orgbff9e28">Creating a new workflow with <code>cookiecutter</code></h3>
+<div class="outline-text-3" id="text-orgbff9e28">
+</div>
+</section>
+<section id="slide-org6c6d7a5">
+<h4 id="org6c6d7a5">Open a terminal</h4>
+<ul>
+<li><code>Ctrl + Shift + `</code></li>
+<li>Use &lt;your-name&gt; for <code>repo_name</code></li>
+
+</ul>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><code trim>cookiecutter gl:functional-genomics/cookiecutter-snakemake-workflow
+<span style="color: #ECBE7B;">cd</span> &lt;your_name&gt;
+<span style="color: #ECBE7B;">make</span> install
+</code></pre>
+</div>
+</section>
+<section id="slide-orgc408ebe">
+<h4 id="orgc408ebe">Running <code>snakemake</code> for the first time</h4>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><code trim><span style="color: #ECBE7B;">make</span> dry
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">Equivalent to</span>
+poetry run snakemake -n --use-conda --use-singularity -j <span style="color: #da8548; font-weight: bold;">4</span> --report report.html
+</code></pre>
+</div>
+<ul>
+<li>Right click on <code>report.html</code> and download it locally</li>
+<li>Open the report in a browser locally</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org89744e1">
+<h2 id="org89744e1">Writing a workflow</h2>
+<div class="outline-text-2" id="text-org89744e1">
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orgd2f7465">
+<h3 id="orgd2f7465">Step 0: Download the data</h3>
+<div class="outline-text-3" id="text-orgd2f7465">
+</div>
+</section>
+<section id="slide-orgfd61d55">
+<h4 id="orgfd61d55">Open <code>workflow/Snakefile</code></h4>
+<div class="org-src-container">
+
+<pre  class="src src-snakemake"><code trim><span style="color: #51afef;">rule</span> <span style="color: #c678dd;">bwa_map</span>:
+    <span style="color: #ECBE7B;">output</span>:
+        <span style="color: #98be65;">"data/samples/A.fastq"</span>
+    <span style="color: #ECBE7B;">shell</span>:
+        <span style="color: #98be65;">"""</span>
+<span style="color: #98be65;">        wget https://github.com/snakemake/snakemake-tutorial-data/archive/v5.4.5.tar.gz</span>
+<span style="color: #98be65;">        tar --wildcards -xf v5.4.5.tar.gz --strip 1 "*/data"</span>
+<span style="color: #98be65;">        """</span>
+</code></pre>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org2df7452">
+<h3 id="org2df7452"><a href="https://snakemake.readthedocs.io/en/stable/tutorial/basics.html#step-1-mapping-reads">Step 1: Mapping reads</a></h3>
+<div class="outline-text-3" id="text-org2df7452">
+</div>
+</section>
+<section id="slide-org6cf72d7">
+<h4 id="org6cf72d7">Open <code>workflow/Snakefile</code></h4>
+<div class="org-src-container">
+
+<pre  class="src src-snakemake"><code trim><span style="color: #51afef;">rule</span> <span style="color: #c678dd;">bwa_map</span>:
+    <span style="color: #ECBE7B;">input</span>:
+        <span style="color: #98be65;">"/home/test/data/genome.fa"</span>,
+        <span style="color: #98be65;">"/home/test/data/samples/A.fastq"</span>
+    <span style="color: #ECBE7B;">output</span>:
+        <span style="color: #98be65;">"results/mapped_reads/A.bam"</span>
+    <span style="color: #ECBE7B;">conda</span>:
+        <span style="color: #98be65;">"./envs/bwa.yml"</span>
+    <span style="color: #ECBE7B;">shell</span>:
+        <span style="color: #98be65;">"bwa mem {input} | samtools view -Sb - &gt; {output}"</span>
+</code></pre>
+</div>
+</section>
+<section id="slide-org0acf441">
+<h4 id="org0acf441">Open <code>workflow/envs/bwa.yml</code></h4>
+<div class="org-src-container">
+
+<pre  class="src src-yaml"><code trim><span style="color: #dcaeea;">channels</span>:
+  - bioconda
+  - conda-forge
+  - defaults
+<span style="color: #dcaeea;">dependencies</span>:
+  - bwa ==0.7.17
+  - samtools ==1.9
+  - picard ==2.20.1
+</code></pre>
+</div>
+</section>
+<section id="slide-org1c5f1de">
+<h4 id="org1c5f1de">Run</h4>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><code trim><span style="color: #ECBE7B;">make</span> dry <span style="color: #dcaeea;">rule</span>=results/mapped_reads/A.bam
+<span style="color: #ECBE7B;">make</span> smk <span style="color: #dcaeea;">rule</span>=results/mapped_reads/A.bam
+</code></pre>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org94821df">
+<h3 id="org94821df"><a href="https://snakemake.readthedocs.io/en/stable/tutorial/basics.html#step-2-generalizing-the-read-mapping-rule">Step 2: Generalizing the read mapping rule</a></h3>
+<div class="outline-text-3" id="text-org94821df">
+</div>
+</section>
+<section id="slide-org8ce3c48">
+<h4 id="org8ce3c48"><code>workflow/Snakefile</code></h4>
+<div class="org-src-container">
+
+<pre  class="src src-snakemake"><code trim><span style="color: #51afef;">rule</span> <span style="color: #c678dd;">bwa_map</span>:
+    <span style="color: #ECBE7B;">input</span>:
+        <span style="color: #98be65;">"data/genome.fa"</span>,
+        <span style="color: #98be65;">"data/samples/{sample}.fastq"</span>
+    <span style="color: #ECBE7B;">output</span>:
+        <span style="color: #98be65;">"results/mapped_reads/{sample}.bam"</span>
+    <span style="color: #ECBE7B;">conda</span>:
+        <span style="color: #98be65;">"./envs/bwa.yml"</span>
+    <span style="color: #ECBE7B;">shell</span>:
+        <span style="color: #98be65;">"bwa mem {input} | samtools view -Sb - &gt; {output}"</span>
+</code></pre>
+</div>
+</section>
+<section id="slide-org66f1476">
+<h4 id="org66f1476">Run</h4>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><code trim><span style="color: #ECBE7B;">make</span> smk <span style="color: #dcaeea;">rule</span>=results/mapped_reads/B.bam
+<span style="color: #ECBE7B;">make</span> smk <span style="color: #dcaeea;">rule</span>=<span style="color: #98be65;">"results/mapped_reads/A.bam results/mapped_reads/B.bam"</span>
+<span style="color: #ECBE7B;">make</span> smk <span style="color: #dcaeea;">rule</span>=<span style="color: #98be65;">"mapped_reads/{A,B}.bam"</span>
+</code></pre>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orgdf1f759">
+<h3 id="orgdf1f759"><a href="https://snakemake.readthedocs.io/en/stable/tutorial/basics.html#step-3-sorting-read-alignments">Step 3: Sorting read alignments</a></h3>
+<ul>
+<li>Note that Snakemake automatically creates missing directories before jobs are executed.</li>
+
+</ul>
+<div class="org-src-container">
+
+<pre  class="src src-snakemake"><code trim><span style="color: #51afef;">rule</span> <span style="color: #c678dd;">samtools_sort</span>:
+    <span style="color: #ECBE7B;">input</span>:
+        <span style="color: #98be65;">"results/mapped_reads/{sample}.bam"</span>
+    <span style="color: #ECBE7B;">output</span>:
+        <span style="color: #98be65;">"results/sorted_reads/{sample}.bam"</span>
+    <span style="color: #ECBE7B;">conda</span>:
+        <span style="color: #98be65;">"envs/sam.yml"</span>
+    <span style="color: #ECBE7B;">shell</span>:
+        <span style="color: #98be65;">"samtools sort -T results/sorted_reads/{wildcards.sample} "</span>
+        <span style="color: #98be65;">"-O bam {input} &gt; {output}"</span>
+</code></pre>
+</div>
+</section>
+<section id="slide-orga0e894f">
+<h4 id="orga0e894f">Open <code>workflow/envs/bwa.yml</code></h4>
+<div class="org-src-container">
+
+<pre  class="src src-yaml"><code trim><span style="color: #dcaeea;">channels</span>:
+  - bioconda
+  - conda-forge
+  - defaults
+<span style="color: #dcaeea;">dependencies</span>:
+  - samtools ==1.9
+</code></pre>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org0e44a85">
+<h3 id="org0e44a85"><a href="https://snakemake.readthedocs.io/en/stable/tutorial/basics.html#step-4-indexing-read-alignments-and-visualizing-the-dag-of-jobs">Step 4: Indexing read alignments and visualizing the DAG of jobs</a></h3>
+<div class="outline-text-3" id="text-org0e44a85">
+</div>
+</section>
+<section id="slide-org1cdcbc7">
+<h4 id="org1cdcbc7"><code>workflow/Snakefile</code></h4>
+<div class="org-src-container">
+
+<pre  class="src src-snakemake"><code trim><span style="color: #51afef;">rule</span> <span style="color: #c678dd;">samtools_index</span>:
+    <span style="color: #ECBE7B;">input</span>:
+        <span style="color: #98be65;">"results/sorted_reads/{sample}.bam"</span>
+    <span style="color: #ECBE7B;">output</span>:
+        <span style="color: #98be65;">"results/sorted_reads/{sample}.bam.bai"</span>
+    <span style="color: #ECBE7B;">conda</span>:
+        <span style="color: #98be65;">"envs/sam.yml"</span>
+    <span style="color: #ECBE7B;">shell</span>:
+        <span style="color: #98be65;">"samtools index {input}"</span>
+</code></pre>
+</div>
+</section>
+<section id="slide-org89cc446">
+<h4 id="org89cc446">Update all rule</h4>
+<p>
+<code>workflow/Snakefile</code>
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-snakemake"><code trim><span style="color: #51afef;">rule</span> <span style="color: #c678dd;">all</span>:
+    <span style="color: #ECBE7B;">input</span>:
+        <span style="color: #98be65;">"results/sorted_reads/A.bam.bai"</span>,
+        <span style="color: #98be65;">"results/sorted_reads/B.bam.bai"</span>,
+        <span style="color: #98be65;">"results/sorted_reads/C.bam.bai"</span>,
+</code></pre>
+</div>
+</section>
+<section id="slide-org0013482">
+<h4 id="org0013482">Run</h4>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><code trim><span style="color: #ECBE7B;">make</span> smk
+<span style="color: #ECBE7B;">make</span> report
+</code></pre>
+</div>
+<ul>
+<li>Download <code>report.html</code></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org5398391">
+<h3 id="org5398391"><a href="https://snakemake.readthedocs.io/en/stable/tutorial/basics.html#step-5-calling-genomic-variants">Step 5: Calling genomic variants</a></h3>
+<div class="outline-text-3" id="text-org5398391">
+</div>
+</section>
+<section id="slide-org9391d78">
+<h4 id="org9391d78"><code>expand</code></h4>
+<div class="org-src-container">
+
+<pre  class="src src-snakemake"><code trim><span style="color: #c678dd;">expand</span>(<span style="color: #98be65;">"sorted_reads/{sample}.bam"</span>, sample=SAMPLES)
+</code></pre>
+</div>
+<p>
+Returns:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><code trim>[<span style="color: #83898d;">"sorted_reads/A.bam"</span>, <span style="color: #83898d;">"sorted_reads/B.bam"</span>]
+</code></pre>
+</div>
+</section>
+<section id="slide-org7158d3d">
+<h4 id="org7158d3d">A more complicated expand</h4>
+<div class="org-src-container">
+
+<pre  class="src src-snakemake"><code trim><span style="color: #c678dd;">expand</span>(<span style="color: #98be65;">"sorted_reads/{sample}.{replicate}.bam"</span>, sample=SAMPLES, replicate=[<span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #da8548; font-weight: bold;">1</span>])
+</code></pre>
+</div>
+<p>
+Returns:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><code trim>[<span style="color: #83898d;">"sorted_reads/A.0.bam"</span>, <span style="color: #83898d;">"sorted_reads/A.1.bam"</span>, <span style="color: #83898d;">"sorted_reads/B.0.bam"</span>, <span style="color: #83898d;">"sorted_reads/B.1.bam"</span>]
+</code></pre>
+</div>
+</section>
+<section id="slide-org04892fc">
+<h4 id="org04892fc">Defining Samples</h4>
+<div class="org-src-container">
+
+<pre  class="src src-snakemake"><code trim><span style="color: #dcaeea;">SAMPLES</span> = [<span style="color: #98be65;">"A"</span>, <span style="color: #98be65;">"B"</span>, <span style="color: #98be65;">"C"</span>]
+</code></pre>
+</div>
+</section>
+<section id="slide-org73f6d86">
+<h4 id="org73f6d86">Rule for calling variants</h4>
+<p>
+<code>workflow/Snakefile</code>
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-snakemake"><code trim><span style="color: #51afef;">rule</span> <span style="color: #c678dd;">bcftools_call</span>:
+    <span style="color: #ECBE7B;">input</span>:
+        <span style="color: #dcaeea;">fa</span>=<span style="color: #98be65;">"data/genome.fa"</span>,
+        <span style="color: #dcaeea;">bam</span>=<span style="color: #c678dd;">expand</span>(<span style="color: #98be65;">"results/sorted_reads/{sample}.bam"</span>, sample=SAMPLES),
+        <span style="color: #dcaeea;">bai</span>=<span style="color: #c678dd;">expand</span>(<span style="color: #98be65;">"results/sorted_reads/{sample}.bam.bai"</span>, sample=SAMPLES)
+    <span style="color: #ECBE7B;">output</span>:
+        <span style="color: #98be65;">"calls/all.vcf"</span>
+    <span style="color: #ECBE7B;">conda</span>:
+        <span style="color: #98be65;">"../envs/bcf.yml"</span>
+    <span style="color: #ECBE7B;">shell</span>:
+        <span style="color: #98be65;">"samtools mpileup -g -f {input.fa} {input.bam} | "</span>
+        <span style="color: #98be65;">"bcftools call -mv - &gt; {output}"</span>
+</code></pre>
+</div>
+</section>
+<section id="slide-org0565689">
+<h4 id="org0565689"><code>workflow/envs/bcf.yml</code></h4>
+<div class="org-src-container">
+
+<pre  class="src src-yaml"><code trim><span style="color: #dcaeea;">channels</span>:
+  - bioconda
+  - conda-forge
+  - defaults
+<span style="color: #dcaeea;">dependencies</span>:
+  - samtools ==1.9
+  - bcftools ==1.9
+</code></pre>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org8770602">
+<h3 id="org8770602"><a href="https://snakemake.readthedocs.io/en/stable/tutorial/basics.html#step-6-using-custom-scripts">Step 6: Using custom scripts</a></h3>
+<div class="outline-text-3" id="text-org8770602">
+</div>
+</section>
+<section id="slide-org893d152">
+<h4 id="org893d152">In <code>workflow/Snakefile</code></h4>
+<div class="org-src-container">
+
+<pre  class="src src-snakemake"><code trim><span style="color: #51afef;">rule</span> <span style="color: #c678dd;">plot_quals</span>:
+    <span style="color: #ECBE7B;">input</span>:
+        <span style="color: #98be65;">"results/calls/all.vcf"</span>
+    <span style="color: #ECBE7B;">output</span>:
+        <span style="color: #c678dd;">report</span>(<span style="color: #98be65;">"results/plots/quals.svg"</span>)
+    <span style="color: #ECBE7B;">conda</span>:
+        <span style="color: #98be65;">"../envs/plot.py"</span>
+    <span style="color: #ECBE7B;">script</span>:
+        <span style="color: #98be65;">"scripts/plot-quals.py"</span>
+</code></pre>
+</div>
+</section>
+<section id="slide-org52eddc9">
+<h4 id="org52eddc9"><code>workflow/scripts/plot-quals.py</code></h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><code trim><span style="color: #51afef;">import</span> matplotlib
+matplotlib.use(<span style="color: #98be65;">"Agg"</span>)
+<span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
+<span style="color: #51afef;">from</span> pysam <span style="color: #51afef;">import</span> VariantFile
+
+<span style="color: #dcaeea;">quals</span> = [record.qual <span style="color: #51afef;">for</span> record <span style="color: #51afef;">in</span> VariantFile(snakemake.<span style="color: #c678dd;">input</span>[<span style="color: #da8548; font-weight: bold;">0</span>])]
+plt.hist(quals)
+
+plt.savefig(snakemake.output[<span style="color: #da8548; font-weight: bold;">0</span>])
+</code></pre>
+</div>
+</section>
+<section id="slide-orgc40e441">
+<h4 id="orgc40e441"><code>workflow/envs/plot.yml</code></h4>
+<div class="org-src-container">
+
+<pre  class="src src-yaml"><code trim><span style="color: #dcaeea;">channels</span>:
+  - bioconda
+  - conda-forge
+  - defaults
+<span style="color: #dcaeea;">dependencies</span>:
+  - matplotlib
+  - pysam
+</code></pre>
+</div>
+</section>
+<section id="slide-org3600cfc">
+<h4 id="org3600cfc">Using this with R</h4>
+<ul>
+<li><a href="https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#external-scripts">External scripts docs</a></li>
+<li>R, Rmd, or ipynb</li>
+
+</ul>
+<div class="org-src-container">
+
+<pre  class="src src-R"><code trim><span style="color: #c678dd;">do_something</span> <span style="color: #a9a1e1;">&lt;-</span> <span style="color: #51afef;">function</span>(data_path, out_path, threads, myparam) {
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">R code</span>
+}
+
+do_something(snakemake@input[[<span style="color: #da8548; font-weight: bold;">1</span>]],
+             snakemake@output[[<span style="color: #da8548; font-weight: bold;">1</span>]],
+             snakemake@threads,
+             snakemake@config[[<span style="color: #98be65;">"myparam"</span>]])
+</code></pre>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org34c0e33">
+<h3 id="org34c0e33"><a href="https://snakemake.readthedocs.io/en/stable/tutorial/basics.html#step-7-adding-a-target-rule">Step 7: Adding a target rule</a></h3>
+<div class="outline-text-3" id="text-org34c0e33">
+</div>
+</section>
+<section id="slide-orgad32b3c">
+<h4 id="orgad32b3c"><code>workflow/Snakefile</code></h4>
+<div class="org-src-container">
+
+<pre  class="src src-snakemake"><code trim><span style="color: #51afef;">rule</span> <span style="color: #c678dd;">all</span>:
+    <span style="color: #ECBE7B;">input</span>:
+        <span style="color: #98be65;">"plots/quals.svg"</span>
+</code></pre>
+</div>
+</section>
+<section id="slide-org6c51bea">
+<h4 id="org6c51bea">Run it</h4>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><code trim><span style="color: #ECBE7B;">make</span> smk
+<span style="color: #ECBE7B;">make</span> report
+</code></pre>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org296fef8">
+<h3 id="org296fef8">Taking it to the Cluster</h3>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><code trim>ssh eam150030@ganymede
+<span style="color: #ECBE7B;">cd</span> scratch
+<span style="color: #ECBE7B;">git</span> clone https://gitlab.com/functional-genomics/analysis/snakemake-tutorial.git
+<span style="color: #ECBE7B;">cd</span> snakemake-tutorial
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">pip install cookiecutter</span>
+<span style="color: #ECBE7B;">make</span> profile
+module add singlarity/2.4.5
+<span style="color: #ECBE7B;">make</span> cluster
+</code></pre>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org6a69846">
+<h2 id="org6a69846">nf-core preview</h2>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><code trim>nextflow run nf-core/rnaseq -profile &lt;docker/singularity/conda&gt; --reads <span style="color: #98be65;">'*_R{1,2}.fastq.gz'</span> --genome GRCh37
+</code></pre>
+</div>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+});
+</script>
+</body>
+</html>
