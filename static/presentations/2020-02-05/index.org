@@ -1,0 +1,197 @@
+#+REVEAL_THEME: white
+#+TITLE: Workflow Improvements
+#+AUTHOR: Edmund Miller
+#+OPTIONS: reveal_title_slide:nil
+#+OPTIONS: num:nil
+#+OPTIONS: toc:nil
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_HLEVEL: 1
+* Functional Genomics Documentation
+** Goals
+- Protocols all in one place
+- Updating protocols quickly
+- Better on boarding for new lab members
+- Retaining knowledge when people move on
+** Functional Genomics GitLab
+- https://gitlab.com/functional-genomics
+- [[https://functional-genomics.gitlab.io/docs/][Docs]]
+* Open Protocols
+** Highlights
+- Markdown
+- Collaboration through Git
+- Automatic Deployment
+- [[https://star-protocols.cell.com/protocols][Star-protocols]]
+** Markdown
+*** Intro
+- https://commonmark.org/
+#+BEGIN_SRC markdown
+# Heading 1
+,*Italic*
+,**Bold**
+
+## Heading 2
+- List
+- List
+- List
+
+### Heading 3
+---
+
+```python
+# code block
+print '3 backticks or'
+print 'indent 4 spaces'
+```
+#+END_SRC
+** Collaboration through Git
+*** Intro to Git
+- [[https://happygitwithr.com/][happy git with r]]
+
+- [[https://learnxinyminutes.com/docs/git/][Learn git in y]]
+- [[https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004668][Plos Computational Biology Paper]]
+#+BEGIN_SRC shell
+git clone https://gitlab.com/functional-genomics/docs.git
+# Adds all the files in the current directory
+git add .
+# Creating a commit message
+git commit -m "A commit message"
+# Pushing to the remote repo
+git push origin master
+#+END_SRC
+*** Why should you use git?
+- It’s a super save button that lets you create snapshots/backups of your work.
+- Lets you work on multiple versions of a project simultaneously – i.e. create a
+  new step in the pipeline, and change the tool used for alignment in another
+  and merge them to the main branch when ready
+- It’s amazing for collaboration and keeps things organized.
+*** pre-commit
+- https://pre-commit.com/
+- Runs before ~git commit~
+- Makes everyone follow the rules
+- Code Formatting([[https://www.shellcheck.net/][shellcheck]], [[https://github.com/psf/black][black]], [[https://styler.r-lib.org/][styler]])
+- Commit Formatting
+*** Conventional Commits
+Format:
+#+BEGIN_SRC shell
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+#+END_SRC
+Example:
+#+BEGIN_SRC shell
+feat: use poetry instead of conda
+#+END_SRC
+
+- Changelogs automatically generated
+- https://semver.org/
+** CI/CD
+- Continuous Integration
+- Continuous Deployment
+*** Features
+- Deploys Website whenever pushed to master
+- Checks merge requests for correct formatting
+- Creates PDFs of pages for Web lab use
+*** GitLab
+- Password Authetication for Website
+- CI configured in yaml
+- Support for GitHub in the future
+** Create Your Own!
+#+BEGIN_SRC shell
+cookiecutter gl:functional-genomics/open-protocols/cookiecutter-open-protocol
+#+END_SRC
+*** Fill in your lab info
+#+REVEAL_HTML:<a href="https://asciinema.org/a/5Hv2mtnYBJQ74u4MzMOwOl1yh" target="_blank"><img src="https://asciinema.org/a/5Hv2mtnYBJQ74u4MzMOwOl1yh.svg" /></a>
+*** Workflow
+#+BEGIN_SRC shell
+make install
+# Serving locally http://127.0.0.1:8000/
+make serve
+#+END_SRC
+* Nix development
+** Managing R environments
+- Reproducible R enviroments
+- https://nixos.wiki/wiki/R
+- https://nixos.org/nixos/packages.html?channel=nixpkgs-unstable
+** Installing nix
+#+BEGIN_SRC shell
+curl https://nixos.org/nix/install | sh
+#+END_SRC
+** nix-shell for R
+~shell.nix~
+#+BEGIN_SRC nix
+let
+  pkgs = import <nixpkgs> { };
+  stdenv = pkgs.stdenv;
+in with pkgs; {
+  myProject = stdenv.mkDerivation {
+    name = "bioinformatics-pipeline";
+    version = "1";
+
+    buildInputs =
+      # Any package available in CRAN
+      [ R rPackages.edgeR rPackages.RColorBrewer tidyverse ];
+  };
+}
+#+END_SRC
+** nix-shell
+#+BEGIN_SRC shell
+$ nix-shell
+[nix-shell:~/src/fg/presentations/Functional_Genomics/2020-02-05]$ R
+>
+#+END_SRC
+* New and improved Snakemake
+** Plain R vs Snakemake example
+Coming soon!
+** Cookiecutter
+#+BEGIN_SRC shell
+cookiecutter gl:functional-genomics/cookiecutter-snakemake-workflow
+#+END_SRC
+- Fill in your info and get started!
+** Before
+Setup
+#+BEGIN_SRC shell
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh
+cd project/dir
+conda env create -f environment.yml
+# Get Coffee while waiting on conda
+#+END_SRC
+Workflow
+#+BEGIN_SRC shell
+conda activate smk
+cd <project/dir>
+snakemake --use-conda --use-singularity
+# Rerunning a specific rule
+snakemake --use-conda --use-singularity -R bowtie2
+snakemake --report report.html
+#+END_SRC
+** After
+Setup
+#+BEGIN_SRC shell
+cd <project/dir>
+make install
+make
+# Or specific rules
+make smk rule=bowtie2
+make report
+#+END_SRC
+** Cluster
+*** Before
+#+BEGIN_SRC shell
+mkdir -p ~/.config/snakemake
+cd ~/.config/snakemake
+cookiecutter https://github.com/Snakemake-Profiles/slurm.git
+cd <project/dir>
+activate singularity
+snakemake --profile slurm --use-conda --use-singularity
+snakemake --profile slurm --use-conda --use-singularity -R bowtie2
+#+END_SRC
+*** After
+#+BEGIN_SRC shell
+cd <project/dir>
+make profile
+make slurm
+make slurm rule=bowtie2
+#+END_SRC

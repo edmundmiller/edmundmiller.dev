@@ -1,0 +1,57 @@
+#+TITLE: GRO-Seq
+#+AUTHOR: Edmund Miller
+#+OPTIONS: reveal_title_slide:nil
+#+OPTIONS: num:nil
+#+OPTIONS: toc:nil
+#+OPTIONS: DATE:false
+#+REVEAL_THEME: white
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_HLEVEL: 2
+* GRO-Seq Analysis
+** Recap
+- Predicted IMR90 eRNAs
+- Compared IMR90 Predicted Enhancers to GM
+- Ran GREAT Analysis on them
+- Used Homer builtin scripts to find DE of eRNAs and Genes
+** What I've been working on
+*** Gene Centric vs. Enhancer Centric
+- Peng's approach
+  - Took enhancers that were expressed deferentially
+  - Linked them to Genes within 200Kb
+- New approach
+  - Take genes that are deferentially expressed
+  - Link the Enhancers to those genes
+*** Gene Differenitial Expression
+*** 
+:PROPERTIES:
+:reveal_background: viz/pipeline.png
+:reveal_background_size: 800px
+:reveal_background_trans: slide
+:END:
+*** featureCounts
+**** Tried CLI version
+**** Couldn't get examples to work with edgeR
+**** Switched to R package
+*** edgeR
+**** Error with exactTest
+**** Defaulted to writing raw DGEList to file
+**** Used in Pivot
+** Results
+*** 
+:PROPERTIES:
+:reveal_background: img/GM_normalized.png
+:reveal_background_size: 1200px
+:reveal_background_trans: slide
+:END:
+*** 
+:PROPERTIES:
+:reveal_background: img/IMR_normalized.png
+:reveal_background_size: 1200px
+:reveal_background_trans: slide
+:END:
+** Future
+*** Future
+**** Compare IMR and GM Genes
+**** Get List of Top Genes
+**** Link eRNAs and Top genes
+**** Kinetics of the eRNAs

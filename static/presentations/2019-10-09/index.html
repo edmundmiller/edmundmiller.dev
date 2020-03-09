@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Transcriptional Kinetics of Viral Induced eRNAs across cell lines</title>
+<meta name="author" content="(Edmund Miller)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/css/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/css/theme/white.css" id="theme"/>
+
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'https://cdn.jsdelivr.net/npm/reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section>
+<section id="slide-orgc752e80">
+<h2 id="orgc752e80">Jupyter</h2>
+<div class="outline-text-2" id="text-orgc752e80">
+</div>
+</section>
+<section id="slide-orgf500981">
+<h3 id="orgf500981">Jupyter Links</h3>
+<ul>
+<li><a href="http://10.163.45.122/">Functional Genomics JupyterHub</a></li>
+<li><a href="https://mybinder.org/v2/gh/jupyterlab/jupyterlab-demo/try.jupyter.org?urlpath=lab">JupyterLab-Demo</a></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-orgf33c652">
+<h2 id="orgf33c652">Visidata</h2>
+<div class="outline-text-2" id="text-orgf33c652">
+</div>
+</section>
+<section id="slide-orgc655d01">
+<h3 id="orgc655d01">Links</h3>
+<ul>
+<li><a href="http://visidata.org/install/">Install</a></li>
+<li><a href="https://jsvine.github.io/intro-to-visidata/">An Introduction to VisiData</a></li>
+
+</ul>
+</section>
+<section id="slide-orge6cdf24">
+<h3 id="orge6cdf24"></h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/xtNxgDX4qsw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</section>
+</section>
+<section>
+<section id="slide-org5c61336">
+<h2 id="org5c61336">Transcriptional Kinetics of Viral Induced eRNAs across cell lines</h2>
+<div class="outline-text-2" id="text-org5c61336">
+</div>
+</section>
+<section id="slide-org1425487">
+<h3 id="org1425487">Recap</h3>
+<div class="outline-text-3" id="text-org1425487">
+</div>
+</section>
+<section id="slide-org68128db" data-background="img/globaltrans.png" data-background-size="800px" data-background-transition="slide">
+<h4 id="org68128db"></h4>
+</section>
+<section id="slide-orgbabc31c">
+<h4 id="orgbabc31c">Overview</h4>
+<ul>
+<li>Reproducing GM18</li>
+<li>Predicted IMR90 eRNAs</li>
+<li>Compared IMR90 Predicted Enhancers to GM</li>
+<li>Used Homer scripts to find DE of eRNAs and Genes</li>
+<li>Gene Centric vs. Enhancer Centric</li>
+
+</ul>
+</section>
+<section id="slide-org9e17c73">
+<h4 id="org9e17c73">Reproducing GM18</h4>
+<ul>
+<li>hg18 vs hg19</li>
+<li>Overpredicting eRNA transcripts</li>
+<li>Past Issue
+<ul>
+<li>What I thought Peng sent me</li>
+<li>hg18 -&gt; eRNAs -&gt; Me</li>
+<li>What actually happened</li>
+<li>hg18 -&gt; eRNAs -&gt; LiftOver -&gt; hg19 -&gt; Me</li>
+
+</ul></li>
+<li>Main issue is homer uniqmap</li>
+
+</ul>
+</section>
+<section id="slide-org0b98d50" data-background="img/dag.png" data-background-size="400px" data-background-transition="slide">
+<h4 id="org0b98d50"></h4>
+</section>
+<section id="slide-org867a3a1">
+<h4 id="org867a3a1">Predicted IMR90 eRNAs</h4>
+<p>
+Changes from GM18
+</p>
+<ul>
+<li>hg19</li>
+<li>No liftover</li>
+
+</ul>
+</section>
+<section id="slide-org3522f8b">
+<h4 id="org3522f8b">Gene Centric vs. Enhancer Centric</h4>
+<ul>
+<li>Peng&rsquo;s approach
+<ul>
+<li>Took enhancers that were expressed deferentially</li>
+<li>Linked them to Genes within 200Kb</li>
+
+</ul></li>
+<li>New approach
+<ul>
+<li>Find genes that are deferentially expressed</li>
+<li>Link the Enhancers to those genes</li>
+
+</ul></li>
+
+</ul>
+
+</section>
+<section id="slide-orgc6e21a7" data-background="viz/pipeline.png" data-background-size="600px" data-background-transition="slide">
+<h4 id="orgc6e21a7"></h4>
+</section>
+<section id="slide-org1f6e979">
+<h4 id="org1f6e979">featureCounts</h4>
+<div class="outline-text-4" id="text-org1f6e979">
+</div>
+<ul class="org-ul">
+<li><a id="org6e2333f"></a>Tried CLI version<br /></li>
+<li><a id="org3d145ad"></a>Couldn&rsquo;t get examples to work with edgeR<br /></li>
+<li><a id="org10cef0f"></a>Switched to R package<br /></li>
+<li><a id="org957069c"></a>Switched to a snakemake wrapper<br /></li>
+</ul>
+</section>
+<section id="slide-orgd0e5cfd">
+<h4 id="orgd0e5cfd">Limma</h4>
+<ul>
+<li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4937821/">RNA-seq analysis is easy as 1-2-3 with limma, Glimma and edgeR</a></li>
+
+</ul>
+</section>
+<section id="slide-org25d9f92" data-background="img/limma/GM19_fig3_limma.png" data-background-size="800px" data-background-transition="slide">
+<h4 id="org25d9f92"></h4>
+</section>
+<section id="slide-orge6ee617" data-background="img/limma/IMR_fig3_limma.png" data-background-size="800px" data-background-transition="slide">
+<h4 id="orge6ee617"></h4>
+</section>
+<section id="slide-orgb768bc4">
+<h3 id="orgb768bc4">Overview</h3>
+<ul>
+<li>Get List of DE Genes</li>
+<li>Link eRNAs and Top genes</li>
+<li>Compare IMR and GM eRNAs</li>
+<li>Checking for L2</li>
+
+</ul>
+</section>
+<section id="slide-orgbb5e8e7">
+<h3 id="orgbb5e8e7">Get List of DE Genes</h3>
+<ul>
+<li>Used TPM values</li>
+<li>Removed Genes without a foldchange &gt; 1 between any timepoints</li>
+<li>Considering using only points t&lt;24h for inducibility</li>
+<li>Planning to Redo using DESeq2</li>
+
+</ul>
+</section>
+<section id="slide-orgda88ffe">
+<h3 id="orgda88ffe">Link eRNAs and Top genes</h3>
+<ul>
+<li>Awk script to get RefSeq, with only specific BED entries</li>
+<li>Ended up using Ripgrep</li>
+
+</ul>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><code trim>awk -F <span style="color: #98be65;">\"\\</span>t<span style="color: #98be65;">\"</span> <span style="color: #98be65;">'{{ if (NR!=1){{ print $1 }}}}'</span> genesFoldChange.txt | <span style="color: #98be65;">\</span>
+rg --dfa-size-limit 2G -w -f - refseqgenes.gtf | <span style="color: #98be65;">\</span>
+rg -w exon - &gt; de_genes.gtf
+</code></pre>
+</div>
+<ul>
+<li>Linked eRNAs within 200Kb</li>
+
+</ul>
+</section>
+<section id="slide-org7dc5437">
+<h3 id="org7dc5437">Compare IMR and GM eRNAs</h3>
+<ul>
+<li>Created Meta eRNAs
+<ul>
+<li>Find overlaps of IMR and GM (Viral)</li>
+<li>Merge GM and IMR eRNAs(Meta)</li>
+<li>Report Meta Viral eRNAs</li>
+
+</ul></li>
+
+</ul>
+</section>
+<section id="slide-orga040127">
+<h3 id="orga040127">Checking for L2</h3>
+<div class="outline-text-3" id="text-orga040127">
+</div>
+</section>
+<section id="slide-orge58ead5" data-background="img/L2_GenomeBrowser_v2.png" data-background-size="1000px" data-background-transition="slide">
+<h4 id="orge58ead5"></h4>
+</section>
+<section id="slide-orge8ef733" data-background="img/peaks.groseqChart.png" data-background-size="1000px" data-background-transition="slide">
+<h4 id="orge8ef733"></h4>
+</section>
+<section id="slide-orgfede883">
+<h3 id="orgfede883">Possible Groupings</h3>
+<div class="outline-text-3" id="text-orgfede883">
+</div>
+</section>
+<section id="slide-orgfa9352a" data-background="img/grouping_eRNAs.png" data-background-size="1500px" data-background-transition="slide">
+<h4 id="orgfa9352a"></h4>
+</section>
+<section id="slide-org60ec590">
+<h3 id="org60ec590"><a href="https://emiller88.github.io/presentations/Zhang/2019-10-09/report.html">Report</a></h3>
+</section>
+<section id="slide-orge805fa2">
+<h3 id="orge805fa2">Future</h3>
+<ul>
+<li>Utilize Induciblability Index</li>
+<li>Work with TNFSF10 to test grouping Identification Pipeline</li>
+
+</ul>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+});
+</script>
+</body>
+</html>

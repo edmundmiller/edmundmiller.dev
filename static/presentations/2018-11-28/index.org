@@ -1,0 +1,129 @@
+#+TITLE: Gro-Seq
+#+AUTHOR: Edmund Miller
+#+OPTIONS: reveal_title_slide:nil
+#+OPTIONS: num:nil
+#+OPTIONS: toc:nil
+#+OPTIONS: DATE:false
+#+REVEAL_THEME: white
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_HLEVEL: 2
+* GRO-Seq Analysis
+** IMR90
+*** Overview of Project for new Members
+- Compared IMR90 Predicted Enhancers to GM
+- Ran GREAT Analysis on them
+- Began working to find coverage of eRNAs in Samples
+*** Compared IMR90 Predicted Enhancers to GM
+*** 
+:PROPERTIES:
+:reveal_background: img/Venn.png
+:reveal_background_size: 800px
+:reveal_background_trans: slide
+:END:
+*** Snakemake
+*** 
+:PROPERTIES:
+:reveal_background: img/dag.png
+:reveal_background_size: 400px
+:reveal_background_trans: slide
+:END:
+*** What this might look like as a shell script
+#+BEGIN_SRC shell
+fastqc *.fastq -o=/media/enhancer/IMR90/fastqc -t=6
+for i in `ls *.fastq | cut -d "_" -f 1` ;
+    do bowtie2 -t -p 4 -x ../2018-06-24/genome $i -S $i.sam ;
+done ;
+mv data/2018-06-23/*.sam results/2018-07-10/
+makeTagDirectory results/2018-07-11/All_together/ -genome hg19 -checkGC results/2018-07-10/*.sam
+findPeaks results/2018-07-11/All_together/ -o results/2018-07-12/IMRpeak.gtf -style groseq
+pos2bed.pl results/2018-07-12/GMpeak.gtf > results/2018-07-12/GMpeak.bed
+slopBed -i refseqhg19.bed -g Homo_sapiens/ucsc/hg19/Seqence/WholeGenomeFasta/genome.fa.fai -l 1000 -r 10000 > slop-refseqhq19.bed
+bedtools intersect -a GM/GMGRO-Seq/IMR90tsspeak.bed -b slop-refseqhg19.bed -v > noGenesIMR90tss.bed
+intersectBed -wo -a IMR90/BED/sorted_GroseqIMR90nogenes.bed -b /media/enhancer/eRNA_GM_hg19.bed > eRNA_IMR90_GM_hg19_Overlap.bed
+#+END_SRC
+*** Trying to Reproduce GM
+**** hg18 vs hg19
+**** Overpredicting eRNA transcripts
+** Things That Went Differently This Time
+*** Past Issue
+**** What I thought happened
+**** hg18 -> eRNAs -> Me
+**** What actually happened
+**** hg18 -> eRNAs -> LiftOver -> hg19 -> Me
+*** Organized Tasks
+*** 
+:PROPERTIES:
+:reveal_background: img/oldKanban.png
+:reveal_background_size: 1400px
+:reveal_background_trans: slide
+:END:
+*** 
+:PROPERTIES:
+:reveal_background: img/newKanban.png
+:reveal_background_size: 1400px
+:reveal_background_trans: slide
+:END:
+*** AWS-iGenome
+https://ewels.github.io/AWS-iGenomes/
+** Visualization
+*** GM 18 Pipeline
+#+REVEAL_HTML:<script src="https://d3js.org/d3.v5.min.js"></script>
+#+REVEAL_HTML:<section>
+#+REVEAL_HTML:    <div class="fig-container"
+#+REVEAL_HTML:         data-file="visualization/GM18.html/"></div> <!-- path to the html file with visualization code -->
+#+REVEAL_HTML:</section>
+*** GM 19 Pipeline
+#+REVEAL_HTML:<script src="https://d3js.org/d3.v5.min.js"></script>
+#+REVEAL_HTML:<section>
+#+REVEAL_HTML:    <div class="fig-container"
+#+REVEAL_HTML:         data-file="visualization/GM19.html/"></div> <!-- path to the html file with visualization code -->
+#+REVEAL_HTML:</section>
+*** IMR Pipeline
+#+REVEAL_HTML:<script src="https://d3js.org/d3.v5.min.js"></script>
+#+REVEAL_HTML:<section>
+#+REVEAL_HTML:    <div class="fig-container"
+#+REVEAL_HTML:         data-file="visualization/GM19.html/"></div> <!-- path to the html file with visualization code -->
+#+REVEAL_HTML:</section>
+** Results
+*** GM Reproduction
+*** 
+:PROPERTIES:
+:reveal_background: img/Figure_1.png
+:reveal_background_size: 800px
+:reveal_background_trans: slide
+:END:
+***
+:PROPERTIES:
+:reveal_background: img/Figure_2.png
+:reveal_background_size: 800px
+:reveal_background_trans: slide
+:END:
+*** Results in progress
+**** GM hg19
+**** IMR hg19
+**** Jobs Running
+#+BEGIN_SRC sh
+Job counts:
+	count	jobs
+	1	GM_hg19_HistonesIntersect
+	1	GM_hg19_findPeaks
+	1	GM_hg19_pos2bed
+	1	IMR_H3K27ac_fastq
+	1	IMR_H3K4me1_fastq
+	1	IMR_hg19_All_makeTagDirectory
+	1	IMR_hg19_HistonesIntersect
+	1	IMR_hg19_RemoveGenes
+	2	IMR_hg19_alignHistones
+	8	IMR_hg19_bowtie2
+	2	IMR_hg19_convert_Histones_to_Bed
+	1	IMR_hg19_findPeaks
+	1	IMR_hg19_pos2bed
+	2	IMR_hg19_sort_Histones_Bed
+	1	all
+	1	hg19_RemoveGenes
+	1	test_IMR90_hg19_vs_Peng
+	1	test_IMR_hg19_vs_GM_hg19
+	1	test_IMR_hg19_vs_liftOver
+	29
+#+END_SRC
+** Future

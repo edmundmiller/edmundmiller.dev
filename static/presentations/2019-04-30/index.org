@@ -1,0 +1,153 @@
+#+TITLE: HPC
+#+AUTHOR: Edmund Miller
+#+OPTIONS: reveal_title_slide:nil
+#+OPTIONS: num:nil
+#+OPTIONS: toc:nil
+#+OPTIONS: DATE:false
+#+REVEAL_THEME: white
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_HLEVEL: 2
+* HPC Cluster
+* Intro to Ganymede
+- ~ganymedeadmins@utdallas.edu~
+- centos 7 with OpenHPC
+- http://docs.oithpc.utdallas.edu
+- Access to normal, debug, and genomics, GPU1 queue
+* Getting Access
+- Email ~admin@ganymede~ for access and to *genomics*
+- Takes around a week
+- You can log in with ~ssh <NETID>@ganymede.utdallas.edu~
+* Some Basic Commands
+#+begin_src shell
+# Info about slurm cluster
+sinfo
+# List enabled modules
+module list
+# Available module
+module av
+# Load anaconda
+# Must be done everytime you log in
+module load anaconda3
+# Cancel all jobs
+scancel -u <NETID>
+# Check the queue
+squeue -p genomics
+# Submit a job
+sbatch --help
+#+end_src
+* Installing Conda
+#+begin_src shell
+pip install conda
+# If that doesn't work
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+
+# Make an environment
+conda create -n smk -c bioconda snakemake
+conda install -c bioconda nextflow
+# OR
+conda create -n nf -c bioconda nextflow
+
+# Activate your env
+conda activate smk
+#+end_src
+* Running Things
+1. Email ~admin@ganymede~ for access and to *genomics*
+2. Setup local cookiecutter
+3. Log in ~ssh eam150030@ganymede.utdallas.edu~
+4. Load Modules
+5. Rsync from local computer
+#+begin_src shell
+rsync -avtr /media/enhancer/IMR90/data eam150030@ganymede.utdallas.edu:/home/eam150030/IMR90/data
+#+end_src
+7. Activate conda env ~conda activate smk~
+** Running Things
+8. Basic script
+#+begin_src bash
+#!/bin/bash
+#SBATCH --ntasks=1
+#SBATCH --time=00:10:00
+#SBATCH --mail-user=eam150030@utdallas.edu
+#SBATCH --mail-type=ALL
+
+bowtie2 file.fastq
+...
+rysnc output back
+#+end_src
+* Snakemake on Slurm
+1. Have ~snakemake~ installed
+2. Make a cluster config file
+#+begin_src json
+{
+    "__default__" :
+    {
+        "account" : "eam150030",
+        "time" : "00:15:00",
+        "n" : 1,
+        "partition" : "genomics"
+    },
+    "compute1" :
+    {
+        "time" : "00:20:00"
+    }
+}
+#+end_src
+2. Use snakemake to submit jobs
+#+begin_src bash
+snakemake -j 999 --use-conda --cluster-config cluster.json \
+    --cluster "sbatch -A {cluster.account} -p {cluster.partition}\
+    -n {cluster.n}  -t {cluster.time}"
+#+end_src
+3. Don't have time to wait?
+#+begin_src shell
+nohup snakemake ... &
+#+end_src
+* Nextflow
+1. Have ~nextflow~ installed
+2. Running a toy example
+#+BEGIN_SRC shell
+nextflow run rnatoy -with-singularity
+#+END_SRC
+ - Ganymede doesn't have docker so you can't use ~-with-docker~
+ 
+3. Executing using slurm ([[https://www.nextflow.io/docs/latest/executor.html?highlight=slurm#slurm][docs]])
+#+begin_src shell
+# nextflow.config
+process {
+  executor = 'slurm'
+  queue = 'genomics'
+}
+#+end_src
+4. Run pipeline
+#+begin_src shell
+nextflow run tutorial.nf
+nextflow -c nextflow.config run rnatoy -with-singularity
+#+end_src
+
+* PyTorch
+#+begin_src python
+from __future__ import print_function
+import torch
+torch.cuda.is_available()
+x = torch.rand(5, 3)
+print(x)
+#+end_src
+** PyTorch Slurm Script
+#+begin_src bash
+#!/usr/bin/env bash
+#SBATCH -J pytorchtest
+#SBATCH -o pytorchtest-%A.out
+#SBATCH -e pytorchtest-%A.err
+#SBATCH -p GPU1
+#SBATCH --gres=gpu:1
+#SBATCH -c 1
+#SBATCH -t 00:01:00
+#SBATCH --mail-user=eam150030@utdallas.edu
+#SBATCH --mail-type=ALL
+
+module purge
+module load singularity
+module load CUDA
+# Assuming that the container has been copied to the user's /scratch directory
+singularity exec docker://pytorch/pytorch python \
+    /home/eam150030/pytorch-demo/pytorch_example.py
+#+end_src

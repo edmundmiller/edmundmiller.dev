@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Gro-Seq</title>
+<meta name="author" content="(Edmund Miller)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/css/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/css/theme/white.css" id="theme"/>
+
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'https://cdn.jsdelivr.net/npm/reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section>
+<section id="slide-orgcc73bbc">
+<h2 id="orgcc73bbc">GRO-Seq Analysis</h2>
+<div class="outline-text-2" id="text-orgcc73bbc">
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org9cf8859">
+<h3 id="org9cf8859">IMR90</h3>
+<div class="outline-text-3" id="text-org9cf8859">
+</div>
+</section>
+<section id="slide-orge36706e">
+<h4 id="orge36706e">Overview of Project for new Members</h4>
+<ul>
+<li>Compared IMR90 Predicted Enhancers to GM</li>
+<li>Ran GREAT Analysis on them</li>
+<li>Began working to find coverage of eRNAs in Samples</li>
+
+</ul>
+</section>
+<section id="slide-orgcdc5c00">
+<h4 id="orgcdc5c00">Compared IMR90 Predicted Enhancers to GM</h4>
+</section>
+<section id="slide-orgfbe17f6" data-background="img/Venn.png" data-background-size="800px" data-background-transition="slide">
+<h4 id="orgfbe17f6"></h4>
+</section>
+<section id="slide-org215f209">
+<h4 id="org215f209">GREAT IMR90 Unique</h4>
+<ul>
+<li>lung vasculature development</li>
+<li>growth factor receptor binding</li>
+<li>tissue remodeling</li>
+<li>positive regulation of endothelial cell migration</li>
+<li>embryonic skeletal joint development</li>
+
+</ul>
+</section>
+<section id="slide-org9874fec">
+<h4 id="org9874fec">GREAT IMR90 and GM Overlap</h4>
+<ul>
+<li>643(~30%) Transcripts were -500 to -50 from TSS</li>
+<li>1002(80%) Were Associated with 2 genes per region</li>
+<li>104(10%) were associated with 1 gene</li>
+<li>Notable Biological processes:
+<ul>
+<li>cytokine secretion</li>
+<li>cytokine production</li>
+<li>regulation of immune response</li>
+<li>immune effector process</li>
+<li>regulation of transcription from RNA polymerase II promoter in response to stress</li>
+
+</ul></li>
+
+</ul>
+</section>
+<section id="slide-orgba23822">
+<h4 id="orgba23822">Coverage of eRNAs in Samples</h4>
+<ul>
+<li>Issue with lack of output</li>
+<li>Cause is most likely file types</li>
+
+</ul>
+</section>
+<section id="slide-orgde67538">
+<h4 id="orgde67538">Snakemake IMR90</h4>
+</section>
+<section id="slide-org5b92d66" data-background="img/dag.png" data-background-size="400px" data-background-transition="slide">
+<h4 id="org5b92d66"></h4>
+</section>
+<section id="slide-orgd0dc719">
+<h4 id="orgd0dc719">Trying to Reproduce GM</h4>
+<div class="outline-text-4" id="text-orgd0dc719">
+</div>
+<ul class="org-ul">
+<li><a id="org632cd3e"></a>hg18 vs hg19<br /></li>
+<li><a id="org01ef283"></a>Overpredicting eRNA transcripts<br /></li>
+</ul>
+</section>
+<section id="slide-orgdf7cade">
+<h4 id="orgdf7cade">Organize tasks</h4>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><code trim>fastqc *.fastq -o=/media/enhancer/IMR90/fastqc -t=<span style="color: #da8548; font-weight: bold;">6</span>
+<span style="color: #51afef;">for</span> i<span style="color: #51afef;"> in</span> <span style="color: #51afef; font-weight: bold;">`</span><span style="color: #51afef; font-weight: bold;">ls</span><span style="color: #51afef; font-weight: bold;"> *.fastq | cut -d "_" -f 1`</span> ;
+    <span style="color: #51afef;">do</span> bowtie2 -t -p <span style="color: #da8548; font-weight: bold;">4</span> -x ../2018-06-24/genome $<span style="color: #dcaeea;">i</span> -S $<span style="color: #dcaeea;">i</span>.sam ;
+<span style="color: #51afef;">done</span> ;
+<span style="color: #ECBE7B;">mv</span> data/2018-06-23/*.sam results/2018-07-10/
+makeTagDirectory results/2018-07-11/All_together/ -genome hg19 -checkGC results/2018-07-10/*.sam
+findPeaks results/2018-07-11/All_together/ -o results/2018-07-12/IMRpeak.gtf -style groseq
+pos2bed.pl results/2018-07-12/GMpeak.gtf &gt; results/2018-07-12/GMpeak.bed
+slopBed -i refseqhg19.bed -g Homo_sapiens/ucsc/hg19/Seqence/WholeGenomeFasta/genome.fa.fai -l <span style="color: #da8548; font-weight: bold;">1000</span> -r <span style="color: #da8548; font-weight: bold;">10000</span> &gt; slop-refseqhq19.bed
+bedtools intersect -a GM/GMGRO-Seq/IMR90tsspeak.bed -b slop-refseqhg19.bed -v &gt; noGenesIMR90tss.bed
+intersectBed -wo -a IMR90/BED/sorted_GroseqIMR90nogenes.bed -b /media/enhancer/eRNA_GM_hg19.bed &gt; eRNA_IMR90_GM_hg19_Overlap.bed
+</code></pre>
+</div>
+</section>
+<section id="slide-orga17d469" data-background="img/kanban.png" data-background-size="1400px" data-background-transition="slide">
+<h4 id="orga17d469"></h4>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+});
+</script>
+</body>
+</html>

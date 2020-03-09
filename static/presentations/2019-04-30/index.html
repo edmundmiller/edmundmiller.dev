@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>HPC</title>
+<meta name="author" content="(Edmund Miller)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/css/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/css/theme/white.css" id="theme"/>
+
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'https://cdn.jsdelivr.net/npm/reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section>
+<section id="slide-org8f680d9">
+<h2 id="org8f680d9">HPC Cluster</h2>
+</section>
+</section>
+<section>
+<section id="slide-orgba16f8d">
+<h2 id="orgba16f8d">Intro to Ganymede</h2>
+<ul>
+<li><code>ganymedeadmins@utdallas.edu</code></li>
+<li>centos 7 with OpenHPC</li>
+<li><a href="http://docs.oithpc.utdallas.edu">http://docs.oithpc.utdallas.edu</a></li>
+<li>Access to normal, debug, and genomics, GPU1 queue</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org301fa64">
+<h2 id="org301fa64">Getting Access</h2>
+<ul>
+<li>Email <code>admin@ganymede</code> for access and to <b>genomics</b></li>
+<li>Takes around a week</li>
+<li>You can log in with <code>ssh &lt;NETID&gt;@ganymede.utdallas.edu</code></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-orgcf6ae43">
+<h2 id="orgcf6ae43">Some Basic Commands</h2>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><code trim><span style="color: #5B6268;"># </span><span style="color: #5B6268;">Info about slurm cluster</span>
+sinfo
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">List enabled modules</span>
+module list
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">Available module</span>
+module av
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">Load anaconda</span>
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">Must be done everytime you log in</span>
+module load anaconda3
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">Cancel all jobs</span>
+scancel -u &lt;NETID&gt;
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">Check the queue</span>
+squeue -p genomics
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">Submit a job</span>
+sbatch --help
+</code></pre>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orgf07491e">
+<h2 id="orgf07491e">Installing Conda</h2>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><code trim>pip install conda
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">If that doesn't work</span>
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">Make an environment</span>
+conda create -n smk -c bioconda snakemake
+conda install -c bioconda nextflow
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">OR</span>
+conda create -n nf -c bioconda nextflow
+
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">Activate your env</span>
+conda activate smk
+</code></pre>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orgc886b06">
+<h2 id="orgc886b06">Running Things</h2>
+<ol>
+<li>Email <code>admin@ganymede</code> for access and to <b>genomics</b></li>
+<li>Setup local cookiecutter</li>
+<li>Log in <code>ssh eam150030@ganymede.utdallas.edu</code></li>
+<li>Load Modules</li>
+<li>Rsync from local computer</li>
+
+</ol>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><code trim>rsync -avtr /media/enhancer/IMR90/data eam150030@ganymede.utdallas.edu:/home/eam150030/IMR90/data
+</code></pre>
+</div>
+<ol>
+<li>Activate conda env <code>conda activate smk</code></li>
+
+</ol>
+</section>
+</section>
+<section>
+<section id="slide-org5b238c2">
+<h3 id="org5b238c2">Running Things</h3>
+<ol>
+<li>Basic script</li>
+
+</ol>
+<div class="org-src-container">
+
+<pre  class="src src-bash"><code trim><span style="color: #5B6268;">#</span><span style="color: #5B6268;">!/bin/</span><span style="color: #51afef;">bash</span>
+<span style="color: #5B6268;">#</span><span style="color: #5B6268;">SBATCH --ntasks=1</span>
+<span style="color: #5B6268;">#</span><span style="color: #5B6268;">SBATCH --time=00:10:00</span>
+<span style="color: #5B6268;">#</span><span style="color: #5B6268;">SBATCH --mail-user=eam150030@utdallas.edu</span>
+<span style="color: #5B6268;">#</span><span style="color: #5B6268;">SBATCH --mail-type=ALL</span>
+
+bowtie2 file.fastq
+...
+rysnc output back
+</code></pre>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org02085ec">
+<h2 id="org02085ec">Snakemake on Slurm</h2>
+<ol>
+<li>Have <code>snakemake</code> installed</li>
+<li>Make a cluster config file</li>
+
+</ol>
+<div class="org-src-container">
+
+<pre  class="src src-json"><code trim>{
+    <span style="color: #51afef;">"__default__"</span> :
+    {
+        <span style="color: #51afef;">"account"</span> : <span style="color: #98be65;">"eam150030"</span>,
+        <span style="color: #51afef;">"time"</span> : "<span style="color: #da8548; font-weight: bold;">00</span>:<span style="color: #da8548; font-weight: bold;">15</span>:<span style="color: #da8548; font-weight: bold;">00</span>",
+        <span style="color: #51afef;">"n"</span> : <span style="color: #da8548; font-weight: bold;">1</span>,
+        <span style="color: #51afef;">"partition"</span> : <span style="color: #98be65;">"genomics"</span>
+    },
+    <span style="color: #51afef;">"compute1"</span> :
+    {
+        <span style="color: #51afef;">"time"</span> : "<span style="color: #da8548; font-weight: bold;">00</span>:<span style="color: #da8548; font-weight: bold;">20</span>:<span style="color: #da8548; font-weight: bold;">00</span>"
+    }
+}
+</code></pre>
+</div>
+<ol>
+<li>Use snakemake to submit jobs</li>
+
+</ol>
+<div class="org-src-container">
+
+<pre  class="src src-bash"><code trim>snakemake -j <span style="color: #da8548; font-weight: bold;">999</span> --use-conda --cluster-config cluster.json <span style="color: #98be65;">\</span>
+    --cluster <span style="color: #98be65;">"sbatch -A {cluster.account} -p {cluster.partition}\</span>
+<span style="color: #98be65;">    -n {cluster.n}  -t {cluster.time}"</span>
+</code></pre>
+</div>
+<ol>
+<li>Don&rsquo;t have time to wait?</li>
+
+</ol>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><code trim>nohup snakemake ... &amp;
+</code></pre>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orgb55a78d">
+<h2 id="orgb55a78d">Nextflow</h2>
+<ol>
+<li>Have <code>nextflow</code> installed</li>
+<li>Running a toy example</li>
+
+</ol>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><code trim>nextflow run rnatoy -with-singularity
+</code></pre>
+</div>
+<ul>
+<li>Ganymede doesn&rsquo;t have docker so you can&rsquo;t use <code>-with-docker</code></li>
+
+</ul>
+<ol>
+<li>Executing using slurm (<a href="https://www.nextflow.io/docs/latest/executor.html?highlight=slurm#slurm">docs</a>)</li>
+
+</ol>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><code trim><span style="color: #5B6268;"># </span><span style="color: #5B6268;">nextflow.config</span>
+process <span style="color: #51afef;">{</span>
+  <span style="color: #dcaeea;">executor</span> = <span style="color: #98be65;">'slurm'</span>
+  <span style="color: #dcaeea;">queue</span> = <span style="color: #98be65;">'genomics'</span>
+<span style="color: #51afef;">}</span>
+</code></pre>
+</div>
+<ol>
+<li>Run pipeline</li>
+
+</ol>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><code trim>nextflow run tutorial.nf
+nextflow -c nextflow.config run rnatoy -with-singularity
+</code></pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orgd1af213">
+<h2 id="orgd1af213">PyTorch</h2>
+<div class="org-src-container">
+
+<pre  class="src src-python"><code trim><span style="color: #51afef;">from</span> __future__ <span style="color: #51afef;">import</span> print_function
+<span style="color: #51afef;">import</span> torch
+torch.cuda.is_available()
+<span style="color: #dcaeea;">x</span> = torch.rand(<span style="color: #da8548; font-weight: bold;">5</span>, <span style="color: #da8548; font-weight: bold;">3</span>)
+<span style="color: #51afef;">print</span>(x)
+</code></pre>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orga3a0961">
+<h3 id="orga3a0961">PyTorch Slurm Script</h3>
+<div class="org-src-container">
+
+<pre  class="src src-bash"><code trim><span style="color: #5B6268;">#</span><span style="color: #5B6268;">!/usr/bin/</span><span style="color: #51afef;">env</span><span style="color: #5B6268;"> bash</span>
+<span style="color: #5B6268;">#</span><span style="color: #5B6268;">SBATCH -J pytorchtest</span>
+<span style="color: #5B6268;">#</span><span style="color: #5B6268;">SBATCH -o pytorchtest-%A.out</span>
+<span style="color: #5B6268;">#</span><span style="color: #5B6268;">SBATCH -e pytorchtest-%A.err</span>
+<span style="color: #5B6268;">#</span><span style="color: #5B6268;">SBATCH -p GPU1</span>
+<span style="color: #5B6268;">#</span><span style="color: #5B6268;">SBATCH --gres=gpu:1</span>
+<span style="color: #5B6268;">#</span><span style="color: #5B6268;">SBATCH -c 1</span>
+<span style="color: #5B6268;">#</span><span style="color: #5B6268;">SBATCH -t 00:01:00</span>
+<span style="color: #5B6268;">#</span><span style="color: #5B6268;">SBATCH --mail-user=eam150030@utdallas.edu</span>
+<span style="color: #5B6268;">#</span><span style="color: #5B6268;">SBATCH --mail-type=ALL</span>
+
+module purge
+module load singularity
+module load CUDA
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">Assuming that the container has been copied to the user's /scratch directory</span>
+singularity exec docker://pytorch/pytorch python <span style="color: #98be65;">\</span>
+    /home/eam150030/pytorch-demo/pytorch_example.py
+</code></pre>
+</div>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+});
+</script>
+</body>
+</html>

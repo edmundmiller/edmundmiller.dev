@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>IMR90 GRO-Seq</title>
+<meta name="author" content="(Edmund Miller)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/css/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/css/theme/white.css" id="theme"/>
+
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'https://cdn.jsdelivr.net/npm/reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section>
+<section id="slide-orgc80f8da">
+<h2 id="orgc80f8da">IMR90 GRO-Seq</h2>
+</section>
+</section>
+<section>
+<section id="slide-org5597f59">
+<h2 id="org5597f59">Reproducible Research</h2>
+<div class="outline-text-2" id="text-org5597f59">
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orgb3e6322">
+<h3 id="orgb3e6322">Creating a Workflow</h3>
+<p>
+**
+</p>
+<p>
+:reveal<sub>background</sub>: img/Vimlogo.svg
+:reveal<sub>background</sub><sub>size</sub>: 800px
+:reveal<sub>background</sub><sub>trans</sub>: slide
+</p>
+</section>
+<section id="slide-org711de86">
+<h4 id="org711de86">Quick Commenting</h4>
+</section>
+<section id="slide-orgee02ca3" data-background="img/vim-commentary.gif" data-background-size="1200px" data-background-transition="slide">
+<h4 id="orgee02ca3">Quick Commenting GIF</h4>
+</section>
+<section id="slide-org7ab9990">
+<h4 id="org7ab9990">Moving Lines</h4>
+</section>
+<section id="slide-org8a274fe" data-background="img/vim-move.gif" data-background-size="1200px" data-background-transition="slide">
+<h4 id="org8a274fe">Moving Lines GIF</h4>
+</section>
+<section id="slide-org1fdecae">
+<h4 id="org1fdecae">Multiple Cursors</h4>
+</section>
+<section id="slide-org9713590" data-background="img/vim-multiple-cursors.gif" data-background-size="1200px" data-background-transition="slide">
+<h4 id="org9713590">Multiple Cursors GIF</h4>
+<p>
+**
+</p>
+<p>
+:reveal<sub>background</sub>: img/emacs.png
+:reveal<sub>background</sub><sub>size</sub>: 800px
+:reveal<sub>background</sub><sub>trans</sub>: slide
+</p>
+</section>
+<section id="slide-org47e6783">
+<h4 id="org47e6783">Emacs</h4>
+<ul>
+<li>Evil Keybinding</li>
+<li>Magit</li>
+<li>Dired</li>
+<li>Tramp</li>
+<li>Org-mode</li>
+
+</ul>
+</section>
+<section id="slide-org38d07fa">
+<h4 id="org38d07fa">Spacemacs</h4>
+<ul>
+<li>Slow</li>
+<li>Difficult to Customize outside of the box</li>
+
+</ul>
+</section>
+<section id="slide-orge436981">
+<h4 id="orge436981">Doom Emacs</h4>
+<ul>
+<li>Optimized</li>
+<li>Community</li>
+
+</ul>
+</section>
+<section id="slide-org6d69f88">
+<h4 id="org6d69f88">Org-Mode</h4>
+<ul>
+<li>Slides</li>
+<li>TODOs</li>
+<li>Agenda</li>
+<li>Capture</li>
+<li>Lab-Notebook</li>
+<li>Babel</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org739bf8f">
+<h3 id="org739bf8f">Makefiles</h3>
+<p>
+<b>*</b>
+</p>
+<p>
+:reveal<sub>background</sub>: img/data.png
+:reveal<sub>background</sub><sub>size</sub>: 800px
+:reveal<sub>background</sub><sub>trans</sub>: slide
+</p>
+<p>
+<b>*</b>
+</p>
+<p>
+:reveal<sub>background</sub>: img/data1.png
+:reveal<sub>background</sub><sub>size</sub>: 800px
+:reveal<sub>background</sub><sub>trans</sub>: slide
+</p>
+<p>
+<b>*</b>
+</p>
+<p>
+:reveal<sub>background</sub>: img/data2.png
+:reveal<sub>background</sub><sub>size</sub>: 800px
+:reveal<sub>background</sub><sub>trans</sub>: slide
+</p>
+</section>
+<section id="slide-orge5797ca">
+<h4 id="orge5797ca">Example Makefile</h4>
+<div class="org-src-container">
+
+<pre  class="src src-makefile"><code trim><span style="color: #51afef;">all</span>: prot001.txt prot0002.txt prot003.txt
+
+<span style="color: #51afef;">%.txt</span>: ./bin/intensive_operation %.fasta
+   $<span style="color: #a9a1e1;">^</span> &gt; <span style="color: #51afef;">$</span><span style="color: #a9a1e1;">@</span>
+
+<span style="color: #51afef;">%.fasta</span>:
+    curl database.example.com/<span style="color: #51afef;">$</span><span style="color: #a9a1e1;">*</span> &gt; <span style="color: #51afef;">$</span><span style="color: #a9a1e1;">@</span>
+</code></pre>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org0aa95cf">
+<h3 id="org0aa95cf">Bioinformatics Pipelines</h3>
+<div class="outline-text-3" id="text-org0aa95cf">
+</div>
+</section>
+<section id="slide-org2ef2073">
+<h4 id="org2ef2073">Toil</h4>
+<ul>
+<li>Python 2.7</li>
+<li>UCSC</li>
+<li>Complex</li>
+
+</ul>
+</section>
+<section id="slide-orgcb4a284">
+<h4 id="orgcb4a284">Nextflow</h4>
+<ul>
+<li>Java</li>
+<li>Barcelona Center for Genomic Regulation</li>
+<li>Push</li>
+<li>Able to script in any language</li>
+
+</ul>
+</section>
+<section id="slide-org33b4e55">
+<h4 id="org33b4e55">Snakemake</h4>
+<ul>
+<li>Python 3.5</li>
+<li>Easy to containerize</li>
+<li>Pull</li>
+<li>Quick to use</li>
+<li>Largely used by the community</li>
+
+</ul>
+<p>
+<b>*</b>
+</p>
+<p>
+:reveal<sub>background</sub>: img/snakemake.png
+:reveal<sub>background</sub><sub>size</sub>: 1000px
+:reveal<sub>background</sub><sub>trans</sub>: slide
+</p>
+</section>
+<section id="slide-org6971969">
+<h4 id="org6971969">Snakemake Example</h4>
+<div class="org-src-container">
+
+<pre  class="src src-snakemake"><code trim><span style="color: #51afef;">rule</span> <span style="color: #c678dd;">targets</span>:
+    <span style="color: #ECBE7B;">input</span>:
+        <span style="color: #98be65;">"plots/dataset1.pdf"</span>,
+        <span style="color: #98be65;">"plots/dataset2.pdf"</span>
+
+<span style="color: #51afef;">rule</span> <span style="color: #c678dd;">plot</span>:
+    <span style="color: #ECBE7B;">input</span>:
+        <span style="color: #98be65;">"raw/{dataset}.csv"</span>
+    <span style="color: #ECBE7B;">output</span>:
+        <span style="color: #98be65;">"plots/{dataset}.pdf"</span>
+    <span style="color: #ECBE7B;">shell</span>:
+        <span style="color: #98be65;">"somecommand {input} {output}"</span>
+</code></pre>
+</div>
+</section>
+<section id="slide-org5989398">
+<h4 id="org5989398">Snakemake R</h4>
+<p>
+Requires <code>rpy2</code>
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-snakemake"><code trim><span style="color: #51afef;">rule</span> <span style="color: #c678dd;">mapRNAseq</span>:
+    <span style="color: #ECBE7B;">input</span>:
+        <span style="color: #dcaeea;">file1</span> = <span style="color: #98be65;">"path/to/data/file1.bam"</span>,
+        <span style="color: #dcaeea;">file2</span> = <span style="color: #98be65;">"path/to/data/file2.bam"</span>
+    <span style="color: #ECBE7B;">output</span>:
+        <span style="color: #98be65;">"path/to/qlf_table.csv"</span>
+    <span style="color: #ECBE7B;">run</span>:
+        R(<span style="color: #98be65;">"""</span>
+<span style="color: #98be65;">        bamfiles &lt;- cbind({input.file1},{input.file2})</span>
+<span style="color: #98be65;">        {output} &lt;- featureCounts(bamfiles, annot.inbuilt="hg19", strandspecific=2)</span>
+<span style="color: #98be65;">        ...</span>
+<span style="color: #98be65;">        ...</span>
+<span style="color: #98be65;">        write.csv(qlf_table, file={output}, quote = FALSE)</span>
+<span style="color: #98be65;">        """</span>)
+</code></pre>
+</div>
+<p>
+<b>*</b>
+</p>
+<p>
+:reveal<sub>background</sub>: img/dropSeqPipeline.png
+:reveal<sub>background</sub><sub>size</sub>: 800px
+:reveal<sub>background</sub><sub>trans</sub>: slide
+</p>
+<p>
+**
+</p>
+<p>
+:reveal<sub>background</sub>: img/docker.png
+:reveal<sub>background</sub><sub>size</sub>: 800px
+:reveal<sub>background</sub><sub>trans</sub>: slide
+</p>
+</section>
+</section>
+<section>
+<section id="slide-orgc3abaf9">
+<h3 id="orgc3abaf9">Organizing Bioinformatics Projects</h3>
+<p>
+<b>*</b>
+</p>
+<p>
+:reveal<sub>background</sub>: img/org.png
+:reveal<sub>background</sub><sub>size</sub>: 1200px
+:reveal<sub>background</sub><sub>trans</sub>: slide
+</p>
+</section>
+</section>
+<section>
+<section id="slide-orge4cfa55">
+<h2 id="orge4cfa55">Results</h2>
+<ul>
+<li>Compared IMR90 Predicted Enhancers to GM</li>
+<li>Ran GREAT Analysis on them</li>
+<li>Began working to find coverage of eRNAs in Samples</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org31678b8">
+<h3 id="org31678b8">Compared IMR90 Predicted Enhancers to GM</h3>
+<div class="outline-text-3" id="text-org31678b8">
+</div>
+</section>
+<section id="slide-org2f33e7f">
+<h4 id="org2f33e7f">Venn Diagram</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><code trim><span style="color: #51afef;">import</span> pylab <span style="color: #51afef;">as</span> plt
+<span style="color: #51afef;">from</span> matplotlib_venn <span style="color: #51afef;">import</span> venn2
+venn2(subsets = (<span style="color: #da8548; font-weight: bold;">6259</span>, <span style="color: #da8548; font-weight: bold;">10051</span>, <span style="color: #da8548; font-weight: bold;">1108</span>), set_labels = (<span style="color: #98be65;">'IMR90'</span>, <span style="color: #98be65;">'GM'</span>))
+plt.title(<span style="color: #98be65;">"IMR90 vs GM eRNAs"</span>)
+plt.show()
+</code></pre>
+</div>
+<p>
+<b>*</b>
+</p>
+<p>
+:reveal<sub>background</sub>: img/Venn.png
+:reveal<sub>background</sub><sub>size</sub>: 800px
+:reveal<sub>background</sub><sub>trans</sub>: slide
+</p>
+</section>
+</section>
+<section>
+<section id="slide-org3ff646f">
+<h3 id="org3ff646f">GREAT IMR90 Unique</h3>
+<ul>
+<li>lung vasculature development</li>
+<li>growth factor receptor binding</li>
+<li>tissue remodeling</li>
+<li>positive regulation of endothelial cell migration</li>
+<li>embryonic skeletal joint development</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org049c8dc">
+<h3 id="org049c8dc">GREAT IMR90 and GM Overlap</h3>
+<ul>
+<li>643(~30%) Transcripts were -500 to -50 from TSS</li>
+<li>1002(80%) Were Associated with 2 genes per region</li>
+<li>104(10%) were associated with 1 gene</li>
+<li>Notable Biological processes:
+<ul>
+<li>cytokine secretion</li>
+<li>cytokine production</li>
+<li>regulation of immune response</li>
+<li>immune effector process</li>
+<li>regulation of transcription from RNA polymerase II promoter in response to stress</li>
+
+</ul></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org7bb2c4a">
+<h3 id="org7bb2c4a">Coverage of eRNAs in Samples</h3>
+<ul>
+<li>Issue with lack of output</li>
+<li>Cause is most likely file types</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-orgf777d0b">
+<h3 id="orgf777d0b">Snakemake IMR90</h3>
+<p>
+**
+</p>
+<p>
+:reveal<sub>background</sub>: img/dag.png
+:reveal<sub>background</sub><sub>size</sub>: 400px
+:reveal<sub>background</sub><sub>trans</sub>: slide
+</p>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+});
+</script>
+</body>
+</html>

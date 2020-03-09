@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Intro</title>
+<meta name="author" content="(Edmund Miller)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/css/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/css/theme/white.css" id="theme"/>
+
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'https://cdn.jsdelivr.net/npm/reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section>
+<section id="slide-org9a0e34c">
+<h2 id="org9a0e34c">eRNA Kinetics from INFB1 induction</h2>
+</section>
+</section>
+<section>
+<section id="slide-org09f57a4">
+<h2 id="org09f57a4">Who am I</h2>
+<ul>
+<li>Plano, TX</li>
+<li><a href="https://github.com/Emiller88">GitHub</a></li>
+<li>Undergraduate Molecular Biology &rsquo;15-&rsquo;18</li>
+<li>Masters Biotechnology &rsquo;18-&rsquo;19</li>
+<li>Joined Functional Genomics group in July &rsquo;15</li>
+<li>Moved to Dry Lab Summer &rsquo;17</li>
+<li>Software Developer for Olypsis Technologies since May &rsquo;18</li>
+
+</ul>
+</section>
+<section id="slide-org6f502cc">
+<h3 id="org6f502cc">What I am looking to get out of this</h3>
+</section>
+<section id="slide-org6a39458" data-background="img/biovenn.png" data-background-size="800px" data-background-transition="slide">
+<h3 id="org6a39458"></h3>
+</section>
+<section id="slide-orgede487f">
+<h3 id="orgede487f">Things I can bring to the table</h3>
+<ul>
+<li>Wet Lab</li>
+<li>Linux</li>
+<li>Emacs</li>
+<li>Git</li>
+<li>Devops &amp; CI/CD</li>
+<li>Docker</li>
+<li>Snakemake</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-orgcda6862">
+<h2 id="orgcda6862">Reproducible Research</h2>
+<div class="outline-text-2" id="text-orgcda6862">
+</div>
+</section>
+<section id="slide-org6af15b0">
+<h3 id="org6af15b0">Creating a Workflow</h3>
+<div class="outline-text-3" id="text-org6af15b0">
+</div>
+</section>
+<section id="slide-org4b9db3f">
+<h4 id="org4b9db3f">Emacs</h4>
+<ul>
+<li>Evil Keybinding</li>
+<li>Magit</li>
+<li>Dired</li>
+<li>Tramp</li>
+<li>Org-mode</li>
+<li>Email</li>
+<li>RSS</li>
+
+</ul>
+</section>
+<section id="slide-org827a283">
+<h4 id="org827a283">Spacemacs</h4>
+<ul>
+<li>Slow</li>
+<li>Difficult to Customize outside of the box</li>
+
+</ul>
+</section>
+<section id="slide-org916f227">
+<h4 id="org916f227">Doom Emacs</h4>
+<ul>
+<li>Optimized</li>
+<li>Community</li>
+
+</ul>
+</section>
+<section id="slide-org33abbe9">
+<h4 id="org33abbe9">Org-Mode</h4>
+<ul>
+<li>Slides</li>
+<li>TODOs</li>
+<li>Agenda</li>
+<li>Capture</li>
+<li>Lab-Notebook</li>
+<li>Babel</li>
+
+</ul>
+</section>
+<section id="slide-org78188ba">
+<h3 id="org78188ba">Makefiles</h3>
+<div class="outline-text-3" id="text-org78188ba">
+</div>
+</section>
+<section id="slide-org77c7584" data-background="img/data.png" data-background-size="800px" data-background-transition="slide">
+<h4 id="org77c7584"></h4>
+</section>
+<section id="slide-orgf99ca9d" data-background="img/data1.png" data-background-size="800px" data-background-transition="slide">
+<h4 id="orgf99ca9d"></h4>
+</section>
+<section id="slide-org078f2a9" data-background="img/data2.png" data-background-size="800px" data-background-transition="slide">
+<h4 id="org078f2a9"></h4>
+</section>
+<section id="slide-org430f3f5">
+<h4 id="org430f3f5">Example Makefile</h4>
+<div class="org-src-container">
+
+<pre  class="src src-makefile"><code trim><span style="color: #51afef;">all</span>: prot001.txt prot0002.txt prot003.txt
+
+<span style="color: #51afef;">%.txt</span>: ./bin/intensive_operation %.fasta
+   $<span style="color: #a9a1e1;">^</span> &gt; <span style="color: #51afef;">$</span><span style="color: #a9a1e1;">@</span>
+
+<span style="color: #51afef;">%.fasta</span>:
+    curl database.example.com/<span style="color: #51afef;">$</span><span style="color: #a9a1e1;">*</span> &gt; <span style="color: #51afef;">$</span><span style="color: #a9a1e1;">@</span>
+</code></pre>
+</div>
+</section>
+<section id="slide-orgec6c996">
+<h3 id="orgec6c996">Bioinformatics Pipelines</h3>
+<div class="outline-text-3" id="text-orgec6c996">
+</div>
+</section>
+<section id="slide-org08888ac">
+<h4 id="org08888ac">Toil</h4>
+<ul>
+<li>Python 2.7</li>
+<li>UCSC</li>
+<li>Complex</li>
+
+</ul>
+</section>
+<section id="slide-org0ff984f">
+<h4 id="org0ff984f">Nextflow</h4>
+<ul>
+<li>Java</li>
+<li>Barcelona Center for Genomic Regulation</li>
+<li>Push</li>
+<li>Able to script in any language</li>
+
+</ul>
+</section>
+<section id="slide-orgb20c4b8">
+<h4 id="orgb20c4b8">Snakemake</h4>
+<ul>
+<li>Python 3.5</li>
+<li>Easy to containerize</li>
+<li>Pull</li>
+<li>Quick to use</li>
+
+</ul>
+</section>
+<section id="slide-orgc0bfa8f" data-background="img/snakemake.png" data-background-size="1000px" data-background-transition="slide">
+<h4 id="orgc0bfa8f"></h4>
+</section>
+<section id="slide-orgf26b3af">
+<h4 id="orgf26b3af">Snakemake Example</h4>
+<div class="org-src-container">
+
+<pre  class="src src-snakemake"><code trim><span style="color: #51afef;">rule</span> <span style="color: #c678dd;">targets</span>:
+    <span style="color: #ECBE7B;">input</span>:
+        <span style="color: #98be65;">"plots/dataset1.pdf"</span>,
+        <span style="color: #98be65;">"plots/dataset2.pdf"</span>
+
+<span style="color: #51afef;">rule</span> <span style="color: #c678dd;">plot</span>:
+    <span style="color: #ECBE7B;">input</span>:
+        <span style="color: #98be65;">"raw/{dataset}.csv"</span>
+    <span style="color: #ECBE7B;">output</span>:
+        <span style="color: #98be65;">"plots/{dataset}.pdf"</span>
+    <span style="color: #ECBE7B;">shell</span>:
+        <span style="color: #98be65;">"somecommand {input} {output}"</span>
+</code></pre>
+</div>
+</section>
+<section id="slide-org7e874be">
+<h4 id="org7e874be">Snakemake R</h4>
+<p>
+Requires <code>rpy2</code>
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-snakemake"><code trim><span style="color: #51afef;">rule</span> <span style="color: #c678dd;">mapRNAseq</span>:
+    <span style="color: #ECBE7B;">input</span>:
+        <span style="color: #dcaeea;">file1</span> = <span style="color: #98be65;">"path/to/data/file1.bam"</span>,
+        <span style="color: #dcaeea;">file2</span> = <span style="color: #98be65;">"path/to/data/file2.bam"</span>
+    <span style="color: #ECBE7B;">output</span>:
+        <span style="color: #98be65;">"path/to/qlf_table.csv"</span>
+    <span style="color: #ECBE7B;">run</span>:
+        R(<span style="color: #98be65;">"""</span>
+<span style="color: #98be65;">        bamfiles &lt;- cbind({input.file1},{input.file2})</span>
+<span style="color: #98be65;">        {output} &lt;- featureCounts(bamfiles, annot.inbuilt="hg19", strandspecific=2)</span>
+<span style="color: #98be65;">        ...</span>
+<span style="color: #98be65;">        ...</span>
+<span style="color: #98be65;">        write.csv(qlf_table, file={output}, quote = FALSE)</span>
+<span style="color: #98be65;">        """</span>)
+</code></pre>
+</div>
+</section>
+<section id="slide-org755985f">
+<h4 id="org755985f">Snakemake R</h4>
+<div class="org-src-container">
+
+<pre  class="src src-snakemake"><code trim><span style="color: #51afef;">rule</span> <span style="color: #c678dd;">GM19_genes_edgeR</span>:
+    <span style="color: #ECBE7B;">input</span>:
+        <span style="color: #98be65;">"results/2019-02-28/GM19_gene_counts.rds"</span>
+    <span style="color: #ECBE7B;">output</span>:
+        <span style="color: #98be65;">"results/2019-03-25/GM19_rawdata_table.csv"</span>,
+        <span style="color: #98be65;">"results/2019-03-25/GM19_genelen.csv"</span>,
+        <span style="color: #98be65;">"results/2019-03-25/GM19_normalized.txt"</span>
+    <span style="color: #ECBE7B;">conda</span>:
+        <span style="color: #98be65;">"../../envs/edgeR.yaml"</span>
+    <span style="color: #ECBE7B;">threads</span>: <span style="color: #da8548; font-weight: bold;">4</span>
+    <span style="color: #ECBE7B;">script</span>:
+        <span style="color: #98be65;">"../../scripts/dge.R"</span>
+</code></pre>
+</div>
+</section>
+<section id="slide-org6ff2ef1">
+<h4 id="org6ff2ef1">Test data</h4>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><code trim>snakemake --use-conda --directory .test
+</code></pre>
+</div>
+</section>
+<section id="slide-org69e930d">
+<h3 id="org69e930d">Organizing Bioinformatics Projects</h3>
+<div class="outline-text-3" id="text-org69e930d">
+</div>
+</section>
+<section id="slide-orgba90b84" data-background="img/org.png" data-background-size="1200px" data-background-transition="slide">
+<h4 id="orgba90b84"></h4>
+</section>
+</section>
+<section>
+<section id="slide-org59c91e9">
+<h2 id="org59c91e9">HPC Cluster</h2>
+<div class="outline-text-2" id="text-org59c91e9">
+</div>
+</section>
+<section id="slide-orgcb17456">
+<h3 id="orgcb17456">Intro to Ganymede</h3>
+<ul>
+<li><code>ganymedeadmins@utdallas.edu</code></li>
+<li>centos 7 with OpenHPC</li>
+<li><a href="http://docs.oithpc.utdallas.edu">http://docs.oithpc.utdallas.edu</a></li>
+<li>Access to <code>normal</code>, <code>debug</code>, <code>genomics</code>, and <code>GPU1</code> queue</li>
+
+</ul>
+</section>
+<section id="slide-org39069ae">
+<h3 id="org39069ae">Getting Access</h3>
+<ul>
+<li>Email <code>admin@ganymede</code> for access and to <b>genomics</b></li>
+<li>Takes around a week</li>
+<li>You can log in with <code>ssh &lt;NETID&gt;@ganymede.utdallas.edu</code></li>
+
+</ul>
+</section>
+<section id="slide-org48d3c34">
+<h3 id="org48d3c34">Some Basic Commands</h3>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><code trim><span style="color: #5B6268;"># </span><span style="color: #5B6268;">Info about slurm cluster</span>
+sinfo
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">List enabled modules</span>
+module list
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">Available module</span>
+module av
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">Load anaconda</span>
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">Must be done everytime you log in</span>
+module load anaconda3
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">Cancel all jobs</span>
+scancel -u &lt;NETID&gt;
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">Check the queue</span>
+squeue -p genomics
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">Submit a job</span>
+sbatch --help
+</code></pre>
+</div>
+</section>
+<section id="slide-org54192e9">
+<h3 id="org54192e9">Installing Conda</h3>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><code trim>pip install conda
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">If that doesn't work</span>
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">Make an environment</span>
+conda create -n smk -c bioconda snakemake
+conda install -c bioconda nextflow
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">OR</span>
+conda create -n nf -c bioconda nextflow
+
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">Activate your env</span>
+conda activate smk
+</code></pre>
+</div>
+</section>
+<section id="slide-org0ab7a73">
+<h3 id="org0ab7a73">Running Things</h3>
+<ol>
+<li>Email <code>admin@ganymede</code> for access and to <b>genomics</b></li>
+<li>Setup local cookiecutter</li>
+<li>Log in <code>ssh eam150030@ganymede.utdallas.edu</code></li>
+<li>Load Modules</li>
+<li>Rsync from local computer</li>
+
+</ol>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><code trim>rsync -avtr /media/enhancer/IMR90/data eam150030@ganymede.utdallas.edu:/home/eam150030/IMR90/data
+</code></pre>
+</div>
+<ol>
+<li>Activate conda env <code>conda activate smk</code></li>
+
+</ol>
+</section>
+<section id="slide-org33f9d4c">
+<h4 id="org33f9d4c">Running Things</h4>
+<p>
+Basic script
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-bash"><code trim><span style="color: #5B6268;">#</span><span style="color: #5B6268;">!/bin/</span><span style="color: #51afef;">bash</span>
+<span style="color: #5B6268;">#</span><span style="color: #5B6268;">SBATCH --ntasks=1</span>
+<span style="color: #5B6268;">#</span><span style="color: #5B6268;">SBATCH --time=00:10:00</span>
+<span style="color: #5B6268;">#</span><span style="color: #5B6268;">SBATCH --mail-user=eam150030@utdallas.edu</span>
+<span style="color: #5B6268;">#</span><span style="color: #5B6268;">SBATCH --mail-type=ALL</span>
+
+bowtie2 file.fastq
+...
+rysnc output back
+</code></pre>
+</div>
+</section>
+<section id="slide-org175747d">
+<h3 id="org175747d">Snakemake on Slurm</h3>
+<ol>
+<li>Have <code>snakemake</code> installed</li>
+<li>Make a cluster config file</li>
+
+</ol>
+<div class="org-src-container">
+
+<pre  class="src src-json"><code trim>{
+    <span style="color: #51afef;">"__default__"</span> :
+    {
+        <span style="color: #51afef;">"account"</span> : <span style="color: #98be65;">"eam150030"</span>,
+        <span style="color: #51afef;">"time"</span> : "<span style="color: #da8548; font-weight: bold;">00</span>:<span style="color: #da8548; font-weight: bold;">15</span>:<span style="color: #da8548; font-weight: bold;">00</span>",
+        <span style="color: #51afef;">"n"</span> : <span style="color: #da8548; font-weight: bold;">1</span>,
+        <span style="color: #51afef;">"partition"</span> : <span style="color: #98be65;">"genomics"</span>
+    },
+    <span style="color: #51afef;">"compute1"</span> :
+    {
+        <span style="color: #51afef;">"time"</span> : "<span style="color: #da8548; font-weight: bold;">00</span>:<span style="color: #da8548; font-weight: bold;">20</span>:<span style="color: #da8548; font-weight: bold;">00</span>"
+    }
+}
+</code></pre>
+</div>
+<ol>
+<li>Use snakemake to submit jobs</li>
+
+</ol>
+<div class="org-src-container">
+
+<pre  class="src src-bash"><code trim>snakemake -j <span style="color: #da8548; font-weight: bold;">999</span> --use-conda --cluster-config cluster.json <span style="color: #98be65;">\</span>
+    --cluster <span style="color: #98be65;">"sbatch -A {cluster.account} -p {cluster.partition}\</span>
+<span style="color: #98be65;">    -n {cluster.n}  -t {cluster.time}"</span>
+</code></pre>
+</div>
+</section>
+<section id="slide-org74ace69">
+<h4 id="org74ace69">Slurm Script</h4>
+<div class="org-src-container">
+
+<pre  class="src src-bash"><code trim><span style="color: #5B6268;">#</span><span style="color: #5B6268;">!/bin/</span><span style="color: #51afef;">bash</span>
+<span style="color: #5B6268;">#</span><span style="color: #5B6268;">SBATCH --ntasks=1</span>
+<span style="color: #5B6268;">#</span><span style="color: #5B6268;">SBATCH --time=00:10:00</span>
+<span style="color: #5B6268;">#</span><span style="color: #5B6268;">SBATCH --mail-user=eam150030@utdallas.edu</span>
+<span style="color: #5B6268;">#</span><span style="color: #5B6268;">SBATCH --mail-type=ALL</span>
+
+conda activate smk
+
+snakemake -j <span style="color: #da8548; font-weight: bold;">999</span> --use-conda --cluster-config cluster.json <span style="color: #98be65;">\</span>
+    --cluster <span style="color: #98be65;">"sbatch -A {cluster.account} -p {cluster.partition}\</span>
+<span style="color: #98be65;">    -n {cluster.n}  -t {cluster.time}"</span>
+
+rsync -avtr results myLabComputer
+</code></pre>
+</div>
+</section>
+<section id="slide-org95b367c">
+<h3 id="org95b367c">Nextflow</h3>
+<ol>
+<li>Have <code>nextflow</code> installed</li>
+<li>Running a toy example</li>
+
+</ol>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><code trim>nextflow run rnatoy -with-singularity
+</code></pre>
+</div>
+<ul>
+<li>Ganymede doesn&rsquo;t have docker so you can&rsquo;t use <code>-with-docker</code></li>
+
+</ul>
+<ol>
+<li>Executing using slurm (<a href="https://www.nextflow.io/docs/latest/executor.html?highlight=slurm#slurm">docs</a>)</li>
+
+</ol>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><code trim><span style="color: #5B6268;"># </span><span style="color: #5B6268;">nextflow.config</span>
+process <span style="color: #51afef;">{</span>
+  <span style="color: #dcaeea;">executor</span> = <span style="color: #98be65;">'slurm'</span>
+  <span style="color: #dcaeea;">queue</span> = <span style="color: #98be65;">'genomics'</span>
+<span style="color: #51afef;">}</span>
+</code></pre>
+</div>
+<ol>
+<li>Run pipeline</li>
+
+</ol>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><code trim>nextflow run tutorial.nf
+nextflow -c nextflow.config run rnatoy -with-singularity
+</code></pre>
+</div>
+
+</section>
+<section id="slide-org162958e">
+<h3 id="org162958e">PyTorch</h3>
+<div class="org-src-container">
+
+<pre  class="src src-python"><code trim><span style="color: #51afef;">from</span> __future__ <span style="color: #51afef;">import</span> print_function
+<span style="color: #51afef;">import</span> torch
+torch.cuda.is_available()
+<span style="color: #dcaeea;">x</span> = torch.rand(<span style="color: #da8548; font-weight: bold;">5</span>, <span style="color: #da8548; font-weight: bold;">3</span>)
+<span style="color: #51afef;">print</span>(x)
+</code></pre>
+</div>
+</section>
+<section id="slide-org91a5a74">
+<h4 id="org91a5a74">PyTorch Slurm Script</h4>
+<div class="org-src-container">
+
+<pre  class="src src-bash"><code trim><span style="color: #5B6268;">#</span><span style="color: #5B6268;">!/usr/bin/</span><span style="color: #51afef;">env</span><span style="color: #5B6268;"> bash</span>
+<span style="color: #5B6268;">#</span><span style="color: #5B6268;">SBATCH -J pytorchtest</span>
+<span style="color: #5B6268;">#</span><span style="color: #5B6268;">SBATCH -o pytorchtest-%A.out</span>
+<span style="color: #5B6268;">#</span><span style="color: #5B6268;">SBATCH -e pytorchtest-%A.err</span>
+<span style="color: #5B6268;">#</span><span style="color: #5B6268;">SBATCH -p GPU1</span>
+<span style="color: #5B6268;">#</span><span style="color: #5B6268;">SBATCH --gres=gpu:1</span>
+<span style="color: #5B6268;">#</span><span style="color: #5B6268;">SBATCH -c 1</span>
+<span style="color: #5B6268;">#</span><span style="color: #5B6268;">SBATCH -t 00:01:00</span>
+<span style="color: #5B6268;">#</span><span style="color: #5B6268;">SBATCH --mail-user=eam150030@utdallas.edu</span>
+<span style="color: #5B6268;">#</span><span style="color: #5B6268;">SBATCH --mail-type=ALL</span>
+
+module purge
+module load singularity
+module load CUDA
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">Assuming that the container has been copied to the user's /scratch directory</span>
+singularity exec docker://pytorch/pytorch python <span style="color: #98be65;">\</span>
+    /home/eam150030/pytorch-demo/pytorch_example.py
+</code></pre>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orgf7697ff">
+<h2 id="orgf7697ff">eRNA Prediction Pipeline from GRO-Seq INFB1 Induction Timecourse</h2>
+<div class="outline-text-2" id="text-orgf7697ff">
+</div>
+</section>
+<section id="slide-org1133da9" data-background="img/globaltrans.png" data-background-size="800px" data-background-transition="slide">
+<h3 id="org1133da9"></h3>
+</section>
+<section id="slide-org8ca133b">
+<h3 id="org8ca133b">Overview</h3>
+<ul>
+<li>Reproducing GM18</li>
+<li>Predicted IMR90 eRNAs</li>
+<li>Compared IMR90 Predicted Enhancers to GM</li>
+<li>Used Homer scripts to find DE of eRNAs and Genes</li>
+<li>Gene Centric vs. Enhancer Centric</li>
+
+</ul>
+</section>
+<section id="slide-org5bb4c22">
+<h3 id="org5bb4c22">Reproducing GM18</h3>
+<ul>
+<li>hg18 vs hg19</li>
+<li>Overpredicting eRNA transcripts</li>
+<li>Past Issue
+<ul>
+<li>What I thought Peng sent me</li>
+<li>hg18 -&gt; eRNAs -&gt; Me</li>
+<li>What actually happened</li>
+<li>hg18 -&gt; eRNAs -&gt; LiftOver -&gt; hg19 -&gt; Me</li>
+
+</ul></li>
+<li>Main issue is homer uniqmap</li>
+
+</ul>
+</section>
+<section id="slide-orgabbd6e5" data-background="img/Figure_1.png" data-background-size="800px" data-background-transition="slide">
+<h4 id="orgabbd6e5"></h4>
+</section>
+<section id="slide-org3b11249" data-background="img/Figure_2.png" data-background-size="800px" data-background-transition="slide">
+<h4 id="org3b11249"></h4>
+</section>
+<section id="slide-org2be5b37" data-background="img/dag.png" data-background-size="400px" data-background-transition="slide">
+<h4 id="org2be5b37"></h4>
+</section>
+<section id="slide-orgca817e0">
+<h4 id="orgca817e0">Actual Pipelines</h4>
+<div class="outline-text-4" id="text-orgca817e0">
+</div>
+<ul class="org-ul">
+<li><a id="org225d975"></a><a href="files/GM18dag.pdf">GM18</a><br /></li>
+<li><a id="orga704b25"></a><a href="files/IMR19dag.pdf">IMR19</a><br /></li>
+<li><a id="org85b9a71"></a><a href="files/all.pdf">All</a><br /></li>
+</ul>
+</section>
+<section id="slide-org5006b16">
+<h3 id="org5006b16">Predicted IMR90 eRNAs</h3>
+<p>
+Changes from GM18
+</p>
+<ul>
+<li>hg19</li>
+<li>No liftover</li>
+
+</ul>
+</section>
+<section id="slide-orgeb84bf6">
+<h3 id="orgeb84bf6">Compared IMR90 Predicted Enhancers to GM</h3>
+<div class="outline-text-3" id="text-orgeb84bf6">
+</div>
+</section>
+<section id="slide-org20d3392" data-background="img/Venn.png" data-background-size="800px" data-background-transition="slide">
+<h4 id="org20d3392"></h4>
+
+</section>
+<section id="slide-orgeee07b9">
+<h3 id="orgeee07b9">Used Homer scripts to find DE of eRNAs and Genes</h3>
+</section>
+<section id="slide-org62a7466">
+<h3 id="org62a7466">Gene Centric vs. Enhancer Centric</h3>
+<ul>
+<li>Peng&rsquo;s approach
+<ul>
+<li>Took enhancers that were expressed deferentially</li>
+<li>Linked them to Genes within 200Kb</li>
+
+</ul></li>
+<li>New approach
+<ul>
+<li>Take genes that are deferentially expressed</li>
+<li>Link the Enhancers to those genes</li>
+
+</ul></li>
+
+</ul>
+
+</section>
+<section id="slide-org688a259" data-background="viz/pipeline.png" data-background-size="800px" data-background-transition="slide">
+<h4 id="org688a259"></h4>
+</section>
+<section id="slide-orgf8938d1">
+<h4 id="orgf8938d1">featureCounts</h4>
+<div class="outline-text-4" id="text-orgf8938d1">
+</div>
+<ul class="org-ul">
+<li><a id="org2b92abc"></a>Tried CLI version<br /></li>
+<li><a id="orgea03796"></a>Couldn&rsquo;t get examples to work with edgeR<br /></li>
+<li><a id="org2eb8aa0"></a>Switched to R package<br /></li>
+</ul>
+</section>
+<section id="slide-org586a94b">
+<h4 id="org586a94b">edgeR</h4>
+<div class="outline-text-4" id="text-org586a94b">
+</div>
+<ul class="org-ul">
+<li><a id="org306ec8b"></a>Error with exactTest<br /></li>
+<li><a id="org01bb7b6"></a>Defaulted to writing raw DGEList to file<br /></li>
+<li><a id="orged8be54"></a>Used in Pivot<br /></li>
+</ul>
+</section>
+<section id="slide-orge6f7de4">
+<h4 id="orge6f7de4">Results</h4>
+</section>
+<section id="slide-orgd6678a3" data-background="img/GM_normalized.png" data-background-size="1200px" data-background-transition="slide">
+<h4 id="orgd6678a3"></h4>
+</section>
+<section id="slide-orgb890960" data-background="img/IMR_normalized.png" data-background-size="1200px" data-background-transition="slide">
+<h4 id="orgb890960"></h4>
+</section>
+<section id="slide-orgf4c91dd">
+<h4 id="orgf4c91dd">Takeaways</h4>
+<ul>
+<li>Divide by median read values</li>
+<li>Need to go from -2 to 2 to show kinetics</li>
+
+</ul>
+</section>
+<section id="slide-org68936b8">
+<h3 id="org68936b8">Future</h3>
+<ul>
+<li>Kinetics of the eRNAs</li>
+<li>Compare IMR and GM Genes</li>
+<li>Get List of Top Genes</li>
+<li>Link eRNAs and Top genes</li>
+
+</ul>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+});
+</script>
+</body>
+</html>

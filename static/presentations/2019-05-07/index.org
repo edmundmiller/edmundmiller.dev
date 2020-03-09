@@ -1,0 +1,420 @@
+#+REVEAL_THEME: white
+#+TITLE: Intro
+#+AUTHOR: Edmund Miller
+#+OPTIONS: reveal_title_slide:nil
+#+OPTIONS: num:nil
+#+OPTIONS: toc:nil
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_HLEVEL: 1
+* eRNA Kinetics from INFB1 induction
+* Who am I
+- Plano, TX
+- [[https://github.com/Emiller88][GitHub]]
+- Undergraduate Molecular Biology '15-'18
+- Masters Biotechnology '18-'19
+- Joined Functional Genomics group in July '15
+- Moved to Dry Lab Summer '17
+- Software Developer for Olypsis Technologies since May '18
+** What I am looking to get out of this
+** 
+:PROPERTIES:
+:reveal_background: img/biovenn.png
+:reveal_background_size: 800px
+:reveal_background_trans: slide
+:END:
+** Things I can bring to the table
+- Wet Lab
+- Linux
+- Emacs
+- Git
+- Devops & CI/CD
+- Docker
+- Snakemake
+* Reproducible Research
+** Creating a Workflow
+*** Emacs
+- Evil Keybinding
+- Magit
+- Dired
+- Tramp
+- Org-mode
+- Email
+- RSS
+*** Spacemacs
+- Slow
+- Difficult to Customize outside of the box
+*** Doom Emacs
+- Optimized
+- Community
+*** Org-Mode
+- Slides
+- TODOs
+- Agenda
+- Capture
+- Lab-Notebook
+- Babel
+** Makefiles
+*** 
+:PROPERTIES:
+:reveal_background: img/data.png
+:reveal_background_size: 800px
+:reveal_background_trans: slide
+:END:
+*** 
+:PROPERTIES:
+:reveal_background: img/data1.png
+:reveal_background_size: 800px
+:reveal_background_trans: slide
+:END:
+*** 
+:PROPERTIES:
+:reveal_background: img/data2.png
+:reveal_background_size: 800px
+:reveal_background_trans: slide
+:END:
+*** Example Makefile
+#+BEGIN_SRC makefile
+all: prot001.txt prot0002.txt prot003.txt
+
+%.txt: ./bin/intensive_operation %.fasta
+   $^ > $@
+
+%.fasta:
+    curl database.example.com/$* > $@
+#+END_SRC
+** Bioinformatics Pipelines
+*** Toil
+- Python 2.7
+- UCSC
+- Complex
+*** Nextflow
+- Java
+- Barcelona Center for Genomic Regulation
+- Push
+- Able to script in any language
+*** Snakemake
+- Python 3.5
+- Easy to containerize
+- Pull
+- Quick to use
+*** 
+:PROPERTIES:
+:reveal_background: img/snakemake.png
+:reveal_background_size: 1000px
+:reveal_background_trans: slide
+:END:
+*** Snakemake Example
+#+BEGIN_SRC snakemake
+rule targets:
+    input:
+        "plots/dataset1.pdf",
+        "plots/dataset2.pdf"
+
+rule plot:
+    input:
+        "raw/{dataset}.csv"
+    output:
+        "plots/{dataset}.pdf"
+    shell:
+        "somecommand {input} {output}"
+#+END_SRC
+*** Snakemake R
+Requires ~rpy2~
+#+BEGIN_SRC snakemake
+rule mapRNAseq:
+    input:
+        file1 = "path/to/data/file1.bam",
+        file2 = "path/to/data/file2.bam"
+    output:
+        "path/to/qlf_table.csv"
+    run:
+        R("""
+        bamfiles <- cbind({input.file1},{input.file2})
+        {output} <- featureCounts(bamfiles, annot.inbuilt="hg19", strandspecific=2)
+        ...
+        ...
+        write.csv(qlf_table, file={output}, quote = FALSE)
+        """)
+#+END_SRC
+*** Snakemake R
+#+begin_src snakemake
+rule GM19_genes_edgeR:
+    input:
+        "results/2019-02-28/GM19_gene_counts.rds"
+    output:
+        "results/2019-03-25/GM19_rawdata_table.csv",
+        "results/2019-03-25/GM19_genelen.csv",
+        "results/2019-03-25/GM19_normalized.txt"
+    conda:
+        "../../envs/edgeR.yaml"
+    threads: 4
+    script:
+        "../../scripts/dge.R"
+#+end_src
+*** Test data
+#+begin_src shell
+snakemake --use-conda --directory .test
+#+end_src
+** Organizing Bioinformatics Projects
+*** 
+:PROPERTIES:
+:reveal_background: img/org.png
+:reveal_background_size: 1200px
+:reveal_background_trans: slide
+:END:
+* HPC Cluster
+** Intro to Ganymede
+- ~ganymedeadmins@utdallas.edu~
+- centos 7 with OpenHPC
+- http://docs.oithpc.utdallas.edu
+- Access to ~normal~, ~debug~, ~genomics~, and ~GPU1~ queue
+** Getting Access
+- Email ~admin@ganymede~ for access and to *genomics*
+- Takes around a week
+- You can log in with ~ssh <NETID>@ganymede.utdallas.edu~
+** Some Basic Commands
+#+begin_src shell
+# Info about slurm cluster
+sinfo
+# List enabled modules
+module list
+# Available module
+module av
+# Load anaconda
+# Must be done everytime you log in
+module load anaconda3
+# Cancel all jobs
+scancel -u <NETID>
+# Check the queue
+squeue -p genomics
+# Submit a job
+sbatch --help
+#+end_src
+** Installing Conda
+#+begin_src shell
+pip install conda
+# If that doesn't work
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+
+# Make an environment
+conda create -n smk -c bioconda snakemake
+conda install -c bioconda nextflow
+# OR
+conda create -n nf -c bioconda nextflow
+
+# Activate your env
+conda activate smk
+#+end_src
+** Running Things
+1. Email ~admin@ganymede~ for access and to *genomics*
+2. Setup local cookiecutter
+3. Log in ~ssh eam150030@ganymede.utdallas.edu~
+4. Load Modules
+5. Rsync from local computer
+#+begin_src shell
+rsync -avtr /media/enhancer/IMR90/data eam150030@ganymede.utdallas.edu:/home/eam150030/IMR90/data
+#+end_src
+7. Activate conda env ~conda activate smk~
+*** Running Things
+Basic script
+#+begin_src bash
+#!/bin/bash
+#SBATCH --ntasks=1
+#SBATCH --time=00:10:00
+#SBATCH --mail-user=eam150030@utdallas.edu
+#SBATCH --mail-type=ALL
+
+bowtie2 file.fastq
+...
+rysnc output back
+#+end_src
+** Snakemake on Slurm
+1. Have ~snakemake~ installed
+2. Make a cluster config file
+#+begin_src json
+{
+    "__default__" :
+    {
+        "account" : "eam150030",
+        "time" : "00:15:00",
+        "n" : 1,
+        "partition" : "genomics"
+    },
+    "compute1" :
+    {
+        "time" : "00:20:00"
+    }
+}
+#+end_src
+2. Use snakemake to submit jobs
+#+begin_src bash
+snakemake -j 999 --use-conda --cluster-config cluster.json \
+    --cluster "sbatch -A {cluster.account} -p {cluster.partition}\
+    -n {cluster.n}  -t {cluster.time}"
+#+end_src
+*** Slurm Script
+#+begin_src bash
+#!/bin/bash
+#SBATCH --ntasks=1
+#SBATCH --time=00:10:00
+#SBATCH --mail-user=eam150030@utdallas.edu
+#SBATCH --mail-type=ALL
+
+conda activate smk
+
+snakemake -j 999 --use-conda --cluster-config cluster.json \
+    --cluster "sbatch -A {cluster.account} -p {cluster.partition}\
+    -n {cluster.n}  -t {cluster.time}"
+
+rsync -avtr results myLabComputer
+#+end_src
+** Nextflow
+1. Have ~nextflow~ installed
+2. Running a toy example
+#+BEGIN_SRC shell
+nextflow run rnatoy -with-singularity
+#+END_SRC
+ - Ganymede doesn't have docker so you can't use ~-with-docker~
+
+3. Executing using slurm ([[https://www.nextflow.io/docs/latest/executor.html?highlight=slurm#slurm][docs]])
+#+begin_src shell
+# nextflow.config
+process {
+  executor = 'slurm'
+  queue = 'genomics'
+}
+#+end_src
+4. Run pipeline
+#+begin_src shell
+nextflow run tutorial.nf
+nextflow -c nextflow.config run rnatoy -with-singularity
+#+end_src
+
+** PyTorch
+#+begin_src python
+from __future__ import print_function
+import torch
+torch.cuda.is_available()
+x = torch.rand(5, 3)
+print(x)
+#+end_src
+*** PyTorch Slurm Script
+#+begin_src bash
+#!/usr/bin/env bash
+#SBATCH -J pytorchtest
+#SBATCH -o pytorchtest-%A.out
+#SBATCH -e pytorchtest-%A.err
+#SBATCH -p GPU1
+#SBATCH --gres=gpu:1
+#SBATCH -c 1
+#SBATCH -t 00:01:00
+#SBATCH --mail-user=eam150030@utdallas.edu
+#SBATCH --mail-type=ALL
+
+module purge
+module load singularity
+module load CUDA
+# Assuming that the container has been copied to the user's /scratch directory
+singularity exec docker://pytorch/pytorch python \
+    /home/eam150030/pytorch-demo/pytorch_example.py
+#+end_src
+* eRNA Prediction Pipeline from GRO-Seq INFB1 Induction Timecourse
+** 
+:PROPERTIES:
+:reveal_background: img/globaltrans.png
+:reveal_background_size: 800px
+:reveal_background_trans: slide
+:END:
+** Overview
+- Reproducing GM18
+- Predicted IMR90 eRNAs
+- Compared IMR90 Predicted Enhancers to GM
+- Used Homer scripts to find DE of eRNAs and Genes
+- Gene Centric vs. Enhancer Centric
+** Reproducing GM18
+- hg18 vs hg19
+- Overpredicting eRNA transcripts
+- Past Issue
+  - What I thought Peng sent me
+  - hg18 -> eRNAs -> Me
+  - What actually happened
+  - hg18 -> eRNAs -> LiftOver -> hg19 -> Me
+- Main issue is homer uniqmap
+*** 
+:PROPERTIES:
+:reveal_background: img/Figure_1.png
+:reveal_background_size: 800px
+:reveal_background_trans: slide
+:END:
+*** 
+:PROPERTIES:
+:reveal_background: img/Figure_2.png
+:reveal_background_size: 800px
+:reveal_background_trans: slide
+:END:
+*** 
+:PROPERTIES:
+:reveal_background: img/dag.png
+:reveal_background_size: 400px
+:reveal_background_trans: slide
+:END:
+*** Actual Pipelines
+**** [[file:files/GM18dag.pdf][GM18]]
+**** [[file:files/IMR19dag.pdf][IMR19]]
+**** [[file:files/all.pdf][All]]
+** Predicted IMR90 eRNAs
+Changes from GM18
+- hg19
+- No liftover
+** Compared IMR90 Predicted Enhancers to GM
+*** 
+:PROPERTIES:
+:reveal_background: img/Venn.png
+:reveal_background_size: 800px
+:reveal_background_trans: slide
+:END:
+
+** Used Homer scripts to find DE of eRNAs and Genes
+** Gene Centric vs. Enhancer Centric
+- Peng's approach
+  - Took enhancers that were expressed deferentially
+  - Linked them to Genes within 200Kb
+- New approach
+  - Take genes that are deferentially expressed
+  - Link the Enhancers to those genes
+
+*** 
+:PROPERTIES:
+:reveal_background: viz/pipeline.png
+:reveal_background_size: 800px
+:reveal_background_trans: slide
+:END:
+*** featureCounts
+**** Tried CLI version
+**** Couldn't get examples to work with edgeR
+**** Switched to R package
+*** edgeR
+**** Error with exactTest
+**** Defaulted to writing raw DGEList to file
+**** Used in Pivot
+*** Results
+*** 
+:PROPERTIES:
+:reveal_background: img/GM_normalized.png
+:reveal_background_size: 1200px
+:reveal_background_trans: slide
+:END:
+*** 
+:PROPERTIES:
+:reveal_background: img/IMR_normalized.png
+:reveal_background_size: 1200px
+:reveal_background_trans: slide
+:END:
+*** Takeaways
+- Divide by median read values
+- Need to go from -2 to 2 to show kinetics
+** Future
+- Kinetics of the eRNAs
+- Compare IMR and GM Genes
+- Get List of Top Genes
+- Link eRNAs and Top genes
