@@ -269,7 +269,35 @@ make profile
 module add singlarity/2.4.5
 make cluster
 #+END_SRC
-* nf-core preview
+* Nextflow First Look
+** Original Goals from the Snakemake template and cookiecutter
+- Easy to reproduce and run on new datasets
+- Containerization of software(~conda~)
+- Easy to take to the cluster
+- A template to quickly start a new workflow
+- Coding best practices(CI pipelines, releases)
+** [[https://nf-co.re][nf-core pipelines]]
+- Now that you've experienced the struggles of creating a pipeline
+Running Locally
 #+BEGIN_SRC shell
-nextflow run nf-core/rnaseq -profile <docker/singularity/conda> --reads '*_R{1,2}.fastq.gz' --genome GRCh37
+nextflow run nf-core/rnaseq -profile conda \
+    --reads '*_R{1,2}.fastq.gz' --genome GRCh37
 #+END_SRC
+- If this looks scary see [[https://nf-co.re/tools#launch-a-pipeline][nf-core launch]]
+** What about this cluster?
+#+BEGIN_SRC shell
+nextflow run nf-core/rnaseq -profile singularity,utd_ganymede \
+    --reads '*_R{1,2}.fastq.gz' --genome GRCh37
+#+END_SRC
+
+*Bonus: If you run it on Ganymede it will warn you automagically*
+** What about a template?
+#+BEGIN_SRC shell
+pip install nf-core
+nf-core create
+#+END_SRC
+- https://nf-co.re/tools
+** Extending workflows
+- Is possible
+- However, I'd rather feed a one pipeline into another
+- ~nf-core/rnaseq~ -> ~fg/ribo-profile~
