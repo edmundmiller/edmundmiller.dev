@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <title>Snakemake Workshop</title>
-<meta name="author" content="(Edmund Miller)"/>
+<meta name="author" content="(Edmund Miller & Suhana Bedi)"/>
 <style type="text/css">
 .underline { text-decoration: underline; }
 </style>
@@ -27,25 +27,25 @@
 <div class="reveal">
 <div class="slides">
 <section>
-<section id="slide-orgbcb7d0b">
-<h2 id="orgbcb7d0b">Snakemake</h2>
+<section id="slide-orgcb9a895">
+<h2 id="orgcb9a895">Snakemake</h2>
 </section>
 </section>
 <section>
-<section id="slide-orgbf2fb14">
-<h2 id="orgbf2fb14">Setting up</h2>
-<div class="outline-text-2" id="text-orgbf2fb14">
+<section id="slide-org37c39f7">
+<h2 id="org37c39f7">Setting up</h2>
+<div class="outline-text-2" id="text-org37c39f7">
 </div>
 </section>
 </section>
 <section>
-<section id="slide-org1c287ba">
-<h3 id="org1c287ba">Download Vscode</h3>
-<div class="outline-text-3" id="text-org1c287ba">
+<section id="slide-org267d850">
+<h3 id="org267d850">Download Vscode</h3>
+<div class="outline-text-3" id="text-org267d850">
 </div>
 </section>
-<section id="slide-org7a055e7">
-<h4 id="org7a055e7">Extensions</h4>
+<section id="slide-orgb72079d">
+<h4 id="orgb72079d">Extensions</h4>
 <ul>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh">Remote extension</a></li>
 
@@ -60,13 +60,13 @@ On Remote:
 </section>
 </section>
 <section>
-<section id="slide-orgf5efc37">
-<h3 id="orgf5efc37">Logging into promoter</h3>
-<div class="outline-text-3" id="text-orgf5efc37">
+<section id="slide-org25bdde9">
+<h3 id="org25bdde9">Logging into promoter</h3>
+<div class="outline-text-3" id="text-org25bdde9">
 </div>
 </section>
-<section id="slide-org6309779">
-<h4 id="org6309779">Using VSCode Remote extension&#xa0;&#xa0;&#xa0;<span class="tag"><span class="suhana">suhana</span></span></h4>
+<section id="slide-orgf03d5c2">
+<h4 id="orgf03d5c2">Using VSCode Remote extension&#xa0;&#xa0;&#xa0;<span class="tag"><span class="suhana">suhana</span></span></h4>
 <p>
 NOTE: YOU MUST BE ON <code>COMETNET</code>
 </p>
@@ -79,13 +79,13 @@ test123
 </section>
 </section>
 <section>
-<section id="slide-org1399d99">
-<h3 id="org1399d99">Creating a new workflow with <code>cookiecutter</code></h3>
-<div class="outline-text-3" id="text-org1399d99">
+<section id="slide-orgff2115d">
+<h3 id="orgff2115d">Creating a new workflow with <code>cookiecutter</code></h3>
+<div class="outline-text-3" id="text-orgff2115d">
 </div>
 </section>
-<section id="slide-org0f338d0">
-<h4 id="org0f338d0">Open a terminal</h4>
+<section id="slide-orgdaefa2c">
+<h4 id="orgdaefa2c">Open a terminal</h4>
 <ul>
 <li><code>Ctrl + Shift + `</code></li>
 <li>Use &lt;your-name&gt; for <code>repo_name</code></li>
@@ -99,8 +99,8 @@ test123
 </code></pre>
 </div>
 </section>
-<section id="slide-org17b76c6">
-<h4 id="org17b76c6">Running <code>snakemake</code> for the first time</h4>
+<section id="slide-org0b602e7">
+<h4 id="org0b602e7">Running <code>snakemake</code> for the first time</h4>
 <div class="org-src-container">
 
 <pre  class="src src-shell"><code trim><span style="color: #ECBE7B;">make</span> dry
@@ -116,20 +116,20 @@ poetry run snakemake -n --use-conda --use-singularity -j <span style="color: #da
 </section>
 </section>
 <section>
-<section id="slide-org9ac8a47">
-<h2 id="org9ac8a47">Writing a workflow</h2>
-<div class="outline-text-2" id="text-org9ac8a47">
+<section id="slide-orgda4559f">
+<h2 id="orgda4559f">Writing a workflow</h2>
+<div class="outline-text-2" id="text-orgda4559f">
 </div>
 </section>
 </section>
 <section>
-<section id="slide-org09973e8">
-<h3 id="org09973e8">Step 0: Download the data</h3>
-<div class="outline-text-3" id="text-org09973e8">
+<section id="slide-org215810b">
+<h3 id="org215810b">Step 0: Download the data</h3>
+<div class="outline-text-3" id="text-org215810b">
 </div>
 </section>
-<section id="slide-org9b523b5">
-<h4 id="org9b523b5">Open <code>workflow/Snakefile</code></h4>
+<section id="slide-org3e5cc65">
+<h4 id="org3e5cc65">Open <code>workflow/Snakefile</code></h4>
 <div class="org-src-container">
 
 <pre  class="src src-snakemake"><code trim><span style="color: #51afef;">rule</span> <span style="color: #c678dd;">bwa_map</span>:
@@ -145,13 +145,13 @@ poetry run snakemake -n --use-conda --use-singularity -j <span style="color: #da
 </section>
 </section>
 <section>
-<section id="slide-org2b63db9">
-<h3 id="org2b63db9"><a href="https://snakemake.readthedocs.io/en/stable/tutorial/basics.html#step-1-mapping-reads">Step 1: Mapping reads</a></h3>
-<div class="outline-text-3" id="text-org2b63db9">
+<section id="slide-org08dea21">
+<h3 id="org08dea21"><a href="https://snakemake.readthedocs.io/en/stable/tutorial/basics.html#step-1-mapping-reads">Step 1: Mapping reads</a></h3>
+<div class="outline-text-3" id="text-org08dea21">
 </div>
 </section>
-<section id="slide-orgba0fd0a">
-<h4 id="orgba0fd0a">Open <code>workflow/Snakefile</code></h4>
+<section id="slide-org3e4ae30">
+<h4 id="org3e4ae30">Open <code>workflow/Snakefile</code></h4>
 <div class="org-src-container">
 
 <pre  class="src src-snakemake"><code trim><span style="color: #51afef;">rule</span> <span style="color: #c678dd;">bwa_map</span>:
@@ -167,8 +167,8 @@ poetry run snakemake -n --use-conda --use-singularity -j <span style="color: #da
 </code></pre>
 </div>
 </section>
-<section id="slide-orgfbbd6dc">
-<h4 id="orgfbbd6dc">Open <code>workflow/envs/bwa.yml</code></h4>
+<section id="slide-orgcac754d">
+<h4 id="orgcac754d">Open <code>workflow/envs/bwa.yml</code></h4>
 <div class="org-src-container">
 
 <pre  class="src src-yaml"><code trim><span style="color: #dcaeea;">channels</span>:
@@ -182,8 +182,8 @@ poetry run snakemake -n --use-conda --use-singularity -j <span style="color: #da
 </code></pre>
 </div>
 </section>
-<section id="slide-org30d4052">
-<h4 id="org30d4052">Run</h4>
+<section id="slide-org67b83f3">
+<h4 id="org67b83f3">Run</h4>
 <div class="org-src-container">
 
 <pre  class="src src-shell"><code trim><span style="color: #ECBE7B;">make</span> dry <span style="color: #dcaeea;">rule</span>=results/mapped_reads/A.bam
@@ -193,13 +193,13 @@ poetry run snakemake -n --use-conda --use-singularity -j <span style="color: #da
 </section>
 </section>
 <section>
-<section id="slide-orga3f4e2f">
-<h3 id="orga3f4e2f"><a href="https://snakemake.readthedocs.io/en/stable/tutorial/basics.html#step-2-generalizing-the-read-mapping-rule">Step 2: Generalizing the read mapping rule</a></h3>
-<div class="outline-text-3" id="text-orga3f4e2f">
+<section id="slide-org43849d7">
+<h3 id="org43849d7"><a href="https://snakemake.readthedocs.io/en/stable/tutorial/basics.html#step-2-generalizing-the-read-mapping-rule">Step 2: Generalizing the read mapping rule</a></h3>
+<div class="outline-text-3" id="text-org43849d7">
 </div>
 </section>
-<section id="slide-org54ee2d1">
-<h4 id="org54ee2d1"><code>workflow/Snakefile</code></h4>
+<section id="slide-org230021c">
+<h4 id="org230021c"><code>workflow/Snakefile</code></h4>
 <div class="org-src-container">
 
 <pre  class="src src-snakemake"><code trim><span style="color: #51afef;">rule</span> <span style="color: #c678dd;">bwa_map</span>:
@@ -215,8 +215,8 @@ poetry run snakemake -n --use-conda --use-singularity -j <span style="color: #da
 </code></pre>
 </div>
 </section>
-<section id="slide-orgf3798ac">
-<h4 id="orgf3798ac">Run</h4>
+<section id="slide-org168211a">
+<h4 id="org168211a">Run</h4>
 <div class="org-src-container">
 
 <pre  class="src src-shell"><code trim><span style="color: #ECBE7B;">make</span> smk <span style="color: #dcaeea;">rule</span>=results/mapped_reads/B.bam
@@ -227,8 +227,8 @@ poetry run snakemake -n --use-conda --use-singularity -j <span style="color: #da
 </section>
 </section>
 <section>
-<section id="slide-org42589a7">
-<h3 id="org42589a7"><a href="https://snakemake.readthedocs.io/en/stable/tutorial/basics.html#step-3-sorting-read-alignments">Step 3: Sorting read alignments</a></h3>
+<section id="slide-orgb7c7b7f">
+<h3 id="orgb7c7b7f"><a href="https://snakemake.readthedocs.io/en/stable/tutorial/basics.html#step-3-sorting-read-alignments">Step 3: Sorting read alignments</a></h3>
 <ul>
 <li>Note that Snakemake automatically creates missing directories before jobs are executed.</li>
 
@@ -248,8 +248,8 @@ poetry run snakemake -n --use-conda --use-singularity -j <span style="color: #da
 </code></pre>
 </div>
 </section>
-<section id="slide-org3338a27">
-<h4 id="org3338a27">Open <code>workflow/envs/bwa.yml</code></h4>
+<section id="slide-org78a681e">
+<h4 id="org78a681e">Open <code>workflow/envs/bwa.yml</code></h4>
 <div class="org-src-container">
 
 <pre  class="src src-yaml"><code trim><span style="color: #dcaeea;">channels</span>:
@@ -263,13 +263,13 @@ poetry run snakemake -n --use-conda --use-singularity -j <span style="color: #da
 </section>
 </section>
 <section>
-<section id="slide-orgdbbdc47">
-<h3 id="orgdbbdc47"><a href="https://snakemake.readthedocs.io/en/stable/tutorial/basics.html#step-4-indexing-read-alignments-and-visualizing-the-dag-of-jobs">Step 4: Indexing read alignments and visualizing the DAG of jobs</a></h3>
-<div class="outline-text-3" id="text-orgdbbdc47">
+<section id="slide-orgaf7f519">
+<h3 id="orgaf7f519"><a href="https://snakemake.readthedocs.io/en/stable/tutorial/basics.html#step-4-indexing-read-alignments-and-visualizing-the-dag-of-jobs">Step 4: Indexing read alignments and visualizing the DAG of jobs</a></h3>
+<div class="outline-text-3" id="text-orgaf7f519">
 </div>
 </section>
-<section id="slide-orgb234a5b">
-<h4 id="orgb234a5b"><code>workflow/Snakefile</code></h4>
+<section id="slide-org2be126c">
+<h4 id="org2be126c"><code>workflow/Snakefile</code></h4>
 <div class="org-src-container">
 
 <pre  class="src src-snakemake"><code trim><span style="color: #51afef;">rule</span> <span style="color: #c678dd;">samtools_index</span>:
@@ -284,8 +284,8 @@ poetry run snakemake -n --use-conda --use-singularity -j <span style="color: #da
 </code></pre>
 </div>
 </section>
-<section id="slide-orgfd75723">
-<h4 id="orgfd75723">Update all rule</h4>
+<section id="slide-org5749466">
+<h4 id="org5749466">Update all rule</h4>
 <p>
 <code>workflow/Snakefile</code>
 </p>
@@ -299,8 +299,8 @@ poetry run snakemake -n --use-conda --use-singularity -j <span style="color: #da
 </code></pre>
 </div>
 </section>
-<section id="slide-org293f460">
-<h4 id="org293f460">Run</h4>
+<section id="slide-org9f29803">
+<h4 id="org9f29803">Run</h4>
 <div class="org-src-container">
 
 <pre  class="src src-shell"><code trim><span style="color: #ECBE7B;">make</span> smk
@@ -314,13 +314,13 @@ poetry run snakemake -n --use-conda --use-singularity -j <span style="color: #da
 </section>
 </section>
 <section>
-<section id="slide-org0a9048a">
-<h3 id="org0a9048a"><a href="https://snakemake.readthedocs.io/en/stable/tutorial/basics.html#step-5-calling-genomic-variants">Step 5: Calling genomic variants</a></h3>
-<div class="outline-text-3" id="text-org0a9048a">
+<section id="slide-orgb1e89c2">
+<h3 id="orgb1e89c2"><a href="https://snakemake.readthedocs.io/en/stable/tutorial/basics.html#step-5-calling-genomic-variants">Step 5: Calling genomic variants</a></h3>
+<div class="outline-text-3" id="text-orgb1e89c2">
 </div>
 </section>
-<section id="slide-orgb6d15e0">
-<h4 id="orgb6d15e0"><code>expand</code></h4>
+<section id="slide-org1cf3cdc">
+<h4 id="org1cf3cdc"><code>expand</code></h4>
 <div class="org-src-container">
 
 <pre  class="src src-snakemake"><code trim><span style="color: #c678dd;">expand</span>(<span style="color: #98be65;">"sorted_reads/{sample}.bam"</span>, sample=SAMPLES)
@@ -335,8 +335,8 @@ Returns:
 </code></pre>
 </div>
 </section>
-<section id="slide-orgdc1004c">
-<h4 id="orgdc1004c">A more complicated expand</h4>
+<section id="slide-org93dfd53">
+<h4 id="org93dfd53">A more complicated expand</h4>
 <div class="org-src-container">
 
 <pre  class="src src-snakemake"><code trim><span style="color: #c678dd;">expand</span>(<span style="color: #98be65;">"sorted_reads/{sample}.{replicate}.bam"</span>, sample=SAMPLES, replicate=[<span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #da8548; font-weight: bold;">1</span>])
@@ -351,16 +351,16 @@ Returns:
 </code></pre>
 </div>
 </section>
-<section id="slide-orgc6de378">
-<h4 id="orgc6de378">Defining Samples</h4>
+<section id="slide-orgef4ee2a">
+<h4 id="orgef4ee2a">Defining Samples</h4>
 <div class="org-src-container">
 
 <pre  class="src src-snakemake"><code trim><span style="color: #dcaeea;">SAMPLES</span> = [<span style="color: #98be65;">"A"</span>, <span style="color: #98be65;">"B"</span>, <span style="color: #98be65;">"C"</span>]
 </code></pre>
 </div>
 </section>
-<section id="slide-orge16250c">
-<h4 id="orge16250c">Rule for calling variants</h4>
+<section id="slide-orgd05ef60">
+<h4 id="orgd05ef60">Rule for calling variants</h4>
 <p>
 <code>workflow/Snakefile</code>
 </p>
@@ -381,8 +381,8 @@ Returns:
 </code></pre>
 </div>
 </section>
-<section id="slide-org94c00f7">
-<h4 id="org94c00f7"><code>workflow/envs/bcf.yml</code></h4>
+<section id="slide-org82ec070">
+<h4 id="org82ec070"><code>workflow/envs/bcf.yml</code></h4>
 <div class="org-src-container">
 
 <pre  class="src src-yaml"><code trim><span style="color: #dcaeea;">channels</span>:
@@ -397,13 +397,13 @@ Returns:
 </section>
 </section>
 <section>
-<section id="slide-org73e3ef9">
-<h3 id="org73e3ef9"><a href="https://snakemake.readthedocs.io/en/stable/tutorial/basics.html#step-6-using-custom-scripts">Step 6: Using custom scripts</a></h3>
-<div class="outline-text-3" id="text-org73e3ef9">
+<section id="slide-org084572f">
+<h3 id="org084572f"><a href="https://snakemake.readthedocs.io/en/stable/tutorial/basics.html#step-6-using-custom-scripts">Step 6: Using custom scripts</a></h3>
+<div class="outline-text-3" id="text-org084572f">
 </div>
 </section>
-<section id="slide-org5fda16a">
-<h4 id="org5fda16a">In <code>workflow/Snakefile</code></h4>
+<section id="slide-org06073ea">
+<h4 id="org06073ea">In <code>workflow/Snakefile</code></h4>
 <div class="org-src-container">
 
 <pre  class="src src-snakemake"><code trim><span style="color: #51afef;">rule</span> <span style="color: #c678dd;">plot_quals</span>:
@@ -418,8 +418,8 @@ Returns:
 </code></pre>
 </div>
 </section>
-<section id="slide-org7f3f0d4">
-<h4 id="org7f3f0d4"><code>workflow/scripts/plot-quals.py</code></h4>
+<section id="slide-orgdf71441">
+<h4 id="orgdf71441"><code>workflow/scripts/plot-quals.py</code></h4>
 <div class="org-src-container">
 
 <pre  class="src src-python"><code trim><span style="color: #51afef;">import</span> matplotlib
@@ -434,8 +434,8 @@ plt.savefig(snakemake.output[<span style="color: #da8548; font-weight: bold;">0<
 </code></pre>
 </div>
 </section>
-<section id="slide-org7821446">
-<h4 id="org7821446"><code>workflow/envs/plot.yml</code></h4>
+<section id="slide-org2899ec7">
+<h4 id="org2899ec7"><code>workflow/envs/plot.yml</code></h4>
 <div class="org-src-container">
 
 <pre  class="src src-yaml"><code trim><span style="color: #dcaeea;">channels</span>:
@@ -448,8 +448,8 @@ plt.savefig(snakemake.output[<span style="color: #da8548; font-weight: bold;">0<
 </code></pre>
 </div>
 </section>
-<section id="slide-orgbb51f09">
-<h4 id="orgbb51f09">Using this with R</h4>
+<section id="slide-org412997a">
+<h4 id="org412997a">Using this with R</h4>
 <ul>
 <li><a href="https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#external-scripts">External scripts docs</a></li>
 <li>R, Rmd, or ipynb</li>
@@ -470,13 +470,13 @@ do_something(snakemake@input[[<span style="color: #da8548; font-weight: bold;">1
 </section>
 </section>
 <section>
-<section id="slide-orgb9e9ac2">
-<h3 id="orgb9e9ac2"><a href="https://snakemake.readthedocs.io/en/stable/tutorial/basics.html#step-7-adding-a-target-rule">Step 7: Adding a target rule</a></h3>
-<div class="outline-text-3" id="text-orgb9e9ac2">
+<section id="slide-org6ee353e">
+<h3 id="org6ee353e"><a href="https://snakemake.readthedocs.io/en/stable/tutorial/basics.html#step-7-adding-a-target-rule">Step 7: Adding a target rule</a></h3>
+<div class="outline-text-3" id="text-org6ee353e">
 </div>
 </section>
-<section id="slide-orgffbfc3e">
-<h4 id="orgffbfc3e"><code>workflow/Snakefile</code></h4>
+<section id="slide-org9b922ba">
+<h4 id="org9b922ba"><code>workflow/Snakefile</code></h4>
 <div class="org-src-container">
 
 <pre  class="src src-snakemake"><code trim><span style="color: #51afef;">rule</span> <span style="color: #c678dd;">all</span>:
@@ -485,8 +485,8 @@ do_something(snakemake@input[[<span style="color: #da8548; font-weight: bold;">1
 </code></pre>
 </div>
 </section>
-<section id="slide-org021380b">
-<h4 id="org021380b">Run it</h4>
+<section id="slide-orgad529ac">
+<h4 id="orgad529ac">Run it</h4>
 <div class="org-src-container">
 
 <pre  class="src src-shell"><code trim><span style="color: #ECBE7B;">make</span> smk
@@ -496,8 +496,8 @@ do_something(snakemake@input[[<span style="color: #da8548; font-weight: bold;">1
 </section>
 </section>
 <section>
-<section id="slide-org16faea4">
-<h3 id="org16faea4">Taking it to the Cluster</h3>
+<section id="slide-org552de34">
+<h3 id="org552de34">Taking it to the Cluster</h3>
 <div class="org-src-container">
 
 <pre  class="src src-shell"><code trim>ssh eam150030@ganymede
@@ -513,15 +513,15 @@ module add singlarity/2.4.5
 </section>
 </section>
 <section>
-<section id="slide-orgaad127b">
-<h2 id="orgaad127b">Nextflow First Look</h2>
-<div class="outline-text-2" id="text-orgaad127b">
+<section id="slide-orgce01f40">
+<h2 id="orgce01f40">Nextflow First Look</h2>
+<div class="outline-text-2" id="text-orgce01f40">
 </div>
 </section>
 </section>
 <section>
-<section id="slide-orgdd923a2">
-<h3 id="orgdd923a2">Original Goals from the Snakemake template and cookiecutter</h3>
+<section id="slide-org6b6e360">
+<h3 id="org6b6e360">Original Goals from the Snakemake template and cookiecutter</h3>
 <ul>
 <li>Easy to reproduce and run on new datasets</li>
 <li>Containerization of software(<code>conda</code>)</li>
@@ -533,8 +533,8 @@ module add singlarity/2.4.5
 </section>
 </section>
 <section>
-<section id="slide-orgc139585">
-<h3 id="orgc139585"><a href="https://nf-co.re">nf-core pipelines</a></h3>
+<section id="slide-org2788dfd">
+<h3 id="org2788dfd"><a href="https://nf-co.re">nf-core pipelines</a></h3>
 <ul>
 <li>Now that you&rsquo;ve experienced the struggles of creating a pipeline</li>
 
@@ -555,8 +555,8 @@ Running Locally
 </section>
 </section>
 <section>
-<section id="slide-orga891d53">
-<h3 id="orga891d53">What about this cluster?</h3>
+<section id="slide-orgdd05f00">
+<h3 id="orgdd05f00">What about this cluster?</h3>
 <div class="org-src-container">
 
 <pre  class="src src-shell"><code trim>nextflow run nf-core/rnaseq -profile singularity,utd_ganymede <span style="color: #98be65;">\</span>
@@ -570,8 +570,8 @@ Running Locally
 </section>
 </section>
 <section>
-<section id="slide-org6fe263c">
-<h3 id="org6fe263c">What about a template?</h3>
+<section id="slide-org3f91b98">
+<h3 id="org3f91b98">What about a template?</h3>
 <div class="org-src-container">
 
 <pre  class="src src-shell"><code trim>pip install nf-core
@@ -585,8 +585,8 @@ nf-core create
 </section>
 </section>
 <section>
-<section id="slide-orgbf37445">
-<h3 id="orgbf37445">Extending workflows</h3>
+<section id="slide-org3bed138">
+<h3 id="org3bed138">Extending workflows</h3>
 <ul>
 <li>Is possible</li>
 <li>However, I&rsquo;d rather feed a one pipeline into another</li>

@@ -1,5 +1,5 @@
 #+TITLE: Snakemake Workshop
-#+AUTHOR: Edmund Miller
+#+AUTHOR: Edmund Miller & Suhana Bedi
 #+REVEAL_THEME: white
 #+OPTIONS: reveal_title_slide:nil
 #+OPTIONS: num:nil
