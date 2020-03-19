@@ -775,6 +775,11 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
+"@ctrl/tinycolor@^2.5.3":
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/@ctrl/tinycolor/-/tinycolor-2.6.1.tgz#0e78cc836a1fd997a9a22fa1c26c555411882160"
+  integrity sha512-xKN3lAA+xbNhP+JX3sLhzA65IGiKqun/Yf9jBlZX7Og0SxlCrrqKxqTd6ccn20fv3Cgcvq6KnjPhnmS+v7uAwQ==
+
 "@fullhuman/postcss-purgecss@^2.0.6":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@fullhuman/postcss-purgecss/-/postcss-purgecss-2.1.0.tgz#955fc2e3f69b0d0c84367eeee4f85c01238a65dc"
@@ -9481,6 +9486,13 @@ table@^5.2.3:
     lodash "^4.17.14"
     slice-ansi "^2.1.0"
     string-width "^3.0.0"
+
+tailwindcss-theming@^2.4.3:
+  version "2.4.3"
+  resolved "https://registry.yarnpkg.com/tailwindcss-theming/-/tailwindcss-theming-2.4.3.tgz#af50736c1dd8235d837b2f82bd788b587f5cf45d"
+  integrity sha512-QIX29c1hunS5PYCvlQ32ulV/0j94Fu/Rq/UkFzHBkrUi22Ohv5Zg5/w6zArJu9Tv4OqaYgsBb/aWEqJfKY5wlQ==
+  dependencies:
+    "@ctrl/tinycolor" "^2.5.3"
 
 tailwindcss@^1.2.0:
   version "1.2.0"
