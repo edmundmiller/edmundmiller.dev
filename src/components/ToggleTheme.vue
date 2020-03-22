@@ -3,7 +3,7 @@
     role="button"
     aria-label="Toggle dark/light"
     @click.prevent="toggleTheme"
-    class="toggle-theme"
+    class="bg-transparent border-0 bg-white cursor-pointer hover:opacity-75 focus:outline-none"
   >
     <svg
       v-if="darkTheme"
