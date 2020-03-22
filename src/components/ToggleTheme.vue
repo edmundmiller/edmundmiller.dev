@@ -66,19 +66,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss">
-.toggle-theme {
-  background-color: transparent;
-  border: 0;
-  color: var(--body-color);
-  cursor: pointer;
-
-  &:hover {
-    opacity: 0.8;
-  }
-  &:focus {
-    outline: none;
-  }
-}
-</style>
