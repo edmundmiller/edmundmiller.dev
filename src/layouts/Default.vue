@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="bg-brand">
     <header
       class="header flex justify-between items-center min-h-50 p-3 top-0 z-10 lg:sticky lg:w-full"
     >
