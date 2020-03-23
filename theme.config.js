@@ -5,20 +5,23 @@ const mainTheme = new Theme()
   .name('light')
   .default()
   .colors({
-    brand: '#2196f3',
-    'on-brand': '#ffffff',
-    'navigation-primary': '#3c4253',
-    'navigation-secondary': '#303030',
-    'on-navigation': '#9aa2b6',
-    background: '#f4f4f4',
-    surface: '#ffffff',
-    'on-background': '#585851',
-    'on-surface': '#3c3c3c'
+    brand: '#F3F7F9',
+    'brand-color': '#fff',
+    'brand-code': '#fffbf3',
+    'body-color': '#444',
+    'title-color': '#111',
+    'link-color': '#6b17e6',
+    'border-color': '#e5e5e5'
   });
 
 const darkTheme = new Theme().name('dark').colors({
-  brand: '#1565c0',
-  'on-brand': '#ffffff'
+  brand: '#0D2538',
+  'brand-color': '#0f2d44',
+  'brand-code': '#b2b2b2',
+  'body-color': '#ffffff',
+  'title-color': '#ced8de',
+  'link-color': '#fff',
+  'border-color': '#af9cef'
 });
 
 module.exports = new ThemeBuilder()
