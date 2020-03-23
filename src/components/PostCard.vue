@@ -1,6 +1,6 @@
 <template>
   <div
-    class="content-box max-w-screen-md my-0 mx-auto transition duration-700 bg-content-color p-12 rounded-md shadow-md"
+    class="content-box max-w-screen-md my-0 mx-auto transition duration-700 bg-brand-color p-12 rounded-md shadow-md transition duration-700 text-body-color"
   >
     <div
       class="post-card mb-6 relative transition duration-150 hover:-translate-y-4"
