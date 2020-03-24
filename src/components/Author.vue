@@ -1,5 +1,5 @@
 <template>
-  <div class="author m-0 max-w-sm text-center p-8">
+  <div class="author my-0 mx-auto max-w-sm text-center py-6 px-0">
     <g-image
       alt="Author image"
       class="author__image rounded-full w-90px h-90x mb-4"
