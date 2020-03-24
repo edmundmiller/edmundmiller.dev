@@ -1,15 +1,12 @@
 <template>
   <div
-    class="content-box max-w-screen-md my-0 mx-auto transition duration-700 bg-brand-color p-12 rounded-md shadow-md transition duration-700 text-body-color"
+    class="content-box max-w-screen-md my-0 mx-auto transition duration-700 bg-brand-color p-12 rounded-md shadow-md transition duration-700 text-body-color post-card mb-6 relative transition duration-150 transform hover:-translate-y-4"
+    :class="{ 'post-card--has-poster': post.poster }"
   >
+    <!-- TODO empty display none -->
     <div
-      class="post-card mb-6 relative transition duration-150 hover:-translate-y-4"
-      :class="{ 'post-card--has-poster': post.poster }"
+      class="post-card__header -mx-12 -mt-12 mb-6 overflow-hidden rounded-t-md"
     >
-      <!-- TODO empty display none -->
-      <div
-        class="post-card__header -mx-12 -mt-12 mb-6 overflow-hidden rounded-t-md"
-      >
         <g-image
           alt="Cover image"
           v-if="post.cover_image"
@@ -29,7 +26,6 @@
           :to="post.path"
           >Link</g-link
         >
-      </div>
     </div>
   </div>
 </template>
