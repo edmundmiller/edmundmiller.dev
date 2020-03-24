@@ -17,7 +17,7 @@
     </main>
 
     <footer
-      class="footer flex items-center justify-center p-2 text-center text-sm"
+      class="footer flex items-center justify-center p-2 text-center text-sm transition duration-500 text-title-color"
     >
       <span class="footer__copyright"
         >Copyright © {{ new Date().getFullYear() }}.
