@@ -1,6 +1,6 @@
 <template>
   <div
-    class="author my-0 mx-auto max-w-sm text-center py-6 px-0 text-title-color"
+    class="author my-0 mx-auto max-w-sm text-center py-6 px-0 transition duration-500 text-title-color"
   >
     <g-image
       alt="Author image"
