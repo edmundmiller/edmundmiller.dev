@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <h1 class="tag-title text-center text-title-color space-bottom">
+    <h1 class="tag-title text-center text-title-color pb-8">
       # {{ $page.tag.title }}
     </h1>
 
