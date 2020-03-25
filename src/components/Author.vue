@@ -4,7 +4,7 @@
   >
     <g-image
       alt="Author image"
-      class="author__image rounded-full w-90px h-90x mb-4"
+      class="author__image rounded-full w-90px h-90x mb-4 mx-auto"
       src="~/assets/images/author.jpg"
       width="180"
       height="180"
