@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <div class="post-title py-6 px-0 text-center">
-      <h1 class="post-title__text text-title-color">
+      <h1 class="post-title__text transition duration-700 text-title-color">
         {{ $page.post.title }}
       </h1>
 
