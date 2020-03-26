@@ -24,7 +24,10 @@
           />
         </div>
 
-        <div class="post__content first:mt-0" v-html="$page.post.content" />
+        <div
+          class="markdown-body mb-8 text-body-color"
+          v-html="$page.post.content"
+        />
 
         <div class="post__footer">
           <PostTags :post="$page.post" />
@@ -83,3 +86,5 @@ export default {
     }
   }
 </page-query>
+
+<style src="~/assets/css/github-markdown.css" />
