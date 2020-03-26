@@ -14,7 +14,7 @@ heavy `CTRL` user between Emacs and terminal apps now, I understand.I thought
 this would be fitting for a first blog post as kind of an origin story.
 
 So I got my first mechanical keyboard about a year and a half ago, and since
-it&rsquo;s powered by [qmk](https://docs.qmk.fm/#/), I decided to replace where caps lock might have been on my
+it's powered by [qmk](https://docs.qmk.fm/#/), I decided to replace where caps lock might have been on my
 planck, to `ESC` to make Vim and evil a little easier instead of using `jk` or
 other ways to switch back to normal mode.
 
@@ -26,7 +26,7 @@ with [qmk](https://docs.qmk.fm/#/).
 
     CTL_T(KC_ESC)
 
-But it wasn&rsquo;t just enough to have it on my keyboards. I needed this magic everywhere.
+But it wasn't just enough to have it on my keyboards. I needed this magic everywhere.
 
 After mentioning what I had done on the Doom Emacs discord one of them found a
 [guide by Danny Guo](https://www.dannyguo.com/blog/remap-caps-lock-to-escape-and-control/) to set this up on most systems.

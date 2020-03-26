@@ -10,9 +10,9 @@ tags: ["emacs", "email", "notmuch", "doom", "ubuntu", "tutorial"]
 ## Introduction
 
 Like most people these days I have quite a few email addresses, personal, old
-personal email, and school. In the past I&rsquo;ve tried using Emacs to manage all of
+personal email, and school. In the past I've tried using Emacs to manage all of
 these in one place. However, when I added a work email account into the mix that
-didn&rsquo;t have `IMAP` enabled it was finally enough to make me go back to using the
+didn't have `IMAP` enabled it was finally enough to make me go back to using the
 web clients.
 
 Recently I started to get the itch to bring the config into my [dotfiles](https://github.com/Emiller88/dotfiles/tree/master/shell/notmuch),
@@ -31,8 +31,8 @@ feel fragile.
 
 # Fetching the Mail
 
-In the past I&rsquo;ve tried [offlineimap](https://github.com/OfflineIMAP/offlineimap) but it&rsquo;s slow when you have to pull down
-years and years of email. So I first started with [mbsync](https://wiki.archlinux.org/index.php/Isync)(I&rsquo;ve used the arch wiki
+In the past I've tried [offlineimap](https://github.com/OfflineIMAP/offlineimap) but it's slow when you have to pull down
+years and years of email. So I first started with [mbsync](https://wiki.archlinux.org/index.php/Isync)(I've used the arch wiki
 because it explains more than the actual documentation in my opinion).
 
 To get that set up:
@@ -43,7 +43,7 @@ and then add a `~/.mbsyncrc` file and configure it according to one of the above
 guides or the [arch wiki](https://wiki.archlinux.org/index.php/Isync). I will try to avoid going over things that I just copied and
 pasted and they worked, in order to keep this short.
 
-An issue that I ran into later down the road was that [mbsync](https://wiki.archlinux.org/index.php/Isync) doesn&rsquo;t sync just
+An issue that I ran into later down the road was that [mbsync](https://wiki.archlinux.org/index.php/Isync) doesn't sync just
 any flag/label/tag back to Gmail. Enter [gmailieer](https://github.com/gauteh/gmailieer). Which was more of a pain to
 setup.
 
@@ -53,7 +53,7 @@ To install from [here](https://launchpad.net/ubuntu/+source/gmailieer)
 
 The chicken and the egg problem with `gmailieer` is that it needs `notmuch` set
 up in the `.mail` dir. So when I was setting `gmailieer` up, `notmuch` was
-already up and running for me. We&rsquo;ll come back to it.
+already up and running for me. We'll come back to it.
 
 With `gmailieer` the important part, is if I check my email on my phone, another
 computer, or Emacs, it will update as read, archived, deleted, and most
@@ -64,7 +64,7 @@ Now one key issue I had with `gmailieer` and my setup is that it depends on the
 the `python3-notmuch` package, which is in the Ubuntu repos but not in `pypi`.
 So this makes it necessary to use a different version of python than Conda
 3.6(default in 18.04 i i i i i 3 but you can use the `python-notmuch` package if
-you&rsquo;re on 16.04) I had to do the following(I use [pyenv](https://github.com/pyenv/pyenv) to manage different
+you're on 16.04) I had to do the following(I use [pyenv](https://github.com/pyenv/pyenv) to manage different
 python versions).
 
     sudo apt install python3-notmuch
@@ -77,8 +77,8 @@ We need to initialize the notmuch database.
     cd ~/.mail
     notmuch
 
-Here you&rsquo;ll be prompted with some questions to get your config going. Below is
-an example of what it&rsquo;ll look like afterwards
+Here you'll be prompted with some questions to get your config going. Below is
+an example of what it'll look like afterwards
 
     [database]
     path=/home/$USER/.mail
@@ -136,7 +136,7 @@ The `checkmail.service` calls `checkmail.sh`
     exit 0
 
 The `gmi sync` command does a `push` followed by a `pull` so the tags from the
-local overwrite anything that&rsquo;s on the remote. So later we&rsquo;ll write rules to tag
+local overwrite anything that's on the remote. So later we'll write rules to tag
 the new mail coming in.
 
 # Tagging the Mail
@@ -145,8 +145,8 @@ The next step is to tag the mail. For that I use `notmuch`. I tried `mu` in
 the past but it works by moving the emails into various dirs instead of just
 tagging them and I found it messed with how the remote emails were treated too
 often. Gmailieer pulls the tags down by default. But if we want to tag our mail
-locally we&rsquo;ll need to expand `checkmail.sh`. [afew](https://github.com/afewmail/afew) is another option for more
-elaborate initial tagging, but I didn&rsquo;t want to have more dependencies.
+locally we'll need to expand `checkmail.sh`. [afew](https://github.com/afewmail/afew) is another option for more
+elaborate initial tagging, but I didn't want to have more dependencies.
 
     #!/usr/bin/env bash
 
@@ -197,7 +197,7 @@ elaborate initial tagging, but I didn&rsquo;t want to have more dependencies.
     echo "No internet connection."
     exit 0
 
-So what we&rsquo;re doing here is first calling `notmuch new` which tags everything
+So what we're doing here is first calling `notmuch new` which tags everything
 according to this section of the config. Which just tags everything with `new`
 and ignores anything with the `Trash` tag.
 
@@ -207,8 +207,8 @@ and ignores anything with the `Trash` tag.
 
 # Deleting Email
 
-Notmuch by default doesn&rsquo;t tag things with `+trash` which makes gmail move the
-emails to the trash. Here&rsquo;s a snippet that does that. I have this bound to `d`.
+Notmuch by default doesn't tag things with `+trash` which makes gmail move the
+emails to the trash. Here's a snippet that does that. I have this bound to `d`.
 
     (defun +notmuch/search-delete ()
       (interactive)
@@ -219,8 +219,8 @@ emails to the trash. Here&rsquo;s a snippet that does that. I have this bound to
 
 WIP: Currently I can only get this to work with my primary email address.
 
-To set this up we&rsquo;ll need to get started with pass. I suggest you have a look at
-the [Doom Notmuch module](https://github.com/hlissner/doom-emacs/blob/develop/modules/email/notmuch/config.el) if you&rsquo;re not using Doom to give you an idea of any
+To set this up we'll need to get started with pass. I suggest you have a look at
+the [Doom Notmuch module](https://github.com/hlissner/doom-emacs/blob/develop/modules/email/notmuch/config.el) if you're not using Doom to give you an idea of any
 features you need to setup.
 
 First setup `~/.msmtprc`
@@ -240,7 +240,7 @@ First setup `~/.msmtprc`
     user           USER1
     passwordeval   pass mail/USER1
 
-Then we&rsquo;ll setup `pass`.
+Then we'll setup `pass`.
 
     pass init <GPG KEY>
     pass insert mail/USER1
