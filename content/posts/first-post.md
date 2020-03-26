@@ -1,11 +1,11 @@
 ---
-title: "CTRL to Caps Lock"
-description: "With a bonus ESC on tap"
+title: 'CTRL to Caps Lock'
+description: 'With a bonus ESC on tap'
 date: 2019-01-13 22:42:55
 published: true
-author: "Edmund Miller"
+author: 'Edmund Miller'
 slug: first-post
-tags: ["development", "qmk", "keyboard", "emacs"]
+tags: ['development', 'qmk', 'keyboard', 'emacs']
 ---
 
 I grew up in a household where `CTRL` has been mapped to `Caps Lock` on every

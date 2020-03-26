@@ -1,10 +1,10 @@
 ---
-title: "Emacs Email Config"
-description: "Setting up Email in Emacs with mbsync, and Notmuch"
+title: 'Emacs Email Config'
+description: 'Setting up Email in Emacs with mbsync, and Notmuch'
 date: 2019-01-20 22:49:01
 published: true
-author: "Edmund Miller"
-tags: ["emacs", "email", "notmuch", "doom", "ubuntu", "tutorial"]
+author: 'Edmund Miller'
+tags: ['emacs', 'email', 'notmuch', 'doom', 'ubuntu', 'tutorial']
 ---
 
 ## Introduction
