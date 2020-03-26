@@ -523,8 +523,8 @@
 }
 
 .markdown-body blockquote {
-  border-left: 0.25em solid #30855a;
-  color: #6a737d;
+  @apply border-border-color border-solid border-l-2;
+  @apply text-body-color opacity-75;
   padding: 0 1em;
 }
 
