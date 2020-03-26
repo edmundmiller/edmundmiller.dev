@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/Emiller88/edmundmiller.dev/compare/v1.0.0...v1.1.0) (2020-03-26)
+
+
+### Features
+
+* **post:** add initial `Thoughts on NixOS` ([5246076](https://github.com/Emiller88/edmundmiller.dev/commit/52460762ad3c877c2fc2ad55d92979f9e69547f0))
+
 # 1.0.0 (2020-03-26)
 
 
