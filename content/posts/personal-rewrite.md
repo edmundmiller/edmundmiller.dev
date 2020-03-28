@@ -1,13 +1,11 @@
 ---
-title: 'Personal Site Rewrite'
+title: 'A New Vue on Life'
 description: ''
 date: 2020-03-05 22:49:01
 published: true
 author: 'Edmund Miller'
 tags: ['Vuejs']
 ---
-
-# Personal Site Rewrite
 
 I've been wanting to redo my personal site since I tried to add my presentations
 to my hugo based site and struggled. Something that looked cool. Something that
