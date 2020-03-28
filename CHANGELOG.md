@@ -1,3 +1,17 @@
+# [1.1.0](https://github.com/Emiller88/edmundmiller.dev/compare/v1.0.0...v1.1.0) (2020-03-28)
+
+
+### Bug Fixes
+
+* **post:** change quote color to match theme ([8d54f65](https://github.com/Emiller88/edmundmiller.dev/commit/8d54f65f2f1be0fc9be899363427760bce7a4328))
+* **post:** change the date ([58927db](https://github.com/Emiller88/edmundmiller.dev/commit/58927db8946d1516997f8ff80def1a92ba8aa6ec))
+* **posts:** clean up raw links ([3f9ad88](https://github.com/Emiller88/edmundmiller.dev/commit/3f9ad883ef7671f4d20031ad480a8fe6bf1fa1be))
+
+
+### Features
+
+* **post:** add initial `Thoughts on NixOS` ([f49b19e](https://github.com/Emiller88/edmundmiller.dev/commit/f49b19ed7e9595b8cac9d911e657206d47ba39a8))
+
 # [1.1.0](https://github.com/Emiller88/edmundmiller.dev/compare/v1.0.0...v1.1.0) (2020-03-26)
 
 
