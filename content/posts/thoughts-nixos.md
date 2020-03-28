@@ -39,7 +39,7 @@ follow a guy's dotfiles and he created a modular system, so your theme
 separate from the logic that sets up your WM, so you can carry your rice across
 WM easily and themeses across a wm.
 
-https://github.com/Emiller88/dotfiles
+[Link to my Dotfiles](https://github.com/Emiller88/dotfiles)
 
 Guix, cuts out the dsl issue with nix as the language. I love a good lisp
 personally, and it's definately easier to pick up than nix. Nix/OS is also a
@@ -83,6 +83,6 @@ more language-agnostic because while tooling is awesome when it's good(rust for
 example, or node possibly) when it's scary or the community get's
 fragmented(python) it's a problem.
 
-If anyone made it this far and you want more come hang out here
-https://discord.gg/qvGgnVx, you don't have to be an emacs user even, but you
-might end up one.
+If anyone made it this far and you want more come hang out
+[in the Doom Emacs Discord](https://discord.gg/qvGgnVx), you don't have to be an
+Emacs user even, but you might end up one.
