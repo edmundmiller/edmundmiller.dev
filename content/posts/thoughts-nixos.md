@@ -1,7 +1,7 @@
 ---
 title: 'Thoughts on NixOS'
 description: ''
-date: 2020-03-26 22:49:01
+date: 2020-03-15 09:53:01
 published: True
 author: 'Edmund Miller'
 tags: ['Nix', 'NixOS']
