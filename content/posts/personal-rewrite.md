@@ -98,3 +98,37 @@ realized what the advice a language is a tool to get a job done meant. The paint
 from Vue may crack after a while, as apposed to the copper statue that Elm and
 similar languages promise. While it's great, it won't matter if I never make the
 statue because I can't learn metallurgy at a craft store.
+
+## Tailwind Refactor
+
+I also wanted to take this chance to explore
+[tailwindcss](https://tailwindcss.com/). I had exactly 0 experience with CSS
+before this and fought with any React material design component I tried even get
+to agree with flexbox. I had seen tailwind from [Zamansky's ClojureScript
+tutorial](https://www.youtube.com/watch?v=_CTTbC6owS0), and
+[Aria's](https://github.com/ar1a) Twitter clone
+[Catter](https://catter.netlify.com/). So I took rewriting the default Gridsome
+as the perfect way to get accustomed to using it, without getting caught up in
+the design aspects because I haven't gotten to read [Refactoring
+UI](https://refactoringui.com/) yet. As of
+[3e57e24661](https://github.com/Emiller88/edmundmiller.dev/tree/3e57e2466116fc260c077239d5cfdf4c0063ee40)
+I completed the rewrite.
+
+To speak on my experience with tailwind, it really made it easy to focus on what
+I wanted to do, rather than how to do it. I had a friend show me webflow
+recently, and I think tailwind is even simpler once you get familiar with the
+utility-classes it provides. The original was a beautiful intricate work of CSS,
+that I honestly had no interest in figuring out.
+
+The one issue I did run into was the way Gridsome just returned a
+`v-html="$page.post.content"` so I found the way [Gridsome Portfolio
+Starter](https://gridsome.org/starters/gridsome-portfolio-starter/) handled it's
+markdown and then threw some tailwind in to deal with the theme-switcher
+specific stuff and ended up with
+[github-markdown.css](https://github.com/Emiller88/edmundmiller.dev/blob/3e57e2466116fc260c077239d5cfdf4c0063ee40/src/assets/css/github-markdown.css)
+
+### Theme Switcher
+
+## Semantic Versioning
+
+## Presentations
