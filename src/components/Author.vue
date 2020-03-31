@@ -8,6 +8,7 @@
       src="~/assets/images/author.jpg"
       width="180"
       height="180"
+      blur="5"
     />
 
     <h1 v-if="showTitle" class="author__site-title text-2xl">
