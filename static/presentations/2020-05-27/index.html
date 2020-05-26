@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>nf-core &amp; Selene</title>
+<meta name="author" content="Edmund Miller"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/css/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/css/theme/white.css" id="theme"/>
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'https://cdn.jsdelivr.net/npm/reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide">
+<h1 class="title">nf-core &amp; Selene</h1><h2 class="author">Edmund Miller</h2><p class="date">Created: 2020-05-26 Tue 15:14</p>
+</section>
+<section>
+<section id="slide-org2b8267a">
+<h2 id="org2b8267a"><object type="image/svg+xml" data="https://nf-co.re/assets/img/logo/nf-core-logo.svg" class="org-svg">
+Sorry, your browser does not support SVG.</object></h2>
+<p>
+<a href="https://nf-co.re/">https://nf-co.re/</a>
+</p>
+<blockquote>
+<p>
+A community effort to collect a curated set of analysis pipelines built using Nextflow.
+</p>
+</blockquote>
+<p>
+<a href="https://www.nature.com/articles/s41587-020-0439-x.epdf?shared_access_token=W-gHNzA4HngzDDSTRrfBRdRgN0jAjWel9jnR3ZoTv0P9zw2JZTis0qRZaQ0qtypN0g4rwhNebqVD1V-gt-AOlA82ul659wBl7hYkgj3IQbVny9QNsU0jdhfynPtglNcfpqimaGrEVJmM7gUo8H6lyg%3D%3D">Full Access Paper Link</a>
+</p>
+</section>
+</section>
+<section>
+<section id="slide-orgaad7763" data-background="./nf-core.jpg" data-background-size="800px" data-background-transition="slide">
+<h3 id="orgaad7763"></h3>
+</section>
+</section>
+<section>
+<section id="slide-orgd3d2eaf">
+<h3 id="orgd3d2eaf">Deploy</h3>
+<div class="outline-text-3" id="text-orgd3d2eaf">
+</div>
+</section>
+<section id="slide-org25fa571">
+<h4 id="org25fa571">Getting started</h4>
+<div class="org-src-container">
+
+<pre  class="src src-sh"><span style="color: #5B6268;"># </span><span style="color: #5B6268;">Install Nextflow</span>
+<span style="color: #ECBE7B;">curl</span> -fsSL get.nextflow.io | bash
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">Add Nextflow binary to your user's PATH:</span>
+<span style="color: #ECBE7B;">mv</span> nextflow ~/bin/
+
+nextflow run nf-core/rnaseq -profile docker <span style="color: #98be65;">\</span>
+    --singleEnd --reads <span style="color: #98be65;">'*.fastq'</span> --genome GRCm38
+
+nextflow run nf-core/rnaseq -profile utd_ganymede <span style="color: #98be65;">\</span>
+    --singleEnd --reads <span style="color: #98be65;">'*.fastq'</span> --genome GRCm38
+</pre>
+</div>
+</section>
+<section id="slide-org1e472d1">
+<h4 id="org1e472d1"><a href="https://asciinema.org/a/EfVHOhIS3XC3nzWm0NwupLgGc">Demo</a></h4>
+<a href="https://asciinema.org/a/EfVHOhIS3XC3nzWm0NwupLgGc" target="_blank"><img src="https://asciinema.org/a/EfVHOhIS3XC3nzWm0NwupLgGc.svg" height="550"/></a>
+</section>
+<section id="slide-org4cd3cde">
+<h4 id="org4cd3cde">MK config coming soon!</h4>
+
+</section>
+</section>
+<section>
+<section id="slide-org2422115">
+<h3 id="org2422115">Participate</h3>
+<div class="outline-text-3" id="text-org2422115">
+</div>
+</section>
+<section id="slide-org9a041a6">
+<h4 id="org9a041a6"><a href="https://nf-co.re/pipelines">Pipelines</a></h4>
+<ul>
+<li><a href="https://nf-co.re/rnaseq">RNA-Seq</a></li>
+<li><a href="https://nf-co.re/scrnaseq">scRNA-Seq</a></li>
+<li><a href="https://nf-co.re/atacseq">ATAC-Seq</a></li>
+<li><a href="https://nf-co.re/deepvariant">Deep Variant</a></li>
+
+</ul>
+</section>
+<section id="slide-orgd7d64bd">
+<h4 id="orgd7d64bd">RNA-Seq</h4>
+<p>
+<a href="https://nf-co.re/rnaseq/docs/output#pipeline-overview">pipeline-overview</a>
+</p>
+<ul>
+<li>fastqc/TrimGalore</li>
+<li>STAR/hisat/salmon</li>
+<li>featureCounts</li>
+<li>edgeR</li>
+<li>Multiqc</li>
+
+</ul>
+</section>
+<section id="slide-org9f2481a">
+<h4 id="org9f2481a">Forking</h4>
+
+<div class="figure">
+<p><img src="file:///home/emiller/sync/org/.attach/a0/2f6ec4-b646-4cff-ac90-b57eb244aa39/_20200524_171458screenshot.png" alt="_20200524_171458screenshot.png" />
+</p>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org7247a11">
+<h3 id="org7247a11">Develope</h3>
+<div class="outline-text-3" id="text-org7247a11">
+</div>
+</section>
+<section id="slide-org3ee597c">
+<h4 id="org3ee597c"><a href="https://nf-co.re/tools#creating-a-new-workflow">Creating a new workflow</a></h4>
+<div class="org-src-container">
+
+<pre  class="src src-sh">pip install nf-core
+nf-core create
+</pre>
+</div>
+</section>
+<section id="slide-orgc02f979">
+<h4 id="orgc02f979"><a href="https://asciinema.org/a/8VfGOnzYKPhK6nGubG9pBkHcx">Demo</a></h4>
+<a href="https://asciinema.org/a/8VfGOnzYKPhK6nGubG9pBkHcx" target="_blank"><img src="https://asciinema.org/a/8VfGOnzYKPhK6nGubG9pBkHcx.svg" height="550"/></a>
+</section>
+</section>
+<section>
+<section id="slide-org6f28dc3">
+<h2 id="org6f28dc3">Selene</h2>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/lib/js/head.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/js/reveal.js"></script>
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+mouseWheel: false,
+fragmentInURL: false,
+hashOneBasedIndex: false,
+pdfSeparateFragments: true,
+
+overview: true,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'convex', // see README of reveal.js for options
+transitionSpeed: 'default',
+
+// Optional libraries used to extend reveal.js
+dependencies: [
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } }]
+
+});
+</script>
+</body>
+</html>
