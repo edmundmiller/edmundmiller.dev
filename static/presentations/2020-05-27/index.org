@@ -15,9 +15,9 @@ A community effort to collect a curated set of analysis pipelines built using Ne
 #+BEGIN_SRC shell
 cookiecutter gl:functional-genomics/cookiecutter-snakemake-workflow
 #+END_SRC
-** 
+**
 :PROPERTIES:
-:reveal_background: ./nf-core.jpg
+:reveal_background: https://images.readcube-cdn.com/publishers/nature/figures/e7b002cb315261aa851aa616874ad980e20a6ad86a47854610d2853fca66adbc/1.jpg
 :reveal_background_size: 800px
 :reveal_background_trans: slide
 :END:
