@@ -1,3 +1,24 @@
+# [1.1.0](https://github.com/Emiller88/edmundmiller.dev/compare/v1.0.0...v1.1.0) (2020-05-27)
+
+
+### Bug Fixes
+
+* **author:** use a portrait ([8c27153](https://github.com/Emiller88/edmundmiller.dev/commit/8c271534fc23710775f56998ee275f586258878f))
+* **favicon:** use logo ([48a76cf](https://github.com/Emiller88/edmundmiller.dev/commit/48a76cff609886a62ebf38a320361c336ee3c47e))
+* **post:** change quote color to match theme ([8d54f65](https://github.com/Emiller88/edmundmiller.dev/commit/8d54f65f2f1be0fc9be899363427760bce7a4328))
+* **post:** change the date ([58927db](https://github.com/Emiller88/edmundmiller.dev/commit/58927db8946d1516997f8ff80def1a92ba8aa6ec))
+* **posts:** clean up raw links ([3f9ad88](https://github.com/Emiller88/edmundmiller.dev/commit/3f9ad883ef7671f4d20031ad480a8fe6bf1fa1be))
+* **posts:** rename personal-rewrite ([1cd9569](https://github.com/Emiller88/edmundmiller.dev/commit/1cd95697e13f863c5416967f6214f99babfb17b0))
+
+
+### Features
+
+* **post:** add initial `Thoughts on NixOS` ([f49b19e](https://github.com/Emiller88/edmundmiller.dev/commit/f49b19ed7e9595b8cac9d911e657206d47ba39a8))
+* **posts:** add tailwind refactor section ([abd7d8f](https://github.com/Emiller88/edmundmiller.dev/commit/abd7d8ff63216211cc797dd5ac03c2e06d3e2468))
+* **presentations:** add nf-core portion ([40398ff](https://github.com/Emiller88/edmundmiller.dev/commit/40398ff4925d92002c0994d957e85c9c95147c9f))
+* **presentations:** add section about selene ([96af819](https://github.com/Emiller88/edmundmiller.dev/commit/96af8193334332f853d5b413305df38cfcc46f6e))
+* **presentations:** finish 2020-05-27 ([98c1a10](https://github.com/Emiller88/edmundmiller.dev/commit/98c1a10466762e4842608135d53bb4f983acf298))
+
 # [1.1.0](https://github.com/Emiller88/edmundmiller.dev/compare/v1.0.0...v1.1.0) (2020-03-31)
 
 
