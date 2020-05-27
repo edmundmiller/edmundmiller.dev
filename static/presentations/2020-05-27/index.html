@@ -25,12 +25,9 @@
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide">
-<h1 class="title">nf-core &amp; Selene</h1><h2 class="author">Edmund Miller</h2><p class="date">Created: 2020-05-26 Tue 15:14</p>
-</section>
 <section>
-<section id="slide-org2b8267a">
-<h2 id="org2b8267a"><object type="image/svg+xml" data="https://nf-co.re/assets/img/logo/nf-core-logo.svg" class="org-svg">
+<section id="slide-orgeb8951b">
+<h2 id="orgeb8951b"><object type="image/svg+xml" data="https://nf-co.re/assets/img/logo/nf-core-logo.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object></h2>
 <p>
 <a href="https://nf-co.re/">https://nf-co.re/</a>
@@ -41,23 +38,33 @@ A community effort to collect a curated set of analysis pipelines built using Ne
 </p>
 </blockquote>
 <p>
-<a href="https://www.nature.com/articles/s41587-020-0439-x.epdf?shared_access_token=W-gHNzA4HngzDDSTRrfBRdRgN0jAjWel9jnR3ZoTv0P9zw2JZTis0qRZaQ0qtypN0g4rwhNebqVD1V-gt-AOlA82ul659wBl7hYkgj3IQbVny9QNsU0jdhfynPtglNcfpqimaGrEVJmM7gUo8H6lyg%3D%3D">Full Access Paper Link</a>
+<a href="https://www.nature.com/articles/s41587-020-0439-x.epdf?shared_access_token=W-gHNzA4HngzDDSTRrfBRdRgN0jAjWel9jnR3ZoTv0P9zw2JZTis0qRZaQ0qtypN0g4rwhNebqVD1V-gt-AOlA82ul659wBl7hYkgj3IQbVny9QNsU0jdhfynPtglNcfpqimaGrEVJmM7gUo8H6lyg%3D%3D">Full Access Link</a>
 </p>
 </section>
 </section>
 <section>
-<section id="slide-orgaad7763" data-background="./nf-core.jpg" data-background-size="800px" data-background-transition="slide">
-<h3 id="orgaad7763"></h3>
+<section id="slide-org9c77073">
+<h3 id="org9c77073">Where we left off</h3>
+<div class="org-src-container">
+
+<pre  class="src src-shell">cookiecutter gl:functional-genomics/cookiecutter-snakemake-workflow
+</pre>
+</div>
 </section>
 </section>
 <section>
-<section id="slide-orgd3d2eaf">
-<h3 id="orgd3d2eaf">Deploy</h3>
-<div class="outline-text-3" id="text-orgd3d2eaf">
+<section id="slide-org78c05f1" data-background="./nf-core.jpg" data-background-size="800px" data-background-transition="slide">
+<h3 id="org78c05f1"></h3>
+</section>
+</section>
+<section>
+<section id="slide-orga3a39c0">
+<h3 id="orga3a39c0">Deploy</h3>
+<div class="outline-text-3" id="text-orga3a39c0">
 </div>
 </section>
-<section id="slide-org25fa571">
-<h4 id="org25fa571">Getting started</h4>
+<section id="slide-org82ac783">
+<h4 id="org82ac783">Getting started</h4>
 <div class="org-src-container">
 
 <pre  class="src src-sh"><span style="color: #5B6268;"># </span><span style="color: #5B6268;">Install Nextflow</span>
@@ -73,23 +80,26 @@ nextflow run nf-core/rnaseq -profile utd_ganymede <span style="color: #98be65;">
 </pre>
 </div>
 </section>
-<section id="slide-org1e472d1">
-<h4 id="org1e472d1"><a href="https://asciinema.org/a/EfVHOhIS3XC3nzWm0NwupLgGc">Demo</a></h4>
+<section id="slide-orgaccf67a">
+<h4 id="orgaccf67a"><a href="https://asciinema.org/a/EfVHOhIS3XC3nzWm0NwupLgGc">Demo</a></h4>
 <a href="https://asciinema.org/a/EfVHOhIS3XC3nzWm0NwupLgGc" target="_blank"><img src="https://asciinema.org/a/EfVHOhIS3XC3nzWm0NwupLgGc.svg" height="550"/></a>
 </section>
-<section id="slide-org4cd3cde">
-<h4 id="org4cd3cde">MK config coming soon!</h4>
+<section id="slide-org30c5d8c">
+<h4 id="org30c5d8c">MK config coming soon!</h4>
 
 </section>
 </section>
 <section>
-<section id="slide-org2422115">
-<h3 id="org2422115">Participate</h3>
-<div class="outline-text-3" id="text-org2422115">
+<section id="slide-org0c0420a">
+<h3 id="org0c0420a">Participate</h3>
+<div class="outline-text-3" id="text-org0c0420a">
 </div>
 </section>
-<section id="slide-org9a041a6">
-<h4 id="org9a041a6"><a href="https://nf-co.re/pipelines">Pipelines</a></h4>
+<section id="slide-orgfa83390">
+<h4 id="orgfa83390">Documentation</h4>
+</section>
+<section id="slide-org1978581">
+<h4 id="org1978581"><a href="https://nf-co.re/pipelines">Pipelines</a></h4>
 <ul>
 <li><a href="https://nf-co.re/rnaseq">RNA-Seq</a></li>
 <li><a href="https://nf-co.re/scrnaseq">scRNA-Seq</a></li>
@@ -98,8 +108,8 @@ nextflow run nf-core/rnaseq -profile utd_ganymede <span style="color: #98be65;">
 
 </ul>
 </section>
-<section id="slide-orgd7d64bd">
-<h4 id="orgd7d64bd">RNA-Seq</h4>
+<section id="slide-org837619a">
+<h4 id="org837619a">RNA-Seq</h4>
 <p>
 <a href="https://nf-co.re/rnaseq/docs/output#pipeline-overview">pipeline-overview</a>
 </p>
@@ -112,23 +122,18 @@ nextflow run nf-core/rnaseq -profile utd_ganymede <span style="color: #98be65;">
 
 </ul>
 </section>
-<section id="slide-org9f2481a">
-<h4 id="org9f2481a">Forking</h4>
-
-<div class="figure">
-<p><img src="file:///home/emiller/sync/org/.attach/a0/2f6ec4-b646-4cff-ac90-b57eb244aa39/_20200524_171458screenshot.png" alt="_20200524_171458screenshot.png" />
-</p>
-</div>
+<section id="slide-orgb883a60">
+<h4 id="orgb883a60">Forking</h4>
 </section>
 </section>
 <section>
-<section id="slide-org7247a11">
-<h3 id="org7247a11">Develope</h3>
-<div class="outline-text-3" id="text-org7247a11">
+<section id="slide-orga52c9ab">
+<h3 id="orga52c9ab">Develop</h3>
+<div class="outline-text-3" id="text-orga52c9ab">
 </div>
 </section>
-<section id="slide-org3ee597c">
-<h4 id="org3ee597c"><a href="https://nf-co.re/tools#creating-a-new-workflow">Creating a new workflow</a></h4>
+<section id="slide-org76548be">
+<h4 id="org76548be"><a href="https://nf-co.re/tools#creating-a-new-workflow">Creating a new workflow</a></h4>
 <div class="org-src-container">
 
 <pre  class="src src-sh">pip install nf-core
@@ -136,14 +141,100 @@ nf-core create
 </pre>
 </div>
 </section>
-<section id="slide-orgc02f979">
-<h4 id="orgc02f979"><a href="https://asciinema.org/a/8VfGOnzYKPhK6nGubG9pBkHcx">Demo</a></h4>
+<section id="slide-org3a95e26">
+<h4 id="org3a95e26"><a href="https://asciinema.org/a/8VfGOnzYKPhK6nGubG9pBkHcx">Demo</a></h4>
 <a href="https://asciinema.org/a/8VfGOnzYKPhK6nGubG9pBkHcx" target="_blank"><img src="https://asciinema.org/a/8VfGOnzYKPhK6nGubG9pBkHcx.svg" height="550"/></a>
 </section>
 </section>
 <section>
-<section id="slide-org6f28dc3">
-<h2 id="org6f28dc3">Selene</h2>
+<section id="slide-orgdc3bf06">
+<h2 id="orgdc3bf06"><img src="https://github.com/FunctionLab/selene/raw/master/docs/source/_static/img/selene_logo.png" alt="selene_logo.png" /></h2>
+<div class="outline-text-2" id="text-orgdc3bf06">
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orgae06e83">
+<h3 id="orgae06e83">Links</h3>
+<ul>
+<li><a href="https://www.nature.com/articles/s41592-019-0360-8">Selene: a PyTorch-based deep learning library for sequence data | Nature Methods</a></li>
+<li><a href="https://github.com/FunctionLab/selene">GitHub - FunctionLab/selene</a></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org160ab24">
+<h3 id="org160ab24"><a href="https://hb.flatironinstitute.org/deepsea/">DeepSEA</a></h3>
+<p>
+DeepSEA is a deep learning-based algorithmic framework for predicting the
+chromatin effects of sequence alterations with single nucleotide sensitivity.
+</p>
+</section>
+</section>
+<section>
+<section id="slide-org63c3ae1">
+<h3 id="org63c3ae1">Overview</h3>
+<ul>
+<li>Trying to solve the issue of creating new deep learning architectures and
+training them on new data sets.</li>
+<li>Created to be a framework to be easy to use for deep learning in biology.</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org2c3b047">
+<h3 id="org2c3b047">Case 1: Training an exisiting architecture on a different dataset</h3>
+<ul>
+<li>Trains DeepSEA module for transcription factor GATA1</li>
+<li>Zero lines of python code</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org35b89dd">
+<h3 id="org35b89dd">Case 2: Developing a new architecture and comparing performance across architectures</h3>
+<ul>
+<li>Allows use of PyTorch modules</li>
+<li>Fully compatible with <a href="https://kipoi.org/">Kipoi</a></li>
+<li>Focus is on experimenting with various models rather than repeating code for
+training and evaluation.</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-orgfb84fce">
+<h3 id="orgfb84fce">Case 3: Applying a new model to variants</h3>
+<ul>
+<li>They train the new model from Case 2 to be used on the Alzheimer&rsquo;s disease
+GWAS to find varent effects that are significant and non-significant.</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-orgae58457">
+<h3 id="orgae58457">Online methods</h3>
+<ul>
+<li>Has an SDK and a CLI</li>
+<li>SDK is a python package for use in example with a web app to allow researchers
+to submit sequences.</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-orgfd0503d">
+<h2 id="orgfd0503d">Learning Resources</h2>
+<ul>
+<li><a href="https://www.coursera.org/learn/sciwrite">Writing in the Science</a></li>
+<li><a href="https://missing.csail.mit.edu/">The Missing Semester</a></li>
+<li><a href="https://takesmartnotes.com/">How to Take Smart Notes</a></li>
+
+</ul>
 </section>
 </section>
 </div>

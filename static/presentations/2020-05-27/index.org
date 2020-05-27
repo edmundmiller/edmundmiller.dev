@@ -12,6 +12,9 @@ A community effort to collect a curated set of analysis pipelines built using Ne
 #+END_QUOTE
 [[https://www.nature.com/articles/s41587-020-0439-x.epdf?shared_access_token=W-gHNzA4HngzDDSTRrfBRdRgN0jAjWel9jnR3ZoTv0P9zw2JZTis0qRZaQ0qtypN0g4rwhNebqVD1V-gt-AOlA82ul659wBl7hYkgj3IQbVny9QNsU0jdhfynPtglNcfpqimaGrEVJmM7gUo8H6lyg%3D%3D][Full Access Link]]
 ** Where we left off
+#+BEGIN_SRC shell
+cookiecutter gl:functional-genomics/cookiecutter-snakemake-workflow
+#+END_SRC
 ** 
 :PROPERTIES:
 :reveal_background: ./nf-core.jpg
@@ -51,11 +54,6 @@ nextflow run nf-core/rnaseq -profile utd_ganymede \
 - edgeR
 - Multiqc
 *** Forking
-:PROPERTIES:
-:ID:       a02f6ec4-b646-4cff-ac90-b57eb244aa39
-:END:
-
-[[attachment:_20200524_171458screenshot.png]]
 ** Develop
 *** [[https://nf-co.re/tools#creating-a-new-workflow][Creating a new workflow]]
 #+BEGIN_SRC sh
