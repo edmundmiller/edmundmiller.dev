@@ -10,7 +10,8 @@ https://nf-co.re/
 #+BEGIN_QUOTE
 A community effort to collect a curated set of analysis pipelines built using Nextflow.
 #+END_QUOTE
-[[https://www.nature.com/articles/s41587-020-0439-x.epdf?shared_access_token=W-gHNzA4HngzDDSTRrfBRdRgN0jAjWel9jnR3ZoTv0P9zw2JZTis0qRZaQ0qtypN0g4rwhNebqVD1V-gt-AOlA82ul659wBl7hYkgj3IQbVny9QNsU0jdhfynPtglNcfpqimaGrEVJmM7gUo8H6lyg%3D%3D][Full Access Paper Link]]
+[[https://www.nature.com/articles/s41587-020-0439-x.epdf?shared_access_token=W-gHNzA4HngzDDSTRrfBRdRgN0jAjWel9jnR3ZoTv0P9zw2JZTis0qRZaQ0qtypN0g4rwhNebqVD1V-gt-AOlA82ul659wBl7hYkgj3IQbVny9QNsU0jdhfynPtglNcfpqimaGrEVJmM7gUo8H6lyg%3D%3D][Full Access Link]]
+** Where we left off
 ** 
 :PROPERTIES:
 :reveal_background: ./nf-core.jpg
@@ -55,7 +56,7 @@ nextflow run nf-core/rnaseq -profile utd_ganymede \
 :END:
 
 [[attachment:_20200524_171458screenshot.png]]
-** Develope
+** Develop
 *** [[https://nf-co.re/tools#creating-a-new-workflow][Creating a new workflow]]
 #+BEGIN_SRC sh
 pip install nf-core
@@ -63,4 +64,33 @@ nf-core create
 #+END_SRC
 *** [[https://asciinema.org/a/8VfGOnzYKPhK6nGubG9pBkHcx][Demo]]
 #+REVEAL_HTML: <a href="https://asciinema.org/a/8VfGOnzYKPhK6nGubG9pBkHcx" target="_blank"><img src="https://asciinema.org/a/8VfGOnzYKPhK6nGubG9pBkHcx.svg" height="550"/></a>
-* Selene
+* https://github.com/FunctionLab/selene/raw/master/docs/source/_static/img/selene_logo.png
+** Links
+- [[https://www.nature.com/articles/s41592-019-0360-8][Selene: a PyTorch-based deep learning library for sequence data | Nature Methods]]
+- [[https://github.com/FunctionLab/selene][GitHub - FunctionLab/selene]]
+** [[https://hb.flatironinstitute.org/deepsea/][DeepSEA]]
+DeepSEA is a deep learning-based algorithmic framework for predicting the
+chromatin effects of sequence alterations with single nucleotide sensitivity.
+** Overview
+- Trying to solve the issue of creating new deep learning architectures and
+  training them on new data sets.
+- Created to be a framework to be easy to use for deep learning in biology.
+** Case 1: Training an exisiting architecture on a different dataset
+- Trains DeepSEA module for transcription factor GATA1
+- Zero lines of python code
+** Case 2: Developing a new architecture and comparing performance across architectures
+- Allows use of PyTorch modules
+- Fully compatible with [[https://kipoi.org/][Kipoi]]
+- Focus is on experimenting with various models rather than repeating code for
+  training and evaluation.
+** Case 3: Applying a new model to variants
+- They train the new model from Case 2 to be used on the Alzheimer's disease
+  GWAS to find varent effects that are significant and non-significant.
+** Online methods
+- Has an SDK and a CLI
+- SDK is a python package for use in example with a web app to allow researchers
+  to submit sequences.
+* Learning Resources
+- [[https://www.coursera.org/learn/sciwrite][Writing in the Science]]
+- [[https://missing.csail.mit.edu/][The Missing Semester]]
+- [[https://takesmartnotes.com/][How to Take Smart Notes]]
