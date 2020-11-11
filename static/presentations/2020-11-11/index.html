@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Fall Update</title>
+<meta name="author" content="Edmund Miller"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/white.css" id="theme"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/plugin/highlight/zenburn.css"/>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide">
+<h1 class="title">Fall Update</h1><h2 class="author">Edmund Miller</h2>
+</section>
+
+<section>
+<section id="slide-org171d025">
+<h2 id="org171d025">nf-core modules</h2>
+<ul>
+<li>A repository of reusable processes for common software</li>
+<li>Features:
+<ul>
+<li>Conda, singularity, and docker containers for each individual software</li>
+<li>Testing through CI</li>
+<li>Documentation</li>
+
+</ul></li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orge667470">
+<h3 id="orge667470">Quick DSL 2 Introduction</h3>
+<ul>
+<li>Nextflow DSL 2 Released in v20.07.1</li>
+
+</ul>
+
+<div class="org-src-container">
+
+<pre><code class="nextflow" >process INDEX {
+  input:
+    path transcriptome
+  output:
+    path 'index'
+  script:
+    """
+    salmon index --threads $task.cpus -t $transcriptome -i index
+    """
+}
+</code></pre>
+</div>
+
+</section>
+<section id="slide-orgc33ae75">
+<h4 id="orgc33ae75">Main workflow</h4>
+<div class="org-src-container">
+
+<pre><code class="nextflow" >include { INDEX; FASTQC; QUANT; MULTIQC } from './some/module/script.nf' 
+
+read_pairs_ch = channel.fromFilePairs( params.reads)
+
+workflow {
+  INDEX( params.transcriptome )
+  FASTQC( read_pairs_ch )
+  QUANT( INDEX.out, read_pairs_ch )
+  MULTIQC( QUANT.out.mix(FASTQC.out).collect(), multiqc_file )
+}
+</code></pre>
+</div>
+
+</section>
+<section id="slide-org9a5df62">
+<h4 id="org9a5df62">Sub-workflows</h4>
+<div class="org-src-container">
+
+<pre><code class="nextflow" >workflow RNASEQ {
+  take:
+    transcriptome
+    read_pairs_ch
+ 
+  main: 
+    INDEX(transcriptome)
+    FASTQC(read_pairs_ch)
+    QUANT(INDEX.out, read_pairs_ch)
+
+  emit: 
+     QUANT.out.mix(FASTQC.out).collect()
+}
+</code></pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org0a94e00">
+<h3 id="org0a94e00"><code>nf-tools</code></h3>
+
+<div id="org2d7daf4" class="figure">
+<p><img src="file:///home/emiller/sync/org/roam/data/f9/70195e-b931-4005-9fc0-04c3f642d0e3/_20201110_193826screenshot.png" alt="_20201110_193826screenshot.png" />
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org7964aa6">
+<h3 id="org7964aa6">Use in a pipeline</h3>
+<div class="org-src-container">
+
+<pre><code class="nextflow" >#!/usr/bin/env nextflow
+
+nextflow.enable.dsl = 2
+
+include { FASTQC } from './modules/nf-core/software/fastqc/main' addParams( options: [:] )
+
+workflow {
+    FASTQC(SRA_DOWNLOAD.out.raw_reads)    
+}
+</code></pre>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org015b536">
+<h3 id="org015b536">Structure of a Module</h3>
+<div class="org-src-container">
+
+<pre><code class="sh" >.
+├── software
+│   ├── SOFTWARE
+│   │   └── TOOL
+│   │       ├── functions.nf          ## Utility functions imported in main module script
+│   │       ├── main.nf               ## Main module script
+│   │       ├── meta.yml              ## Documentation for module, input, output, params, author
+│   │       └── test
+│   │           ├── input             ## Soft-link input test data from "tests/"
+│   │           ├── main.nf           ## Minimal workflow to test module
+│   │           ├── nextflow.config   ## Minimal config to test module
+│   │           └── output            ## Upload output files from test for unit testing
+</code></pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org441da4b">
+<h2 id="org441da4b">nf-core rnaseq dsl2 rewrite</h2>
+<ul>
+<li>Rewritten by Harshil Patel</li>
+<li>The pipeline will now download raw fastq files via the ENA FTP</li>
+<li>New DESeq2 script</li>
+<li>Testing on Ganymede with DRG data</li>
+<li>Data engineering vs Data Science</li>
+<li><a href="https://nf-core-awsmegatests.s3-eu-west-1.amazonaws.com/rnaseq/results-c304bd4843174cdfa5a26395a99be62a40060c5d/MultiQC/multiqc_report.html">Example MultiQC Report</a></li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org3c7b4a9">
+<h3 id="org3c7b4a9">Example Samplesheet</h3>
+<div class="org-src-container">
+
+<pre><code class="csv" >group,replicate,fastq_1,fastq_2,strandedness,patient_number,vertebra,side
+44T11R,1,./fastq_75/44T11R.fastq.gz,,unstranded,44,T11,R
+46T8L,1,./fastq_75/46T8L.fastq.gz,,unstranded,46,T8,L
+42T7R,1,./fastq_75/42T7R.fastq.gz,,unstranded,42,T7,R
+47T7R,1,./fastq_75/47T7R.fastq.gz,,unstranded,47,T7,R
+...
+</code></pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org7ad33ec">
+<h2 id="org7ad33ec">nf-core groseq rewrite</h2>
+<div class="outline-text-2" id="text-org7ad33ec">
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orgcd7a9bd">
+<h3 id="orgcd7a9bd">Total Functional Score of Enhancer Elements (TFSEE) Model&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ATTACH">ATTACH</span></span></h3>
+
+<div id="org37d81cf" class="figure">
+<p><img src="file:///home/emiller/sync/org/roam/data/6b/d82124-5e3f-473b-8c98-14193e5da72a/_20201110_215035screenshot.png" alt="_20201110_215035screenshot.png" />
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org017ac7b">
+<h3 id="org017ac7b">Highlights</h3>
+<ul>
+<li>Dataset was cells from Human Embroynic Stem Cell to Pancreatic Endoderm</li>
+<li>Comparison between calling enhancers using <code>GRO-seq</code> data and <code>ChIP-seq</code> data
+<ul>
+<li>Can be used with a reduced number of data types for enhancer identification,
+it fails to identify additional subtype- or stage-specific drivers with
+reduced data input</li>
+
+</ul></li>
+
+</ul>
+
+</section>
+<section id="slide-org8a5c69b">
+<h4 id="org8a5c69b"></h4>
+
+<div id="org321634e" class="figure">
+<p><img src="file:///home/emiller/sync/org/roam/data/da/3754c3-2982-428e-875d-85ad831b8b30/_20201110_221826screenshot.png" alt="_20201110_221826screenshot.png" />
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orgbd64bf1">
+<h3 id="orgbd64bf1">Differences between TFSEE and Global transcriptional activity dynamics reveal functional enhancer RNAs</h3>
+<ul>
+<li>bwa instead of bowtie2/STAR (dealt better with shorter reads)</li>
+<li>GROHMM instead of homer
+<ul>
+<li>Allowed them to use ±3kb instead of 1kb upstream and 10kb downstream</li>
+
+</ul></li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orge02bf99">
+<h3 id="orge02bf99">Rewrite</h3>
+<ul>
+<li>nf-core functionality
+<ul>
+<li>SRA Download</li>
+
+</ul></li>
+<li>Option between homer, GROHMM, or dREG (Danko lab&rsquo;s package to create an SVR
+model utilizing a GPU)</li>
+<li>Comparison between the three techniques</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org0b085e1">
+<h2 id="org0b085e1">Europa</h2>
+<ul>
+<li>12000+ core system focusing on High Throughput Computing with low barrier of entry
+<ul>
+<li>Rstudio, Jupyter, Matlab</li>
+<li>Web browser terminal access</li>
+
+</ul></li>
+<li>Hiring a team of postdoc facilitators</li>
+<li>ask.ci knowledge base</li>
+<li>nf-core config</li>
+<li>Practical Research Computing</li>
+
+</ul>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/highlight/highlight.js"></script>
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+mouseWheel: false,
+fragmentInURL: false,
+hashOneBasedIndex: false,
+pdfSeparateFragments: true,
+
+overview: true,
+
+transition: 'convex',
+transitionSpeed: 'default',
+
+// Plugins with reveal.js 4.x
+plugins: [ RevealHighlight ],
+
+// Optional libraries used to extend reveal.js
+dependencies: [
+]
+
+});
+</script>
+</body>
+</html>
