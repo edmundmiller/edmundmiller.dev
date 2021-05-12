@@ -1,32 +1,33 @@
-# Gridsome Blog Starter
+# org-braindump
 
-[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+This example showcases how you can use [uniorg][uniorg] and [Next.js][nextjs] to publish a simple website from Org files. It is tailored to publishing a collection of interlinked notes.
 
-> A simple, hackable & minimalistic starter for Gridsome that uses Markdown for content.
+It is compatible with [org-roam][org-roam] but org-roam is not a requirement.
 
-## Features
+[uniorg]: https://github.com/rasendubi/uniorg
+[nextjs]: https://nextjs.org/
+[org-roam]: https://github.com/org-roam/org-roam
 
-- Beautiful and simple design.
-- Markdown for content.
-- Tags support.
-- Dark / Light toggle.
-- CSS variables, SCSS & BEM for styling.
-- 100, 100, 100, 100 score on Google Lighthouse.
-- Uses same front-matter fields as Dev.to.
+## Demo
 
-## Demo URL
+[https://org-braindump.vercel.app](https://org-braindump.vercel.app)
 
-https://gridsome-starter-blog.netlify.com
+## Deploy your own
 
-## Install
+Deploy the example using [Vercel](https://vercel.com):
 
-### 1. Install Gridsome CLI tool if you don't have
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/rasendubi/uniorg/tree/master/examples/org-braindump&project-name=org-blog-starter&repository-name=braindump)
 
-`npm install --global @gridsome/cli`
+## How to use
 
-### 2. Install this starter
+Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
-1. `gridsome create my-gridsome-site https://github.com/gridsome/gridsome-starter-blog.git`
-2. `cd my-gridsome-site` to open folder
-3. `gridsome develop` to start local dev server at `http://localhost:8080`
-4. Happy coding 🎉🙌
+```bash
+npx create-next-app --example https://github.com/rasendubi/uniorg/tree/master/examples/org-braindump braindump
+# or
+yarn create-next-app --example https://github.com/rasendubi/uniorg/tree/master/examples/org-braindump braindump
+```
+
+Your braindump should be up and running on [http://localhost:3000](http://localhost:3000)! If it doesn't work, post on [GitHub discussions](https://github.com/rasendubi/uniorg/discussions).
+
+Deploy it to the cloud with [Vercel](https://vercel.com/new) ([Documentation](https://nextjs.org/docs/deployment)).
