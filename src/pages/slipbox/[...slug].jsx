@@ -43,6 +43,8 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params }) => {
+  console.log("hello")
+  console.log(params.slug)
   const path = '/' + join(...(params.slug || ['index']));
   const post = await getPostBySlug(path);
   const data = post.data;
