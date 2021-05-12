@@ -1,0 +1,3 @@
+[submodule "slipbox"]
+	path = slipbox
+	url = git@github.com:Emiller88/slipbox.git

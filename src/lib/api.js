@@ -13,7 +13,7 @@ import orgToHtml from './orgToHtml';
 // If you change this directory, make sure you copy all assets
 // (images, linked files) to the public directory, so that next.js
 // serves them.
-const pagesDirectory = path.join(process.cwd(), 'public');
+const pagesDirectory = path.join(process.cwd(), 'slipbox');
 
 const processor = trough()
   .use(collectFiles)
