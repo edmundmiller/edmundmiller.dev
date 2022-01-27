@@ -1,3 +1,0 @@
-#+TITLE: uniorg
-
-[[https://github.com/rasendubi/uniorg][uniorg]] is an accurate org-mode parser that powers this website.

@@ -1,38 +1,29 @@
 {
-  "name": "edmundmiller.dev",
+  "name": "blog-starter",
+  "version": "0.4.8",
   "private": true,
-  "version": "1.1.0",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next",
     "build": "next build",
-    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "start": "next start"
   },
   "dependencies": {
-    "next": "10.0.5",
-    "react": "17.0.1",
-    "react-dom": "17.0.1",
-    "rehype-react": "^6.1.0",
-    "rehype-url-inspector": "^2.0.2",
-    "to-vfile": "^6.1.0",
-    "trough": "^1.0.5",
+    "classnames": "2.2.6",
+    "date-fns": "2.16.1",
+    "next": "^10.0.5",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "rehype-stringify": "^8.0.0",
     "unified": "^9.2.0",
-    "uniorg-extract-keywords": "^0.1.20",
-    "uniorg-parse": "^0.1.19",
-    "uniorg-rehype": "^0.1.19",
-    "vfile-find-down": "^5.0.1",
-    "vfile-rename": "^1.0.3",
-    "vfile-reporter": "^6.0.2"
+    "uniorg-extract-keywords": "^0.4.5",
+    "uniorg-parse": "^0.4.5",
+    "uniorg-rehype": "^0.4.8"
   },
   "devDependencies": {
-    "@semantic-release/changelog": "^5.0.0",
-    "@semantic-release/git": "^9.0.0",
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.10.0",
-    "eslint-plugin-gridsome": "^1.4.0",
-    "eslint-plugin-prettier": "^3.1.2",
-    "gridsome-plugin-tailwindcss": "^2.2.38",
-    "prettier": "^1.19.1",
-    "semantic-release": "^17.0.4"
-  }
+    "autoprefixer": "^10.2.1",
+    "postcss": "^8.2.4",
+    "postcss-preset-env": "^6.7.0",
+    "tailwindcss": "^2.0.2"
+  },
+  "license": "MIT"
 }
