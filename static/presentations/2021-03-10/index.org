@@ -1,0 +1,184 @@
+:PROPERTIES:
+:ID:       7408d508-06df-4ab6-93db-a4dcf43fd0a5
+:END:
+#+TITLE:     mlf-core: A framework for deterministic machine learning
+#+AUTHOR:    Edmund Miller
+#+EMAIL:     Edmund.Miller@utdallas.edu
+#+DATE:      2021-03-09 Wed
+#+DESCRIPTION: a framework for deterministic machine learning
+#+KEYWORDS:
+#+LANGUAGE:  en
+#+OPTIONS:   H:2 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:https://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+HTML_LINK_UP:
+#+HTML_LINK_HOME:
+#+filetags: :bioinformatics:
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [bigger]
+#+BEAMER_FRAME_LEVEL: 2
+# C-c C-e l O
+
+* Introduction
+
+** Reproducing Machine Learning
+- Collberg and Proebsting in 2016 evaluated 402 computational experimental
+  papers and could only reproduce 48.3% even when communicating with the authors
+** Inspired by nf-core :ATTACH:
+:PROPERTIES:
+:ID:       abb8f7a7-e273-4eeb-83ac-dfd6202964e0
+:END:
+
+[[attachment:_20210309_181011screenshot.png]]
+
+** Inspired by nf-core :ATTACH:
+:PROPERTIES:
+:ID:       6a34584a-8ec8-4c08-a960-f1493613a743
+:END:
+
+#+attr_latex: :height 0.7\linewidth
+[[attachment:_20210309_181035screenshot.png]]
+
+** MLFlow
+
+*** Why not nextflow?
+# I swear it wasn't just because it has flow in the name
+  1. Hyperparameter tracking
+  2. Experiment grouping
+  3. Model deplyoment
+  4. Interactive viz (Tower is for processes)
+  5. Model repository
+
+
+#+begin_quote
+Just throwing stuff into containers is absolutely not sufficient for
+reproducible machine learning. Especially with GPUs. Nextflow does (on its own)
+NOT solve the reproducibility issue of ML.
+#+end_quote
+
+** MLFlow :ATTACH:
+:PROPERTIES:
+:ID:       9555cfc2-447f-4135-804c-5091a2de1853
+:END:
+
+*** Comparison of Frameworks
+
+[[attachment:_20210309_183008screenshot.png]]
+
+
+** MLFlow
+
+- Platform to manage ML lifecycle
+  + Experimentation Tracking
+  + Reproducibility of runs on any platform
+  + Deployment of models
+  + A central model registry
+
+** mlf-core ecosystem :ATTACH:
+:PROPERTIES:
+:ID:       88d1738a-a563-4ae3-a8ea-1898ea084df1
+:END:
+
+[[attachment:_20210309_184328screenshot.png]]
+
+** mlf-core workflow :ATTACH:
+:PROPERTIES:
+:ID:       f1a2bbe4-7a31-4114-a65d-4497e767094d
+:END:
+
+[[attachment:_20210309_204133screenshot.png]]
+
+
+* Results
+
+** Experimental Setup :ATTACH:
+:PROPERTIES:
+:ID:       c3ff805e-1fad-4483-8508-c4ec3f51ad7c
+:END:
+
+#+attr_latex: :height 0.7\linewidth
+[[attachment:_20210309_211915screenshot.png]]
+
+** Example Seed setting for PyTorch for deterministic evalutation
+
+#+begin_src python
+import numpy as np
+import torch
+import os
+import random
+
+os.environ["PYTHONHASHSEED"] = SEED
+random.seed(SEED)
+np.random.seed(SEED)
+torch.manual_seed(SEED)
+torch.backends.cudnn.deterministic = True
+torch.backends.cudnn.benchmark = False
+#+end_src
+
+** Determinism evaluation of a convolutional neural network :ATTACH:
+:PROPERTIES:
+:ID:       3dba1f7b-1ce3-4eea-a0e1-a2b4d9c08462
+:END:
+
+[[attachment:_20210309_204212screenshot.png]]
+
+** Autoencoder model for single-cell RNA-seq data and on an XGboost classification model on a liver cancer dataset :ATTACH:
+:PROPERTIES:
+:ID:       9c901386-f3d3-4eb3-b8c2-d42a1dc3956e
+:END:
+
+[[attachment:_20210309_204750screenshot.png]]
+
+** So what's the catch? :ATTACH:
+:PROPERTIES:
+:ID:       7b6182fc-abe5-444e-9d65-355e71205130
+:END:
+
+[[attachment:_20210309_210343screenshot.png]]
+
+
+* Tutorial
+
+** GPU Server Gotchas
+
+#+begin_src sh
+# gpu server specifc stuff
+ml load anaconda3
+conda create -n mlf-core
+# conda activate mlf-core # This won't work!
+source activate mlf-core
+pip install mlf-core
+#+end_src
+
+** Creating a project
+
+#+begin_src sh
+mlf-core list
+cd scratch
+mlf-core create
+#+end_src
+
+** Enable Conda
+
+#+NAME: enable-conda
+#+begin_src sh
+cd exploding_springfield
+vi MLproject
+mlflow run . -A t -A gpus=all -P gpus=2 -P acc=ddp
+#+end_src
+
+[[https://github.com/mlf-core/mlf-core/issues/298][mlf-core/mlf-core#298 MNIST dataset download failes with 403 using torchvisio...]]
+
+* Call to Action
+
+** Call to Action
+
+- Take Applied Genomics in the Summer!
+- [[https://www.mlf-core.com/join][Join mlf-core]]
+- [[https://nf-co.re/events/2021/hackathon-march-2021][Hackathon - March 2021 » nf-core]]
+- [[https://www.nvidia.com/en-us/gtc/][#1 AI Conference | GPU Technology Conference | NVIDIA]]
+- [[https://www.scipy2021.scipy.org/][SciPy Conference 2021, Austin -- Scientific Computing with Python]]
+- [[http://utd.link/prc][Practice Research Computing Box Share]]

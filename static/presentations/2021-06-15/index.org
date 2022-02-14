@@ -1,0 +1,21 @@
+:PROPERTIES:
+:ID:       615eef95-b811-49a0-a5f2-3ce3b2a5c112
+:END:
+#+TITLE: Pytest-workflow intro
+
+** What is pytest-workflow?
+- Developed by Leiden University Medical Center
+- A pytest plugin that aims to make pipeline/workflow testing easy by using yaml
+  files for the test configuration.
+** Anatomy of a test
+** How to run tests on modules
+** Installing pytest-workflow
+
+#+begin_src bash
+python3 -m pip install --user pytest-workflow
+
+conda create -n nf-test pytest-workflow
+mamba create -n nf-test pytest-workflow
+#+end_src
+** Marking tests as failing
+** Sneakpeek of Pipeline tests

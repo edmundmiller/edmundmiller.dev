@@ -1,0 +1,134 @@
+#+title: Nascent Transcript Identification Using CHM13
+#+AUTHOR:    Edmund Miller
+#+EMAIL:     Edmund.Miller@utdallas.edu
+#+DATE:      2021-10-25 Mon
+#+DESCRIPTION:
+#+KEYWORDS:
+#+LANGUAGE:  en
+#+OPTIONS:   H:2 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:https://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+HTML_LINK_UP:
+#+HTML_LINK_HOME:
+#+filetags: :biology:
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [bigger]
+#+BEAMER_FRAME_LEVEL: 2
+# C-c C-e l O
+# SPC m e l O
+
+
+** Cell Ranger
+
+- Wrapped up modules with test data
+- Pending addition to nf-core/scRNA-seq
+
+
+** DRAGMAP :ATTACH:
+
+- Competes with BWA-MEM
+- Pulled out of the DRAGEN-GATK pipeline
+- First version of DRAGMAP has not been optimized for speed.(1.10x-1.74x longer
+  than BWA)
+
+** DRAGMAP :ATTACH:
+:PROPERTIES:
+:ID:       e891cfcb-aced-436c-bca6-7393d9d702fa
+:END:
+
+#+attr_latex: :height 0.5\linewidth
+[[attachment:_20211207_203041screenshot.png]]
+
+- Fewer false positives
+
+
+* Kedro
+
+** Where we left off :ATTACH:
+:PROPERTIES:
+:ID:       385b5227-af9f-4353-8daa-1114d89464d2
+:END:
+
+
+[[attachment:_20211208_083410big_picture.png]]
+
+
+** Kedro
+
+- Kedro is an open-source Python framework for creating reproducible,
+  maintainable and modular data science code.
+- Data Catalog
+- Jupyter integration
+- Quick pipeline creation
+- Versioning
+- Testing
+
+
+** Kedro Data Catalog
+
+#+attr_latex: :height 0.3\linewidth
+#+begin_src yaml :eval no
+bikes:
+    type: pandas.CSVDataSet
+    filepath: data/01_raw/bikes.csv
+
+motorbikes:
+    type: pandas.CSVDataSet
+    filepath: s3://your_bucket/data/02_intermediate/company/motorbikes.csv
+    credentials: dev_s3
+    versioned: True
+    load_args:
+        sep: ','
+        skiprows: 5
+        na_values: ['#NA', NA]
+#+end_src
+
+** Usage
+
+#+begin_src python :eval no
+bikes = catalog.load("bikes")
+motorbikes = catalog.load("motorbikes")
+# pandas dataframe
+bikes.head()
+#+end_src
+
+* nascent
+
+** Updates
+
+- groHMM works from any gtf(important for chm-13)
+- Update to new Native dsl2 syntax
+- Added DRAGMAP
+
+** Example Transcript Density Plot :ATTACH:
+:PROPERTIES:
+:ID:       9d27e1c2-8a3c-48fc-a005-f25b1f316a66
+:END:
+
+#+attr_latex: :height 0.6\linewidth
+[[attachment:_20211208_083630screenshot.png]]
+
+
+** CHM13
+
+- Used PacBio's HiFi, and Nanopore's "ultra-long" reads to resolve complex forms
+  of structural variation and gaps in GRCh38
+- CHM13 Cell line a complete hydatidiform mole (CHM) cell line, "essentially
+  haploid nature"
+
+** CHM13 :ATTACH:
+:PROPERTIES:
+:ID:       4329b3e4-e1bf-420b-a790-230e4949f9f5
+:END:
+
+[[attachment:_20211208_084146screenshot.png]]
+
+** CHM13 :ATTACH:
+:PROPERTIES:
+:ID:       cf34f818-2d1d-4614-b608-cb5e26e328c0
+:END:
+
+[[attachment:_20211208_084238screenshot.png]]
