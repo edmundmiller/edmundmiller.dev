@@ -1,0 +1,223 @@
+% Created 2022-03-02 Wed 10:49
+% Intended LaTeX compiler: pdflatex
+\documentclass[bigger]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usetheme[progressbar=foot]{metropolis}
+\author{Edmund Miller}
+\date{2022-03-02 Wed}
+\title{Nascent Transcript Identification Using CHM13}
+\hypersetup{
+ pdfauthor={Edmund Miller},
+ pdftitle={Nascent Transcript Identification Using CHM13},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 29.0.50 (Org mode 9.6)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+
+
+\section{nascent}
+\label{sec:org7ff6cbb}
+
+\begin{frame}[label={sec:orgdd448d1}]{Updated to nascent v1}
+\begin{itemize}
+\item Updated Multiqc report with v1 metrics
+\begin{itemize}
+\item Great spot checking for data mining
+\end{itemize}
+\item Finished up homer transcript identification
+\item Started on dREG(Going to have to package it up)
+\begin{itemize}
+\item Kinda makes me want to build our own transcript identification model
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[label={sec:orga041001}]{DeepVariant Approach}
+\begin{itemize}
+\item \href{https://google.github.io/deepvariant/posts/2020-02-20-looking-through-deepvariants-eyes/}{Looking Through DeepVariant’s Eyes | DeepVariant Blog}
+\item They're trying to identify single bases
+\item We're just looking at the bigger picture
+\item CNNs are great at this
+\end{itemize}
+\end{frame}
+
+\section{CHM13 Refresher}
+\label{sec:orga33669a}
+
+\begin{frame}[label={sec:orgdc96348}]{CHM13}
+\begin{itemize}
+\item Used PacBio's HiFi, and Nanopore's ``ultra-long'' reads to resolve complex forms
+of structural variation and gaps in GRCh38
+\item CHM13 Cell line a complete hydatidiform mole (CHM) cell line, ``essentially
+haploid nature''
+\end{itemize}
+\end{frame}
+
+\begin{frame}[label={sec:org7b9e394}]{Pacbio HiFi Reads}
+\begin{center}
+\includegraphics[height=0.4\linewidth]{/home/emiller/sync/org/roam/data/d2/53f799-3eb8-443c-9d93-7084900a978c/_20220302_085317screenshot.png}
+\end{center}
+\end{frame}
+
+
+
+\begin{frame}[label={sec:org6f60a80}]{CHM13}
+\begin{center}
+\includegraphics[width=.9\linewidth]{/home/emiller/sync/org/roam/data/43/29b3e4-e1bf-420b-a790-230e4949f9f5/_20211208_084146screenshot.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[label={sec:orgf6262b9}]{CHM13}
+\begin{center}
+\includegraphics[width=.9\linewidth]{/home/emiller/sync/org/roam/data/cf/34f818-2d1d-4614-b608-cb5e26e328c0/_20211208_084238screenshot.png}
+\end{center}
+\end{frame}
+
+
+\section{CHM13 Results}
+\label{sec:org0e7e850}
+
+\begin{frame}[label={sec:org0cd352c}]{The intersection of Homer identified peaks and centromeres}
+\begin{itemize}
+\item Near identical number of reads mapped(There's only 5\% more to align to)
+\item Had to use hg19 centromeres for the intersection
+\item There were no hits
+\item Reviewed the multiqc and found there was an issue with the homer
+identification in CHM13(18\% and 6\% efficiency)
+\item Confirmed with bedtools intersect call to aligned reads for centromeres
+\end{itemize}
+\end{frame}
+
+
+\section{Tertiary analysis Best practices}
+\label{sec:org93508dc}
+
+\begin{frame}[label={sec:org868e012},fragile]{Some Goals}
+ \begin{itemize}
+\item Reproducibility
+\item Easy for others to read the code
+\item Easy for ``exploratory analysis''
+\item Scales (Cluster or cloud submission)
+\begin{itemize}
+\item Avoid \texttt{for} loops
+\end{itemize}
+\item Could I teach this to someone in a Summer semester? (Applied Genomics)
+\end{itemize}
+\end{frame}
+
+\begin{frame}[label={sec:orgbb9ae00}]{Shiny New Datascience tools popping up}
+\begin{itemize}
+\item \href{https://kedro.readthedocs.io/en/stable/}{Kedro}
+\item \href{https://ploomber.io/}{Ploomber - Build data pipelines. FAST.⚡️}
+\item \href{https://julialang.org/}{The Julia Programming Language}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[label={sec:orgec52754}]{Computational Biology is a beautiful mess}
+\begin{quote}
+The first step of any bioinformatics project is to define a new file format,
+incompatible with all previous ones.
+\end{quote}
+
+\begin{itemize}
+\item Those all looked exciting. Until I needed to align some histones to hg38.
+\item Why waste a bunch of time rewriting scripts that already worked?
+\end{itemize}
+\end{frame}
+
+\begin{frame}[label={sec:org4008932},fragile,shrink=10]{Code complexity aside}
+ \begin{verbatim}
+def bar():
+    x = 1
+    if x == 2:
+        print("Success")
+\end{verbatim}
+
+\begin{verbatim}
+def foo():
+    evens = [2, 4, 6, 8, 10]
+    odds = [1, 3, 5, 7, 9]
+    for x in evens:
+        for y in odds:
+            product = x * y
+            if product % 2 == 0:
+                print "Product result is even"
+            if product % 5 == 0:
+                print "Product is divisible by 5"
+            if product % 3 == 0:
+                print "Product is divisible by 3"
+\end{verbatim}
+
+\begin{itemize}
+\item McCabe's Cyclomatic Complexity
+\end{itemize}
+\end{frame}
+
+\begin{frame}[label={sec:org8e921c0}]{What if I just used nextflow?}
+\begin{itemize}
+\item I was afraid it would be too ``heavy''
+\begin{itemize}
+\item Making container images
+\item Boilerplate
+\end{itemize}
+\item Somewhat Bioinformatics specific
+\end{itemize}
+\end{frame}
+
+\begin{frame}[label={sec:org520af08}]{Reality}
+\begin{center}
+\includegraphics[width=.9\linewidth]{/home/emiller/sync/org/roam/data/64/886be1-f2e5-485f-851f-a74b9e711cb1/_20220302_085536screenshot.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[label={sec:org487bbc3}]{Some mental shifts}
+\begin{itemize}
+\item Just use conda environments for scripts
+\item Feedback of using the results directory for creating exploratory scripts
+\item Utilize nf-core modules
+\item Don't try to make features/job submission one size fits all(Leave that to
+nf-core)
+\begin{itemize}
+\item Allowed me to cut down on a lot of the boilerplate
+\end{itemize}
+\item Could a new grad student reproduce this and pick up where I left off?
+\end{itemize}
+\end{frame}
+
+\begin{frame}[label={sec:orgcb9dfdf},fragile,shrink=10]{How do we compare versions of things?}
+ \begin{verbatim}
+# move to the tag v1
+git checkout v1
+# store results in v1 directory
+nextflow run . --outdir ./results/v1
+
+# move to the tag v2
+git checkout v2
+# store results in v2 directory
+nextflow run . --outdir ./results/v2
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[label={sec:org41c4f43}]{Some examples}
+\begin{itemize}
+\item \href{https://github.com/qbic-pipelines/rnadeseq}{qbic-pipelines/rnadeseq: Differential gene expression analysis and pathway analysis of RNAseq data}
+\item \href{https://github.com/qbic-pipelines/bamtofastq}{qbic-pipelines/bamtofastq}
+\item \href{https://github.com/Functional-Genomics-Lab/eRNA-complementarity}{Functional-Genomics-Lab/eRNA-complementarity}
+\end{itemize}
+\end{frame}
+\end{document}
