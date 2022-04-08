@@ -1,0 +1,107 @@
+#+title: Current Research
+#+reveal_theme: white
+#+options: num:nil
+#+options: toc:nil
+#+options: reveal_title_slide:nil
+#+reveal_root: https://cdn.jsdelivr.net/npm/reveal.js
+#+reveal_hlevel: 2
+#+reveal_init_options: slideNumber:true
+
+* Background
+* Enhancer intro
+** Central Dogma of Biology :ATTACH:
+:PROPERTIES:
+:ID:       b8ce871b-5b7f-4cef-b389-7b27459818b3
+:END:
+
+
+[[attachment:_20220407_195627screenshot.png]]
+
+** A Simple View of Gene Expression :ATTACH:
+:PROPERTIES:
+:ID:       a9ae81d7-3773-4daa-baf6-bec17b6bb120
+:BEAMER_env: column
+:END:
+
+*** Gene Expression :B_ignoreheading:BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.45
+:BEAMER_env: block
+:END:
+
+[[attachment:_20220407_195540screenshot.png]]
+
+
+*** Central Dogma :B_ignoreheading:BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.45
+:BEAMER_env: block
+:END:
+[[attachment:_20220407_195803screenshot.png]]
+
+
+** Enhancers Image
+
+** Enhancers Fun facts
+
+- Cis-acting DNA sequences that can increase the transcription of genes [fn:1:
+  [cite:@Pennacchio_2013]]
+
+** Multiple Enhancers can regulate one gene :ATTACH:
+:PROPERTIES:
+:ID:       41914259-ccb3-42b6-a38e-7e284c0bdded
+:END:
+
+#+caption[Short caption]: [fn:1: [cite:@Kim_2018]]
+[[attachment:_20220408_094258screenshot.png]]
+
+
+** Topologically Associating Domain (TAD)
+** Why are Enhancers difficult to identify?
+
+1. Scattered across the 98% of the human genome that does not encode proteins [fn:1: [cite:@Pennacchio_2013]]
+2. Enhancers location relative to their target gene (or genes) is highly
+  variable. They can be upstream, downstream, or within introns. [fn:1:
+  [cite:@Pennacchio_2013]]
+3. Enhancers do not necessarily act on the respective closest promoter but can
+  bypass neighbouring genes to regulate genes located more distantly along a
+  chromosome [fn:1: [cite:@Pennacchio_2013]]
+4. One Enhancer can regulate multiple genes [fn:2: [cite:@Locksley_2001]] and One
+  gene can be regulated by multiple enhancers [fn:3: [cite:@Kim_2018]]
+5. The general sequence code of enhancers, if one exists at all, is poorly
+  understood. [fn:1: [cite:@Pennacchio_2013]]
+6. The activity of enhancers can be restricted to a particular tissue or cell type
+
+** eRNAs Introduction
+
+** Global Transcriptional Activity dynamics reveal functional enhancer rnas
+*** GRO-seq Overview :ATTACH:
+:PROPERTIES:
+:ID:       08136bc2-5fce-4dbb-bdb3-14793c5261d3
+:END:
+
+#+caption: [cite:@Yu_2022]
+[[attachment:_20220408_111821screenshot.png]]
+
+
+*** Reproduction with IMR
+* Hypothesis
+* Aims
+** Aim 1 Create a best practice secondary analysis pipeline for nascent transcripts
+** Aim 2 Take advantage of New Developments to improve eRNA annotation
+*** New developments
+*** CHM13
+**** [[https://pubmed.ncbi.nlm.nih.gov/35357915/][Epigenetic patterns in a complete human genome - PubMed]]
+*** PINTS
+
+**** NT vs TSS :ATTACH:
+:PROPERTIES:
+:ID:       cb525ffe-5925-48af-a434-cff675b835be
+:END:
+
+#+caption: [cite:@Yu_2022]
+[[attachment:_20220408_112049screenshot.png]]
+
+
+**** Can we use this for NT assays?
+** Aim 3 Compare eRNA dynamics between cell lines

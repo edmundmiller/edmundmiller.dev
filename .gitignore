@@ -35,3 +35,6 @@ yarn-error.log*
 
 # nix
 .direnv
+
+# emacs
+!.dir-locals.el
