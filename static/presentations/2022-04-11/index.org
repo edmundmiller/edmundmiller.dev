@@ -3,6 +3,7 @@
 #+options: num:nil
 #+options: toc:nil
 #+options: reveal_title_slide:nil
+#+startup: inlineimages
 #+reveal_root: https://cdn.jsdelivr.net/npm/reveal.js
 #+reveal_hlevel: 2
 #+reveal_init_options: slideNumber:true
@@ -40,24 +41,35 @@
 [[attachment:_20220407_195803screenshot.png]]
 
 
-** Enhancers Image
-
-** Enhancers Fun facts
+** Enhancers
 
 - Cis-acting DNA sequences that can increase the transcription of genes [fn:1:
   [cite:@Pennacchio_2013]]
+- The human genome contains hundreds of thousands of enhancers
+- Thought to work through DNA looping
+- Evidence of Enhancer-Promoter interaction from cross-linking assays(3c)
 
-** Multiple Enhancers can regulate one gene :ATTACH:
+** Topologically Associating Domain (TAD) :ATTACH:
 :PROPERTIES:
-:ID:       41914259-ccb3-42b6-a38e-7e284c0bdded
+:ID:       5dfc11b2-2dc8-4e7d-9034-57f92ff60114
 :END:
 
-#+caption[Short caption]: [fn:1: [cite:@Kim_2018]]
-[[attachment:_20220408_094258screenshot.png]]
+#+caption: General topography of an active enhancer [cite:@banerji_1981].
+[[attachment:_20220408_132400screenshot.png]]
+
+** Enhancer-promoter Looping :ATTACH:
+:PROPERTIES:
+:ID:       1c40bd96-7754-4e2b-9a2b-028570f5d89b
+:END:
+
+#+caption: [cite:@Kraus_2017]
+[[attachment:_20220408_144930screenshot.png]]
 
 
-** Topologically Associating Domain (TAD)
+
 ** Why are Enhancers difficult to identify?
+
+# Do I want to break these up into seperate slides to keep attention?
 
 1. Scattered across the 98% of the human genome that does not encode proteins [fn:1: [cite:@Pennacchio_2013]]
 2. Enhancers location relative to their target gene (or genes) is highly
@@ -72,19 +84,55 @@
   understood. [fn:1: [cite:@Pennacchio_2013]]
 6. The activity of enhancers can be restricted to a particular tissue or cell type
 
+** Multiple Enhancers can regulate one gene :ATTACH:
+:PROPERTIES:
+:ID:       41914259-ccb3-42b6-a38e-7e284c0bdded
+:END:
+
+#+caption[Short caption]: [fn:1: [cite:@Kim_2018]]
+[[attachment:_20220408_094258screenshot.png]]
+
+
 ** eRNAs Introduction
 
-** Global Transcriptional Activity dynamics reveal functional enhancer rnas
-*** GRO-seq Overview :ATTACH:
+- Sense and antisense transcripts from enhancers
+- Play a role in the activation because the knockdown of a subset of the eRNAs
+  resulted in decreased gene transcription [fn:4: [cite:@Shiekhattar_2010]]
+- Used to identify active enhancers
+
+* Global Transcriptional Activity Dynamics Reveal Functional Enhancer RNAs
+** Global Transcriptional Activity Dynamics Reveal Functional Enhancer RNAs :ATTACH:
+:PROPERTIES:
+:ID:       d2b368ba-de24-48ff-a497-6012a72fd306
+:END:
+
+[[attachment:_20220408_195834screenshot.png]]
+
+** GRO-Seq Overview :ATTACH:
 :PROPERTIES:
 :ID:       08136bc2-5fce-4dbb-bdb3-14793c5261d3
 :END:
 
-#+caption: [cite:@Yu_2022]
-[[attachment:_20220408_111821screenshot.png]]
+
+#+caption: [[https://www.illumina.com/science/sequencing-method-explorer/kits-and-arrays/5--gro-seq.html][Illumina Sequencing Methods]]
+[[attachment:_20220408_133505screenshot.png]]
 
 
-*** Reproduction with IMR
+** GRO-Seq pros and cons
+*** Pros:
+
+- Maps nascent capped 5' RNA sequence at any given time
+- Determines activity of transcription sites
+- No prior knowledge of transcription sites needed
+
+*** Cons:
+
+- Limited to cell cultures and other artificial systems due to incubation with
+  labelled nucleotides
+
+** Summary
+
+** Reproduction with IMR
 * Hypothesis
 * Aims
 ** Aim 1 Create a best practice secondary analysis pipeline for nascent transcripts
