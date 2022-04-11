@@ -19,6 +19,256 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global}
+    \entry{banerji_1981}{article}{}
+      \name{author}{3}{}{%
+        {{hash=87b4e98d70233f0ba994194726c4ad06}{%
+           family={Banerji},
+           familyi={B\bibinitperiod},
+           given={Julian},
+           giveni={J\bibinitperiod}}}%
+        {{hash=5c45d9cb3f1669cb400b09c8aa357793}{%
+           family={Rusconi},
+           familyi={R\bibinitperiod},
+           given={Sandro},
+           giveni={S\bibinitperiod}}}%
+        {{hash=50fb04f225ee65116011f8fd8eef9ade}{%
+           family={Schaffner},
+           familyi={S\bibinitperiod},
+           given={Walter},
+           giveni={W\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{4eeb04590859dba55a6392d07c875a63}
+      \strng{fullhash}{4eeb04590859dba55a6392d07c875a63}
+      \strng{bibnamehash}{4eeb04590859dba55a6392d07c875a63}
+      \strng{authorbibnamehash}{4eeb04590859dba55a6392d07c875a63}
+      \strng{authornamehash}{4eeb04590859dba55a6392d07c875a63}
+      \strng{authorfullhash}{4eeb04590859dba55a6392d07c875a63}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Cell}
+      \field{number}{2}
+      \field{title}{Expression of a $\beta$-globin gene is enhanced by remote SV40 DNA sequences}
+      \field{volume}{27}
+      \field{year}{1981}
+      \field{pages}{299\bibrangedash 308}
+      \range{pages}{10}
+    \endentry
+    \entry{Ewels_2020}{article}{}
+      \name{author}{9}{}{%
+        {{hash=cf9126828afc0051a606a4dff20203ca}{%
+           family={Ewels},
+           familyi={E\bibinitperiod},
+           given={Philip\bibnamedelima A.},
+           giveni={P\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=7aafc310182f64f3be173e1c4403c89b}{%
+           family={Peltzer},
+           familyi={P\bibinitperiod},
+           given={Alexander},
+           giveni={A\bibinitperiod}}}%
+        {{hash=491b2eaccb052b8447196887be6b9bc5}{%
+           family={Fillinger},
+           familyi={F\bibinitperiod},
+           given={Sven},
+           giveni={S\bibinitperiod}}}%
+        {{hash=c4123d1754bdc7c0cec9358d7ece9360}{%
+           family={Patel},
+           familyi={P\bibinitperiod},
+           given={Harshil},
+           giveni={H\bibinitperiod}}}%
+        {{hash=49ed64342685af1e426fcd939caffb52}{%
+           family={Alneberg},
+           familyi={A\bibinitperiod},
+           given={Johannes},
+           giveni={J\bibinitperiod}}}%
+        {{hash=b13d35f61f5914e56210b3a5cee8f71c}{%
+           family={Wilm},
+           familyi={W\bibinitperiod},
+           given={Andreas},
+           giveni={A\bibinitperiod}}}%
+        {{hash=0769785b189d626aa9ca5e68d985134c}{%
+           family={Garcia},
+           familyi={G\bibinitperiod},
+           given={Maxime\bibnamedelima Ulysse},
+           giveni={M\bibinitperiod\bibinitdelim U\bibinitperiod}}}%
+        {{hash=d2e1b0210deb031aaaf991a826beb60a}{%
+           family={Di\bibnamedelima Tommaso},
+           familyi={D\bibinitperiod\bibinitdelim T\bibinitperiod},
+           given={Paolo},
+           giveni={P\bibinitperiod}}}%
+        {{hash=c8a582bfd417bd34b9610e5e71ff6b15}{%
+           family={Nahnsen},
+           familyi={N\bibinitperiod},
+           given={Sven},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{cb927eec31f6f864de29042792487f8f}
+      \strng{fullhash}{c731448bbf9a5317927e52e1c359a4e3}
+      \strng{bibnamehash}{cb927eec31f6f864de29042792487f8f}
+      \strng{authorbibnamehash}{cb927eec31f6f864de29042792487f8f}
+      \strng{authornamehash}{cb927eec31f6f864de29042792487f8f}
+      \strng{authorfullhash}{c731448bbf9a5317927e52e1c359a4e3}
+      \field{sortinit}{E}
+      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1546-1696}
+      \field{journaltitle}{Nature Biotechnology}
+      \field{month}{3}
+      \field{number}{3}
+      \field{title}{The nf-core framework for community-curated bioinformatics pipelines}
+      \field{volume}{38}
+      \field{year}{2020}
+      \field{pages}{276\bibrangedash 278}
+      \range{pages}{3}
+      \verb{doi}
+      \verb 10.1038/s41587-020-0439-x
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1038/s41587-020-0439-x
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1038/s41587-020-0439-x
+      \endverb
+    \endentry
+    \entry{Timp_2022}{article}{}
+      \name{author}{20}{}{%
+        {{hash=4445c257cdfba90783f10ac377a792a9}{%
+           family={Gershman},
+           familyi={G\bibinitperiod},
+           given={Ariel},
+           giveni={A\bibinitperiod}}}%
+        {{hash=a6934ea9243360e1016e03fce1485df5}{%
+           family={Sauria},
+           familyi={S\bibinitperiod},
+           given={Michael\bibnamedelimb E.\bibnamedelimi G.},
+           giveni={M\bibinitperiod\bibinitdelim E\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=3035b6072e332e228fd7e0dc07eec9e7}{%
+           family={Guitart},
+           familyi={G\bibinitperiod},
+           given={Xavi},
+           giveni={X\bibinitperiod}}}%
+        {{hash=b89ee9573a7a73b9704cce48c10de66a}{%
+           family={Vollger},
+           familyi={V\bibinitperiod},
+           given={Mitchell\bibnamedelima R.},
+           giveni={M\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=3911f72957a54e80fed53722262ddf87}{%
+           family={Hook},
+           familyi={H\bibinitperiod},
+           given={Paul\bibnamedelima W.},
+           giveni={P\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+        {{hash=7bd411fbe98ce1ed4de938fc754a2d66}{%
+           family={Hoyt},
+           familyi={H\bibinitperiod},
+           given={Savannah\bibnamedelima J.},
+           giveni={S\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=159d8aa390073ceb49140894f36210c2}{%
+           family={Jain},
+           familyi={J\bibinitperiod},
+           given={Miten},
+           giveni={M\bibinitperiod}}}%
+        {{hash=08110cabd0e93f6db9f6a37962a71322}{%
+           family={Shumate},
+           familyi={S\bibinitperiod},
+           given={Alaina},
+           giveni={A\bibinitperiod}}}%
+        {{hash=68a3de3b5cb2e71d3c2100010293370b}{%
+           family={Razaghi},
+           familyi={R\bibinitperiod},
+           given={Roham},
+           giveni={R\bibinitperiod}}}%
+        {{hash=4def616bcffd6e6a73f4def2ebf17b10}{%
+           family={Koren},
+           familyi={K\bibinitperiod},
+           given={Sergey},
+           giveni={S\bibinitperiod}}}%
+        {{hash=e259b5553c8d3facc80afb2d90a11745}{%
+           family={Altemose},
+           familyi={A\bibinitperiod},
+           given={Nicolas},
+           giveni={N\bibinitperiod}}}%
+        {{hash=b605b14120bfa6e0eb922d53c340c767}{%
+           family={Caldas},
+           familyi={C\bibinitperiod},
+           given={Gina\bibnamedelima V.},
+           giveni={G\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+        {{hash=59d8b3682446a30749d90c912ed049e6}{%
+           family={Logsdon},
+           familyi={L\bibinitperiod},
+           given={Glennis\bibnamedelima A.},
+           giveni={G\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=8b8dfa7b4a32052c26a5de5066918dd8}{%
+           family={Rhie},
+           familyi={R\bibinitperiod},
+           given={Arang},
+           giveni={A\bibinitperiod}}}%
+        {{hash=cf3dd9358908467bf1415fdb9efe7db9}{%
+           family={Eichler},
+           familyi={E\bibinitperiod},
+           given={Evan\bibnamedelima E.},
+           giveni={E\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+        {{hash=47ad7303ee380a09796d61f3d7ee2f75}{%
+           family={Schatz},
+           familyi={S\bibinitperiod},
+           given={Michael\bibnamedelima C.},
+           giveni={M\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=3767e8aeddfd4900c7b95d04e7376ae9}{%
+           family={O’Neill},
+           familyi={O\bibinitperiod},
+           given={Rachel\bibnamedelima J.},
+           giveni={R\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=e91092485ba69e6028a9683e414ec094}{%
+           family={Phillippy},
+           familyi={P\bibinitperiod},
+           given={Adam\bibnamedelima M.},
+           giveni={A\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=a268d072bbbe12aca3fcb51298c30a3b}{%
+           family={Miga},
+           familyi={M\bibinitperiod},
+           given={Karen\bibnamedelima H.},
+           giveni={K\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=0235482a6931811bc1f3cace0e5aa694}{%
+           family={Timp},
+           familyi={T\bibinitperiod},
+           given={Winston},
+           giveni={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{cab49ac1ef25a593ef6f8646a30ab8b8}
+      \strng{fullhash}{55a2850871e138266c071799da4a5561}
+      \strng{bibnamehash}{cab49ac1ef25a593ef6f8646a30ab8b8}
+      \strng{authorbibnamehash}{cab49ac1ef25a593ef6f8646a30ab8b8}
+      \strng{authornamehash}{cab49ac1ef25a593ef6f8646a30ab8b8}
+      \strng{authorfullhash}{55a2850871e138266c071799da4a5561}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The completion of a telomere-to-telomere human reference genome, T2T-CHM13, has resolved complex regions of the genome, including repetitive and homologous regions. Here, we present a high-resolution epigenetic study of previously unresolved sequences, representing entire acrocentric chromosome short arms, gene family expansions, and a diverse collection of repeat classes. This resource precisely maps CpG methylation (32.28 million CpGs), DNA accessibility, and short-read datasets (166,058 previously unresolved chromatin immunoprecipitation sequencing peaks) to provide evidence of activity across previously unidentified or corrected genes and reveals clinically relevant paralog-specific regulation. Probing CpG methylation across human centromeres from six diverse individuals generated an estimate of variability in kinetochore localization. This analysis provides a framework with which to investigate the most elusive regions of the human genome, granting insights into epigenetic regulation.}
+      \field{journaltitle}{Science}
+      \field{number}{6588}
+      \field{title}{Epigenetic patterns in a complete human genome}
+      \field{volume}{376}
+      \field{year}{2022}
+      \field{pages}{eabj5089}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1126/science.abj5089
+      \endverb
+      \verb{eprint}
+      \verb https://www.science.org/doi/pdf/10.1126/science.abj5089
+      \endverb
+      \verb{urlraw}
+      \verb https://www.science.org/doi/abs/10.1126/science.abj5089
+      \endverb
+      \verb{url}
+      \verb https://www.science.org/doi/abs/10.1126/science.abj5089
+      \endverb
+    \endentry
     \entry{Kim_2018}{article}{}
       \name{author}{5}{}{%
         {{hash=e1f0342d9989447f88cf780724c97c22}{%
@@ -77,6 +327,236 @@
       \endverb
       \verb{url}
       \verb http://dx.doi.org/10.1101/gr.233486.117
+      \endverb
+    \endentry
+    \entry{Locksley_2001}{article}{}
+      \name{author}{9}{}{%
+        {{hash=204186f2b33a16dd8b4fa1e7fcab9683}{%
+           family={Mohrs},
+           familyi={M\bibinitperiod},
+           given={Markus},
+           giveni={M\bibinitperiod}}}%
+        {{hash=4388f671e52b5577224dff28e3932201}{%
+           family={Blankespoor},
+           familyi={B\bibinitperiod},
+           given={Catherine\bibnamedelima M},
+           giveni={C\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=55263c4656257e247e11976451c48d36}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Zhi-En},
+           giveni={Z\bibinithyphendelim E\bibinitperiod}}}%
+        {{hash=ab58b65c8ba92e97a02e0901c4aea1f9}{%
+           family={Loots},
+           familyi={L\bibinitperiod},
+           given={Gaby\bibnamedelima G},
+           giveni={G\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=bd0da4d8dfff141bbb03074fc59832cf}{%
+           family={Afzal},
+           familyi={A\bibinitperiod},
+           given={Veena},
+           giveni={V\bibinitperiod}}}%
+        {{hash=7c7ea337a2cc43326e3be72f319b792e}{%
+           family={Hadeiba},
+           familyi={H\bibinitperiod},
+           given={Husein},
+           giveni={H\bibinitperiod}}}%
+        {{hash=847ab12405064251757c7a2eb27adedc}{%
+           family={Shinkai},
+           familyi={S\bibinitperiod},
+           given={Kanade},
+           giveni={K\bibinitperiod}}}%
+        {{hash=a9f6872f48ee69f9b033cd094ad5896e}{%
+           family={Rubin},
+           familyi={R\bibinitperiod},
+           given={Edward\bibnamedelima M},
+           giveni={E\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=b910800ebc7c84b4b10fd55670d29e9e}{%
+           family={Locksley},
+           familyi={L\bibinitperiod},
+           given={Richard\bibnamedelima M},
+           giveni={R\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Nature Publishing Group}%
+      }
+      \strng{namehash}{f930e7283c8fd06d012efbc4229c4636}
+      \strng{fullhash}{010f6a3e86a0dac5ba48ffa43810319d}
+      \strng{bibnamehash}{f930e7283c8fd06d012efbc4229c4636}
+      \strng{authorbibnamehash}{f930e7283c8fd06d012efbc4229c4636}
+      \strng{authornamehash}{f930e7283c8fd06d012efbc4229c4636}
+      \strng{authorfullhash}{010f6a3e86a0dac5ba48ffa43810319d}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Nature immunology}
+      \field{number}{9}
+      \field{title}{Deletion of a coordinate regulator of type 2 cytokine expression in mice}
+      \field{volume}{2}
+      \field{year}{2001}
+      \field{pages}{842\bibrangedash 847}
+      \range{pages}{6}
+    \endentry
+    \entry{Kraus_2017}{article}{}
+      \name{author}{3}{}{%
+        {{hash=8a134a8b82a9516b00c3533907be1062}{%
+           family={Murakami},
+           familyi={M\bibinitperiod},
+           given={Shino},
+           giveni={S\bibinitperiod}}}%
+        {{hash=cca368be036634c183e8d2f24d2c5814}{%
+           family={Nagari},
+           familyi={N\bibinitperiod},
+           given={Anusha},
+           giveni={A\bibinitperiod}}}%
+        {{hash=498f19bac1b141ffddd889a46cf00653}{%
+           family={Kraus},
+           familyi={K\bibinitperiod},
+           given={W\bibnamedelima Lee},
+           giveni={W\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Cold Spring Harbor Lab}%
+      }
+      \strng{namehash}{fd80e636e364aaab7faa28383daf3287}
+      \strng{fullhash}{fd80e636e364aaab7faa28383daf3287}
+      \strng{bibnamehash}{fd80e636e364aaab7faa28383daf3287}
+      \strng{authorbibnamehash}{fd80e636e364aaab7faa28383daf3287}
+      \strng{authornamehash}{fd80e636e364aaab7faa28383daf3287}
+      \strng{authorfullhash}{fd80e636e364aaab7faa28383daf3287}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Genes \& development}
+      \field{number}{15}
+      \field{title}{Dynamic assembly and activation of estrogen receptor $\alpha$ enhancers through coregulator switching}
+      \field{volume}{31}
+      \field{year}{2017}
+      \field{pages}{1535\bibrangedash 1548}
+      \range{pages}{14}
+    \endentry
+    \entry{Pennacchio_2013}{article}{}
+      \name{author}{5}{}{%
+        {{hash=9ec2fe1aeda944ad173cb87cae10a235}{%
+           family={Pennacchio},
+           familyi={P\bibinitperiod},
+           given={Len\bibnamedelima A.},
+           giveni={L\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=8d34bdce574331f536f06e526080a061}{%
+           family={Bickmore},
+           familyi={B\bibinitperiod},
+           given={Wendy},
+           giveni={W\bibinitperiod}}}%
+        {{hash=1b359b06af0d6c52fccae29f4ebc0ac8}{%
+           family={Dean},
+           familyi={D\bibinitperiod},
+           given={Ann},
+           giveni={A\bibinitperiod}}}%
+        {{hash=ca63cd908c3d14ea91e051bbe6fb8ab3}{%
+           family={Nobrega},
+           familyi={N\bibinitperiod},
+           given={Marcelo\bibnamedelima A.},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=95072d0a83c470fb64696097c2cbeb93}{%
+           family={Bejerano},
+           familyi={B\bibinitperiod},
+           given={Gill},
+           giveni={G\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {eng}%
+      }
+      \strng{namehash}{bfc818dd545032b6560950d90e2d83eb}
+      \strng{fullhash}{217cc2950add6fb84145d1e8961ce05e}
+      \strng{bibnamehash}{bfc818dd545032b6560950d90e2d83eb}
+      \strng{authorbibnamehash}{bfc818dd545032b6560950d90e2d83eb}
+      \strng{authornamehash}{bfc818dd545032b6560950d90e2d83eb}
+      \strng{authorfullhash}{217cc2950add6fb84145d1e8961ce05e}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{It is estimated that the human genome contains hundreds of thousands of enhancers, so understanding these gene-regulatory elements is a crucial goal. Several fundamental questions need to be addressed about enhancers, such as how do we identify them all, how do they work, and how do they contribute to disease and evolution? Five prominent researchers in this field look at how much we know already and what needs to be done to answer these questions.}
+      \field{issn}{1471-0064}
+      \field{journaltitle}{Nature reviews. Genetics}
+      \field{month}{4}
+      \field{note}{nrg3458[PII]}
+      \field{number}{4}
+      \field{title}{Enhancers: five essential questions}
+      \field{volume}{14}
+      \field{year}{2013}
+      \field{pages}{288\bibrangedash 295}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1038/nrg3458
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1038/nrg3458
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1038/nrg3458
+      \endverb
+      \keyw{Enhancer Elements,Genetic/*genetics; Evolution,Molecular; *Gene Expression Regulation; Genetic Predisposition to Disease/*genetics; Humans; Mutation; Promoter Regions,Genetic/*genetics}
+    \endentry
+    \entry{Yu_2022}{article}{}
+      \name{author}{6}{}{%
+        {{hash=0c7219926b788f0561a5b75b8f724d73}{%
+           family={Yao},
+           familyi={Y\bibinitperiod},
+           given={Li},
+           giveni={L\bibinitperiod}}}%
+        {{hash=ea1af9a93b8772697b2c9726a0baca68}{%
+           family={Liang},
+           familyi={L\bibinitperiod},
+           given={Jin},
+           giveni={J\bibinitperiod}}}%
+        {{hash=631edfb9575e1ec5c2606e22aad84197}{%
+           family={Ozer},
+           familyi={O\bibinitperiod},
+           given={Abdullah},
+           giveni={A\bibinitperiod}}}%
+        {{hash=291801f7f814c7a3a013a940e415215d}{%
+           family={Leung},
+           familyi={L\bibinitperiod},
+           given={Alden\bibnamedelima King-Yung},
+           giveni={A\bibinitperiod\bibinitdelim K\bibinithyphendelim Y\bibinitperiod}}}%
+        {{hash=7802a52efac0675fd43d430fc1ef3fdb}{%
+           family={Lis},
+           familyi={L\bibinitperiod},
+           given={John\bibnamedelima T.},
+           giveni={J\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+        {{hash=d2526c879bf9c50bd2607a0d60da4262}{%
+           family={Yu},
+           familyi={Y\bibinitperiod},
+           given={Haiyuan},
+           giveni={H\bibinitperiod}}}%
+      }
+      \strng{namehash}{7c94dcac32da2facf8d489adc907d87e}
+      \strng{fullhash}{95a8755a75bb20f579a6e1ba0a108b9a}
+      \strng{bibnamehash}{7c94dcac32da2facf8d489adc907d87e}
+      \strng{authorbibnamehash}{7c94dcac32da2facf8d489adc907d87e}
+      \strng{authornamehash}{7c94dcac32da2facf8d489adc907d87e}
+      \strng{authorfullhash}{95a8755a75bb20f579a6e1ba0a108b9a}
+      \field{sortinit}{Y}
+      \field{sortinithash}{fd67ad5a9ef0f7456bdd9aab10fe1495}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Mounting evidence supports the idea that transcriptional patterns serve as more specific identifiers of active enhancers than histone marks; however, the optimal strategy to identify active enhancers both experimentally and computationally has not been determined. Here, we compared 13{\thinspace}genome-wide RNA sequencing (RNA-seq) assays in K562 cells and show that nuclear run-on followed by cap-selection assay (GRO/PRO-cap) has advantages in enhancer RNA detection and active enhancer identification. We also introduce a tool, peak identifier for nascent transcript starts (PINTS), to identify active promoters and enhancers genome wide and pinpoint the precise location of 5{\textasciiacutex}{\thinspace}transcription start sites. Finally, we compiled a comprehensive enhancer candidate compendium based on the detected enhancer RNA (eRNA) transcription start sites (TSSs) available in 120{\thinspace}cell and tissue types, which can be accessed at https://pints.yulab.org. With knowledge of the best available assays and pipelines, this large-scale annotation of candidate enhancers will pave the way for selection and characterization of their functions in a time- and labor-efficient manner.}
+      \field{issn}{1546-1696}
+      \field{journaltitle}{Nature Biotechnology}
+      \field{month}{2}
+      \field{title}{A comparison of experimental assays and analytical methods for genome-wide identification of active enhancers}
+      \field{year}{2022}
+      \verb{doi}
+      \verb 10.1038/s41587-022-01211-7
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1038/s41587-022-01211-7
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1038/s41587-022-01211-7
       \endverb
     \endentry
   \enddatalist

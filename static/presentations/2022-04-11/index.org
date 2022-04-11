@@ -1,12 +1,17 @@
 #+title: Nascent Transcript Identification
+#+AUTHOR:    Edmund Miller
+#+EMAIL:     Edmund.Miller@utdallas.edu
+#+DATE:      2022-04-11 Mon
 #+reveal_theme: white
 #+options: num:nil
 #+options: toc:nil
 #+options: reveal_title_slide:nil
 #+startup: inlineimages
-#+reveal_root: https://cdn.jsdelivr.net/npm/reveal.js
-#+reveal_hlevel: 2
-#+reveal_init_options: slideNumber:true
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [bigger]
+#+BEAMER_FRAME_LEVEL: 2
+# SPC m e l O
 
 * Background
 * Gene Regulation
@@ -69,8 +74,6 @@
 
 ** Why are Enhancers difficult to identify?
 
-# Do I want to break these up into seperate slides to keep attention?
-
 1. Scattered across the 98% of the human genome that does not encode proteins [fn:1: [cite:@Pennacchio_2013]]
 2. Enhancers location relative to their target gene (or genes) is highly
   variable. They can be upstream, downstream, or within introns. [fn:1:
@@ -78,6 +81,9 @@
 3. Enhancers do not necessarily act on the respective closest promoter but can
   bypass neighbouring genes to regulate genes located more distantly along a
   chromosome [fn:1: [cite:@Pennacchio_2013]]
+
+** Why are Enhancers difficult to identify?
+
 4. One Enhancer can regulate multiple genes [fn:2: [cite:@Locksley_2001]] and One
   gene can be regulated by multiple enhancers [fn:3: [cite:@Kim_2018]]
 5. The general sequence code of enhancers, if one exists at all, is poorly
@@ -89,7 +95,7 @@
 :ID:       41914259-ccb3-42b6-a38e-7e284c0bdded
 :END:
 
-#+caption[Short caption]: [fn:: [cite:@Kim_2018]]
+#+caption[Short caption]: [cite:@Kim_2018]
 [[attachment:_20220408_094258screenshot.png]]
 
 
@@ -114,8 +120,12 @@
 :END:
 
 
+#+attr_latex: :height 0.18\linewidth
+[[attachment:_20220411_121046screenshot.png]]
+
+#+attr_latex: :height 0.18\linewidth
 #+caption: [[https://www.illumina.com/science/sequencing-method-explorer/kits-and-arrays/5--gro-seq.html][Illumina Sequencing Methods]]
-[[attachment:_20220408_133505screenshot.png]]
+[[attachment:_20220411_121114screenshot.png]]
 
 
 ** GRO-Seq pros and cons
@@ -135,7 +145,7 @@
 :ID:       38cec5e3-c50e-4d76-9126-cf4883249f97
 :END:
 
-#+caption[Short caption]: [fn:: [cite:@Kim_2018]]
+#+caption[Short caption]: [cite:@Kim_2018]
 [[attachment:_20220411_101902screenshot.png]]
 
 
@@ -144,6 +154,7 @@
 :ID:       754a799c-2e12-4613-9543-8d4311f83462
 :END:
 
+#+attr_latex: :height 0.25\linewidth
 [[attachment:newplot.png]]
 
 ** Kim et. al 2018 Summary :ATTACH:
@@ -151,7 +162,7 @@
 :ID:       fab0e52a-4588-4f5b-a045-debb7f415eeb
 :END:
 
-#+caption[Short caption]: [fn:: [cite:@Kim_2018]]
+#+caption[Short caption]: [cite:@Kim_2018]
 [[attachment:_20220411_102139screenshot.png]]
 
 
@@ -161,7 +172,7 @@
 :ID:       28c3910e-fa74-4824-a617-3598712149e4
 :END:
 
-#+caption[Short caption]: [fn:: [cite:@Kim_2018]]
+#+caption[Short caption]: [cite:@Kim_2018]
 [[attachment:_20220411_102205screenshot.png]]
 
 ** Reproduction with Parallel IMR Dataset
@@ -180,8 +191,8 @@
   and classes of eRNAs can be indentified from massively parrallel processing of
   publicly accessible nascent trancript assay across cell lines?
 * Aims
-* Aim 1 Create a best practice secondary analysis pipeline for nascent transcripts
-** Standardizing Snakemake
+* Aim 1: Create a best practice secondary analysis pipeline for nascent transcripts
+** Standardizing Snakemake Workflow
 
 - January 2020
 - Template
@@ -190,13 +201,23 @@
 - CI/CD
 - Wrappers
 
-** TODO nf-core Paper
-** TODO nf-core Features :ATTACH:
+** nf-core Paper :ATTACH:
+:PROPERTIES:
+:ID:       4419713d-e23c-403b-b4e2-0c30201bfbac
+:END:
+
+[[attachment:_20220411_115734screenshot.png]]
+
+** Main concepts of nf-core :ATTACH:
 :PROPERTIES:
 :ID:       b9be7b67-b57f-4f58-8cda-36455fb83c53
 :END:
 
-#+attr_latex: :height 0.7\linewidth
+#+caption: [cite:@Ewels_2020]
+#+attr_latex: :height 0.6\linewidth
+[[attachment:_20220411_115958screenshot.png]]
+
+
 
 
 ** nf-core Getting started
@@ -236,7 +257,7 @@ nextflow run nf-core/nascent \
 - Handle alignment, QC, Genome graph generation, and naive transcript
   identification
 
-* Aim 2 Take advantage of New Developments to improve eRNA annotation
+* Aim 2: Take advantage of New Developments to improve eRNA annotation
 ** New developments
 
 - CHM13 Released
@@ -260,21 +281,23 @@ nextflow run nf-core/nascent \
 
 
 
-** PINTS :ATTACH:
+** PINTS - different patterns of signals captured by TSS and NT Assays :ATTACH:
 :PROPERTIES:
 :ID:       483e1795-ac17-4e6b-a14b-37222b74a24d
 :END:
 
+#+attr_latex: :height 0.6\linewidth
 #+caption: [cite:@Yu_2022]
 [[attachment:_20220411_103318screenshot.png]]
 
 
-** PINTS :ATTACH:
+** PINTS - NT vs TSS assays :ATTACH:
 :PROPERTIES:
 :ID:       cb525ffe-5925-48af-a434-cff675b835be
 :END:
 
 #+caption: [cite:@Yu_2022]
+#+attr_latex: :height 0.35\linewidth
 [[attachment:_20220408_112049screenshot.png]]
 
 ** PINTS :ATTACH:
@@ -296,6 +319,22 @@ nextflow run nf-core/nascent \
 * Aim 3 Compare eRNA dynamics between cell lines
 ** IMR and GM
 
-** HOX and Cancer cell lines
+- GM12878 - lymphoblastoid(immune response) cell line produced from the blood of
+  a female donor (ENCODE Tier 1)
+- IMR90 - fibroblasts(connective tissue) isolated from the normal lung
+  tissue(ENCODE Tier 2.5)
 
-** References
+** IMR and GM :ATTACH:
+:PROPERTIES:
+:ID:       7569a87c-da73-4704-a6b9-86b1ca1150d4
+:END:
+
+[[attachment:_20220411_105101screenshot.png]]
+** Cell-Type Specific eRNAs
+
+| Common inducible genes:                               | 2512 |
+| Common inducible genes with cell-type specific eRNAs: | 2053 |
+
+- 81.7%  Common inducible genes had *cell-type* specific eRNAs
+- While they may have a common gene expression each cell line had their own
+  unique way of solving the need.
