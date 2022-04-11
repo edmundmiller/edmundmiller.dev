@@ -1,4 +1,4 @@
-#+title: Current Research
+#+title: Nascent Transcript Identification
 #+reveal_theme: white
 #+options: num:nil
 #+options: toc:nil
@@ -9,7 +9,7 @@
 #+reveal_init_options: slideNumber:true
 
 * Background
-* Enhancer intro
+* Gene Regulation
 ** Central Dogma of Biology :ATTACH:
 :PROPERTIES:
 :ID:       b8ce871b-5b7f-4cef-b389-7b27459818b3
@@ -89,7 +89,7 @@
 :ID:       41914259-ccb3-42b6-a38e-7e284c0bdded
 :END:
 
-#+caption[Short caption]: [fn:1: [cite:@Kim_2018]]
+#+caption[Short caption]: [fn:: [cite:@Kim_2018]]
 [[attachment:_20220408_094258screenshot.png]]
 
 
@@ -97,7 +97,7 @@
 
 - Sense and antisense transcripts from enhancers
 - Play a role in the activation because the knockdown of a subset of the eRNAs
-  resulted in decreased gene transcription [fn:4: [cite:@Shiekhattar_2010]]
+  resulted in decreased gene transcription [fn:: [cite:@Shiekhattar_2010]]
 - Used to identify active enhancers
 
 * Global Transcriptional Activity Dynamics Reveal Functional Enhancer RNAs
@@ -130,19 +130,146 @@
 - Limited to cell cultures and other artificial systems due to incubation with
   labelled nucleotides
 
-** Summary
+** Kim et. al 2018 Summary :ATTACH:
+:PROPERTIES:
+:ID:       38cec5e3-c50e-4d76-9126-cf4883249f97
+:END:
 
-** Reproduction with IMR
-* Hypothesis
+#+caption[Short caption]: [fn:: [cite:@Kim_2018]]
+[[attachment:_20220411_101902screenshot.png]]
+
+
+** Kim et. al 2018 Summary :ATTACH:
+:PROPERTIES:
+:ID:       754a799c-2e12-4613-9543-8d4311f83462
+:END:
+
+[[attachment:newplot.png]]
+
+** Kim et. al 2018 Summary :ATTACH:
+:PROPERTIES:
+:ID:       fab0e52a-4588-4f5b-a045-debb7f415eeb
+:END:
+
+#+caption[Short caption]: [fn:: [cite:@Kim_2018]]
+[[attachment:_20220411_102139screenshot.png]]
+
+
+
+** Kim et. al 2018 Summary :ATTACH:
+:PROPERTIES:
+:ID:       28c3910e-fa74-4824-a617-3598712149e4
+:END:
+
+#+caption[Short caption]: [fn:: [cite:@Kim_2018]]
+[[attachment:_20220411_102205screenshot.png]]
+
+** Reproduction with Parallel IMR Dataset
+
+- Wrote workflow using snakemake
+- Goal was to reproduce GM results
+- Achieved *80%* of predicted eRNAs due to difficulty with nascent transcript
+  identification
+
+** Hypothesis
+
+- Does the standardization of secondary analysis and use of transcription start
+  sites for calling enhancer RNAs improve the accuracy full transcript
+  identification?
+- Using the streamlined process of transcript identification can new dynamics
+  and classes of eRNAs can be indentified from massively parrallel processing of
+  publicly accessible nascent trancript assay across cell lines?
 * Aims
-** Aim 1 Create a best practice secondary analysis pipeline for nascent transcripts
-** Aim 2 Take advantage of New Developments to improve eRNA annotation
-*** New developments
-*** CHM13
-**** [[https://pubmed.ncbi.nlm.nih.gov/35357915/][Epigenetic patterns in a complete human genome - PubMed]]
-*** PINTS
+* Aim 1 Create a best practice secondary analysis pipeline for nascent transcripts
+** Standardizing Snakemake
 
-**** NT vs TSS :ATTACH:
+- January 2020
+- Template
+- Universal Commands
+- Testing
+- CI/CD
+- Wrappers
+
+** TODO nf-core Paper
+** TODO nf-core Features :ATTACH:
+:PROPERTIES:
+:ID:       b9be7b67-b57f-4f58-8cda-36455fb83c53
+:END:
+
+#+attr_latex: :height 0.7\linewidth
+
+
+** nf-core Getting started
+
+#+attr_latex: :height 0.7\linewidth
+#+begin_src bash
+# Install nextflow
+curl -s https://get.nextflow.io | bash
+mv nextflow ~/bin/
+
+# Launch the Nascent pipeline
+nextflow run nf-core/nascent \
+    --input samplesheet.csv \
+    --genome GRCh38 \
+    -profile docker
+#+end_src
+
+** Inheriting nf-core Nascent
+
+- Breaking our analysis up into smaller pieces
+- nf-core portion includes Quality Checks, alignment, graph generation, transcript
+  identification, and transcript quantification
+- Downstream analysis is then a seperate nextflow workflow
+- Data engineering/Data Science split
+
+** Primary-Secondary-Tertiary Analysis :ATTACH:
+:PROPERTIES:
+:ID:       31b1315d-d636-4cd7-928c-db5f94855d6f
+:END:
+
+
+[[attachment:_20220411_104006screenshot.png]]
+
+** Nascent Goals
+
+- Benchmark aligners to find best practices(Lots of opinions, no hard numbers)
+- Handle alignment, QC, Genome graph generation, and naive transcript
+  identification
+
+* Aim 2 Take advantage of New Developments to improve eRNA annotation
+** New developments
+
+- CHM13 Released
+- PINTS and transcriptional regulatory elements (TREs) matrix
+
+** CHM13 :ATTACH:
+:PROPERTIES:
+:ID:       8087b00d-bcee-415d-99c3-34afae64e91a
+:END:
+
+#+caption: [cite:@Timp_2022]
+[[attachment:_20220411_101653screenshot.png]]
+
+** CHM13 :ATTACH:
+:PROPERTIES:
+:ID:       8269b2b8-4cb6-4bf3-a0c1-3604fdd4d423
+:END:
+
+#+caption: [cite:@Timp_2022]
+[[attachment:_20220411_101552screenshot.png]]
+
+
+
+** PINTS :ATTACH:
+:PROPERTIES:
+:ID:       483e1795-ac17-4e6b-a14b-37222b74a24d
+:END:
+
+#+caption: [cite:@Yu_2022]
+[[attachment:_20220411_103318screenshot.png]]
+
+
+** PINTS :ATTACH:
 :PROPERTIES:
 :ID:       cb525ffe-5925-48af-a434-cff675b835be
 :END:
@@ -150,6 +277,25 @@
 #+caption: [cite:@Yu_2022]
 [[attachment:_20220408_112049screenshot.png]]
 
+** PINTS :ATTACH:
+:PROPERTIES:
+:ID:       47b91df4-1791-4121-9c6c-ee1c403115b1
+:END:
 
-**** Can we use this for NT assays?
-** Aim 3 Compare eRNA dynamics between cell lines
+#+caption: [cite:@Yu_2022]
+[[attachment:_20220411_103434screenshot.png]]
+
+
+** PINTS
+
+- Can we use PINTS for Nascent Transcript Assays?
+- Can we swap naive method of selecting for Histone modications with PINTS
+  indentified transcriptional regulatory elements (TREs)?
+- Can we indetify full length transcripts from the Nascent Transcript assays?
+
+* Aim 3 Compare eRNA dynamics between cell lines
+** IMR and GM
+
+** HOX and Cancer cell lines
+
+** References
