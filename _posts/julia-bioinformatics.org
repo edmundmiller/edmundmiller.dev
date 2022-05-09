@@ -12,7 +12,7 @@ the days of [[https://bioperl.org/articles/How_Perl_saved_human_genome.html][per
 
 Based off a recent recommendation from my friend [[https://github.com/tecosaur][Teco]]
 
-** Two Language Problem
+* Two Language Problem
 Plenty of people have written about this with Julia. Lots of scientific
 communities may use a high-level "scripting" language to manage their
 business-logic and then drop into a low-level language such as C/Fortran/Rust to
@@ -38,7 +38,7 @@ learn how to call C functions in an R package? Or would you rather just see this
 
 <Insert Picture of Julia 100%>
 
-*** But what about my C functions that are highly optimized?
+** But what about my C functions that are highly optimized?
 
 What about our in-house python library that interacts with all of our sample
 tracking and pulling files temporarily from s3? "I don't have time to figure out
@@ -48,7 +48,7 @@ and plenty of others housed under [[https://github.com/JuliaInterop][Julia Inter
 right into new code. As scientists we are constantly standing on the shoulders
 of giants, and Julia is enabling that.
 
-** [[https://biojulia.net/][BioJulia]]
+* [[https://biojulia.net/][BioJulia]]
 
 Julia has a wonderful open-source structure. Since it was created only a decade
 ago there's not a lot of legacy things to maintain and everything can be fresh
@@ -65,7 +65,7 @@ but luckily someone saw the message and told me that most of the real-time chat
 happens in [[https://julialang.slack.com/archives/CAKKFNYLD][the #biology channel in the Julia slack]].
 
 
-** Designed for Scientific Computing
+* Designed for Scientific Computing
 
 It seems like bioinformaticians always want to do things in the most efficient
 path, but solving for a different variable than most. [[https://www.lastweekinaws.com/podcast/screaming-in-the-cloud/quantum-leaps-in-bioinformatics-with-lynn-langit/][In a recent episode of
@@ -101,7 +101,7 @@ software crown, and wrapping it in some gold Julia code like it deserves.
 
 
 
-** Call to action
+* Call to action
 
 I plan on working to increase the visability into Julia specifically for
 bioinformatics. I always love this Venn diagram to explain to people what
@@ -110,7 +110,7 @@ Bioinformatics is. I think it'll be easy to cover [[https://github.com/JuliaData
 
 <Insert Bioinformatics venn diagram>
 
-*** How to get started with Julia
+** How to get started with Julia
 
 - [[https://juliacon.org/2022/tickets/][Attend JuliaCon 2022]] (It's online and free to attend!)
 - [[https://www.talkjulia.com/][Listen to the Talk Julia Podcast]]

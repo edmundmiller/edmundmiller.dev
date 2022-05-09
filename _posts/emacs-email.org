@@ -7,7 +7,7 @@
 #+OG_IMAGE: /assets/blog/dynamic-routing/cover.jpg
 
 
-** Introduction
+* Introduction
 :PROPERTIES:
 :CUSTOM_ID: introduction
 :END:
@@ -22,7 +22,7 @@ Recently I started to get the itch to bring the config into my
 since the biggest pain was setting it all up on a new computer and
 making it feel fragile.
 
-*** Guides:
+** Guides:
 :PROPERTIES:
 :CUSTOM_ID: guides
 :END:
@@ -31,14 +31,14 @@ making it feel fragile.
 - [[http://www.macs.hw.ac.uk/~rs46/posts/2014-01-13-mu4e-email-client.html]]
 - [[https://youtu.be/obY1um6ehDM]]
 
-*** Notmuch config of my dotfiles:
+** Notmuch config of my dotfiles:
 :PROPERTIES:
 :CUSTOM_ID: notmuch-config-of-my-dotfiles
 :END:
 
 - [[https://github.com/Emiller88/dotfiles/tree/master/shell/notmuch]]
 
-** Fetching the Mail
+* Fetching the Mail
 :PROPERTIES:
 :CUSTOM_ID: fetching-the-mail
 :END:
@@ -120,7 +120,7 @@ exclude_tags=trash;deleted;spam;
 synchronize_flags=true
 #+end_src
 
-** Checking Mail in the Background
+* Checking Mail in the Background
 :PROPERTIES:
 :CUSTOM_ID: checking-mail-in-the-background
 :END:
@@ -170,7 +170,7 @@ The =gmi sync= command does a =push= followed by a =pull= so the tags from the
 local overwrite anything that's on the remote. So later we'll write rules to tag
 the new mail coming in.
 
-** Tagging the Mail
+* Tagging the Mail
 :PROPERTIES:
 :CUSTOM_ID: tagging-the-mail
 :END:
@@ -243,7 +243,7 @@ tags=new
 ignore=Trash;*.json;
 #+end_src
 
-** Deleting Email
+* Deleting Email
 :PROPERTIES:
 :CUSTOM_ID: deleting-email
 :END:
@@ -258,7 +258,7 @@ emails to the trash. Here's a snippet that does that. I have this bound to =d=.
   (notmuch-tree-next-message))
 #+end_src
 
-** WIP: Sending Email
+* WIP: Sending Email
 :PROPERTIES:
 :CUSTOM_ID: wip-sending-email
 :END:

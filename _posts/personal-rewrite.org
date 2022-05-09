@@ -90,7 +90,7 @@ from Vue may crack after a while, as apposed to the copper statue that Elm and
 similar languages promise. While it's great, it won't matter if I never make the
 statue because I can't learn metallurgy at a craft store.
 
-** Tailwind Refactor
+* Tailwind Refactor
 :PROPERTIES:
 :CUSTOM_ID: tailwind-refactor
 :END:
@@ -114,17 +114,17 @@ The one issue I did run into was the way Gridsome just returned a
 handled it's markdown and then threw some tailwind in to deal with the
 theme-switcher specific stuff and ended up with [[https://github.com/Emiller88/edmundmiller.dev/blob/3e57e2466116fc260c077239d5cfdf4c0063ee40/src/assets/css/github-markdown.css][github-markdown.css]]
 
-*** TODO Theme Switcher
+** TODO Theme Switcher
 :PROPERTIES:
 :CUSTOM_ID: theme-switcher
 :END:
 
-** TODO Semantic Versioning
+* TODO Semantic Versioning
 :PROPERTIES:
 :CUSTOM_ID: semantic-versioning
 :END:
 
-** TODO Presentations
+* TODO Presentations
 :PROPERTIES:
 :CUSTOM_ID: presentations
 :END:

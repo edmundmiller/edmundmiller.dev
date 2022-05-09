@@ -6,7 +6,7 @@
 #+AUTHOR_PICTURE: /assets/blog/authors/jj.jpeg
 #+OG_IMAGE: /assets/blog/dynamic-routing/cover.jpg
 
-** Introduction
+* Introduction
    :PROPERTIES:
    :CUSTOM_ID: introduction
    :END:
@@ -22,7 +22,7 @@ claims react has been the most popular skill requested for 22 months and made up
 seem to teach you =Just Enough= ™. Hopefully this post will be enough to get you
 going from zero to out of your parent's house.
 
-*** Install git
+** Install git
 :PROPERTIES:
 :CUSTOM_ID: install-git
 :END:
@@ -30,7 +30,7 @@ going from zero to out of your parent's house.
 You'll want install =git= next. Follow the instructions at this [[https://git-scm.com][site to install]]
 for your platform.
 
-*** VS Code
+** VS Code
 :PROPERTIES:
 :CUSTOM_ID: vs-code
 :END:
@@ -39,7 +39,7 @@ I personally don't use VS Code, I use [[https://github.com/hlissner/doom-emacs][
 With that disclaimer I recommend VS Code to friends new to programming because
 it is the popular GUI editor of the hour. You can download it [[https://code.visualstudio.com][here]].
 
-*** Fira Code
+** Fira Code
 :PROPERTIES:
 :CUSTOM_ID: fira-code
 :END:
@@ -49,7 +49,7 @@ font in your editor. I like to recommend =FiraCode= because it has ligature
 support with overwhelming you with options. You can see how to install it on
 your system and add it VS Code [[https://github.com/tonsky/FiraCode/wiki][here]].
 
-*** Install nodejs
+** Install nodejs
 :PROPERTIES:
 :CUSTOM_ID: install-nodejs
 :END:
@@ -58,7 +58,7 @@ your system and add it VS Code [[https://github.com/tonsky/FiraCode/wiki][here]]
 description their site gives. We'll cover more on JS later. The link to the
 [[https://nodejs.org/en/download/][Download page]].
 
-*** Installing Extensions
+** Installing Extensions
 :PROPERTIES:
 :CUSTOM_ID: installing-extensions
 :END:
@@ -81,7 +81,7 @@ of what I recommend for following this guide:
 
 You should glance over each and see what they give you.
 
-**** [[https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode][prettier]]
+*** [[https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode][prettier]]
 :PROPERTIES:
 :CUSTOM_ID: prettier
 :END:
@@ -89,7 +89,7 @@ You should glance over each and see what they give you.
 =prettier= formats the code you on save. Follow the instructions on the
 page to set it up.
 
-**** [[https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig][EditorConfig]]
+*** [[https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig][EditorConfig]]
 :PROPERTIES:
 :CUSTOM_ID: editorconfig
 :END:
@@ -97,7 +97,7 @@ page to set it up.
 Another way to keep your code clean and set a standard. Can you tell I
 like clean code?
 
-**** [[https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint][eslint]]
+*** [[https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint][eslint]]
 :PROPERTIES:
 :CUSTOM_ID: eslint
 :END:
@@ -105,7 +105,7 @@ like clean code?
 =ESLint= tells you when you've done something wrong and sometimes can fix it for
 you.
 
-*** Integrated Terminal
+** Integrated Terminal
 :PROPERTIES:
 :CUSTOM_ID: integrated-terminal
 :END:
@@ -115,12 +115,12 @@ know what I'm writing about, we're just going to use the integrated terminal. [[
 quick doc on it]], I recommend you use =git bash= if you're on [[https://code.visualstudio.com/docs/editor/integrated-terminal#_windows][windows]].
 
 
-** GitHub
+* GitHub
 :PROPERTIES:
 :CUSTOM_ID: github
 :END:
 
-*** Create an Account
+** Create an Account
 :PROPERTIES:
 :CUSTOM_ID: create-an-account
 :END:
@@ -131,7 +131,7 @@ of this tutorial because of the various different platforms people are one would
 make it quite long, and because part of developing software is learning to read
 the friendly manual. Think of it more of a checklist.
 
-*** Create a Repo
+** Create a Repo
 :PROPERTIES:
 :CUSTOM_ID: create-a-repo
 :END:
@@ -141,7 +141,7 @@ tutorial so here is [[https://help.github.com/en/articles/creating-a-new-reposit
 site today so name it whatever you like. I'll be referring to it as
 =example-site=.
 
-*** Clone the repo
+** Clone the repo
 :PROPERTIES:
 :CUSTOM_ID: clone-the-repo
 :END:
@@ -154,7 +154,7 @@ git clone https://github.com/emiller88/example-site
 #+end_src
 
 
-** Getting the Site set up
+* Getting the Site set up
 :PROPERTIES:
 :CUSTOM_ID: getting-the-site-set-up
 :END:
@@ -162,7 +162,7 @@ git clone https://github.com/emiller88/example-site
 Now that I've bored you with all of the tooling, or if you enjoyed it, we're on
 to the real work.
 
-*** Create React App
+** Create React App
 :PROPERTIES:
 :CUSTOM_ID: create-react-app
 :END:
@@ -180,7 +180,7 @@ and you should have a browser popup with your site. This is a =local= site that
 hot reloads whenever you edit anything in the project so you can get feedback if
 your change is correct quickly.
 
-*** GitHub Pages
+** GitHub Pages
 :PROPERTIES:
 :CUSTOM_ID: github-pages
 :END:
@@ -188,7 +188,7 @@ your change is correct quickly.
 Follow the [[https://github.com/gitname/react-gh-pages#procedure][Procedure]], you should be able to skip to step 3. replace
 =react-gh-pages= with =example-site= or whatever you chose.
 
-*** CircleCI
+** CircleCI
 :PROPERTIES:
 :CUSTOM_ID: circleci
 :END:
@@ -231,7 +231,7 @@ steps:
 #+end_src
 
 
-** React
+* React
 :PROPERTIES:
 :CUSTOM_ID: react
 :END:
@@ -242,7 +242,7 @@ to the official documentation that comes in the =create-react= starter page
 which I recommend you read. But now that we're to the actual meat I'll take you
 through a few things.
 
-*** React bootstrap
+** React bootstrap
 :PROPERTIES:
 :CUSTOM_ID: react-bootstrap
 :END:
