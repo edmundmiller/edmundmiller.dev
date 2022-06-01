@@ -1,0 +1,293 @@
+:PROPERTIES:
+:ID:       6504fad5-24cc-49bc-b019-52a718672810
+:END:
+#+TITLE:     Genome-wide maps of chromatin state in pluripotent and lineage-committed cells
+#+AUTHOR:    Edmund Miller
+#+EMAIL:     Edmund.Miller@utdallas.edu
+#+DATE:      2021-03-09 Wed
+#+DESCRIPTION: a framework for deterministic machine learning
+#+KEYWORDS: [[id:73f194c5-9c44-4ab9-a8f2-021410376c8f][ChIP-seq]]
+#+LANGUAGE:  en
+#+OPTIONS:   H:2 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:https://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+HTML_LINK_UP:
+#+HTML_LINK_HOME:
+#+filetags: :biology:
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [bigger]
+#+BEAMER_FRAME_LEVEL: 2
+# C-c C-e l O
+
+* Background
+
+** Histones :ATTACH:
+:PROPERTIES:
+:ID:       7b330aee-4d85-4681-a809-025f5db75e13
+:END:
+
+#+attr_latex: :height 0.7\linewidth
+[[attachment:_20210324_114732screenshot.png]]
+
+** Histone modifications :ATTACH:
+:PROPERTIES:
+:ID:       86f221d7-720c-47ff-9df2-4ef659272ff0
+:END:
+
+#+attr_latex: :height 0.7\linewidth
+[[attachment:_20210324_115719screenshot.png]]
+
+
+** Histone modifications :ATTACH:
+:PROPERTIES:
+:ID:       b09008f9-aa29-47b9-ae53-b747ff67ba17
+:END:
+
+[[attachment:_20210324_115559screenshot.png]]
+
+- Bivalent Chromatin
+
+** Chromatin immunoprecipitation (ChIP)
+
+1. DNA and proteins are crosslinked
+2. The DNA-protein complexes are sheared (sonication or nuclease digestion)
+3. Proteins are pulled out using antibodies, along with the cross-linked DNA fragments
+4. DNA fragments are purified
+
+** Sequencing technology :ATTACH:
+:PROPERTIES:
+:ID:       04540cc4-c1f8-4b34-b004-6f92fd9c71ad
+:END:
+
+
+[[attachment:_20210324_120958screenshot.png]]
+
+(Hass and Zody, Advancing RNA-Seq analysis, Nature Biotechnology 28:421-423)
+** ChIP-seq :ATTACH:
+:PROPERTIES:
+:ID:       e6d26fa2-787e-4872-abf8-f9f649fe40ad
+:END:
+
+[[attachment:_20210324_121550screenshot.png]]
+
+** CpG Sites :ATTACH:
+:PROPERTIES:
+:ID:       623ea5dc-1211-4695-96d9-362097364d9e
+:END:
+
+[[attachment:_20210324_091853screenshot.png]]
+
+
+
+* Introduction
+** History
+
+- Mikkelson et al. from the Broad submitted to Nature and was published in August 2007.
+- Johnson et al. from Stanford submitted to Science and was published in June 2007.
+- Barski et al. from NHLBI, NIH submitted to Cell and was published in May 2007.
+
+- Barski was the third most cited biology paper in 2009
+
+- All of these were after Frank Pugh’s work on H2A.Z in yeast
+
+[[http://www.snarkyscientist.com/2013/06/19/the-history-of-the-biggest-technique-of-2009-who-invented-chip-seq/][Snarky Scientist]]
+
+** Goals
+
+- Report the development of a method for mapping ChIP enrichment by sequencing
+  (ChIP-Seq)
+- Define Broad categories of promoters based on their chromatin state and create maps
+- Demonstrate using ChIP for genome-wide annotation of novel promoters
+
+** Histone Marks
+
+*** Actively transcribed genes
+
+- H3K4me3 - Promoters
+- H3K36me3 - Body of active genes
+
+*** Repressed Genes
+
+- H3K27me3 - Gene repression
+- H4K20me3 - Tightly associated with heterochromatin
+- H3K9me2/3 - Heterochromatin and Gene repression
+
+*** Bivalent Promoters
+- Both H3K4Me3 and H3K27Me3
+
+* Genome-wide chromatin-state maps
+** Supplementary Table 1
+:PROPERTIES:
+:BEAMER_opt: shrink=10
+:END:
+
+| Cell type1                     | Epitope  | Replicates | Uniquely aligned reads |
+|--------------------------------+----------+------------+------------------------|
+| ES cells                       | pan-H3   |          1 | 4,490,474              |
+|                                | H3K4me3  |          2 | 8,398,790              |
+|                                | H3K9me3  |          2 | 4,411,447              |
+|                                | H3K27me3 |          2 | 7,211,279              |
+|                                | H3K36me3 |          2 | 7,217,118              |
+|                                | H4K20me3 |          2 | 5,139,339              |
+|                                | RNAP II  |          1 | 2,736,500              |
+|--------------------------------+----------+------------+------------------------|
+| ES cells- hybrid               | H3K4me3  |          2 | 11,471,501             |
+|                                | H3K9me3  |          1 | 3,741,367              |
+|                                | H3K36me3 |          2 | 7,826,112              |
+|--------------------------------+----------+------------+------------------------|
+| Neural progenitor cells (NPCs) | H3K4me3  |          2 | 6,995,068              |
+|                                | H3K9me3  |          2 | 4,614,191              |
+|                                | H3K27me3 |          2 | 8,166,774              |
+|                                | H3K36me3 |          2 | 7,899,115              |
+|--------------------------------+----------+------------+------------------------|
+| Embryonics fibroblasts (MEFs)  | H3K4me3  |          2 | 11,371,374             |
+| Lineage-commited               | H3K9me3  |          2 | 4,468,908              |
+|                                | H3K27me3 |          2 | 12,208,145             |
+|                                | H3K36me3 |          2 | 10,315,848             |
+
+** Figure 1 | Comparison of ChIP-Seq and ChIP-chip data :ATTACH:
+:PROPERTIES:
+:ID:       4f4a18ac-12d3-40ce-a681-6184cbf3faff
+:END:
+
+#+attr_latex: :width 1.0\linewidth
+[[attachment:_20210323_210938screenshot.png]]
+
+** Supplementary Figure 2 :ATTACH:
+:PROPERTIES:
+:ID:       f5d9faad-eda5-4ff5-9bab-ed6df6ac3d8f
+:END:
+
+#+attr_latex: :width 1.0\linewidth
+[[attachment:_20210323_213424screenshot.png]]
+
+* Promoter state in ES and lineage-committed cells
+** High CpG promoters in ES cells
+
+
+ - Divided promoters into 'high' CpG [[id:7e167394-ea82-4f4c-ae11-8428d91d2d16][promoters]](HCP) and 'low' groups, and an
+   intermediate. 11K high, 3K low and 3.3K intermediate
+
+- HCP Associated with significant [[id:0f041ac4-425e-4dbd-ad7b-737e257f2003][H3K4me3]] within a 1-2kb window
+- There is a strong correlation between [[id:0f041ac4-425e-4dbd-ad7b-737e257f2003][H3K4me3]] intensity and the expression level of associates genes
+- Not all [[id:7e167394-ea82-4f4c-ae11-8428d91d2d16][promoters]] associated with [[id:0f041ac4-425e-4dbd-ad7b-737e257f2003][H3K4me3]] are active.
+
+** High CpG promoters in ES cells
+
+- ~22% of HCPs are bivalent and show both [[id:0f041ac4-425e-4dbd-ad7b-737e257f2003][H3K4me3]] and H3K27me3 (Fig 2b)
+  + The majority are 'narrow' with more punctate H3K27me3
+
+- Bivalent Promoters show low activity despite [[id:0f041ac4-425e-4dbd-ad7b-737e257f2003][H3K4me3]]
+  + This suggests that the represseive PcG activity dominates the ubiquitous [[id:22a7cf37-ce53-4edb-b654-60f002f0fd1a][trxG]] activity
+
+- Monovalent promoters [[id:0f041ac4-425e-4dbd-ad7b-737e257f2003][(H3K4me3]]) regulate housekeeping genes, they're just always on
+- [[id:4a20df40-53a8-4d37-a0bd-494d60f6fa75][Bivalent]] [[id:7e167394-ea82-4f4c-ae11-8428d91d2d16][promoters]] are associated with genes with more complex expression
+  patterns
+  + Developmental [[id:9166f798-030e-41ea-9381-60b67d303c1b][transcription factors]]
+  + Morphogens
+  + Cell surface molecules
+  + Lineage-specific microRNAs
+
+** Figure 2 | Histone trimethylation state predicts expression of HCPs andLCPs :ATTACH:
+:PROPERTIES:
+:ID:       c0805681-907a-498f-b20f-a4a26703b9ac
+:END:
+
+#+attr_latex: :height 0.7\linewidth
+[[attachment:_20210324_110804screenshot.png]]
+
+
+** TODO High CpG promoters in NPCs and MEFs
+
+- Most HCPs marked with H3K4me3 alone in ES cells retain this mark both in NPCs
+  and MEFs
+  + This sub-class of promoters regulates ubiquitous house-keeping genes
+- Small proportion (~4%) of these promoters have H3K27me3 in MEFs
+  + Correlates with lower expression levels
+
+** Figure 3 | Cell-type-specific chromatin marks at promoter :ATTACH:
+:PROPERTIES:
+:ID:       cdf6fab7-f85d-4011-8854-1f9fcafb3ef2
+:END:
+
+#+attr_latex: :height 0.325\linewidth
+[[attachment:_20210324_110905screenshot.png]]
+
+
+** Figure 3 | Cell-type-specific chromatin marks at promoter :ATTACH:
+:PROPERTIES:
+:ID:       3ff8e55b-d0ad-4fe1-bb72-a0309652830b
+:END:
+
+#+attr_latex: :width 1.0\linewidth
+[[attachment:_20210324_110925screenshot.png]]
+
+
+* Promoter state reflects lineage commitment and potential
+
+** Figure 4 | Correlation between chromatin-state changes and lineage expression :ATTACH:
+:PROPERTIES:
+:ID:       df3132f4-3345-41a6-b6ec-19a5759ba2c1
+:END:
+
+#+attr_latex: :height 0.7\linewidth
+[[attachment:_20210324_111024screenshot.png]]
+
+
+* Genome-wide annotation of promoters and primary transcripts
+
+** Figure 5 | H3K4me3 and H3K36me3 annotate genes and non-coding RNAtranscripts. :ATTACH:
+:PROPERTIES:
+:ID:       df714a4b-0442-486d-b12c-513550ed5b35
+:END:
+
+#+attr_latex: :height 0.7\linewidth
+[[attachment:_20210324_111735screenshot.png]]
+
+
+** Figure 6 | Allele-specific histone methylation and genic H3K9me3/H4K20me3 :ATTACH:
+:PROPERTIES:
+:ID:       67ed5a84-6a68-448c-818a-63ad21906c9f
+:END:
+
+[[attachment:_20210324_111942screenshot.png]]
+
+
+* H3K9 and H4K20 trimethylation mark specific repetitive elements
+
+** Figure 6 | Allele-specific histone methylation and genic H3K9me3/H4K20me3 :ATTACH:
+:PROPERTIES:
+:ID:       792b8a6e-36cb-471e-b382-6d0913aba490
+:END:
+
+
+#+attr_latex: :width 1.0\linewidth
+[[attachment:_20210324_111952screenshot.png]]
+
+* Discussion
+
+** Discussion
+- H3K4me3 and H3K36me3 allows recognition of promoters together with their
+  complete transcription units
+  + Should help to define alternative promoters and their usage in specific cell
+    types
+  + Identify the primary structure of genes encoding non-coding RNAs
+  + Detect gene expression
+  + Detect allele-specific transcription
+
+- H3K9me3 and H4K20me3 should facilitate the study of heterochromatin, spreading
+  and imprinting mechanisms.
+
+** Discussion
+
+- H3K4me3 and H3K27me3 provides a rich description of cellular state.
+  + [[id:7e167394-ea82-4f4c-ae11-8428d91d2d16][Promoters]] may be classified as active, repressed or poised for alternative
+    developmental fates
+
+- Given the technical features of [[id:73f194c5-9c44-4ab9-a8f2-021410376c8f][ChIP-Seq]] (high throughput, low cost and input
+  requirement), it is now appropriate to contemplate projects to generate
+  catalogues of chromatin-state maps representing a wide range of human and
+  mouse cell types.

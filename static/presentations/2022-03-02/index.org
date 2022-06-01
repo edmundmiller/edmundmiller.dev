@@ -1,0 +1,191 @@
+#+title: Nascent Transcript Identification Using CHM13
+#+AUTHOR:    Edmund Miller
+#+EMAIL:     Edmund.Miller@utdallas.edu
+#+DATE:      2022-03-02 Wed
+#+DESCRIPTION:
+#+KEYWORDS:
+#+LANGUAGE:  en
+#+OPTIONS:   H:2 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:https://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+HTML_LINK_UP:
+#+HTML_LINK_HOME:
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [bigger]
+#+BEAMER_FRAME_LEVEL: 2
+# C-c C-e l O
+# SPC m e l O
+
+
+* nascent
+
+** Updated to nascent v1
+
+- Updated Multiqc report with v1 metrics
+  - Great spot checking for data mining
+- Finished up homer transcript identification
+- Started on dREG(Going to have to package it up)
+  - Kinda makes me want to build our own transcript identification model
+
+** DeepVariant Approach
+
+- [[https://google.github.io/deepvariant/posts/2020-02-20-looking-through-deepvariants-eyes/][Looking Through DeepVariant’s Eyes | DeepVariant Blog]]
+- They're trying to identify single bases
+- We're just looking at the bigger picture
+- CNNs are great at this
+
+* CHM13 Refresher
+
+** CHM13
+
+- Used PacBio's HiFi, and Nanopore's "ultra-long" reads to resolve complex forms
+  of structural variation and gaps in GRCh38
+- CHM13 Cell line a complete hydatidiform mole (CHM) cell line, "essentially
+  haploid nature"
+
+** Pacbio HiFi Reads :ATTACH:
+:PROPERTIES:
+:ID:       d253f799-3eb8-443c-9d93-7084900a978c
+:END:
+
+
+
+#+attr_latex: :height 0.4\linewidth
+[[attachment:_20220302_085317screenshot.png]]
+
+
+
+** CHM13 :ATTACH:
+:PROPERTIES:
+:ID:       4329b3e4-e1bf-420b-a790-230e4949f9f5
+:END:
+
+[[attachment:_20211208_084146screenshot.png]]
+
+** CHM13 :ATTACH:
+:PROPERTIES:
+:ID:       cf34f818-2d1d-4614-b608-cb5e26e328c0
+:END:
+
+[[attachment:_20211208_084238screenshot.png]]
+
+
+* CHM13 Results
+
+** The intersection of Homer identified peaks and centromeres
+
+- Near identical number of reads mapped(There's only 5% more to align to)
+- Had to use hg19 centromeres for the intersection
+- There were no hits
+- Reviewed the multiqc and found there was an issue with the homer
+  identification in CHM13(18% and 6% efficiency)
+- Confirmed with bedtools intersect call to aligned reads for centromeres
+
+
+* Tertiary analysis Best practices
+
+** Some Goals
+
+- Reproducibility
+- Easy for others to read the code
+- Easy for "exploratory analysis"
+- Scales (Cluster or cloud submission)
+  - Avoid ~for~ loops
+- Could I teach this to someone in a Summer semester? (Applied Genomics)
+
+** Shiny New Datascience tools popping up
+
+- [[https://kedro.readthedocs.io/en/stable/][Kedro]]
+- [[https://ploomber.io/][Ploomber - Build data pipelines. FAST.⚡️]]
+- [[https://julialang.org/][The Julia Programming Language]]
+
+** Computational Biology is a beautiful mess
+
+#+begin_quote
+The first step of any bioinformatics project is to define a new file format,
+incompatible with all previous ones.
+#+end_quote
+
+- Those all looked exciting. Until I needed to align some histones to hg38.
+- Why waste a bunch of time rewriting scripts that already worked?
+
+** Code complexity aside
+:PROPERTIES:
+:BEAMER_opt: shrink=10
+:END:
+
+#+begin_src python
+def bar():
+    x = 1
+    if x == 2:
+        print("Success")
+#+end_src
+
+#+begin_src python
+def foo():
+    evens = [2, 4, 6, 8, 10]
+    odds = [1, 3, 5, 7, 9]
+    for x in evens:
+        for y in odds:
+            product = x * y
+            if product % 2 == 0:
+                print "Product result is even"
+            if product % 5 == 0:
+                print "Product is divisible by 5"
+            if product % 3 == 0:
+                print "Product is divisible by 3"
+#+end_src
+
+- McCabe's Cyclomatic Complexity
+
+** What if I just used nextflow?
+
+- I was afraid it would be too "heavy"
+  - Making container images
+  - Boilerplate
+- Somewhat Bioinformatics specific
+
+** Reality :ATTACH:
+:PROPERTIES:
+:ID:       64886be1-f2e5-485f-851f-a74b9e711cb1
+:END:
+
+
+
+[[attachment:_20220302_085536screenshot.png]]
+
+** Some mental shifts
+
+- Just use conda environments for scripts
+- Feedback of using the results directory for creating exploratory scripts
+- Utilize nf-core modules
+- Don't try to make features/job submission one size fits all(Leave that to
+  nf-core)
+  - Allowed me to cut down on a lot of the boilerplate
+- Could a new grad student reproduce this and pick up where I left off?
+
+** How do we compare versions of things?
+:PROPERTIES:
+:BEAMER_opt: shrink=10
+:END:
+
+#+begin_src bash
+# move to the tag v1
+git checkout v1
+# store results in v1 directory
+nextflow run . --outdir ./results/v1
+
+# move to the tag v2
+git checkout v2
+# store results in v2 directory
+nextflow run . --outdir ./results/v2
+#+end_src
+
+** Some examples
+
+- [[https://github.com/qbic-pipelines/rnadeseq][qbic-pipelines/rnadeseq: Differential gene expression analysis and pathway analysis of RNAseq data]]
+- [[https://github.com/qbic-pipelines/bamtofastq][qbic-pipelines/bamtofastq]]
+- [[https://github.com/Functional-Genomics-Lab/eRNA-complementarity][Functional-Genomics-Lab/eRNA-complementarity]]

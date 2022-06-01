@@ -1,0 +1,348 @@
+#+title: Single-cell epigenomics reveals mechanisms of human cortical development
+#+AUTHOR:    Edmund Miller
+#+EMAIL:     Edmund.Miller@utdallas.edu
+#+DATE:      2021-10-25 Mon
+#+DESCRIPTION:
+#+KEYWORDS:
+#+LANGUAGE:  en
+#+OPTIONS:   H:2 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:https://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+HTML_LINK_UP:
+#+HTML_LINK_HOME:
+#+filetags: :biology:
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [bigger]
+#+BEAMER_FRAME_LEVEL: 2
+# C-c C-e l O
+# SPC m e l O
+
+* Background
+** Chromatin Accessibility :ATTACH:
+:PROPERTIES:
+:ID:       98fa6918-b773-42c5-986f-ecd891cba551
+:END:
+
+[[attachment:_20211025_113951screenshot.png]]
+** Enhancers :ATTACH:
+:PROPERTIES:
+:ID:       82072fca-90bf-4ffb-8bbf-6f50cacd02d0
+:END:
+
+[[attachment:_20211025_114315screenshot.png]]
+
+
+** Cerebral Organoids
+
+- Created /in vitro/ miniture organ resembling a brain
+  - Created by culturing pluripotent stem cells in a three-dimensional
+    rotational bioreactor
+  - Chaotically arranged, instead of structural organized
+- Can be used to investigate early human brain development
+- Need to ensure the organoids form in a reproducible way
+
+** Motivation
+
+- Better understanding of signalling pathways that contribute to
+  neurodevelopmental delay (Vitamin A)
+- Better understanding of mammalian development
+- Provide a blueprint for evaluating cerebral organoids as a model for cortical
+  development
+
+* Methods
+
+** ATAC-seq :ATTACH:
+:PROPERTIES:
+:ID:       778b2dfa-d48f-4ab3-aa3a-d9c35b5e66c9
+:END:
+
+
+[[attachment:_20211025_094241nihms653929f1.jpg]]
+
+- A proxy to how easily a transcription factor can bind to the genome
+- Uses TN5 transposase, which binds to open chromatin and inserts DNA sequencing
+  adapters
+
+
+** Sequencing with Index/barcodes :ATTACH:
+:PROPERTIES:
+:ID:       04478639-3acf-4f0a-8741-6680b4edf9da
+:END:
+
+[[attachment:_20211025_084832screenshot.png]]
+
+
+** Droplet-based cell capture :ATTACH:
+:PROPERTIES:
+:ID:       5cd69f58-9ed6-49a0-b2a8-53b27727eac7
+:END:
+
+#+attr_latex: :height 0.45\linewidth
+[[attachment:_20211025_084902screenshot.png]]
+
+- Cheaper per cell because of fewer doublets and ability to capture tens of thousands of cells
+- Popularized by Drop-seq and InDrop DIY systems
+- Commercially available platform is the 10x Genomics Chromium device
+
+
+** Single Cell Sequencing :ATTACH:
+:PROPERTIES:
+:ID:       a6fdba8a-777b-4a1a-b600-9feeda52c95c
+:END:
+
+[[attachment:_20211025_100129screenshot.png]]
+
+** Fig 1b. Experimental Workflow :ATTACH:
+:PROPERTIES:
+:ID:       3fa72657-d01a-43d9-86a7-21525d38d0f5
+:END:
+
+#+attr_latex: :width 1.05\linewidth
+[[attachment:_20211024_160756screenshot.png]]
+
+** PLAC-seq :ATTACH:
+:PROPERTIES:
+:ID:       d329be93-bd88-4b1e-a925-0003711d2796
+:END:
+
+
+#+attr_latex: :height 0.4\linewidth
+[[attachment:_20211024_173423screenshot.png]]
+
+- Looking for long-range chromatin loops
+- Rivaling Hi-C and ChIA-PET
+- Proximity ligation is conducted in nuclei prior to chromatin shearing and
+  immunoprecipitation (instead of proximity ligation are performed after
+  chromatin shearing)
+  - Ligats *then* immunoprecipitates
+- PLAC-seq requires less input materials, and claims better accuracy than ChIA-PET
+
+* Results
+** Chromatin states of the developing brain
+
+- Performed scATAC-seq on primary samples of human forebrain mid-gestation
+- Confirmed that aggregate signal from the single-cell libraries matched up with
+  bulk ATAC-seq libraries created in parallel
+- Used CellWalker to assign cell-type labels based on previous scRNA-seq
+- Able to identify differentially accessible peaks between *sub* types of cells
+
+** Fig 1f. UMAP projection of primary scATAC-seq cells coloured by broad cell type :ATTACH:
+:PROPERTIES:
+:ID:       28d496d0-8dbb-482c-8e5e-025378c68e32
+:END:
+
+#+attr_latex: :height 0.55\linewidth
+[[attachment:_20211025_105356screenshot.png]]
+
+
+** Identifying cell-type-specific enhancers
+
+- Intersected our peak set with the imputed 25-state chromatin model from Roadmap Epigenomics1
+- Identified cell-type-specific differentially accessible peaks for each cell
+  type
+- Overlaid with H3K27ac (Didn't use H3K4me1 because they only wanted active
+  enhancers?)
+- Used PLAC-seq and H3K4me3(promoter)
+
+
+** Extended Data Fig. 5 - Venn diagram of overlap of all predicted enhancers :ATTACH:
+:PROPERTIES:
+:ID:       7816b4e6-69ee-4a76-9df5-32665af5bf30
+:END:
+
+#+attr_latex: :height 0.6\linewidth
+[[attachment:_20211024_224447screenshot.png]]
+
+** Extended Data Fig. 5 - Venn diagram of overlap of all predicted enhancers :ATTACH:
+:PROPERTIES:
+:ID:       69eaeb76-cb53-4d85-b4cd-599f176fc637
+:END:
+
+#+attr_latex: :height 0.6\linewidth
+[[attachment:_20211025_121846screenshot.png]]
+
+** Fig 1h. predicted enhancer-gene interactions for RGs :ATTACH:
+:PROPERTIES:
+:ID:       8716f37e-71e6-408d-8a93-364ffdb9bebb
+:END:
+
+#+attr_latex: :height 0.4\linewidth
+[[attachment:_20211024_170901screenshot.png]]
+
+- *Pink Curves* are predicted enhancer-gene interactions for RGs
+- *Red Boxes* are predicted enhancers of ARX
+
+** Fig 1h. LacZ staining regions of enhancer activity for enhancer candidates :ATTACH:
+:PROPERTIES:
+:ID:       327b075f-404f-46c6-bcc6-162ed22a087c
+:END:
+
+[[attachment:_20211024_171702screenshot.png]]
+
+
+** Fig 1g. Characterizing the regulatory 'grammar' of cell types :ATTACH:
+:PROPERTIES:
+:ID:       ee77a47a-3315-4e62-9087-dcfdd53655c0
+:END:
+
+#+attr_latex: :height 0.5\linewidth
+[[attachment:_20211025_104634screenshot.png]]
+
+- Working towards discovering transcription factor code that controls cell
+  lineage
+
+** Disease risk in the regulatory landscape
+
+- Explored mutations in non-coding genomic regions, and loss-of-function in
+  chromatin regulators
+- Linked ATAC-seq peaks, and putative enhancers with variants
+
+** Fig 1ijk. :ATTACH:
+:PROPERTIES:
+:ID:       e35f7892-29a4-4cfa-b502-98bfea720abf
+:END:
+
+#+attr_latex: :height 0.5\linewidth
+[[attachment:_20211025_110520screenshot.png]]
+
+- Potential to identify specific regulatory programs during cortical development
+  that confer the greatest risk for neurodevelopmental disorders
+
+
+** Fig 2a Workflow for co-embedding scATAC-seq and scRNA-seq data :ATTACH:
+:PROPERTIES:
+:ID:       1730c98e-88d8-4e5f-878a-37ac0e4b463f
+:END:
+
+#+attr_latex: :height 0.45\linewidth
+[[attachment:_20211024_174146screenshot.png]]
+
+- Why 3n in scATAC-seq and 2n in scRNA-seq?
+- Right, UMAP projection of co-embedded scATAC-seq and scRNA-seq cells
+  coloured by Leiden clusters
+
+** Fig 2bc. :ATTACH:
+:PROPERTIES:
+:ID:       91afebc0-c9b0-49da-b3f5-f7b63fd85d83
+:END:
+
+#+attr_latex: :height 0.5\linewidth
+[[attachment:_20211025_110842screenshot.png]]
+
+** Fig 2e. Pseudotime :ATTACH:
+:PROPERTIES:
+:ID:       f1a3cbe9-b2f6-443a-82a1-2f190d089e64
+:END:
+
+#+attr_latex: :height 0.7\linewidth
+[[attachment:_20211025_111045screenshot.png]]
+
+
+** Fig 2fgh. Enhancers predicted to interact with genes linked to cell type identity :ATTACH:
+:PROPERTIES:
+:ID:       381ecfce-c0a2-4cc8-8c59-f63152db0cb1
+:END:
+
+
+#+attr_latex: :height 0.6\linewidth
+[[attachment:_20211025_111205screenshot.png]]
+
+** Gene activity score
+- a proxy for gene expression
+- ATACseq fragments in the gene body plus promoter (2 kb upstream from
+  transcription start sites) of all protein-coding genes were summed for each
+  cell
+
+
+** Fig 2i. Gene activity scores compared to gene expression :ATTACH:
+:PROPERTIES:
+:ID:       bc9c8e8f-f0c0-4fe7-bc05-87f9e0dfc2ad
+:END:
+
+#+attr_latex: :height 0.6\linewidth
+[[attachment:_20211025_111715screenshot.png]]
+** Fig 2j. Dynamic chromatin states in neurogenesis :ATTACH:
+:PROPERTIES:
+:ID:       20c57261-871c-4d86-9eea-50357d2b1240
+:END:
+
+#+attr_latex: :width 1.1\linewidth
+
+[[attachment:_20211025_111855screenshot.png]]
+
+** Fig 3a. Area-specific chromatin states :ATTACH:
+:PROPERTIES:
+:ID:       63bbe34d-d025-4c13-bb3e-c1fef1aa42a0
+:END:
+
+#+attr_latex: :height 0.6\linewidth
+[[attachment:_20211025_113028screenshot.png]]
+
+** Fig 3. Area-specific chromatin states :ATTACH:
+:PROPERTIES:
+:ID:       864f15f2-eb6a-46e7-93aa-8780ccd83187
+:END:
+
+#+attr_latex: :height 0.5\linewidth
+[[attachment:_20211025_113105screenshot.png]]
+
+** Fig 3IM. Retinoic acid in cortical arealization :ATTACH:
+:PROPERTIES:
+:ID:       04db7353-4613-4bcd-bf51-283c9aec6269
+:END:
+
+#+attr_latex: :height 0.7\linewidth
+[[attachment:_20211025_113251screenshot.png]]
+
+- Retinoic acid signalling has an important role in patterning of the neural
+  tissue during mammalian brain development
+- Week 10 of differentiation corresponds to deep layer neurogenesis,
+- Neurons classified as PFC-like among organoids cultured with vitamin A
+
+** Benchmarking cerebral organoids :ATTACH:
+:PROPERTIES:
+:ID:       1d5fcc47-3766-4345-bc7d-824ce2f45755
+:END:
+
+#+attr_latex: :height 0.6\linewidth
+[[attachment:_20211025_115025screenshot.png]]
+
+
+** Fig 4i. 80% of predicted enhancers found in organiods :ATTACH:
+:PROPERTIES:
+:ID:       153e7149-61ba-4bac-877f-151d35f92cd2
+:END:
+
+
+[[attachment:_20211025_114927screenshot.png]]
+
+- Missing microglial enhancers
+
+** Fig 4f. Overlap of Peaks :ATTACH:
+:PROPERTIES:
+:ID:       7c03531f-ad7f-42ad-9b25-ccb51af2f31a
+:END:
+
+#+attr_latex: :height 0.5\linewidth
+[[attachment:_20211025_114601screenshot.png]]
+
+** Discussions
+
+- Found thousands of transiently accessible loci that track with neuronal
+  differentiation.
+- Found states that may reveal mechanisms for cell fate
+- Extend the established role of RA signaling in forebrain development
+  - RA signaling plays a role in the specificitation of excitatory neurons
+
+** Article Critique
+
+- Small number of n
+- Difficulty reproducing enhancers
+
+** Future Directions
+
+- Look for more disease-associated variants in regulatory regions that affect
+  the developing cortex

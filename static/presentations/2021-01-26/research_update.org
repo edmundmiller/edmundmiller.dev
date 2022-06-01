@@ -1,0 +1,176 @@
+:PROPERTIES:
+:ID:       540e72a3-ddc0-44ee-abb2-a17621bcd6a8
+:END:
+#+TITLE:     Research Update
+#+AUTHOR:    Edmund Miller
+#+EMAIL:     Edmund.Miller@utdallas.edu
+#+DATE:      2021-01-27 Wed
+#+DESCRIPTION:
+#+KEYWORDS:
+#+LANGUAGE:  en
+#+OPTIONS:   H:2 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:https://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+HTML_LINK_UP:
+#+HTML_LINK_HOME:
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [bigger]
+#+BEAMER_FRAME_LEVEL: 2
+
+* Overview of GRO-Seq pipeline
+
+** Global Transcription :ATTACH:
+:PROPERTIES:
+:ID:       27a69cce-9e12-465c-b8af-ced235ef4858
+:END:
+
+[[attachment:globaltrans.png]]
+
+* Recap
+
+** Overview
+
+- Reproducing GM18
+- Predicted IMR90 eRNAs
+- Compared IMR90 Predicted Enhancers to GM
+- Used Homer scripts to find DE of eRNAs and Genes
+- Gene Centric vs. Enhancer Centric
+
+** Reproducing GM18 :ATTACH:
+
+- hg18 vs hg19
+- Overpredicting eRNA transcripts
+- Past Issue
+  - What I thought Peng sent me
+  - hg18 -> eRNAs -> Me
+  - What actually happened
+  - hg18 -> eRNAs -> LiftOver -> hg19 -> Me
+- Main issue is homer uniqmap
+
+** DAG of workflow
+:PROPERTIES:
+:ID:       933abd13-dab2-4bf6-8a59-7aa16f9d6cc9
+:END:
+
+#+attr_latex: :height 0.7\linewidth
+[[attachment:dag.png]]
+
+** Enhancer Transcript Identification
+
+Changes from GM18
+- hg19
+- No liftover
+
+** IMR/GM enhancer transcript overlaps :ATTACH:
+:PROPERTIES:
+:ID:       d69b864e-96b4-481d-9b67-be5af10bac64
+:END:
+
+[[attachment:eRNA_cross_cell.png]]
+
+** IMR/GM enhancer transcripts linked to DGEs :ATTACH:
+:PROPERTIES:
+:ID:       4cde863e-2a68-4676-9768-e7da5b7ba5f0
+:END:
+
+[[attachment:eRNA_cross_cell_viral.png]]
+
+** Gene Centric vs. Enhancer Centric
+
+- Peng's approach
+  - Took enhancers that were expressed deferentially
+  - Linked them to Genes within 200Kb
+
+- New approach
+  - Find genes that are deferentially expressed
+  - Link the Enhancers to those genes
+
+** Gene Centric vs. Enhancer Centric :ATTACH:
+:PROPERTIES:
+:ID:       2957af0c-1869-4c5a-9349-ac9205d2b7b0
+:END:
+
+#+attr_latex: :height 0.7\linewidth
+[[attachment:enhancer_centric_pipeline.png]]
+
+* nf-core
+
+** Standardizing Snakemake
+
+- January 2020
+- Template
+- Universal Commands
+- Testing
+- CI/CD
+- Wrappers
+
+** nf-core Paper :ATTACH:
+:PROPERTIES:
+:ID:       451876b4-d9c8-47e7-a0e4-76e3e6403a4a
+:END:
+
+[[attachment:_20210127_123601screenshot.png]]
+
+** nf-core Features :ATTACH:
+:PROPERTIES:
+:ID:       b9be7b67-b57f-4f58-8cda-36455fb83c53
+:END:
+
+#+attr_latex: :height 0.7\linewidth
+[[attachment:_20210127_123835screenshot.png]]
+
+** nf-core Getting started
+
+#+attr_latex: :height 0.7\linewidth
+#+begin_src bash
+# Install nextflow
+curl -s https://get.nextflow.io | bash
+mv nextflow ~/bin/
+
+# Launch the RNAseq pipeline
+nextflow run nf-core/rnaseq \
+    --input samplesheet.csv \
+    --genome GRCh37 \
+    -profile docker
+#+end_src
+
+** nf-core Contributions
+
+- Rewriting modules that weren't dogfood
+- Added indepth testing for modules using pytest-workflow
+  + [[https://pca.st/xdutlokp][Testing in Scientific Research and Academia - Martin Héroux - Test & Code : P...]]
+- Coming Soon
+  + Pytest-workflow tests for pipelines
+
+** Example pytest-workflow
+
+#+begin_src yaml
+- name: Run fastqc paired-end test workflow
+  command: nextflow run ./tests/software/fastqc/ -profile docker -entry test_paired_end -c tests/config/nextflow.config
+  tags:
+    - fastqc
+  files:
+    - path: output/test_paired_end/test_1_fastqc.html
+    - path: output/test_paired_end/test_2_fastqc.html
+    - path: output/test_paired_end/test_1_fastqc.zip
+    - path: output/test_paired_end/test_2_fastqc.zip
+#+end_src
+
+** nf-core Improvements to GRO-Seq pipeline
+
+- Handling of multiple genomes
+- Cluster configs
+- SRA-download
+- Plugging in down stream analysis
+
+** Future
+
+- Adding Total Functional Score of Enhancer Elements (TFSEE) Model
+  + ChroHMM alternative
+- Integrate genomic data indicating open regions of chromatin (ATAC-seq,
+  DNase-seq, or MNase-seq)
+- Applying the pipeline to our datasets
+- Applying the pipeline to outside datasets

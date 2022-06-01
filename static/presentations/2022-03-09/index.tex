@@ -1,0 +1,254 @@
+% Created 2022-03-08 Tue 21:22
+% Intended LaTeX compiler: pdflatex
+\documentclass[bigger]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usetheme[progressbar=foot]{metropolis}
+\author{Edmund Miller}
+\date{2022-03-02 Wed}
+\title{Nascent Transcript Identification}
+\hypersetup{
+ pdfauthor={Edmund Miller},
+ pdftitle={Nascent Transcript Identification},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 29.0.50 (Org mode 9.6)}, 
+ pdflang={English}}
+\usepackage{biblatex}
+\addbibresource{~/sync/reference/bibliography.bib}
+\addbibresource{~/sync/reference/biochemistry.bib}
+\addbibresource{~/sync/reference/genomics.bib}
+\addbibresource{~/sync/reference/molecular_biology.bib}
+\addbibresource{~/sync/reference/molecular_biology_project.bib}
+\addbibresource{~/sync/reference/books.bib}
+\begin{document}
+
+\maketitle
+
+\section{Background}
+\label{sec:org9fc3a76}
+
+\begin{frame}[label={sec:org8343b8c}]{Previous Work}
+\begin{center}
+\includegraphics[width=.9\linewidth]{/home/emiller/sync/org/roam/data/b6/f0adf3-3b75-4179-9573-79ec2d6a4e52/_20220308_180148screenshot.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[label={sec:orgfc05a77}]{Experimental Design}
+\begin{center}
+\includegraphics[width=.9\linewidth]{/home/emiller/sync/org/roam/data/dd/512a5d-aabd-4e19-b91b-101bae668325/_20220308_180441screenshot.png}
+\end{center}
+\end{frame}
+
+
+\begin{frame}[label={sec:org1d680de}]{eRNA Identification}
+\begin{center}
+\includegraphics[width=.9\linewidth]{/home/emiller/sync/org/roam/data/13/84c3c4-3022-40f7-ba62-d5eb11cbd95e/_20220308_180909screenshot.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[label={sec:orgc6ce2c5}]{Viral Inducible eRNA-gene pairs}
+\begin{center}
+\includegraphics[width=.9\linewidth]{/home/emiller/sync/org/roam/data/d5/08c4a7-d758-4d71-b860-fd66a6e073ca/_20220308_181202screenshot.png}
+\end{center}
+
+
+\begin{block}{Inducibility criteria}
+\begin{center}
+\includegraphics[height=0.1\linewidth]{/home/emiller/sync/org/roam/data/d5/08c4a7-d758-4d71-b860-fd66a6e073ca/_20220308_211437screenshot.png}
+\end{center}
+
+\begin{center}
+\includegraphics[width=.9\linewidth]{/home/emiller/sync/org/roam/data/d5/08c4a7-d758-4d71-b860-fd66a6e073ca/_20220308_211445screenshot.png}
+\end{center}
+\end{block}
+\end{frame}
+
+
+
+\begin{frame}[label={sec:org9e232a2}]{Reproduction with IMR Dataset}
+\begin{itemize}
+\item Wrote workflow using snakemake
+\item Goal was to reproduce GM results
+\item Achieved 80\% of predicted eRNAs
+\end{itemize}
+\end{frame}
+
+\begin{frame}[label={sec:orgb0caca4}]{GM12878/IMR90 Comparison}
+\begin{center}
+\includegraphics[width=.9\linewidth]{/home/emiller/sync/org/roam/data/0d/7b01dd-013f-4af3-a97d-96f5c407e5d1/_20220308_181956screenshot.png}
+\end{center}
+\end{frame}
+
+
+\section{nf-core/nascent}
+\label{sec:orgea39042}
+
+\begin{frame}[label={sec:org37d56a9}]{Standardizing Snakemake}
+\begin{itemize}
+\item January 2020
+\item Template
+\item Universal Commands
+\item Testing
+\item CI/CD
+\item Wrappers
+\end{itemize}
+\end{frame}
+
+\begin{frame}[label={sec:orgd7dea16}]{nf-core Paper}
+\begin{center}
+\includegraphics[width=.9\linewidth]{/home/emiller/sync/org/roam/data/45/1876b4-d9c8-47e7-a0e4-76e3e6403a4a/_20210127_123601screenshot.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[label={sec:org1872e39}]{nf-core Features}
+\begin{center}
+\includegraphics[height=0.7\linewidth]{/home/emiller/sync/org/roam/data/b9/be7b67-b57f-4f58-8cda-36455fb83c53/_20210127_123835screenshot.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[label={sec:org2425e9d},fragile]{nf-core Getting started}
+ \begin{verbatim}
+# Install nextflow
+curl -s https://get.nextflow.io | bash
+mv nextflow ~/bin/
+
+# Launch the RNAseq pipeline
+nextflow run nf-core/rnaseq \
+    --input samplesheet.csv \
+    --genome GRCh37 \
+    -profile docker
+\end{verbatim}
+\end{frame}
+
+
+
+\begin{frame}[label={sec:org5a1d10e}]{Inheriting nf-core Nascent}
+\begin{itemize}
+\item Breaking our analysis up into smaller pieces
+\item nf-core portion includes Quality Checks, alignment, graph generation, transcript
+identification, and transcript quantification
+\item Downstream analysis is then a seperate nextflow workflow
+\item Data engineering/Data Science split
+\end{itemize}
+\end{frame}
+
+\section{Future}
+\label{sec:org695a40f}
+\begin{frame}[label={sec:org6420d42}]{Future}
+\begin{itemize}
+\item CHM13 centromeres
+\item Utilizing PINTs transcriptional regulatory elements (TREs)
+\item WGS viral sequences
+\end{itemize}
+\end{frame}
+
+\begin{frame}[label={sec:org80c930e}]{CHM13}
+\begin{itemize}
+\item Used PacBio's HiFi, and Nanopore's ``ultra-long'' reads to resolve complex forms
+of structural variation and gaps in GRCh38
+\item CHM13 Cell line a complete hydatidiform mole (CHM) cell line, ``essentially
+haploid nature''
+\end{itemize}
+\end{frame}
+
+\begin{frame}[label={sec:org12e7616}]{Pacbio HiFi Reads}
+\begin{center}
+\includegraphics[height=0.4\linewidth]{/home/emiller/sync/org/roam/data/d2/53f799-3eb8-443c-9d93-7084900a978c/_20220302_085317screenshot.png}
+\end{center}
+\end{frame}
+
+
+
+\begin{frame}[label={sec:org11e8632}]{CHM13}
+\begin{center}
+\includegraphics[width=.9\linewidth]{/home/emiller/sync/org/roam/data/43/29b3e4-e1bf-420b-a790-230e4949f9f5/_20211208_084146screenshot.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[label={sec:org774206d}]{CHM13}
+\begin{center}
+\includegraphics[width=.9\linewidth]{/home/emiller/sync/org/roam/data/cf/34f818-2d1d-4614-b608-cb5e26e328c0/_20211208_084238screenshot.png}
+\end{center}
+\end{frame}
+
+
+\begin{frame}[label={sec:org17b70ef}]{The intersection of Homer identified peaks and centromeres}
+\begin{itemize}
+\item Near identical number of reads mapped(There's only 5\% more to align to)
+\item Had to use hg19 centromeres for the intersection(Found a T2T liftOver
+chainfile)
+\item There were no hits
+\item Confirmed with call to aligned reads for centromere regions
+\end{itemize}
+\end{frame}
+
+\begin{frame}[label={sec:orgcb70037}]{The intersection of Homer identified peaks and centromeres}
+\begin{itemize}
+\item Reads are probably being thrown out for two reasons
+\begin{itemize}
+\item Centromeres are high in repeats so tossed
+\item They then are high in repeats so the probably have multiple alignments and
+get tossed
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[label={sec:orga77618f}]{PINTS - transcriptional regulatory elements (TREs)}
+\begin{itemize}
+\item PINTS is modeled after MACS2
+\item Utilized TSS assays (GRO/PRO-\alert{cap}, CoPRO, Start-seq, CAGE)
+\item GRO/PRO-\alert{seq} are NT assays
+\end{itemize}
+
+
+\begin{center}
+\includegraphics[width=.9\linewidth]{/home/emiller/sync/org/roam/data/1e/d9c9e3-b1d8-4fa0-833b-b387f82689bb/_20220308_205916screenshot.png}
+\end{center}
+\end{frame}
+
+
+\begin{frame}[label={sec:org1924a03}]{Picking up Nascent Reads}
+\begin{center}
+\includegraphics[height=0.7\linewidth]{/home/emiller/sync/org/roam/data/e8/130625-84b2-4d0f-8a4b-525b7459c08d/_20220308_210616screenshot.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[label={sec:orge7dbc98}]{PINTS Highlights}
+\begin{itemize}
+\item Reasonable computational requirements (Feasible to run on a typical personal
+computer)
+\item Noticed \alert{minor changes} in sample processing could lead to changes of up to
+\alert{>20\%} in the final results
+\item Well packaged and usable by others
+\end{itemize}
+\end{frame}
+
+\begin{frame}[label={sec:org07cd786}]{WGS viral sequences}
+\begin{itemize}
+\item Take 1000 genomes data from Illumina
+\item Take unaligned reads from bams and convert back to raw reads
+\item Realign to viral genomes and quantify through nf-core/sarek WGS pipline
+\item Looking for possible correlation between viral infection and phenotypes
+\end{itemize}
+\end{frame}
+
+\begin{frame}[label={sec:org2871916}]{Call to Actions}
+\begin{itemize}
+\item Take \href{https://functional-genomics-lab.github.io/Applied-Genomics/}{\alert{Applied Genomics}} this summer!
+\item Apply for the \href{https://nf-co.re/mentorships}{\alert{nf-core mentorship program}}!
+\item \href{https://registration.elementbiosciences.com/}{\alert{Element Biosciences launch event on monday}}!
+\end{itemize}
+\end{frame}
+\end{document}

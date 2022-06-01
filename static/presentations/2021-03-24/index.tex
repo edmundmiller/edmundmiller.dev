@@ -1,0 +1,323 @@
+% Created 2021-03-24 Wed 12:55
+% Intended LaTeX compiler: pdflatex
+\documentclass[bigger]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usetheme[progressbar=foot]{metropolis}
+\author{Edmund Miller}
+\date{2021-03-09 Wed}
+\title{Genome-wide maps of chromatin state in pluripotent and lineage-committed cells}
+\hypersetup{
+ pdfauthor={Edmund Miller},
+ pdftitle={Genome-wide maps of chromatin state in pluripotent and lineage-committed cells},
+ pdfkeywords={\href{../../concepts/biology/sequencing/chip\_seq.org}{ChIP-seq}},
+ pdfsubject={a framework for deterministic machine learning},
+ pdfcreator={Emacs 28.0.50 (Org mode 9.5)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+
+\section{Background}
+\label{sec:org49fde6a}
+
+\begin{frame}[label={sec:org34e898f}]{Histones}
+\begin{center}
+\includegraphics[height=0.7\linewidth]{/home/emiller/sync/org/roam/data/7b/330aee-4d85-4681-a809-025f5db75e13/_20210324_114732screenshot.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[label={sec:orgffa065f}]{Histone modifications}
+\begin{center}
+\includegraphics[height=0.7\linewidth]{/home/emiller/sync/org/roam/data/86/f221d7-720c-47ff-9df2-4ef659272ff0/_20210324_115719screenshot.png}
+\end{center}
+\end{frame}
+
+
+\begin{frame}[label={sec:org70117aa}]{Histone modifications}
+\begin{center}
+\includegraphics[width=.9\linewidth]{/home/emiller/sync/org/roam/data/b0/9008f9-aa29-47b9-ae53-b747ff67ba17/_20210324_115559screenshot.png}
+\end{center}
+
+\begin{itemize}
+\item Bivalent Chromatin
+\end{itemize}
+\end{frame}
+
+\begin{frame}[label={sec:org9917a63}]{Chromatin immunoprecipitation (ChIP)}
+\begin{enumerate}
+\item DNA and proteins are crosslinked
+\item The DNA-protein complexes are sheared (sonication or nuclease digestion)
+\item Proteins are pulled out using antibodies, along with the cross-linked DNA fragments
+\item DNA fragments are purified
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[label={sec:org7d9fcf5}]{Sequencing technology}
+\begin{center}
+\includegraphics[width=.9\linewidth]{/home/emiller/sync/org/roam/data/04/540cc4-c1f8-4b34-b004-6f92fd9c71ad/_20210324_120958screenshot.png}
+\end{center}
+
+(Hass and Zody, Advancing RNA-Seq analysis, Nature Biotechnology 28:421-423)
+\end{frame}
+\begin{frame}[label={sec:org0fd816b}]{ChIP-seq}
+\begin{center}
+\includegraphics[width=.9\linewidth]{/home/emiller/sync/org/roam/data/e6/d26fa2-787e-4872-abf8-f9f649fe40ad/_20210324_121550screenshot.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[label={sec:org43e8a90}]{CpG Sites}
+\begin{center}
+\includegraphics[width=.9\linewidth]{/home/emiller/sync/org/roam/data/62/3ea5dc-1211-4695-96d9-362097364d9e/_20210324_091853screenshot.png}
+\end{center}
+\end{frame}
+
+
+
+\section{Introduction}
+\label{sec:org2c9dc3f}
+\begin{frame}[label={sec:orge8fb555}]{History}
+\begin{itemize}
+\item Mikkelson et al. from the Broad submitted to Nature and was published in August 2007.
+\item Johnson et al. from Stanford submitted to Science and was published in June 2007.
+\item Barski et al. from NHLBI, NIH submitted to Cell and was published in May 2007.
+
+\item Barski was the third most cited biology paper in 2009
+
+\item All of these were after Frank Pugh’s work on H2A.Z in yeast
+\end{itemize}
+
+\href{http://www.snarkyscientist.com/2013/06/19/the-history-of-the-biggest-technique-of-2009-who-invented-chip-seq/}{Snarky Scientist}
+\end{frame}
+
+\begin{frame}[label={sec:org8f4a699}]{Goals}
+\begin{itemize}
+\item Report the development of a method for mapping ChIP enrichment by sequencing
+(ChIP-Seq)
+\item Define Broad categories of promoters based on their chromatin state and create maps
+\item Demonstrate using ChIP for genome-wide annotation of novel promoters
+\end{itemize}
+\end{frame}
+
+\begin{frame}[label={sec:org22d436b}]{Histone Marks}
+\begin{block}{Actively transcribed genes}
+\begin{itemize}
+\item H3K4me3 - Promoters
+\item H3K36me3 - Body of active genes
+\end{itemize}
+\end{block}
+
+\begin{block}{Repressed Genes}
+\begin{itemize}
+\item H3K27me3 - Gene repression
+\item H4K20me3 - Tightly associated with heterochromatin
+\item H3K9me2/3 - Heterochromatin and Gene repression
+\end{itemize}
+\end{block}
+
+\begin{block}{Bivalent Promoters}
+\begin{itemize}
+\item Both H3K4Me3 and H3K27Me3
+\end{itemize}
+\end{block}
+\end{frame}
+
+\section{Genome-wide chromatin-state maps}
+\label{sec:orgff98a94}
+\begin{frame}[label={sec:org58b31a9},shrink=10]{Supplementary Table 1}
+\begin{center}
+\begin{tabular}{llrl}
+Cell type1 & Epitope & Replicates & Uniquely aligned reads\\
+\hline
+ES cells & pan-H3 & 1 & 4,490,474\\
+ & H3K4me3 & 2 & 8,398,790\\
+ & H3K9me3 & 2 & 4,411,447\\
+ & H3K27me3 & 2 & 7,211,279\\
+ & H3K36me3 & 2 & 7,217,118\\
+ & H4K20me3 & 2 & 5,139,339\\
+ & RNAP II & 1 & 2,736,500\\
+\hline
+ES cells- hybrid & H3K4me3 & 2 & 11,471,501\\
+ & H3K9me3 & 1 & 3,741,367\\
+ & H3K36me3 & 2 & 7,826,112\\
+\hline
+Neural progenitor cells (NPCs) & H3K4me3 & 2 & 6,995,068\\
+ & H3K9me3 & 2 & 4,614,191\\
+ & H3K27me3 & 2 & 8,166,774\\
+ & H3K36me3 & 2 & 7,899,115\\
+\hline
+Embryonics fibroblasts (MEFs) & H3K4me3 & 2 & 11,371,374\\
+Lineage-commited & H3K9me3 & 2 & 4,468,908\\
+ & H3K27me3 & 2 & 12,208,145\\
+ & H3K36me3 & 2 & 10,315,848\\
+\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}[label={sec:orge45a040}]{Figure 1 | Comparison of ChIP-Seq and ChIP-chip data}
+\begin{center}
+\includegraphics[width=1.0\linewidth]{/home/emiller/sync/org/roam/data/4f/4a18ac-12d3-40ce-a681-6184cbf3faff/_20210323_210938screenshot.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[label={sec:orgc520755}]{Supplementary Figure 2}
+\begin{center}
+\includegraphics[width=1.0\linewidth]{/home/emiller/sync/org/roam/data/f5/d9faad-eda5-4ff5-9bab-ed6df6ac3d8f/_20210323_213424screenshot.png}
+\end{center}
+\end{frame}
+
+\section{Promoter state in ES and lineage-committed cells}
+\label{sec:orgea3e35f}
+\begin{frame}[label={sec:orgaadc469}]{High CpG promoters in ES cells}
+\begin{itemize}
+\item Divided promoters into 'high' CpG \href{../../concepts/biology/promoter.org}{promoters}(HCP) and 'low' groups, and an
+intermediate. 11K high, 3K low and 3.3K intermediate
+\end{itemize}
+\begin{itemize}
+\item HCP Associated with significant \href{../../concepts/biology/h3k4me3.org}{H3K4me3} within a 1-2kb window
+\item There is a strong correlation between \href{../../concepts/biology/h3k4me3.org}{H3K4me3} intensity and the expression level of associates genes
+\item Not all \href{../../concepts/biology/promoter.org}{promoters} associated with \href{../../concepts/biology/h3k4me3.org}{H3K4me3} are active.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[label={sec:org06f563f}]{High CpG promoters in ES cells}
+\begin{itemize}
+\item \textasciitilde{}22\% of HCPs are bivalent and show both \href{../../concepts/biology/h3k4me3.org}{H3K4me3} and H3K27me3 (Fig 2b)
+\begin{itemize}
+\item The majority are 'narrow' with more punctate H3K27me3
+\end{itemize}
+
+\item Bivalent Promoters show low activity despite \href{../../concepts/biology/h3k4me3.org}{H3K4me3}
+\begin{itemize}
+\item This suggests that the represseive PcG activity dominates the ubiquitous \href{../../concepts/biology/trxg.org}{trxG} activity
+\end{itemize}
+
+\item Monovalent promoters \href{../../concepts/biology/h3k4me3.org}{(H3K4me3}) regulate housekeeping genes, they're just always on
+\item \href{../../concepts/biology/bivalent\_chromatin.org}{Bivalent} \href{../../concepts/biology/promoter.org}{promoters} are associated with genes with more complex expression
+patterns
+\begin{itemize}
+\item Developmental \href{../../concepts/biology/transcription\_factor\_tf.org}{transcription factors}
+\item Morphogens
+\item Cell surface molecules
+\item Lineage-specific microRNAs
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[label={sec:org50e451d}]{Figure 2 | Histone trimethylation state predicts expression of HCPs andLCPs}
+\begin{center}
+\includegraphics[height=0.7\linewidth]{/home/emiller/sync/org/roam/data/c0/805681-907a-498f-b20f-a4a26703b9ac/_20210324_110804screenshot.png}
+\end{center}
+\end{frame}
+
+
+\begin{frame}[label={sec:org342f446}]{High CpG promoters in NPCs and MEFs}
+\begin{itemize}
+\item Most HCPs marked with H3K4me3 alone in ES cells retain this mark both in NPCs
+and MEFs
+\begin{itemize}
+\item This sub-class of promoters regulates ubiquitous house-keeping genes
+\end{itemize}
+\item Small proportion (\textasciitilde{}4\%) of these promoters have H3K27me3 in MEFs
+\begin{itemize}
+\item Correlates with lower expression levels
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[label={sec:org32f0b8b}]{Figure 3 | Cell-type-specific chromatin marks at promoter}
+\begin{center}
+\includegraphics[height=0.325\linewidth]{/home/emiller/sync/org/roam/data/cd/f6fab7-f85d-4011-8854-1f9fcafb3ef2/_20210324_110905screenshot.png}
+\end{center}
+\end{frame}
+
+
+\begin{frame}[label={sec:org71a6e95}]{Figure 3 | Cell-type-specific chromatin marks at promoter}
+\begin{center}
+\includegraphics[width=1.0\linewidth]{/home/emiller/sync/org/roam/data/3f/f8e55b-d0ad-4fe1-bb72-a0309652830b/_20210324_110925screenshot.png}
+\end{center}
+\end{frame}
+
+
+\section{Promoter state reflects lineage commitment and potential}
+\label{sec:org535562a}
+
+\begin{frame}[label={sec:org1fbbdd2}]{Figure 4 | Correlation between chromatin-state changes and lineage expression}
+\begin{center}
+\includegraphics[height=0.7\linewidth]{/home/emiller/sync/org/roam/data/df/3132f4-3345-41a6-b6ec-19a5759ba2c1/_20210324_111024screenshot.png}
+\end{center}
+\end{frame}
+
+
+\section{Genome-wide annotation of promoters and primary transcripts}
+\label{sec:org4634aa8}
+
+\begin{frame}[label={sec:orga9d165b}]{Figure 5 | H3K4me3 and H3K36me3 annotate genes and non-coding RNAtranscripts.}
+\begin{center}
+\includegraphics[height=0.7\linewidth]{/home/emiller/sync/org/roam/data/df/714a4b-0442-486d-b12c-513550ed5b35/_20210324_111735screenshot.png}
+\end{center}
+\end{frame}
+
+
+\begin{frame}[label={sec:org44a1ca7}]{Figure 6 | Allele-specific histone methylation and genic H3K9me3/H4K20me3}
+\begin{center}
+\includegraphics[width=.9\linewidth]{/home/emiller/sync/org/roam/data/67/ed5a84-6a68-448c-818a-63ad21906c9f/_20210324_111942screenshot.png}
+\end{center}
+\end{frame}
+
+
+\section{H3K9 and H4K20 trimethylation mark specific repetitive elements}
+\label{sec:org732be3e}
+
+\begin{frame}[label={sec:org47ded02}]{Figure 6 | Allele-specific histone methylation and genic H3K9me3/H4K20me3}
+\begin{center}
+\includegraphics[width=1.0\linewidth]{/home/emiller/sync/org/roam/data/79/2b8a6e-36cb-471e-b382-6d0913aba490/_20210324_111952screenshot.png}
+\end{center}
+\end{frame}
+
+\section{Discussion}
+\label{sec:org8bd7349}
+
+\begin{frame}[label={sec:orgddf2db2}]{Discussion}
+\begin{itemize}
+\item H3K4me3 and H3K36me3 allows recognition of promoters together with their
+complete transcription units
+\begin{itemize}
+\item Should help to define alternative promoters and their usage in specific cell
+types
+\item Identify the primary structure of genes encoding non-coding RNAs
+\item Detect gene expression
+\item Detect allele-specific transcription
+\end{itemize}
+
+\item H3K9me3 and H4K20me3 should facilitate the study of heterochromatin, spreading
+and imprinting mechanisms.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[label={sec:org945ee15}]{Discussion}
+\begin{itemize}
+\item H3K4me3 and H3K27me3 provides a rich description of cellular state.
+\begin{itemize}
+\item \href{../../concepts/biology/promoter.org}{Promoters} may be classified as active, repressed or poised for alternative
+developmental fates
+\end{itemize}
+
+\item Given the technical features of \href{../../concepts/biology/sequencing/chip\_seq.org}{ChIP-Seq} (high throughput, low cost and input
+requirement), it is now appropriate to contemplate projects to generate
+catalogues of chromatin-state maps representing a wide range of human and
+mouse cell types.
+\end{itemize}
+\end{frame}
+\end{document}

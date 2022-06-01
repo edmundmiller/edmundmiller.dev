@@ -1,0 +1,291 @@
+#+title: Research Update
+#+AUTHOR:    Edmund Miller
+#+EMAIL:     Edmund.Miller@utdallas.edu
+#+DATE:      2021-10-13 Wed
+#+DESCRIPTION: Internship with Element Biosciences
+#+KEYWORDS:
+#+LANGUAGE:  en
+#+OPTIONS:   H:2 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:https://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+HTML_LINK_UP:
+#+HTML_LINK_HOME:
+#+filetags: :biology:
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [bigger]
+#+BEAMER_FRAME_LEVEL: 2
+# C-c C-e l O
+# SPC m e l O
+
+* Internship with Element Biosciences
+
+** Element Biosciences
+
+- Startup creating a new DNA sequencing platform
+- Worked with the Bioinfomatics group
+- Met Bryan Lajoie through nf-core
+
+** Overview
+
+- ERCC Analysis
+- COVID Assay analysis
+- Secondary Analysis Infrastructure
+
+* ERCC Analysis - External RNA Controls Consortium
+** ERCC Analysis - External RNA Controls Consortium
+
+- Evaluation of multiple performance characteristics
+  + Linear performance of individual controls
+  + Signal response within dynamic range pools of controls
+  + Ratio detection between pairs of dynamic range pools.
+
+*** Ratios :B_ignoreheading:BMCOL:ATTACH:
+:PROPERTIES:
+:BEAMER_col: 0.35
+:ID:       baaefd37-898b-423a-a702-7d767f64f391
+:END:
+
+#+attr_latex: :width \textwidth
+[[attachment:_20211004_163409screenshot.png]]
+
+*** Expected :B_ignoreheading:BMCOL:ATTACH:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:ID:       97d9a007-e078-45c0-9b8e-5659ed9a438b
+:END:
+
+#+attr_latex: :width \textwidth
+[[attachment:_20211004_163631screenshot.png]]
+
+
+
+** ERCC Analysis
+
+- Allows for estimation of Lab to Lab (instrument to instrument) variation.
+- Used [[https://www.bioconductor.org/packages/release/bioc/html/erccdashboard.html][erccdashboard]] to create a standardized analysis.
+
+* Amplicon Analysis for Covid assay
+** Amplicon Analysis for Covid assay :ATTACH:
+:PROPERTIES:
+:ID:       94536871-7213-4228-a9a4-3ac6d0fba1e8
+:END:
+
+[[attachment:_20211004_165109screenshot.png]]
+
+** nf-core/viralrecon :ATTACH:
+:PROPERTIES:
+:ID:       84ad5978-ba58-463c-ba72-9747e7cbea22
+:END:
+
+
+[[attachment:_20211004_165305screenshot.png]]
+
+** nf-core/viralrecon :ATTACH:
+:PROPERTIES:
+:ID:       df5ed11b-ac78-4cb4-b44f-44b65eea42ba
+:END:
+
+[[attachment:_20211004_165747screenshot.png]]
+
+** nf-core/viralrecon :ATTACH:
+:PROPERTIES:
+:ID:       e18c87a6-f9f4-4187-8d76-ee2bdfc6af0b
+:END:
+
+
+[[attachment:_20211004_170305screenshot.png]]
+
+
+** Analysis of Covid Variants :ATTACH:
+:PROPERTIES:
+:ID:       6d9cf682-29d6-4ad5-b2d3-32c4115ba070
+:END:
+
+[[attachment:_20211004_170948screenshot.png]]
+
+* Secondary Analysis Infrastructure
+
+** What is Secondary Analysis?
+
+Primary Analysis - Specific steps needed to transform images into base-calls and compute quality scores for those bases
+
+Secondary Analysis – Alignment of these short sequencing reads onto a reference genome and variant calling
+
+Tertiary Analysis – Interpreting the secondary analysis data (annotation, qc metrics, filtering, benchmarking)
+
+** Types of Secondary Analysis
+- WGS
+  - Human, ecoli, phix, covid
+- WES
+  - Exome, panel, amplicon
+- Single Cell
+  - 10x scRNA-Seq, 10x spatial, 10x scATAC-Seq
+- RNA-Seq
+  - Bulk RNA
+- MetaGenomics
+  - Stool sample
+
+** Whole Genome Sequencing
+- Allows us to compare with the “truth”
+
+- Genome in a Bottle
+  - Leveraging multiple instrument platforms to create truth datasets
+  - Truth is available for HG001-HG005 with diverse genetic backgrounds
+
+- Allowed us to provide feedback to the rest of the teams
+  - Context Errors
+
+** Goals of the Secondary Analysis Infrastructure
+
+- Mimicking a Customer environment
+- Internal Data discoverability
+- *Automation*
+
+** Design Decisions
+
+*** nextflow and nf-core :B_ignoreheading:BMCOL:ATTACH:
+:PROPERTIES:
+:BEAMER_col: 0.35
+:ID:       4fb43e6a-fd94-4123-94fb-9eb49d01bbef
+:END:
+
+#+attr_latex: :width \textwidth
+[[attachment:_20211004_173812screenshot.png]]
+
+
+#+attr_latex: :width \textwidth
+[[attachment:_20211004_173820screenshot.png]]
+
+*** Expected Output :B_ignoreheading:BMCOL:ATTACH:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:ID:       8a619033-8dba-48de-a2a1-3b3e563fa007
+:END:
+
+#+attr_latex: :width \textwidth
+[[attachment:_20211005_103739screenshot.png]]
+
+
+#+attr_latex: :width \textwidth
+[[attachment:_20211004_174248screenshot.png]]
+
+** Nextflow
+
+- Opensource
+  + Supported by Seqera
+
+- Platform independent
+  + Runs locally, Cloud, SLURM, hybrid
+
+- Reproducibility
+
+** nf-core
+
+- Common bioinformatics software modules make creating new workflows quickly
+
+- Curated set of best practice pipelines to avoid reinventing the wheel for
+  *secondary analysis*.
+
+- Template to quickly start new pipelines
+
+** AWS Batch :ATTACH:
+:PROPERTIES:
+:ID:       c87b16b3-cd2d-4d96-b18c-1da2204ec7fe
+:END:
+
+- Abstracts away the cluster provisioning
+- Spot Instances
+- Utilizing High Performance systems
+
+
+[[attachment:_20211005_095412screenshot.png]]
+
+** Nextflow Tower
+
+- Handling AWS batch environment
+- Monitoring, logging & observability
+- Automation
+- Smoothing out Customer Experience
+
+** Things learned from this Internship
+
+- Exposure to Cloud computing for bioinformatics
+- Improved my tertiary analysis skills
+- Exposure to primary analysis
+- Exposure to a greater variety of assays
+- Better understanding of job titles and roles that are out there
+- Skills Seymon looks for when hiring(in order):
+  + Ability to write production level code
+  + Developing novel algorithms
+  + Tertiary analysis skills
+
+* Notebook Template
+** Notebook Template Goals
+
+- Creating a separation between secondary and tertiary analysis
+- Ingesting the expected results from secondary analysis
+- Environment is easily reproducible but flexible for moving quickly
+- Avoid being tied to one language
+- Data science instead of data engineering
+
+** Getting started
+
+1. Go to [[https://github.com/Functional-Genomics-Lab/notebook-template][*GitHub - Functional-Genomics-Lab/notebook-template*]]
+2. Click "Use this Template"
+3. ~docker-compose up~
+4. Copy the link to your local jupyter instance from the terminal and open it in
+   your browser.
+
+** Selecting an Image :ATTACH:
+:PROPERTIES:
+:ID:       6af94bed-fcfd-4fac-89f0-c4207236ef91
+:END:
+
+
+[[attachment:_20211005_121802screenshot.png]]
+
+
+** Quick Tour using GRO-Seq Analysis
+
+- Dockerfile
+- requirements.txt
+- Notebooks
+
+** Inspiration from 10x :ATTACH:
+:PROPERTIES:
+:ID:       38522a2a-53ca-48d9-b45d-58e5c630642c
+:END:
+
+
+[[attachment:_20211006_084828big_picture.png]]
+
+
+* nf-core/nascent
+
+** nf-core/nascent
+
+- Taking over an old repo to avoid duplication of work and fragmenting community
+- Main purpose is going from FastQ to counts, nascent transcripts, and
+  bedGraph/bigWigs
+- The output files can be used in UCSC Genome Browser or in Notebooks
+
+** Conversion Progress
+
+- Updated to the most recent nf-core template
+- Rebased our Commits on top of the old repo (To preserve v1.0 for any legacy
+  research)
+
+** Things left TODO
+
+- Old nascent functionality added in a subworkflow
+- Add test data to nf-core test data
+- Refgenie nf-core infrastructure to use T2T-CHM13 reference
+
+** nf-core Hackathon
+
+- October 27th-29th 2021
+- Focus is going to be on converting pipelines to DSL2
+- [[https://nf-co.re/events/2021/hackathon-october-2021][*Sign up form*]]

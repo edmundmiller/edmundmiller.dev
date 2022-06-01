@@ -1,0 +1,332 @@
+:PROPERTIES:
+:ID:       0b0cd6ee-ebaf-4c32-ae1b-4d67097a6f12
+:END:
+#+title: Cell-cycle-gated feedback control mediates desensitization to interferon
+#+AUTHOR:    Edmund Miller
+#+EMAIL:     Edmund.Miller@utdallas.edu
+#+DATE:      2021-04-22 Thu
+#+DESCRIPTION: a framework for deterministic machine learning
+#+KEYWORDS: [[id:73f194c5-9c44-4ab9-a8f2-021410376c8f][ChIP-seq]]
+#+LANGUAGE:  en
+#+OPTIONS:   H:2 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:https://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+HTML_LINK_UP:
+#+HTML_LINK_HOME:
+#+filetags: :biology:
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [bigger]
+#+BEAMER_FRAME_LEVEL: 2
+# C-c C-e l O
+
+* Introduction
+** Hypothesis
+
+- Does pretreatment with IFN-\alpha result in desensitization?
+- Can a computational model be created to predict IFN responses?
+- What role does the cell cycle play in the IFN response?
+
+* Results
+
+* IFN-\alpha pretreatments confer opposite effects depending on their durations
+
+** Fig 1A. HeLa Reporter Cell Line :ATTACH:
+:PROPERTIES:
+:ID:       9c49804b-952c-4340-80ba-d9dd74a7c25a
+:END:
+
+#+attr_latex: :width 0.3\linewidth
+[[attachment:_20210422_091025screenshot.png]]
+
+** Fig. 1D Schematic of IFN-\alpha pretreatment experiments :ATTACH:
+:PROPERTIES:
+:ID:       73b2dbf8-db7a-45e3-8330-8577071a5664
+:END:
+
+#+attr_latex: :width 0.8\linewidth
+[[attachment:_20210422_104851screenshot.png]]
+
+** Fig. 1D A diagram of the microfluidic set-up :ATTACH:
+:PROPERTIES:
+:ID:       b0374431-2d84-4971-b843-406055e5cd4a
+:END:
+
+#+attr_latex: :width 0.4\linewidth
+[[attachment:_20210422_105123screenshot.png]]
+
+** Fig. 1B Time Lapse of Cells treated for IFN-\alpha for 48 hours :ATTACH:
+:PROPERTIES:
+:ID:       8d9f9652-6877-4cfe-a77f-0623c291b9ca
+:END:
+
+#+attr_latex: :width 0.9\linewidth
+[[attachment:_20210422_091431screenshot.png]]
+
+** Fig. 1B Time traces of nuclear/cytoplasmic STAT1-mCherry and PIRF9-YFP signals of the cell :ATTACH:
+:PROPERTIES:
+:ID:       5c99b71e-577e-4a77-b775-06aa3bce18d8
+:END:
+
+
+[[attachment:_20210422_091808screenshot.png]]
+
+** Fig. 1C Averaged time traces of nuclear/cytoplasmic STAT1-mCherry, PIRF9-YFP :ATTACH:
+:PROPERTIES:
+:ID:       362b33e1-02fb-44db-addb-24e1f2db8251
+:END:
+
+#+attr_latex: :width 0.9\linewidth
+[[attachment:_20210422_100656screenshot.png]]
+
+
+** Fig. Supp 1D Time course western blots showing the dynamics of phosphorylation (pY701), IRF9 and expression of STAT1 :ATTACH:
+:PROPERTIES:
+:ID:       0188f9f9-a56b-479e-8555-2a398cdeb68b
+:END:
+
+
+[[attachment:_20210422_093026screenshot.png]]
+
+** Fig. 1E PIRF9-driven YFP induction response to the second IFN-\alpha treatment :ATTACH:
+:PROPERTIES:
+:ID:       1c98a201-a621-4a03-85cb-b72eda9ce918
+:END:
+
+#+attr_latex: :width 0.9\linewidth
+[[attachment:_20210422_102211screenshot.png]]
+
+
+
+* USP18 is responsible for desensitization induced by the prolonged IFN-\alpha pretreatment
+
+** Fig. 2A Time-lapse images of STAT1 nuclear translocation :ATTACH:
+:PROPERTIES:
+:ID:       574a07ef-9e57-48db-8f29-3dd34e0f8eb3
+:END:
+
+#+attr_latex: :width 0.5\linewidth
+[[attachment:_20210422_112910screenshot.png]]
+
+** Fig. Supp. 2A Western blots of USP18 expression in WT and USP18-KD cells :ATTACH:
+:PROPERTIES:
+:ID:       97f10543-0910-4f81-bcdc-395cd285d930
+:END:
+
+
+[[attachment:_20210422_121123screenshot.png]]
+
+** Fig. 2B YFP induction response to the second IFN-\alpha treatment in USP18-KD :ATTACH:
+:PROPERTIES:
+:ID:       343b65b4-e2bb-4569-86b4-28f89c553c32
+:END:
+
+#+attr_latex: :width 0.9\linewidth
+[[attachment:_20210422_111043screenshot.png]]
+
+** Fig. 1F Amounts of PIRF9-YFP induction by the second IFN-\alpha stimulation :ATTACH:
+:PROPERTIES:
+:ID:       662abf05-b217-4c0b-8f30-fcf0e5bccc56
+:END:
+
+#+attr_latex: :width 0.9\linewidth
+[[attachment:_20210422_111453screenshot.png]]
+
+** Fig. 2C Amounts of PIRF9-YFP induction in USP18-KD cells by the second IFN-\alpha stimulation :ATTACH:
+:PROPERTIES:
+:ID:       179d8590-3fd4-4adc-b952-b023bba40025
+:END:
+
+#+attr_latex: :width 0.9\linewidth
+[[attachment:_20210422_111412screenshot.png]]
+
+* Computational modeling suggests a delayed negative feedback loop through USP18
+** Fig. 3A Simple kinetic model of the IFN-driven gene regulatory network :ATTACH:
+:PROPERTIES:
+:ID:       6da8fe0f-9943-44c2-89cd-fb1751023533
+:END:
+
+#+attr_latex: :width 0.6\linewidth
+[[attachment:_20210422_113839screenshot.png]]
+
+** Fig. Supp 3A kinetic model of the IFN-driven gene regulatory network with parameters :ATTACH:
+:PROPERTIES:
+:ID:       4c2ed925-3cd4-4833-81b5-4743d481f386
+:END:
+
+#+attr_latex: :width 0.5\linewidth
+[[attachment:_20210422_115407screenshot.png]]
+
+** Fig. 3C Amounts of PIRF9-YFP induction by the second IFN-α stimulation Predicted by model simulations :ATTACH:
+:PROPERTIES:
+:ID:       9c36139c-46ed-4d66-9dc4-50a4071b1260
+:END:
+
+[[attachment:_20210422_114424screenshot.png]]
+
+
+** Fig. Supplement 3B Model fitting results :ATTACH:
+:PROPERTIES:
+:ID:       5d8e2123-7398-4582-9312-c833465e8c96
+:END:
+
+#+attr_latex: :width 0.9\linewidth
+[[attachment:_20210422_115253screenshot.png]]
+
+** Fig 3D. Experimental design with repetitive IFN pulses :ATTACH:
+:PROPERTIES:
+:ID:       cc3caddc-af36-4bfa-99aa-5d1b056617f6
+:END:
+
+[[attachment:_20210422_115744screenshot.png]]
+
+
+** Fig. 3E Model prediction of the responses to pulse versus sustained IFN inputs :ATTACH:
+:PROPERTIES:
+:ID:       809d1f83-7b7a-40bc-bc76-cbe54091c6af
+:END:
+
+#+attr_latex: :width 0.9\linewidth
+[[attachment:_20210422_115809screenshot.png]]
+
+** Fig. 3F Experimental data of the responses to pulse versus sustained IFN inputs :ATTACH:
+:PROPERTIES:
+:ID:       16d946e4-f52d-4454-9f0b-e3bceec0e1f5
+:END:
+
+#+attr_latex: :width 0.9\linewidth
+[[attachment:_20210422_115854screenshot.png]]
+
+* The kinetics of USP18 upregulation by IFN is heterogeneous in single cells
+** Fig. 4A Dual reporter cell line schematic :ATTACH:
+:PROPERTIES:
+:ID:       a4e1c98b-f165-4b87-b6d5-087154cebea1
+:END:
+
+[[attachment:_20210422_120826screenshot.png]]
+
+** Fig. 4B Time traces of PIRF9-YFP and PUSP18-CFP of a single cell in response to IFN-α :ATTACH:
+:PROPERTIES:
+:ID:       ed34146d-c12e-4056-869d-d474b6e0ca77
+:END:
+
+#+attr_latex: :width 0.9\linewidth
+[[attachment:_20210422_120948screenshot.png]]
+
+** Fig 4C. Distributions of PIRF9 and PUSP18 activation times in single cells :ATTACH:
+:PROPERTIES:
+:ID:       76828cd0-28c5-46e7-80e0-00f2da6a87b1
+:END:
+
+#+attr_latex: :width 0.9\linewidth
+[[attachment:_20210422_121313screenshot.png]]
+
+** Fig 4D. Distributions of delay times in single cells :ATTACH:
+:PROPERTIES:
+:ID:       dd863708-1938-41dd-a5ad-c9868fbc7657
+:END:
+
+#+attr_latex: :width 0.9\linewidth
+[[attachment:_20210422_121358screenshot.png]]
+
+** Fig 4E. Representative time traces of PIRF9 and PUSP18 in a single cell from each group :ATTACH:
+:PROPERTIES:
+:ID:       b393e43d-fd80-4931-b04d-27edc4358df8
+:END:
+
+#+attr_latex: :width 0.7\linewidth
+[[attachment:_20210422_121444screenshot.png]]
+
+* Cell cycle phases differentially regulate USP18 expression
+
+** Fig 4E. Delay times as a function of the percentages of cell cycle progression upon IFN treatment onset :ATTACH:
+:PROPERTIES:
+:ID:       d1d210ec-3aac-472a-aba7-ce63a8336e36
+:END:
+
+[[attachment:_20210422_122543screenshot.png]]
+
+
+** Fig 5A. Delay times in cells treated with different cell cycle perturbation :ATTACH:
+:PROPERTIES:
+:ID:       bf2f400f-9fe2-4cb4-8db9-b8a96476a4d5
+:END:
+
+#+attr_latex: :width 0.4\linewidth
+[[attachment:_20210422_121847screenshot.png]]
+
+
+
+** Fig 5B. CDK2 activity reporter Schematic :ATTACH:
+:PROPERTIES:
+:ID:       ce82c02a-7a33-44c0-9ea5-64ee0b82d506
+:END:
+
+[[attachment:_20210422_122704screenshot.png]]
+
+** Fig 5C. Nuclear DHB and PUSP18-driven gene expression :ATTACH:
+:PROPERTIES:
+:ID:       d0eacf15-526a-434d-9d9d-9acf44e123e2
+:END:
+
+#+attr_latex: :width 0.9\linewidth
+[[attachment:_20210422_122941screenshot.png]]
+
+** Fig 5D. Effect of decitabine on DNA methylation and nucleosome occupancy :ATTACH:
+:PROPERTIES:
+:ID:       45883bf1-a11f-4898-b334-56c9c28701b0
+:END:
+
+[[attachment:_20210422_123028screenshot.png]]
+
+** Fig 5D. Distribution of delay times upon decitabine treatment :ATTACH:
+:PROPERTIES:
+:ID:       6d66f076-d616-4a03-bd03-7aa7f7706b4f
+:END:
+
+[[attachment:_20210422_123104screenshot.png]]
+
+* Cell-cycle-gated feedback control shapes single-cell responses to repetitive IFN inputs
+
+** Fig. 6A simple model of the IFN-driven gene regulatory network :ATTACH:
+:PROPERTIES:
+:ID:       f30e4aea-85a2-477e-b052-86b38ca1e79d
+:END:
+
+#+attr_latex: :width 0.5\linewidth
+[[attachment:_20210422_123240screenshot.png]]
+
+** Fig. 6C cell-cycle gated feedback control simulated responses under different pretreatment conditions :ATTACH:
+:PROPERTIES:
+:ID:       ed7ad944-1021-47cd-b610-d52c13e41109
+:END:
+
+#+attr_latex: :width 0.7\linewidth
+[[attachment:_20210422_123535screenshot.png]]
+
+** Fig. 6D cell-cycle gated feedback control experimental responses under different pretreatment conditions :ATTACH:
+:PROPERTIES:
+:ID:       5c3753a0-6681-424f-9813-8bc7eb964545
+:END:
+
+#+attr_latex: :width 0.7\linewidth
+[[attachment:_20210422_123547screenshot.png]]
+
+
+#+begin_quote
+Higher levels of USP18 expression by the prolonged pretreatment lead to reduced IRF9 induction upon the second stimulation at the single-cell level, qualitatively in agreement with our experimental data
+#+end_quote
+
+
+* Conclusion
+
+** Conclusion
+
+- The effects of IFN pretreatments depend on their input durations
+- The G1 and early S phases enable an open window for immediate USP18
+  upregulation upon the IFN treatment
+  + If they miss the window the USP18 induction has to wait for G1 of the next cell cycle
+- SARS-CoV-2 is especially sensitive to type I IFNs
+  + IFN pretreatment a potential strategy to prevent SARS-CoV-2 infection

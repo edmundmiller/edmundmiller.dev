@@ -1,0 +1,54 @@
+digraph G {
+    subgraph cluster_0 {
+        style=filled;
+        color=lightgrey;
+        node [style=filled,color=white];
+        "mkfastq"
+        "BCL Convert"
+        label = "Primary Analysis";
+    }
+
+    subgraph cluster_1 {
+        node [style=filled fillcolor="#00ff005f"]
+        "nf-core"
+        "Cell Ranger"
+        "* Ranger"
+        label = "Secondary Analysis";
+    }
+
+    subgraph cluster_2 {
+        graph [truecolor=true bgcolor="#ff00005f"]
+        node [style=filled];
+        "Lupe Browser"
+        "UCSC Genome Browser"
+        "UCSC Xena Browser"
+        "Scripting"
+        "Notebooks"
+        label = "Tertiary Analysis";
+    }
+
+    rankdir=LR; // Left to Right, instead of Top to Bottom
+
+    "mkfastq" -> "FastQ"
+    "BCL Convert" -> "FastQ"
+
+    "FastQ" -> "nf-core" -> "Counts, bedGraphs, etc."
+    "FastQ" -> "Cell Ranger" -> "Counts, bedGraphs, etc."
+    "FastQ" -> "* Ranger" -> "Counts, bedGraphs, etc."
+    "nf-core" -> "Reports"
+    "nf-core" -> "Metrics"
+
+    "Counts, bedGraphs, etc." -> "Lupe Browser"
+    "Counts, bedGraphs, etc." -> "UCSC Genome Browser"
+    "Counts, bedGraphs, etc." -> "UCSC Xena Browser"
+    "Counts, bedGraphs, etc." -> "Scripting"
+    "Counts, bedGraphs, etc." -> "Notebooks"
+
+    "FastQ" [shape=Mdiamond];
+    "Counts, bedGraphs, etc." [shape=Mdiamond];
+
+    // {
+    //     rank = same
+    //     "mkfastq" "FastQ" "Cell Ranger" "Lupe Browser"
+    // }
+}

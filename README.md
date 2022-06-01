@@ -1,32 +1,37 @@
-# Gridsome Blog Starter
+# A statically generated blog example using Next.js and Org
 
-[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+This example showcases Next.js's [Static Generation](https://nextjs.org/docs/basic-features/pages) feature using Org files as the data source.
 
-> A simple, hackable & minimalistic starter for Gridsome that uses Markdown for content.
+The blog posts are stored in `/_posts` as Org files. Adding a new Org file in there will create a new blog post.
 
-## Features
+To create the blog posts we use [`uniorg`](https://github.com/rasendubi/uniorg) and [`rehype-stringify`][rehype-stringify] to convert the Org files into an HTML string, and then send it down as a prop to the page. The metadata of every post is handled by `extractExportSettings` unified plugin in [orgToHtml.js](./lib/orgToHtml.js) file.
 
-- Beautiful and simple design.
-- Markdown for content.
-- Tags support.
-- Dark / Light toggle.
-- CSS variables, SCSS & BEM for styling.
-- 100, 100, 100, 100 score on Google Lighthouse.
-- Uses same front-matter fields as Dev.to.
+[rehype-stringify]: https://github.com/rehypejs/rehype/tree/main/packages/rehype-stringify
 
-## Demo URL
+## Demo
 
-https://gridsome-starter-blog.netlify.com
+[https://org-blog-starter.vercel.app/](https://org-blog-starter.vercel.app/)
 
-## Install
+## Deploy your own
 
-### 1. Install Gridsome CLI tool if you don't have
+Deploy the example using [Vercel](https://vercel.com):
 
-`npm install --global @gridsome/cli`
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/rasendubi/uniorg/tree/master/examples/next-blog-starter&project-name=org-blog-starter&repository-name=org-blog-starter)
 
-### 2. Install this starter
+## How to use
 
-1. `gridsome create my-gridsome-site https://github.com/gridsome/gridsome-starter-blog.git`
-2. `cd my-gridsome-site` to open folder
-3. `gridsome develop` to start local dev server at `http://localhost:8080`
-4. Happy coding 🎉🙌
+Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+
+```bash
+npx create-next-app --example https://github.com/rasendubi/uniorg/tree/master/examples/next-blog-starter blog-starter-app
+# or
+yarn create next-app --example https://github.com/rasendubi/uniorg/tree/master/examples/next-blog-starter blog-starter-app
+```
+
+Your blog should be up and running on [http://localhost:3000](http://localhost:3000)! If it doesn't work, post on [GitHub discussions](https://github.com/rasendubi/uniorg/discussions).
+
+Deploy it to the cloud with [Vercel](https://vercel.com/new) ([Documentation](https://nextjs.org/docs/deployment)).
+
+# Notes
+
+This blog-starter uses [Tailwind CSS](https://tailwindcss.com). To control the generated stylesheet's filesize, this example uses Tailwind CSS' v2.0 [`purge` option](https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css) to remove unused CSS.
