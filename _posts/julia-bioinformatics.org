@@ -23,8 +23,8 @@ before the first generation of Next Generation Sequencing, to packages like
 DESeq2 that aren't going to leave anyone's toolbox anytime soon, but no one is
 going to rewrite, and instead are going to spend time teaching R to every
 incoming generation of bioinformaticians just so they can use these influencial
-packages. That's not including python, Rust, and of course, every
-bioinformaticians favorite, bash. That's not including if you want to contribute
+packages. That's not including python, Rust, and every
+bioinformatician's favorite, bash. That's not including if you want to contribute
 to any GATK cli tools written in Java.
 
 Now, workflow managers such as [[https://snakemake.readthedocs.io/en/stable/][Snakemake]] and [[https://www.nextflow.io/][Nextflow]] have fixed the majority of
@@ -93,7 +93,7 @@ Something that is dirt simple to learn, yet keeps the most serious hackers
 happy. We want it interactive and we want it compiled.
 #+end_quote
 
-That sounds like a bioinformaticians dream to me! Think of all of the time we
+That sounds like a bioinformatician's dream to me! Think of all of the time we
 can save on developer experience, not trying to hack out some extra speed, or
 fixing broken dependencies (or a complete lack of specified dependencies!).
 Allowing legacy code to be treated like the crown jewel in our metaphorical
@@ -103,12 +103,12 @@ software crown, and wrapping it in some gold Julia code like it deserves.
 
 * Call to action
 
-I plan on working to increase the visability into Julia specifically for
+I plan on working to increase the visibility into Julia specifically for
 bioinformatics. I always love this Venn diagram to explain to people what
-Bioinformatics is. I think it'll be easy to cover [[https://github.com/JuliaData/][JuliaData]], [[https://juliastats.org/][JuliaStats]], and
+bioinformatics is. I think it'll be natural to cover [[https://github.com/JuliaData/][JuliaData]], [[https://juliastats.org/][JuliaStats]], and
 [[https://biojulia.net/][BioJulia]] to cover all three and show people how the three intersect.
 
-<Insert Bioinformatics venn diagram>
+http://acm.na.edu/img/bioInfoLab/bioinformatics_venn.png
 
 ** How to get started with Julia
 
