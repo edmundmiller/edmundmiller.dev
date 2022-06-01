@@ -22,10 +22,10 @@ In bioinformatics we have a 5 language problem. From the perl script written
 before the first generation of Next Generation Sequencing, to packages like
 DESeq2 that aren't going to leave anyone's toolbox anytime soon, but no one is
 going to rewrite, and instead are going to spend time teaching R to every
-incoming generation of bioinformaticians just so they can use these influencial
-packages. That's not including python, Rust, and every
-bioinformatician's favorite, bash. That's not including if you want to contribute
-to any GATK cli tools written in Java.
+incoming generation of bioinformaticians just so they can use these influential
+packages. That's not including python, Rust, and every bioinformatician's
+favorite, bash. That's not including if you want to contribute to any GATK cli
+tools written in Java.
 
 Now, workflow managers such as [[https://snakemake.readthedocs.io/en/stable/][Snakemake]] and [[https://www.nextflow.io/][Nextflow]] have fixed the majority of
 those. Just stick those scripts in a container that acts as a time-capsule of
@@ -34,9 +34,10 @@ back in closet.
 
 But what about new scripts? When you're starting a new bioinformatics project in
 2022, do you follow in the footsteps of the pioneers that came before you, and
-learn how to call C functions in an R package? Or would you rather just see this beauty:
+learn how to call C functions in an R package? Or would you rather just see this
+beauty:
 
-<Insert Picture of Julia 100%>
+https://edmundmiller.dev/static/julia-100.png
 
 ** But what about my C functions that are highly optimized?
 
