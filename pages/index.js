@@ -6,6 +6,7 @@ import Layout from '../components/layout.js';
 import { getAllPosts } from '../lib/api.js';
 import Head from 'next/head';
 import { CMS_NAME } from '../lib/constants.js';
+import generateRSS from "../lib/generateRssFeed";
 
 export default function Index({ allPosts }) {
   const heroPost = allPosts[0];
@@ -46,6 +47,8 @@ export async function getStaticProps() {
     'cover_image',
     'excerpt',
   ]);
+
+  await generateRSS();
 
   return {
     props: { allPosts },
