@@ -6,7 +6,7 @@
       let pkgs = nixpkgs.legacyPackages.x86_64-linux;
       in pkgs.mkShell {
         buildInputs = with pkgs;  [
-          nodejs-14_x
+          nodejs-16_x
           nodePackages.typescript-language-server
         ];
       };
