@@ -5,6 +5,7 @@
 #+AUTHOR: Edmund Miller
 #+AUTHOR_PICTURE: /assets/blog/authors/jj.jpeg
 #+OG_IMAGE: /assets/blog/dynamic-routing/cover.jpg
+#+filetags: :emacs:
 
 
 * Introduction

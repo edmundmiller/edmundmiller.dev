@@ -5,7 +5,7 @@
 #+AUTHOR: Edmund Miller
 #+AUTHOR_PICTURE: /assets/blog/authors/jj.jpeg
 #+OG_IMAGE: /assets/blog/dynamic-routing/cover.jpg
-#+filetags: Julia
+#+filetags: :julia:bioinformatics:
 
 Julia might just change the game for bioinformatics. Bioinformatics is starting
 to heat up as field, and I think we have a lot of unique issues starting from

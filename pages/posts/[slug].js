@@ -37,6 +37,7 @@ export default function Post({ post, morePosts, preview }) {
                 author={post.author}
                 authorPicture={post.author_picture}
               />
+              {/* {post.filetags} */}
               <PostBody content={post.content} />
             </article>
           </>
@@ -56,6 +57,7 @@ export async function getStaticProps({ params }) {
     'og_image',
     'cover_image',
     'content',
+    'filetags',
   ]);
 
   return {

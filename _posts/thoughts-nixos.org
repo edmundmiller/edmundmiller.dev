@@ -5,6 +5,7 @@
 #+AUTHOR: Edmund Miller
 #+AUTHOR_PICTURE: /assets/blog/authors/jj.jpeg
 #+OG_IMAGE: /assets/blog/dynamic-routing/cover.jpg
+#+filetags: :linux:nixos:
 
 NixOS is a dream. It allows you to program your os by declaring what you want in
 it. And then you can declare how you want your packages built. Most of the time
