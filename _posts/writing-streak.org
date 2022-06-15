@@ -1,0 +1,26 @@
+#+TITLE: I'm Starting a Writing Streak
+#+EXCERPT: We'll see how long it lasts
+#+COVER_IMAGE: /assets/blog/dynamic-routing/cover.jpg
+#+DATE: 2022-06-14T22:10Z
+#+AUTHOR: Edmund Miller
+#+AUTHOR_PICTURE: /assets/blog/authors/jj.jpeg
+#+OG_IMAGE: /assets/blog/dynamic-routing/cover.jpg
+#+filetags: :meta:
+
+This is my second year reading [[https://www.goodreads.com/book/show/29093292-the-daily-stoic][The Daily Stoic]]. Of course with anything that
+starts on January 1st, I'm a month behind half way through the year.
+
+I was reading May 16th last night and it talked about "The Chain Method". Here's
+the explanation:
+
+#+begin_quote
+
+#+end_quote
+
+My partner has recently started writing a ton for her new job, and she loves a
+streak so I suggested we start a writing streak on my [[https://brickademics.com/][Lego Grad Student]]
+calendar(I'm a catch, I know).
+
+This is day one. This won't always be a blog post, it could be writing in [[https://slipbox.edmundmiller.dev/][my
+slipbox]], or reading a paper and taking notes(also in the slipbox). We're also
+counting writing documentation. I'm hoping the physical calendar and X's help!
