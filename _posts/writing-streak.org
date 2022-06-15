@@ -14,12 +14,16 @@ I was reading May 16th last night and it talked about "The Chain Method". Here's
 the explanation:
 
 #+begin_quote
-
+The comedian Jerry Seinfeld once gave a young comic named Brad Isaac some advice
+about how to write and create material. Keep a calendar, he told him, and each
+day that you write jokes, put an X. Soon enough, you get a chain going—and then
+your job is to simply not break the chain. Success becomes a matter of momentum.
+Once you get a little, it’s easier to keep it going.
 #+end_quote
 
 My partner has recently started writing a ton for her new job, and she loves a
 streak so I suggested we start a writing streak on my [[https://brickademics.com/][Lego Grad Student]]
-calendar(I'm a catch, I know).
+calendar(Which also happens to still be in May).
 
 This is day one. This won't always be a blog post, it could be writing in [[https://slipbox.edmundmiller.dev/][my
 slipbox]], or reading a paper and taking notes(also in the slipbox). We're also
