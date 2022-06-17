@@ -1,7 +1,20 @@
-#+title: Posts
+#+title: Posts to make
 
 ** TODO Emacs and Julia
 https://old.reddit.com/r/Julia/comments/v4npic/setting_up_emacs_for_julia_in_windows_seeking/
 ** TODO Functional programming principals to apply to bioinformatics
 ** TODO Functional programming and nextflow
 ** TODO Org mode site rewrite
+** TODO Comparing the different Plots.jl backends
+** TODO Julia testing
+:LOGBOOK:
+CLOCK: [2022-06-16 Thu 21:30]--[2022-06-16 Thu 22:47] =>  1:17
+:END:
+** DONE Julia for bioinformatics
+CLOSED: [2022-06-01 Wed 14:28]
+:LOGBOOK:
+CLOCK: [2022-06-01 Wed 13:30]--[2022-06-01 Wed 14:29] =>  0:59
+CLOCK: [2022-06-01 Wed 12:00]--[2022-06-01 Wed 12:30] =>  0:30
+CLOCK: [2022-03-31 Thu 12:22]--[2022-03-31 Thu 13:45] =>  1:23
+CLOCK: [2022-03-31 Thu 11:58]--[2022-03-31 Thu 12:04] =>  0:06
+:END:

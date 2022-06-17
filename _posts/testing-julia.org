@@ -1,0 +1,26 @@
+#+title: Basic Testing Workflow in Julia
+
+In a past life I wrote a good bit of Javascript and Solidity smart contracts.
+Let me tell you, the Js community *loves* their testing. Maybe it's because they
+over-engineer everything, or maybe they've just created a culture that
+appreciates good software practices. Anyways cutting my teeth in that community,
+I developed a love for automated testing, because I'm a lazy programmer, and
+testing smart contracts by hand is a huge pain.
+
+So coming to scientific computing it's understandable that I was taken aback by
+the lack of testing. Complex packages, with novel ground-breaking algorithms,
+and ~grep test **~ returns nothing. How do I know this works as intended, let
+alone the author?
+
+Since my initial shock, I've found a happy home in [[https://nf-co.re/][nf-core]], where scientific
+code lives in green pastures with plenty of test coverage. If you're interested
+I gave [[https://www.youtube.com/watch?v=pjhscKyWH74&t=1s][a talk on how we test our modules]].
+
+When I initially found Julia, I was impressed by all of the 21st century
+nicities, a package manager built-in, documentation generators, and packages
+that have plans if they were to become orphaned. However, what I haven't really
+dug into yet, is what the testing workflow looks like in Julia. I've noticed
+plenty of tests in repos and read through them, but what interests me more, is
+"what the developer experience is like?". Does writing and running tests bring
+joy and save time? Can I run one test at time? Can I fire off all the tests
+easily(and reproducibly) before I push a commit?
