@@ -1,0 +1,26 @@
+#+title: A Comparison of the Julia and Rust Ecosystems
+#+EXCERPT: And what they're getting right.
+#+COVER_IMAGE: /assets/blog/dynamic-routing/cover.jpg
+#+DATE: 2022-07-01T14:42Z
+#+AUTHOR: Edmund Miller
+#+AUTHOR_PICTURE: /assets/blog/authors/jj.jpeg
+#+OG_IMAGE: /assets/blog/dynamic-routing/cover.jpg
+#+filetags: :julia:
+
+* Intro
+- Feris Juggling the Julia logo
+- Rust is the most loved language in stackoverflow *again*
+- Julia is climbing the ranks
+- Written in the last decade so they don't have to deal with legacy issues
+* TODO Built-in package management
+* TODO Central package store
+* TODO Types
+  - The best part is they're there when you want them(when you're developing packages)
+* TODO Baked in testing suite is adequate(ie don't need pytest/jest)
+* TODO Community
+* TODO Easy version management
+  https://github.com/JuliaLang/juliaup
+* TODO Does it's main feature and does it well
+  - Rust is focused on memory safety
+  - Julia is focused on being fast
+    - Link to why we wrote Julia

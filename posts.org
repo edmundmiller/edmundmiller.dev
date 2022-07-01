@@ -17,6 +17,25 @@ https://discourse.julialang.org/t/best-practices-for-julia-unit-testing/30858
 https://docs.julialang.org/en/v1/stdlib/Test/
 
 https://www.youtube.com/watch?v=IuwxE3m0_QQ
+** TODO Rust and Julia comparison
+
+- Feris Juggling the Julia logo
+- Rust is the most loved language in stackoverflow *again*
+- Julia is climbing the ranks
+*** Points
+- Built-in package management
+- Central package store
+- Types
+  - The best part is they're there when you want them(when you're developing packages)
+- Baked in testing suite is adequate(ie don't need pytest/jest)
+- Community
+- Written in the last decade
+- Easy version management
+  https://github.com/JuliaLang/juliaup
+- Does it's main feature and does it well
+  - Rust is focused on memory safety
+  - Julia is focused on being fast
+    - Link to why we wrote Julia
 ** DONE Julia for bioinformatics
 CLOSED: [2022-06-01 Wed 14:28]
 :LOGBOOK:
