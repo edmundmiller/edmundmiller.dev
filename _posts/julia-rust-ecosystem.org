@@ -24,3 +24,6 @@
   - Rust is focused on memory safety
   - Julia is focused on being fast
     - Link to why we wrote Julia
+* But the compile times in both are slow!
+
+But it's not going to get worse?
