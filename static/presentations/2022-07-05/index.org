@@ -1,0 +1,160 @@
+#+title: Viral Integration
+#+AUTHOR:    Edmund Miller
+#+EMAIL:     Edmund.Miller@utdallas.edu
+#+DATE:      2022-07-05 Wed
+#+reveal_theme: white
+#+options: num:nil
+#+options: toc:nil
+#+options: reveal_title_slide:nil
+#+startup: inlineimages
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [bigger]
+#+BEAMER_FRAME_LEVEL: 2
+# SPC m e l O
+
+* nf-core/viralintegration
+
+** Background
+
+- Started out wondering if we could look for Viral Integration in 1000 Genomes, inspired by [[http://oncodb.org/][OncoDB]]
+- Original: ~bam2fastq~ unaligned reads => nf-core/sarek (WGS) with a custom
+  reference
+- Met Robert Allaway, Principal Scientist @ Sage Bionetwork on nf-core
+
+** Background
+:PROPERTIES:
+:ID:       b50d1404-f5b9-46d9-aeed-06210f093ad6
+:END:
+
+
+[[attachment:_20220706_090107screenshot.png]]
+
+
+** Approaches
+
+- MetaPhlAn (Robert)
+- CTAT - Virus Integration Finder (ctat-VIF) (Alyssa Briggs)
+- BLASTBox (Edmund)
+
+** Why are we interested in Viral Integration?
+
+- Besides aberrant DNA methylation or RNA expression, another major cause of
+  cancer is viral infection (Oncoviruses)
+- Identification of oncovirus-related gene expression changes helps better
+  understand the mechanisms underlying virus-induced cancers
+- Lack of current research in the area utilizing new data
+
+* CTAT - Virus Integration Finder
+
+** CTAT - Virus Integration Finder
+
+- Capture evidence of virus-matching reads (consistent with an infection)
+- Identify and quantify evidence for viral insertion sites in the human genome
+- Provide interactive visualizations for evidence of virus-mapped reads and
+  virus insertion sites
+
+** CTAT - Virus Integration Finder
+
+- Trinity Cancer Transcriptome Analysis Toolkit - CWL
+- Takes DNA-seq or RNA-seq
+- Requires a CTAT genome lib supplemented with viral genomes (They provide a virusdb fasta).
+
+** CTAT - DAG :ATTACH:
+:PROPERTIES:
+:ID:       de1b3c29-d7ca-4e44-8708-c72053d52682
+:END:
+
+#+attr_latex: :height 0.20\linewidth
+[[attachment:_20220706_081414screenshot.png]]
+
+
+** CTAT - Virus Integration Finder
+
+#+latex: \footnotesize
+| chrA  |    coordA | orientA | chrB  |    coordB | orientB | prelim.primary_brkpt_type | prelim.total | split | span | total |
+|-------+-----------+---------+-------+-----------+---------+---------------------------+--------------+-------+------+-------|
+| chr11 | 117344940 | +       | HPV16 |      1215 | +       | Split                     |          117 |    33 |   79 |   112 |
+| chr18 |  73320805 | +       | HPV16 |      7409 | -       | Split                     |          168 |    31 |   72 |   103 |
+| chr6  |  64935774 | +       | HPV16 |      4034 | -       | Split                     |          177 |    30 |   70 |   100 |
+| HPV16 |      4029 | +       | chr3  |    937922 | +       | Split                     |            1 |     0 |    0 |     0 |
+| HPV16 |      1215 | -       | chr11 | 108577428 | +       | Split                     |            1 |     0 |    0 |     0 |
+| chr2  |  32018732 | +       | HPV16 |      1215 | +       | Split                     |            1 |     0 |    0 |     0 |
+| chr1  | 218562612 | +       | HPV16 |      1215 | +       | Split                     |            1 |     0 |    0 |     0 |
+
+
+** CTAT - Insertion Site Candidates :ATTACH:
+:PROPERTIES:
+:ID:       0fa01f6e-0bdc-49a0-8083-8e10c011cdb9
+:END:
+
+[[attachment:_20220705_222615screenshot.png]]
+
+
+** CTAT - Virus Insertion Viewer :ATTACH:
+:PROPERTIES:
+:ID:       66211082-d11c-4fd4-bbbd-00d997ec7f4d
+:END:
+
+#+attr_org: :width 500
+#+attr_latex: :height 0.4\linewidth
+[[attachment:_20220705_223158screenshot.png]]
+
+** CTAT - Virus Infection Evidence Viewer
+
+- There may not be strong evidence for virus insertions
+- Detects reads aligning to the target virus sequence
+
+** CTAT - Virus Infection Evidence Viewer :ATTACH:
+:PROPERTIES:
+:ID:       85fec50f-b0cf-4721-98d0-3b1e5e56ba79
+:END:
+
+#+attr_latex: :height 0.25\linewidth
+#+attr_org: :width 500
+[[attachment:_20220706_085548screenshot.png]]
+
+
+* BLASTBox
+
+** BLASTBox
+
+- Main goal was to *avoid realigning* thousands of high-coverage samples, by
+  pulling out unaligned reads
+- Found a similar study of TCGA data
+
+** BLASTBox - DAG :ATTACH:
+:PROPERTIES:
+:ID:       8a152476-d37a-4dcf-a5ba-c698b37bf2d6
+:END:
+
+
+[[attachment:_20220706_082010screenshot.png]]
+
+** BLASTBox :ATTACH:
+:PROPERTIES:
+:ID:       8d1efa65-35ae-4394-95f6-a36ddd602529
+:END:
+
+
+[[attachment:_20220706_072610screenshot.png]]
+
+** Viral expression associated with GIA Highlights (2013)
+
+- Goal: Determine whether the presence of a virus is significantly associated
+  with tumors
+- 59% of screened gastrointestinal adenocarcinomas (GIA) were positive for at
+  least one virus
+- Used a similar approach, BAM => BLAST
+
+** BLASTBox Targets
+
+- 1000 Genomes 30x WGS
+- TCGA WGS
+- dbGaP
+
+** Initial Questions to ask
+
+- What parts of the sequence got integrated?
+- What parts of the sequence got tossed out?
+- Which one is potentially toxic/oncogenic

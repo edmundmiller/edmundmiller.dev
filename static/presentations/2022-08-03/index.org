@@ -1,0 +1,131 @@
+#+title: Intro to Biotech
+#+AUTHOR:    Edmund Miller
+#+EMAIL:     Edmund.Miller@utdallas.edu
+#+DATE:      2022-08-03 Wed
+#+reveal_theme: white
+#+options: num:nil
+#+options: toc:nil
+#+options: reveal_title_slide:nil
+#+startup: inlineimages
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [bigger]
+#+BEAMER_FRAME_LEVEL: 2
+# SPC m e l O
+
+* What is biotech?
+** General definition of biotech
+
+#+begin_quote
+The integration of natural sciences and engineering sciences in order to
+achieve the application of organisms, cells, parts thereof and molecular
+analogues for products and services
+#+end_quote
+
+** General definition of biotech
+
+- Covers a broad range of things from *artificial selection* to *genetic
+  engineering*
+- How can we use biological systems to make products?
+    - Human-derived agriculture
+    - Brewing
+    - Selective breeding to improve the production of crops and livestock
+- According to wikipedia there are "colors" of biotechnology
+
+** YC on Biotech
+
+#+begin_quote
+A revolution is happening in life sciences that is reminiscent of what happened
+in software in the 90’s. Now that cost and cycle time have decreased for
+biotech, it’s possible for new startups to do groundbreaking work.
+#+end_quote
+
+
+** Umbrella term that includes many things such as?
+
+- Food & agriculture
+- Energy (biofuels)
+- Microbiology (DNA engineering)
+- Bioengineering
+- Medicine & pharmaceuticals
+
+* National relevance & problems
+
+** Genetic Information Nondiscrimination Act (*GINA* 2008)
+
+  - Prohibits health insurers from denying coverage to a healthy individual or
+    charging that person higher premiums based solely on a genetic
+    predisposition
+  - Covers /most/ situations
+
+** DNA sequencing regulation (23 & Me)
+
+- 23andMe is not a medical provider
+  - Doesn't have to follow HIPAA
+  - GINA does not extend to discrimination based on genetic information for
+    long-term care or disability-insurance providers
+
+- According to section 8 of the terms of service:
+
+#+begin_quote
+23andMe is free to preserve and disclose any and all Personal Information to law
+enforcement agencies or others if required to do so by law or in the good faith
+belief that such preservation or disclosure is reasonably necessary
+#+end_quote
+
+* GMOs
+** What are GMOs?
+
+- Genetically Modified Organism
+- Modified in a laboratory using genetic engineering or transgenic technology
+
+
+** Argument for GMOs
+
+- Have traits such as drought & pest resistant.
+- We've been using plant breeding for a long time already, this is just an
+  improved version.
+- Plants get infections and genetically modified in nature anyways.
+- We need to find solutions to increased food demands as our population grows.
+
+** Argument against GMOs
+
+- There is no scientific consensus on the safety of GMOs
+- Most of the research used to claim that GMOs are safe has been performed by
+  biotechnology companies. (Conflict of Interest)
+
+** CRISPER / Cas9 :ATTACH:
+:PROPERTIES:
+:ID:       359d0938-4bb8-4708-b1ea-08ce4ea08a2c
+:END:
+
+
+[[attachment:_20220801_161606screenshot.png]]
+
+#+begin_quote
+If scientists can dream of a genetic manipulation, CRISPR can now make it happen
+#+end_quote
+
+** Controversy of CRISPER / Cas9
+
+- Chinese scientist He Jiankui claims to have used CRISPR-Cas9 to create embryos
+  that resulted in twin girls
+- It's a great technology with tons of potential, but what are the regulations
+  and ethical questions that need to be answered?
+- Accelerated the field before consensus has been achieved on how to use it.
+
+* International relevance & problems
+
+** Bioweapons
+
+- Common example is *anthrax* infection caused by the bacterium /Bacillus
+  anthracis/
+- Lack of regulations for materials to create a novel bioweapon could lead to
+  domestic terrorism
+- COVID-19 response
+
+** General Resources
+
+- [[https://www.ycombinator.com/biotech/][_Biotech | Y Combinator_]]
+- [[https://www.nongmoproject.org/blog/understanding-biotechnology-what-is-a-gmo/][_Understanding Biotechnology: What is a GMO? - The Non-GMO Project_]]
+- [[http://www.crisprtx.com/gene-editing/crispr-cas9][_CRISPR/Cas9 | CRISPR_]]

@@ -1,0 +1,26 @@
+flowchart TD
+    p1[FastQ]
+    p2[FastQC]
+    p3[Trimmomatic]
+    p4[PolyA Stripper script]
+    p10[Dedupe]
+    p1 --> p2
+    p1 --> p3
+    p3 --> p4
+    p4 --> p10
+
+    p5[Viral DB Fasta]
+    p6[Reference Genome]
+    p7[Reference + Viral Fasta]
+    p8[STAR Genome Generate]
+    p9[STAR Alignment]
+    p5 --> p7
+    p6 --> p7
+    p7 --> p8
+    p8 -->|STAR Index| p9
+    p10 -->|Cleaned Reads| p9
+
+    p11[Insertion Site Candidates]
+    p12[Virus Report]
+    p9 -->|Bam| p11
+    p11 --> p12

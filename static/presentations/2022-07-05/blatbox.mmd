@@ -1,0 +1,13 @@
+flowchart TD
+    p1[Bam Aligned to Human Genome]
+    p2[Samtools FASTA]
+    p3[Viral DB Fasta]
+    p4[blast makeblastdb]
+    p5[blast blastn]
+    p6[blast hits]
+
+    p1 -->|Unaligned Reads| p2
+    p3 --> p4
+    p2 --> p5
+    p4 -->|Blast DB| p5
+    p5 --> p6
