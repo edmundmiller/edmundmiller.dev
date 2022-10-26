@@ -1,7 +1,0 @@
-\frametitle{Background}
-\begin{itemize}
-\item Started out wondering if we could look for Viral Integration in 1000 Genomes, inspired by \href{http://oncodb.org/}{OncoDB}
-\item Original: \texttt{bam2fastq} unaligned reads => nf-core/sarek (WGS) with a custom
-reference
-\item Met Robert Allaway, Principal Scientist @ Sage Bionetwork on nf-core
-\end{itemize}
