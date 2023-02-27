@@ -1,0 +1,143 @@
+% Created 2023-02-27 Mon 10:02
+% Intended LaTeX compiler: pdflatex
+\documentclass[bigger]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usetheme[progressbar=foot]{metropolis}
+\author{Edmund Miller}
+\date{2023-02-27 Mon}
+\title{QE Prep presentation}
+\hypersetup{
+ pdfauthor={Edmund Miller},
+ pdftitle={QE Prep presentation},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 28.2 (Org mode 9.6.1)}, 
+ pdflang={English}}
+\usepackage{biblatex}
+\addbibresource{~/sync/reference/bibliography.bib}
+\addbibresource{~/sync/reference/biochemistry.bib}
+\addbibresource{~/sync/reference/genomics.bib}
+\addbibresource{~/sync/reference/molecular_biology.bib}
+\addbibresource{~/sync/reference/molecular_biology_project.bib}
+\addbibresource{~/sync/reference/nascent_pipeline.bib}
+\addbibresource{~/sync/reference/viralintegration.bib}
+\addbibresource{~/sync/reference/books.bib}
+\begin{document}
+
+\maketitle
+
+
+
+\begin{frame}[label={sec:orgeb4b0a5}]{Overview}
+\begin{itemize}
+\item nf-core bytesize talk on nf-test
+\end{itemize}
+
+\begin{itemize}
+\item nf-core maintenance
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[label={sec:orgf92e554}]{Aims}
+\begin{itemize}
+\item Aim 1: Create a best practice secondary analysis pipeline for nascent transcripts
+\item Aim 2: Take advantage of New Developments to improve eRNA annotation
+\item Aim 3: Dive into the ``junk'' DNA
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[label={sec:orgc8c8e4e}]{Aim 1: Create a best practice secondary analysis pipeline for nascent transcripts}
+\begin{itemize}
+\item Creation of the pipeline is most of the preliminary results
+\item Quantifying is the main focus of this aim
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[label={sec:orgcfed8a5}]{Aim 1 Projects}
+\begin{itemize}
+\item nascent pipeline
+\item Improvements to nascent transcript identification
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[label={sec:orgd040bde}]{Aim 2: Quantifying of New Developments to improve eRNA annotation}
+\begin{itemize}
+\item How much better are PINTS, groHMM, and homer specifically for eRNAs
+\begin{itemize}
+\item eRNAs identified
+\end{itemize}
+
+\item How much improvement are we getting with better aligners?
+\begin{itemize}
+\item RNA-seq counts
+\end{itemize}
+
+\item How much improvement are we getting with improved Reference genomes
+\begin{itemize}
+\item Any more reads that were picked up due to improved bases?
+\item eRNAs identified in previously unmapped regions(aim 3)
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[label={sec:org0100573}]{Aim 2: Success criteria}
+\begin{itemize}
+\item Success criteria, we expect as we progress through time these will have improved
+\begin{itemize}
+\item Is this a matrix like
+\end{itemize}
+\end{itemize}
+\begin{center}
+\begin{tabular}{llll}
+ & hg19 & hg38 & CHM13\\[0pt]
+\hline
+bowtie2 &  &  & \\[0pt]
+bwa &  &  & \\[0pt]
+bwa2 &  &  & \\[0pt]
+hisat &  &  & \\[0pt]
+STAR &  &  & \\[0pt]
+\end{tabular}
+\end{center}
+\end{frame}
+
+
+\begin{frame}[label={sec:orgdc955f0}]{Aim 3: Dive into the ``junk'' DNA}
+\begin{itemize}
+\item CHM13 analysis
+\begin{itemize}
+\item Are there any active enhancers in these regions?
+\end{itemize}
+\item Viralintegration and CHM13
+\begin{itemize}
+\item How does this differ from Alyssa's work? While she's focused on the
+viruses present and biological inferences/consequences, I'm quantifying
+how many reads we're throwing away that could be recycled.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[label={sec:org0100214}]{Aim 3 Projects}
+\begin{itemize}
+\item eRNA splicing
+\item Simple eRNA kinetics in new regions
+\end{itemize}
+\end{frame}
+\end{document}
