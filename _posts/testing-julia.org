@@ -1,7 +1,7 @@
 #+title: Basic Testing Workflow in Julia
 #+EXCERPT: Scientific computing.
 #+COVER_IMAGE: /assets/blog/dynamic-routing/cover.jpg
-#+DATE: 2022-06-1622:47Z
+#+DATE: 2022-06-16T22:47Z
 #+AUTHOR: Edmund Miller
 #+AUTHOR_PICTURE: /assets/blog/authors/jj.jpeg
 #+OG_IMAGE: /assets/blog/dynamic-routing/cover.jpg
