@@ -38,6 +38,8 @@ export default function Meta() {
       />
       <meta property="og:image" content={HOME_OG_IMAGE_URL} />
       <script defer data-domain="edmundmiller.dev" src="https://plausible.io/js/script.js"></script>
+      <script data-goatcounter="https://emiller.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
     </Head>
   );
 }
