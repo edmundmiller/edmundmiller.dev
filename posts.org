@@ -2,6 +2,7 @@
 
 ** TODO Emacs and Julia
 https://old.reddit.com/r/Julia/comments/v4npic/setting_up_emacs_for_julia_in_windows_seeking/
+[[https://old.reddit.com/r/Julia/comments/w1b28y/emacs_for_julia_development/][Emacs for julia development? : Julia]]
 ** TODO Functional programming principals to apply to bioinformatics
 ** TODO Functional programming and nextflow
 ** TODO Org mode site rewrite
@@ -17,25 +18,9 @@ https://discourse.julialang.org/t/best-practices-for-julia-unit-testing/30858
 https://docs.julialang.org/en/v1/stdlib/Test/
 
 https://www.youtube.com/watch?v=IuwxE3m0_QQ
+https://github.com/hoodie/awesome-rust-testing
 ** TODO Rust and Julia comparison
 
-- Feris Juggling the Julia logo
-- Rust is the most loved language in stackoverflow *again*
-- Julia is climbing the ranks
-*** Points
-- Built-in package management
-- Central package store
-- Types
-  - The best part is they're there when you want them(when you're developing packages)
-- Baked in testing suite is adequate(ie don't need pytest/jest)
-- Community
-- Written in the last decade
-- Easy version management
-  https://github.com/JuliaLang/juliaup
-- Does it's main feature and does it well
-  - Rust is focused on memory safety
-  - Julia is focused on being fast
-    - Link to why we wrote Julia
 ** DONE Julia for bioinformatics
 CLOSED: [2022-06-01 Wed 14:28]
 :LOGBOOK:
@@ -44,3 +29,14 @@ CLOCK: [2022-06-01 Wed 12:00]--[2022-06-01 Wed 12:30] =>  0:30
 CLOCK: [2022-03-31 Thu 12:22]--[2022-03-31 Thu 13:45] =>  1:23
 CLOCK: [2022-03-31 Thu 11:58]--[2022-03-31 Thu 12:04] =>  0:06
 :END:
+
+** KILL Blog about Kedro vs Ploomber :blog:
+CLOSED: [2022-10-15 Sat 17:24]
+
+
+** TODO Solving Jupyter reproducibility post
+https://www.fast.ai/2022/08/25/jupyter-git/
+
+** TODO nextflow-sql and duckdb blog post
+https://duckdb.org/2022/05/04/friendlier-sql.html
+** TODO ADHD blog posts
