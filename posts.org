@@ -1,5 +1,9 @@
 #+title: Posts to make
 
+** TODO Write a blog post of eg vs ie
+** TODO "So what's your phd research project?"
+** TODO Write a blog post about my ADHD diagnosis
+** TODO Write a post of things I wish people understood about ADHD
 ** TODO Emacs and Julia
 https://old.reddit.com/r/Julia/comments/v4npic/setting_up_emacs_for_julia_in_windows_seeking/
 [[https://old.reddit.com/r/Julia/comments/w1b28y/emacs_for_julia_development/][Emacs for julia development? : Julia]]
