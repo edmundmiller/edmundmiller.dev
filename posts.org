@@ -45,5 +45,9 @@ https://www.fast.ai/2022/08/25/jupyter-git/
 ** TODO nextflow-sql and duckdb blog post
 https://duckdb.org/2022/05/04/friendlier-sql.html
 ** TODO ADHD blog posts
+
+Point out my "I'm going to start a writing streak blog post". Leave it up there
+as a reminder. The irony.
+
 *** TODO Neurodivergence and software
 The draw of finally being able to create the tools you need.

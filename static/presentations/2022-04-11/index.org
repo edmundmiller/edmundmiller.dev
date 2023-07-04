@@ -1,3 +1,4 @@
+# -*- org-attach-id-dir: "~/src/personal/edmundmiller-dev/static/org-attach/" -*-
 #+title: Nascent Transcript Identification
 #+AUTHOR:    Edmund Miller
 #+EMAIL:     Edmund.Miller@utdallas.edu

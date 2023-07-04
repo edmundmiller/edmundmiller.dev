@@ -7,7 +7,7 @@ tags: bytesize, nf-core, open-source, talk, pipeline
 
 <a href="https://www.nf-co.re"><img src="https://raw.githubusercontent.com/nf-core/logos/master/byte-size-logos/bytesize-darkbg.svg" width="65%"><img></a>
 
-# nf-core/bytesize: nascent
+# nascent
 
 Edmund Miller / <img src="https://openmoji.org/data/color/svg/E040.svg" width=50> @e_miller88 / <img src="https://openmoji.org/data/color/svg/E045.svg" width=50> @emiller88
 <a href="https://utdallas.edu"><img src="https://gist.githubusercontent.com/Emiller88/b2247c2883c3209950bebb89d5cb9a5f/raw/5455a28a6b27ffe90f32a947986eb80ebe63c6fa/utdmonogram.svg" width="80%"><img></a>

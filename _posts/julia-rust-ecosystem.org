@@ -12,11 +12,13 @@
 - Rust is the most loved language in stackoverflow *again*
 - Julia is climbing the ranks
 - Written in the last decade so they don't have to deal with legacy issues
+  Even more inspired after the juliacon keynote comparing Julia to go
 * TODO Built-in package management
 * TODO Central package store
 * TODO Types
   - The best part is they're there when you want them(when you're developing packages)
 * TODO Baked in testing suite is adequate(ie don't need pytest/jest)
+https://doc.rust-lang.org/book/ch11-00-testing.html
 * TODO Community
 * TODO Easy version management
   https://github.com/JuliaLang/juliaup

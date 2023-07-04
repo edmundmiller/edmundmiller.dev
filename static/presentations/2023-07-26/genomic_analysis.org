@@ -1,0 +1,30 @@
+#+title: Unlocking the Power of Genomic Analysis in Julia
+
+* Abstract
+Learn how Julia, a high-performance programming language, can be used to analyze genomic data. Discussion of libraries, specific challenges and opportunities, past examples, and future possibilities of using Julia in genomic data analysis.
+
+* Description
+
+Genomic data is becoming an increasingly valuable resource in the study of biology and medicine, as it allows for a deeper understanding of the underlying mechanisms of diseases and the development of more effective therapies. However, the sheer volume and complexity of genomic data can make it challenging to analyze. Julia, a high-performance programming language, has emerged as a powerful tool for genomic data analysis. In this talk, we will explore the use of Julia for genomic data analysis, including the various libraries and packages available, such as IntervalTrees and GenomicFeatures. We will also discuss some of the specific challenges and opportunities that arise when analyzing genomic data, such as dealing with large-scale data and integrating multiple data types. We will also show some examples of how Julia has been used in the past to analyze genomic data and what the future holds for this field. This talk will be beneficial for biologists, bioinformaticians, and data scientists interested in the application of Julia to genomic data analysis.
+
+Expected Outcomes:
+
+- Understanding of the power and capabilities of Julia for genomic data analysis
+- Knowledge of the available libraries and packages for genomic data analysis in Julia
+- Insights into the challenges and opportunities of using Julia for genomic data analysis
+- Familiarity with examples of how Julia has been used in the past for genomic data analysis
+- Ideas for potential future applications of Julia in genomic data analysis.
+
+
+* Replacing popular packages
+genomic regions
+* What about when you can't replace popular packages?
+
+- DESeq2
+* Calling commandline tools from Julia
+* Managing conda envs in Julia
+* Running Julia in Snakemake
+* Running Julia in Nextflow
+* Plotting
+PlotlyJS for IGV
+* Popular packages that are already written?
