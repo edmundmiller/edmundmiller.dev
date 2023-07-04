@@ -21,3 +21,5 @@ Exploring the use of Julia, in analyzing biological data. Discussion of librarie
 * Description :noexport:
 
 This talk, "Exploring the State of Machine Learning for Biological Data in Julia," will delve into the use of the high-performance programming language, Julia, in analyzing biological data. We will discuss various libraries and packages available in Julia, such as BioJulia and Flux.jl, and the benefits of using Julia for machine learning in the field of biology. Additionally, the challenges and opportunities that arise when using machine learning techniques on biological data, such as dealing with high-dimensional and heterogeneous data, will be addressed. The talk will also include examples of how machine learning has been applied to biological data in the past and what the future holds for this field.
+
+* Be the +PR+ Talk you want to see +in the world+ at Juliacon
