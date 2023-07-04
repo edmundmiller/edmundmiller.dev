@@ -1,5 +1,5 @@
 #+title: Unlocking the Power of Genomic Analysis in Julia
-
+# https://pretalx.com/juliacon2023/me/submissions/AJJRS3/
 * Abstract
 Learn how Julia, a high-performance programming language, can be used to analyze genomic data. Discussion of libraries, specific challenges and opportunities, past examples, and future possibilities of using Julia in genomic data analysis.
 
