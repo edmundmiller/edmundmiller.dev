@@ -1,18 +1,18 @@
 #+title: Posts to make
 
-** TODO Blog post about whole lotta love
-** TODO Write a blog post of eg vs ie
-** TODO "So what's your phd research project?"
-** TODO Write a blog post about my ADHD diagnosis
-** TODO Write a post of things I wish people understood about ADHD
-** TODO Emacs and Julia
+* TODO Blog post about whole lotta love
+* TODO Write a blog post of eg vs ie
+* TODO "So what's your phd research project?"
+* TODO Write a blog post about my ADHD diagnosis
+* TODO Write a post of things I wish people understood about ADHD
+* TODO Emacs and Julia
 https://old.reddit.com/r/Julia/comments/v4npic/setting_up_emacs_for_julia_in_windows_seeking/
 [[https://old.reddit.com/r/Julia/comments/w1b28y/emacs_for_julia_development/][Emacs for julia development? : Julia]]
-** TODO Functional programming principals to apply to bioinformatics
-** TODO Functional programming and nextflow
-** TODO Org mode site rewrite
-** TODO Comparing the different Plots.jl backends
-** TODO Julia testing
+* TODO Functional programming principals to apply to bioinformatics
+* TODO Functional programming and nextflow
+* TODO Org mode site rewrite
+* TODO Comparing the different Plots.jl backends
+* TODO Julia testing
 :LOGBOOK:
 CLOCK: [2022-06-16 Thu 21:30]--[2022-06-16 Thu 22:47] =>  1:17
 :END:
@@ -24,9 +24,9 @@ https://docs.julialang.org/en/v1/stdlib/Test/
 
 https://www.youtube.com/watch?v=IuwxE3m0_QQ
 https://github.com/hoodie/awesome-rust-testing
-** TODO Rust and Julia comparison
+* TODO Rust and Julia comparison
 
-** DONE Julia for bioinformatics
+* DONE Julia for bioinformatics
 CLOSED: [2022-06-01 Wed 14:28]
 :LOGBOOK:
 CLOCK: [2022-06-01 Wed 13:30]--[2022-06-01 Wed 14:29] =>  0:59
@@ -35,20 +35,20 @@ CLOCK: [2022-03-31 Thu 12:22]--[2022-03-31 Thu 13:45] =>  1:23
 CLOCK: [2022-03-31 Thu 11:58]--[2022-03-31 Thu 12:04] =>  0:06
 :END:
 
-** KILL Blog about Kedro vs Ploomber :blog:
+* KILL Blog about Kedro vs Ploomber :blog:
 CLOSED: [2022-10-15 Sat 17:24]
 
 
-** TODO Solving Jupyter reproducibility post
+* TODO Solving Jupyter reproducibility post
 https://www.fast.ai/2022/08/25/jupyter-git/
 
-** TODO nextflow-sql and duckdb blog post
+* TODO nextflow-sql and duckdb blog post
 https://duckdb.org/2022/05/04/friendlier-sql.html
-** TODO ADHD blog posts
+* TODO ADHD blog posts
 
 Point out my "I'm going to start a writing streak blog post". Leave it up there
 as a reminder. The irony.
 
-*** TODO Neurodivergence and software
+** TODO Neurodivergence and software
 The draw of finally being able to create the tools you need.
-** TODO Ob-sql and duck DB
+* TODO Ob-sql and duck DB
