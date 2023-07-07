@@ -41,5 +41,5 @@ genomic regions
 * Running Julia in Snakemake
 * Running Julia in Nextflow
 * Plotting
-PlotlyJS for IGV
+[[https://dash.plotly.com/julia/dash-bio/igv][Igv | Dash for Julia Documentation | Plotly]]
 * Popular packages that are already written?
