@@ -39,7 +39,89 @@ genomic regions
 * Calling commandline tools from Julia
 * Managing conda envs in Julia
 * Running Julia in Snakemake
+
+#+begin_src snakemake
+rule NAME:
+    input:
+        "path/to/inputfile",
+        "path/to/other/inputfile"
+    output:
+        "path/to/outputfile",
+        "path/to/another/outputfile"
+    script:
+        "path/to/script.jl"
+#+end_src
+
+#+begin_quote
+In the Julia script, a snakemake object is available, which can be accessed
+similar to the Python case, with the only difference that you have to index from
+1 instead of 0.
+#+end_quote
+
+** Inside the julia script
+
+#+begin_src julia
+do_something(snakemake.input[1], snakemake.output[2], snakemake.threads, snakemake.config["myparam"])
+#+end_src
+
+** TODO Handling package installs
 * Running Julia in Nextflow
+
+** Installing Packages
+[[https://apeltzer.github.io/post/03-julia-lang-nextflow/][Julia Lang, Docker & Nextflow | Personal Homepage of Alex Peltzer]]
+
+#+begin_src nextflow
+// nextflow.config
+env {
+    JULIA_DEPOT_PATH = "/usr/local/share/julia"
+}
+#+end_src
+
+
+** The script
+
+#+begin_src nextflow
+process cli {
+    container 'julia'
+    beforeScript "julia -e 'using Pkg; Pkg.activate("."); Pkg.add(["HTTP", "DataFrames"]);'"
+    input:
+    path csv_file
+
+
+    """
+    julia $csv_file
+    """
+}
+
+process shebang {
+    container 'julia'
+    beforeScript "julia -e 'using Pkg; Pkg.activate("."); Pkg.add(["HTTP", "DataFrames"]);'"
+    input:
+    path csv_file
+
+
+    """
+    julia $csv_file
+    """
+}
+#+end_src
+
+#+begin_src julia
+
+#+end_src
+
+- Move it to the ~bin/~ folder of the pipeline, and make it executable (~chmod +x bin\*.jl~)
+
+
+* TODO Handling package installs
+
+https://github.com/JuliaContainerization/SimpleContainerGenerator.jl
+
 * Plotting
 [[https://dash.plotly.com/julia/dash-bio/igv][Igv | Dash for Julia Documentation | Plotly]]
 * Popular packages that are already written?
+* REPL driven development
+* Other ideas to mimic
+** Look at genomicranges example workflow.
+** Crazy hot Tommy's blogs
+** Other genomic R package demos?
