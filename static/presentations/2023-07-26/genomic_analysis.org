@@ -31,8 +31,13 @@ Expected Outcomes:
 - Ideas for potential future applications of Julia in genomic data analysis.
 
 
+* Juliaup
+#+begin_src bash
+curl -fsSL https://install.julialang.org | sh
+#+end_src
 * Replacing popular packages
 genomic regions
+*
 * What about when you can't replace popular packages?
 
 - DESeq2
@@ -65,6 +70,7 @@ do_something(snakemake.input[1], snakemake.output[2], snakemake.threads, snakema
 #+end_src
 
 ** TODO Handling package installs
+https://github.com/snakemake/snakemake/issues/2215
 * Running Julia in Nextflow
 
 ** Installing Packages

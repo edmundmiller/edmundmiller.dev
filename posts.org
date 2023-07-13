@@ -52,3 +52,5 @@ as a reminder. The irony.
 ** TODO Neurodivergence and software
 The draw of finally being able to create the tools you need.
 * TODO Ob-sql and duck DB
+* TODO Julia packages and Nextflow
+* TODO Julia packages and Snakemake

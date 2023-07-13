@@ -23,3 +23,45 @@ Exploring the use of Julia, in analyzing biological data. Discussion of librarie
 This talk, "Exploring the State of Machine Learning for Biological Data in Julia," will delve into the use of the high-performance programming language, Julia, in analyzing biological data. We will discuss various libraries and packages available in Julia, such as BioJulia and Flux.jl, and the benefits of using Julia for machine learning in the field of biology. Additionally, the challenges and opportunities that arise when using machine learning techniques on biological data, such as dealing with high-dimensional and heterogeneous data, will be addressed. The talk will also include examples of how machine learning has been applied to biological data in the past and what the future holds for this field.
 
 * Be the +PR+ Talk you want to see +in the world+ at Juliacon
+
+- Being relatively new to the Julia community
+- Wanting to start using machine learning
+- What are the trade offs of all these packages?
+- How do we load biological data? Specific interest in genomics
+* Goal of Biologists(scope)
+
+- We're not trying to create novel model
+- We're trying to apply these models in novel ways
+- Then make biological inferences
+
+
+* Ability to call Python and R packages
+https://github.com/instadeepai/nucleotide-transformer
+
+* What are all of these Packages?
+
+- Flux.jl
+- SciML
+- MLJ
+- fast.ai
+- MLJFlux.jl
+
+* Loading file biological file formats
+
+- FASTA
+- BAM
+- BED
+
+* Somewhat bleak, but python and R aren't much better
+* Reproduce https://github.com/mlf-core/lcep?
+https://juliapackages.com/p/xgboost
+* Maybe just attempt to reproduce all of mlf-core examples?
+Start with lcep
+- Do SC autoencoder
+https://github.com/mlf-core/liver-ct-segmentation
+
+* Calling Selene
+https://github.com/FunctionLab/selene/blob/master/tutorials/quickstart_training/quickstart_training.ipynb
+https://github.com/FunctionLab/selene/blob/master/tutorials/getting_started_with_selene/getting_started_with_selene.ipynb
+* Hooking up to CUDA
+https://fluxml.ai/Flux.jl/stable/gpu/
