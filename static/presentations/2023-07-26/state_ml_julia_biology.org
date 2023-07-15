@@ -65,3 +65,8 @@ https://github.com/FunctionLab/selene/blob/master/tutorials/quickstart_training/
 https://github.com/FunctionLab/selene/blob/master/tutorials/getting_started_with_selene/getting_started_with_selene.ipynb
 * Hooking up to CUDA
 https://fluxml.ai/Flux.jl/stable/gpu/
+* Using it in collab
+https://colab.research.google.com/github/ageron/julia_notebooks/blob/master/Julia_Colab_Notebook_Template.ipynb
+* Flux
+https://fluxml.ai/Flux.jl/stable/gpu/
+https://www.freecodecamp.org/news/deep-learning-with-julia/
