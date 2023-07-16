@@ -44,6 +44,10 @@ Expected Outcomes:
 curl -fsSL https://install.julialang.org | sh
 #+end_src
 * Package comparisons
+:LOGBOOK:
+CLOCK: [2023-07-15 Sat 21:30]--[2023-07-15 Sat 22:27] =>  0:57
+CLOCK: [2023-07-15 Sat 14:17]--[2023-07-15 Sat 14:47] =>  0:30
+:END:
 
 # FIXME Split this into a slide for genomic file formats, general utilities, and genomic analysis
 
@@ -77,8 +81,39 @@ curl -fsSL https://install.julialang.org | sh
 * [[https://github.com/BioJulia/BioTutorials][GitHub - BioJulia/BioTutorials: Tutorial Notebooks of BioJulia]]
 * What about when you can't replace popular packages?
 
+
 - DESeq2
+
+** Options
+
+- [[https://juliainterop.github.io/RCall.jl/stable/gettingstarted/][RCall.jl]]
+- [[https://github.com/JuliaPy/PyCall.jl][PyCall.jl]]
+
 * Calling commandline tools from Julia
+
+#+begin_src julia
+julia> mycommand = `echo hello`
+`echo hello`
+
+julia> typeof(mycommand)
+Cmd
+
+julia> run(mycommand);
+hello
+#+end_src
+
+- [[https://docs.julialang.org/en/v1/manual/running-external-programs/][Docs on Running External Programs]]
+* Calling command line tools from Julia
+#+begin_src julia
+julia> files = ["/etc/passwd","/Volumes/External HD/data.csv"]
+2-element Vector{String}:
+ "/etc/passwd"
+ "/Volumes/External HD/data.csv"
+
+julia> `grep foo $files`
+`grep foo /etc/passwd '/Volumes/External HD/data.csv'`
+#+end_src
+
 * Managing conda envs in Julia
 * Running Julia in Snakemake
 
