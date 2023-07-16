@@ -1,15 +1,20 @@
 #+title: Unlocking the Power of Genomic Analysis in Julia
 #+author: Edmund Miller
-#+language: en
 #+date: July 26th, 2023
-#+exclude_tags: noexport
+
+#+language: en
+#+startup: content
+
+#+latex_class_options: [aspectratio=32]
+# #+beamer_theme: chameleon
+#+beamer_theme: [progressbar=foot]metropolis
 #+options: num:nil
 #+options: toc:nil
 #+startup: inlineimages
 #+startup: beamer
 #+LaTeX_CLASS: beamer
 #+LaTeX_CLASS_OPTIONS: [bigger]
-#+beamer_frame_level: 2
+# #+beamer_frame_level: 2
 # SPC m e l O
 
 # https://pretalx.com/juliacon2023/me/submissions/AJJRS3/
@@ -31,13 +36,45 @@ Expected Outcomes:
 - Ideas for potential future applications of Julia in genomic data analysis.
 
 
+* Overview
+** Why Julia?
+** Popular packages
 * Juliaup
 #+begin_src bash
 curl -fsSL https://install.julialang.org | sh
 #+end_src
-* Replacing popular packages
-genomic regions
-*
+* Package comparisons
+
+# FIXME Split this into a slide for genomic file formats, general utilities, and genomic analysis
+
+| Purpose                       | Python                                                              | R                                                            | Julia                                                                                                                                                              |
+|-------------------------------+---------------------------------------------------------------------+--------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|                               | [[https://github.com/pyranges/pyranges][pyranges]] /[[https://daler.github.io/pybedtools/][pybedtools documentation — pybedtools 0.9.0 documentation]] | [[https://bioconductor.org/packages/release/bioc/html/rtracklayer.html][rtracklayer]]                                                  | [[https://docs.juliahub.com/GenomicFeatures/kSGNI/3.0.0/][GenomicFeatures.jl]]                                                                                                                                                 |
+|                               |                                                                     | [[https://bioconductor.org/packages/release/bioc/vignettes/GenomicRanges/inst/doc/GenomicRangesIntroduction.html][GenomicsRanges]]                                               | [[https://biojulia.dev/GenomicFeatures.jl/stable/man/intervals/][Intervals · GenomicFeatures.jl]]                                                                                                                                     |
+|                               |                                                                     | [[https://github.com/drostlab/metablastr][GitHub - drostlab/metablastr: BLAST Sequence Searches with R]] | [[https://docs.juliahub.com/BioTools/wwbVn/1.1.0/blast/][BioTools.jl]]                                                                                                                                                        |
+|                               | [[https://biopython.org/wiki/SeqIO][Bio.SeqIO]]                                                           |                                                              | [[https://biojulia.dev/BioSequences.jl/stable/transforms/][Indexing & modifying sequences · BioSequences.jl]]                                                                                                                   |
+| Genomic Data Retrieval with R | [[https://github.com/pyranges/pyranges_db][pyranges_db]]/[[https://github.com/sebriois/biomart][biomart]] (api)                                           | [[https://github.com/ropensci/biomartr][biomartr]]                                                     | [[https://docs.juliahub.com/BioServices/nOcmO/0.4.1/man/eutils/][EUtils · BioServices.jl]] / [[https://github.com/BioJulia/BioFetch.jl][GitHub - BioJulia/BioFetch.jl: Easily fetch biological sequences from online ...]]                                                                                                                                         |
+| Plotting                      | Matplotlib                                                          | ggplot2                                                      | [[https://github.com/MakieOrg/Makie.jl][GitHub - MakieOrg/Makie.jl: Visualizations and plotting in Julia]] / [[https://gadflyjl.org/stable/][Home · Gadfly.jl]]                                                                                |
+| Dataframes                    | Pandas/Polars                                                       | [[https://tibble.tidyverse.org/][tibble]]                                                       |                                                                                                                                                                    |
+|                               |                                                                     |                                                              |                                                                                                                                                                    |
+| Read Sam/Bam files            | [[https://biopython.org/wiki/SeqIO][Bio.SeqIO]]                                                           |                                                              | [[https://docs.juliahub.com/XAM/4JnDO/0.3.1/][Readme · XAM.jl]]                                                                                                                                                    |
+| Reading Fastq files           |                                                                     |                                                              | [[https://github.com/BioJulia/FASTX.jl][GitHub - BioJulia/FASTX.jl: Parse and process FASTA and FASTQ formatted files...]]                                                                                   |
+| Genomic Annotations           |                                                                     |                                                              | [[https://docs.juliahub.com/GenomicAnnotations/ckOyU/0.3.2/][GenomicAnnotations.jl · GenomicAnnotations.jl]]                                                                                                                      |
+| Population Genetics           | [[https://biopython.org/wiki/PopGen][Population Genetics in Biopython · Biopython]]                        |                                                              | [[https://github.com/BioJulia/PopGen.jl][GitHub - BioJulia/PopGen.jl: Population Genetics in Julia]]                                                                                                          |
+| Variants/vcf                  |                                                                     |                                                              | [[https://github.com/BioJulia/GeneticVariation.jl][GitHub - BioJulia/GeneticVariation.jl: Datastructures and algorithms for work...]] /[[https://github.com/rasmushenningsson/VariantCallFormat.jl][GitHub - rasmushenningsson/VariantCallFormat.jl: Read and write VCF and BCF f...]] |
+|                               |                                                                     |                                                              | [[https://biojulia.dev/Phylogenies.jl/stable/][Phylogenies.jl]]                                                                                                                                                     |
+|                               | [[https://biopython.org/wiki/The_Biopython_Structural_Bioinformatics_FAQ][Bio.PDB]]                                                             |                                                              | [[https://biojulia.dev/BioStructures.jl/stable/][Home · BioStructures.jl]]                                                                                                                                            |
+|                               |                                                                     |                                                              | [[https://github.com/BioJulia/GFF3.jl][GitHub - BioJulia/GFF3.jl]]                                                                                                                                          |
+
+** :B_note:
+:PROPERTIES:
+:BEAMER_env: note
+:END:
+
+- Gadfly - if you prefer Grammer of graphics
+
+
+* [[https://github.com/BioJulia/BioTutorials][GitHub - BioJulia/BioTutorials: Tutorial Notebooks of BioJulia]]
 * What about when you can't replace popular packages?
 
 - DESeq2
@@ -131,3 +168,5 @@ https://github.com/JuliaContainerization/SimpleContainerGenerator.jl
 ** Look at genomicranges example workflow.
 ** Crazy hot Tommy's blogs
 ** Other genomic R package demos?
+* DataToolkit
+# TODO Link to Teco's presentation
