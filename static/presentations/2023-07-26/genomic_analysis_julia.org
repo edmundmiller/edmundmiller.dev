@@ -22,28 +22,56 @@
 
 * Abstract :noexport:
 
-Learn how Julia, a high-performance programming language, can be used to analyze genomic data. Discussion of libraries, specific challenges and opportunities, past examples, and future possibilities of using Julia in genomic data analysis.
+Learn how Julia, a high-performance programming language, can be used to analyze
+genomic data. Discussion of libraries, specific challenges and opportunities,
+past examples, and future possibilities of using Julia in genomic data analysis.
 
 * Description :noexport:
 
-Genomic data is becoming an increasingly valuable resource in the study of biology and medicine, as it allows for a deeper understanding of the underlying mechanisms of diseases and the development of more effective therapies. However, the sheer volume and complexity of genomic data can make it challenging to analyze. Julia, a high-performance programming language, has emerged as a powerful tool for genomic data analysis. In this talk, we will explore the use of Julia for genomic data analysis, including the various libraries and packages available, such as IntervalTrees and GenomicFeatures. We will also discuss some of the specific challenges and opportunities that arise when analyzing genomic data, such as dealing with large-scale data and integrating multiple data types. We will also show some examples of how Julia has been used in the past to analyze genomic data and what the future holds for this field. This talk will be beneficial for biologists, bioinformaticians, and data scientists interested in the application of Julia to genomic data analysis.
+Genomic data is becoming an increasingly valuable resource in the study of
+biology and medicine, as it allows for a deeper understanding of the underlying
+mechanisms of diseases and the development of more effective therapies. However,
+the sheer volume and complexity of genomic data can make it challenging to
+analyze. Julia, a high-performance programming language, has emerged as a
+powerful tool for genomic data analysis. In this talk, we will explore the use
+of Julia for genomic data analysis, including the various libraries and packages
+available, such as IntervalTrees and GenomicFeatures. We will also discuss some
+of the specific challenges and opportunities that arise when analyzing genomic
+data, such as dealing with large-scale data and integrating multiple data types.
+We will also show some examples of how Julia has been used in the past to
+analyze genomic data and what the future holds for this field. This talk will be
+beneficial for biologists, bioinformaticians, and data scientists interested in
+the application of Julia to genomic data analysis.
 
 Expected Outcomes:
 
 - Understanding of the power and capabilities of Julia for genomic data analysis
-- Knowledge of the available libraries and packages for genomic data analysis in Julia
-- Insights into the challenges and opportunities of using Julia for genomic data analysis
-- Familiarity with examples of how Julia has been used in the past for genomic data analysis
+- Knowledge of the available libraries and packages for genomic data analysis in
+  Julia
+- Insights into the challenges and opportunities of using Julia for genomic data
+  analysis
+- Familiarity with examples of how Julia has been used in the past for genomic
+  data analysis
 - Ideas for potential future applications of Julia in genomic data analysis.
-
-
-* TODO Why? :noexport:
-** Why are biologists working in Genomics interested?
-** Why are Julia enthusiasts interested in Genomics?
 
 * Overview
 ** Why Julia?
 ** Popular packages
+* Why Julia and Genomics?
+** Why are biologists working in Genomics interested?
+
+- "Why We Created Julia"
+  - As easy for statistics as R
+  - With mathematical notation like Matlab
+  - AS usable for general programming as Python
+  - As natural for string processing as Perl
+  - As good at gluing programs together as the shell
+  - As fast as C
+
+# cite: https://julialang.org/blog/2012/02/why-we-created-julia/
+** Why should Julia enthusiasts interested in Genomics?
+
+
 * Juliaup
 #+begin_src bash
 curl -fsSL https://install.julialang.org | sh
@@ -56,14 +84,15 @@ CLOCK: [2023-07-15 Sat 14:17]--[2023-07-15 Sat 14:47] =>  0:30
 
 # FIXME Split this into a slide for genomic file formats, general utilities, and genomic analysis
 
+\scriptsize
 | Purpose                       | Python                                                              | R                                                            | Julia                                                                                                                                                              |
 |-------------------------------+---------------------------------------------------------------------+--------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |                               | [[https://github.com/pyranges/pyranges][pyranges]] /[[https://daler.github.io/pybedtools/][pybedtools documentation — pybedtools 0.9.0 documentation]] | [[https://bioconductor.org/packages/release/bioc/html/rtracklayer.html][rtracklayer]]                                                  | [[https://docs.juliahub.com/GenomicFeatures/kSGNI/3.0.0/][GenomicFeatures.jl]]                                                                                                                                                 |
 |                               |                                                                     | [[https://bioconductor.org/packages/release/bioc/vignettes/GenomicRanges/inst/doc/GenomicRangesIntroduction.html][GenomicsRanges]]                                               | [[https://biojulia.dev/GenomicFeatures.jl/stable/man/intervals/][Intervals · GenomicFeatures.jl]]                                                                                                                                     |
 |                               |                                                                     | [[https://github.com/drostlab/metablastr][GitHub - drostlab/metablastr: BLAST Sequence Searches with R]] | [[https://docs.juliahub.com/BioTools/wwbVn/1.1.0/blast/][BioTools.jl]]                                                                                                                                                        |
 |                               | [[https://biopython.org/wiki/SeqIO][Bio.SeqIO]]                                                           |                                                              | [[https://biojulia.dev/BioSequences.jl/stable/transforms/][Indexing & modifying sequences · BioSequences.jl]]                                                                                                                   |
-| Genomic Data Retrieval with R | [[https://github.com/pyranges/pyranges_db][pyranges_db]]/[[https://github.com/sebriois/biomart][biomart]] (api)                                           | [[https://github.com/ropensci/biomartr][biomartr]]                                                     | [[https://docs.juliahub.com/BioServices/nOcmO/0.4.1/man/eutils/][EUtils · BioServices.jl]] / [[https://github.com/BioJulia/BioFetch.jl][GitHub - BioJulia/BioFetch.jl: Easily fetch biological sequences from online ...]]                                                                                                                                         |
-| Plotting                      | Matplotlib                                                          | ggplot2                                                      |[[https://github.com/JuliaPy/PyPlot.jl][GitHub - JuliaPy/PyPlot.jl: Plotting for Julia based on matplotlib.pyplot]] /[[https://github.com/MakieOrg/Makie.jl][GitHub - MakieOrg/Makie.jl: Visualizations and plotting in Julia]] / [[https://gadflyjl.org/stable/][Home · Gadfly.jl]]                                                                               |
+| Genomic Data Retrieval with R | [[https://github.com/pyranges/pyranges_db][pyranges_db]]/[[https://github.com/sebriois/biomart][biomart]] (api)                                           | [[https://github.com/ropensci/biomartr][biomartr]]                                                     | [[https://docs.juliahub.com/BioServices/nOcmO/0.4.1/man/eutils/][EUtils · BioServices.jl]] / [[https://github.com/BioJulia/BioFetch.jl][GitHub - BioJulia/BioFetch.jl: Easily fetch biological sequences from online ...]]                                                         |
+| Plotting                      | Matplotlib                                                          | ggplot2                                                      | [[https://github.com/JuliaPy/PyPlot.jl][GitHub - JuliaPy/PyPlot.jl: Plotting for Julia based on matplotlib.pyplot]] /[[https://github.com/MakieOrg/Makie.jl][GitHub - MakieOrg/Makie.jl: Visualizations and plotting in Julia]] / [[https://gadflyjl.org/stable/][Home · Gadfly.jl]]     |
 | Dataframes                    | Pandas/Polars                                                       | [[https://tibble.tidyverse.org/][tibble]]                                                       |                                                                                                                                                                    |
 |                               |                                                                     |                                                              |                                                                                                                                                                    |
 | Read Sam/Bam files            | [[https://biopython.org/wiki/SeqIO][Bio.SeqIO]]                                                           |                                                              | [[https://docs.juliahub.com/XAM/4JnDO/0.3.1/][Readme · XAM.jl]]                                                                                                                                                    |
@@ -84,13 +113,12 @@ CLOCK: [2023-07-15 Sat 14:17]--[2023-07-15 Sat 14:47] =>  0:30
 
 https://www.bioconductor.org/packages/stats/
 
-* TODO [[https://github.com/BioJulia/BioTutorials][GitHub - BioJulia/BioTutorials: Tutorial Notebooks of BioJulia]] :noexport:
-* What about when you can't replace popular packages?
-
+** What about when you can't replace popular packages?
 
 - DESeq2
 
-** Options
+Options:
+
 - [[https://github.com/JuliaInterop][JuliaInterop · GitHub]]
   - [[https://juliainterop.github.io/RCall.jl/stable/gettingstarted/][RCall.jl]]
   - [[https://github.com/JuliaPy/PyCall.jl][PyCall.jl]]
@@ -106,6 +134,53 @@ https://www.bioconductor.org/packages/stats/
 - There is a Rust crate but it doesn't seem very active. Probably because Julia
   came out in 2009, and Rust in 2015, so why would you reach for Rust if you're
   going to write Julia anyways.
+
+** JuliaInterop - RCall :ATTACH:
+:PROPERTIES:
+:ID:       7f2a99d1-01a5-4432-8fc9-d8d3caf043c8
+:END:
+
+#+begin_src julia
+julia> using RCall
+# type `$`
+R> install.packages("ggplot2")
+R> library(ggplot2)
+R> data(diamonds)
+R> ggplot(diamonds, aes(x=carat, y=price)) + geom_point()
+#+end_src
+
+#+attr_latex: :height 0.2\linewidth
+[[attachment:_20230717_090248screenshot.png]]
+
+** PyCall
+
+#+begin_src julia
+using PyCall
+plt = pyimport("matplotlib.pyplot")
+x = range(0;stop=2*pi,length=1000); y = sin.(3*x + 4*cos.(2*x));
+plt.plot(x, y, color="red", linewidth=2.0, linestyle="--")
+plt.show()
+#+end_src
+
+** PyCall
+
+#+begin_src julia
+using PyCall
+
+py"""
+import numpy as np
+
+def sinpi(x):
+    return np.sin(np.pi * x)
+"""
+py"sinpi"(1)
+#+end_src
+
+Or call entire scripts
+
+#+begin_src julia
+@pyinclude("foo.py")
+#+end_src
 
 * Calling commandline tools from Julia
 
@@ -138,7 +213,6 @@ julia> `grep foo $files`
 using Conda, RCall
 
 Conda.add("bioconductor-deseq2", channel="bioconda", :rnaseq)
-
 #+end_src
 
 ~ENV["CONDA_JL_USE_MINIFORGE"] = "1"~
@@ -270,6 +344,19 @@ https://github.com/JuliaContainerization/SimpleContainerGenerator.jl
 
 * Plotting
 ** BedGraphs
+#+begin_src bedgraph
+track type=bedGraph name="BedGraph Format" description="BedGraph format" priority=20
+chr19 59302000 59302300 -1.0
+chr19 59302300 59302600 -0.75
+chr19 59302600 59302900 -0.50
+chr19 59302900 59303200 -0.25
+chr19 59303200 59303500 0.0
+chr19 59303500 59303800 0.25
+chr19 59303800 59304100 0.50
+chr19 59304100 59304400 0.75
+#+end_src
+** BedGraphs
+
 #+begin_src julia :using DataFrames FileIO
 using FileIO, BedgraphFiles, DataTables, IndexedTables, Gadfly
 
@@ -280,20 +367,83 @@ dt = DataTable(load("data.bedgraph"))
 it = IndexedTable(load("data.bedgraph"))
 # Plot directly with Gadfly
 plot(load("data.bedgraph"), xmin=:leftposition, xmax=:rightposition, y=:value, Geom.bar)
+
+load("data.bedgraph") |> @filter(_.chrom == "chr19") |> save("data-chr19.bedgraph")
 #+end_src
 
-#+RESULTS:
+# FIXME gadly and indexedtable are broken
 
-# load("data.bedgraph") |> @filter(_.chrom == "chr19") |> save("data-chr19.bedgraph")
-* TODO REPL driven development
-* Other ideas to mimic
-** Look at genomicranges example workflow.
-** Crazy hot Tommy's blogs
-** Other genomic R package demos?
 * DataToolkit
 # TODO Link to Teco's presentation
+
+** Example declarative data set
+#+begin_src conf-data-toml
+[[iris]]
+uuid = "3f3d7714-22aa-4555-a950-78f43b74b81c"
+description = "Fisher's famous Iris flower measurements"
+
+    [[iris.storage]]
+    driver = "web"
+    checksum = "crc32c:d5c06b86"
+    url = "https://raw.githubusercontent.com/scikit-learn/scikit-learn/1.0/sklearn/datasets/data/iris.csv"
+
+    [[iris.loader]]
+    driver = "csv"
+    args.header = ["sepal_length", "sepal_width", "petal_length", "petal_width", "species_class"]
+    args.skipto = 2
+#+end_src
+
+** Features in this example
+
++ A named dataset @@latex:\hfill@@
+  src_conf-data-toml{[[iris]]}
++ Which can be uniquely identified @@latex:\hfill@@
+  src_conf-data-toml{uuid = "..."}
++ With metadata @@latex:\hfill@@
+  src_conf-data-toml{description = "..."}
++ Named storage/loader backends @@latex:\hfill@@
+  src_conf-data-toml{driver = "web"}
++ Content verification @@latex:\hfill@@
+  src_conf-data-toml{checksum = "crc32c:d5c06b86"}
++ Storage/loader arguments @@latex:\hfill@@
+  src_conf-data-toml{url = "..."}, src_conf-data-toml{args.skipto = 2}
+
+** Using a dataset in computation
+
+#+begin_src julia
+julia> using DataToolkit, DataFrames
+
+julia> sum(d"iris".sepal_length)
+876.5
+#+end_src
+
+#+beamer: \pause
+
+#+begin_src julia
+julia> mean(d"iris::Matrix", dims=1)
+1×5 Matrix{Float64}:
+ 5.84333  3.05733  3.758  1.19933  1.0
+#+end_src
+
+#+beamer: \pause
+
+More than just string matching for types:
+
+#+begin_src julia
+julia> mean(d"iris::Array{T<:Any, 2}", dims=1)
+1×5 Matrix{Float64}:
+ 5.84333  3.05733  3.758  1.19933  1.0
+#+end_src
+
 * Easy Package Creation
 https://github.com/JuliaCI/PkgTemplates.jl
 * Where is Julia lacking?
 
 - Creating binaries/clis
+* Ideas :noexport:
+** TODO [[https://github.com/BioJulia/BioTutorials][GitHub - BioJulia/BioTutorials: Tutorial Notebooks of BioJulia]] :noexport:noexport:
+** Other ideas to mimic
+*** Look at genomicranges example workflow.
+*** Crazy hot Tommy's blogs
+*** Other genomic R package demos?
+** TODO REPL driven development
