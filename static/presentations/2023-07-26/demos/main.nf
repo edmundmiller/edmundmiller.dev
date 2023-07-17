@@ -7,16 +7,18 @@ process system_image {
     julia --output-ji myimage.ji
     """
 }
+
 process cli {
     container 'julia'
-    beforeScript 'julia -e "using Pkg; Pkg.activate("."); Pkg.add([\"HTTP\", \"DataFrames\"]);"'
 
     input:
     path csv_file
 
+    output:
+    stdout
 
     """
-    myScript.jl $csv_file
+    hello.jl $csv_file
     """
 }
 
@@ -38,6 +40,6 @@ process shebang {
 }
 
 workflow {
-    // cli(file('./test.csv'))
+    cli(file('./test.csv'))
     shebang(file('./test.csv'))
 }

@@ -37,6 +37,10 @@ Expected Outcomes:
 - Ideas for potential future applications of Julia in genomic data analysis.
 
 
+* TODO Why? :noexport:
+** Why are biologists working in Genomics interested?
+** Why are Julia enthusiasts interested in Genomics?
+
 * Overview
 ** Why Julia?
 ** Popular packages
@@ -198,7 +202,6 @@ env {
 #+begin_src nextflow
 process cli {
     container 'julia'
-    beforeScript "julia -e 'using Pkg; Pkg.activate("."); Pkg.add(["HTTP", "DataFrames"]); Pkg.precompile();'"
 
     input:
     path csv_file
@@ -207,7 +210,7 @@ process cli {
     stdout
 
     """
-    hello.jl $csv_file
+    julia hello.jl $csv_file
     """
 }
 
@@ -221,11 +224,8 @@ process shebang {
     output:
     path "out.csv"
 
-
     """
-    #!/usr/bin/julia
-
-    println("Hello world")
+    #!/usr/bin/env -S julia --startup-file=no
 
     using CSV, DataFrames
 
@@ -242,21 +242,35 @@ workflow {
 #+end_src
 
 #+begin_src julia
-#!/usr/bin/julia
+#!/usr/bin/env -S julia --color=yes --startup-file=no
 
-println("Hello world")
+println(PROGRAM_FILE);
+abspath(PROGRAM_FILE) == @__FILE__
+
+@show ARGS
+
+for x in ARGS
+    println(x)
+end
 #+end_src
 
 - Move it to the ~bin/~ folder of the pipeline, and make it executable (~chmod +x bin\*.jl~)
 
 
+** :B_note:
+:PROPERTIES:
+:BEAMER_env: note
+:END:
+
+- The ~--project=@.~ is the default
+- But the way Nextflow works that doesn't get picked up
 ** TODO Handling package installs :noexport:
 
 https://github.com/JuliaContainerization/SimpleContainerGenerator.jl
 
 * Plotting
 ** BedGraphs
-#+begin_src julia
+#+begin_src julia :using DataFrames FileIO
 using FileIO, BedgraphFiles, DataTables, IndexedTables, Gadfly
 
 # Load into a DataTable
