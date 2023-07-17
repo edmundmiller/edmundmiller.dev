@@ -1,9 +1,10 @@
-rule NAME:
+from snakemake.remote import AUTO
+
+rule calling_script:
     input:
-        "path/to/inputfile",
-        "path/to/other/inputfile"
+        AUTO.remote("https://raw.githubusercontent.com/scikit-learn/scikit-learn/1.0/sklearn/datasets/data/iris.csv")
     output:
-        "path/to/outputfile",
-        "path/to/another/outputfile"
+        "results/out.csv",
+    container: "docker://julia"
     script:
-        "path/to/script.jl"
+        "bin/smk_script.jl"
