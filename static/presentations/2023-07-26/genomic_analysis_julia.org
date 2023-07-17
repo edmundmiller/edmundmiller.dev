@@ -1,3 +1,4 @@
+-*-  org-babel-julia-command: "julia --project=."; -*-
 #+title: Unlocking the Power of Genomic Analysis in Julia
 #+author: Edmund Miller
 #+date: July 26th, 2023
@@ -14,7 +15,7 @@
 #+startup: beamer
 #+LaTeX_CLASS: beamer
 #+LaTeX_CLASS_OPTIONS: [bigger]
-# #+beamer_frame_level: 2
+#+beamer_frame_level: 2
 # SPC m e l O
 
 # https://pretalx.com/juliacon2023/me/submissions/AJJRS3/
@@ -79,7 +80,7 @@ CLOCK: [2023-07-15 Sat 14:17]--[2023-07-15 Sat 14:47] =>  0:30
 
 https://www.bioconductor.org/packages/stats/
 
-* [[https://github.com/BioJulia/BioTutorials][GitHub - BioJulia/BioTutorials: Tutorial Notebooks of BioJulia]]
+* TODO [[https://github.com/BioJulia/BioTutorials][GitHub - BioJulia/BioTutorials: Tutorial Notebooks of BioJulia]] :noexport:
 * What about when you can't replace popular packages?
 
 
@@ -116,7 +117,7 @@ hello
 #+end_src
 
 - [[https://docs.julialang.org/en/v1/manual/running-external-programs/][Docs on Running External Programs]]
-* Calling command line tools from Julia
+* Calling commandline tools from Julia
 #+begin_src julia
 julia> files = ["/etc/passwd","/Volumes/External HD/data.csv"]
 2-element Vector{String}:
@@ -145,10 +146,10 @@ Conda.add("bioconductor-deseq2", channel="bioconda", :rnaseq)
 
 #+begin_src snakemake
 from snakemake.remote import AUTO
-
+iris = "https://raw.githubusercontent.com/scikit-learn/scikit-learn/1.0/sklearn/datasets/data/iris.csv"
 rule calling_script:
     input:
-        AUTO.remote("https://raw.githubusercontent.com/scikit-learn/scikit-learn/1.0/sklearn/datasets/data/iris.csv")
+        AUTO.remote(iris)
     output:
         "results/out.csv",
     container: "docker://julia"
@@ -176,11 +177,12 @@ CSV.write(snakemake.output[1], df)
 do_something(snakemake.input[1], snakemake.output[2], snakemake.threads, snakemake.config["myparam"])
 #+end_src
 
-** TODO Handling package installs
+** TODO Handling package installs :noexport:
 https://github.com/snakemake/snakemake/issues/2215
 * Running Julia in Nextflow
 
-** Installing Packages
+** Installing Packages to Julia Depot
+
 [[https://apeltzer.github.io/post/03-julia-lang-nextflow/][Julia Lang, Docker & Nextflow | Personal Homepage of Alex Peltzer]]
 
 #+begin_src nextflow
@@ -196,43 +198,80 @@ env {
 #+begin_src nextflow
 process cli {
     container 'julia'
-    beforeScript "julia -e 'using Pkg; Pkg.activate("."); Pkg.add(["HTTP", "DataFrames"]);'"
+    beforeScript "julia -e 'using Pkg; Pkg.activate("."); Pkg.add(["HTTP", "DataFrames"]); Pkg.precompile();'"
+
     input:
     path csv_file
 
+    output:
+    stdout
 
     """
-    julia $csv_file
+    hello.jl $csv_file
     """
 }
 
 process shebang {
     container 'julia'
-    beforeScript "julia -e 'using Pkg; Pkg.activate("."); Pkg.add(["HTTP", "DataFrames"]);'"
+    beforeScript "julia -e 'using Pkg; Pkg.activate("."); Pkg.add(["HTTP", "DataFrames"]); Pkg.precompile();'"
+
     input:
     path csv_file
 
+    output:
+    path "out.csv"
+
 
     """
-    julia $csv_file
+    #!/usr/bin/julia
+
+    println("Hello world")
+
+    using CSV, DataFrames
+
+    df = DataFrame(CSV.File($csv_file, footerskip=50))
+    names(df)
+    CSV.write("out.csv", df)
     """
+}
+
+workflow {
+    cli(file('./test.csv'))
+    shebang(file('./test.csv'))
 }
 #+end_src
 
 #+begin_src julia
+#!/usr/bin/julia
 
+println("Hello world")
 #+end_src
 
 - Move it to the ~bin/~ folder of the pipeline, and make it executable (~chmod +x bin\*.jl~)
 
 
-** TODO Handling package installs
+** TODO Handling package installs :noexport:
 
 https://github.com/JuliaContainerization/SimpleContainerGenerator.jl
 
 * Plotting
-[[https://dash.plotly.com/julia/dash-bio/igv][Igv | Dash for Julia Documentation | Plotly]]
-* REPL driven development
+** BedGraphs
+#+begin_src julia
+using FileIO, BedgraphFiles, DataTables, IndexedTables, Gadfly
+
+# Load into a DataTable
+dt = DataTable(load("data.bedgraph"))
+
+# Load into an IndexedTable
+it = IndexedTable(load("data.bedgraph"))
+# Plot directly with Gadfly
+plot(load("data.bedgraph"), xmin=:leftposition, xmax=:rightposition, y=:value, Geom.bar)
+#+end_src
+
+#+RESULTS:
+
+# load("data.bedgraph") |> @filter(_.chrom == "chr19") |> save("data-chr19.bedgraph")
+* TODO REPL driven development
 * Other ideas to mimic
 ** Look at genomicranges example workflow.
 ** Crazy hot Tommy's blogs
