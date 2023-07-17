@@ -58,7 +58,7 @@ CLOCK: [2023-07-15 Sat 14:17]--[2023-07-15 Sat 14:47] =>  0:30
 |                               |                                                                     | [[https://github.com/drostlab/metablastr][GitHub - drostlab/metablastr: BLAST Sequence Searches with R]] | [[https://docs.juliahub.com/BioTools/wwbVn/1.1.0/blast/][BioTools.jl]]                                                                                                                                                        |
 |                               | [[https://biopython.org/wiki/SeqIO][Bio.SeqIO]]                                                           |                                                              | [[https://biojulia.dev/BioSequences.jl/stable/transforms/][Indexing & modifying sequences · BioSequences.jl]]                                                                                                                   |
 | Genomic Data Retrieval with R | [[https://github.com/pyranges/pyranges_db][pyranges_db]]/[[https://github.com/sebriois/biomart][biomart]] (api)                                           | [[https://github.com/ropensci/biomartr][biomartr]]                                                     | [[https://docs.juliahub.com/BioServices/nOcmO/0.4.1/man/eutils/][EUtils · BioServices.jl]] / [[https://github.com/BioJulia/BioFetch.jl][GitHub - BioJulia/BioFetch.jl: Easily fetch biological sequences from online ...]]                                                                                                                                         |
-| Plotting                      | Matplotlib                                                          | ggplot2                                                      | [[https://github.com/MakieOrg/Makie.jl][GitHub - MakieOrg/Makie.jl: Visualizations and plotting in Julia]] / [[https://gadflyjl.org/stable/][Home · Gadfly.jl]]                                                                                |
+| Plotting                      | Matplotlib                                                          | ggplot2                                                      |[[https://github.com/JuliaPy/PyPlot.jl][GitHub - JuliaPy/PyPlot.jl: Plotting for Julia based on matplotlib.pyplot]] /[[https://github.com/MakieOrg/Makie.jl][GitHub - MakieOrg/Makie.jl: Visualizations and plotting in Julia]] / [[https://gadflyjl.org/stable/][Home · Gadfly.jl]]                                                                               |
 | Dataframes                    | Pandas/Polars                                                       | [[https://tibble.tidyverse.org/][tibble]]                                                       |                                                                                                                                                                    |
 |                               |                                                                     |                                                              |                                                                                                                                                                    |
 | Read Sam/Bam files            | [[https://biopython.org/wiki/SeqIO][Bio.SeqIO]]                                                           |                                                              | [[https://docs.juliahub.com/XAM/4JnDO/0.3.1/][Readme · XAM.jl]]                                                                                                                                                    |
@@ -77,6 +77,7 @@ CLOCK: [2023-07-15 Sat 14:17]--[2023-07-15 Sat 14:47] =>  0:30
 
 - Gadfly - if you prefer Grammer of graphics
 
+https://www.bioconductor.org/packages/stats/
 
 * [[https://github.com/BioJulia/BioTutorials][GitHub - BioJulia/BioTutorials: Tutorial Notebooks of BioJulia]]
 * What about when you can't replace popular packages?
@@ -85,9 +86,21 @@ CLOCK: [2023-07-15 Sat 14:17]--[2023-07-15 Sat 14:47] =>  0:30
 - DESeq2
 
 ** Options
+- [[https://github.com/JuliaInterop][JuliaInterop · GitHub]]
+  - [[https://juliainterop.github.io/RCall.jl/stable/gettingstarted/][RCall.jl]]
+  - [[https://github.com/JuliaPy/PyCall.jl][PyCall.jl]]
 
-- [[https://juliainterop.github.io/RCall.jl/stable/gettingstarted/][RCall.jl]]
-- [[https://github.com/JuliaPy/PyCall.jl][PyCall.jl]]
+- Calling commandline tools from Julia
+
+*** :B_note:
+:PROPERTIES:
+:BEAMER_env: note
+:END:
+
+- Also libraries for C/C++, Matlab and GNU Octave, Java, Fortran
+- There is a Rust crate but it doesn't seem very active. Probably because Julia
+  came out in 2009, and Rust in 2015, so why would you reach for Rust if you're
+  going to write Julia anyways.
 
 * Calling commandline tools from Julia
 
@@ -115,6 +128,19 @@ julia> `grep foo $files`
 #+end_src
 
 * Managing conda envs in Julia
+
+#+begin_src julia
+using Conda, RCall
+
+Conda.add("bioconductor-deseq2", channel="bioconda", :rnaseq)
+
+#+end_src
+
+~ENV["CONDA_JL_USE_MINIFORGE"] = "1"~
+# julia> using Conda
+# julia> Conda.add("mamba")
+# julia> ENV["CONDA_JL_CONDA_EXE"] = joinpath(Conda.ROOTENV, "bin", "mamba")
+# pkg> build Conda
 * Running Julia in Snakemake
 
 #+begin_src snakemake
@@ -197,7 +223,6 @@ https://github.com/JuliaContainerization/SimpleContainerGenerator.jl
 
 * Plotting
 [[https://dash.plotly.com/julia/dash-bio/igv][Igv | Dash for Julia Documentation | Plotly]]
-* Popular packages that are already written?
 * REPL driven development
 * Other ideas to mimic
 ** Look at genomicranges example workflow.
@@ -205,3 +230,6 @@ https://github.com/JuliaContainerization/SimpleContainerGenerator.jl
 ** Other genomic R package demos?
 * DataToolkit
 # TODO Link to Teco's presentation
+* Where is Julia lacking?
+
+- Creating binaries/clis

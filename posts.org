@@ -16,6 +16,8 @@ https://old.reddit.com/r/Julia/comments/v4npic/setting_up_emacs_for_julia_in_win
 :LOGBOOK:
 CLOCK: [2022-06-16 Thu 21:30]--[2022-06-16 Thu 22:47] =>  1:17
 :END:
+https://www.endpointdev.com/blog/2020/11/rapid-tdd-in-julia/
+
 https://www.juliapackages.com/p/pkgtemplates
 https://www.youtube.com/watch?v=n-UP_Ul-JjE
 https://juliatesting.github.io/ReTest.jl/stable/
@@ -25,7 +27,7 @@ https://docs.julialang.org/en/v1/stdlib/Test/
 https://www.youtube.com/watch?v=IuwxE3m0_QQ
 https://github.com/hoodie/awesome-rust-testing
 * TODO Rust and Julia comparison
-
+https://miguelraz.github.io/blog/juliatorust/
 * DONE Julia for bioinformatics
 CLOSED: [2022-06-01 Wed 14:28]
 :LOGBOOK:
