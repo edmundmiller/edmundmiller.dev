@@ -246,6 +246,40 @@ Conda.add("bioconductor-deseq2", channel="bioconda", :rnaseq)
 # julia> Conda.add("mamba")
 # julia> ENV["CONDA_JL_CONDA_EXE"] = joinpath(Conda.ROOTENV, "bin", "mamba")
 # pkg> build Conda
+** Pkg.jl
+#+begin_src julia
+# ]
+(@v1.8) pkg>
+(@v1.8) pkg> add Example
+   Resolving package versions...
+   Installed Example ─ v0.5.3
+    Updating `~/.julia/environments/v1.8/Project.toml`
+  [7876af07] + Example v0.5.3
+    Updating `~/.julia/environments/v1.8/Manifest.toml`
+  [7876af07] + Example v0.5.3
+julia> import Example
+
+julia> Example.hello("friend")
+"Hello, friend"
+#+end_src
+** Pkg.jl Environments
+
+#+begin_src julia
+(@v1.8) pkg> activate tutorial
+[ Info: activating new environment at `~/tutorial/Project.toml`.
+(tutorial) pkg>
+(tutorial) pkg> status
+    Status `~/tutorial/Project.toml`
+   (empty environment)
+(tutorial) pkg> add Example JSON
+...
+
+(tutorial) pkg> status
+    Status `~/tutorial/Project.toml`
+  [7876af07] Example v0.5.3
+  [682c06a0] JSON v0.21.3
+
+#+end_src
 * Julia in Workflows
 ** Running Julia in Snakemake
 
