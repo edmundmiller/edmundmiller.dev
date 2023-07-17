@@ -6,7 +6,9 @@
 #+startup: content
 
 #+latex_class_options: [aspectratio=32]
-# #+beamer_theme: chameleon
+#+beamer_theme: chameleon
+#+latex_header: \usepackage{scrextend}
+#+latex_header: \usepackage{xcolor}
 #+beamer_theme: [progressbar=foot]metropolis
 #+options: num:nil
 #+options: toc:nil
