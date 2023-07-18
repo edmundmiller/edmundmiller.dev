@@ -4,6 +4,17 @@
 * TODO Write a blog post of eg vs ie
 * TODO "So what's your phd research project?"
 * TODO Write a blog post about my ADHD diagnosis
+** TODO Send Russ Barkley my blog post when I finish
+
+** How my wife felt most days
+https://www.getyarn.io/yarn-clip/e490c2eb-25c2-4ea7-813f-bd7b4025b191#u9DkXlnB.copy
+https://www.getyarn.io/yarn-clip/3d49a291-18e6-4905-9bba-b116576e4440
+https://www.getyarn.io/yarn-clip/b5949e53-0a44-43f8-8c0f-2068b2d0179f#fLbb658Q.copy
+https://www.getyarn.io/yarn-clip/e292bf6f-7d5e-473b-af9a-a7babd48bea1#utXYVTUQ.copy
+https://www.getyarn.io/yarn-clip/2ee94044-a423-4116-9fb1-b36bb1daec29#4OOnESQq.copy
+https://www.getyarn.io/yarn-clip/1bffb16f-bf01-4495-8b96-a785e4311fa9#0Sha-0m9.copy
+https://www.getyarn.io/yarn-clip/3c220b1a-e69c-4a3d-acb9-9f750ccede39#jP4C2thU.copy
+https://www.getyarn.io/yarn-clip/b4590868-deac-429b-8b84-c1decdf34fac#m-420elC.copy
 * TODO Write a post of things I wish people understood about ADHD
 * TODO Emacs and Julia
 https://old.reddit.com/r/Julia/comments/v4npic/setting_up_emacs_for_julia_in_windows_seeking/
