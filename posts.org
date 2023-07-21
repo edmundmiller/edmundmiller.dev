@@ -57,6 +57,8 @@ https://www.fast.ai/2022/08/25/jupyter-git/
 
 * TODO nextflow-sql and duckdb blog post
 https://duckdb.org/2022/05/04/friendlier-sql.html
+Use motherduck now that I have access
+https://motherduck.com/docs/authenticating-to-motherduck#authentication-using-saas-mode
 * TODO ADHD blog posts
 
 Point out my "I'm going to start a writing streak blog post". Leave it up there
