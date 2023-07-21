@@ -98,7 +98,7 @@ CLOCK: [2023-07-15 Sat 14:17]--[2023-07-15 Sat 14:47] =>  0:30
 | Plotting   | Matplotlib    | ggplot2 | [[https://github.com/JuliaPy/PyPlot.jl][PyPlot.jl]] / [[https://github.com/MakieOrg/Makie.jl][Makie.jl]] / [[https://gadflyjl.org/stable/][Home · Gadfly.jl]] |
 | Dataframes | Pandas/Polars | [[https://tibble.tidyverse.org/][tibble]]  | DataFrames.jl                          |
 
-** Genomic File Formats
+** Biological File Formats
 
 \scriptsize
 | Purpose       | Python    | R  | Julia                                    |

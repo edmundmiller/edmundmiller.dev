@@ -28,6 +28,10 @@ This talk, "Exploring the State of Machine Learning for Biological Data in Julia
 - Wanting to start using machine learning
 - What are the trade offs of all these packages?
 - How do we load biological data? Specific interest in genomics
+* About me
+
+- Been Machine Learning curious for a while
+- Never took Linear Algebra
 * Goal of Biologists(scope)
 
 - We're not trying to create novel model
@@ -70,3 +74,6 @@ https://colab.research.google.com/github/ageron/julia_notebooks/blob/master/Juli
 * Flux
 https://fluxml.ai/Flux.jl/stable/gpu/
 https://www.freecodecamp.org/news/deep-learning-with-julia/
+* Conclusion
+
+- I need to read a few books on linear algebra
