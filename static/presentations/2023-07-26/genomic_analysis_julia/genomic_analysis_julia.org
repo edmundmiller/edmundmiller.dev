@@ -4,6 +4,8 @@
 
 #+language: en
 #+startup: content
+#+property: header-args:conf-data-toml :eval no :exports code
+#+property: header-args:julia :eval no :exports code
 
 #+latex_class_options: [aspectratio=32]
 #+beamer_theme: chameleon
@@ -21,6 +23,16 @@
 #+options: H:2
 # SPC m e l O
 # -*-  org-babel-julia-command: "julia --project=."; -*-
+#+chameleon_theme: doom-one-light
+#+latex_engraved_theme: doom-one-light
+#+latex_header: \usepackage[inkscapelatex=false,inkscapearea=page]{svg}
+#+latex_header: \titlegraphic{\hfill\includesvg[height=2cm]{figures/logo.svg}}
+#+latex_header: \usepackage[scale=0.88]{sourcecodepro}
+#+latex_header: \DeclareUnicodeCharacter{2218}{\ensuremath{\circ}}
+#+latex_header: \newcommand{\codefont}{\footnotesize\fontseries{mb}\selectfont}
+# #+latex_header: \usepackage{appendixnumberbeamer}
+#+latex_header_extra: \definecolor{EfD}{HTML}{fafafa}
+#+latex_header_extra: \setbeamertemplate{headline}{Hello}
 
 # https://pretalx.com/juliacon2023/me/submissions/AJJRS3/
 
