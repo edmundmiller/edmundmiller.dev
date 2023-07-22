@@ -119,3 +119,8 @@ http://acm.na.edu/img/bioInfoLab/bioinformatics_venn.png
 - [[https://juliaacademy.com/][Go through some courses on JuliaAcademy]]
 - Check out the work by [[https://www.logankilpatrick.com/][Logan Kilpatrick, the Julia Dev Community
   Advocate]]
+
+*** 2023 Update
+
+- [[https://github.com/BioJulia/BioTutorials][GitHub - BioJulia/BioTutorials: Tutorial Notebooks of BioJulia]]
+- New Documenter.jl Docs!
