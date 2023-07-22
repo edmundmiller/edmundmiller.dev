@@ -74,6 +74,10 @@ Expected Outcomes:
 - Ideas for potential future applications of Julia in genomic data analysis.
 
 * Overview
+** TODO ~whoami~
+
+- Phd Candidate @ University of Texas at Dallas
+- nf-core maintainer
 ** Why Julia and Genomics?
 *** Why are biologists working in Genomics interested?
 
@@ -96,8 +100,11 @@ Expected Outcomes:
     - Cost of computational Analysis: $25
 
 # TODO cite: Sarek 3.0 paper
+** Overview
 
-* Julia Features for Genomic Analysis
+- Julia Features for Analysis
+
+* Julia Features for Analysis
 ** Juliaup
 
 #+begin_src bash
@@ -174,10 +181,8 @@ https://github.com/JuliaCI/PkgTemplates.jl
 ** TODO REPL
 
 - For analysis is so much better to talk to the computer
-** TODO Interop
-
-- Just a teaser
-
+** TODO VS Code? :noexport:
+- Remote files
 ** DataToolkit
 # TODO Link to Teco's presentation
 
@@ -251,83 +256,6 @@ Join Teco Friday @ TODO
 CLOCK: [2023-07-15 Sat 21:30]--[2023-07-15 Sat 22:27] =>  0:57
 CLOCK: [2023-07-15 Sat 14:17]--[2023-07-15 Sat 14:47] =>  0:30
 :END:
-
-** Calling commandline tools from Julia
-
-#+begin_src julia
-julia> mycommand = `echo hello`
-`echo hello`
-
-julia> typeof(mycommand)
-Cmd
-
-julia> run(mycommand);
-hello
-#+end_src
-
-- [[https://docs.julialang.org/en/v1/manual/running-external-programs/][Docs on Running External Programs]]
-** Calling commandline tools from Julia
-# TODO Convert this to a bioinformatics example
-
-\small
-#+begin_src julia
-julia> files = ["/etc/passwd","/Volumes/External HD/data.csv"]
-2-element Vector{String}:
-"/etc/passwd"
-"/Volumes/External HD/data.csv"
-
-julia> `grep foo $files`
-`grep foo /etc/passwd '/Volumes/External HD/data.csv'`
-#+end_src
-
-*** Plotting
-**** IGV with Plotly.js
-
-#+begin_src julia
-using Dash, DashBio
-
-app = dash()
-
-app.layout = dashbio_igv(
-    id="genome-igv",
-    genome="ce11"
-)
-
-run_server(app, "0.0.0.0", debug=true)
-
-#+end_src
-**** BedGraphs - Example
-
-\small
-#+begin_src bedgraph
-track type=bedGraph name="BedGraph Format" description="BedGraph format" priority=20
-chr19 59302000 59302300 -1.0
-chr19 59302300 59302600 -0.75
-chr19 59302600 59302900 -0.50
-chr19 59302900 59303200 -0.25
-chr19 59303200 59303500 0.0
-chr19 59303500 59303800 0.25
-chr19 59303800 59304100 0.50
-chr19 59304100 59304400 0.75
-#+end_src
-**** BedGraphs
-
-\small
-#+begin_src julia :using DataFrames FileIO
-using FileIO, BedgraphFiles, DataTables, IndexedTables, Gadfly
-
-# Load into a DataTable
-dt = DataTable(load("data.bedgraph"))
-
-# Load into an IndexedTable
-it = IndexedTable(load("data.bedgraph"))
-# Plot directly with Gadfly
-plot(load("data.bedgraph"), xmin=:leftposition, xmax=:rightposition, y=:value, Geom.bar)
-
-load("data.bedgraph") |> @filter(_.chrom == "chr19") |> save("data-chr19.bedgraph")
-#+end_src
-
-# FIXME gadly and indexedtable are broken
 
 ** Package comparisons - General Utilities
 \scriptsize
@@ -484,6 +412,83 @@ function preprocessing(adata)
 end
 #+end_src
 ** PythonCall and Pycall are different
+** Calling commandline tools from Julia
+
+#+begin_src julia
+julia> mycommand = `echo hello`
+`echo hello`
+
+julia> typeof(mycommand)
+Cmd
+
+julia> run(mycommand);
+hello
+#+end_src
+
+- [[https://docs.julialang.org/en/v1/manual/running-external-programs/][Docs on Running External Programs]]
+** Calling commandline tools from Julia
+# TODO Convert this to a bioinformatics example?
+
+\small
+#+begin_src julia
+julia> files = ["/etc/passwd","/Volumes/External HD/data.csv"]
+2-element Vector{String}:
+"/etc/passwd"
+"/Volumes/External HD/data.csv"
+
+julia> `grep foo $files`
+`grep foo /etc/passwd '/Volumes/External HD/data.csv'`
+#+end_src
+
+*** Plotting
+**** IGV with Plotly.js
+
+#+begin_src julia
+using Dash, DashBio
+
+app = dash()
+
+app.layout = dashbio_igv(
+    id="genome-igv",
+    genome="ce11"
+)
+
+run_server(app, "0.0.0.0", debug=true)
+
+#+end_src
+**** BedGraphs - Example
+
+\small
+#+begin_src bedgraph
+track type=bedGraph name="BedGraph Format" description="BedGraph format" priority=20
+chr19 59302000 59302300 -1.0
+chr19 59302300 59302600 -0.75
+chr19 59302600 59302900 -0.50
+chr19 59302900 59303200 -0.25
+chr19 59303200 59303500 0.0
+chr19 59303500 59303800 0.25
+chr19 59303800 59304100 0.50
+chr19 59304100 59304400 0.75
+#+end_src
+**** BedGraphs
+
+\small
+#+begin_src julia :using DataFrames FileIO
+using FileIO, BedgraphFiles, DataTables, IndexedTables, Gadfly
+
+# Load into a DataTable
+dt = DataTable(load("data.bedgraph"))
+
+# Load into an IndexedTable
+it = IndexedTable(load("data.bedgraph"))
+# Plot directly with Gadfly
+plot(load("data.bedgraph"), xmin=:leftposition, xmax=:rightposition, y=:value, Geom.bar)
+
+load("data.bedgraph") |> @filter(_.chrom == "chr19") |> save("data-chr19.bedgraph")
+#+end_src
+
+# FIXME gadly and indexedtable are broken
+
 ** TODO Mention Michael's new project
 * Julia in Workflows
 ** Running Julia in Snakemake
@@ -614,16 +619,17 @@ https://github.com/JuliaContainerization/SimpleContainerGenerator.jl
 * Conclusion
 ** Where is Julia lacking?
 
-- Creating binaries/clis
+- Creating binaries/CLIs
 - But what about Rust?
   - Rust for tools
   - Julia for analysis
+** Resources
+- [[https://github.com/BioJulia/BioTutorials][GitHub - BioJulia/BioTutorials: Tutorial Notebooks of BioJulia]]
+- New Documenter.jl Docs!
 * Ideas :noexport:
-** TODO [[https://github.com/BioJulia/BioTutorials][GitHub - BioJulia/BioTutorials: Tutorial Notebooks of BioJulia]] :noexport:noexport:
 ** Other ideas to mimic
 *** Look at genomicranges example workflow.
 https://bioconductor.org/packages/release/bioc/vignettes/GenomicRanges/inst/doc/GenomicRangesIntroduction.html
 *** Crazy hot Tommy's blogs
 *** Other genomic R package demos?
-** TODO REPL driven development
 ** TODO [[https://github.com/compbiocore/VariantVisualization.jl][GitHub - compbiocore/VariantVisualization.jl: Julia package powering VIVA, ou...]]
