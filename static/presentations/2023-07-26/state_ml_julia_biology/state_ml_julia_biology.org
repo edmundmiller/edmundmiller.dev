@@ -22,22 +22,54 @@ Exploring the use of Julia, in analyzing biological data. Discussion of librarie
 
 This talk, "Exploring the State of Machine Learning for Biological Data in Julia," will delve into the use of the high-performance programming language, Julia, in analyzing biological data. We will discuss various libraries and packages available in Julia, such as BioJulia and Flux.jl, and the benefits of using Julia for machine learning in the field of biology. Additionally, the challenges and opportunities that arise when using machine learning techniques on biological data, such as dealing with high-dimensional and heterogeneous data, will be addressed. The talk will also include examples of how machine learning has been applied to biological data in the past and what the future holds for this field.
 
-* Be the +PR+ Talk you want to see +in the world+ at Juliacon
+* Exploring the State of Machine Learning for Biological Data
 
-- Being relatively new to the Julia community
-- Wanting to start using machine learning
-- What are the trade offs of all these packages?
-- How do we load biological data? Specific interest in genomics
+#+begin_quote
+Be the PR you want to see in the repo
+#+end_quote
+
+* Exploring the State of Machine Learning for Biological Data
+
+#+begin_quote
+Be the +PR+ Talk you want to see +in the repo+ at Juliacon
+#+end_quote
+
+
+
 * About me
 
-- Been Machine Learning curious for a while
-- Never took Linear Algebra
-* Goal of Biologists(scope)
+- Phd Candidate @ University of Texas at Dallas
+- nf-core maintainer
 
-- We're not trying to create novel model
+#+beamer: \pause
+
+- Been Machine Learning curious since around 2017
+- Never took Linear Algebra
+
+#+beamer: \pause
+
+- I had some questions
+  - What are the trade offs of all these packages?
+  - How do we load biological data? (Personal interest in genomics)
+
+* Goal of Biologists
+# scope
+
+- We're not trying to create novel models
 - We're trying to apply these models in novel ways
 - Then make biological inferences
 
+
+* Old overview
+
+- Ability to call Python and R packages
+- What are all of these different ML Packages?
+- Loading biological file formats
+
+* Then I had a thought...
+
+#+beamer: \pause
+- What if
 
 * Ability to call Python and R packages
 https://github.com/instadeepai/nucleotide-transformer
@@ -50,7 +82,7 @@ https://github.com/instadeepai/nucleotide-transformer
 - fast.ai
 - MLJFlux.jl
 
-* Loading file biological file formats
+* Loading biological file formats
 
 - FASTA
 - BAM
@@ -77,3 +109,19 @@ https://www.freecodecamp.org/news/deep-learning-with-julia/
 * Conclusion
 
 - I need to read a few books on linear algebra
+
+
+* Exploring the State of Machine Learning for Biological Data
+** Things I want to cover
+- Loading file biological file formats
+
+- Goal of Biologists using machine learning
+  - We're not trying to create novel model
+  - We're trying to apply these models in novel ways
+  - Then make biological inferences
+
+** Reproduction of mlf-core examples
+
+- [[https://github.com/mlf-core/sc-autoencoder][An autoencoder for single cell data.]]
+- [[https://github.com/mlf-core/lcep][Classifying cancerous liver samples from gene expression data.]]
+- [[https://github.com/mlf-core/liver-ct-segmentation][Liver-tumor segmentation of computed tomography scans using a U-Net model.]]

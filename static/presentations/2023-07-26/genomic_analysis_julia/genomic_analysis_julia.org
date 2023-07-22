@@ -689,8 +689,11 @@ end
   - Rust for tools
   - Julia for analysis
 ** Resources
+
 - [[https://github.com/BioJulia/BioTutorials][GitHub - BioJulia/BioTutorials: Tutorial Notebooks of BioJulia]]
 - New Documenter.jl Docs!
+- TODO Slides Link
+- [[https:/link.edmundmiller.dev][link.edmundmiller.dev]]
 
 * Ideas :noexport:
 ** Other ideas to mimic
