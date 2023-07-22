@@ -34,8 +34,6 @@ Be the PR you want to see in the repo
 Be the +PR+ Talk you want to see +in the repo+ at Juliacon
 #+end_quote
 
-
-
 * About me
 
 - Phd Candidate @ University of Texas at Dallas
@@ -52,7 +50,7 @@ Be the +PR+ Talk you want to see +in the repo+ at Juliacon
   - What are the trade offs of all these packages?
   - How do we load biological data? (Personal interest in genomics)
 
-* Goal of Biologists
+* Goal of /most/ Biologists
 # scope
 
 - We're not trying to create novel models
@@ -65,14 +63,53 @@ Be the +PR+ Talk you want to see +in the repo+ at Juliacon
 - Ability to call Python and R packages
 - What are all of these different ML Packages?
 - Loading biological file formats
+- Some pretty basic toy examples
 
 * Then I had a thought...
 
 #+beamer: \pause
-- What if
 
-* Ability to call Python and R packages
-https://github.com/instadeepai/nucleotide-transformer
+- What if I reproduce some analyses and recount what I learned along the way?
+
+* mlf-core :ATTACH:
+:PROPERTIES:
+:ID:       65b35117-9044-4210-a3d6-0182a74bd75d
+:END:
+
+# FIXME add mlf-core logo
+[[attachment:_20230722_132722screenshot.png]]
+
+#+begin_quote
+Deterministic machine learning project templates based on MLflow.
+#+end_quote
+
+* mlf-core - Concept
+
+#+begin_src python
+# Install mlf-core
+$ pip install mlf-core
+
+# Get an overview of all commands
+$ mlf-core --help
+
+# Check out all available templates
+$ mlf-core list
+
+# Get started and create your first project
+$ mlf-core create
+#+end_src
+
+https://www.mlf-core.com/static/assets/img/index_gifs/config_ML.gif
+* TODO mlf-core - Why do we care about Reproducibility?
+
+- why does reproducibility mater in science?
+  - compared to selling ads, chatbots
+- Lives are at stake
+#+beamer: \pause
+  - Treatment
+#+beamer: \pause
+  - Future scientists who can't reproduce it.
+
 
 * What are all of these Packages?
 
@@ -82,35 +119,34 @@ https://github.com/instadeepai/nucleotide-transformer
 - fast.ai
 - MLJFlux.jl
 
-* Loading biological file formats
+* Loading biological file formats in a training data format
 
 - FASTA
 - BAM
 - BED
 
-* Somewhat bleak, but python and R aren't much better
 * Reproduce https://github.com/mlf-core/lcep?
 https://juliapackages.com/p/xgboost
-* Maybe just attempt to reproduce all of mlf-core examples?
-Start with lcep
-- Do SC autoencoder
-https://github.com/mlf-core/liver-ct-segmentation
 
-* Calling Selene
-https://github.com/FunctionLab/selene/blob/master/tutorials/quickstart_training/quickstart_training.ipynb
-https://github.com/FunctionLab/selene/blob/master/tutorials/getting_started_with_selene/getting_started_with_selene.ipynb
-* Hooking up to CUDA
+* TODO Hooking up to CUDA
 https://fluxml.ai/Flux.jl/stable/gpu/
 * Using it in collab
 https://colab.research.google.com/github/ageron/julia_notebooks/blob/master/Julia_Colab_Notebook_Template.ipynb
 * Flux
 https://fluxml.ai/Flux.jl/stable/gpu/
 https://www.freecodecamp.org/news/deep-learning-with-julia/
+* Things I didn't get answers to
+- What would loading up BAMs like Deepvariant look like?
 * Conclusion
 
+#+beamer: \pause
 - I need to read a few books on linear algebra
 
-
+* Ideas :noexport:
+** TODO Calling Selene
+https://github.com/FunctionLab/selene/blob/master/tutorials/quickstart_training/quickstart_training.ipynb
+https://github.com/FunctionLab/selene/blob/master/tutorials/getting_started_with_selene/getting_started_with_selene.ipynb
+** TODO Reproduce https://github.com/instadeepai/nucleotide-transformer
 * Exploring the State of Machine Learning for Biological Data
 ** Things I want to cover
 - Loading file biological file formats
