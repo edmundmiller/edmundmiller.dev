@@ -497,19 +497,50 @@ end
 - /Elegant/
 
 * PROJ liver-ct-segmentation
-* TODO Things we touched upon along the way
+** TODO liver-ct-segmentation - Overview
+
+- Liver-tumor segmentation of computed tomography scans using a U-Net model.
+- The data in this challenge contains abdomen CT scans with contrast enhancement for liver lesions.
+# TODO Import this image
+https://github.com/mlf-core/liver-ct-segmentation/raw/master/docs/images/u_net_lits.png
+
+** TODO liver-ct-segmentation - Model
+
+# TODO Import this image
+https://github.com/mlf-core/liver-ct-segmentation/raw/master/docs/images/u_net_architecture.png
+** liver-ct-segmentation - Dataset
+
+#+begin_quote
+The data set for LiTS was collected from 6 medical centres. The CT scans as well as the segmentations are provided as Nifti .nii files.
+#+end_quote
+
+- Of course there's a package for that [[https://github.com/JuliaNeuroscience/NIfTI.jl][JuliaNeuroscience/NIfTI.jl]] (It's 9 years
+  old!)
+** liver-ct-segmentation - model
+
+- [[https://juliapackages.com/p/unet][UNet · Julia Packages]]
+  - Written in Flux
+
+* Things we touched upon along the way
 
 - Simplicity of Dataloading
 - Hacking on dependencies live
 - Calling python packages from Julia
 - DataToolkit
 - Flux
+- There's a package for that!
 
 * TODO Things I didn't get answers to
 - What would loading up BAMs like Deepvariant look like?
 - What would [[https://github.com/FunctionLab/selene][FunctionLab/selene]] look like
-* TODO Where I'd love to follow up
-https://github.com/instadeepai/nucleotide-transformer/tree/main
+# TODO Add a cowbell emoji
+- More Determinism
+  - ~Lux.jl~?
+* Future plans
+
+- Impliment liver-ct-segmentation
+- Reproduce [[https://github.com/instadeepai/nucleotide-transformer/tree/main][nucleotide-transformer]]
+
 * Conclusion
 
 #+beamer: \pause
@@ -519,7 +550,6 @@ https://github.com/instadeepai/nucleotide-transformer/tree/main
 ** TODO Calling Selene
 https://github.com/FunctionLab/selene/blob/master/tutorials/quickstart_training/quickstart_training.ipynb
 https://github.com/FunctionLab/selene/blob/master/tutorials/getting_started_with_selene/getting_started_with_selene.ipynb
-** TODO Reproduce https://github.com/instadeepai/nucleotide-transformer
 ** scratch
 *** What are all of these Packages?
 
