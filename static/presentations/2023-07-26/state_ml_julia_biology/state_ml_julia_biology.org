@@ -114,11 +114,12 @@ https://www.mlf-core.com/static/assets/img/index_gifs/config_ML.gif
 ** lcep - Overview
 
 - Classifying cancerous liver samples from gene expression data.
-- 3000 [[https://support.10xgenomics.com/single-cell-gene-expression/datasets/1.1.0/pbmc3k][Peripheral blood mononuclear cells (PBMCs)]]
+- RNA-seq data
 - Nice warm up, purpose was to demonstrate [[https://github.com/mlf-core/lcep-package][creating a python package using
   mlf-core]], and using that in [[https://github.com/mlf-core/nextflow-lcep][a Nextflow pipeline]]
+- [[https://github.com/Emiller88/state-of-ml-for-biology-julia/tree/main/lcep][Repo Link]]
 
-** lcep- Dataloading - mlf-core
+** lcep - Dataloading - mlf-core
 
 #+begin_src python
 def load_train_test_data(train_data, test_data):
@@ -154,6 +155,12 @@ test_data = DataFrame(CSV.File(download(test_url)))
 - Note the lack of need to dance around with np arrays and XGBoost Data Matrices
   - The Julia XGBoost wrapper handles the conversion from DataFrames to DMatrix
 
+*** :B_note:
+:PROPERTIES:
+:BEAMER_env: note
+:END:
+
+- Data was precleaned following
 ** lcep - Dataloading
 
 \tiny
@@ -241,12 +248,263 @@ xgboost((X, y), num_rounds=10)  # no need to use `DMatrix`
 ** TODO lcep - GPU :noexport:
 
 * PROJ sc-autoencoder
+**  sc-autoencoder - Overview
+
+- 3000 [[https://support.10xgenomics.com/single-cell-gene-expression/datasets/1.1.0/pbmc3k][Peripheral blood mononuclear cells (PBMCs)]] from 10x
+- This time however they started from ~h5ad~
+- However they used [[https://scanpy.readthedocs.io/en/stable/][scanpy]] to load and clean the data...
+
+** TODO Quick Single Cell aside :noexport:
+** Dataloading - Attempt to replicate scanpy functionality in Julia
+
+
+#+begin_src julia
+using Muon
+
+pbmc3k_url = "https://raw.githubusercontent.com/chanzuckerberg/cellxgene/main/example-dataset/pbmc3k.h5ad"
+
+pmbc3k = readh5ad(download(pbmc3k_url))
+#+end_src
+
+- Muon is a part of [[https://scverse.org/][scverse]], the same group that wrote scanpy
+- But it threw an error...
+
+#+begin_example
+ERROR: MethodError: no method matching read_dataframe(::HDF5.Dataset)
+#+end_example
+
+** Hacking on a package
+
+#+begin_src julia
+pkg> develop --local Muon
+#+end_src
+
+- Then there's a repo cloned at ~dev/Muon~!
+- And added to the Project.toml for tracking
+#+beamer: \pause
+- You can do this in python but here it's Julia all the way down
+
+# Add a Julia icon
+*** :B_note:
+:PROPERTIES:
+:BEAMER_env: note
+:END:
+
+Sadly fixing this was outside of my paygrade currently. Left off trying to get
+Muon to work. It's been fun to load a julia module and hack on it. Not sure if
+that path is going to go anywhere, probably should just move on to scanpy.
+
+** Loading Data using PythonCall - CondaPkg.jl
+
+#+begin_src julia
+julia> using CondaPkg
+pkg> conda add_channel conda-forge
+pkg> conda add scanpy python-igraph leidenalg
+#+end_src
+
+~CondaPkg.jl~
+#+begin_src toml
+channels = ["conda-forge"]
+
+[deps]
+leidenalg = ""
+scanpy = ""
+python-igraph = ""
+#+end_src
+
+** Loading Data using PythonCall
+
+#+begin_src julia
+using PythonCall
+
+sc = pyimport("scanpy")
+
+function preprocessing(adata)
+    sc.pp.filter_cells(adata, min_genes=200)
+    sc.pp.filter_genes(adata, min_cells=3)
+
+    # Normalization and scaling:
+    sc.pp.normalize_total(adata, target_sum=1e4)
+    sc.pp.log1p(adata)
+
+    # Identify highly-variable genes
+    sc.pp.highly_variable_genes(adata, min_mean=0.0125, max_mean=3, min_disp=0.5, subset=true)
+    sc.pp.scale(adata, zero_center=true, max_value=3)
+    x = adata.X
+    # We don't need Tensorflow because Julia is fast enough I think?
+    # data = tf.data.Dataset.from_tensor_slices((x, x))
+    x = pyconvert(Array{Float32}, x)
+
+    return [x, x], x
+end
+
+dataset, test_data = preprocessing(adata)
+dataset = Flux.DataLoader(dataset, batchsize=32)
+#+end_src
+
+#+begin_src python
+data = tf.data.Dataset.from_tensor_slices((x, x))
+#+end_src
+
+- Realized once again there's no need to learn yet another library, can just use
+  built-in Julia types
+
+** PythonCall and Pycall are different
+
+- Doesn't have to support as much legacy
+  - PythonCall supports Julia 1.6.1+ and Python 3.7+
+  - PyCall supports Julia 0.7+ and Python 2.7+.
+- Uses CondaPkg by default
+- You can use them both at the same time if you needed to for some reason
+
+** Switch to DataToolkit
+
+- Conda doesn't work well on NixOS
+- Exported the Matrix
+#+begin_src julia
+pkg> add DataToolkit
+# }
+(.)> init
+(sc-autoencoder) data> add pbmc3k https://huggingface.co/datasets/emiller/pbmc3k/resolve/main/delim_file.txt
+#+end_src
+
+#+beamer: \pause
+
+- Better practice would be to use the [[https://tecosaur.github.io/DataToolkitDocs/common/stable/loaders/julia/][Julia loader]]...
+
+** Switch to DataToolkit
+
+#+begin_src conf-data-toml
+[[pbmc3k]]
+uuid = "2c0e014e-eea8-49e2-9916-6ab5d2df08b3"
+description = "Preprocessed pmbc3k Single Cell dataset"
+
+    [[pbmc3k.storage]]
+    driver = "web"
+    url = "https://huggingface.co/datasets/emiller/pbmc3k/resolve/main/delim_file.txt"
+
+    [[pbmc3k.loader]]
+    driver = "delim"
+    delim = "\t"
+    dtype = "Float32"
+#+end_src
+
+** DataToolkit Aftermath
+
+#+begin_src julia
+using DataToolkit
+
+dataset = d"pbmc3k"
+#+end_src
+
+** TODO DataToolkit - Want to learn more?
+# Link to Teco's presentation
+
+Join Teco Friday @ TODO
+
+** TODO Flux
+
+# FIXME import logo
+https://fluxml.ai/assets/logo.png
+#+begin_quote
+The Elegant Machine Learning Stack
+#+end_quote
+** TODO Flux - Model
+
+# FIMXE import image
+https://github.com/mlf-core/sc-autoencoder/blob/main/docs/images/autoencoder_architecture.png
+
+- Autoencoders are common in scRNA-seq data
+  - Denoising of single cell data
+  - predict perturbation responses
+
+- mlf-core purpose was to show that *non-deterministic operations* can lead to
+  significant differences in *latent space embeddings*
+** TODO Flux - DataLoader
+
+#+begin_src julia
+train_set = Flux.DataLoader((dataset, dataset), batchsize=256)
+#+end_src
+
+** TODO Flux - Experiment Setup
+
+
+#+begin_src julia
+device = cpu # where will the calculations be performed?
+L1, L2, L3 = 256, 128, 64 # layer dimensions
+η = 0.01 # learning rate for ADAM optimization algorithm
+batch_size = 100; # batch size for optimization
+#+end_src
+
+# TODO cite
+[[https://wildart.github.io/post/autoencoders/][Autoencoders by wildart]]
+
+** Flux - Build the Model
+
+
+#+begin_src julia
+enc1 = Dense(d, L1, relu)
+enc2 = Dense(L1, L2, relu)
+enc3 = Dense(L2, L3, relu)
+dec4 = Dense(L3, L2, relu)
+dec5 = Dense(L2, L1, relu)
+dec6 = Dense(L1, d)
+model = Chain(enc1, enc2, enc3, dec4, dec5, dec6) |> device
+#+end_src
+
+# TODO cite
+[[https://wildart.github.io/post/autoencoders/][Autoencoders by wildart]]
+
+** Flux - Training
+
+#+begin_src julia
+opt_state = Flux.setup(Adam(0.001), model)
+
+for data in train_set
+  # Unpack this element (for supervised training):
+  input, label = data
+  # Calculate the gradient of the objective
+  # with respect to the parameters within the model:
+  loss(A, B) = Flux.mae(model(A),B)
+  grads = Flux.gradient(model) do m
+      result = m(input)
+      loss(result, label)
+  end
+
+  # Update the parameters so as to reduce the objective,
+  # according the chosen optimisation rule:
+  Flux.update!(opt_state, model, grads[1])
+end
+#+end_src
+
+** Flux - ~train!~
+
+#+begin_src julia
+opt_state = Flux.setup(Adam(0.001), model)
+
+loss(A, B) = Flux.mae(model(A),B)
+
+@withprogress Flux.train!(model, train_set, opt_state) do m, x, y
+  loss(m(x), y)
+end
+#+end_src
+
+*** :B_note:
+:PROPERTIES:
+:BEAMER_env: note
+:END:
+
+- /Elegant/
+
 * PROJ liver-ct-segmentation
-* TODO Using Julia in Collab
-https://colab.research.google.com/github/ageron/julia_notebooks/blob/master/Julia_Colab_Notebook_Template.ipynb
-Throw a screenshot in here
-** TODO Hooking up to CUDA
-https://fluxml.ai/Flux.jl/stable/gpu/
+* TODO Things we touched upon along the way
+
+- Simplicity of Dataloading
+- Hacking on dependencies live
+- Calling python packages from Julia
+- DataToolkit
+- Flux
+
 * TODO Things I didn't get answers to
 - What would loading up BAMs like Deepvariant look like?
 - What would [[https://github.com/FunctionLab/selene][FunctionLab/selene]] look like
