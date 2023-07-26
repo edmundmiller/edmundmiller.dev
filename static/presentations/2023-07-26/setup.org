@@ -26,7 +26,6 @@
 #+latex_header: \usepackage[inkscapelatex=false,inkscapearea=page]{svg}
 #+latex_header: \titlegraphic{\hfill\includesvg[height=2cm]{figures/logo.svg}}
 #+latex_header: \usepackage[scale=0.88]{sourcecodepro}
-# #+latex_header: \DeclareUnicodeCharacter{22EF}{\ldots}
 #+latex_header: \newcommand{\codefont}{\footnotesize\fontseries{mb}\selectfont}
 #+latex_header_extra: \definecolor{EfD}{HTML}{fafafa}
 # #+latex_header: \usepackage{appendixnumberbeamer}
@@ -34,12 +33,13 @@
 # #+latex_header_extra: \setbeamertemplate{headline}{Hello}
 
 
+#+latex_header: \usepackage{emoji}
 #+latex_header: \usepackage{scrextend}
 #+latex_header: \NewCommandCopy{\moldusetheme}{\usetheme}
 #+latex_header: \renewcommand*{\usetheme}[2][]{\moldusetheme[#1]{#2}  \setbeamertemplate{items}{$\bullet$}  \setbeamerfont{block title}{size=\normalsize, series=\bfseries\parbox{0pt}{\rule{0pt}{4ex}}}}
 
 #+latex_header: \makeatletter
-#+latex_header: \newcommand{\setmetropolislinewidth}{  \setlength{\metropolis@progressinheadfoot@linewidth}{1.2px}}
+# #+latex_header: \newcommand{\setmetropolislinewidth}{  \setlength{\metropolis@progressinheadfoot@linewidth}{1.2px}}
 #+latex_header: \makeatother
 
 #+latex_header: \usepackage{etoolbox}
