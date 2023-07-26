@@ -2,6 +2,7 @@
 #+setupfile: ../setup.org
 
 # https://pretalx.com/juliacon2023/me/submissions/AJJRS3/
+# This talk is for the person who wandered into the room, not the experts
 
 * PROJ Tracking :noexport:
 - [ ] Fix backticks being quotes
@@ -46,9 +47,7 @@ Expected Outcomes:
 
 - Phd Candidate @ University of Texas at Dallas
 - nf-core maintainer
-# TODO Add Fun logo
-[[https://github.com/nf-core/logos/raw/master/nf-core-logos/nf-core-logo.svg]]
-** TODO Why Julia and Genomics? :noexport:
+[[https://raw.githubusercontent.com/nf-core/logos/master/nf-core-logos/nf-core-logo.svg]]
 ** Why should biologists working in Genomics be interested in Julia?
 
 - "Why We Created Julia"[fn:1:https://julialang.org/blog/2012/02/why-we-created-julia]
@@ -66,11 +65,10 @@ Expected Outcomes:
 - Interest in keeping costs low through more efficient computation
   - Cost of Whole Genome Sequencing: ~$100-1000
   - Cost of computational Analysis: ~$25
-#+beamer: \vspace{-2ex}
-#+attr_latex: :width 0.7\linewidth
-[[https://www.genome.gov/sites/default/files/inline-images/2022_Sequencing_cost_per_Human_Genome.jpg]] [fn:2:https://www.genome.gov/about-genomics/fact-sheets/DNA-Sequencing-Costs-Data]
+#+attr_latex: :width 0.65\linewidth
+[[https://www.genome.gov/sites/default/files/inline-images/2022_Sequencing_cost_per_Human_Genome.jpg]]
+# [fn:2:https://www.genome.gov/about-genomics/fact-sheets/DNA-Sequencing-Costs-Data]
 
-# TODO cite: Sarek 3.0 paper
 *** :B_note:
 :PROPERTIES:
 :BEAMER_env: note
@@ -94,7 +92,7 @@ curl -fsSL https://install.julialang.org | sh
 
 - Cross-platform installer
 - Install specific Julia versions
-- Stay up to date with release channels(Stable, LTS)
+- Stay up to date with release channels (Stable, LTS)
 
 ** Package management - Pkg.jl
 # TODO Can I make these biology related?
@@ -113,22 +111,22 @@ julia> import Example
 julia> Example.hello("friend")
 "Hello, friend"
 #+end_src
+
 ** Pkg.jl Environments
 
 #+begin_src julia
-(@v1.8) pkg> activate tutorial
-[ Info: activating new environment at `~/tutorial/Project.toml`.
-(tutorial) pkg>
-(tutorial) pkg> status
-    Status `~/tutorial/Project.toml`
+(@v1.8) pkg> activate rnaseq-analysis
+[ Info: activating new environment at `~/rnseq-analysis/Project.toml`.
+(rnaseq-analysis) pkg>
+(rnaseq-analysis) pkg> status
+    Status `~/rnseq-analysis/Project.toml`
 (empty environment)
-(tutorial) pkg> add Example JSON
+(rnaseq-analysis) pkg> add GFF3 GenomicFeatures
 ...
-
-(tutorial) pkg> status
-    Status `~/tutorial/Project.toml`
-[7876af07] Example v0.5.3
-[682c06a0] JSON v0.21.3
+(rnaseq-analysis) pkg> status
+  Status `~/rnaseq-analysis/Project.toml`
+  [af1dc308] GFF3 v0.2.3
+^ [899a7d2d] GenomicFeatures v2.1.0
 #+end_src
 
 ** Want to hack on a project?
@@ -143,7 +141,7 @@ There's a full clone at ~dev/Bed~!
 
 - [[https://github.com/JuliaCI/PkgTemplates.jl][PkgTemplates.jl]] - Easy Package Creation
 - [[https://www.youtube.com/live/bHLXEUt5KLc?feature=share][Julia REPL Mastery Workshop]]
-- VS Code
+- VS Code - Batteries included environment
 
 ** DataToolkit
 
@@ -161,7 +159,11 @@ description = "TCGA Head and Neck Cancer (HNSC) RNA-seq data"
     driver = "web"
     checksum = "crc32c:d5c06b86"
     url = "https://tcga-xena-hub.s3.us-east-1.amazonaws.com/download/TCGA.HNSC.sampleMap%2FHNSC_clinicalMatrix"
+#+end_src
 
+** DataToolkit - Example declarative data set
+
+#+begin_src conf-data-toml
     [[HNSC_Phenotypes.loader]]
     driver = "csv"
     type = "DataFrame"
@@ -190,17 +192,12 @@ description = "TCGA Head and Neck Cancer (HNSC) RNA-seq data"
 
 ** DataToolkit - Using a dataset in computation
 
-#+begin_src julia
-julia> using DataToolkit, DataFrames
-
-julia> sum(d"iris".sepal_length)
-876.5
-#+end_src
-
 #+beamer: \pause
 
 #+begin_src julia
-julia> mean(d"iris::Matrix", dims=1)
+julia> using DataToolkit, DataFrames
+
+julia> mean(d"HNSC_Phenotypes::Matrix", dims=1)
 1×5 Matrix{Float64}:
  5.84333  3.05733  3.758  1.19933  1.0
 #+end_src
@@ -210,15 +207,21 @@ julia> mean(d"iris::Matrix", dims=1)
 More than just string matching for types:
 
 #+begin_src julia
-julia> mean(d"iris::Array{T<:Any, 2}", dims=1)
+julia> mean(d"HNSC_Phenotypes::Array{T<:Any, 2}", dims=1)
 1×5 Matrix{Float64}:
  5.84333  3.05733  3.758  1.19933  1.0
 #+end_src
 
-** TODO DataToolkit - Want to learn more?
-# Link to Teco's presentation
+** DataToolkit - Want to learn more?
+#+attr_latex: :width 0.7\linewidth
+[[https://github.com/tecosaur/DataToolkit.jl/raw/main/docs/src/assets/logotype.svg]]
+# [[https://git.tecosaur.net/assets/img/tree-gitea-themed.svg]]
 
-Join Teco Friday @ TODO
+Robust data management made simple: Introducing DataToolkit
+
+Timothy Chapman
+
+Friday, 07-28, 16:00–16:30 (US/Eastern), 32-123
 
 * Ecosystem
 :LOGBOOK:
@@ -237,15 +240,15 @@ CLOCK: [2023-07-15 Sat 14:17]--[2023-07-15 Sat 14:47] =>  0:30
 ** Package comparisons - Biological File Formats
 
 \scriptsize
-| Purpose       | Python    | R  | Julia                                    |
-|---------------+-----------+----+------------------------------------------|
-| /             | <>        | <> | <>                                       |
-| Sam/Bam files | [[https://biopython.org/wiki/SeqIO][Bio.SeqIO]] |    | [[https://docs.juliahub.com/XAM/4JnDO/0.3.1/][XAM.jl]]                                   |
-| Fastq files   |           |    | [[https://github.com/BioJulia/FASTX.jl][FASTX.jl]]                                 |
-| Variants/vcf  |           |    | [[https://github.com/BioJulia/GeneticVariation.jl][GeneticVariation.jl]] / [[https://github.com/rasmushenningsson/VariantCallFormat.jl][VariantCallFormat.jl]] |
-|               |           |    | [[https://biojulia.dev/Phylogenies.jl/stable/][Phylogenies.jl]]                           |
-|               | [[https://biopython.org/wiki/The_Biopython_Structural_Bioinformatics_FAQ][Bio.PDB]]   |    | [[https://biojulia.dev/BioStructures.jl/stable/][BioStructures.jl]]                         |
-|               |           |    | [[https://github.com/BioJulia/GFF3.jl][GFF3.jl]]                                  |
+| Purpose       | Python    | R         | Julia                                      |
+|---------------+-----------+-----------+--------------------------------------------|
+| /             | <>        | <>        | <>                                         |
+| Sam/Bam files | [[https://biopython.org/wiki/SeqIO][Bio.SeqIO]] | [[https://bioconductor.org/packages/release/bioc/html/Rsamtools.html][Rsamtools]] | [[https://docs.juliahub.com/XAM/4JnDO/0.3.1/][XAM.jl]]                                     |
+| Fastq files   | [[https://biopython.org/wiki/SeqIO][Bio.SeqIO]] | [[https://bioconductor.org/packages/release/bioc/html/ShortRead.html][ShortRead]] | [[https://github.com/BioJulia/FASTX.jl][FASTX.jl]]                                   |
+| Variants/vcf  | [[https://github.com/jamescasbon/PyVCF][PyVCF]]     | [[https://knausb.github.io/vcfR_documentation/][vcfR]]      | [[https://github.com/BioJulia/GeneticVariation.jl][GeneticVariation.jl]] / [[https://github.com/rasmushenningsson/VariantCallFormat.jl][VariantCallFormat.jl]] |
+|               | [[https://biopython.org/wiki/Phylo][Bio.Phylo]] |           | [[https://biojulia.dev/Phylogenies.jl/stable/][Phylogenies.jl]]                             |
+|               | [[https://biopython.org/wiki/The_Biopython_Structural_Bioinformatics_FAQ][Bio.PDB]]   |           | [[https://biojulia.dev/BioStructures.jl/stable/][BioStructures.jl]]                           |
+|               | [[https://biopython.org/wiki/Gene_predictions_to_protein_sequences][BCBio.GFF]] |           | [[https://github.com/BioJulia/GFF3.jl][GFF3.jl]]                                    |
 
 *** :B_note:
 :PROPERTIES:
@@ -259,16 +262,16 @@ https://www.bioconductor.org/packages/stats/
 ** Package comparisons - Genomic Analysis
 
 \tiny
-| Purpose             | Python                    | R              | Julia                          |
-|---------------------+---------------------------+----------------+--------------------------------|
-| /                   | <>                        | <>             | <>                             |
-|                     | [[https://github.com/pyranges/pyranges][pyranges]] / [[https://daler.github.io/pybedtools/][pybedtools]]     | [[https://bioconductor.org/packages/release/bioc/html/rtracklayer.html][rtracklayer]]    | [[https://docs.juliahub.com/GenomicFeatures/kSGNI/3.0.0/][GenomicFeatures.jl]]             |
-|                     |                           | [[https://bioconductor.org/packages/release/bioc/vignettes/GenomicRanges/inst/doc/GenomicRangesIntroduction.html][GenomicsRanges]] | [[https://biojulia.dev/GenomicFeatures.jl/stable/man/intervals/][Intervals]] |
-|                     |                           | [[https://github.com/drostlab/metablastr][metablastr]]     | [[https://docs.juliahub.com/BioTools/wwbVn/1.1.0/blast/][BioTools.jl]]                    |
-|                     | [[https://biopython.org/wiki/SeqIO][Bio.SeqIO]]                 |                | [[https://biojulia.dev/BioSequences.jl/stable/transforms/][BioSequences.jl]]                |
-| Data Retrieval      | [[https://github.com/pyranges/pyranges_db][pyranges_\db]] / [[https://github.com/sebriois/biomart][biomart]] (api) | [[https://github.com/ropensci/biomartr][biomartr]]       | [[https://docs.juliahub.com/BioServices/nOcmO/0.4.1/man/eutils/][BioServices.jl]] / [[https://github.com/BioJulia/BioFetch.jl][BioFetch.jl]]   |
-| Genomic Annotations |                           |                | [[https://docs.juliahub.com/GenomicAnnotations/ckOyU/0.3.2/][GenomicAnnotations.jl]]          |
-| Population Genetics | [[https://biopython.org/wiki/PopGen][Bio.PopGen]]                |                | [[https://github.com/BioJulia/PopGen.jl][PopGen.jl]]                      |
+| Purpose             | Python                       | R              | Julia                        |
+|---------------------+------------------------------+----------------+------------------------------|
+| /                   | <>                           | <>             | <>                           |
+| Genomic Ranges      | [[https://github.com/pyranges/pyranges][pyranges]] / [[https://daler.github.io/pybedtools/][pybedtools]]        | [[https://bioconductor.org/packages/release/bioc/html/rtracklayer.html][rtracklayer]]    | [[https://docs.juliahub.com/GenomicFeatures/kSGNI/3.0.0/][GenomicFeatures.jl]]           |
+| Genomic Ranges      |                              | [[https://bioconductor.org/packages/release/bioc/vignettes/GenomicRanges/inst/doc/GenomicRangesIntroduction.html][GenomicsRanges]] | [[https://biojulia.dev/GenomicFeatures.jl/stable/man/intervals/][Intervals]]                    |
+| Blast               | Bio.Blast                    | [[https://github.com/drostlab/metablastr][metablastr]]     | [[https://docs.juliahub.com/BioTools/wwbVn/1.1.0/blast/][BioTools.jl]]                  |
+| DNA/RNA/AA          | [[https://biopython.org/wiki/SeqIO][Bio.SeqIO]]                    |                | [[https://biojulia.dev/BioSequences.jl/stable/transforms/][BioSequences.jl]]              |
+| Data Retrieval      | [[https://github.com/pyranges/pyranges_db][pyranges_\db]] / [[https://github.com/sebriois/biomart][biomart]] (api) | [[https://github.com/ropensci/biomartr][biomartr]]       | [[https://docs.juliahub.com/BioServices/nOcmO/0.4.1/man/eutils/][BioServices.jl]] / [[https://github.com/BioJulia/BioFetch.jl][BioFetch.jl]] |
+| Genomic Annotations | [[https://github.com/pyranges/pyranges][pyranges]] / [[https://daler.github.io/pybedtools/][pybedtools]]        | [[https://bioconductor.org/packages/release/bioc/vignettes/GenomicRanges/inst/doc/GenomicRangesIntroduction.html][GenomicsRanges]] | [[https://docs.juliahub.com/GenomicAnnotations/ckOyU/0.3.2/][GenomicAnnotations.jl]]        |
+| Population Genetics | [[https://biopython.org/wiki/PopGen][Bio.PopGen]]                   |                | [[https://github.com/BioJulia/PopGen.jl][PopGen.jl]]                    |
 
 ** What about when you can't replace popular packages?
 
@@ -334,10 +337,10 @@ R> ggplot(diamonds, aes(x=carat, y=price)) \
 
 # TODO Reattach
 #+attr_latex: :height 0.2\linewidth
+[[https://www.juliafordatascience.com/content/images/size/w1600/2021/06/Screen-Shot-2021-06-09-at-3.22.19-PM.png]]
 
-** TODO JuliaInterop - RCall importing packages
+** PythonCall - Python
 
-** TODO PythonCall
 #+begin_src python
 import scanpy as sc
 
@@ -350,17 +353,12 @@ def preprocessing(adata):
     # Normalization and scaling:
     sc.pp.normalize_total(adata, target_sum=1e4)
     sc.pp.log1p(adata)
-
-    # Identify highly-variable genes
-    sc.pp.highly_variable_genes(
-        adata, min_mean=0.0125, max_mean=3, min_disp=0.5, subset=True
-    )
-    sc.pp.scale(adata, zero_center=True, max_value=3)
     x = adata.X
     data = tf.data.Dataset.from_tensor_slices((x, x))
     return data, x
 #+end_src
-# TODO Make left and right
+
+** PythonCall - Julia
 #+begin_src julia
 using PythonCall
 
@@ -374,17 +372,11 @@ function preprocessing(adata)
     sc.pp.normalize_total(adata, target_sum=1e4)
     sc.pp.log1p(adata)
 
-    # Identify highly-variable genes
-    sc.pp.highly_variable_genes(adata, min_mean=0.0125, max_mean=3, min_disp=0.5, subset=true)
-    sc.pp.scale(adata, zero_center=true, max_value=3)
-    x = adata.X
-    # We don't need Tensorflow because Julia is fast enough I think?
-    # data = tf.data.Dataset.from_tensor_slices((x, x))
-    x = pyconvert(Array{Float32}, x)
-
+    x = pyconvert(Array{Float32}, adata.X)
     return [x, x], x
 end
 #+end_src
+
 ** PythonCall and Pycall are different
 
 - Doesn't have to support as much legacy
@@ -408,6 +400,21 @@ Conda.add("bioconductor-deseq2", channel="bioconda", :rnaseq)
 # pkg> build Conda
 
 ** TODO CondaPkg.jl
+
+#+begin_src julia
+julia> using CondaPkg
+pkg> conda add_channel bioconda
+pkg> conda add bioconductor-deseq2
+#+end_src
+
+~CondaPkg.toml~
+#+begin_src toml
+channels = ["conda-forge"]
+
+[deps]
+bioconductor-deseq2 = ""
+#+end_src
+
 ** Calling commandline tools from Julia
 
 #+begin_src julia
@@ -421,20 +428,19 @@ julia> run(mycommand);
 hello
 #+end_src
 
-# TODO Cite
 [[https://docs.julialang.org/en/v1/manual/running-external-programs/][Docs on Running External Programs]]
 ** Calling commandline tools from Julia
 # TODO Convert this to a bioinformatics example?
 
 \small
 #+begin_src julia
-julia> files = ["/etc/passwd","/Volumes/External HD/data.csv"]
+julia> files = ["read_1.fastq", "read_2.fastq"]
 2-element Vector{String}:
-"/etc/passwd"
-"/Volumes/External HD/data.csv"
+"read_1.fastq"
+"read_2.fastq"
 
-julia> `grep foo $files`
-`grep foo /etc/passwd '/Volumes/External HD/data.csv'`
+julia> `bwa mem $files`
+`bwa mem 'read_1.fastq read_2.fastq'`
 #+end_src
 
 ** TODO Plotting - IGV with Plotly.js :noexport:
@@ -466,7 +472,7 @@ chr19 59303500 59303800 0.25
 chr19 59303800 59304100 0.50
 chr19 59304100 59304400 0.75
 #+end_src
-** Plotting - BedGraphs :noexport:
+** Packages plugging directly in Common packages
 
 \small
 #+begin_src julia :using DataFrames FileIO
@@ -485,7 +491,14 @@ load("data.bedgraph") |> @filter(_.chrom == "chr19") |> save("data-chr19.bedgrap
 
 # FIXME gadly and indexedtable are broken
 
-** TODO Mention Michael's new project
+** TODO BioJuliaDocs :ATTACH:
+:PROPERTIES:
+:ID:       0c04f270-6fe2-44c1-8127-a495684498e1
+:END:
+
+[[attachment:_20230726_180850screenshot.png]]
+
+[[https://m-persic.github.io/BioJuliaDocs/dev/][BioJuliaDocs]]
 * Julia in Workflows
 ** Running Julia in Snakemake
 
@@ -541,6 +554,28 @@ env {
 
 ** Running Julia in Nextflow - The Nextflow script
 
+#+begin_src nextflow
+process shebang {
+    container 'julia'
+
+    input:
+    path csv_file
+
+    output:
+    path "out.csv"
+
+    """
+    #!/usr/bin/env -S julia --startup-file=no
+
+    using CSV, DataFrames
+    df = DataFrame(CSV.File($csv_file, footerskip=50))
+    CSV.write("out.csv", df)
+    """
+}
+#+end_src
+
+** Running Julia in Nextflow - The Nextflow script
+
 \small
 #+begin_src nextflow
 process cli {
@@ -555,32 +590,6 @@ process cli {
     """
     julia hello.jl $csv_file
     """
-}
-
-process shebang {
-    container 'julia'
-    beforeScript "julia -e 'using Pkg; Pkg.activate("."); Pkg.add(["HTTP", "DataFrames"]); Pkg.precompile();'"
-
-    input:
-    path csv_file
-
-    output:
-    path "out.csv"
-
-    """
-    #!/usr/bin/env -S julia --startup-file=no
-
-    using CSV, DataFrames
-
-    df = DataFrame(CSV.File($csv_file, footerskip=50))
-    names(df)
-    CSV.write("out.csv", df)
-    """
-}
-
-workflow {
-    cli(file('./test.csv'))
-    shebang(file('./test.csv'))
 }
 #+end_src
 
@@ -601,7 +610,7 @@ end
 - Move it to the ~bin/~ folder of the pipeline, and make it executable (~chmod +x bin\*.jl~)
 
 
-** :B_note:
+*** :B_note:
 :PROPERTIES:
 :BEAMER_env: note
 :END:
@@ -611,11 +620,11 @@ end
 ** TODO Handling package installs :noexport:
 
 https://github.com/JuliaContainerization/SimpleContainerGenerator.jl
-* TODO Analysis Example
+* Analysis Example
 
+** Overlapping BED files
 #+begin_src julia
 # overlap of H3K27ac and P63 peaks identifies enhancer regions where p63 binds
-
 using Downloads
 
 if !isfile(raw"H3K27ac.consensus_peaks.bed")
@@ -625,7 +634,11 @@ end
 
 using GenomicFeatures
 using BED
+#+end_src
 
+** Overlapping BED files
+
+#+begin_src julia
 # Create an interval collection in memory.
 h3k27ac_icol = open(BED.Reader, "H3K27ac.consensus_peaks.bed") do reader
     IntervalCollection(reader)
@@ -634,15 +647,20 @@ end
 p63_icol = open(BED.Reader, "p63_4A4.consensus_peaks.bed") do reader
     IntervalCollection(reader)
 end
+#+end_src
+** Overlapping BED files
 
+#+begin_src julia
 overlap_icol = eachoverlap(h3k27ac_icol, p63_icol)
-typeof(p63_icol)
 first(overlap_icol)
 overlaps = collect(overlap_icol)
 overlaps
-typeof(overlaps[1][1])
 BED.Record(p63_icol)
+#+end_src
 
+** Overlapping BED files
+
+#+begin_src julia
 writer = BED.Writer(output)
 expected_entries = BED.Record[]
 for interval in open(BED.Reader, filename)
@@ -658,20 +676,23 @@ end
 - But what about Rust?
   - Rust for tools
   - Julia for analysis
+
 ** Resources
 
 - [[https://github.com/BioJulia/BioTutorials][GitHub - BioJulia/BioTutorials: Tutorial Notebooks of BioJulia]]
-- New Documenter.jl Docs!
-- TODO Slides Link
-- [[https:/link.edmundmiller.dev][link.edmundmiller.dev]]
+- [[https://m-persic.github.io/BioJuliaDocs/dev/][New Documenter.jl Docs]]!
 
-* Ideas :noexport:
-** Other ideas to mimic
-*** Look at genomicranges example workflow.
-https://bioconductor.org/packages/release/bioc/vignettes/GenomicRanges/inst/doc/GenomicRangesIntroduction.html
-*** Crazy hot Tommy's blogs
-*** Other genomic R package demos?
-** TODO [[https://github.com/compbiocore/VariantVisualization.jl][GitHub - compbiocore/VariantVisualization.jl: Julia package powering VIVA, ou...]]
+*** Left :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+Slides
+[[file:./images/slides-qr-code.png]]
 
-* Footnotes
+*** Right :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+[[https:link.edmundmiller.dev][link.edmundmiller.dev]]
+[[file:~/src/personal/edmundmiller-dev/static/presentations/2023-07-26/links_qr.png]]
 
