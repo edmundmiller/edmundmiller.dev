@@ -1,5 +1,6 @@
 #+title: Exploring the State of Machine Learning for Biological Data
 #+setupfile: ../setup.org
+#+options: ^:{}
 # SPC m e l O
 
 # https://pretalx.com/juliacon2023/me/submissions/CSG8NU/
@@ -162,13 +163,13 @@ test_data = DataFrame(CSV.File(download(test_url)))
 - Data was precleaned following
 ** lcep - Dataloading
 
-#+beamer: \small
-| Row │ Gene ID       | Gene Name                                    | 1\_bce80114-27b0-4318-9af1-d8fdf85ffd9c | 0\_SRR143622 |
-|---------------------+----------------------------------------------+----------------------------------------+-------------|
-| 3 │ ENSG00000004975 | missing                                      |                                18.7965 |     14.2893 |
-| 4 │ ENSG00000005339 | missing                                      |                                78.4725 |     83.0387 |
-| 5 │ ENSG00000005884 | missing                                      |                                11.0217 |     2.70558 |
-| 7 │ ENSG00000006451 | missing                              34.9154 |                                17.5549 |             |
+#+attr_latex: :font \small :align llll
+| Gene ID         | Gene Name | 0_SRR143622 | 1_bce80114-27b0-4318-9af1-d8fdf85ffd9c |
+|-----------------+-----------+-------------+----------------------------------------|
+| ENSG00000004975 | missing   |     14.2893 |                                18.7965 |
+| ENSG00000005339 | missing   |     83.0387 |                                78.4725 |
+| ENSG00000005884 | missing   |     2.70558 |                                11.0217 |
+| ENSG00000006451 | missing   |     17.5549 |                                34.9154 |
 
 ** lcep - Data Cleaning - python
 
