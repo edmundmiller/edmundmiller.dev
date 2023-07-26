@@ -242,7 +242,7 @@ xgboost((X, y), num_rounds=10)  # no need to use `DMatrix`
 
 - 3000 [[https://support.10xgenomics.com/single-cell-gene-expression/datasets/1.1.0/pbmc3k][Peripheral blood mononuclear cells (PBMCs)]] from 10x
 - This time however they started from ~h5ad~
-- However they used [[https://scanpy.readthedocs.io/en/stable/][scanpy]] to load and clean the data...
+- However they used [[https://scanpy.readthedocs.io/en/stable/][scanpy]] to load and clean the data
 
 ** TODO Quick Single Cell aside :noexport:
 ** Dataloading - Attempt to replicate scanpy functionality in Julia
@@ -257,7 +257,7 @@ pmbc3k = readh5ad(download(pbmc3k_url))
 #+end_src
 
 - Muon is a part of [[https://scverse.org/][scverse]], the same group that wrote scanpy
-- But it threw an error...
+- But it threw an error
 
 #+begin_example
 ERROR: MethodError: no method matching read_dataframe(::HDF5.Dataset)
@@ -360,7 +360,7 @@ pkg> add DataToolkit
 
 #+beamer: \pause
 
-- Better practice would be to use the [[https://tecosaur.github.io/DataToolkitDocs/common/stable/loaders/julia/][Julia loader]]...
+- Better practice would be to use the [[https://tecosaur.github.io/DataToolkitDocs/common/stable/loaders/julia/][Julia loader]]
 
 ** Switch to DataToolkit
 
@@ -394,15 +394,11 @@ Join Teco Friday @ TODO
 
 ** TODO Flux
 
-# FIXME import logo
-https://fluxml.ai/assets/logo.png
-#+begin_quote
-The Elegant Machine Learning Stack
-#+end_quote
+[[https://raw.githubusercontent.com/FluxML/fluxml.github.io/main/_assets/FluxGitHubPreview.png]]
+
 ** TODO Flux - Model
 
-# FIMXE import image
-https://github.com/mlf-core/sc-autoencoder/blob/main/docs/images/autoencoder_architecture.png
+[[file:./images/autoencoder_architecture.png]]
 
 - Autoencoders are common in scRNA-seq data
   - Denoising of single cell data
@@ -491,13 +487,11 @@ end
 
 - Liver-tumor segmentation of computed tomography scans using a U-Net model.
 - The data in this challenge contains abdomen CT scans with contrast enhancement for liver lesions.
-# TODO Import this image
-https://github.com/mlf-core/liver-ct-segmentation/raw/master/docs/images/u_net_lits.png
+[[https://github.com/mlf-core/liver-ct-segmentation/raw/master/docs/images/u_net_lits.png]]
 
 ** TODO liver-ct-segmentation - Model
 
-# TODO Import this image
-https://github.com/mlf-core/liver-ct-segmentation/raw/master/docs/images/u_net_architecture.png
+[[https://github.com/mlf-core/liver-ct-segmentation/raw/master/docs/images/u_net_architecture.png]]
 ** liver-ct-segmentation - Dataset
 
 #+begin_quote
@@ -528,10 +522,10 @@ The data set for LiTS was collected from 6 medical centres. The CT scans as well
   - ~Lux.jl~?
 * Future plans
 
-- Impliment liver-ct-segmentation
+- Implement liver-ct-segmentation
 - Reproduce [[https://github.com/instadeepai/nucleotide-transformer/tree/main][nucleotide-transformer]]
 
-* Conclusion
+* Conclusion :noexport:
 
 #+beamer: \pause
 - I need to read a few books on linear algebra

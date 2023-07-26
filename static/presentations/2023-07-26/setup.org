@@ -26,10 +26,10 @@
 #+latex_header: \usepackage[inkscapelatex=false,inkscapearea=page]{svg}
 #+latex_header: \titlegraphic{\hfill\includesvg[height=2cm]{figures/logo.svg}}
 #+latex_header: \usepackage[scale=0.88]{sourcecodepro}
-#+latex_header: \DeclareUnicodeCharacter{2218}{\ensuremath{\circ}}
+# #+latex_header: \DeclareUnicodeCharacter{22EF}{\ldots}
 #+latex_header: \newcommand{\codefont}{\footnotesize\fontseries{mb}\selectfont}
 #+latex_header_extra: \definecolor{EfD}{HTML}{fafafa}
-#+latex_header: \usepackage{appendixnumberbeamer}
+# #+latex_header: \usepackage{appendixnumberbeamer}
 # FIXME What does this do?
 # #+latex_header_extra: \setbeamertemplate{headline}{Hello}
 
