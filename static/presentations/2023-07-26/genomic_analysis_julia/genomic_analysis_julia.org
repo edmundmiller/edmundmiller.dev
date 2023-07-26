@@ -1,38 +1,5 @@
 #+title: Unlocking the Power of Genomic Analysis in Julia
-#+author: Edmund Miller
-#+date: July 26th, 2023
-
-#+language: en
-#+startup: content
-#+property: header-args:conf-data-toml :eval no :exports code
-#+property: header-args:julia :eval no :exports code
-
-#+latex_class_options: [aspectratio=32]
-#+beamer_theme: chameleon
-#+latex_header: \usepackage{scrextend}
-#+latex_header: \usepackage{xcolor}
-#+beamer_theme: [progressbar=foot]metropolis
-#+options: num:nil
-#+options: toc:nil
-#+startup: inlineimages
-#+startup: beamer
-#+LaTeX_CLASS: beamer
-#+LaTeX_CLASS_OPTIONS: [bigger]
-#+beamer_frame_level: 2
-#+latex_header: \usepackage[scale=0.6]{sourcecodepro}
-#+options: H:2
-# SPC m e l O
-#+chameleon_theme: doom-one-light
-#+latex_engraved_theme: doom-one-light
-#+latex_header: \usepackage[inkscapelatex=false,inkscapearea=page]{svg}
-#+latex_header: \titlegraphic{\hfill\includesvg[height=2cm]{figures/logo.svg}}
-#+latex_header: \usepackage[scale=0.88]{sourcecodepro}
-#+latex_header: \DeclareUnicodeCharacter{2218}{\ensuremath{\circ}}
-#+latex_header: \newcommand{\codefont}{\footnotesize\fontseries{mb}\selectfont}
-# #+latex_header: \usepackage{appendixnumberbeamer}
-#+latex_header_extra: \definecolor{EfD}{HTML}{fafafa}
-# FIXME What does this do?
-#+latex_header_extra: \setbeamertemplate{headline}{Hello}
+#+setupfile: ../setup.org
 
 # https://pretalx.com/juliacon2023/me/submissions/AJJRS3/
 
@@ -75,14 +42,16 @@ Expected Outcomes:
 - Ideas for potential future applications of Julia in genomic data analysis.
 
 * Overview
-** TODO ~whoami~
+** About Me
 
 - Phd Candidate @ University of Texas at Dallas
 - nf-core maintainer
-** Why Julia and Genomics?
-** Why are biologists working in Genomics interested?
+# TODO Add Fun logo
+[[https://github.com/nf-core/logos/raw/master/nf-core-logos/nf-core-logo.svg]]
+** TODO Why Julia and Genomics? :noexport:
+** Why should biologists working in Genomics be interested in Julia?
 
-- "Why We Created Julia"
+- "Why We Created Julia"[fn:1:https://julialang.org/blog/2012/02/why-we-created-julia]
   - As easy for statistics as R
   - With mathematical notation like Matlab
   - As usable for general programming as Python
@@ -91,14 +60,15 @@ Expected Outcomes:
   - As fast as C
 
 - Reproducibility
-# TODO cite: https://julialang.org/blog/2012/02/why-we-created-julia/
+
 ** Why should Julia enthusiasts interested in Genomics?
 
-- Rapid lowering cost of sequencing cost
-- Gene Therapy
 - Interest in keeping costs low through more efficient computation
-    - Cost of Whole Genome Sequencing: $100
-    - Cost of computational Analysis: $25
+  - Cost of Whole Genome Sequencing: ~$100-1000
+  - Cost of computational Analysis: ~$25
+#+beamer: \vspace{-2ex}
+#+attr_latex: :width 0.7\linewidth
+[[https://www.genome.gov/sites/default/files/inline-images/2022_Sequencing_cost_per_Human_Genome.jpg]] [fn:2:https://www.genome.gov/about-genomics/fact-sheets/DNA-Sequencing-Costs-Data]
 
 # TODO cite: Sarek 3.0 paper
 *** :B_note:
@@ -106,6 +76,7 @@ Expected Outcomes:
 :BEAMER_env: note
 :END:
 
+- Rapid lowering cost of sequencing cost
 - Smaller computers needed that run in less time
 
 ** Overview
@@ -117,7 +88,6 @@ Expected Outcomes:
 * Julia Features for Analysis
 ** Juliaup
 
-# TODO Make this bigger
 #+begin_src bash
 curl -fsSL https://install.julialang.org | sh
 #+end_src
@@ -127,6 +97,7 @@ curl -fsSL https://install.julialang.org | sh
 - Stay up to date with release channels(Stable, LTS)
 
 ** Package management - Pkg.jl
+# TODO Can I make these biology related?
 #+begin_src julia
 # ]
 (@v1.8) pkg>
@@ -163,44 +134,43 @@ julia> Example.hello("friend")
 ** Want to hack on a project?
 
 #+begin_src julia
-pkg> develop --local Muon
+pkg> develop --local Bed
 #+end_src
 
-There's a full clone at ~dev/Muon~!
+There's a full clone at ~dev/Bed~!
 
-** TODO Easy Package Creation
+** Other niceties
 
-[[https://github.com/JuliaCI/PkgTemplates.jl][PkgTemplates.jl]]
+- [[https://github.com/JuliaCI/PkgTemplates.jl][PkgTemplates.jl]] - Easy Package Creation
+- [[https://www.youtube.com/live/bHLXEUt5KLc?feature=share][Julia REPL Mastery Workshop]]
+- VS Code
 
-- CI template
-- When you jump into a unfamiliar repo you know where everything is
-
-** TODO REPL :noexport:
-
-- Allows you to "talk" to the computer
-- Jupyter without the pain
-
-** TODO VS Code? :noexport:
-- Remote files
 ** DataToolkit
-# TODO Insert Logo
+
+[[https://github.com/tecosaur/DataToolkit.jl/raw/main/docs/src/assets/logotype.svg]]
+
 ** DataToolkit - Example declarative data set
 
 \small
 #+begin_src conf-data-toml
-[[iris]]
-uuid = "3f3d7714-22aa-4555-a950-78f43b74b81c"
-description = "Fisher's famous Iris flower measurements"
+[[HNSC_Phenotypes]]
+uuid = "c2f8275e-f5b7-46f5-a95c-af3835573258"
+description = "TCGA Head and Neck Cancer (HNSC) RNA-seq data"
 
-    [[iris.storage]]
+    [[HNSC_Phenotypes.storage]]
     driver = "web"
     checksum = "crc32c:d5c06b86"
-    url = "https://raw.githubusercontent.com/scikit-learn/scikit-learn/1.0/sklearn/datasets/data/iris.csv"
+    url = "https://tcga-xena-hub.s3.us-east-1.amazonaws.com/download/TCGA.HNSC.sampleMap%2FHNSC_clinicalMatrix"
 
-    [[iris.loader]]
+    [[HNSC_Phenotypes.loader]]
     driver = "csv"
-    args.header = ["sepal_length", "sepal_width", "petal_length", "petal_width", "species_class"]
-    args.skipto = 2
+    type = "DataFrame"
+
+        [HNSC_Phenotypes.loader.args]
+        delim = "\t"
+        header = 1
+        select = ["sampleID", "sample_type"]
+        types = "String"
 #+end_src
 
 ** DataToolkit - Features in this example
@@ -216,7 +186,7 @@ description = "Fisher's famous Iris flower measurements"
 + Content verification @@latex:\hfill@@
   src_conf-data-toml{checksum = "crc32c:d5c06b86"}
 + Storage/loader arguments @@latex:\hfill@@
-  src_conf-data-toml{url = "..."}, src_conf-data-toml{args.skipto = 2}
+  src_conf-data-toml{url = "..."}, src_conf-data-toml{args.header = 1}
 
 ** DataToolkit - Using a dataset in computation
 
@@ -702,3 +672,6 @@ https://bioconductor.org/packages/release/bioc/vignettes/GenomicRanges/inst/doc/
 *** Crazy hot Tommy's blogs
 *** Other genomic R package demos?
 ** TODO [[https://github.com/compbiocore/VariantVisualization.jl][GitHub - compbiocore/VariantVisualization.jl: Julia package powering VIVA, ou...]]
+
+* Footnotes
+

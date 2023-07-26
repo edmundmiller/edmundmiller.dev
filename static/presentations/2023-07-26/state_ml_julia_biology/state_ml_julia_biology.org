@@ -1,15 +1,5 @@
 #+title: Exploring the State of Machine Learning for Biological Data
-#+author: Edmund Miller
-#+language: en
-#+date: July 26th, 2023
-#+exclude_tags: noexport
-#+options: num:nil
-#+options: toc:nil
-#+startup: inlineimages
-#+startup: beamer
-#+LaTeX_CLASS: beamer
-#+LaTeX_CLASS_OPTIONS: [bigger]
-#+beamer_frame_level: 2
+#+setupfile: ../setup.org
 # SPC m e l O
 
 # https://pretalx.com/juliacon2023/me/submissions/CSG8NU/
