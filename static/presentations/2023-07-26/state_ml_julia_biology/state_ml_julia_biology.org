@@ -12,19 +12,8 @@ Exploring the use of Julia, in analyzing biological data. Discussion of librarie
 
 This talk, "Exploring the State of Machine Learning for Biological Data in Julia," will delve into the use of the high-performance programming language, Julia, in analyzing biological data. We will discuss various libraries and packages available in Julia, such as BioJulia and Flux.jl, and the benefits of using Julia for machine learning in the field of biology. Additionally, the challenges and opportunities that arise when using machine learning techniques on biological data, such as dealing with high-dimensional and heterogeneous data, will be addressed. The talk will also include examples of how machine learning has been applied to biological data in the past and what the future holds for this field.
 
-* Exploring the State of Machine Learning for Biological Data
-
-#+begin_quote
-Be the PR you want to see in the repo
-#+end_quote
-
-* Exploring the State of Machine Learning for Biological Data
-
-#+begin_quote
-Be the +PR+ Talk you want to see +in the repo+ at Juliacon
-#+end_quote
-
-* About me
+* Introduction
+** About me
 
 - Phd Candidate @ University of Texas at Dallas
 - nf-core maintainer
@@ -32,15 +21,31 @@ Be the +PR+ Talk you want to see +in the repo+ at Juliacon
 #+beamer: \pause
 
 - Been Machine Learning curious since around 2017
+#+beamer: \pause
 - Never took Linear Algebra
 
 #+beamer: \pause
 
 - I had some questions
+#+beamer: \pause
   - What are the trade offs of all these packages?
+#+beamer: \pause
   - How do we load biological data? (Personal interest in genomics)
 
-* Goal of /most/ Biologists
+** Exploring the State of Machine Learning for Biological Data
+
+#+begin_quote
+Be the PR you want to see in the repo
+#+end_quote
+- Michael Lingelbach
+
+** Exploring the State of Machine Learning for Biological Data
+
+#+begin_quote
+Be the +PR+ Talk you want to see +in the repo+ at Juliacon
+#+end_quote
+
+** Goal of /most/ Biologists
 # scope
 
 - We're not trying to create novel machine-learning models
@@ -48,31 +53,37 @@ Be the +PR+ Talk you want to see +in the repo+ at Juliacon
 - Then make biological inferences
 
 
-* Old overview
+** Old overview
 
 - Ability to call Python and R packages
 - What are all of these different ML Packages?
 - Loading biological file formats
 - Some pretty basic toy examples
 
-* Then I had a thought...
+** Then I had a thought...
 
 #+beamer: \pause
 
-- What if I reproduce some analyses and recount what I learned along the way?
+What if I reproduce some analyses and recount what I learned along the way?
 
-* mlf-core :ATTACH:
+** mlf-core - Overview
+
+[[https://raw.githubusercontent.com/mlf-core/mlf-core/master/docs/images/mlf_core_overview.png]] [fn:1:https://doi.org/10.1093/bioinformatics/btad164]
+
+*** :B_note:
 :PROPERTIES:
-:ID:       65b35117-9044-4210-a3d6-0182a74bd75d
+:BEAMER_env: note
 :END:
-
-# FIXME add mlf-core logo
 
 #+begin_quote
 Deterministic machine learning project templates based on MLflow.
 #+end_quote
 
-* mlf-core - Concept
+** mlf-core - Summary
+
+[[https://raw.githubusercontent.com/mlf-core/mlf-core/master/docs/images/mlf_core_summary.png]]
+
+** mlf-core - Concept
 
 #+begin_src python
 # Install mlf-core
@@ -88,36 +99,36 @@ $ mlf-core list
 $ mlf-core create
 #+end_src
 
-https://www.mlf-core.com/static/assets/img/index_gifs/config_ML.gif
-* TODO mlf-core - Why do we care about Reproducibility?
+# https://www.mlf-core.com/static/assets/img/index_gifs/config_ML.gif
+
+** mlf-core - Why do we care about Reproducibility?
 
 - why does reproducibility mater in science?
   - compared to selling ads, chatbots
 - Lives are at stake
-#+beamer: \pause
-  - Treatment
-#+beamer: \pause
-  - Future scientists who can't reproduce it.
 
+*** :B_note:
+:PROPERTIES:
+:BEAMER_env: note
+:END:
+- Patients receiving a diagnosis
+- Future scientists trying to reproduce the finding.
 
-* PROJ lcep
+* lcep
 ** lcep - Overview
 
 - Classifying cancerous liver samples from gene expression data.
 - RNA-seq data
 - Nice warm up, purpose was to demonstrate [[https://github.com/mlf-core/lcep-package][creating a python package using
-  mlf-core]], and using that in [[https://github.com/mlf-core/nextflow-lcep][a Nextflow pipeline]]
+  mlf-core]], and using the package in [[https://github.com/mlf-core/nextflow-lcep][a Nextflow pipeline]]
 - [[https://github.com/Emiller88/state-of-ml-for-biology-julia/tree/main/lcep][Repo Link]]
 
 ** lcep - Dataloading - mlf-core
 
+\small
 #+begin_src python
 def load_train_test_data(train_data, test_data):
     X_train, y_train, train_gene_names, train_sample_names = parse_tpm_table(train_data)
-
-    print(f'[bold blue]Number of total samples: {str(len(X_train))}')
-    print(f'[bold blue]Number of cancer samples: {str(len([x for x in y_train if x == 1]))}')
-    print(f'[bold blue]Number of normal samples: {str(len([x for x in y_train if x == 0]))}')
 
     # Convert to Numpy Arrays
     X_train_np = np.array(X_train)
@@ -133,8 +144,6 @@ def load_train_test_data(train_data, test_data):
 ** lcep - Dataloading
 
 #+begin_src julia
-using CSV, DataFrames
-
 train_url = "https://github.com/mlf-core/lcep/raw/master/data/train.tsv"
 test_url = "https://github.com/mlf-core/lcep/raw/master/data/test.tsv"
 
@@ -153,17 +162,17 @@ test_data = DataFrame(CSV.File(download(test_url)))
 - Data was precleaned following
 ** lcep - Dataloading
 
-\tiny
-#+begin_example
-530×422 DataFrame
- Row │ Gene ID          Gene Name  1_bce80114-27b0-4318-9af1-d8fdf85ffd9c  0_SRR143622 ⋯     │ String15         Missing    Float64                                 Float64     ⋯─────┼──────────────────────────────────────────────────────────────────────────────────   1 │ ENSG00000002330    missing                              60.0329      41.3051    ⋯   2 │ ENSG00000002745    missing                               0.0          0.0622438
-   3 │ ENSG00000004975    missing                              18.7965      14.2893
-   4 │ ENSG00000005339    missing                              78.4725      83.0387
-   5 │ ENSG00000005884    missing                              11.0217       2.70558   ⋯   6 │ ENSG00000005961    missing                               0.0994137    0.493808
-   7 │ ENSG00000006451    missing                              34.9154      17.5549
-#+end_example
+\small
+| Row │ Gene ID       | Gene Name                                    | 1_bce80114-27b0-4318-9af1-d8fdf85ffd9c | 0_SRR143622 |
+|---------------------+----------------------------------------------+----------------------------------------+-------------|
+| 3 │ ENSG00000004975 | missing                                      |                                18.7965 |     14.2893 |
+| 4 │ ENSG00000005339 | missing                                      |                                78.4725 |     83.0387 |
+| 5 │ ENSG00000005884 | missing                                      |                                11.0217 |     2.70558 |
+| 7 │ ENSG00000006451 | missing                              34.9154 |                                17.5549 |             |
 
 ** lcep - Data Cleaning - python
+
+\footnotesize
 #+begin_src python
 def parse_tpm_table(input):
     X_train = []
@@ -186,6 +195,11 @@ def parse_tpm_table(input):
     return X_train, y_train, gene_names, sample_names
 #+end_src
 
+- Probably could have used pandas
+
+** lcep - Data Cleaning - Julia
+
+\footnotesize
 #+begin_src julia
 function clean_data(input)
     # Drop any rows that are 0s
@@ -201,15 +215,14 @@ function clean_data(input)
 end
 #+end_src
 
-- Probably could have used pandas
 
-** TODO lcep - training
+** TODO lcep - Training
 
+\small
 #+begin_src python
 booster = xgb.train(param, training_data.DM, dict_args['max_epochs'], evals=[(test_data.DM, 'test')], evals_result=results)
 
 test_predictions = np.round(booster.predict(test_data.DM))
-calculate_log_metrics(test_data.y, test_predictions)
 #+end_src
 
 #+begin_src julia
@@ -220,9 +233,9 @@ test_predictions = predict(bst, clean_test_data)
 #+end_src
 
 # Calculate log metrics?
+
 ** GPUs
 
-- [[https://github.com/ageron/julia_notebooks/blob/main/Julia_Colab_Notebook_Template.ipynb][ageron/julia_notebooks Template]]
 
 #+begin_src julia
 using CUDA
@@ -235,12 +248,13 @@ XGBoost.isgpu(dm)  # true
 xgboost((X, y), num_rounds=10)  # no need to use `DMatrix`
 #+end_src
 
-** TODO lcep - GPU :noexport:
+- [[https://github.com/ageron/julia_notebooks/blob/main/Julia_Colab_Notebook_Template.ipynb][ageron Julia notebooks Template]]
+- Automatically downloads the CUDA toolkit for you
 
-* PROJ sc-autoencoder
-**  sc-autoencoder - Overview
+* sc-autoencoder
+** sc-autoencoder - Overview
 
-- 3000 [[https://support.10xgenomics.com/single-cell-gene-expression/datasets/1.1.0/pbmc3k][Peripheral blood mononuclear cells (PBMCs)]] from 10x
+- 3000 [[https://support.10xgenomics.com/single-cell-gene-expression/datasets/1.1.0/pbmc3k][Peripheral blood mononuclear cells (PBMCs)]] from 10x Genomics
 - This time however they started from ~h5ad~
 - However they used [[https://scanpy.readthedocs.io/en/stable/][scanpy]] to load and clean the data
 
@@ -259,9 +273,10 @@ pmbc3k = readh5ad(download(pbmc3k_url))
 - Muon is a part of [[https://scverse.org/][scverse]], the same group that wrote scanpy
 - But it threw an error
 
-#+begin_example
+\small
+#+begin_src bash
 ERROR: MethodError: no method matching read_dataframe(::HDF5.Dataset)
-#+end_example
+#+end_src
 
 ** Hacking on a package
 
@@ -292,7 +307,7 @@ pkg> conda add_channel conda-forge
 pkg> conda add scanpy python-igraph leidenalg
 #+end_src
 
-~CondaPkg.jl~
+~CondaPkg.toml~
 #+begin_src toml
 channels = ["conda-forge"]
 
@@ -301,6 +316,14 @@ leidenalg = ""
 scanpy = ""
 python-igraph = ""
 #+end_src
+
+** PythonCall and Pycall are different
+
+- Doesn't have to support as much legacy
+  - PythonCall supports Julia 1.6.1+ and Python 3.7+
+  - PyCall supports Julia 0.7+ and Python 2.7+.
+- Uses CondaPkg by default
+- You can use them both at the same time if you needed to for some reason
 
 ** Loading Data using PythonCall
 
@@ -316,7 +339,11 @@ function preprocessing(adata)
     # Normalization and scaling:
     sc.pp.normalize_total(adata, target_sum=1e4)
     sc.pp.log1p(adata)
+#+end_src
 
+** Loading Data using PythonCall
+
+#+begin_src julia
     # Identify highly-variable genes
     sc.pp.highly_variable_genes(adata, min_mean=0.0125, max_mean=3, min_disp=0.5, subset=true)
     sc.pp.scale(adata, zero_center=true, max_value=3)
@@ -332,6 +359,9 @@ dataset, test_data = preprocessing(adata)
 dataset = Flux.DataLoader(dataset, batchsize=32)
 #+end_src
 
+
+** TensorFlow Dataset Loading
+
 #+begin_src python
 data = tf.data.Dataset.from_tensor_slices((x, x))
 #+end_src
@@ -339,18 +369,10 @@ data = tf.data.Dataset.from_tensor_slices((x, x))
 - Realized once again there's no need to learn yet another library, can just use
   built-in Julia types
 
-** PythonCall and Pycall are different
-
-- Doesn't have to support as much legacy
-  - PythonCall supports Julia 1.6.1+ and Python 3.7+
-  - PyCall supports Julia 0.7+ and Python 2.7+.
-- Uses CondaPkg by default
-- You can use them both at the same time if you needed to for some reason
-
-** Switch to DataToolkit
+** DataToolkit
 
 - Conda doesn't work well on NixOS
-- Exported the Matrix
+- Exported the ~x~ Matrix
 #+begin_src julia
 pkg> add DataToolkit
 # }
@@ -362,7 +384,7 @@ pkg> add DataToolkit
 
 - Better practice would be to use the [[https://tecosaur.github.io/DataToolkitDocs/common/stable/loaders/julia/][Julia loader]]
 
-** Switch to DataToolkit
+** DataToolkit
 
 #+begin_src conf-data-toml
 [[pbmc3k]]
@@ -379,7 +401,7 @@ description = "Preprocessed pmbc3k Single Cell dataset"
     dtype = "Float32"
 #+end_src
 
-** DataToolkit Aftermath
+** DataToolkit
 
 #+begin_src julia
 using DataToolkit
@@ -388,16 +410,26 @@ dataset = d"pbmc3k"
 #+end_src
 
 ** TODO DataToolkit - Want to learn more?
-# Link to Teco's presentation
 
-Join Teco Friday @ TODO
+#+attr_latex: :width 0.45\linewidth
+[[https://github.com/tecosaur/DataToolkit.jl/raw/main/docs/src/assets/logotype.svg]]
+# [[https://git.tecosaur.net/assets/img/tree-gitea-themed.svg]]
 
-** TODO Flux
+Robust data management made simple: Introducing DataToolkit
 
-[[https://raw.githubusercontent.com/FluxML/fluxml.github.io/main/_assets/FluxGitHubPreview.png]]
+Timothy Chapman
 
-** TODO Flux - Model
+Friday, 07-28, 16:00–16:30 (US/Eastern), 32-123
+** Flux
 
+[[https://fluxml.ai/assets/logo.png]]
+#+begin_center
+The /Elegant/ Machine Learning Stack
+#+end_center
+
+** Flux - Model
+
+#+attr_latex: :width 0.45\linewidth
 [[file:./images/autoencoder_architecture.png]]
 
 - Autoencoders are common in scRNA-seq data
@@ -406,13 +438,13 @@ Join Teco Friday @ TODO
 
 - mlf-core purpose was to show that *non-deterministic operations* can lead to
   significant differences in *latent space embeddings*
-** TODO Flux - DataLoader
+** Flux - DataLoader
 
 #+begin_src julia
 train_set = Flux.DataLoader((dataset, dataset), batchsize=256)
 #+end_src
 
-** TODO Flux - Experiment Setup
+** Flux - Experiment Setup
 
 
 #+begin_src julia
@@ -421,9 +453,8 @@ L1, L2, L3 = 256, 128, 64 # layer dimensions
 η = 0.01 # learning rate for ADAM optimization algorithm
 batch_size = 100; # batch size for optimization
 #+end_src
+[fn:2:[[https://wildart.github.io/post/autoencoders/][Autoencoders blog post by wildart]]]
 
-# TODO cite
-[[https://wildart.github.io/post/autoencoders/][Autoencoders by wildart]]
 
 ** Flux - Build the Model
 
@@ -438,14 +469,12 @@ dec6 = Dense(L1, d)
 model = Chain(enc1, enc2, enc3, dec4, dec5, dec6) |> device
 #+end_src
 
-# TODO cite
-[[https://wildart.github.io/post/autoencoders/][Autoencoders by wildart]]
+[[https://wildart.github.io/post/autoencoders/][Autoencoders blog post by wildart]]
 
 ** Flux - Training
 
 #+begin_src julia
 opt_state = Flux.setup(Adam(0.001), model)
-
 for data in train_set
   # Unpack this element (for supervised training):
   input, label = data
@@ -457,8 +486,6 @@ for data in train_set
       loss(result, label)
   end
 
-  # Update the parameters so as to reduce the objective,
-  # according the chosen optimisation rule:
   Flux.update!(opt_state, model, grads[1])
 end
 #+end_src
@@ -482,14 +509,16 @@ end
 
 - /Elegant/
 
-* PROJ liver-ct-segmentation
+* liver-ct-segmentation
 ** TODO liver-ct-segmentation - Overview
 
 - Liver-tumor segmentation of computed tomography scans using a U-Net model.
 - The data in this challenge contains abdomen CT scans with contrast enhancement for liver lesions.
+
+#+attr_latex: :width 0.5\linewidth
 [[https://github.com/mlf-core/liver-ct-segmentation/raw/master/docs/images/u_net_lits.png]]
 
-** TODO liver-ct-segmentation - Model
+** TODO liver-ct-segmentation - 3D U-Net architecture
 
 [[https://github.com/mlf-core/liver-ct-segmentation/raw/master/docs/images/u_net_architecture.png]]
 ** liver-ct-segmentation - Dataset
@@ -501,11 +530,35 @@ The data set for LiTS was collected from 6 medical centres. The CT scans as well
 - Of course there's a package for that [[https://github.com/JuliaNeuroscience/NIfTI.jl][JuliaNeuroscience/NIfTI.jl]] (It's 9 years
   old!)
 ** liver-ct-segmentation - model
+#+begin_src julia
+julia> u = Unet()
+UNet:
+  ConvDown(64, 64)
+  ConvDown(128, 128)
+  ConvDown(256, 256)
+  ConvDown(512, 512)
+
+
+  UNetConvBlock(1, 3)
+  UNetConvBlock(3, 64)
+  UNetConvBlock(64, 128)
+  UNetConvBlock(128, 256)
+  UNetConvBlock(256, 512)
+  UNetConvBlock(512, 1024)
+  UNetConvBlock(1024, 1024)
+
+
+  UNetUpBlock(1024, 512)
+  UNetUpBlock(1024, 256)
+  UNetUpBlock(512, 128)
+  UNetUpBlock(256, 64)
+#+end_src
 
 - [[https://juliapackages.com/p/unet][UNet · Julia Packages]]
   - Written in Flux
 
-* Things we touched upon along the way
+* Conclusion
+** Things we touched upon along the way
 
 - Simplicity of Dataloading
 - Hacking on dependencies live
@@ -514,55 +567,13 @@ The data set for LiTS was collected from 6 medical centres. The CT scans as well
 - Flux
 - There's a package for that!
 
-* TODO Things I didn't get answers to
+** Things I didn't get answers to
 - What would loading up BAMs like Deepvariant look like?
+[[https://github.com/google/deepvariant/raw/r1.5/docs/images/inference_flow_diagram.svg]]
+
+** Things I didn't get answers to
 - What would [[https://github.com/FunctionLab/selene][FunctionLab/selene]] look like
 # TODO Add a cowbell emoji
 - More Determinism
   - ~Lux.jl~?
-* Future plans
 
-- Implement liver-ct-segmentation
-- Reproduce [[https://github.com/instadeepai/nucleotide-transformer/tree/main][nucleotide-transformer]]
-
-* Conclusion :noexport:
-
-#+beamer: \pause
-- I need to read a few books on linear algebra
-
-* Ideas :noexport:
-** TODO Calling Selene
-https://github.com/FunctionLab/selene/blob/master/tutorials/quickstart_training/quickstart_training.ipynb
-https://github.com/FunctionLab/selene/blob/master/tutorials/getting_started_with_selene/getting_started_with_selene.ipynb
-** scratch
-*** What are all of these Packages?
-
-- Flux.jl
-- SciML
-- MLJ
-- fast.ai
-- MLJFlux.jl
-
-*** Loading biological file formats in a training data format
-
-- FASTA
-- BAM
-- BED
-
-*** Flux
-https://fluxml.ai/Flux.jl/stable/gpu/
-https://www.freecodecamp.org/news/deep-learning-with-julia/
-*** Exploring the State of Machine Learning for Biological Data
-**** Things I want to cover
-- Loading file biological file formats
-
-- Goal of Biologists using machine learning
-- We're not trying to create novel model
-- We're trying to apply these models in novel ways
-- Then make biological inferences
-
-**** Reproduction of mlf-core examples
-
-- [[https://github.com/mlf-core/sc-autoencoder][An autoencoder for single cell data.]]
-- [[https://github.com/mlf-core/lcep][Classifying cancerous liver samples from gene expression data.]]
-- [[https://github.com/mlf-core/liver-ct-segmentation][Liver-tumor segmentation of computed tomography scans using a U-Net model.]]

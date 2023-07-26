@@ -70,3 +70,8 @@ The draw of finally being able to create the tools you need.
 * TODO Ob-sql and duck DB
 * TODO Julia packages and Nextflow
 * TODO Julia packages and Snakemake
+
+* State of ml follow up
+
+- Implement liver-ct-segmentation
+- Reproduce [[https://github.com/instadeepai/nucleotide-transformer/tree/main][nucleotide-transformer]]
