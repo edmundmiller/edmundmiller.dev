@@ -1,0 +1,62 @@
+#+title: Classifying cancerous liver samples from gene expression data in Julia
+
+This post is part of a follow-up blog series on a talk I gave a Juliacon 2023,
+[[https://pretalx.com/juliacon2023/me/submissions/CSG8NU/][Exploring the State of Machine Learning for Biological Data]].
+
+# TODO Write a series intro
+
+* Overview
+
+The goal of this post is to explore the use of Julia for machine-learning in
+biological data. To do this I've converted several projects that were written in
+python using the [[TODO][mlf-core]] framework. These are a great starting point because
+they were designed to demonstrate best practices for reproducible machine
+learning with different machine learning frameworks.
+
+lcep was a nice warm-up in particular because it's purpose was to demonstrate
+[[https://github.com/mlf-core/lcep-package][creating a python package using mlf-core]], and using the package in [[https://github.com/mlf-core/nextflow-lcep][a Nextflow
+pipeline]].
+
+Here's a link to the [[https://github.com/Emiller88/state-of-ml-for-biology-julia/tree/main/lcep][original lcep repo]] and here's the [[TODO][repo with the Julia code]]
+if you want to view the project in it's entirety.
+
+** Dataset
+
+# TODO Add where it was originally found
+
+#+attr_latex: :font \small :align llll
+| Row | Gene ID         | Gene Name | 1\_bce80114-27b0-4318-9af1-d8fdf85ffd9c | 0\_SRR143622 |
+|-----+-----------------+-----------+-----------------------------------------+--------------|
+|   3 | ENSG00000004975 | missing   |                                 18.7965 |      14.2893 |
+|   4 | ENSG00000005339 | missing   |                                 78.4725 |      83.0387 |
+|   5 | ENSG00000005884 | missing   |                                 11.0217 |      2.70558 |
+|   7 | ENSG00000006451 | missing   |                                 34.9154 |      17.5549 |
+
+Basically you have observations of genes in each row, and the columns are the
+sample values. There's some hidden meta data in the sample names where the =1_=
+prefix indicates the sample is cancerous and =0_= indicates it's a normal
+sample.
+
+* Data Loading
+** Parsing the TPM
+** Data Loading
+*** mlf-core
+
+#+begin_src python
+def load_train_test_data(train_data, test_data):
+    X_train, y_train, train_gene_names, train_sample_names = parse_tpm_table(train_data)
+    X_test, y_test, test_gene_names, test_sample_names_test = parse_tpm_table(test_data)
+
+    # Convert to Numpy Arrays
+    X_train_np = np.array(X_train)
+    X_test_np = np.array(X_test)
+
+    # Convert from Numpy Arrays to XGBoost Data Matrices
+    dtrain = xgb.DMatrix(X_train_np, label=y_train)
+    dtest = xgb.DMatrix(X_test_np, label=y_test)
+
+    training_data = Dataset(X_train_np, y_train, dtrain, train_gene_names, train_sample_names)
+    test_data = Dataset(X_test, y_test, dtest, test_gene_names, test_sample_names_test)
+
+    return training_data, test_data
+#+end_src
