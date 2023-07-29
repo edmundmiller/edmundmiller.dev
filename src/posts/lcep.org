@@ -38,6 +38,14 @@ prefix indicates the sample is cancerous and =0_= indicates it's a normal
 sample.
 
 * Data Loading
+** Data loading
+
+The data files were kept in the repo. Personally this is one of my pet peeves to
+add inputs, or outputs of pipelines and analysis to a git repo. If they're large
+slows the repo down and makes cloning difficult on a poor internet connection.
+Second and more importantly, it removes the origin of the data. Where did it
+come from? Is it a reputable source? What if I want to find a similar adjacent dataset? What's the metadata?
+
 ** Data Cleaning
 They say the data cleaning step is 90% of data science.
 
