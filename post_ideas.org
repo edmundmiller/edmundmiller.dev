@@ -5,10 +5,51 @@
 https://www.emacswiki.org/emacs/TrampAndDocker
 https://code.visualstudio.com/docs/devcontainers/devcontainer-cli
 https://devenv.sh/integrations/codespaces-devcontainer/
-** TODO Blog post about whole lotta love
-** TODO Write a blog post of eg vs ie
-** TODO "So what's your phd research project?"
-** TODO Write a blog post about my ADHD diagnosis
+* Julia
+Submit these to Official Julia blog/BioJulia
+
+** TODO Julia packages and Snakemake
+
+** PROJ State of ml follow up
+
+- Implement liver-ct-segmentation
+- Reproduce [[https://github.com/instadeepai/nucleotide-transformer/tree/main][nucleotide-transformer]]
+** TODO Julia packages and Nextflow
+** KILL Comparing the different Plots.jl backends
+CLOSED: [2023-08-01 Tue 19:31]
+Kinda boring
+** TODO Rust and Julia comparison
+https://miguelraz.github.io/blog/juliatorust/
+** DONE Julia for bioinformatics
+CLOSED: [2022-06-01 Wed 14:28]
+:LOGBOOK:
+CLOCK: [2022-06-01 Wed 13:30]--[2022-06-01 Wed 14:29] =>  0:59
+CLOCK: [2022-06-01 Wed 12:00]--[2022-06-01 Wed 12:30] =>  0:30
+CLOCK: [2022-03-31 Thu 12:22]--[2022-03-31 Thu 13:45] =>  1:23
+CLOCK: [2022-03-31 Thu 11:58]--[2022-03-31 Thu 12:04] =>  0:06
+:END:
+
+** TODO Julia testing
+:LOGBOOK:
+CLOCK: [2022-06-16 Thu 21:30]--[2022-06-16 Thu 22:47] =>  1:17
+:END:
+https://www.endpointdev.com/blog/2020/11/rapid-tdd-in-julia/
+
+https://www.juliapackages.com/p/pkgtemplates
+https://www.youtube.com/watch?v=n-UP_Ul-JjE
+https://juliatesting.github.io/ReTest.jl/stable/
+https://discourse.julialang.org/t/best-practices-for-julia-unit-testing/30858
+https://docs.julialang.org/en/v1/stdlib/Test/
+
+https://www.youtube.com/watch?v=IuwxE3m0_QQ
+https://github.com/hoodie/awesome-rust-testing
+** TODO Emacs and Julia
+https://old.reddit.com/r/Julia/comments/v4npic/setting_up_emacs_for_julia_in_windows_seeking/
+[[https://old.reddit.com/r/Julia/comments/w1b28y/emacs_for_julia_development/][Emacs for julia development? : Julia]]
+* TODO Blog post about whole lotta love
+* TODO Write a blog post of eg vs ie
+* TODO "So what's your phd research project?"
+* TODO Write a blog post about my ADHD diagnosis
 How many words have I written in my journal files since March?
 *** TODO Send Russ Barkley my blog post when I finish
 
@@ -59,6 +100,13 @@ CLOCK: [2022-03-31 Thu 11:58]--[2022-03-31 Thu 12:04] =>  0:06
 :END:
 
 ** KILL Blog about Kedro vs Ploomber :blog:
+=======
+* TODO Write a post of things I wish people understood about ADHD
+* TODO Functional programming principals to apply to bioinformatics
+* TODO Functional programming and nextflow
+* TODO Org mode site rewrite
+* KILL Blog about Kedro vs Ploomber :blog:
+>>>>>>> e36ff48 (Update posts)
 CLOSED: [2022-10-15 Sat 17:24]
 
 
