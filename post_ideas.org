@@ -6,6 +6,7 @@ https://code.visualstudio.com/docs/devcontainers/devcontainer-cli
 https://devenv.sh/integrations/codespaces-devcontainer/
 * Julia
 Submit these to Official Julia blog/BioJulia
+Reach out to cedar Prince for pre reading blog posts
 
 ** TODO Julia packages and Snakemake
 
@@ -113,3 +114,5 @@ https://jalammar.github.io/how-gpt3-works-visualizations-animations/
 * TODO [[https://github.com/broadinstitute/ABC-Enhancer-Gene-Prediction][GitHub - broadinstitute/ABC-Enhancer-Gene-Prediction: Cell type specific enha...]]
 
 Reproduce in Julia
+* TODO [#A] Switching to KDE
+https://github.com/Bismuth-Forge/bismuth
