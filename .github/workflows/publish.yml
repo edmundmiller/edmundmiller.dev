@@ -24,4 +24,4 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: 'copy html/ site:'
+          args: 'copy html/ site:edmund-site/'
