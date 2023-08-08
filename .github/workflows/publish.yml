@@ -24,4 +24,4 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: 'copy html/ site:edmund-site/'
+          args: 'copy html/ site:edmund-site/ --s3-upload-cutoff=100M --s3-chunk-size=100M'
