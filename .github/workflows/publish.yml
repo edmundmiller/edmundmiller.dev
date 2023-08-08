@@ -18,3 +18,10 @@ jobs:
         uses: maker2413/OrgPublish@v1.0.0
         with:
           publish_script: publish.el
+
+      - name: rclone
+        uses: wei/rclone@v1
+        env:
+          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
+        with:
+          args: 'copy html/ site:'
