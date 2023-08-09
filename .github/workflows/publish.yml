@@ -27,11 +27,7 @@ jobs:
       - name: Magic Nix Cache
         uses: DeterminateSystems/magic-nix-cache-action@v2
       - name: Run openring
-        run: |
-          nix run nixpkgs#openring \
-          -s https://drewdevault.com/feed.xml \
-          < src/misc/openring.html \
-          > html/openring.html
+        run: nix develop --command openring
 
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@v1

@@ -10,14 +10,14 @@
          :recursive nil ;; avoid exporting blog twice
          :base-directory "./src"
          :html-validation-link nil             ;; Dont show validation link
-         :publishing-directory "./html"
+         :publishing-directory "./dist"
          :publishing-function org-html-publish-to-html
          :section-numbers nil                  ;; Don't show section numbers
          :with-author nil)                   ;; Don't show author
         ("blog"
          :base-directory "./src/posts"
          :base-extension "org"
-         :publishing-directory "./html/posts"
+         :publishing-directory "./dist/posts"
          :publishing-function org-html-publish-to-html
 
          :auto-sitemap t
