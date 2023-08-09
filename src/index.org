@@ -1,3 +1,5 @@
 #+title: Index
 
-** Testing 123
+* Blog Posts
+#+INCLUDE: posts/first-post.org :lines "3-20"
+[[file:posts/index.org][See more...]]

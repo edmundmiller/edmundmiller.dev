@@ -18,7 +18,12 @@
          :base-directory "./src/posts"
          :base-extension "org"
          :publishing-directory "./html/posts"
-         :publishing-function org-html-publish-to-html)
+         :publishing-function org-html-publish-to-html
+
+         :auto-sitemap t
+         :sitemap-title "Blog Posts"
+         :sitemap-filename "index.org"
+         :sitemap-sort-files anti-chronologically)
         ("edmundmiller.dev" :components ("pages" "blog"))))
 
 ;; Generate the site output

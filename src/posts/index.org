@@ -1,0 +1,12 @@
+#+TITLE: Blog Posts
+
+- [[file:julia-rust-ecosystem.org][A Comparison of the Julia and Rust Ecosystems]]
+- [[file:julia-bioinformatics.org][Why I'm hyped about Julia for Bioinformatics]]
+- [[file:testing-julia.org][Basic Testing Workflow in Julia]]
+- [[file:genomic_features.org][Intro to Genomic Features]]
+- [[file:writing-streak.org][I'm Starting a Writing Streak]]
+- [[file:learn-react.org][Learn Just Enough React to Move Out of your Parent's House]]
+- [[file:thoughts-nixos.org][Thoughts on NixOS]]
+- [[file:emacs-email.org][Emacs Email Config]]
+- [[file:first-post.org][CTRL to Caps Lock]]
+- [[file:personal-rewrite.org][A New Vue on Life]]
