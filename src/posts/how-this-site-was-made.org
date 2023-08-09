@@ -36,6 +36,9 @@ openring.
 
 Now I can run it locally or in CI with ease!
 
+In the future I plan on making the openring get handled by nix and then inserted
+into the org files through that but for now this works.
+
 * Footnotes
 
 [fn:1] [[https://determinate.systems/posts/determinate-nix-installer][Introducing the Determinate Nix Installer]], [[https://determinate.systems/posts/magic-nix-cache][Introducing the Magic Nix Cache]], [[https://determinate.systems/posts/flake-checker][Introducing the Nix Flake Checker]]
