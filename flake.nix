@@ -10,8 +10,7 @@
     in
       pkgs.mkShell {
         buildInputs = with pkgs; [
-          nodejs-16_x
-          nodePackages.typescript-language-server
+          openring
         ];
       };
   };
