@@ -1,5 +1,7 @@
 #+title: Index
 
 * Blog Posts
-#+INCLUDE: posts/first-post.org :lines "3-20"
+#+HTML: <div class="blog-entries">
+#+INCLUDE: "posts/index.org" :lines "3-"
+#+HTML: </div>
 [[file:posts/index.org][See more...]]
