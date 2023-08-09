@@ -1,0 +1,14 @@
+#+title: How This Site Was Made
+
+* TODO Org publish action
+
+[[https://notes.ethancpost.com/how_this_website_is_made.html][How This Website Is Made]]
+
+Miller columns
+
+Him publishing to s3 gets me thinking... What if I just publish to r2(Since
+that's my shtick of the day), and then I can just move my personal domain over,
+point it at the bucket, and boom, website.
+
+* TODO How do I use org-publish?
+* TODO
