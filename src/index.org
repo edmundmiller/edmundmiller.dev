@@ -5,3 +5,6 @@
 #+INCLUDE: "posts/index.org" :lines "3-"
 #+HTML: </div>
 [[file:posts/index.org][See more...]]
+
+
+#+INCLUDE: "./misc/openring-out.html" export html

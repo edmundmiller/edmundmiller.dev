@@ -14,11 +14,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Publish Org Files
-        uses: maker2413/OrgPublish@v1.0.0
-        with:
-          publish_script: publish.el
-
         # openring
       - name: Check Nix flake inputs
         uses: DeterminateSystems/flake-checker-action@v4 # This action
@@ -28,6 +23,11 @@ jobs:
         uses: DeterminateSystems/magic-nix-cache-action@v2
       - name: Run openring
         run: nix develop --command openring
+
+      - name: Publish Org Files
+        uses: maker2413/OrgPublish@v1.0.0
+        with:
+          publish_script: publish.el
 
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@v1

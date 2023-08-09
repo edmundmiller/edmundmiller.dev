@@ -8,3 +8,4 @@ dist
 .env.*
 .next
 /public/rss
+/src/misc/openring-out.html

@@ -16,7 +16,7 @@
           ${pkgs.openring}/bin/openring \
           -s https://drewdevault.com/feed.xml \
           < src/misc/openring.html \
-          > dist/openring.html
+          > src/misc/openring-out.html
         '')
       ];
     in
