@@ -1,5 +1,7 @@
 #+TITLE: Blog Posts
 
+- [[file:how-this-site-was-made.org][How This Site Was Made]]
+- [[file:site-v3.org][Site v3]]
 - [[file:julia-rust-ecosystem.org][A Comparison of the Julia and Rust Ecosystems]]
 - [[file:julia-bioinformatics.org][Why I'm hyped about Julia for Bioinformatics]]
 - [[file:testing-julia.org][Basic Testing Workflow in Julia]]
