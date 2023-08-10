@@ -1,5 +1,9 @@
 #+title: Posts to make
 
+* TODO Post on using devcontainer-cli and tramp
+https://www.emacswiki.org/emacs/TrampAndDocker
+https://code.visualstudio.com/docs/devcontainers/devcontainer-cli
+https://devenv.sh/integrations/codespaces-devcontainer/
 * TODO Blog post about whole lotta love
 * TODO Write a blog post of eg vs ie
 * TODO "So what's your phd research project?"
