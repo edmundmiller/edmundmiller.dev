@@ -6,5 +6,13 @@
 #+HTML: </div>
 [[file:posts/index.org][See more...]]
 
+#+begin_src bash :exports none
+openring \
+    -s https://drewdevault.com/feed.xml \
+    -s https://monimiller.com/feed.xml \
+    -s https://taehoonkim.org/news/?format=rss \
+    < ./misc/openring.html
+    > ./misc/openring-out.html
+#+end_src
 
 #+INCLUDE: "./misc/openring-out.html" export html

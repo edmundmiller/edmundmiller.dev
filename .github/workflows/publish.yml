@@ -21,8 +21,6 @@ jobs:
         uses: DeterminateSystems/nix-installer-action@v3
       - name: Magic Nix Cache
         uses: DeterminateSystems/magic-nix-cache-action@v2
-      - name: Run openring
-        run: nix develop --command openring
 
       - name: Publish Org Files
         uses: maker2413/OrgPublish@v1.0.0
