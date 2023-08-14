@@ -79,3 +79,6 @@ The draw of finally being able to create the tools you need.
 
 - Implement liver-ct-segmentation
 - Reproduce [[https://github.com/instadeepai/nucleotide-transformer/tree/main][nucleotide-transformer]]
+
+* TODO Make a quick blog post on nextflow and our clone
+* TODO Make a quick blog post on dev containers in Julia
