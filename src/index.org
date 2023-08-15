@@ -6,7 +6,7 @@
 #+HTML: </div>
 [[file:posts/index.org][See more...]]
 
-#+begin_src bash :exports none
+#+begin_src shell :shebang "#!/usr/bin/env nix-shell\n#!nix-shell -p openring -i bash --pure" :results output :exports results
 openring \
     -s https://drewdevault.com/feed.xml \
     -s https://monimiller.com/feed.xml \
@@ -14,5 +14,3 @@ openring \
     < ./misc/openring.html
     > ./misc/openring-out.html
 #+end_src
-
-#+INCLUDE: "./misc/openring-out.html" export html
