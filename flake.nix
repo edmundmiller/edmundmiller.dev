@@ -3,11 +3,13 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
+    emacs-overlay.url = "github:nix-community/emacs-overlay";
   };
 
   outputs = {
     self,
     nixpkgs,
+    emacs-overlay,
   }: {
     devShell.x86_64-linux = let
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
@@ -30,6 +32,7 @@
         buildInputs = with pkgs;
           [
             openring
+            emacs-overlay.packages.${system}.emacs-unstable-pgtk
           ]
           ++ scripts;
       };
