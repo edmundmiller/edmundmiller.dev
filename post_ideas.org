@@ -11,6 +11,8 @@ https://devenv.sh/integrations/codespaces-devcontainer/
 How many words have I written in my journal files since March?
 ** TODO Send Russ Barkley my blog post when I finish
 
+** [[id:7bebbf55-4c83-4db3-b08b-f03804b112ca][In the words of the first pysch I saw "how's he halfway through a phd program?"]]
+
 ** How my wife felt most days
 https://www.getyarn.io/yarn-clip/e490c2eb-25c2-4ea7-813f-bd7b4025b191#u9DkXlnB.copy
 https://www.getyarn.io/yarn-clip/3d49a291-18e6-4905-9bba-b116576e4440
