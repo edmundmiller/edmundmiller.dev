@@ -22,6 +22,9 @@ jobs:
       - name: Magic Nix Cache
         uses: DeterminateSystems/magic-nix-cache-action@v2
 
+      - name: Setup Emacs
+        run: nix develop --command emacs --batch --load ./install.el
+
       - name: Publish Org Files
         run: nix develop --command emacs -Q --script ./publish.el
 
