@@ -2,7 +2,9 @@
 
 (require 'htmlize)
 (require 'ox-publish)
-(setq org-export-use-babel t)
+
+;; Allow babel to run in a script
+(setq org-confirm-babel-evaluate nil)
 ;; make org mode allow eval of some langs
 (org-babel-do-load-languages
  'org-babel-load-languages
