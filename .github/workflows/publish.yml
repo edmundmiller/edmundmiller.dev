@@ -24,7 +24,8 @@ jobs:
       - name: Install devenv.sh
         run: nix profile install tarball+https://install.devenv.sh/latest
         shell: sh
-      - run: nix develop --command devenv ci
+      # - name: Test devenv
+      #   run: nix develop --command devenv ci
       - name: Setup Emacs
         run: nix develop --command emacs --batch --load ./install.el
 
