@@ -21,12 +21,15 @@ jobs:
         uses: DeterminateSystems/nix-installer-action@v3
       - name: Magic Nix Cache
         uses: DeterminateSystems/magic-nix-cache-action@v2
-
+      - name: Install devenv.sh
+        run: nix profile install tarball+https://install.devenv.sh/latest
+        shell: sh
+      - run: devenv ci
       - name: Setup Emacs
-        run: nix develop --command emacs --batch --load ./install.el
+        run: devenv shell emacs --batch --load ./install.el
 
       - name: Publish Org Files
-        run: nix develop --command emacs -Q --script ./publish.el
+        run: devenv shell --command emacs -Q --script ./publish.el
 
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@v1
