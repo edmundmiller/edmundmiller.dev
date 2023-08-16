@@ -29,10 +29,10 @@
           modules = [
             {
               # https://devenv.sh/reference/options/
-              packages = [pkgs.hello];
+              packages = [pkgs.emacs29 pkgs.openring];
 
-              enterShell = ''
-                hello
+              scripts.build-site.exec = ''
+                emacs -Q --script ./publish.el
               '';
             }
           ];
