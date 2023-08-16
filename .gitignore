@@ -9,3 +9,14 @@ dist
 .next
 /public/rss
 /src/misc/openring-out.html
+
+# Devenv
+.devenv*
+devenv.local.nix
+
+# direnv
+.direnv
+
+# pre-commit
+.pre-commit-config.yaml
+
