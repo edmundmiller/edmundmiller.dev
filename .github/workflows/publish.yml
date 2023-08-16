@@ -24,12 +24,12 @@ jobs:
       - name: Install devenv.sh
         run: nix profile install tarball+https://install.devenv.sh/latest
         shell: sh
-      - run: devenv ci
+      - run: nix develop --command devenv ci
       - name: Setup Emacs
-        run: devenv shell emacs --batch --load ./install.el
+        run: nix develop --command emacs --batch --load ./install.el
 
       - name: Publish Org Files
-        run: devenv shell --command emacs -Q --script ./publish.el
+        run: nix develop --command emacs -Q --script ./publish.el
 
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@v1
