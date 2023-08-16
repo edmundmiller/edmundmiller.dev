@@ -2,6 +2,7 @@
 
 (require 'htmlize)
 (require 'ox-publish)
+(setq org-export-use-babel t)
 
 ;; TODO https://git.tecosaur.net/tec/this-month-in-org/src/branch/master/publish.el
 ;; Define the publishing project
