@@ -3,6 +3,11 @@
 (require 'htmlize)
 (require 'ox-publish)
 (setq org-export-use-babel t)
+;; make org mode allow eval of some langs
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((emacs-lisp . t)
+   (shell . t)))
 
 ;; TODO https://git.tecosaur.net/tec/this-month-in-org/src/branch/master/publish.el
 ;; Define the publishing project
