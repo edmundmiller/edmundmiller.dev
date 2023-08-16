@@ -24,10 +24,12 @@ jobs:
       - name: Install devenv.sh
         run: nix profile install --accept-flake-config tarball+https://install.devenv.sh/latest
         shell: sh
+      # TODO
       # - name: Test devenv
       #   run: nix develop --command devenv ci
       - name: Setup Emacs
         run: nix develop --impure --command emacs --batch --load ./install.el
+      # TODO Cache emacs
 
       - name: Publish Org Files
         run: nix develop --impure --command emacs -Q --script ./publish.el
