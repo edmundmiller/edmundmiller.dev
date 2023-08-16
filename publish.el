@@ -2,6 +2,7 @@
 
 (require 'htmlize)
 (require 'ox-publish)
+(require 'ox-rss)
 
 ;; Allow babel to run in a script
 (setq org-confirm-babel-evaluate nil)
@@ -32,7 +33,18 @@
          :sitemap-title "Blog Posts"
          :sitemap-filename "index.org"
          :sitemap-sort-files anti-chronologically)
-        ("edmundmiller.dev" :components ("pages" "blog"))))
+        ("blog-rss"
+         :base-directory "./src/posts/"
+         :base-extension "org"
+         :rss-image-url "https://en.gravatar.com/userimage/153826413/9a3e00a58a93ddade27bf64873cf8a3c.jpeg?size=256"
+         :html-link-home "https://edmundmiller.dev"
+         :html-link-use-abs-url t
+         :rss-extension "xml"
+         :publishing-directory "./dist"
+         :publishing-function (org-rss-publish-to-rss)
+         :section-numbers nil
+         :table-of-contents nil)
+        ("edmundmiller.dev" :components ("pages" "blog" "blog-rss"))))
 
 ;; Generate the site output
 (org-publish-all t)
