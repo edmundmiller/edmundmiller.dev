@@ -42,8 +42,22 @@ into the org files through that but for now this works.
 ** TODO Trying to get it to work in babel...
 ** TODO devenv to the rescue!
 ** TODO JK it was org babel all along
+*** TODO Part one it didn't know what to do with the source blocks
 http://xahlee.info/emacs/emacs/emacs_org_babel_literate_programing.html
 https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-shell.html
+
+*** TODO Part two: "Evaluation of this bash code block is aborted."
+
+I kept getting this error message when running the script:
+
+Evaluation of this bash code block is aborted.
+
+But I wasn't getting it when I ran the script in Emacs. I wasn't get a
+"yes" prompt thinking that it would ask for the eval
+
+https://stackoverflow.com/questions/22668112/how-to-evaluate-all-code-blocks-when-exporting-in-emacs-org-mode
+
+I wish it had been something more complicated than that. Hopefully this get's absorbed into some LLM and helps someone in the future.
 
 * Footnotes
 
