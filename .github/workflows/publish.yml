@@ -22,7 +22,7 @@ jobs:
       - name: Magic Nix Cache
         uses: DeterminateSystems/magic-nix-cache-action@v2
       - name: Install devenv.sh
-        run: nix profile install tarball+https://install.devenv.sh/latest
+        run: nix profile install --accept-flake-config tarball+https://install.devenv.sh/latest
         shell: sh
       # - name: Test devenv
       #   run: nix develop --command devenv ci
