@@ -1,0 +1,20 @@
+#+title: Talks
+
+* Nextflow Summit 2022
+
+[[https://summit.nextflow.io/2022/program/oct-14-workflow-automation-using-the-aviti-benchtop-sequencing-system-and-nextflow-tower/][Workflow automation: Using the Aviti benchtop sequencing system and Nextflow Tower]]
+
+* Juliacon 2023
+
+- [[https://pretalx.com/juliacon2023/talk/CSG8NU/][Exploring the State of Machine Learning for Biological Data]]
+- [[https://pretalx.com/juliacon2023/talk/AJJRS3/][Unlocking the Power of Genomic Analysis in Julia]]
+
+* nf-core
+
+- [[https://www.youtube.com/watch?v=K9B7JRkMpQ4][nf-core/bytesize: nf-test]]
+- [[https://www.youtube.com/watch?v=chayGGPTnfM][nf-core/bytesize: nf-core/nascent]]
+- [[https://www.youtube.com/watch?v=pjhscKyWH74][Pytest workflows/Github actions (nf-core/bytesize #17)]]
+- Bioinformatics Regional Resource
+  - [[https://drive.google.com/file/d/10UwuNCOHYcSkabAdmoQVCLfrF_N9OAXx/view][Using nf-core to create Nextflow workflows]]
+  - [[https://docs.google.com/document/d/1hsXII7VlMMfetui-J91eC1dc2XycIGR9QXbAtd_gwkg][Transcript]]
+# Find that one that I did with Evan in August 2021
