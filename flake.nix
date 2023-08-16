@@ -1,40 +1,39 @@
 {
-  description = "Personal Website of Edmund Miller";
-
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
-    emacs-overlay.url = "github:nix-community/emacs-overlay";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
+    systems.url = "github:nix-systems/default";
+    devenv.url = "github:cachix/devenv";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    emacs-overlay,
-  }: {
-    devShell.x86_64-linux = let
-      pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      scripts = with pkgs; [
-        (writeScriptBin "clean" ''
-          rm -rf dist
-        '')
+  nixConfig = {
+    extra-trusted-public-keys = "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=";
+    extra-substituters = "https://devenv.cachix.org";
+  };
 
-        (writeScriptBin "my-openring" ''
-          ${pkgs.openring}/bin/openring \
-          -s https://drewdevault.com/feed.xml \
-          -s https://monimiller.com/feed.xml \
-          -s https://taehoonkim.org/news/?format=rss \
-          < src/misc/openring.html \
-          > src/misc/openring-out.html
-        '')
-      ];
+  outputs = { self, nixpkgs, devenv, systems, ... } @ inputs:
+    let
+      forEachSystem = nixpkgs.lib.genAttrs (import systems);
     in
-      pkgs.mkShell {
-        buildInputs = with pkgs;
-          [
-            openring
-            emacs-overlay.packages.${system}.emacs-unstable-pgtk
-          ]
-          ++ scripts;
-      };
-  };
+    {
+      devShells = forEachSystem
+        (system:
+          let
+            pkgs = nixpkgs.legacyPackages.${system};
+          in
+          {
+            default = devenv.lib.mkShell {
+              inherit inputs pkgs;
+              modules = [
+                {
+                  # https://devenv.sh/reference/options/
+                  packages = [ pkgs.hello ];
+
+                  enterShell = ''
+                    hello
+                  '';
+                }
+              ];
+            };
+          });
+    };
 }
