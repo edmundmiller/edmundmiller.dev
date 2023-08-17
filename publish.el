@@ -20,7 +20,8 @@
       org-html-htmlize-output-type 'css
       org-html-doctype "html5"
       org-html-html5-fancy t
-      org-html-head (f-read-text "./src/html/head.html"))
+      org-html-head (f-read-text "./src/html/head.html")
+      org-html-preamble (f-read-text "./src/html/nav.html"))
 
 ;; TODO https://git.tecosaur.net/tec/this-month-in-org/src/branch/master/publish.el
 ;; Define the publishing project
