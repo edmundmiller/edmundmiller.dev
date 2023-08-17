@@ -1,4 +1,4 @@
-#+title: Index
+#+title: Home
 
 Hello! This is site is currently being rebuilt! For now, check out the blog
 posts and check back soon!
