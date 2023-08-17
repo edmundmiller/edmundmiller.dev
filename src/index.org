@@ -1,5 +1,4 @@
 #+title: Index
-#+html_head: <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
 
 * Blog Posts
 #+HTML: <div class="blog-entries">
