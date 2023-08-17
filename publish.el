@@ -13,6 +13,10 @@
  '((emacs-lisp . t)
    (shell . t)))
 
+;; Customize org export
+(setq org-export-with-toc nil
+      org-export-with-section-numbers nil)
+
 ;; Customize the HTML output
 (setq org-html-validation-link nil            ;; Don't show validation link
       org-html-head-include-scripts nil       ;; Use our own scripts
