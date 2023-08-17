@@ -1,0 +1,18 @@
+#+title: Stack
+
+My software stack:
+
+- Text Editor: [[https://github.com/doomemacs/doomemacs][Doom Emacs]]
+- OS: [[https://nixos.org/][NixOS]]
+- Bioinformatics Pipelines: [[https://www.nextflow.io/][Nextflow]]/[[https://nf-co.re/][nf-core]]
+- For dev environments: [[https://devenv.sh/][devenv]]
+- Password Manager: Bitwarden
+- Personal Finance: [[https://lunchmoney.app/?refer=fn4913qg][Lunch Money]]
+- Messaging: [[refer.beeper.com/1aaeim][Beeper]]
+- eBooks/Notes: [[https://remarkable.com/][reMarkable]] It gets the job done, but I probably wouldn't
+  recommend getting one since they went to a subscription model.
+- Phone: [[https://grapheneos.org/][GrapheneOS]]
+- Linkpage: [[https://littlelink.io/][LittleLink]]
+- Web analytics: [[https://github.com/arp242/goatcounter][goatcounter]]
+- DNS: [[https://nextdns.io/?from=w83mbq74][NextDNS]]
+- Storage: [[https://developers.cloudflare.com/r2][Cloudflare R2]]
