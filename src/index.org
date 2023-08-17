@@ -1,5 +1,8 @@
 #+title: Index
 
+Hello! This is site is currently being rebuilt! For now, check out the blog
+posts and check back soon!
+
 * Blog Posts
 #+HTML: <div class="blog-entries">
 #+INCLUDE: "posts/index.org" :lines "3-"
