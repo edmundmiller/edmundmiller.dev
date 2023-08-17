@@ -59,7 +59,13 @@
          :publishing-function (org-rss-publish-to-rss)
          :section-numbers nil
          :table-of-contents nil)
-        ("edmundmiller.dev" :components ("pages" "blog" "blog-rss"))))
+        ("assets"
+         :base-directory "./static/"
+         :recursive t
+         :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
+         :publishing-directory "./dist/static"
+         :publishing-function org-publish-attachment)
+        ("edmundmiller.dev" :components ("pages" "blog" "blog-rss" "assets"))))
 
 ;; Generate the site output
 (org-publish-all t)
