@@ -8,3 +8,4 @@
 
 (package-install 'htmlize)
 (package-install 'ox-rss)
+(package-install 'f)

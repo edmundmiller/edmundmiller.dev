@@ -3,6 +3,7 @@
 (require 'htmlize)
 (require 'ox-publish)
 (require 'ox-rss)
+(require 'f)
 
 ;; Allow babel to run in a script
 (setq org-confirm-babel-evaluate nil)
@@ -19,7 +20,8 @@
       org-html-htmlize-output-type 'css
       org-html-doctype "html5"
       org-html-html5-fancy t
-      org-html-head "<link rel=\"stylesheet\" href=\"https://cdn.simplecss.org/simple.min.css\">")
+      org-html-head (f-read-text "./src/html/head.html"))
+
 ;; TODO https://git.tecosaur.net/tec/this-month-in-org/src/branch/master/publish.el
 ;; Define the publishing project
 (setq org-publish-project-alist
