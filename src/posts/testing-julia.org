@@ -36,6 +36,10 @@ a better recommendation to check out to form my opinions!). ~cargo test~ and
 ~cargo test one_hundred~ are examples of what I was talking about earlier.
 
 * After some research...
+:PROPERTIES:
+:ID:       221e93ef-cc9d-47ee-93f3-6554e60333c1
+:PUBDATE:  2023-08-16 Wed 22:36
+:END:
 
 In the process of starting to answer some of those questions I had, I found a
 [[https://erik-engheim.medium.com/julia-v1-5-testing-best-practices-3ca8780e6336][wonderful article by Erik Engheim, "Julia v1.5 Testing: Best Practices"]]. I
@@ -43,6 +47,10 @@ highly recommend you give that a read, I'm going do my best to avoid duplicating
 his efforts.
 
 * Takeaways from Erik Engheim's other article
+:PROPERTIES:
+:ID:       1eb01e3d-9d82-4b28-80de-816f4dda3a64
+:PUBDATE:  2023-08-16 Wed 22:36
+:END:
 https://medium.com/codex/julia-v1-5-testing-how-to-organize-tests-5f7a76e29038
 https://medium.com/codex/test-driven-vs-repl-driven-development-809d3c7a681
 

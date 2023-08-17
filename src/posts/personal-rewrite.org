@@ -94,6 +94,8 @@ statue because I can't learn metallurgy at a craft store.
 * Tailwind Refactor
 :PROPERTIES:
 :CUSTOM_ID: tailwind-refactor
+:ID:       0b7d37e7-d5e7-46ac-9f6e-e86f875fab77
+:PUBDATE:  2023-08-16 Wed 22:36
 :END:
 
 I also wanted to take this chance to explore [[https://tailwindcss.com/][tailwindcss]]. I had exactly 0
@@ -118,14 +120,19 @@ theme-switcher specific stuff and ended up with [[https://github.com/Emiller88/e
 ** TODO Theme Switcher
 :PROPERTIES:
 :CUSTOM_ID: theme-switcher
+:ID:       0b0099ce-16c3-48ba-88c7-8447e4aee931
 :END:
 
 * TODO Semantic Versioning
 :PROPERTIES:
 :CUSTOM_ID: semantic-versioning
+:ID:       301e94b4-6120-4d2a-8bfc-d611ec970cae
+:PUBDATE:  2023-08-16 Wed 22:36
 :END:
 
 * TODO Presentations
 :PROPERTIES:
 :CUSTOM_ID: presentations
+:ID:       41b72286-118d-4a86-aa56-931f9f4d750f
+:PUBDATE:  2023-08-16 Wed 22:36
 :END:

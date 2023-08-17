@@ -20,6 +20,10 @@ wanted to use astro because it would just ship html by default and be fast.
 Spoiler alert, org-mode does that out of the box.
 
 * Scoping what I actually needed
+:PROPERTIES:
+:ID:       717f100f-1c3a-4b72-8e41-409fad8088f3
+:PUBDATE:  2023-08-16 Wed 22:36
+:END:
 
 1. I love automated publishing. I literally don't think I could run a website or
    software project without it. The thought of manually walking through the
@@ -38,6 +42,10 @@ So from that I planned on:
 4. Then answer the age old question, do you really need JavaScript?[fn:1]
 
 * Footnotes
+:PROPERTIES:
+:ID:       7e50517d-4e7b-4706-ab46-1bffeef3a86a
+:PUBDATE:  2023-08-16 Wed 22:36
+:END:
 
 [fn:1]
 I noticed [[https://nvchad.com/][NvChad]] used [[https://unocss.dev/][UnoCSS]] and [[https://www.solidjs.com/][Solid.js]], which seem minimal, while I was

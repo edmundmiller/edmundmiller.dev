@@ -14,6 +14,10 @@ the days of [[https://bioperl.org/articles/How_Perl_saved_human_genome.html][per
 Based off a recent recommendation from my friend [[https://github.com/tecosaur][Teco]]
 
 * Two Language Problem
+:PROPERTIES:
+:ID:       99f07ba6-81ed-4667-9dbc-30fd76ccf807
+:PUBDATE:  2023-08-16 Wed 22:36
+:END:
 Plenty of people have written about this with Julia. Lots of scientific
 communities may use a high-level "scripting" language to manage their
 business-logic and then drop into a low-level language such as C/Fortran/Rust to
@@ -41,6 +45,9 @@ beauty:
 https://edmundmiller.dev/static/julia-100.png
 
 ** But what about my C functions that are highly optimized?
+:PROPERTIES:
+:ID:       b02a3857-43e7-4a75-8ba2-53e9dcf9ba17
+:END:
 
 What about our in-house python library that interacts with all of our sample
 tracking and pulling files temporarily from s3? "I don't have time to figure out
@@ -51,6 +58,10 @@ right into new code. As scientists we are constantly standing on the shoulders
 of giants, and Julia is enabling that.
 
 * [[https://biojulia.net/][BioJulia]]
+:PROPERTIES:
+:ID:       d8bea205-ecac-4c4a-ae61-85b45ded16f1
+:PUBDATE:  2023-08-16 Wed 22:36
+:END:
 
 Julia has a wonderful open-source structure. Since it was created only a decade
 ago there's not a lot of legacy things to maintain and everything can be fresh
@@ -68,6 +79,10 @@ happens in [[https://julialang.slack.com/archives/CAKKFNYLD][the #biology channe
 
 
 * Designed for Scientific Computing
+:PROPERTIES:
+:ID:       dafb1999-8c76-437a-9f7c-867549d1ddc0
+:PUBDATE:  2023-08-16 Wed 22:36
+:END:
 
 It seems like bioinformaticians always want to do things in the most efficient
 path, but solving for a different variable than most. [[https://www.lastweekinaws.com/podcast/screaming-in-the-cloud/quantum-leaps-in-bioinformatics-with-lynn-langit/][In a recent episode of
@@ -104,6 +119,10 @@ software crown, and wrapping it in some gold Julia code like it deserves.
 
 
 * Call to action
+:PROPERTIES:
+:ID:       0e5896e3-51e5-472d-b12c-8c329326429c
+:PUBDATE:  2023-08-16 Wed 22:36
+:END:
 
 I plan on working to increase the visibility into Julia specifically for
 bioinformatics. I always love this Venn diagram to explain to people what
@@ -113,6 +132,9 @@ bioinformatics is. I think it'll be natural to cover [[https://github.com/JuliaD
 http://acm.na.edu/img/bioInfoLab/bioinformatics_venn.png
 
 ** How to get started with Julia
+:PROPERTIES:
+:ID:       436fb274-ce54-4a50-be38-705765fafc10
+:END:
 
 - [[https://juliacon.org/2022/tickets/][Attend JuliaCon 2022]] (It's online and free to attend!)
 - [[https://www.talkjulia.com/][Listen to the Talk Julia Podcast]]
@@ -121,6 +143,9 @@ http://acm.na.edu/img/bioInfoLab/bioinformatics_venn.png
   Advocate]]
 
 *** 2023 Update
+:PROPERTIES:
+:ID:       72c7c5e7-5160-4c7e-a54a-6e8048a03539
+:END:
 
 - [[https://github.com/BioJulia/BioTutorials][GitHub - BioJulia/BioTutorials: Tutorial Notebooks of BioJulia]]
 - New Documenter.jl Docs!

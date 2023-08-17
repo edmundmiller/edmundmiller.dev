@@ -10,6 +10,8 @@
 * Introduction
    :PROPERTIES:
    :CUSTOM_ID: introduction
+   :ID:       f0d16678-d9ad-4d7a-b674-26cfe0c3b1a3
+   :PUBDATE:  2023-08-16 Wed 22:36
    :END:
 I recently was helping a friend start building a website, and in hopes of
 boosting his resume, chose to build it in [[https://reactjs.org][React]], and because I think the best
@@ -26,6 +28,7 @@ going from zero to out of your parent's house.
 ** Install git
 :PROPERTIES:
 :CUSTOM_ID: install-git
+:ID:       45c2a62e-a77c-4e24-8dc2-ec9c6d757c27
 :END:
 
 You'll want install =git= next. Follow the instructions at this [[https://git-scm.com][site to install]]
@@ -34,6 +37,7 @@ for your platform.
 ** VS Code
 :PROPERTIES:
 :CUSTOM_ID: vs-code
+:ID:       84ac4dd1-5fba-40d6-a532-d46414e6a2d0
 :END:
 
 I personally don't use VS Code, I use [[https://github.com/hlissner/doom-emacs][Doom Emacs]] but that's a whole other beast.
@@ -43,6 +47,7 @@ it is the popular GUI editor of the hour. You can download it [[https://code.vis
 ** Fira Code
 :PROPERTIES:
 :CUSTOM_ID: fira-code
+:ID:       b0dbec51-623e-450a-9e42-fa9b84e13006
 :END:
 
 A fun little thing to make you feel like a special snowflake is to change your
@@ -53,6 +58,7 @@ your system and add it VS Code [[https://github.com/tonsky/FiraCode/wiki][here]]
 ** Install nodejs
 :PROPERTIES:
 :CUSTOM_ID: install-nodejs
+:ID:       fb949920-4762-4c90-b11d-f838edbe1a9d
 :END:
 
 /Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine/. is the
@@ -62,6 +68,7 @@ description their site gives. We'll cover more on JS later. The link to the
 ** Installing Extensions
 :PROPERTIES:
 :CUSTOM_ID: installing-extensions
+:ID:       8fee9d0d-0466-4ae6-b0d0-31a7699f6958
 :END:
 
 One of the perks of VS Code is that it makes install extensions simple. They can
@@ -85,6 +92,7 @@ You should glance over each and see what they give you.
 *** [[https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode][prettier]]
 :PROPERTIES:
 :CUSTOM_ID: prettier
+:ID:       68429950-0056-4df2-a358-374f424bc6fa
 :END:
 
 =prettier= formats the code you on save. Follow the instructions on the
@@ -93,6 +101,7 @@ page to set it up.
 *** [[https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig][EditorConfig]]
 :PROPERTIES:
 :CUSTOM_ID: editorconfig
+:ID:       7ed81fc1-0eb9-46a6-85f0-71301dfcd062
 :END:
 
 Another way to keep your code clean and set a standard. Can you tell I
@@ -101,6 +110,7 @@ like clean code?
 *** [[https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint][eslint]]
 :PROPERTIES:
 :CUSTOM_ID: eslint
+:ID:       e7b86eaa-008a-4dfa-a8e5-1fa0c5f0b530
 :END:
 
 =ESLint= tells you when you've done something wrong and sometimes can fix it for
@@ -109,6 +119,7 @@ you.
 ** Integrated Terminal
 :PROPERTIES:
 :CUSTOM_ID: integrated-terminal
+:ID:       cca92706-1585-4819-96a7-1942c44a4d99
 :END:
 
 If you know how to get a terminal on your system already awesome. If you don't
@@ -119,11 +130,14 @@ quick doc on it]], I recommend you use =git bash= if you're on [[https://code.vi
 * GitHub
 :PROPERTIES:
 :CUSTOM_ID: github
+:ID:       5224342e-c952-426e-9178-26a3137e7e4e
+:PUBDATE:  2023-08-16 Wed 22:36
 :END:
 
 ** Create an Account
 :PROPERTIES:
 :CUSTOM_ID: create-an-account
+:ID:       69997f9f-7606-4ed5-b7f6-a31fb3abed31
 :END:
 
 If you don't have one yet that's fine. It should be self explanatory. Bonus if
@@ -135,6 +149,7 @@ the friendly manual. Think of it more of a checklist.
 ** Create a Repo
 :PROPERTIES:
 :CUSTOM_ID: create-a-repo
+:ID:       878618bb-6f15-4f1f-81b9-7e2416e51507
 :END:
 
 I would be doing the docs at GitHub a disservice if I tried to take their
@@ -145,6 +160,7 @@ site today so name it whatever you like. I'll be referring to it as
 ** Clone the repo
 :PROPERTIES:
 :CUSTOM_ID: clone-the-repo
+:ID:       c8044a19-f5b1-4acb-b175-3c467bfaaeed
 :END:
 
 Using your =Integrated Terminal= follow this [[https://help.github.com/en/articles/cloning-a-repository][guide]] to clone your site. In my
@@ -158,6 +174,8 @@ git clone https://github.com/emiller88/example-site
 * Getting the Site set up
 :PROPERTIES:
 :CUSTOM_ID: getting-the-site-set-up
+:ID:       c78484cb-53d9-48b2-aabf-f04559ea5c41
+:PUBDATE:  2023-08-16 Wed 22:36
 :END:
 
 Now that I've bored you with all of the tooling, or if you enjoyed it, we're on
@@ -166,6 +184,7 @@ to the real work.
 ** Create React App
 :PROPERTIES:
 :CUSTOM_ID: create-react-app
+:ID:       ace4ed7e-c92c-4f2a-a00c-74317e32a285
 :END:
 
 Is a great utility to get your up and running with =React=
@@ -184,6 +203,7 @@ your change is correct quickly.
 ** GitHub Pages
 :PROPERTIES:
 :CUSTOM_ID: github-pages
+:ID:       c1e84d1c-257a-4dd7-b2b6-60a165e25e9b
 :END:
 
 Follow the [[https://github.com/gitname/react-gh-pages#procedure][Procedure]], you should be able to skip to step 3. replace
@@ -192,6 +212,7 @@ Follow the [[https://github.com/gitname/react-gh-pages#procedure][Procedure]], y
 ** CircleCI
 :PROPERTIES:
 :CUSTOM_ID: circleci
+:ID:       db738b27-5dac-40ad-92da-188b1fac819f
 :END:
 
 Lastly, we'll setup a CI/CD pipeline to automatically deploy and build your site
@@ -235,6 +256,8 @@ steps:
 * React
 :PROPERTIES:
 :CUSTOM_ID: react
+:ID:       1718f95c-e960-4631-b4ec-3764cb8676ee
+:PUBDATE:  2023-08-16 Wed 22:36
 :END:
 
 It's about time we actually talked about =React=. As you can see though a good
@@ -246,6 +269,7 @@ through a few things.
 ** React bootstrap
 :PROPERTIES:
 :CUSTOM_ID: react-bootstrap
+:ID:       c83e99ff-1a0b-4dfc-8ec1-68cf095394da
 :END:
 
 If you've ever seen a basic website recently it might be made with bootstrap. It

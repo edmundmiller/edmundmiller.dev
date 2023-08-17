@@ -1,9 +1,0 @@
-* Inbox
-** TODO Redo website
-** STRT Play with an astro-org
-:LOGBOOK:
-CLOCK: [2023-01-06 Fri 16:17]--[2023-01-06 Fri 16:44] =>  0:27
-CLOCK: [2022-11-17 Thu 11:15]--[2022-11-17 Thu 13:31] =>  2:16
-:END:
-https://vitejs.dev/guide/api-plugin.html#transforming-custom-file-types
-https://www.one-tab.com/page/2OhUpR9ISYKxkc-mrVIoNQ

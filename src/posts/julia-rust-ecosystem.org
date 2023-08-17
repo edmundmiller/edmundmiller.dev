@@ -8,24 +8,60 @@
 #+filetags: :julia:
 
 * Intro
+:PROPERTIES:
+:ID:       64c7f9fc-3bdc-48dd-89ba-edbc8b169e4b
+:PUBDATE:  2023-08-16 Wed 22:36
+:END:
 - Feris Juggling the Julia logo
 - Rust is the most loved language in stackoverflow *again*
 - Julia is climbing the ranks
 - Written in the last decade so they don't have to deal with legacy issues
   Even more inspired after the juliacon keynote comparing Julia to go
 * TODO Built-in package management
+:PROPERTIES:
+:ID:       aef5ada5-e994-4d8f-89c8-6acd90f7e7cd
+:PUBDATE:  2023-08-16 Wed 22:36
+:END:
 * TODO Central package store
+:PROPERTIES:
+:ID:       00a8b1a2-5557-4cc6-9cb6-ddbdfe41b405
+:PUBDATE:  2023-08-16 Wed 22:36
+:END:
 * TODO Types
+:PROPERTIES:
+:ID:       0e55a709-95b9-48c8-b96a-8ec11170da7a
+:PUBDATE:  2023-08-16 Wed 22:36
+:END:
   - The best part is they're there when you want them(when you're developing packages)
 * TODO Baked in testing suite is adequate(ie don't need pytest/jest)
+:PROPERTIES:
+:ID:       3e5f8b50-92e0-4bd6-a293-2702ddab5eba
+:PUBDATE:  2023-08-16 Wed 22:36
+:END:
 https://doc.rust-lang.org/book/ch11-00-testing.html
 * TODO Community
+:PROPERTIES:
+:ID:       28366f32-37ba-4a4d-a85a-fbc9f0d4fbbe
+:PUBDATE:  2023-08-16 Wed 22:36
+:END:
 * TODO Easy version management
+:PROPERTIES:
+:ID:       457ee6e0-5ef6-4fdc-b988-dc36c4130dea
+:PUBDATE:  2023-08-16 Wed 22:36
+:END:
   https://github.com/JuliaLang/juliaup
 * TODO Does it's main feature and does it well
+:PROPERTIES:
+:ID:       b0646d9f-c069-451e-a72d-6c6d69e5a613
+:PUBDATE:  2023-08-16 Wed 22:36
+:END:
   - Rust is focused on memory safety
   - Julia is focused on being fast
     - Link to why we wrote Julia
 * But the compile times in both are slow!
+:PROPERTIES:
+:ID:       45ce8654-2f63-4ff5-8450-2471277bc74d
+:PUBDATE:  2023-08-16 Wed 22:36
+:END:
 
 But it's not going to get worse?

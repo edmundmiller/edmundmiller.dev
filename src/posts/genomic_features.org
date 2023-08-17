@@ -11,6 +11,10 @@ real world use of these packages. Or maybe something like the great
 documentation [[https://biocore-ntnu.github.io/pyranges/][PyRanges]] has.
 
 * Downloading our data
+:PROPERTIES:
+:ID:       304a4ca6-1f67-47b5-8397-c6b07a62965e
+:PUBDATE:  2023-08-16 Wed 22:36
+:END:
 
 #+begin_src julia
 using Downloads
@@ -22,6 +26,10 @@ end
 #+end_src
 
 * Find overlaps
+:PROPERTIES:
+:ID:       a922d757-2888-4a57-a4eb-fea83607ef5b
+:PUBDATE:  2023-08-16 Wed 22:36
+:END:
 
 So you want to find some overlaps?
 
@@ -44,4 +52,12 @@ overlaps
 #+end_src
 
 * TODO Write to bed file
+:PROPERTIES:
+:ID:       0aae4bc7-71fb-4f7f-8903-432d940b88a8
+:PUBDATE:  2023-08-16 Wed 22:36
+:END:
 * TODO Find genes within 200KB
+:PROPERTIES:
+:ID:       bc4933d6-eabe-4715-b380-ebd10a2b4404
+:PUBDATE:  2023-08-16 Wed 22:36
+:END:

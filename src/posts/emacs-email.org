@@ -11,6 +11,8 @@
 * Introduction
 :PROPERTIES:
 :CUSTOM_ID: introduction
+:ID:       f5f2b86f-638a-468d-994e-19d3e319b806
+:PUBDATE:  2023-08-16 Wed 22:36
 :END:
 Like most people these days I have quite a few email addresses,
 personal, old personal email, and school. In the past I've tried using
@@ -26,6 +28,7 @@ making it feel fragile.
 ** Guides:
 :PROPERTIES:
 :CUSTOM_ID: guides
+:ID:       37f2ed4c-dacc-4a51-8cb6-68afe41d5829
 :END:
 
 - [[https://bostonenginerd.com/posts/notmuch-of-a-mail-setup-part-1-mbsync-msmtp-and-systemd/][Notmuch of a mail setup Part 1- mbsync, msmtp and systemd]]
@@ -35,6 +38,7 @@ making it feel fragile.
 ** Notmuch config of my dotfiles:
 :PROPERTIES:
 :CUSTOM_ID: notmuch-config-of-my-dotfiles
+:ID:       ca406c32-5322-4bb2-809c-c193eac5e719
 :END:
 
 - [[https://github.com/Emiller88/dotfiles/tree/master/shell/notmuch]]
@@ -42,6 +46,8 @@ making it feel fragile.
 * Fetching the Mail
 :PROPERTIES:
 :CUSTOM_ID: fetching-the-mail
+:ID:       3a8653b9-c230-442f-bb20-72b8a9e31429
+:PUBDATE:  2023-08-16 Wed 22:36
 :END:
 
 In the past I've tried [[https://github.com/OfflineIMAP/offlineimap][offlineimap]] but it's slow when you have to pull down
@@ -124,6 +130,8 @@ synchronize_flags=true
 * Checking Mail in the Background
 :PROPERTIES:
 :CUSTOM_ID: checking-mail-in-the-background
+:ID:       ae085d12-4a3a-4981-b912-b1bf0254a0e5
+:PUBDATE:  2023-08-16 Wed 22:36
 :END:
 
 Next we need to setup the mail to be ran in the background every so often. This
@@ -174,6 +182,8 @@ the new mail coming in.
 * Tagging the Mail
 :PROPERTIES:
 :CUSTOM_ID: tagging-the-mail
+:ID:       6a5ed04c-3343-4c03-8ede-3ab515180ce5
+:PUBDATE:  2023-08-16 Wed 22:36
 :END:
 
 The next step is to tag the mail. For that I use =notmuch=. I tried =mu= in the
@@ -247,6 +257,8 @@ ignore=Trash;*.json;
 * Deleting Email
 :PROPERTIES:
 :CUSTOM_ID: deleting-email
+:ID:       221b264e-f3b3-4678-bc74-deb3f13b0846
+:PUBDATE:  2023-08-16 Wed 22:36
 :END:
 
 Notmuch by default doesn't tag things with =+trash= which makes gmail move the
@@ -262,6 +274,8 @@ emails to the trash. Here's a snippet that does that. I have this bound to =d=.
 * WIP: Sending Email
 :PROPERTIES:
 :CUSTOM_ID: wip-sending-email
+:ID:       2283454c-ab1a-4083-88e5-fa7bfd10c3ce
+:PUBDATE:  2023-08-16 Wed 22:36
 :END:
 
 #+begin_quote
