@@ -14,6 +14,8 @@ How many words have I written in my journal files since March?
 ** [[id:7bebbf55-4c83-4db3-b08b-f03804b112ca][In the words of the first pysch I saw "how's he halfway through a phd program?"]]
 
 ** How my wife felt most days
+[[id:acb8ac57-caed-42ef-abaf-dffa45d37478][Seeing time dog]]
+
 https://www.getyarn.io/yarn-clip/e490c2eb-25c2-4ea7-813f-bd7b4025b191#u9DkXlnB.copy
 https://www.getyarn.io/yarn-clip/3d49a291-18e6-4905-9bba-b116576e4440
 https://www.getyarn.io/yarn-clip/b5949e53-0a44-43f8-8c0f-2068b2d0179f#fLbb658Q.copy
@@ -84,3 +86,18 @@ The draw of finally being able to create the tools you need.
 
 * TODO Make a quick blog post on nextflow and our clone
 * TODO Make a quick blog post on dev containers in Julia
+
+* TODO ChatGPT in 50 lines of Julia :blog:
+https://news.ycombinator.com/item?id=34726115
+** STRT [[https://news.ycombinator.com/item?id=34726115][A GPT in 60 Lines of NumPy | Hacker News]]
+:LOGBOOK:
+CLOCK: [2023-03-03 Fri 10:16]--[2023-03-03 Fri 10:45] =>  0:29
+CLOCK: [2023-03-02 Thu 22:12]--[2023-03-02 Thu 22:30] =>  0:18
+:END:
+https://jalammar.github.io/how-gpt3-works-visualizations-animations/
+
+* TODO Build something like ~curl -L manzt.sh~
+
+* TODO [[https://github.com/broadinstitute/ABC-Enhancer-Gene-Prediction][GitHub - broadinstitute/ABC-Enhancer-Gene-Prediction: Cell type specific enha...]]
+
+Reproduce in Julia
