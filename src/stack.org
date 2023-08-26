@@ -8,7 +8,7 @@ My software stack:
 - For dev environments: [[https://devenv.sh/][devenv]]
 - Password Manager: Bitwarden
 - Personal Finance: [[https://lunchmoney.app/?refer=fn4913qg][Lunch Money]]
-- Messaging: [[refer.beeper.com/1aaeim][Beeper]]
+- Messaging: [[https://refer.beeper.com/1aaeim][Beeper]]
 - eBooks/Notes: [[https://remarkable.com/][reMarkable]] It gets the job done, but I probably wouldn't
   recommend getting one since they went to a subscription model.
 - Phone: [[https://grapheneos.org/][GrapheneOS]]
