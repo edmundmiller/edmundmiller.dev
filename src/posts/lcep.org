@@ -110,7 +110,7 @@ def parse_tpm_table(input):
     return X_train, y_train, gene_names, sample_names
 #+end_src
 
-In an effort to explain what's going on here quickly, they're parsing the TSV by
+In an effort to explain what's going on here, they're parsing the TSV by
 hand(for loop?). The important thing to note is they're splitting the sample
 statuses off into the ~y_train~ array to be used as labels. The TPM([[TODO add link to biostars][transcripts
 per million]]) is then placed into the ~X_train~ array.
@@ -120,6 +120,7 @@ the syntax complexity and expose the business logic making it easier for
 collaborators to read.
 
 *** Julia
+
 
 #+begin_src julia
 function clean_data(input)
@@ -136,6 +137,8 @@ function clean_data(input)
 end
 #+end_src
 
+Meanwhile in Julia, there's some fancy syntactical sugar going on that may not
+make sense to new users but the logic is easy to follow.
 ** Data Loading
 *** mlf-core
 
@@ -157,6 +160,42 @@ def load_train_test_data(train_data, test_data):
 
     return training_data, test_data
 #+end_src
+
+The python version of the code isn't too complicated but there are some extra steps. For example the training data must first be converted into a numpy array, so it can then be converted into a XGB DMatrix. We're also missing some context on what the ~Dataset~ class is.
+
+#+begin_src python
+@dataclass
+class Dataset:
+    X: np.ndarray
+    y: list
+    DM: xgb.DMatrix
+    gene_names: list
+    sample_names: list
+#+end_src
+
+This is a nice idea, it just doesn't get used later in the code because the only
+thing that's used in the ~DM~ field and later the ~y~ field on the test data.
+
+*** In Julia
+
+The Julia package just accepts tabular data out of the box. A lot of Julia
+packages just work together, and flow in and out with stdlib Julia. Kinda like
+Tidyverse.
+
+Here's the example from the docs because there's not a short example to show
+this in the Julia version because it just happens and isn't really obvious.
+
+#+begin_src Julia
+using DataFrames
+df = DataFrame(randn(100,3), [:a, :b, :y])
+
+# can accept tabular data, will keep feature names
+bst = xgboost((df[!, [:a, :b]], df.y))
+#+end_src
+* Training the Model
+
+
+
 * Appendix
 ** TODO [[https://github.com/Evovest/EvoTrees.jl][GitHub - Evovest/EvoTrees.jl: Boosted trees in Julia]]
 ** TODO Add pandas TPM parsing
