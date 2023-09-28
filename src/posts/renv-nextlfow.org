@@ -25,7 +25,27 @@ computer, and then just updates your gig or for you and everything, and you can
 commit it. Works kind of like a Python environment that just activates it via
 the R profile whenever you join, or change it in the directory. So that's cool.
 
+[[https://www.joelnitta.com/posts/2021-11-16_r-bioinfo-flow/#maintain-r-packages-with-renv][Nice renv explaination]]
+
 The real problem is nextflow's doesn't support for ~renv~. Yeah, don't know if
 they ever will. Probably not needed because you know we are having a calm to
 support. The real issue is that now I'm trying to package up this RM into a
-Docker file and I was running into quite a few issues with it. [BLANK_AUDIO]
+Docker file and I was running into quite a few issues with it.
+
+It would get about halfway through installing all of the packages and then it
+would hit a random error. Well, if you use the bioconductor image, maybe that's
+it. Then I would have thought, what if it's because our studio is uninstalled
+because I was using the R-A-R-R package instead of the rocker R-Studio package.
+(keyboard clicking)
+
+#+begin_src
+- Installing BiocManager ...                    *** buffer overflow detected ***: terminated
+#+end_src
+
+[[https://github.com/Bioconductor/BiocManager/issues/131#issuecomment-1112544882][Maybe?]]
+
+A fellow traveler https://community.rstudio.com/t/a-workflow-for-research-based-on-renv-and-docker/99838
+
+* References
+http://haines-lab.com/post/2022-01-23-automating-computational-reproducibility-with-r-using-renv-docker-and-github-actions/
+https://community.rstudio.com/t/a-workflow-for-research-based-on-renv-and-docker/99838
