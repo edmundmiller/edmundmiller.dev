@@ -46,6 +46,9 @@ because I was using the R-A-R-R package instead of the rocker R-Studio package.
 
 A fellow traveler https://community.rstudio.com/t/a-workflow-for-research-based-on-renv-and-docker/99838
 
+
+* Compilation issueso
+Package libtiff-4 was not found in the pkg-config search path.
 * References
 http://haines-lab.com/post/2022-01-23-automating-computational-reproducibility-with-r-using-renv-docker-and-github-actions/
 https://community.rstudio.com/t/a-workflow-for-research-based-on-renv-and-docker/99838
