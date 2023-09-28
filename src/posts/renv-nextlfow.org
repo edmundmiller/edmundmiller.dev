@@ -1,0 +1,31 @@
+#+title: Building an renv environment in a Docker container for Nextflow
+
+It seems like every time that I talk to somebody who uses our, they have an
+update, there are versions in a very long time, because every time that they do,
+a package breaks on them. This happens pretty often in my live group, for
+example. We have some projects that may not be able to be picked back up after
+they're not working properly, or after that computer dies on us. So, recently,
+I've been trying to put everything in a calm environment. But the issue that
+I've ran into, some helping a student turn a couple of our scripts into an
+excellent pipeline. And the problem is that those scripts, we've been running
+them, and they work in our studio, but then they don't work when we run them on
+the cluster. So we ran both of them, split up the scripts, ran it in our studio,
+runs just fine on our laptop, doesn't run on the cluster. I'm very excited about
+this, because this is always the fun problem that I love to solve of
+containerization of software packages. However, the problem was that she was
+using an old version of R because if she upgraded a package and filled in our
+local laptop, that should have been hit number one, that something was wrong. So
+then we went down the rabbit hole of trying out RIM. And RIM is a cool package
+that basically scrapes your entire R project, pulls in all of your libraries,
+independence, whether you include them or not, and then spits out the, like I
+just did JSON file, and as a lock file, this is configurable by the user, which
+I found interesting, and pulls the local versions that you have on your laptop
+and the R version as well. So you can get a very clean snapshot of that
+computer, and then just updates your gig or for you and everything, and you can
+commit it. Works kind of like a Python environment that just activates it via
+the R profile whenever you join, or change it in the directory. So that's cool.
+
+The real problem is nextflow's doesn't support for ~renv~. Yeah, don't know if
+they ever will. Probably not needed because you know we are having a calm to
+support. The real issue is that now I'm trying to package up this RM into a
+Docker file and I was running into quite a few issues with it. [BLANK_AUDIO]
