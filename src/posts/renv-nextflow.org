@@ -46,6 +46,20 @@ because I was using the R-A-R-R package instead of the rocker R-Studio package.
 
 A fellow traveler https://community.rstudio.com/t/a-workflow-for-research-based-on-renv-and-docker/99838
 
+No dice.
+
+Eventually I ended up finding a GitHub repo through just searching GitHub for
+R&M and Docker. And then from those I found a reproducible template and in that
+it had a really customized Docker file that had a ton of caching built in. And I
+just kind of baked that into my image, added some more. The main thing as well
+was just through everything under the sun, edit on the install of the script for
+the base image. R just needs a ton of things to build. Used rocker instead as
+well, but the caching definitely sped up the local build times as well. Added
+another units and then it built finally pushed it up.
+
+https://github.com/noamross/reprotemplate/blob/2cb5cb2706e6967a29870636d6ba23f566f04269/Dockerfile#L31C1-L33C31
+https://docs.docker.com/build/cache/#use-the-dedicated-run-cache
+
 
 * Compilation issueso
 Package libtiff-4 was not found in the pkg-config search path.
