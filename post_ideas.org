@@ -84,7 +84,13 @@ The draw of finally being able to create the tools you need.
 - Implement liver-ct-segmentation
 - Reproduce [[https://github.com/instadeepai/nucleotide-transformer/tree/main][nucleotide-transformer]]
 
-* TODO Make a quick blog post on nextflow and our clone
+* DONE Look into staging files out with rclone in Nextflow
+CLOSED: [2023-09-29 Fri 18:21]
+:LOGBOOK:
+CLOCK: [2023-09-28 Thu 17:44]--[2023-09-28 Thu 18:21] =>  0:37
+:END:
+
+
 * TODO Make a quick blog post on dev containers in Julia
 
 * TODO ChatGPT in 50 lines of Julia :blog:
