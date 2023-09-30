@@ -1,0 +1,129 @@
+#+title: nf-test at nf-core: empowering scalable and streamlined testing
+
+* Abstract :noexport:
+
+The nf-core community values results. One of the most important steps in
+producing accurate analyses is incorporating reproducible and scalable testing
+within your workflows. First we’ll reflect on the beginning of testing at
+nf-core, then dive into the evolution of testing starting with the need for a
+testing framework, examine the introduction of modules, and understand the
+adoption of pytest-workflow. Next, we’ll go over how nf-test has been amazing
+for testing full pipelines, their subworkflows and local modules. We’ll examine
+some highlights such as snapshots, tags and the CI configuration. Finally, we’ll
+talk about nf-core modules, and the necessity to support legacy pytest-workflow
+tests as we transition to nf-test. We’ll also go over the progress made during
+the hackathon on nf-test.
+
+note on [[id:54549341-c326-434f-be59-cdac2b846eeb][nf-test at nf-core]]
+
+* About Me :noexport:
+
+# I think I got to give this talk because everyone else involved had something more important to say
+
+* History of testing at nf-core
+
+** Summary :noexport:
+
+The nf-core community values results. One of the most important steps in
+producing accurate analyses is incorporating reproducible and scalable testing
+within your workflows. First we'll reflect on the beginning of testing at
+nf-core, then dive into the evolution of testing starting with the need for a
+testing framework, examine the introduction of modules, and understand the
+adoption of pytest-workflow.
+
+
+
+** TODO Evolution of Man Slide
+# Imagining a like evolution of man but testing graphic
+
+# Roll back to Methylseq
+- In a land before CI
+- Using GitHub actions to run ~nextflow run main.nf -profile test~
+- Using pytest-workflow to test nf-core/modules
+  - And check the md5sum of the outputs (and their existence!)
+- A few clades in our phyogenetic tree
+  - sarek using pytest-workflow to run ~nextflow run main.nf -profile test~
+- ~nf-test~
+
+** TODO Quick run through of pytest-workflow for modules
+
+#+begin_src nextflow
+include { FASTQC } from '../../../../modules/nf-core/fastqc/main.nf'
+
+workflow test_fastqc_paired_end {
+    input = [
+                [id: 'test', single_end: false], // meta map
+                [
+                    file(params.test_data['sarscov2']['illumina']['test_1_fastq_gz'], checkIfExists: true),
+                    file(params.test_data['sarscov2']['illumina']['test_2_fastq_gz'], checkIfExists: true)
+                ]
+            ]
+
+    FASTQC ( input )
+}
+#+end_src
+
+#+begin_src yaml
+- name: fastqc test_fastqc_paired_end
+  command: nextflow run ./tests/modules/nf-core/fastqc -entry test_fastqc_paired_end -c ./tests/config/nextflow.config -c ./tests/modules/nf-core/fastqc/nextflow.config
+  tags:
+    - fastqc
+  files:
+    - path: output/fastqc/test_1_fastqc.html
+      contains:
+        - <tr><td>File type</td><td>Conventional base calls</td></tr>
+    - path: output/fastqc/test_1_fastqc.zip
+    - path: output/fastqc/test_2_fastqc.html
+      contains:
+        - <tr><td>File type</td><td>Conventional base calls</td></tr>
+    - path: output/fastqc/test_2_fastqc.zip
+#+end_src
+** We're not that sophisticated with our testing
+
+- We really just want the bear-minimum, to make sure stuff runs!
+- Make sure end-to-end results are consistent between versions.
+
+** Somethings we learned along the way
+
+- Checking what code has changed and only running tests for that code
+  - /Speed/
+  - GitHub runners are a finite resource
+- Conda is a pain with hashes
+- Investing time in testing leads to *improvements each release*
+
+* nf-test in pipelines
+
+Next, we'll go over how nf-test has been amazing for testing full pipelines,
+their subworkflows and local modules. We'll examine some highlights such as
+snapshots, tags and the CI configuration.
+
+- We could never use pytest-workflow for testing pipelines(Expect Sarek)
+- We'll mainly focus on the CI infrastructure, and configuration of these tests
+  and how we parallelized the testing of the workflows.
+
+
+* nf-test in modules
+
+
+Finally, we'll jump into nf-core modules, and how we couldn't just rip out
+pytest-workflow. We'll briefly go over the ability to have both testing
+frameworks available in the repo. Then we'll talk about the few issues holding
+back the overall adoption of nf-test because of some bad habits we picked up
+from pytest-workflow.
+
+Hopefully then we'll get to take a quick victory lap for all of the modules we
+converted over to nf-test during the hackathon
+
+* Abstract
+
+The nf-core community values results. One of the most important steps in
+producing accurate analyses is incorporating reproducible and scalable testing
+within your workflows. First we'll reflect on the beginning of testing at
+nf-core, then dive into the evolution of testing starting with the need for a
+testing framework, examine the introduction of modules, and understand the
+adoption of pytest-workflow. Next, we'll go over how nf-test has been amazing
+for testing full pipelines, their subworkflows and local modules. We'll examine
+some highlights such as snapshots, tags and the CI configuration. Finally, we'll
+talk about nf-core modules, and the necessity to support legacy pytest-workflow
+tests as we transition to nf-test. We'll also go over the progress made during
+the hackathon on nf-test.
