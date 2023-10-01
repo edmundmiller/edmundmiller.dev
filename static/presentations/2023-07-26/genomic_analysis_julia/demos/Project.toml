@@ -1,8 +1,0 @@
-[deps]
-BedgraphFiles = "85eb9095-274b-55ce-be28-9e90f41ac741"
-DataTables = "743a1d0a-8ebc-4f23-814b-50d006366bc6"
-FileIO = "5789e2e9-d7fb-5bc7-8068-2c6fae9b9549"
-Gadfly = "c91e804a-d5a3-530f-b6f0-dfbca275c004"
-IndexedTables = "6deec6e2-d858-57c5-ab9b-e6ca5bd20e43"
-Query = "1a8c2f83-1ff3-5112-b086-8aa67b057ba1"
-RCall = "6f49c342-dc21-5d91-9882-a32aef131414"

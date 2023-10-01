@@ -1,3 +1,0 @@
-#+title: nf-core bytesize on git
-
-Should recommend people check out GitHub desktop, it's pretty easy to do good things, like rebase, add coauthors etc.

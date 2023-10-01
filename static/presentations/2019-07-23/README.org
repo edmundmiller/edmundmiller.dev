@@ -1,2 +1,0 @@
-#+TITLE: README
-[[https://emiller88.github.io/presentations/Zhang/2019-10-09/presentation.html?print-pdf][Download PDF]]

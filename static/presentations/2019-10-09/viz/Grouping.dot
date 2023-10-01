@@ -1,9 +1,0 @@
-digraph G {
-  {
-    gene [margin=0 shape=cds style=filled]
-    a [fixedsize=shape shape=rnastab]
-    b [fillcolor=yellow fixedsize=true shape=rnastab]
-  }
-  gene
-  a -> b
-}
