@@ -107,3 +107,9 @@ https://jalammar.github.io/how-gpt3-works-visualizations-animations/
 * TODO [[https://github.com/broadinstitute/ABC-Enhancer-Gene-Prediction][GitHub - broadinstitute/ABC-Enhancer-Gene-Prediction: Cell type specific enha...]]
 
 Reproduce in Julia
+
+
+* IDEA Blog post on farming jobs out from HPC cluster to the GPU nodes
+:PROPERTIES:
+:CREATED:  [2023-10-02 Mon 14:37]
+:END:
