@@ -31,55 +31,85 @@ Kubernetes lingo that I wanted to learn, after you learn all of the deployment,
 service, pod, ingress jargon, and peak behind the curtain the appeal kind of
 wears off.
 
- Or like it is awesome. It works. It's so cool. It's great. So lovely tools. The
- real issue is that all the benefits that I had dreamed up and imagined with my
- naive self four or five years ago was that I'm not getting any of those actual
- benefits. I imagined a world where, oh, what am I? SD cards goes out on my pie
- and suddenly like, oh, all of my pods switch over and the services never go
- down. Cool. Yeah, that doesn't actually happen with a three note cluster, even
- in high availability. The pod just kind of sit there on a sign. So pause. This
- is definitely user error. I'm sure I could get that going. The point being of
- like it doesn't just come out of the box easy like I thought it did. Despite
- having high availability storage and all kinds of other things on that. This is
- going to be controversial. Yes, that's fine. The main thing being of I thought
- it just got to came out of the box and it just worked. Obviously, this is why
- we have entire day jobs for people who do this on the regular. And if I did
- this for a day job, that'd be cool. But this was literally just a side hobby to
- learn about Kubernetes. So I did it. I had a lot of fun with it. I learned a
- lot. It's come in beneficial to player out Kubernetes that much and be in to
- me, where I've it. So new header. Why am I where am I going from from here? I'm
- going back to next. That is my bread and butter. I love it. It just works. It
- gets updated by the huge packages repository. It doesn't work. I can hack on it
- and get it going. It's declarative. So I just write out what I want and then it
- figures it out. I don't have to constantly be updating it based on new versions
- and whatnot of things. It's just a config in that sense. Sorry, in my dot
- files, I just want to extend it. So what am I planning? I'm just going to run
- the NAS by itself for backups, syncing, storage as well on those. Then I'm just
- going to try to run one of the NUXs first, see what services I actually really
- want. I was just like, oh, that's kind of cool from the case at home people.
- And then I'm going to try running maybe a second knock, maybe an old laptop or
- something as well if I need to scale that at all. And that'll just be another
- config in my Gix.files. It's pretty simple. So the quarter mile turn right onto
- Preston Road. The question I guess is like, what happens if a node goes down?
- Well, because of Nix, I'm not really beholden to a specific computer. I can
- literally just spin up a new one and throw up just Nix install boom. I'm off to
- the races and I have a new node up. Take the next right on the Preston Road. So
- I don't really have to back it up. Besides the config and the actual data,
- which I'm right backing up the data. So maybe I should be doing a better job
- backing up the data and caring about that and less caring about the actual
- nodes and the confids and backing up databases and whatnot, our fancy
- databases. I should say. So yeah, turn your back on. Turn your back on. Turn
- your back on. Turn your back on. Then your destination will be on the right.
- Hopefully that the other cool feature that I wanted to mention that I really
- got from the days at home was the creation of new services and then creating
- new subdomains on my home services domain. That was really cool. That was what
- really brought me in as well was just a pot of provisioning of that. I'm pretty
- sure I can do that in Nix in a similar fashion or otherwise. So yeah, I think I
- was just a little scared of it with the whole Nix config. I realized that
- Kubernetes is even scarier than Nix. So I'm going back. Peace.
+Or like it is awesome. It works. It's so cool. It's great. Lovely git-ops lovely
+tools. The real issue is that all the benefits that my naive self dreamed up
+five years ago, I wasn't actually seeing. I imagined a world where, the SD card
+dies on one of the Raspberry Pis and suddenly all of the pods switch over and
+the services never go down. Cool, right?
+
+Yeah, that doesn't actually happen with a three node cluster, even in high
+availability. The pod just kind of sit there in an unscheduled state waiting for
+the node to come back.
+
+Obviously, this is why we have entire day jobs for people who do this on the
+regular. And if I did this for a day job, that'd be cool. But this was literally
+just a side hobby to learn about Kubernetes. So I did it. I had a lot of fun
+with it. I learned a lot. It's come in handy to have a better understanding of
+Kubernetes
+
+* Where am I going from here?
+
+I'm going back to NixOS, it's been my bread and butter for the past 4 years my
+bread and butter. I love it. It just works. Nixpkgs works at a blazingly fast
+pace and is an amazing community effort. If something doesn't work, I can hack
+on it and get it going.
+
+It's declarative. So I just write out what I want and then it figures it out. I
+don't have to constantly be updating it based on new versions weekly and
+whatnot. I can wait for the biannual stable releases, and if I want a package
+from unstable, I can add an ~unstable.<pkg>~ and it'll get pulled from the
+bleeding edge.
+
+
+* So what am I planning?
+
+I'm just going to run the NAS by itself for backups, syncing, storage as well on
+those. It's always been on NixOS. ThenI'm just going to try to run [[TODO][nix-infect]] on
+one the NUCs first, see what services I actually really want. If I need to
+scale, I'll just throw another NUC at it. It just another host config in [[TODO][my
+dotfiles]] away after all
+
+* What happens if a node goes down?
+
+Well, because of Nix, I'm not really beholden to a specific piece of hardware. I
+can just spin up a new one just Nix install, and boom. I'm off to the races and
+I have a new node up.
+
+So it really let's you treat your pets like cattle. It's like the services that
+will clone your favorite dog for it.
+
+Then there's only two things that are needed, the config and the actual data,
+both of witch are already backed up. I'm sure this change will allow me to do a
+better job of backing up the data and caring about that and less caring about
+the actual nodes, backing up fancy cloud databases and the yaml. [[TOOD Say no to yaml][All of the yaml
+conflicts]]. I should say. So yeah, turn your back on. Turn your back on. Turn
+your back on.
+
+Most importantly, it's reproducible. Which is something I value a lot.
+
+* The real thing that drew me in to k8s@home
+
+The other cool feature that I wanted to mention that I really got from the days
+of k8s@home was the creation of new services and then creating new subdomains on
+my home services domain. That was really cool. It was some magic to me that
+brought me in.
+
+But I'm a lot older and little wiser now, and I'm pretty sure I can do that in
+Nix in a similar fashion or even better. I was more afraid of the DNS than the
+Nix expressions 4 years ago. But now I've realized that Kubernetes is even
+scarier than Nix.
+
+So I'm going back.
+
+Worst case I'll just use [[TODO][Tailscale]]. 🙃
 
 
 * Footnotes
 
 [fn:1] Update the NUCs didn't give out but the HDD disks that I wasn't paying
 attention to be I was constantly wrangling cattle died.
+[fn:2] Pause. This is definitely user error. I'm sure I could get that going.
+The point being, it doesn't just come out of the box like I thought it did.
+Despite having high availability storage and all kinds of other things on that.
+This is going to be controversial. Yes, that's fine. The main thing being of I
+thought it just got to came out of the box and it just worked.
