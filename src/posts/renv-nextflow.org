@@ -60,6 +60,15 @@ another units and then it built finally pushed it up.
 https://github.com/noamross/reprotemplate/blob/2cb5cb2706e6967a29870636d6ba23f566f04269/Dockerfile#L31C1-L33C31
 https://docs.docker.com/build/cache/#use-the-dedicated-run-cache
 
+* Getting it to run in Nextflow-Mode
+
+So right off the bat, the singularity converted docker container couldn't find the bin/ directory. So I tried it locally with docker.
+
+#+begin_example
+  Error in library(Seurat) : there is no package called ‘Seurat’
+#+end_example
+
+Hmm, how are we going to activate the renv environment in the image?
 
 * Compilation issueso
 Package libtiff-4 was not found in the pkg-config search path.
