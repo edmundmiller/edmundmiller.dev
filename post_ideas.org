@@ -113,3 +113,13 @@ Reproduce in Julia
 :PROPERTIES:
 :CREATED:  [2023-10-02 Mon 14:37]
 :END:
+
+* IDEA Nextflow blog post on training a transformer
+:PROPERTIES:
+:CREATED:  [2023-10-16 Mon 23:35]
+:END:
+
+* IDEA Blog post on nextflow pipelines in nextflow pipelines
+:PROPERTIES:
+:CREATED:  [2023-10-16 Mon 12:59]
+:END:
