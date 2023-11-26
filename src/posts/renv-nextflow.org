@@ -70,7 +70,7 @@ So right off the bat, the singularity converted docker container couldn't find t
 
 Hmm, how are we going to activate the renv environment in the image?
 
-* Compilation issueso
+* Compilation issues
 Package libtiff-4 was not found in the pkg-config search path.
 * References
 http://haines-lab.com/post/2022-01-23-automating-computational-reproducibility-with-r-using-renv-docker-and-github-actions/
