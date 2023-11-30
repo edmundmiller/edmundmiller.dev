@@ -4,6 +4,7 @@
 
 - [[https://summit.nextflow.io/2022/program/oct-14-workflow-automation-using-the-aviti-benchtop-sequencing-system-and-nextflow-tower/][Workflow automation: Using the Aviti benchtop sequencing system and Nextflow Tower]]
 - [[https://youtu.be/XuoIH5mYsZE?si=wmkZTqoucrez_VmH][Nextflow Summit 2023 - nf-test at nf-core: empowering scalable and streamlined testing.]]
+- [[https://summit.nextflow.io/boston/agenda/summit/nov-29-database-uses/][Nextflow and database uses: powering data engineering, exploring DuckDB, and beyond]]
 
 * Juliacon 2023
 
