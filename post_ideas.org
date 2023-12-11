@@ -123,3 +123,4 @@ Reproduce in Julia
 :PROPERTIES:
 :CREATED:  [2023-10-16 Mon 12:59]
 :END:
+* IDEA Blog post on archiving org-mode items in a way you can actually keep track of things
