@@ -110,7 +110,7 @@ scarier than Nix.
 
 So I'm going back.
 
-Worst case I'll just use [[TODO][Tailscale]]. 🙃
+Worst case I'll just use [[TODO][Tailscale]].
 
 
 * Footnotes
