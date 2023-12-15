@@ -3,9 +3,9 @@
 
 * The problem
 
-** Why not just use gpg?
-
 Because [[https://dev.gnupg.org/T6481][gpg 2.4.1 borked]] Emacs's EasyPG. It just hangs on saving.
+
+** Why not just use gpg?
 
 There are some ways around it, and I was using the ~fset~ hack until I read this
 [[https://www.reddit.com/r/emacs/comments/18d6fmt/how_to_lock_yourself_out_of_a_gpg_encrypted_file/][post about the person who corrupted their encrypted files]]. I also had to run the
