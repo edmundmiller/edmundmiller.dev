@@ -40,12 +40,12 @@ TL;DR [[https://nixfaq.org/2021/01/age-the-modern-alternative-to-gpg.html][Age: 
 
 ** Why still org-journal?
 
-I've thought about using [[https://www.orgroam.com/manual.html#org_002droam_002ddailies][org-roam-dailies]] instead of [[https://github.com/bastibe/org-journal][org-journal]]. Honestly after
-going through this I'm not exactly sure why. [[https://github.com/anticomputer/age.el#org-roam-support-for-age-encrypted-org-files][Org Roam supports age]], and
-[[https://github.com/bastibe/org-journal/issues/400][org-journal has quite a few PR fixes for various things that have been
-ignored]](Not a judgement of the maintainer, just issues like [[https://github.com/bastibe/org-journal/issues/375][journal files are
-decrypted whenever the calendar is invoked]] that make my life painful). I think
-I was just looking for a quick fix to get back on with journaling.
+I've considered using [[https://www.orgroam.com/manual.html#org_002droam_002ddailies][org-roam-dailies]] instead of [[https://github.com/bastibe/org-journal][org-journal]]. However, after
+some reflection, I'm not entirely sure why. [[https://github.com/anticomputer/age.el#org-roam-support-for-age-encrypted-org-files][Org Roam supports Age encryption]],
+and [[https://github.com/bastibe/org-journal/issues/400][org-journal has several PR fixes]] for various issues that have been neglected
+(this is not a judgment of the maintainer, but problems like [[https://github.com/bastibe/org-journal/issues/375][journal files being
+decrypted whenever the calendar is invoked]] are troublesome). I think I was
+just seeking a quick solution to resume journaling.
 
 * Setup
 
