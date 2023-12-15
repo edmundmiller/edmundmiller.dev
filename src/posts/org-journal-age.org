@@ -49,7 +49,7 @@ just seeking a quick solution to resume journaling.
 
 * Setup
 
-Now that you've all listened to me ramble on for a bit, here's the actual setup.
+Now that you've listened to me ramble on for a bit, here's the actual setup.
 This is using [[https://github.com/doomemacs/doomemacs][Doom Emacs]].
 
 
