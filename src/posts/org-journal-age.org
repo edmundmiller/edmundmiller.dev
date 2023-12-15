@@ -1,0 +1,36 @@
+#+title: Using Age with org-journal
+#+DATE: 2023-12-15T11:00Z
+
+* Why not just gpg?
+
+Because [[https://dev.gnupg.org/T6481][gpg 2.4.1 borked]] Emacs's EasyPG. And then ~lib-gcrypt~ is marked as
+broken in NixOS if you use the ~gnupg22~ package(Version: 2.2.41), and a blowing
+past that stop sign sounded like a bad idea.
+
+So I started thinking outside the box.
+
+* Why [[https://github.com/FiloSottile/age][age]]?
+
+I started using it with [[https://github.com/ryantm/agenix][agenix]], just because [[https://github.com/hlissner/][Henrik]] started using it in his
+dotfiles. The [[https://github.com/onedr0p/flux-cluster-template][k8s@home template]] also eventually [[https://github.com/onedr0p/flux-cluster-template/pull/153][switched from gpg to age]] so I
+was already pretty comfortable with using age.
+
+TL;DR [[https://nixfaq.org/2021/01/age-the-modern-alternative-to-gpg.html][Age: the modern alternative to GPG — nixFAQ]]:
+
+- Age is presented as a modern alternative to GPG that solves many of its
+  limitations while maintaining security.
+- Age stands for "Actually Good Encryption" and has implementations in Go and
+  Rust for improved security compared to GPG's C implementation.
+- Age uses smaller keys that are easier to store physically and has a simpler
+  interface with no configuration options.
+- Files can be encrypted for multiple recipients simultaneously using Age.
+- Age supports encrypting for SSH public keys in addition to its own keys.
+- Age allows encrypting files for GitHub users by using their SSH keys from
+  their profile.
+- Age offers a better user experience than GPG while maintaining an equally high
+  level of security.
+
+* Why still org-journal?
+
+* Setup
+Now that you've all listened to me ramble on
