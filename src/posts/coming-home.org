@@ -13,7 +13,7 @@ with some Raspberry Pi's that I had laying around. Didn't really work out I got
 k3s installed and stuff connected but I could never find a clean solution to
 only use the VPN for qb.
 
-# TODO Fix pacing
+# Fix pacing
 # And so I died for a while.
 # And then I'd bring it back.
 # And then it died again because I would never get it up to snuff.
@@ -22,6 +22,7 @@ only use the VPN for qb.
 # And then I brought it back up.
 # And it's kind of running just on its own right now.
 # Seems to be working.
+
 So yeah, then I started to kind of play around with the various, you know, went
 through that implementation, couldn't quite get the VPN connecting to the
 torrent client was always just off. And so the dream died for a while. And then
@@ -110,7 +111,7 @@ scarier than Nix.
 
 So I'm going back.
 
-Worst case I'll just use [[TODO][Tailscale]].
+Worst case I'll just use [[TODO][Tailscale]]. 🙃
 
 
 * Footnotes
