@@ -1,4 +1,4 @@
-#+title: Using Age with org-journal
+#+title: Using age with org-journal
 #+DATE: 2023-12-15T11:00Z
 
 * The problem
