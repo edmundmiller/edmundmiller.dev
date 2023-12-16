@@ -7,6 +7,7 @@
     nix2container.url = "github:nlewo/nix2container";
     nix2container.inputs.nixpkgs.follows = "nixpkgs";
     mk-shell-bin.url = "github:rrbutani/nix-mk-shell-bin";
+    treefmt-nix.url = "github:numtide/treefmt-nix";
   };
 
   nixConfig = {
@@ -18,6 +19,7 @@
     flake-parts.lib.mkFlake {inherit inputs;} {
       imports = [
         inputs.devenv.flakeModule
+        inputs.treefmt-nix.flakeModule
       ];
       systems = ["x86_64-linux" "i686-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin"];
 
@@ -34,7 +36,7 @@
         # system.
 
         # Equivalent to  inputs'.nixpkgs.legacyPackages.hello;
-        packages.default = [pkgs.emacs29 pkgs.openring];
+        # packages.default = pkgs.hello
 
         devenv.shells.default = {
           name = "edmundmiller-dev";
@@ -46,11 +48,18 @@
           ];
 
           # https://devenv.sh/reference/options/
-          packages = [config.packages.default];
+          packages = [pkgs.emacs29 pkgs.openring];
 
           scripts.build-site.exec = ''
             emacs -Q --script ./publish.el
           '';
+        };
+
+        treefmt = {
+          projectRootFile = ".git/config";
+          programs.alejandra.enable = true;
+          programs.deadnix.enable = true;
+          programs.prettier.enable = true;
         };
       };
       flake = {
