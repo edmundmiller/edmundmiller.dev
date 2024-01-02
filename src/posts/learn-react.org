@@ -167,7 +167,7 @@ Using your =Integrated Terminal= follow this [[https://help.github.com/en/articl
 case it would be:
 
 #+begin_src bash
-git clone https://github.com/emiller88/example-site
+git clone https://github.com/edmundmiller/example-site
 #+end_src
 
 
