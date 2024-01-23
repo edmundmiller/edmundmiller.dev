@@ -125,3 +125,4 @@ Reproduce in Julia
 :END:
 * IDEA Blog post on archiving org-mode items in a way you can actually keep track of things
 * IDEA One month of Kagi
+* IDEA Using nushell in Nextflow
