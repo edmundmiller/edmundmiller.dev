@@ -108,7 +108,6 @@ CLOCK: [2022-03-31 Thu 11:58]--[2022-03-31 Thu 12:04] =>  0:06
 * TODO Functional programming and nextflow
 * TODO Org mode site rewrite
 * KILL Blog about Kedro vs Ploomber :blog:
->>>>>>> e36ff48 (Update posts)
 CLOSED: [2022-10-15 Sat 17:24]
 
 
@@ -177,5 +176,7 @@ Reproduce in Julia
 ** IDEA One month of Kagi
 ** TODO [#A] Switching to KDE
 https://github.com/Bismuth-Forge/bismuth
+** IDEA Using nushell in Nextflow
 * PROJ Business ideas
 * PROJ Conference talk ideas
+=======
