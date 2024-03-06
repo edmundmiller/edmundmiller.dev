@@ -9,3 +9,4 @@ Instead of desktop notifications, I've always opted to use [[https://healthcheck
 * Footnotes
 
 [fn:1] [[https://archive.org/details/internetguidefor00dern][The image is from page 248 of The internet guide for new users. 1993 by Daniel P. Dern.]]
+[fn:2] [[https://jnsgr.uk/2024/03/a-homelab-dashboard-for-nixos/][Post that led me to BorgBase]]
