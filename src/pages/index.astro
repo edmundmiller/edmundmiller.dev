@@ -1,44 +1,97 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import SocialList from "@/components/SocialList.astro";
+import PostPreview from "@/components/blog/PostPreview.astro";
+import PageLayout from "@/layouts/Base.astro";
+import { getAllPosts, sortMDByDate } from "@/data/post";
+
+const MAX_POSTS = 10;
+const allPosts = await getAllPosts();
+const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
+
+const cactusTech: { desc: string; href: string; title: string }[] = [
+	{
+		desc: "Build fast websites, faster.",
+		href: "https://astro.build",
+		title: "Astro",
+	},
+	{
+		desc: "Rapidly build modern websites without ever leaving your HTML.",
+		href: "https://tailwindcss.com",
+		title: "Tailwind CSS",
+	},
+	{
+		desc: "Simple and easy-to-use markup language.",
+		href: "https://www.markdownguide.org/",
+		title: "Markdown",
+	},
+	{
+		desc: "Markdown for the component era.",
+		href: "https://mdxjs.com/",
+		title: "MDX",
+	},
+	{
+		desc: "Generating png Open Graph images for blog posts.",
+		href: "https://github.com/vercel/satori",
+		title: "Satori",
+	},
+	{
+		desc: "A fully static search library.",
+		href: "https://pagefind.app/",
+		title: "Pagefind",
+	},
+	{
+		desc: "An easy to use Icon component for Astro.",
+		href: "https://github.com/natemoo-re/astro-icon#readme",
+		title: "Astro Icon",
+	},
+	{
+		desc: "Highly customisable source code & syntax highlighter",
+		href: "https://expressive-code.com/",
+		title: "Expressive Code",
+	},
+];
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header title={SITE_TITLE} />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://github.com/rasendubi/uniorg">astro-org</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to
-				build a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like
-				Tailwind, React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/pages/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+<PageLayout meta={{ title: "Home" }}>
+	<section>
+		<h1 class="title mb-6">Hello World!</h1>
+		<p class="mb-4">
+			Hi, I’m a theme for Astro, an example of how you can use this starter to create a personal
+			blog. If you want to know more about how you can customise me, add more posts, and make it
+			your own, click on the github icon link below and it will take you to my repo.
+		</p>
+		<SocialList />
+	</section>
+	<section aria-label="Blog post list" class="mt-16">
+		<h2 class="title mb-4 text-xl">Posts</h2>
+		<ul class="space-y-4">
+			{
+				allPostsByDate.map((p) => (
+					<li class="flex flex-col gap-x-2 sm:flex-row">
+						<PostPreview post={p} />
+					</li>
+				))
+			}
+		</ul>
+	</section>
+	<section class="mt-16">
+		<h2 class="title mb-4 text-xl">Technologies</h2>
+		<dl class="space-y-4">
+			{
+				cactusTech.map(({ desc, href, title }) => (
+					<div class="flex flex-col gap-2 md:flex-row">
+						<dt>
+							<span class="flex">
+								<a class="cactus-link" href={href} rel="noopener noreferrer" target="_blank">
+									{title}
+								</a>
+								:
+							</span>
+						</dt>
+						<dd>{desc}</dd>
+					</div>
+				))
+			}
+		</dl>
+	</section>
+</PageLayout>

@@ -1,24 +1,6 @@
-*.log
-.cache
-.DS_Store
-src/.temp
-.env
-.env.*
-
-# Devenv
-.devenv*
-devenv.local.nix
-
-# direnv
-.direnv
-
-# pre-commit
-.pre-commit-config.yaml
-
 # build output
 dist/
-# generated types
-.astro/
+.output/
 
 # dependencies
 node_modules/
@@ -36,3 +18,8 @@ pnpm-debug.log*
 
 # macOS-specific files
 .DS_Store
+
+# misc
+*.pem
+.cache
+.astro
