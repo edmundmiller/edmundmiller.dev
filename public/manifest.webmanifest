@@ -1,7 +1,7 @@
 {
-	"name": "Astro Theme Cactus Demo",
-	"short_name": "Astro_Cactus",
-	"description": "Starter blog site for Astro",
+	"name": "Edmund Miller",
+	"short_name": "Edmund_Miller",
+	"description": "Bioinformatics, Biology, Genomics, I don't know, I write code.",
 	"icons": [
 		{
 			"src": "/192x192.png",
