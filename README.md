@@ -1,6 +1,6 @@
 # Personal Site
 
-``` bash
+```bash
 bun install
 bun dev
 ```
