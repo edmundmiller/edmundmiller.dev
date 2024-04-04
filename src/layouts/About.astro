@@ -1,0 +1,18 @@
+---
+import aboutImg from "@/assets/about-astro.png";
+import PageLayout from "@/layouts/Base.astro";
+import { Image } from "astro:assets";
+
+const {frontmatter} = Astro.props;
+---
+
+<!-- FIXME Pull from frontmatter -->
+<PageLayout meta="{meta}">
+  <div class="space-y-6">
+    <div
+      class="prose prose-sm prose-cactus mt-12 prose-headings:font-semibold prose-headings:text-accent-2 prose-headings:before:absolute prose-headings:before:-ms-4 prose-headings:before:text-accent prose-headings:before:content-['#'] prose-th:before:content-none"
+    >
+      <slot />
+    </div>
+  </div>
+</PageLayout>
