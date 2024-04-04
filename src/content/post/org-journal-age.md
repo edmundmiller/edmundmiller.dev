@@ -38,21 +38,21 @@ already pretty comfortable with using age.
 TL;DR [Age: the modern alternative to GPG ---
 nixFAQ](https://nixfaq.org/2021/01/age-the-modern-alternative-to-gpg.html):
 
--   Age is presented as a modern alternative to GPG that solves many of
-    its limitations while maintaining security.
--   Age stands for \"Actually Good Encryption\" and has implementations
-    in Go and Rust for improved security compared to GPG\'s C
-    implementation.
--   Age uses smaller keys that are easier to store physically and has a
-    simpler interface with no configuration options.
--   Files can be encrypted for multiple recipients simultaneously using
-    Age.
--   Age supports encrypting for SSH public keys in addition to its own
-    keys.
--   Age allows encrypting files for GitHub users by using their SSH keys
-    from their profile.
--   Age offers a better user experience than GPG while maintaining an
-    equally high level of security.
+- Age is presented as a modern alternative to GPG that solves many of
+  its limitations while maintaining security.
+- Age stands for \"Actually Good Encryption\" and has implementations
+  in Go and Rust for improved security compared to GPG\'s C
+  implementation.
+- Age uses smaller keys that are easier to store physically and has a
+  simpler interface with no configuration options.
+- Files can be encrypted for multiple recipients simultaneously using
+  Age.
+- Age supports encrypting for SSH public keys in addition to its own
+  keys.
+- Age allows encrypting files for GitHub users by using their SSH keys
+  from their profile.
+- Age offers a better user experience than GPG while maintaining an
+  equally high level of security.
 
 ## Why still org-journal?
 
@@ -79,13 +79,13 @@ Emacs](https://github.com/doomemacs/doomemacs).
 
 `packages.el`
 
-``` elisp
+```elisp
 (package! age)
 ```
 
 `config.el`
 
-``` elisp
+```elisp
 (use-package! age
   :init
   (setq! age-program "rage")
@@ -101,7 +101,7 @@ rage](https://github.com/anticomputer/age.el#workaround-pinentry-support-through
 
 `config.el`
 
-``` elisp
+```elisp
 (after! org
   (setq org-journal-encrypt-journal nil
         org-journal-file-format "%Y%m%d.org.age")

@@ -6,6 +6,7 @@ description: What they're getting right, and what's still missing.
 tags: ["Julia", "Rust"]
 draft: true
 ---
+
 ```
 # Intro
 
@@ -44,3 +45,4 @@ draft: true
 # But the compile times in both are slow!
 
 But it\'s not going to get worse?
+```

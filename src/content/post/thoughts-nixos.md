@@ -2,7 +2,7 @@
 author: Edmund Miller
 publishDate: "2020-03-15T09:53Z"
 title: Thoughts on NixOS
-tags: ["nixos","linux" ]
+tags: ["nixos", "linux"]
 description: Highlighting its customization, stability, and how it simplifies development environments.
 ---
 
@@ -10,7 +10,7 @@ NixOS is a dream. It allows you to program your os by declaring what you
 want in it. And then you can declare how you want your packages built.
 Most of the time you just want the default, but for example
 
-``` nix
+```nix
 (polybar.override {
   mpdSupport = true;
   pulseSupport = true;
@@ -59,7 +59,7 @@ environment for any language in them. So for example, you\'re just
 trying out python for the first time. You\'re overwhelmed with the 20
 different ways to set up a developement environment. With nix it\'s just
 
-``` nix
+```nix
 let pkgs = import <nixpkgs> {};
     nanomsg-py = .... build expression for this python library;
 in pkgs.stdenv.mkShell {

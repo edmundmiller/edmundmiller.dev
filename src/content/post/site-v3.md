@@ -46,7 +46,8 @@ So from that I planned on:
 3.  Throw some css on there.
 4.  Then answer the age old question, do you really need JavaScript?[^1]
 
-[^1]: I noticed [NvChad](https://nvchad.com/) used
+[^1]:
+    I noticed [NvChad](https://nvchad.com/) used
     [UnoCSS](https://unocss.dev/) and
     [Solid.js](https://www.solidjs.com/), which seem minimal, while I
     was looking for a [Doom

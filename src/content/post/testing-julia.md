@@ -2,9 +2,10 @@
 publishDate: "2022-06-16T22:47Z"
 title: Basic Testing Workflow in Julia
 description: A quick tour of Julia's testing framework and comparing it to Rust's ecosystem
-tags: ["Julia","bioinformatics"]
+tags: ["Julia", "bioinformatics"]
 draft: true
 ---
+
 In a past life I wrote a good bit of Javascript and Solidity smart
 contracts. Let me tell you, the Js community **loves** their testing.
 Maybe it\'s because they over-engineer everything, or maybe they\'ve

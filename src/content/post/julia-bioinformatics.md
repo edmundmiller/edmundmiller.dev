@@ -128,15 +128,15 @@ the three intersect.
 
 ## How to get started with Julia
 
--   [Attend JuliaCon 2022](https://juliacon.org/2022/tickets/) (It\'s
-    online and free to attend!)
--   [Listen to the Talk Julia Podcast](https://www.talkjulia.com/)
--   [Go through some courses on JuliaAcademy](https://juliaacademy.com/)
--   Check out the work by [Logan Kilpatrick, the Julia Dev Community
-    Advocate](https://www.logankilpatrick.com/)
+- [Attend JuliaCon 2022](https://juliacon.org/2022/tickets/) (It\'s
+  online and free to attend!)
+- [Listen to the Talk Julia Podcast](https://www.talkjulia.com/)
+- [Go through some courses on JuliaAcademy](https://juliaacademy.com/)
+- Check out the work by [Logan Kilpatrick, the Julia Dev Community
+  Advocate](https://www.logankilpatrick.com/)
 
 ### 2023 Update
 
--   [GitHub - BioJulia/BioTutorials: Tutorial Notebooks of
-    BioJulia](https://github.com/BioJulia/BioTutorials)
--   New Documenter.jl Docs!
+- [GitHub - BioJulia/BioTutorials: Tutorial Notebooks of
+  BioJulia](https://github.com/BioJulia/BioTutorials)
+- New Documenter.jl Docs!

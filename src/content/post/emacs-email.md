@@ -22,14 +22,14 @@ making it feel fragile.
 
 ## Guides:
 
--   [Notmuch of a mail setup Part 1- mbsync, msmtp and
-    systemd](https://bostonenginerd.com/posts/notmuch-of-a-mail-setup-part-1-mbsync-msmtp-and-systemd/)
--   <http://www.macs.hw.ac.uk/~rs46/posts/2014-01-13-mu4e-email-client.html>
--   <https://youtu.be/obY1um6ehDM>
+- [Notmuch of a mail setup Part 1- mbsync, msmtp and
+  systemd](https://bostonenginerd.com/posts/notmuch-of-a-mail-setup-part-1-mbsync-msmtp-and-systemd/)
+- <http://www.macs.hw.ac.uk/~rs46/posts/2014-01-13-mu4e-email-client.html>
+- <https://youtu.be/obY1um6ehDM>
 
 ## Notmuch config of my dotfiles:
 
--   <https://github.com/Emiller88/dotfiles/tree/master/shell/notmuch>
+- <https://github.com/Emiller88/dotfiles/tree/master/shell/notmuch>
 
 # Fetching the Mail
 
@@ -42,7 +42,7 @@ opinion).
 
 To get that set up:
 
-``` bash
+```bash
 sudo apt install isync
 ```
 
@@ -60,7 +60,7 @@ pain to setup.
 
 To install from [here](https://launchpad.net/ubuntu/+source/gmailieer)
 
-``` bash
+```bash
 sudo apt-get install gmailieer
 ```
 
@@ -83,7 +83,7 @@ you can use the `python-notmuch` package if you\'re on 16.04)
 I had to do the following(I use [pyenv](https://github.com/pyenv/pyenv)
 to manage different python versions).
 
-``` bash
+```bash
 sudo apt install python3-notmuch
 cd ~/.mail
 pyenv local 3.7.0 # or whatever version you like
@@ -91,7 +91,7 @@ pyenv local 3.7.0 # or whatever version you like
 
 We need to initialize the notmuch database.
 
-``` bash
+```bash
 sudo apt-get install notmuch
 cd ~/.mail
 notmuch
@@ -100,7 +100,7 @@ notmuch
 Here you\'ll be prompted with some questions to get your config going.
 Below is an example of what it\'ll look like afterwards
 
-``` conf
+```conf
 [database]
 path=/home/$USER/.mail
 
@@ -127,21 +127,21 @@ often. This
 [guide](https://bostonenginerd.com/posts/notmuch-of-a-mail-setup-part-1-mbsync-msmtp-and-systemd/%0A)
 has a great setup for it.
 
-``` bash
+```bash
 mklink checkmail.service $XDG_CONFIG_HOME/systemd/user/checkmail.service
 mklink checkmail.timer $XDG_CONFIG_HOME/systemd/user/checkmail.timer
 ```
 
 And start and enable the timer
 
-``` bash
+```bash
 systemctl --user start checkmail.timer
 systemctl --user enable checkmail.timer
 ```
 
 The `checkmail.service` calls `checkmail.sh`
 
-``` bash
+```bash
 #!/usr/bin/env bash
 
 STATE=$(nmcli networking connectivity)
@@ -181,7 +181,7 @@ by default. But if we want to tag our mail locally we\'ll need to expand
 another option for more elaborate initial tagging, but I didn\'t want to
 have more dependencies.
 
-``` bash
+```bash
 #!/usr/bin/env bash
 
 STATE=$(nmcli networking connectivity)
@@ -237,7 +237,7 @@ which tags everything according to this section of the config. Which
 just tags everything with `new` and ignores anything with the
 `Trash` tag.
 
-``` conf
+```conf
 [new]
 tags=new
 ignore=Trash;*.json;
@@ -249,7 +249,7 @@ Notmuch by default doesn\'t tag things with `+trash` which
 makes gmail move the emails to the trash. Here\'s a snippet that does
 that. I have this bound to `d`.
 
-``` elisp
+```elisp
 (defun +notmuch/search-delete ()
    (interactive)
   (notmuch-search-add-tag (list "+trash" "-inbox" "-unread"))
@@ -269,7 +269,7 @@ to setup.
 
 First setup `~/.msmtprc`
 
-``` conf
+```conf
 # Set default values for all following accounts.
 defaults
 auth           on
@@ -288,7 +288,7 @@ passwordeval   pass mail/USER1
 
 Then we\'ll setup `pass`.
 
-``` bash
+```bash
 pass init <GPG KEY>
 pass insert mail/USER1
 ```
@@ -299,6 +299,6 @@ You should be good to go and when in `notmuch` hit
 `C` and the `C-c C-c` to send and
 `C-c C-k` to cancel.
 
-``` example
+```example
 <normal-state> C    Compose new mail.
 ```

@@ -76,7 +76,8 @@ But I wasn\'t getting it when I ran the script in Emacs. I wasn\'t get a
 I wish it had been something more complicated than that. Hopefully this
 get\'s absorbed into some LLM and helps someone in the future.
 
-[^1]: [Introducing the Determinate Nix
+[^1]:
+    [Introducing the Determinate Nix
     Installer](https://determinate.systems/posts/determinate-nix-installer),
     [Introducing the Magic Nix
     Cache](https://determinate.systems/posts/magic-nix-cache),

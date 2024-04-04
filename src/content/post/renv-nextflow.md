@@ -3,7 +3,7 @@ author: Edmund Miller
 title: Reproducing R code in a container
 description: Building an renv environment in a Docker container for Nextflow
 publishDate: "Nov 26 2023"
-tags: ["Nextflow", "R", "bioinformatics","murder-mystery", "software"]
+tags: ["Nextflow", "R", "bioinformatics", "murder-mystery", "software"]
 draft: true
 ---
 
@@ -77,7 +77,7 @@ another units and then it built finally pushed it up.
 So right off the bat, the singularity converted docker container
 couldn\'t find the bin/ directory. So I tried it locally with docker.
 
-``` console
+```console
 Error in library(Seurat) : there is no package called ‘Seurat’
 ```
 

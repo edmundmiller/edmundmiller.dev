@@ -52,7 +52,7 @@ However, the problem is that logging into box through our SSO can become
 a little bit of a problem. We ended up wanting something that looks like
 this on there.
 
-``` toml
+```toml
 [remote]
 type = box
 token = {"access_token":"XXX","token_type":"bearer","refresh_token":"XXX","expiry":"2017-07-08T23:40:08.059167677+01:00"}
@@ -69,7 +69,7 @@ is this web browser automatically authenticate rclone with the remote.
 Basically, without web browser, I access this might be a little more
 difficult.
 
-``` log
+```log
 Use web browser to automatically authenticate rclone with remote?
  * Say Y if the machine running rclone has a web browser you can use
  * Say N if running rclone on a (remote) machine without web browser access
@@ -85,14 +85,14 @@ Pop it open and grant access to box.
 Then we\'ll copy the three box lines of the config over to the HPC head
 node.
 
-``` bash
+```bash
 rsync ~/.config/rclone/rclone.conf <user>@<server-hostname-or-ip>:~/.config/rclone/rclone.conf
 ```
 
 We could use `rclone` to copy the whole config for style points if this
 is your first rclone config and there\'s no other values in the config.
 
-``` toml
+```toml
 [hpc]
 type = sftp
 host = example.com
@@ -101,7 +101,7 @@ key_file = ~/id_rsa
 pubkey_file = ~/id_rsa-cert.pub
 ```
 
-``` bash
+```bash
 rclone ~/.config/rclone/rclone.conf hpc:~/.config/rclone/rclone.conf
 ```
 
@@ -118,7 +118,7 @@ profile. First on those, but the other thing that we\'re going to need
 to do is, we\'re going to need to create a nextflow.config first. And
 we\'re not going to have to put too much in it.
 
-``` nextflow
+```nextflow
 process {
 stageOutMode
 }

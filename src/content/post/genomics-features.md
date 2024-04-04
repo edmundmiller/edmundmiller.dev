@@ -19,7 +19,7 @@ use of these packages. Or maybe something like the great documentation
 
 # Downloading our data
 
-``` julia
+```julia
 using Downloads
 
 if !isfile(raw"H3K27ac.consensus_peaks.bed")
@@ -32,7 +32,7 @@ end
 
 So you want to find some overlaps?
 
-``` julia
+```julia
 using GenomicFeatures
 using BED
 

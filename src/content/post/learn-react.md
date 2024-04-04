@@ -51,8 +51,8 @@ it VS Code [here](https://github.com/tonsky/FiraCode/wiki).
 
 ## Install nodejs
 
-*Node.js is a JavaScript runtime built on Chrome\'s V8 JavaScript
-engine*. is the description their site gives. We\'ll cover more on JS
+_Node.js is a JavaScript runtime built on Chrome\'s V8 JavaScript
+engine_. is the description their site gives. We\'ll cover more on JS
 later. The link to the [Download page](https://nodejs.org/en/download/).
 
 ## Installing Extensions
@@ -61,25 +61,25 @@ One of the perks of VS Code is that it makes install extensions simple.
 They can be installed by clicking the square icon on the left side of VS
 Code. The list of what I recommend for following this guide:
 
--   [vscode-icons](https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons)
--   [Bracket Pair
-    Colorizer](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer)
--   [Debugger for
-    Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)
--   [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)
--   [One Dark
-    Pro](https://marketplace.visualstudio.com/items?itemName=zhuangtongfa.Material-theme)
--   [Settings
-    Sync](https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync)
--   [npm](https://marketplace.visualstudio.com/items?itemName=eg2.vscode-npm-script)
--   [React
-    Snippets](https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets)
--   [VS
-    Intellicode](https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode)
--   [IntelliSense for
-    CSS](https://marketplace.visualstudio.com/items?itemName=Zignd.html-css-class-completion)
--   [Path
-    Intellisense](https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense)
+- [vscode-icons](https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons)
+- [Bracket Pair
+  Colorizer](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer)
+- [Debugger for
+  Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)
+- [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)
+- [One Dark
+  Pro](https://marketplace.visualstudio.com/items?itemName=zhuangtongfa.Material-theme)
+- [Settings
+  Sync](https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync)
+- [npm](https://marketplace.visualstudio.com/items?itemName=eg2.vscode-npm-script)
+- [React
+  Snippets](https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets)
+- [VS
+  Intellicode](https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode)
+- [IntelliSense for
+  CSS](https://marketplace.visualstudio.com/items?itemName=Zignd.html-css-class-completion)
+- [Path
+  Intellisense](https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense)
 
 You should glance over each and see what they give you.
 
@@ -133,7 +133,7 @@ Using your `Integrated Terminal`{.verbatim} follow this
 [guide](https://help.github.com/en/articles/cloning-a-repository) to
 clone your site. In my case it would be:
 
-``` bash
+```bash
 git clone https://github.com/edmundmiller/example-site
 ```
 
@@ -146,7 +146,7 @@ we\'re on to the real work.
 
 Is a great utility to get your up and running with `React`{.verbatim}
 
-``` bash
+```bash
 npx create-react-app my-app
 cd my-app
 npm start
@@ -175,7 +175,7 @@ post](https://circleci.com/blog/automate-your-static-site-deployment-with-circle
 Here is the `.circleci/config.yml`{.verbatim} you\'ll need to add to
 your project.
 
-``` yaml
+```yaml
 version: 2
 jobs:
 build:
@@ -226,6 +226,6 @@ bootstrap. It was recreated for use with
 it](https://react-bootstrap.github.io/getting-started/introduction) run
 the following and then follow the docs.
 
-``` bash
+```bash
 npm install react-bootstrap bootstrap
 ```
