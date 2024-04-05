@@ -9,7 +9,8 @@
     "postbuild": "pagefind --site dist",
     "preview": "astro preview",
     "format": "prettier -w --cache . && prettier -w --cache **/*.astro",
-    "check": "astro check"
+    "check": "astro check",
+    "lint": "bunx vale -- src/"
   },
   "dependencies": {
     "@astrojs/mdx": "2.2.0",
