@@ -1,5 +1,5 @@
 ---
-import { Fathom } from "astro-analytics";
+import { Fathom, Plausible } from "astro-analytics";
 import type { SiteMeta } from "@/types";
 
 import { siteConfig } from "@/site-config";
@@ -84,3 +84,4 @@ const socialImageURL = new URL(ogImage ? ogImage : "/social-card.png", Astro.url
 
 {/* Analytics */}
 <Fathom site="DOEJXQJL" />
+<Plausible domain="edmundmiller.dev" />
