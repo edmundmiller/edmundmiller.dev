@@ -33,7 +33,7 @@ My first stop was Fathom (you can check it out [here](https://usefathom.com/ref/
 
 Then, my attention turned to Plausible (find it [here](https://plausible.io)). There's no doubt it's slick, with a contemporary look and feel that can be quite enticing. Plus, it's built on the foundation of ClickHouse. However, the catch? They don't offer a free tier, and for something with such flash, I had to ask myself if it was too much for our needs.
 
-Finally, there was [Umami](https://umami.is). I had my eye on it some time ago, but back then, cloud hosting wasn't on the menu. What's especially exciting is its 'hobby' tier priced at *free*. When comparing that to Plausible's $9 per month for an equivalent 10K views, it's challenging to justify the cost of Plausible.
+Finally, there was [Umami](https://umami.is). I had my eye on it some time ago, but back then, cloud hosting wasn't on the menu. What's especially exciting is its 'hobby' tier priced at _free_. When comparing that to Plausible's $9 per month for an equivalent 10K views, it's challenging to justify the cost of Plausible.
 
 ## Conclusion
 
