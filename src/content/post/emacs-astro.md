@@ -45,16 +45,32 @@ There was [a tip](https://github.com/Sorixelle/astro-ts-mode/issues/5) from [Ian
 [Ruby Juric](https://github.com/Sorixelle/astro-ts-mode)(the author of `astro-ts-mode`) converted the snippet to use `let` to avoid creating a global variable.
 
 ```elisp title=config.el
-(use-package! treesit-auto
+(use-package! astro-ts-mode
   :config
   (global-treesit-auto-mode)
-  (let (astro-recipe (make-treesit-auto-recipe
+  (let ((astro-recipe (make-treesit-auto-recipe
                        :lang 'astro
                        :ts-mode 'astro-ts-mode
                        :url "https://github.com/virchau13/tree-sitter-astro"
                        :revision "master"
-                       :source-dir "src"))
+                       :source-dir "src")))
     (add-to-list 'treesit-auto-recipe-list astro-recipe)))
+```
+
+Sadly this snippet didn't work out of the box for me. Looking at the actual examples in the `treesit-auto`
+
+```elisp title="config.el"
+(use-package! astro-ts-mode
+  :after treesit-auto
+  :config
+  (setq astro-ts-auto-recipe
+        (make-treesit-auto-recipe
+         :lang 'astro
+         :ts-mode 'astro-ts-mode
+         :url "https://github.com/virchau13/tree-sitter-astro"
+         :revision "master"
+         :source-dir "src"))
+  (add-to-list 'treesit-auto-recipe-list astro-ts-auto-recipe))
 ```
 
 Oh by the way
