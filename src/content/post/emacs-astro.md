@@ -62,6 +62,14 @@ Oh by the way
 > !NOTE
 > Make sure you have a working C compiler as cc in your PATH, since this needs to compile the grammars.
 
+## Emacs lsp-mode and Astro Language-server
+
+The official Astro editor docs link to [an article](https://medium.com/@jrmjrm/configuring-emacs-and-eglot-to-work-with-astro-language-server-9408eb709ab0) with instructions to configure eglot, but there's no equivalent one for lsp-mode.
+
+```
+npm i -g @astrojs/language-server
+```
+
 ## `prettier-plugin-astro` in Emacs with Apheleia
 
 From [Sorixelle's Emacs config](https://github.com/Sorixelle/dotfiles/blob/main/config/emacs-config.org#astro) I found the magic snippet that had prettier use `--parser=astro` in `.astro` files. ✨
@@ -74,5 +82,3 @@ From [Sorixelle's Emacs config](https://github.com/Sorixelle/dotfiles/blob/main/
 ```
 
 ## Links
-
-https://medium.com/@jrmjrm/configuring-emacs-and-eglot-to-work-with-astro-language-server-9408eb709ab0
