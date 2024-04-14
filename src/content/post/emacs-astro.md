@@ -62,17 +62,15 @@ Oh by the way
 > !NOTE
 > Make sure you have a working C compiler as cc in your PATH, since this needs to compile the grammars.
 
-## Prettier in Emacs
+## `prettier-plugin-astro` in Emacs with Apheleia
 
-From https://github.com/Sorixelle/dotfiles/blob/main/config/emacs-config.org#astro
+From [Sorixelle's Emacs config](https://github.com/Sorixelle/dotfiles/blob/main/config/emacs-config.org#astro) I found the magic snippet that had prettier use `--parser=astro` in `.astro` files. ✨
 
 ```eslip
-(add-to-list
- 'apheleia-formatters
- '(prettier-astro npx "prettier" "--stdin-filepath" filepath "--parser=astro"
-                  (apheleia-formatters-indent "--use-tabs" "--tab-width" 'astro-ts-mode-indent-offset)))
-
-(add-to-list 'apheleia-mode-alist '(astro-ts-mode . prettier-astro))
+(set-formatter! 'prettier-astro
+  '("npx" "prettier" "--parser=astro"
+    (apheleia-formatters-indent "--use-tabs" "--tab-width" 'astro-ts-mode-indent-offset))
+  :modes '(astro-ts-mode))
 ```
 
 ## Links
