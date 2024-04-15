@@ -1,7 +1,6 @@
 ---
 title: Converting lcep to Julia
-description: Exploring the State of Machine Learning for Biological
-Data
+description: Exploring the State of Machine Learning for Biological Data
 publishDate: 2024-06-01
 draft: true
 tags: ["Julia", "Genomics", "machine-learning"]

@@ -1,5 +1,7 @@
 ---
 title: Restic Refactor
+description: Moving from backblaze to R2 and refactoring the configuration of my NixOS box to be easier to drop-in replace
+publishDate: "2024-04-15"
 draft: true
 ---
 
