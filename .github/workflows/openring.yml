@@ -1,0 +1,26 @@
+name: Openring
+
+on:
+  schedule:
+    - cron: "0 0 * * 1"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+        # openring
+      - name: Check Nix flake inputs
+        uses: DeterminateSystems/flake-checker-action@v4 # This action
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v3
+      - name: Magic Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@v2
+      - name: Run openrin
+        run: nix develop --impure --command .github/openring.sh
+        # TODO Commit the html
+      - name: Run openring
+        run:
