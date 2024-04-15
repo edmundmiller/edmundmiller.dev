@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 openring \
-  -s https://drewdevault.com/feed.xml \
-  -s https://monimiller.com/feed.xml \
+  -s https://drewdevault.com/blog/index.xml \
+  -s https://monimiller.com/rss.xml \
   -s https://taehoonkim.org/news/?format=rss \
   <./.github/openring.html \
   >./public/openring-out.html
