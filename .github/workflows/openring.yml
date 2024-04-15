@@ -1,6 +1,7 @@
 name: Openring
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: "0 0 * * 1"
 
@@ -22,5 +23,3 @@ jobs:
       - name: Run openrin
         run: nix develop --impure --command .github/openring.sh
         # TODO Commit the html
-      - name: Run openring
-        run:
