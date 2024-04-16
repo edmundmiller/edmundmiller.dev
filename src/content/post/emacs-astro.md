@@ -13,10 +13,10 @@ So, what do I want from Emacs? Oh, I need Tree-sitter support, LSP support, beca
 
 ## Astro Tree-sitter Support
 
-:::important
-Tree-sitter is an incremental parsing system for programming tools.
-Find out more about it on the [project's website](https://tree-sitter.github.io/tree-sitter/)!
-:::
+<!-- FIXME :::important -->
+> Tree-sitter is an incremental parsing system for programming tools.
+> Find out more about it on the [project's website](https://tree-sitter.github.io/tree-sitter/)!
+<!-- ::: -->
 
 As the old saying goes, there's an Emacs package for everything. So, of course, someone's already written one for Astro and Tree-sitter.
 
