@@ -1,0 +1,12 @@
+[
+  {{range .Articles}}
+  {
+    "title": "{{.Title}}",
+    "link": "{{.Link}}",
+    "summary": "{{.Summary |html }}",
+    "source_title": "{{.SourceTitle}}",
+    "source_link": "{{.SourceLink}}",
+    "date": "{{.Date | date }}"
+  },
+  {{end}}
+]

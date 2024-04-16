@@ -1,0 +1,28 @@
+[
+  {
+    "title": "One-Year Reflections on Nextflow Mentorship",
+    "link": "https://nextflow.io/blog/2024/reflections-on-nextflow-mentorship.html",
+    "summary": "From a mentee in the Nextflow and nf-core mentorship program to a Senior Bioinformatician at ZS. Come and read this post as I share a bit of my journay in the Nextflow community.",
+    "source_title": "Nextflow Blog",
+    "source_link": "https://nextflow.io/",
+    "date": "April 10, 2024"
+  },
+
+  {
+    "title": "core team retreat",
+    "link": "https://nf-co.re/blog/2024/core_retreat_feb_2024/",
+    "summary": "Why not come to Stockholm in February? 🥶",
+    "source_title": "nf-core blog",
+    "source_link": "https://nf-co.re/",
+    "date": "February 11, 2024"
+  },
+
+  {
+    "title": "Monica vs the Machine - Women&#39;s 2023 World Cup Analysis",
+    "link": "https://monimiller.com/blog/womens-wc-23/womens-wc-23-introduction/",
+    "summary": "Pitting myself versus a CatBoost algorithm to see who wins.",
+    "source_title": "Monica Miller - Data Girl in a Data World",
+    "source_link": "https://monimiller.com/",
+    "date": "July 20, 2023"
+  }
+]
