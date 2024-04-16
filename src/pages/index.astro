@@ -3,6 +3,7 @@ import SocialList from "@/components/SocialList.astro";
 import PostPreview from "@/components/blog/PostPreview.astro";
 import PageLayout from "@/layouts/Base.astro";
 import { getAllPosts, sortMDByDate } from "@/data/post";
+import Openring from "@/components/openring-out.html";
 
 const MAX_POSTS = 10;
 const allPosts = await getAllPosts();
@@ -82,24 +83,6 @@ const cactusTech: { desc: string; href: string; title: string }[] = [
       }
     </ul>
   </section>
-  <section class="mt-16">
-    <h2 class="title mb-4 text-xl">Technologies</h2>
-    <dl class="space-y-4">
-      {
-        cactusTech.map(({ desc, href, title }) => (
-          <div class="flex flex-col gap-2 md:flex-row">
-            <dt>
-              <span class="flex">
-                <a class="cactus-link" href={href} rel="noopener noreferrer" target="_blank">
-                  {title}
-                </a>
-                :
-              </span>
-            </dt>
-            <dd>{desc}</dd>
-          </div>
-        ))
-      }
-    </dl>
-  </section>
+  <section class="mt-16"></section>
+  <Openring />
 </PageLayout>

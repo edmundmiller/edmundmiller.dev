@@ -5,4 +5,4 @@ openring \
   -s https://monimiller.com/rss.xml \
   -s https://taehoonkim.org/news/?format=rss \
   <./.github/openring.html \
-  >./public/openring-out.html
+  >./src/components/openring-out.html
