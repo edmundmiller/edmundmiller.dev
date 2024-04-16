@@ -2,20 +2,28 @@
 author: Edmund Miller
 publishDate: "2024-04-09"
 title: Setting up Doom Emacs for Astro
-description: Astro is the Nextflow of web development
-tags: ["Emacs", "webdev"]
+description: The beauty of Astro is it's like the Nextflow of web frameworks
+tags: ["Emacs", "webdev", "Astro"]
 draft: true
 ---
 
-Okay, so Astro is the new hot new web framework on the block. All the cool kids are using it. I've recently drank the Kool-Aid and gone all in on it. Rewritten this website, partner's website, and of course rewritten its website on Astro. Rewritten my old rugby club's website. I'm moving my course website to Starlight, the teams documention framework. All in. Quick aside, the beauty of Astro is it's like the next flow of web frameworks. In parentheses, can you use a niche, a very niche programming language to describe a niche programming language? If not, look up what Nextflow is. Essentially what I mean is it allows you to wrap other web frameworks in a web framework rather than forcing you to pick one so you don't just have to pick React or Vue. You can have both in the same application. That's the beauty. That's why it's exciting. That's why it's like I don't care. I can use whatever hot web framework someone comes up with. So anyways, I wanted to hook you, Max, up to Astro. For now, I've just kind of been roughing it out there and writing prettier by itself and turn off save on format and auto-complete. It's been scary.
+[Astro](https://astro.build/) is the new hot new web framework on the block. All the cool kids are using it. I've recently given up, drank the Kool-Aid, and gone all in on it.
 
-So, what do I want from Emacs? Oh, I need Tree-sitter support, LSP support, because I need to know when I'm messing up. And I need my formatter to be working properly. Prettier wrapping my Astro templates in quotes was a bug that ran me around in circles for an hour. What I did know as well was I also wanted Tailwind CSS LSP support for bonus points.
+I've rewritten this website, [my partner's website](https://monimiller.com/), my university rugby club's website. I'm moving my _Applied Genomics_ course website to [Starlight](https://monimiller.com/), the Astro team's documentation framework. The [nf-core site](https://github.com/nf-core/website) has been rewritten in it from PHP. _I'm all in_.
+
+The beauty of Astro is it's the [Nextflow](https://www.nextflow.io) of web frameworks.[^1] It allows you to wrap other UI Frameworks in a web framework rather than forcing you to pick one so you don't just have to pick React, Vue, or Svelte. You can have them all in the same application. You can just use [HTML components](https://docs.astro.build/en/basics/astro-components/#html-components). That's the beauty. That's why it's exciting. That's why I think it'll stick around.
+
+So anyways, I wanted to hook up Emacs with Astro support. For now, I've just been roughing it out there and running [Prettier](https://prettier.io/) by itself and turning off save on format and auto-complete. It's been scary.
+
+What I'm seeking from Emacs is multifaceted: Tree-sitter support, LSP (Language Server Protocol) support—to alert me of any missteps—and a fully functional formatter. A frustrating hour was lost to Prettier misconstruing my Astro templates by wrapping them in quotes—a bug I could have done without. And while we're at it, add Tailwind CSS LSP support into the mix for good measure.
 
 ## Astro Tree-sitter Support
 
 <!-- FIXME :::important -->
+
 > Tree-sitter is an incremental parsing system for programming tools.
 > Find out more about it on the [project's website](https://tree-sitter.github.io/tree-sitter/)!
+
 <!-- ::: -->
 
 As the old saying goes, there's an Emacs package for everything. So, of course, someone's already written one for Astro and Tree-sitter.
@@ -112,3 +120,5 @@ Of course there's already a package for [TailwindCSS using LSP](https://github.c
 
   (add-to-list 'lsp-tailwindcss-major-modes 'astro-ts-mode))
 ```
+
+[^1]: Did I really just compare a very niche DSL to describe a niche programming language?
