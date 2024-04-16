@@ -33,12 +33,14 @@ target="TODO"} if you want to view the project in it\'s entirety.
 
 ## Dataset
 
-  Row   Gene ID           Gene Name   1\\~bce80114~-27b0-4318-9af1-d8fdf85ffd9c   0\\~SRR143622~
-  ----- ----------------- ----------- ------------------------------------------- ----------------
-  3     ENSG00000004975   missing     18.7965                                     14.2893
-  4     ENSG00000005339   missing     78.4725                                     83.0387
-  5     ENSG00000005884   missing     11.0217                                     2.70558
-  7     ENSG00000006451   missing     34.9154                                     17.5549
+Row Gene ID Gene Name 1\\~bce80114~-27b0-4318-9af1-d8fdf85ffd9c 0\\~SRR143622~
+
+---
+
+3 ENSG00000004975 missing 18.7965 14.2893
+4 ENSG00000005339 missing 78.4725 83.0387
+5 ENSG00000005884 missing 11.0217 2.70558
+7 ENSG00000006451 missing 34.9154 17.5549
 
 Basically you have observations of genes in each row, and the columns
 are the sample values. There\'s some hidden meta data in the sample
@@ -63,7 +65,7 @@ because it made it easy for me to find the dataset and reproduce.
 
 ### mlf-core
 
-``` python
+```python
 training_data, test_data = load_train_test_data(dict_args['training_data'], dict_args['test_data'])
 ```
 
@@ -71,11 +73,11 @@ In an MLFlow project the data can be loaded in from a cli arg using
 `--training-data` and is configured in the [MLproject
 file](https://github.com/mlf-core/lcep/blob/d463c9984c5669659b2cb77ba7cac0ed0e270294/MLproject#L13-L22)
 
-``` yaml
+```yaml
 entry_points:
   main:
     parameters:
-      training-data: {type: string, default: 'train.tsv'}
+      training-data: { type: string, default: "train.tsv" }
 ```
 
 ### Julia
@@ -83,7 +85,7 @@ entry_points:
 Because of some Julia niceties we can just download the file and load it
 right into a DataFrame. [^1]
 
-``` julia
+```julia
 train_url = "https://github.com/mlf-core/lcep/raw/master/data/train.tsv"
 test_url = "https://github.com/mlf-core/lcep/raw/master/data/test.tsv"
 
@@ -99,7 +101,7 @@ They say the data cleaning step is 90% of data science.
 
 ### mlf-core
 
-``` python
+```python
 def parse_tpm_table(input):
     X_train = []
     y_train = []
@@ -134,7 +136,7 @@ easier for collaborators to read.
 
 ### Julia
 
-``` julia
+```julia
 function clean_data(input)
     # Drop any rows that are 0s
     input_zeros = input[findall(x -> x != 0, names(input)), :]
@@ -156,7 +158,7 @@ may not make sense to new users but the logic is easy to follow.
 
 ### mlf-core
 
-``` python
+```python
 def load_train_test_data(train_data, test_data):
     X_train, y_train, train_gene_names, train_sample_names = parse_tpm_table(train_data)
     X_test, y_test, test_gene_names, test_sample_names_test = parse_tpm_table(test_data)
@@ -180,7 +182,7 @@ extra steps. For example the training data must first be converted into
 a numpy array, so it can then be converted into a XGB DMatrix. We\'re
 also missing some context on what the `Dataset` class is.
 
-``` python
+```python
 @dataclass
 class Dataset:
     X: np.ndarray
@@ -204,7 +206,7 @@ Here\'s the example from the docs because there\'s not a short example
 to show this in the Julia version because it just happens and isn\'t
 really obvious.
 
-``` Julia
+```Julia
 using DataFrames
 df = DataFrame(randn(100,3), [:a, :b, :y])
 
