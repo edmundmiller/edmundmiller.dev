@@ -9,13 +9,16 @@ draft: true
 
 Okay, so Astro is the new hot new web framework on the block. All the cool kids are using it. I've recently drank the Kool-Aid and gone all in on it. Rewritten this website, partner's website, and of course rewritten its website on Astro. Rewritten my old rugby club's website. I'm moving my course website to Starlight, the teams documention framework. All in. Quick aside, the beauty of Astro is it's like the next flow of web frameworks. In parentheses, can you use a niche, a very niche programming language to describe a niche programming language? If not, look up what Nextflow is. Essentially what I mean is it allows you to wrap other web frameworks in a web framework rather than forcing you to pick one so you don't just have to pick React or Vue. You can have both in the same application. That's the beauty. That's why it's exciting. That's why it's like I don't care. I can use whatever hot web framework someone comes up with. So anyways, I wanted to hook you, Max, up to Astro. For now, I've just kind of been roughing it out there and writing prettier by itself and turn off save on format and auto-complete. It's been scary.
 
-So, what do I want from Emacs? Oh, I need TreeSitter support, LSP support, because I need to know when I'm messing up. And I need my formatter to be working properly. Prettier wrapping my Astro templates in quotes was a bug that ran me around in circles for an hour. What I did know as well was I also wanted Tailwind CSS LSP support for bonus points.
+So, what do I want from Emacs? Oh, I need Tree-sitter support, LSP support, because I need to know when I'm messing up. And I need my formatter to be working properly. Prettier wrapping my Astro templates in quotes was a bug that ran me around in circles for an hour. What I did know as well was I also wanted Tailwind CSS LSP support for bonus points.
 
-## Treesitter Support
+## Astro Tree-sitter Support
 
-> Treesitter aside
+:::important
+Tree-sitter is an incremental parsing system for programming tools.
+Find out more about it on the [project's website](https://tree-sitter.github.io/tree-sitter/)!
+:::
 
-As the old saying goes, there's an Emacs package for everything. So, of course, someone's already written one for Astro and TreeSitter.
+As the old saying goes, there's an Emacs package for everything. So, of course, someone's already written one for Astro and Tree-sitter.
 
 Setup for `astro-ts-mode` appears simple:
 
@@ -68,7 +71,7 @@ Oh by the way
 
 The official Astro editor docs link to [an article](https://medium.com/@jrmjrm/configuring-emacs-and-eglot-to-work-with-astro-language-server-9408eb709ab0) with instructions to configure eglot, but there's no equivalent one for lsp-mode.
 
-```
+```bash
 npm i -g @astrojs/language-server
 ```
 
@@ -99,11 +102,13 @@ From [Sorixelle's Emacs config](https://github.com/Sorixelle/dotfiles/blob/main/
 
 Of course there's already a package for [TailwindCSS using LSP](https://github.com/merrickluo/lsp-tailwindcss). With Doom Emacs installation instructions as well!
 
-```elisp title=config.el
+```elisp title="config.el" {"1. Launch the LSP in add-on-mode":4-5} {"2. Launch lsp-tailwindcss in astro-ts-mode":7-8}
 (use-package! lsp-tailwindcss
   :when (modulep! +lsp)
   :init
+
   (setq! lsp-tailwindcss-add-on-mode t)
   :config
+
   (add-to-list 'lsp-tailwindcss-major-modes 'astro-ts-mode))
 ```
