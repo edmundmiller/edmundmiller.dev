@@ -9,7 +9,7 @@ draft: true
 
 Okay, so Astro is the new hot new web framework on the block. All the cool kids are using it. I've recently drank the Kool-Aid and gone all in on it. Rewritten this website, partner's website, and of course rewritten its website on Astro. Rewritten my old rugby club's website. I'm moving my course website to Starlight, the teams documention framework. All in. Quick aside, the beauty of Astro is it's like the next flow of web frameworks. In parentheses, can you use a niche, a very niche programming language to describe a niche programming language? If not, look up what Nextflow is. Essentially what I mean is it allows you to wrap other web frameworks in a web framework rather than forcing you to pick one so you don't just have to pick React or Vue. You can have both in the same application. That's the beauty. That's why it's exciting. That's why it's like I don't care. I can use whatever hot web framework someone comes up with. So anyways, I wanted to hook you, Max, up to Astro. For now, I've just kind of been roughing it out there and writing prettier by itself and turn off save on format and auto-complete. It's been scary.
 
-So, what do I want from Emacs? Oh, I need TreeSitter support, LSP support, because I need to know when I'm messing up. And I need my formatter to be working properly. I'm not wrapping my JSX in her Azure templates and quotes. Give me bugs that she's around for an hour. What I did know as well was I also wanted Tailwind CSS LSP support for bonus points.
+So, what do I want from Emacs? Oh, I need TreeSitter support, LSP support, because I need to know when I'm messing up. And I need my formatter to be working properly. Prettier wrapping my Astro templates in quotes was a bug that ran me around in circles for an hour. What I did know as well was I also wanted Tailwind CSS LSP support for bonus points.
 
 ## Treesitter Support
 
@@ -57,21 +57,7 @@ There was [a tip](https://github.com/Sorixelle/astro-ts-mode/issues/5) from [Ian
     (add-to-list 'treesit-auto-recipe-list astro-recipe)))
 ```
 
-Sadly this snippet didn't work out of the box for me. Looking at the actual examples in the `treesit-auto`
-
-```elisp title="config.el"
-(use-package! astro-ts-mode
-  :after treesit-auto
-  :config
-  (setq astro-ts-auto-recipe
-        (make-treesit-auto-recipe
-         :lang 'astro
-         :ts-mode 'astro-ts-mode
-         :url "https://github.com/virchau13/tree-sitter-astro"
-         :revision "master"
-         :source-dir "src"))
-  (add-to-list 'treesit-auto-recipe-list astro-ts-auto-recipe))
-```
+I think this worked for me. I had built it manually with `treesit-auto` before.
 
 Oh by the way
 
@@ -86,15 +72,38 @@ The official Astro editor docs link to [an article](https://medium.com/@jrmjrm/c
 npm i -g @astrojs/language-server
 ```
 
+I just had to add a hook to `astro-ts-mode` and it pulled right up.
+
+```elisp title=config.el
+(use-package! astro-ts-mode
+  :after treesit-auto
+  :init
+  (when (modulep! +lsp)
+    (add-hook 'astro-ts-mode-hook #'lsp! 'append))
+  :config
+;; ...
+```
+
 ## `prettier-plugin-astro` in Emacs with Apheleia
 
 From [Sorixelle's Emacs config](https://github.com/Sorixelle/dotfiles/blob/main/config/emacs-config.org#astro) I found the magic snippet that had prettier use `--parser=astro` in `.astro` files. ✨
 
-```eslip
+```eslip title=config.el
 (set-formatter! 'prettier-astro
   '("npx" "prettier" "--parser=astro"
     (apheleia-formatters-indent "--use-tabs" "--tab-width" 'astro-ts-mode-indent-offset))
   :modes '(astro-ts-mode))
 ```
 
-## Links
+## Tailwind CSS IntelliSense in Emacs
+
+Of course there's already a package for [TailwindCSS using LSP](https://github.com/merrickluo/lsp-tailwindcss). With Doom Emacs installation instructions as well!
+
+```elisp title=config.el
+(use-package! lsp-tailwindcss
+  :when (modulep! +lsp)
+  :init
+  (setq! lsp-tailwindcss-add-on-mode t)
+  :config
+  (add-to-list 'lsp-tailwindcss-major-modes 'astro-ts-mode))
+```
