@@ -1,21 +1,23 @@
 ---
 author: Edmund Miller
-publishDate: "2024-04-09"
-title: Setting up Doom Emacs for Astro
+publishDate: "2024-04-19"
+title: Setting up Doom Emacs for Astro Development
 description: The beauty of Astro is it's like the Nextflow of web frameworks
 tags: ["Emacs", "webdev", "Astro"]
-draft: true
+draft: false
 ---
 
 [Astro](https://astro.build/) is the new hot new web framework on the block. All the cool kids are using it. I've recently given up, drank the Kool-Aid, and gone all in on it.
 
-I've rewritten this website, [my partner's website](https://monimiller.com/), my university rugby club's website. I'm moving my _Applied Genomics_ course website to [Starlight](https://monimiller.com/), the Astro team's documentation framework. The [nf-core site](https://github.com/nf-core/website) has been rewritten in it from PHP. _I'm all in_.
+I've rewritten this website, [my partner's website](https://monimiller.com/), my university rugby club's website. I'm moving my _Applied Genomics_ course website to [Starlight](https://starlight.astro.build/), the Astro team's documentation framework. The [nf-core site](https://github.com/nf-core/website) has been rewritten in Astro and Svelte from PHP. _I'm all in_.
 
 The beauty of Astro is it's the [Nextflow](https://www.nextflow.io) of web frameworks.[^1] It allows you to wrap other UI Frameworks in a web framework rather than forcing you to pick one so you don't just have to pick React, Vue, or Svelte. You can have them all in the same application. You can just use [HTML components](https://docs.astro.build/en/basics/astro-components/#html-components). That's the beauty. That's why it's exciting. That's why I think it'll stick around.
 
 So anyways, I wanted to hook up Emacs with Astro support. For now, I've just been roughing it out there and running [Prettier](https://prettier.io/) by itself and turning off save on format and auto-complete. It's been scary.
 
-What I'm seeking from Emacs is multifaceted: Tree-sitter support, LSP (Language Server Protocol) support—to alert me of any missteps—and a fully functional formatter. A frustrating hour was lost to Prettier misconstruing my Astro templates by wrapping them in quotes—a bug I could have done without. And while we're at it, add Tailwind CSS LSP support into the mix for good measure.
+What I'm seeking from Emacs is multifaceted: Tree-sitter support, LSP (Language Server Protocol) support—to alert me of any missteps—and a fully functional formatter. A frustrating hour was lost to Prettier mangling my Astro templates by wrapping them in quotes—a bug I could have done without. And while we're at it, add Tailwind CSS LSP support into the mix for good measure.
+
+[^1]: Did I really just compare a very niche DSL to describe a niche programming language?
 
 ## Astro Tree-sitter Support
 
@@ -121,4 +123,6 @@ Of course there's already a package for [TailwindCSS using LSP](https://github.c
   (add-to-list 'lsp-tailwindcss-major-modes 'astro-ts-mode))
 ```
 
-[^1]: Did I really just compare a very niche DSL to describe a niche programming language?
+## Conclusion
+
+You can find [all of the code in my Doom Emacs config](https://github.com/edmundmiller/.doom.d/tree/main/modules/lang/astro). It's got everything, Tree-sitter, LSP, Prettier, and Tailwind CSS IntelliSense.
