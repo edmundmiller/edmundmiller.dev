@@ -206,7 +206,7 @@ Here\'s the example from the docs because there\'s not a short example
 to show this in the Julia version because it just happens and isn\'t
 really obvious.
 
-```Julia
+```julia
 using DataFrames
 df = DataFrame(randn(100,3), [:a, :b, :y])
 
