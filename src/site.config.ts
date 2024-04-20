@@ -1,5 +1,6 @@
 import type { SiteConfig } from "@/types";
 import type { AstroExpressiveCodeOptions } from "astro-expressive-code";
+import fs from "node:fs";
 
 export const siteConfig: SiteConfig = {
   // Used as both a meta property (src/components/BaseHead.astro L:31 + L:49) & the generated satori png (src/pages/og-image/[slug].png.ts)
@@ -59,6 +60,14 @@ export const expressiveCodeOptions: AstroExpressiveCodeOptions = {
     return `[data-theme="${theme.name}"]`;
   },
   useThemedScrollbars: false,
+  shiki: {
+    // You can pass additional plugin options here,
+    // e.g. to load custom language grammars:
+    langs: [
+      // import('./some-exported-grammar.mjs'),
+      JSON.parse(fs.readFileSync("./src/misc/elisp-grammar.json", "utf-8")),
+    ],
+  },
   styleOverrides: {
     frames: {
       frameBoxShadowCssValue: "none",
