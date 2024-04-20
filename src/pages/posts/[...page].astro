@@ -45,7 +45,7 @@ const paginationProps = {
 <PageLayout meta={meta}>
   <h1 class="title mb-6">Posts</h1>
   <div class="grid gap-y-16 sm:grid-cols-[3fr_1fr] sm:gap-x-8">
-    <section aria-label="Blog post list">
+    <section aria-label="Blog post list" class="h-feed">
       <ul class="space-y-8 text-start">
         {
           page.data.map((p) => (
@@ -84,7 +84,7 @@ const paginationProps = {
               <li>
                 <a
                   aria-label={`View all posts with the tag: ${tag}`}
-                  class="flex items-center justify-center rounded-lg bg-accent p-1"
+                  class="p-category flex items-center justify-center rounded-lg bg-accent p-1"
                   href={`/tags/${tag}/`}
                 >
                   {tag}
@@ -93,7 +93,11 @@ const paginationProps = {
             ))}
           </ul>
           <span class="mt-4 block sm:text-end">
-            <a aria-label="View all blog categories" class="sm:hover:text-accent" href="/tags/">
+            <a
+              aria-label="View all blog categories"
+              class="p-category sm:hover:text-accent"
+              href="/tags/"
+            >
               View all →
             </a>
           </span>
