@@ -1,13 +1,25 @@
 [
+  
   {
-    "title": "One-Year Reflections on Nextflow Mentorship",
-    "link": "https://nextflow.io/blog/2024/reflections-on-nextflow-mentorship.html",
-    "summary": "From a mentee in the Nextflow and nf-core mentorship program to a Senior Bioinformatician at ZS. Come and read this post as I share a bit of my journay in the Nextflow community.",
+    "title": "I somehow managed to lock myself out of my Authy secrets",
+    "link": "https://xeiaso.net/notes/2024/authy-fuckup/",
+    "summary": "
+        EDIT: I got access back. Merging accounts apparently takes an hour without it telling you that it does. Crisis averted. Still moving away from Authy because that experience was terrifying.
+        I tried to move my Authy config to a new phone and …",
+    "source_title": "Xe Iaso&#39;s blog",
+    "source_link": "https://xeiaso.net/",
+    "date": "April 21, 2024"
+  },
+  
+  {
+    "title": "Application of Nextflow and nf-core to ancient environmental eDNA",
+    "link": "https://nextflow.io/blog/2024/nextflow-nf-core-ancient-env-dna.html",
+    "summary": "In this blog post, James goes through a workshop he organized to demonstrate the efficiency and reproducibility Nextflow and nf-core can bring to analyze ancient environmental DNA.",
     "source_title": "Nextflow Blog",
     "source_link": "https://nextflow.io/",
-    "date": "April 10, 2024"
+    "date": "April 17, 2024"
   },
-
+  
   {
     "title": "core team retreat",
     "link": "https://nf-co.re/blog/2024/core_retreat_feb_2024/",
@@ -16,13 +28,5 @@
     "source_link": "https://nf-co.re/",
     "date": "February 11, 2024"
   },
-
-  {
-    "title": "Monica vs the Machine - Women&#39;s 2023 World Cup Analysis",
-    "link": "https://monimiller.com/blog/womens-wc-23/womens-wc-23-introduction/",
-    "summary": "Pitting myself versus a CatBoost algorithm to see who wins.",
-    "source_title": "Monica Miller - Data Girl in a Data World",
-    "source_link": "https://monimiller.com/",
-    "date": "July 20, 2023"
-  }
+  
 ]
