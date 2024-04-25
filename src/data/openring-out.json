@@ -1,16 +1,13 @@
 [
-  
   {
     "title": "I somehow managed to lock myself out of my Authy secrets",
     "link": "https://xeiaso.net/notes/2024/authy-fuckup/",
-    "summary": "
-        EDIT: I got access back. Merging accounts apparently takes an hour without it telling you that it does. Crisis averted. Still moving away from Authy because that experience was terrifying.
-        I tried to move my Authy config to a new phone and …",
+    "summary": "EDIT: I got access back. Merging accounts apparently takes an hour without it telling you that it does. Crisis averted. Still moving away from Authy because that experience was terrifying. I tried to move my Authy config to a new phone and …",
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
     "date": "April 21, 2024"
   },
-  
+
   {
     "title": "Application of Nextflow and nf-core to ancient environmental eDNA",
     "link": "https://nextflow.io/blog/2024/nextflow-nf-core-ancient-env-dna.html",
@@ -19,7 +16,7 @@
     "source_link": "https://nextflow.io/",
     "date": "April 17, 2024"
   },
-  
+
   {
     "title": "core team retreat",
     "link": "https://nf-co.re/blog/2024/core_retreat_feb_2024/",
@@ -27,6 +24,5 @@
     "source_title": "nf-core blog",
     "source_link": "https://nf-co.re/",
     "date": "February 11, 2024"
-  },
-  
+  }
 ]
