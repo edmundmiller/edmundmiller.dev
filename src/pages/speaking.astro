@@ -12,7 +12,7 @@ import content from "@/data/content.json.ts";
     <section aria-label="Blog post list" class="h-feed">
       <ul class="space-y-8 text-start">
         {
-          content.map(({ href, event, title, tags, desc, date }) => (
+          content.map(({ href, event, title, tags, desc, date, location }) => (
             <li class="flex flex-col flex-wrap gap-2 sm:flex-row [&_q]:basis-full">
               {date && (
                 <FormattedDate
@@ -25,6 +25,8 @@ import content from "@/data/content.json.ts";
                   {title}
                 </a>
               </div>
+              {event && <span class="event right-0 flex-none">{event}</span>}{" "}
+              {location && { location }}
               {desc && <q class="p-summary line-clamp-3 block italic">{desc}</q>}
             </li>
           ))
@@ -32,4 +34,118 @@ import content from "@/data/content.json.ts";
       </ul>
     </section>
   </div>
+  <!--
+// v0 by Vercel.
+// https://v0.dev/t/xhsg8l1j1aQ
+-->
+  <main class="container mx-auto px-4 py-12 md:px-6 lg:py-16">
+    <div class="space-y-8">
+      <div>
+        <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">My Conference Talks</h1>
+        <p class="mt-2 text-gray-500 dark:text-gray-400">
+          A collection of talks I've given at various conferences.
+        </p>
+      </div>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div
+          class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-950"
+        >
+          <div class="flex items-center justify-between">
+            <p class="text-sm font-medium text-gray-500 dark:text-gray-400">May 15, 2023</p>
+            <a href="#" class="text-sm font-medium text-gray-900 hover:underline dark:text-gray-50">
+              Watch Video
+            </a>
+          </div>
+          <div class="mt-4">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-50">
+              Building Accessible Web Components
+            </h3>
+            <p class="mt-2 text-gray-500 dark:text-gray-400">React Summit 2023, New York, NY</p>
+          </div>
+        </div>
+        <div
+          class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-950"
+        >
+          <div class="flex items-center justify-between">
+            <p class="text-sm font-medium text-gray-500 dark:text-gray-400">March 10, 2023</p>
+            <a href="#" class="text-sm font-medium text-gray-900 hover:underline dark:text-gray-50">
+              Watch Video
+            </a>
+          </div>
+          <div class="mt-4">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-50">
+              Optimizing React Performance
+            </h3>
+            <p class="mt-2 text-gray-500 dark:text-gray-400">React Conf 2023, San Francisco, CA</p>
+          </div>
+        </div>
+        <div
+          class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-950"
+        >
+          <div class="flex items-center justify-between">
+            <p class="text-sm font-medium text-gray-500 dark:text-gray-400">November 5, 2022</p>
+            <a href="#" class="text-sm font-medium text-gray-900 hover:underline dark:text-gray-50">
+              Watch Video
+            </a>
+          </div>
+          <div class="mt-4">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-50">
+              Scaling Design Systems with Storybook
+            </h3>
+            <p class="mt-2 text-gray-500 dark:text-gray-400">
+              Design Systems Conf 2022, London, UK
+            </p>
+          </div>
+        </div>
+        <div
+          class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-950"
+        >
+          <div class="flex items-center justify-between">
+            <p class="text-sm font-medium text-gray-500 dark:text-gray-400">September 20, 2022</p>
+            <a href="#" class="text-sm font-medium text-gray-900 hover:underline dark:text-gray-50">
+              Watch Video
+            </a>
+          </div>
+          <div class="mt-4">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-50">
+              Mastering CSS Grid
+            </h3>
+            <p class="mt-2 text-gray-500 dark:text-gray-400">CSS Conf 2022, Berlin, Germany</p>
+          </div>
+        </div>
+        <div
+          class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-950"
+        >
+          <div class="flex items-center justify-between">
+            <p class="text-sm font-medium text-gray-500 dark:text-gray-400">June 1, 2022</p>
+            <a href="#" class="text-sm font-medium text-gray-900 hover:underline dark:text-gray-50">
+              Watch Video
+            </a>
+          </div>
+          <div class="mt-4">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-50">
+              Serverless with Next.js
+            </h3>
+            <p class="mt-2 text-gray-500 dark:text-gray-400">Next.js Conf 2022, Online</p>
+          </div>
+        </div>
+        <div
+          class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-950"
+        >
+          <div class="flex items-center justify-between">
+            <p class="text-sm font-medium text-gray-500 dark:text-gray-400">March 25, 2022</p>
+            <a href="#" class="text-sm font-medium text-gray-900 hover:underline dark:text-gray-50">
+              Watch Video
+            </a>
+          </div>
+          <div class="mt-4">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-50">
+              Intro to TypeScript
+            </h3>
+            <p class="mt-2 text-gray-500 dark:text-gray-400">TypeScript Conf 2022, Online</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 </PageLayout>
