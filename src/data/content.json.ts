@@ -1,11 +1,11 @@
 export interface ContentItem {
-  // desc: string;
+  desc: string;
   event: string;
   href: string;
   title: string;
   medium: string;
-  // tags: array;
-  // date: date;
+  tags: array;
+  date: date;
 }
 
 // replace this data with whatever you want in your FAQ section
@@ -20,15 +20,17 @@ export const contentData: ContentItem[] = [
   },
   {
     // desc: "TODO",
-    event: "Nextflow Summit 2023 - Barcelona",
+    event: "Nextflow Summit 2023",
+    location: "Barcelona",
     href: "https://youtu.be/XuoIH5mYsZE?si=wmkZTqoucrez_VmH",
-    title: "Nextflow Summit 2023 - nf-test at nf-core: empowering scalable and streamlined testing",
+    title: "nf-test at nf-core: empowering scalable and streamlined testing",
     medium: "conference",
     // tags: ["Nextflow"],
   },
   {
     // desc: "TODO",
-    event: "Nextflow Summit 2023 - Boston",
+    event: "Nextflow Summit 2023 ",
+    location: "Boston",
     href: "https://summit.nextflow.io/boston/agenda/summit/nov-29-database-uses/",
     title: "Nextflow and database uses: powering data engineering, exploring DuckDB, and beyond",
     medium: "conference",

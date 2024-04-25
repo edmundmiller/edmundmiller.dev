@@ -1,0 +1,35 @@
+---
+import PageLayout from "@/layouts/Base.astro";
+import TalkPreview from "@/components/blog/TalkPreview.astro";
+import FormattedDate from "@/components/FormattedDate.astro";
+
+import content from "@/data/content.json.ts";
+---
+
+<PageLayout meta={{ title: "Speaking" }}>
+  <h1 class="title mb-6">Speaking</h1>
+  <div class="grid gap-y-16 sm:grid-cols-[3fr_1fr] sm:gap-x-8">
+    <section aria-label="Blog post list" class="h-feed">
+      <ul class="space-y-8 text-start">
+        {
+          content.map(({ href, event, title, tags, desc, date }) => (
+            <li class="flex flex-col flex-wrap gap-2 sm:flex-row [&_q]:basis-full">
+              {date && (
+                <FormattedDate
+                  class="dt-published min-w-[120px] text-gray-600 dark:text-gray-400"
+                  date={date}
+                />
+              )}
+              <div>
+                <a class="p-name cactus-link" data-astro-prefetch href={href}>
+                  {title}
+                </a>
+              </div>
+              {desc && <q class="p-summary line-clamp-3 block italic">{desc}</q>}
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </div>
+</PageLayout>
