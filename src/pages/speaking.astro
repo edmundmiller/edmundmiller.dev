@@ -1,6 +1,7 @@
 ---
 import PageLayout from "@/layouts/Base.astro";
-import FormattedDate from "@/components/FormattedDate.astro";
+
+import { getFormattedDate } from "@/utils";
 
 import content from "@/data/content.json.ts";
 ---
@@ -24,7 +25,14 @@ import content from "@/data/content.json.ts";
             content.map(({ href, event, title, tags, desc, date, location }) => (
               <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-950">
                 <div class="flex items-center justify-between">
-                  <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{date}</p>
+                  {date && (
+                    <time
+                      datetime={date}
+                      class="text-sm font-medium text-gray-500 dark:text-gray-400"
+                    >
+                      {getFormattedDate(date)}
+                    </time>
+                  )}
                   <a
                     href={href}
                     class="text-sm font-medium text-gray-900 hover:underline dark:text-gray-50"
