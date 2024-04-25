@@ -12,7 +12,8 @@ export interface ContentItem {
 export const contentData: ContentItem[] = [
   {
     // desc: "TODO",
-    event: "Nextflow Summit 2022",
+    date: "2022",
+    event: "Nextflow Summit",
     href: "https://summit.nextflow.io/2022/program/oct-14-workflow-automation-using-the-aviti-benchtop-sequencing-system-and-nextflow-tower/",
     title: "Workflow automation: Using the Aviti benchtop sequencing system and Nextflow Tower",
     medium: "conference",
@@ -20,7 +21,8 @@ export const contentData: ContentItem[] = [
   },
   {
     // desc: "TODO",
-    event: "Nextflow Summit 2023",
+    date: "2023",
+    event: "Nextflow Summit",
     location: "Barcelona",
     href: "https://youtu.be/XuoIH5mYsZE?si=wmkZTqoucrez_VmH",
     title: "nf-test at nf-core: empowering scalable and streamlined testing",
@@ -29,7 +31,8 @@ export const contentData: ContentItem[] = [
   },
   {
     // desc: "TODO",
-    event: "Nextflow Summit 2023 ",
+    date: "2023",
+    event: "Nextflow Summit",
     location: "Boston",
     href: "https://summit.nextflow.io/boston/agenda/summit/nov-29-database-uses/",
     title: "Nextflow and database uses: powering data engineering, exploring DuckDB, and beyond",
