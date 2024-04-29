@@ -1,22 +1,26 @@
 [
+  
   {
-    "title": "I somehow managed to lock myself out of my Authy secrets",
-    "link": "https://xeiaso.net/notes/2024/authy-fuckup/",
-    "summary": "EDIT: I got access back. Merging accounts apparently takes an hour without it telling you that it does. Crisis averted. Still moving away from Authy because that experience was terrifying. I tried to move my Authy config to a new phone and …",
+    "title": "Much ado about &#34;nothing&#34;",
+    "link": "https://xeiaso.net/blog/2024/much-ado-about-nothing/",
+    "summary": "
+        
+        Author&amp;#39;s note
+        Originally, I was gonna wait a bit before writing this. I had intended this to be written and published in a few weeks after the NixOS foundation board had time to react and attempt to control the damage from whate…",
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
-    "date": "April 21, 2024"
+    "date": "April 27, 2024"
   },
-
+  
   {
-    "title": "Application of Nextflow and nf-core to ancient environmental eDNA",
-    "link": "https://nextflow.io/blog/2024/nextflow-nf-core-ancient-env-dna.html",
-    "summary": "In this blog post, James goes through a workshop he organized to demonstrate the efficiency and reproducibility Nextflow and nf-core can bring to analyze ancient environmental DNA.",
+    "title": "Empowering Bioinformatics: Mentoring Across Continents with Nextflow",
+    "link": "https://nextflow.io/blog/2024/empowering-bioinformatics-mentoring.html",
+    "summary": "The post highlights Robert Petit&amp;#39;s involvement in the nf-core Mentorship Program, where he mentored individuals from Malawi, Chile, and Brazil in Nextflow and nf-core. Despite geographical barriers, his mentees successfully adapted their workflows, co…",
     "source_title": "Nextflow Blog",
     "source_link": "https://nextflow.io/",
-    "date": "April 17, 2024"
+    "date": "April 25, 2024"
   },
-
+  
   {
     "title": "core team retreat",
     "link": "https://nf-co.re/blog/2024/core_retreat_feb_2024/",
@@ -24,5 +28,6 @@
     "source_title": "nf-core blog",
     "source_link": "https://nf-co.re/",
     "date": "February 11, 2024"
-  }
+  },
+  
 ]
