@@ -1,24 +1,23 @@
 [
   
   {
-    "title": "Much ado about &#34;nothing&#34;",
-    "link": "https://xeiaso.net/blog/2024/much-ado-about-nothing/",
+    "title": "Pikmin 3: No Fruit, No Problem - 0 Fruit in 2h24m",
+    "link": "https://xeiaso.net/blog/2024/pikmin-3-0-fruit/",
     "summary": "
-        
-        Author&amp;#39;s note
-        Originally, I was gonna wait a bit before writing this. I had intended this to be written and published in a few weeks after the NixOS foundation board had time to react and attempt to control the damage from whate…",
+        Want to watch this in your video player of choice? Take this:https://cdn.xeiaso.net/file/christine-static/video/2024/pikmin-3-0-fruit/2/index.m3u8
+        Recently I saw @TheBacklogs do a Pikmin 3 challenge run where they collected 0 fruit to beat …",
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
-    "date": "April 27, 2024"
+    "date": "May 4, 2024"
   },
   
   {
-    "title": "Empowering Bioinformatics: Mentoring Across Continents with Nextflow",
-    "link": "https://nextflow.io/blog/2024/empowering-bioinformatics-mentoring.html",
-    "summary": "The post highlights Robert Petit&amp;#39;s involvement in the nf-core Mentorship Program, where he mentored individuals from Malawi, Chile, and Brazil in Nextflow and nf-core. Despite geographical barriers, his mentees successfully adapted their workflows, co…",
+    "title": "nf-schema: the new and improved nf-validation",
+    "link": "https://nextflow.io/blog/2024/nf-schema.html",
+    "summary": "The post describes nf-schema, the former nf-validation nextflow plugin rewritten and improved.",
     "source_title": "Nextflow Blog",
     "source_link": "https://nextflow.io/",
-    "date": "April 25, 2024"
+    "date": "May 1, 2024"
   },
   
   {
