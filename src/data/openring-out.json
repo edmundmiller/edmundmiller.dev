@@ -1,0 +1,29 @@
+[
+  
+  {
+    "title": "Nextflow Training: Bridging Online Learning with In-Person Connections",
+    "link": "https://nextflow.io/blog/2024/training-local-site.html",
+    "summary": "The authors share in this post their experience while organizing a watch party for the Nextflow fundamentals training.",
+    "source_title": "Nextflow Blog",
+    "source_link": "https://nextflow.io/",
+    "date": "May 8, 2024"
+  },
+  
+  {
+    "title": "core team retreat",
+    "link": "https://nf-co.re/blog/2024/core_retreat_feb_2024/",
+    "summary": "Why not come to Stockholm in February? 🥶",
+    "source_title": "nf-core blog",
+    "source_link": "https://nf-co.re/",
+    "date": "February 11, 2024"
+  },
+  
+  {
+    "title": "Monica vs the Machine - Women&#39;s 2023 World Cup Analysis",
+    "link": "https://monimiller.com/blog/womens-wc-23/womens-wc-23-introduction/",
+    "summary": "Pitting myself versus a CatBoost algorithm to see who wins.",
+    "source_title": "Monica Miller - Data Girl in a Data World",
+    "source_link": "https://monimiller.com/",
+    "date": "July 20, 2023"
+  }
+]
