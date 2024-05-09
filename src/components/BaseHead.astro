@@ -1,5 +1,4 @@
 ---
-import { Plausible, Umami } from "astro-analytics";
 import type { SiteMeta } from "@/types";
 
 import { siteConfig } from "@/site-config";
@@ -83,7 +82,5 @@ const socialImageURL = new URL(ogImage ? ogImage : "/social-card.png", Astro.url
 <meta content={Astro.generator} name="generator" />
 
 {/* Analytics */}
-<Plausible domain="edmundmiller.dev" />
 <script data-goatcounter="https://emiller.goatcounter.com/count" async src="//gc.zgo.at/count.js"
 ></script>
-<Umami id="4692cbe2-33fb-45ba-8423-b66c55e5daa1" />
