@@ -1,0 +1,24 @@
+export interface OpenringItem {
+  title: string;
+  link: string;
+  summary: string;
+  source_title: string;
+  source_link: string;
+  date: string;
+}
+
+export const openringData: OpenringItem[] =
+[
+  {{range .Articles}}
+  {
+    "title": "{{.Title}}",
+    "link": "{{.Link}}",
+    "summary": `{{.Summary |html }}`,
+    "source_title": "{{.SourceTitle}}",
+    "source_link": "{{.SourceLink}}",
+    "date": "{{.Date | date }}"
+  },
+  {{end}}
+];
+
+export default openringData;
