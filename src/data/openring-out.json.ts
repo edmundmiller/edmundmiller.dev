@@ -11,12 +11,12 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "I&#39;m in SF this week!",
-    "link": "https://xeiaso.net/notes/2024/im-in-sf-this-week/",
-    "summary": `I have exclusive Xesite stickers.`,
+    "title": "Overengineering this blog&#39;s preview site with Kubernetes",
+    "link": "https://xeiaso.net/blog/2024/overengineering-preview-site/",
+    "summary": `A small overview on how future-sight, my blog&amp;#39;s preview site server, is overengineered with the power of Kubernetes.`,
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
-    "date": "June 2, 2024"
+    "date": "June 9, 2024"
   },
   
   {
