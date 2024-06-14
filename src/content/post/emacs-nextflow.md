@@ -16,4 +16,16 @@ I have considered developing a [Transient](https://magit.vc/manual/transient/)-b
 
 My goal is to keep my workflow simple and flexible, allowing for easy substitution of Emacs with other editors like Neovim, Helix, or Zed. As for my Emacs setup, I have been using [Doom Emacs](https://github.com/doomemacs/doomemacs) since 2018 [^1], and [my .doom.d configuration is available on GitHub](https://github.com/edmundmiller/.doom.d).
 
+The Nextflow specific parts of my config:
+
+```elisp title="packages.el"
+(package! nextflow-mode :recipe (:host github :repo "edmundmiller/nextflow-mode"))
+```
+
+```elisp title="config.el"
+(use-package! nextflow-mode
+  :config
+  (set-docsets! 'nextflow-mode "Groovy"))
+```
+
 [^1]: [Henrik](https://henrik.io/) really inspired my love of modules, and most of my development workflow.

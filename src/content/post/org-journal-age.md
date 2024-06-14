@@ -77,15 +77,11 @@ Now that you\'ve listened to me ramble on for a bit, here\'s the actual
 setup. This is using [Doom
 Emacs](https://github.com/doomemacs/doomemacs).
 
-`packages.el`
-
-```elisp
+```elisp title="packages.el"
 (package! age)
 ```
 
-`config.el`
-
-```elisp
+```elisp title="config.el"
 (use-package! age
   :init
   (setq! age-program "rage")
@@ -99,9 +95,7 @@ Went with [rage](https://github.com/str4d/rage), because Rust. Also
 there\'s [pinentry support through
 rage](https://github.com/anticomputer/age.el#workaround-pinentry-support-through-rage).
 
-`config.el`
-
-```elisp
+```elisp title="config.el"
 (after! org
   (setq org-journal-encrypt-journal nil
         org-journal-file-format "%Y%m%d.org.age")

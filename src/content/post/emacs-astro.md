@@ -32,7 +32,7 @@ As the old saying goes, there's an Emacs package for everything. So, of course, 
 
 Setup for `astro-ts-mode` appears simple:
 
-```elisp title="package.el"
+```elisp title="packages.el"
 (package! astro-ts-mode)
 ```
 
