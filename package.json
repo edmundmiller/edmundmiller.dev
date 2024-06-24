@@ -62,5 +62,6 @@
     "tailwindcss": "3.4.4",
     "typescript": "5.4.5"
   },
+  "trustedDependencies": ["sharp"],
   "packageManager": "bun@1.0.33"
 }
