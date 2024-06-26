@@ -1,6 +1,9 @@
 ---
 title: Chaining Nextflow Pipelines with Snakemake
 description: Contender for controversial blog post of the year
+draft: true
+publishDate: "2024-06-10"
+tags: ["bioinformatics", "nextflow", "snakemake"]
 ---
 
 
