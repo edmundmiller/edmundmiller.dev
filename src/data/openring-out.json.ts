@@ -11,12 +11,12 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "MIME, RSS, and existential torment",
-    "link": "https://xeiaso.net/blog/2024/fixing-rss-mailcap/",
-    "summary": `TL;DR: how I fixed my RSS feed by installing mailcap so I don&amp;#39;t get tormented by mimes`,
+    "title": "The Steam Deck ships with WireGuard",
+    "link": "https://xeiaso.net/notes/2024/steam-deck-wireguard/",
+    "summary": `One less install required!`,
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
-    "date": "June 23, 2024"
+    "date": "June 28, 2024"
   },
   
   {
