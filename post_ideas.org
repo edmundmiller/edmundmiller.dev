@@ -1,5 +1,11 @@
 #+title: Posts to make
 
+* PROJ Series on using Snakemake for Computational Biology
+** TODO Nextflow vs Snakemake
+** TODO Why I moved my course to Snakemake
+** TODO Snakemake for Chaining Nextflow pipelines
+** TODO Snakemake and Rclone
+https://www.biostars.org/p/9469533/
 * PROJ Ideas for my tech blog
 ** TODO Post on using devcontainer-cli and tramp
 https://www.emacswiki.org/emacs/TrampAndDocker
