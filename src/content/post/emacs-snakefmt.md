@@ -1,8 +1,8 @@
 ---
 title: Formatting Snakemake using snakefmt in Emacs using Apheleia
-description: A quick blurb about setting up snakefmt(Snakemake formatter) in Doom Emacs
+description: Learn how to set up snakefmt, the code formatter for Snakemake, in Doom Emacs using the Apheleia package. This post covers installing snakefmt with Nix, configuring it in Doom Emacs, and provides an overview of how Apheleia aims to simplify formatting code across languages in Emacs. Example configurations for Nix are also included.
 draft: true
-publishDate: "2024-06-10"
+publishDate: "2024-07-02"
 tags: ["emacs", "snakemake"]
 series: "Snakeflow"
 ---
