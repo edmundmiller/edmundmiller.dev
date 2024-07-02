@@ -4,6 +4,7 @@ description: Formatting Snakemake files Using snakefmt in Emacs using Apheleia
 draft: true
 publishDate: "2024-06-10"
 tags: ["emacs", "snakemake"]
+series: "Snakeflow"
 ---
 
 Dooms Emacs recently switched using Apheleia as it's default formatter, thanks to a huge effort from [Ellis Kenyő](https://elken.dev) to refactor the format module.
