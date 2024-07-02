@@ -1,6 +1,6 @@
 ---
 title: Formatting Snakemake using snakefmt in Emacs using Apheleia
-description: Formatting Snakemake snakefmt in Emacs using Apheleia
+description: A quick blurb about setting up snakefmt(Snakemake formatter) in Doom Emacs
 draft: true
 publishDate: "2024-06-10"
 tags: ["emacs", "snakemake"]
@@ -19,18 +19,18 @@ While Snakemake itself is packaged up in nixpkgs, snakefmt hasn't made it to the
 
 Recently though I found a handy tool for quickly generating package derivations, [nix-init](https://github.com/nix-community/nix-init).
 
-```
+```sh
 nix run github:nix-community/nix-init -- --url https://github.com/snakemake/snakefmt
 ```
 
 It pulls in the version and the dependencies, ✨Automagically✨.
 
 ```nix title="snakefmt.nix"
-{ lib
-, python3
-, fetchFromGitHub
+{
+  lib,
+  python3,
+  fetchFromGitHub,
 }:
-
 python3.pkgs.buildPythonApplication rec {
   pname = "snakefmt";
   version = "0.10.2";
@@ -54,14 +54,14 @@ python3.pkgs.buildPythonApplication rec {
     toml
   ];
 
-  pythonImportsCheck = [ "snakefmt" ];
+  pythonImportsCheck = ["snakefmt"];
 
   meta = with lib; {
     description = "The uncompromising Snakemake code formatter";
     homepage = "https://github.com/snakemake/snakefmt";
     changelog = "https://github.com/snakemake/snakefmt/blob/${src.rev}/CHANGELOG.md";
     license = licenses.mit;
-    maintainers = with maintainers; [ edmundmiller ];
+    maintainers = with maintainers; [edmundmiller];
     mainProgram = "snakefmt";
   };
 }
