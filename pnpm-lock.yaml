@@ -47,7 +47,7 @@ devDependencies:
     specifier: 0.7.0
     version: 0.7.0(prettier-plugin-astro@0.14.0)(prettier@3.3.2)(typescript@5.4.5)
   '@flydotio/dockerfile':
-    specifier: ^0.5.7
+    specifier: 0.5.7
     version: 0.5.7
   '@iconify-json/mdi':
     specifier: 1.1.66
