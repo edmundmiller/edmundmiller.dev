@@ -12,8 +12,17 @@ I've been writing a bit of Snakemake for the [Applied Genomics Course](https://a
 
 ## Aside: Packaging up `snakefmt` with Nix
 
-nix-init
+I've chosen the path less traveled, and use NixOS. Meaning I've sworn off using Conda, global pip installs, and other small conviences in the already narrow path that is using linux as a desktop environment.
 
+While Snakemake itself is packaged up in nixpkgs, snakefmt hasn't made it to the most magical repo on GitHub yet.
+
+Recently though I found a handy tool for quickly generating package derivations, [nix-init](https://github.com/nix-community/nix-init).
+
+```
+nix run github:nix-community/nix-init -- --url https://github.com/snakemake/snakefmt
+```
+
+It pulls in the version and the dependencies. ✨Automagically✨
 ## Apheleia
 
 ```emacs-lisp
