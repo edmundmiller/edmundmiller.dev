@@ -6,6 +6,9 @@
 ** TODO Snakemake for Chaining Nextflow pipelines
 ** TODO Snakemake and Rclone
 https://www.biostars.org/p/9469533/
+** TODO Adding Snakefmt to Emacs
+- nix-init
+- Alphelia
 * PROJ Ideas for my tech blog
 ** TODO Post on using devcontainer-cli and tramp
 https://www.emacswiki.org/emacs/TrampAndDocker
