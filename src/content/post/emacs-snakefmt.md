@@ -7,7 +7,7 @@ tags: ["emacs", "snakemake"]
 series: "Snakeflow"
 ---
 
-Dooms Emacs recently switched using [Apheleia](https://github.com/radian-software/apheleia) as it's default formatter, thanks to a huge effort from [Ellis Kenyő](https://elken.dev) to refactor the [format module](https://docs.doomemacs.org/latest/?#/modules/editor/format).
+Dooms Emacs recently switched to using [Apheleia](https://github.com/radian-software/apheleia) as it's default formatter, thanks to a huge effort from [Ellis Kenyő](https://elken.dev) to refactor the [format module](https://docs.doomemacs.org/latest/?#/modules/editor/format).
 
 I've been writing a bit of [Snakemake](https://snakemake.github.io/) for the [Applied Genomics Course](https://applied-genomics.dev/) that I teach in the Summer. The last time that I wrote much Snakemake(circa 2020), [snakefmt](https://github.com/snakemake/snakefmt) didn't exist yet. It follows the design and specifications of Black.
 
@@ -69,9 +69,9 @@ python3.pkgs.buildPythonApplication rec {
 
 ## Apheleia
 
-There are tons of code formatters out there. There's usuall multiple for popular languages. Everyone's got an opinion on what style to use.
+There are tons of code formatters out there. There's usually multiple for popular languages. Everyone's got an opinion on what style to use.
 
-Apheleia aims to remove specific Emacs packages for formatters. It's goal is have one interface to run all of your formatters from Emacs.
+Apheleia aims to remove specific Emacs packages for formatters. It's goal is to have one interface to run all of your formatters from Emacs.
 
 > running a code formatter on save suffers from the following two problems:
 
@@ -80,7 +80,7 @@ Apheleia aims to remove specific Emacs packages for formatters. It's goal is hav
 
 > Apheleia is an Emacs package which solves both of these problems comprehensively for all languages, allowing you to say goodbye to language-specific packages such as Blacken and prettier-js.
 
-The main opinion everyone shares is that a good code formatter should be fast, and therefor you should be able to forget about it.
+The main opinion everyone shares is that a good code formatter should be fast, and therefore you should be able to forget about it.
 
 It's really simple to configure formatters in [Doom Emacs](https://github.com/doomemacs/doomemacs).
 
