@@ -7,9 +7,9 @@ tags: ["emacs", "snakemake"]
 series: "Snakeflow"
 ---
 
-Dooms Emacs recently switched using Apheleia as it's default formatter, thanks to a huge effort from [Ellis Kenyő](https://elken.dev) to refactor the format module.
+Dooms Emacs recently switched using [Apheleia](https://github.com/radian-software/apheleia) as it's default formatter, thanks to a huge effort from [Ellis Kenyő](https://elken.dev) to refactor the [format module](https://docs.doomemacs.org/latest/?#/modules/editor/format).
 
-I've been writing a bit of Snakemake for the [Applied Genomics Course](https://applied-genomics.dev/) that I teach in the Summer. The last time that I wrote much Snakemake(circa 2020), snakefmt didn't exist yet.
+I've been writing a bit of [Snakemake](https://snakemake.github.io/) for the [Applied Genomics Course](https://applied-genomics.dev/) that I teach in the Summer. The last time that I wrote much Snakemake(circa 2020), [snakefmt](https://github.com/snakemake/snakefmt) didn't exist yet. It follows the design and specifications of Black.
 
 ## Aside: Packaging up `snakefmt` with Nix
 
