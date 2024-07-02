@@ -1,6 +1,6 @@
 ---
-title: Formatting Snakemake files Using snakefmt in Emacs
-description: Formatting Snakemake files Using snakefmt in Emacs using Apheleia
+title: Formatting Snakemake using snakefmt in Emacs using Apheleia
+description: Formatting Snakemake snakefmt in Emacs using Apheleia
 draft: true
 publishDate: "2024-06-10"
 tags: ["emacs", "snakemake"]
@@ -69,6 +69,36 @@ python3.pkgs.buildPythonApplication rec {
 
 ## Apheleia
 
-```emacs-lisp
+There are tons of code formatters out there. There's usuall multiple for popular languages. Everyone's got an opinion on what style to use.
+
+Apheleia aims to remove specific Emacs packages for formatters. It's goal is have one interface to run all of your formatters from Emacs.
+
+> running a code formatter on save suffers from the following two problems:
+
+>    1. It takes some time (e.g. around 200ms for Black on an empty file), which makes the editor feel less responsive.
+>    2. It invariably moves your cursor (point) somewhere unexpected if the changes made by the code formatter are too close to point's position.
+
+> Apheleia is an Emacs package which solves both of these problems comprehensively for all languages, allowing you to say goodbye to language-specific packages such as Blacken and prettier-js.
+
+The main opinion everyone shares is that a good code formatter should be fast, and therefor you should be able to forget about it.
+
+It's really simple to configure formatters in [Doom Emacs](https://github.com/doomemacs/doomemacs).
+
+```emacs-lisp title="config.el"
 (set-formatter! 'snakefmt '("snakefmt" "-") :modes '(snakemake-mode))
+```
+
+The `set-formatter!` macro takes:
+1. The name you want to give the formatter
+`snakefmt`
+2. The command you want ran (`--quiet` is used here often)
+`snakefmt -`
+3. The modes you want associated with the formatter
+`snakemake-mode`
+
+Another example for [Alejandra](https://github.com/kamadorueda/alejandra) for Nix.
+
+```emacs-lisp title="config.el"
+;;; :lang nix
+(set-formatter! 'alejandra '("alejandra" "--quiet") :modes '(nix-mode))
 ```
