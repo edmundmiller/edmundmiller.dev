@@ -11,12 +11,14 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "The Steam Deck ships with WireGuard",
-    "link": "https://xeiaso.net/notes/2024/steam-deck-wireguard/",
-    "summary": `One less install required!`,
+    "title": "&#34;No way to prevent this&#34; say users of only language where this regularly happens",
+    "link": "https://xeiaso.net/shitposts/no-way-to-prevent-this/CVE-2024-6387/",
+    "summary": `
+        In the hours following the release of CVE-2024-6387 for the project OpenSSH, site reliability workers
+        and systems administrators scrambled to desperately rebuild and patch all their systems to fix a combination of memory unsafety and glibc&amp;…`,
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
-    "date": "June 28, 2024"
+    "date": "July 1, 2024"
   },
   
   {
