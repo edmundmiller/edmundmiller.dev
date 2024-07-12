@@ -11,3 +11,5 @@ In the past we did a Makefile based pipeline, and then moved on to Nextflow. The
 The "pull" of Makefiles and Snakemake is clever and intuitive to use. You create "recipes" for files that you want to create and then you just ask for what you want and the DAG figures out how to make it. That's really great for simple analysis! It's quick and works.
 
 However when you start trying to use the paradigm to process complex workflows the complexity becomes huge quickly and it's difficult to collaborate on and starts to move really slowly.
+
+Would you use airflow or dagster to make a plot? Probably not.
