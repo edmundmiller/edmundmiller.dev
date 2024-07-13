@@ -86,8 +86,8 @@ devDependencies:
     specifier: 3.6.1
     version: 3.6.1(@typescript-eslint/parser@7.15.0)(eslint-plugin-import@2.29.1)(eslint@9.6.0)
   eslint-plugin-astro:
-    specifier: 1.2.2
-    version: 1.2.2(eslint@9.6.0)(typescript@5.5.3)
+    specifier: 1.2.3
+    version: 1.2.3(eslint@9.6.0)(typescript@5.5.3)
   eslint-plugin-deprecation:
     specifier: 3.0.0
     version: 3.0.0(eslint@9.6.0)(typescript@5.5.3)
@@ -3341,15 +3341,15 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-astro@1.2.2(eslint@9.6.0)(typescript@5.5.3):
-    resolution: {integrity: sha512-3UUWo/gwk/YhurYpFKgLJswV33kR9zhtzXk+u2g3WE5Px07wDtWSR3PoyPadHERA4g/9TCCGjsimU/TZyUKxow==}
+  /eslint-plugin-astro@1.2.3(eslint@9.6.0)(typescript@5.5.3):
+    resolution: {integrity: sha512-asHT0VUs68oppVnTHfp/WgLqs0yCx9kG9AC/PKLmp+87imeh3nGHMdFm0qP46vHxTM0NLDEhvmjFdAVAqw+QPQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       eslint: '>=8.57.0'
     dependencies:
       '@eslint-community/eslint-utils': 4.4.0(eslint@9.6.0)
       '@jridgewell/sourcemap-codec': 1.4.15
-      '@typescript-eslint/types': 7.14.1
+      '@typescript-eslint/types': 7.15.0
       astro-eslint-parser: 1.0.2(typescript@5.5.3)
       eslint: 9.6.0
       eslint-compat-utils: 0.5.1(eslint@9.6.0)
