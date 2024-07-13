@@ -47,8 +47,8 @@ devDependencies:
     specifier: 0.7.0
     version: 0.7.0(prettier-plugin-astro@0.14.0)(prettier@3.3.2)(typescript@5.5.3)
   '@flydotio/dockerfile':
-    specifier: 0.5.7
-    version: 0.5.7
+    specifier: 0.5.8
+    version: 0.5.8
   '@iconify-json/mdi':
     specifier: 1.1.67
     version: 1.1.67
@@ -916,8 +916,8 @@ packages:
       '@expressive-code/core': 0.35.3
     dev: false
 
-  /@flydotio/dockerfile@0.5.7:
-    resolution: {integrity: sha512-BVkXM2K/jLLYBFos1gT/bYv0YPJue8L4j0dkIsskJI4JRn6rPA9bZjT4sJzkzhdubZuwRGG9cgxj4Cfgt4lHlw==}
+  /@flydotio/dockerfile@0.5.8:
+    resolution: {integrity: sha512-119l9s4xUEATRWTQPddE0f+jZjVBhpnJiGA/aHzDiOUet2L7SD3G5jbSGvOXJm1Ks3kGmxUcPdt3BpLQRef+ow==}
     engines: {node: '>=16.0.0'}
     hasBin: true
     dependencies:
