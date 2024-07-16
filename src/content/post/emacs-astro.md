@@ -101,7 +101,7 @@ I just had to add a hook to `astro-ts-mode` and it pulled right up.
 
 From [Sorixelle's Emacs config](https://github.com/Sorixelle/dotfiles/blob/main/config/emacs-config.org#astro) I found the magic snippet that had prettier use `--parser=astro` in `.astro` files. ✨
 
-```eslip title=config.el
+```elisp title=config.el
 (set-formatter! 'prettier-astro
   '("npx" "prettier" "--parser=astro"
     (apheleia-formatters-indent "--use-tabs" "--tab-width" 'astro-ts-mode-indent-offset))

@@ -64,14 +64,6 @@ export const expressiveCodeOptions: AstroExpressiveCodeOptions = {
     return `[data-theme="${theme.name}"]`;
   },
   useThemedScrollbars: false,
-  shiki: {
-    // You can pass additional plugin options here,
-    // e.g. to load custom language grammars:
-    langs: [
-      // import('./some-exported-grammar.mjs'),
-      JSON.parse(fs.readFileSync("./src/misc/elisp-grammar.json", "utf-8")),
-    ],
-  },
   styleOverrides: {
     frames: {
       frameBoxShadowCssValue: "none",

@@ -100,7 +100,7 @@ notmuch
 Here you\'ll be prompted with some questions to get your config going.
 Below is an example of what it\'ll look like afterwards
 
-```conf
+```toml
 [database]
 path=/home/$USER/.mail
 
@@ -237,7 +237,7 @@ which tags everything according to this section of the config. Which
 just tags everything with `new` and ignores anything with the
 `Trash` tag.
 
-```conf
+```toml
 [new]
 tags=new
 ignore=Trash;*.json;
@@ -269,7 +269,7 @@ to setup.
 
 First setup `~/.msmtprc`
 
-```conf
+```toml
 # Set default values for all following accounts.
 defaults
 auth           on
@@ -299,6 +299,6 @@ You should be good to go and when in `notmuch` hit
 `C` and the `C-c C-c` to send and
 `C-c C-k` to cancel.
 
-```example
+```
 <normal-state> C    Compose new mail.
 ```
