@@ -11,30 +11,33 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "Join us in welcoming the new Nextflow Ambassadors",
-    "link": "https://nextflow.io/blog/2024/welcome_ambassadors_20242.html",
-    "summary": `It&amp;#39;s time for a new cohort of Nextflow Ambassadors, with both new and continuing volunteers, to start!`,
-    "source_title": "Nextflow Blog",
-    "source_link": "https://nextflow.io/",
-    "date": "July 10, 2024"
-  },
-  
-  {
-    "title": "My fears about AI are not what you think",
-    "link": "https://xeiaso.net/videos/2024/ai-fears/",
-    "summary": `A clip from a longer stream VOD where I run through my fears with the AI industry`,
+    "title": "Guerrilla event planning at larger conferences",
+    "link": "https://xeiaso.net/talks/2024/consentual-marketing/",
+    "summary": `How to capitalism with care`,
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
-    "date": "July 8, 2024"
+    "date": "July 20, 2024"
   },
   
   {
-    "title": "Maintainers Minutes: July 2024",
-    "link": "https://nf-co.re/blog/2024/maintainers-minutes-2024-07-02/",
-    "summary": `Keeping you informed of the latest maintainers discussions`,
+    "title": "A gentle introduction to nf-core/reportho",
+    "link": "https://nf-co.re/blog/2024/reportho_intro/",
+    "summary": `The nf-core pipeline for comparing ortholog predictions`,
     "source_title": "nf-core blog",
     "source_link": "https://nf-co.re/",
-    "date": "July 3, 2024"
+    "date": "July 18, 2024"
+  },
+  
+  {
+    "title": "So you want to compete with or replace open source",
+    "link": "https://drewdevault.com/2024/07/16/2024-07-16-So-you-want-to-compete-with-FOSS.html",
+    "summary": `We are living through an interesting moment in source-available software.1
+The open source movement has always had, and continues to have, a solid
+grounding in grassroots programmers building tools for themselves and forming
+communities around them. Some loo…`,
+    "source_title": "Drew DeVault&#39;s blog",
+    "source_link": "https://drewdevault.com",
+    "date": "July 16, 2024"
   },
   
 ];
