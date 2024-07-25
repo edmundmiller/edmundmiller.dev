@@ -16,7 +16,7 @@ Sure, I could shave these yaks, but I already have a whole herd of yaks in my Em
 
 So NixOS has this thing where it doesn't let Python and R just go around and do their thing, installing packages here, there, and everywhere.
 
-I've mostly gotten around those pain points with arguably better ways of doing things those tasks are trying to accomplish.
+I've mostly gotten around those pain points with arguably better ways of doing things those tasks are trying to accomplish[^12].
 
 But org-mode isn't always as clever.
 
@@ -27,6 +27,7 @@ I also really like projects to be self-contained. Sometimes I'll leave them for 
 3. Minimal boilerplate in the org file. The header shouldn't be a web of illegible nix, and every `src` block shouldn't go off the page with options.
 4. A way to quickly rerun the analysis from the command line so I can walk away.
 5. A template for a new analysis.
+6. What are all the cool org-mode things I can do?
 
 ## Nix Shell and Org Mode
 
@@ -50,10 +51,18 @@ This turned out to be surprisingly easy. I found a thread of the NixOS Dicourse 
 
 ## Rerunning the Analysis
 
+https://michaelneuper.com/posts/replace-jupyter-notebook-with-emacs-org-mode/
+Integrating with external tools and libraries
+Bonus: Importing existing Jupyter Notebooks into Org Mode
+
 ## Template
 
 <!-- TODO Propably gonna be a nix flake init -->
 <!-- TODO Maybe a quick org-mode template? -->
+
+## Cool Org Mode tricks
+
+https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-python.html
 
 # Literature Review
 
@@ -62,6 +71,19 @@ This turned out to be surprisingly easy. I found a thread of the NixOS Dicourse 
 [^5]: https://michaelneuper.com/posts/replace-jupyter-notebook-with-emacs-org-mode/
 
 [^6]: https://orgmode.org/worg/org-contrib/babel/examples/data-collection-analysis.html
+
+#### Nix Shell and Python
+
+https://github.com/the-nix-way/dev-templates/blob/main/python/flake.nix
+https://gist.github.com/bb010g/8a28a7d1fcdb021b42d1da71d2429a4b#venvshellhookshell
+
+<!-- https://emacs.stackexchange.com/questions/17926/python-org-mode-source-block-output-is-always-none -->
+
+#### Python and Org Mode
+
+[^13]:
+    Needed `:results output`
+    https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-python.html
 
 ## Org Mode Code Blocks
 
@@ -74,3 +96,5 @@ This turned out to be surprisingly easy. I found a thread of the NixOS Dicourse 
 [^10]: https://orgmode.org/manual/Results-of-Evaluation.html
 
 [^11]: https://orgmode.org/manual/Exporting-Code-Blocks.html
+
+[^12]: https://discourse.nixos.org/t/why-is-it-so-hard-to-use-a-python-package/19200
