@@ -23,15 +23,49 @@ But org-mode isn't always as clever.
 I also really like projects to be self-contained. Sometimes I'll leave them for a while, and I want it to be easy to pick them back up and not end up trying to reproduce the whole system.
 
 1. I want a Nix shell for the project, with an easy and clear way to pull in more Python and R packages as the analysis progresses. It should be simple an clear what's going on. It doesn't need to cover every persons use-case ever, just mine.
-2. A template for a new analysis.
-3. Ideally I'd like this all contained within the org file itself.
-4. A way to quickly rerun the analysis from the command line so I can walk away.
-5. Minimal boilerplate in the org file. The header shouldn't be a web of illegible nix, and every `src` block shouldn't go off the page with options.
+2. Ideally I'd like this all contained within the org file itself.
+3. A way to quickly rerun the analysis from the command line so I can walk away.
+4. Minimal boilerplate in the org file. The header shouldn't be a web of illegible nix, and every `src` block shouldn't go off the page with options.
+5. A template for a new analysis.
 
-# Links
+## Nix Shell and Org Mode
 
-https://michaelneuper.com/posts/replace-jupyter-notebook-with-emacs-org-mode/
-https://orgmode.org/worg/org-contrib/babel/examples/data-collection-analysis.html
-https://discourse.nixos.org/t/nix-shells-in-emacs-org-mode-source-blocks/12673
-https://github.com/shlevy/nix-buffer
-https://github.com/AntonHakansson/org-nix-shell
+[^1]
+
+[^1]: https://nixos.org/guides/nix-pills/10-developing-with-nix-shell
+
+[^2]: https://github.com/AntonHakansson/org-nix-shell
+
+[^3]: https://www.arcadianvisions.com/blog/2018/org-nix-direnv.html
+
+[^4]: https://matthewbauer.us/blog/nix-and-org.html
+
+[^7]: https://discourse.nixos.org/t/nix-shells-in-emacs-org-mode-source-blocks/12673
+
+<!-- Also mentioned https://github.com/shlevy/nix-buffer -->
+
+### Contained within the org file
+
+## Template
+
+<!-- TODO Propably gonna be a nix flake init -->
+
+# Literature Review
+
+## Replacing Jupyter with Org Mode
+
+[^5]: https://michaelneuper.com/posts/replace-jupyter-notebook-with-emacs-org-mode/
+
+[^6]: https://orgmode.org/worg/org-contrib/babel/examples/data-collection-analysis.html
+
+## Org Mode Code Blocks
+
+[^7]: https://orgmode.org/manual/Using-Header-Arguments.html
+
+[^8]: https://orgmode.org/manual/Environment-of-a-Code-Block.html
+
+[^9]: https://orgmode.org/manual/Evaluating-Code-Blocks.html#Cache-results-of-evaluation-1
+
+[^10]: https://orgmode.org/manual/Results-of-Evaluation.html
+
+[^11]: https://orgmode.org/manual/Exporting-Code-Blocks.html
