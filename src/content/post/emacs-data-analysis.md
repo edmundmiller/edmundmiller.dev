@@ -24,8 +24,8 @@ I also really like projects to be self-contained. Sometimes I'll leave them for 
 
 1. I want a Nix shell for the project, with an easy and clear way to pull in more Python and R packages as the analysis progresses. It should be simple an clear what's going on. It doesn't need to cover every persons use-case ever, just mine.
 2. Ideally I'd like this all contained within the org file itself.
-3. A way to quickly rerun the analysis from the command line so I can walk away.
 4. Minimal boilerplate in the org file. The header shouldn't be a web of illegible nix, and every `src` block shouldn't go off the page with options.
+3. A way to quickly rerun the analysis from the command line so I can walk away.
 5. A template for a new analysis.
 
 ## Nix Shell and Org Mode
@@ -45,6 +45,11 @@ I also really like projects to be self-contained. Sometimes I'll leave them for 
 <!-- Also mentioned https://github.com/shlevy/nix-buffer -->
 
 ### Contained within the org file
+
+### Minimal Boilerplate
+
+## Rerunning the Analysis
+
 
 ## Template
 
