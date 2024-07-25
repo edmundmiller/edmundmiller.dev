@@ -24,15 +24,15 @@ I also really like projects to be self-contained. Sometimes I'll leave them for 
 
 1. I want a Nix shell for the project, with an easy and clear way to pull in more Python and R packages as the analysis progresses. It should be simple an clear what's going on. It doesn't need to cover every persons use-case ever, just mine.
 2. Ideally I'd like this all contained within the org file itself.
-4. Minimal boilerplate in the org file. The header shouldn't be a web of illegible nix, and every `src` block shouldn't go off the page with options.
-3. A way to quickly rerun the analysis from the command line so I can walk away.
+3. Minimal boilerplate in the org file. The header shouldn't be a web of illegible nix, and every `src` block shouldn't go off the page with options.
+4. A way to quickly rerun the analysis from the command line so I can walk away.
 5. A template for a new analysis.
 
 ## Nix Shell and Org Mode
 
-[^1]
+[^1] https://discourse.nixos.org/t/nix-shells-in-emacs-org-mode-source-blocks/12673
 
-[^1]: https://nixos.org/guides/nix-pills/10-developing-with-nix-shell
+[^5]: https://nixos.org/guides/nix-pills/10-developing-with-nix-shell
 
 [^2]: https://github.com/AntonHakansson/org-nix-shell
 
@@ -40,9 +40,9 @@ I also really like projects to be self-contained. Sometimes I'll leave them for 
 
 [^4]: https://matthewbauer.us/blog/nix-and-org.html
 
-[^7]: https://discourse.nixos.org/t/nix-shells-in-emacs-org-mode-source-blocks/12673
-
 <!-- Also mentioned https://github.com/shlevy/nix-buffer -->
+
+This turned out to be surprisingly easy. I found a thread of the NixOS Dicourse with my kind of people in it.[^1]
 
 ### Contained within the org file
 
@@ -50,10 +50,10 @@ I also really like projects to be self-contained. Sometimes I'll leave them for 
 
 ## Rerunning the Analysis
 
-
 ## Template
 
 <!-- TODO Propably gonna be a nix flake init -->
+<!-- TODO Maybe a quick org-mode template? -->
 
 # Literature Review
 
