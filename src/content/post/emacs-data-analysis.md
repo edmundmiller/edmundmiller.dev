@@ -1,7 +1,7 @@
 ---
 title: Harnessing the Power of Emacs for Data Analysis on NixOS
 description: >
-    In this blog post, we explore the powerful combination of using Emacs, the highly extensible text editor, for data analysis tasks on the NixOS operating system. We dive into the benefits of using Emacs for data manipulation, visualization, and reporting, highlighting its vast ecosystem of packages and customization options.
+    In this blog post, we explore the powerful combination of using Emacs, the highly extensible text editor, for data analysis tasks while using the NixOS operating system.
 draft: true
 publishDate: "04 Jan 2024"
 tags: ["emacs", "python", "Nix"]
