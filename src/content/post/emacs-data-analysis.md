@@ -1,6 +1,7 @@
 ---
-title: Using Emacs for Data Analysis on NixOS
-description: TODO
+title: Harnessing the Power of Emacs for Data Analysis on NixOS
+description: >
+    In this blog post, we explore the powerful combination of using Emacs, the highly extensible text editor, for data analysis tasks on the NixOS operating system. We dive into the benefits of using Emacs for data manipulation, visualization, and reporting, highlighting its vast ecosystem of packages and customization options.
 draft: true
 publishDate: "04 Jan 2024"
 tags: ["emacs", "python", "Nix"]
@@ -46,6 +47,10 @@ I also really like projects to be self-contained. Sometimes I'll leave them for 
 This turned out to be surprisingly easy. I found a thread of the NixOS Dicourse with my kind of people in it.[^1]
 
 ### Contained within the org file
+
+### direnv and org-mode
+
+https://github.com/purcell/envrc/issues/28
 
 ### Minimal Boilerplate
 
@@ -98,3 +103,5 @@ https://gist.github.com/bb010g/8a28a7d1fcdb021b42d1da71d2429a4b#venvshellhookshe
 [^11]: https://orgmode.org/manual/Exporting-Code-Blocks.html
 
 [^12]: https://discourse.nixos.org/t/why-is-it-so-hard-to-use-a-python-package/19200
+
+https://github.com/doomemacs/doomemacs/issues/2416`
