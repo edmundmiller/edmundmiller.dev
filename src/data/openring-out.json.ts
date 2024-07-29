@@ -11,12 +11,26 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "Guerrilla event planning at larger conferences",
-    "link": "https://xeiaso.net/talks/2024/consentual-marketing/",
-    "summary": `How to capitalism with care`,
+    "title": "Xecast Episode 1: Origins and Techaro",
+    "link": "https://xeiaso.net/xecast/001/",
+    "summary": `
+        
+        Your browser does not support the audio element.
+        Download MP3
+        Also catch Xecast on YouTube (I&amp;#39;ll make a proper podcast feed soon, trying to de-scope so I can actually get things done).
+        &amp;lt;Mimi&amp;gt; These show notes…`,
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
-    "date": "July 20, 2024"
+    "date": "July 28, 2024"
+  },
+  
+  {
+    "title": "How I became a Nextflow Ambassador!",
+    "link": "https://nextflow.io/blog/2024/how_i_became_a_nextflow_ambassador.html",
+    "summary": `This blog describes my journey from bash to nextflow community.`,
+    "source_title": "Nextflow Blog",
+    "source_link": "https://nextflow.io/",
+    "date": "July 24, 2024"
   },
   
   {
@@ -26,18 +40,6 @@ export const openringData: OpenringItem[] =
     "source_title": "nf-core blog",
     "source_link": "https://nf-co.re/",
     "date": "July 18, 2024"
-  },
-  
-  {
-    "title": "So you want to compete with or replace open source",
-    "link": "https://drewdevault.com/2024/07/16/2024-07-16-So-you-want-to-compete-with-FOSS.html",
-    "summary": `We are living through an interesting moment in source-available software.1
-The open source movement has always had, and continues to have, a solid
-grounding in grassroots programmers building tools for themselves and forming
-communities around them. Some loo…`,
-    "source_title": "Drew DeVault&#39;s blog",
-    "source_link": "https://drewdevault.com",
-    "date": "July 16, 2024"
   },
   
 ];
