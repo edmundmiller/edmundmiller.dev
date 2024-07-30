@@ -68,8 +68,8 @@ devDependencies:
     specifier: 0.5.13
     version: 0.5.13(tailwindcss@3.4.6)
   '@types/eslint':
-    specifier: 8.56.10
-    version: 8.56.10
+    specifier: 8.56.11
+    version: 8.56.11
   '@typescript-eslint/eslint-plugin':
     specifier: 7.16.1
     version: 7.16.1(@typescript-eslint/parser@7.16.1)(eslint@9.7.0)(typescript@5.5.3)
@@ -1663,8 +1663,8 @@ packages:
       '@types/ms': 0.7.34
     dev: false
 
-  /@types/eslint@8.56.10:
-    resolution: {integrity: sha512-Shavhk87gCtY2fhXDctcfS3e6FdxWkCx1iUZ9eEUbh7rTqlZT0/IzOkCOVt0fCjcFuZ9FPYfuezTBImfHCDBGQ==}
+  /@types/eslint@8.56.11:
+    resolution: {integrity: sha512-sVBpJMf7UPo/wGecYOpk2aQya2VUGeHhe38WG7/mN5FufNSubf5VT9Uh9Uyp8/eLJpu1/tuhJ/qTo4mhSB4V4Q==}
     dependencies:
       '@types/estree': 1.0.5
       '@types/json-schema': 7.0.15
