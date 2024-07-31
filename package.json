@@ -35,7 +35,7 @@
     "@resvg/resvg-js": "2.6.2",
     "@tailwindcss/aspect-ratio": "0.4.2",
     "@tailwindcss/typography": "0.5.13",
-    "@types/eslint": "8.56.11",
+    "@types/eslint": "9.6.0",
     "@typescript-eslint/eslint-plugin": "7.18.0",
     "@typescript-eslint/parser": "7.18.0",
     "astro-eslint-parser": "1.0.2",
