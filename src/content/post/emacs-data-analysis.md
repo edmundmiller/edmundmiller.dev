@@ -81,6 +81,7 @@ https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-python.html
 
 https://github.com/the-nix-way/dev-templates/blob/main/python/flake.nix
 https://gist.github.com/bb010g/8a28a7d1fcdb021b42d1da71d2429a4b#venvshellhookshell
+https://nixos.org/manual/nixpkgs/stable/#ad-hoc-temporary-python-environment-with-nix-shell
 
 <!-- https://emacs.stackexchange.com/questions/17926/python-org-mode-source-block-output-is-always-none -->
 
