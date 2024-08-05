@@ -11,17 +11,12 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "Xecast Episode 1: Origins and Techaro",
-    "link": "https://xeiaso.net/xecast/001/",
-    "summary": `
-        
-        Your browser does not support the audio element.
-        Download MP3
-        Also catch Xecast on YouTube (I&amp;#39;ll make a proper podcast feed soon, trying to de-scope so I can actually get things done).
-        &amp;lt;Mimi&amp;gt; These show notes…`,
+    "title": "This game would be perfect if it wasn&#39;t gacha",
+    "link": "https://xeiaso.net/videos/2024/zzz-review/",
+    "summary": `TL;DR: Zenless Zone Zero is a fantastic game that&amp;#39;s ruined by its gacha system. It&amp;#39;s a shame that it&amp;#39;s a gacha game, because it&amp;#39;s so good otherwise. 8/10`,
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
-    "date": "July 28, 2024"
+    "date": "July 31, 2024"
   },
   
   {
