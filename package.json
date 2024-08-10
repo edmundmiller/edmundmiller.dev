@@ -30,7 +30,7 @@
   "devDependencies": {
     "@astrojs/check": "0.9.2",
     "@flydotio/dockerfile": "0.5.8",
-    "@iconify-json/mdi": "1.1.67",
+    "@iconify-json/mdi": "1.1.68",
     "@pagefind/default-ui": "1.1.0",
     "@resvg/resvg-js": "2.6.2",
     "@tailwindcss/aspect-ratio": "0.4.2",
