@@ -11,21 +11,26 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "This game would be perfect if it wasn&#39;t gacha",
-    "link": "https://xeiaso.net/videos/2024/zzz-review/",
-    "summary": `TL;DR: Zenless Zone Zero is a fantastic game that&amp;#39;s ruined by its gacha system. It&amp;#39;s a shame that it&amp;#39;s a gacha game, because it&amp;#39;s so good otherwise. 8/10`,
+    "title": "Xecast Episode 2: Conferences, homelabs, and AI",
+    "link": "https://xeiaso.net/xecast/002/",
+    "summary": `
+        
+        Your browser does not support the audio element.
+        Download MP3
+        Also catch Xecast on YouTube (I&amp;#39;ll make a proper podcast feed soon, trying to de-scope so I can actually get things done).
+        &amp;lt;Mimi&amp;gt; These show notes…`,
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
-    "date": "July 31, 2024"
+    "date": "August 11, 2024"
   },
   
   {
-    "title": "How I became a Nextflow Ambassador!",
-    "link": "https://nextflow.io/blog/2024/how_i_became_a_nextflow_ambassador.html",
-    "summary": `This blog describes my journey from bash to nextflow community.`,
+    "title": "Experimental cleanup with nf-boost",
+    "link": "https://nextflow.io/blog/2024/experimental-cleanup-with-nf-boost.html",
+    "summary": `nf-boost is a Nextflow plugin that tackles storage issues by cleaning intermediate files on the fly, inspired by challenges faced with the GEMmaker pipeline. This blog post tells the backstory and what you can achieve with the plugin today.`,
     "source_title": "Nextflow Blog",
     "source_link": "https://nextflow.io/",
-    "date": "July 24, 2024"
+    "date": "August 8, 2024"
   },
   
   {
