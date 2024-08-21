@@ -6,7 +6,7 @@ publish: 2024-08-21
 tags: ["bioinformatics", "python"]
 ---
 
-Recently, Anaconda has decided to start charging users for access to the default channel. This change in policy has significant implications for the data science and machine learning community, as Anaconda is a widely used platform for managing Python and R packages.[^1][^2][^3]
+Recently, Anaconda has decided to start charging users for access to the default channel. This change in policy has significant implications for the data science and machine learning community, as Anaconda is a widely used platform for managing Python and R packages.[^1][^2][^3] Prefix.dev has a [nice article summarizing the whole thing](https://prefix.dev/blog/towards_a_vendor_lock_in_free_conda_experience).
 
 The Python ecosystem has recently seen a proliferation of attempts to completely rework its package managers. Several new projects have emerged, each aiming to address in the existing package managers. An issue that isn't really due that "pip and conda are bad". `pip` was released **April 4th, 2011** and `Anaconda` was first release **July 17th, 2012**. That's long before I even took an intro CS course my freshman year of college, so I'm not gonna judge what everyone else was doing then.
 
