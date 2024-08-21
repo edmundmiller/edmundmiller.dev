@@ -38,5 +38,14 @@ import flask
 [What's next? Are they're going to make it easier to do specify dependancies in a jupyter Notebook?](https://x.com/strangemonad/status/1826080686203449633) Madness!
 
 # Nix-shell
+
 A drawback of `uv` is that it just works for Python (That I know of).
 https://nix.dev/tutorials/first-steps/reproducible-scripts
+
+# Justfiles
+
+<!-- TODO Justfiles -->
+
+## Shebangception
+
+https://just.systems/man/en/chapter_43.html
