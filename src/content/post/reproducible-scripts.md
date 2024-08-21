@@ -2,7 +2,7 @@
 title: The State of Reproducible Scripts
 description: Making scripts reproducible for your future self
 draft: true
-publish: 2024-08-21
+publishDate: 2024-08-21
 tags: ["bioinformatics", "python"]
 ---
 

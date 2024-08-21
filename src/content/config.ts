@@ -11,7 +11,8 @@ const post = defineCollection({
   type: "content",
   schema: ({ image }) =>
     z.object({
-      title: z.string().max(60),
+      // FIXME Moved down to 60
+      title: z.string().max(78),
       // FIXME Bump this up to 50-160 for SEO
       description: z.string().min(30).max(283),
       publishDate: z
