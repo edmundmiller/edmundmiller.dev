@@ -8,11 +8,11 @@ tags: ["bioinformatics", "python"]
 
 Recently, Anaconda has decided to start charging users for access to the default channel. This change in policy has significant implications for the data science and machine learning community, as Anaconda is a widely used platform for managing Python and R packages.[^1][^2][^3]
 
-The Python ecosystem has recently seen a proliferation of attempts to completely rework its package managers. Several new projects have emerged, each aiming to address in the existing package managers. An issue that isn't really due that "pip and conda are bad". `pip` was released **April 4th, 2011** and `Anaconda` was first release **July 17th, 2012**. That's long before I even took an intro CS coures my freshman year of college, so I'm not gonna judge what everyone else was doing then.
+The Python ecosystem has recently seen a proliferation of attempts to completely rework its package managers. Several new projects have emerged, each aiming to address in the existing package managers. An issue that isn't really due that "pip and conda are bad". `pip` was released **April 4th, 2011** and `Anaconda` was first release **July 17th, 2012**. That's long before I even took an intro CS course my freshman year of college, so I'm not gonna judge what everyone else was doing then.
 
-The space is ripe for distruption. There have been some exciting complete rewrites that have come out recently with [ruff](https://docs.astral.sh/ruff) and [uv](https://docs.astral.sh/uv/) from Astral in the Python ecosystem. In the conda ecosystem, I've lost track of the different ways to install a conda package, Anaconda, miniconda, Mamba, micromamba, mambaforge. I can't keep up.
+The space is ripe for disruption. There have been some exciting complete rewrites that have come out recently with [ruff](https://docs.astral.sh/ruff) and [uv](https://docs.astral.sh/uv/) from Astral in the Python ecosystem. In the conda ecosystem, I've lost track of the different ways to install a conda package, Anaconda, miniconda, Mamba, micromamba, mambaforge. I can't keep up.
 
-I recently started using [`Pixi`](https://pixi.sh/latest/) from [prefix.dev](https://prefix.dev/). It's been really nice. I want to forget about a package manager. It let's me do that.
+I recently started using [`Pixi`](https://pixi.sh/latest/) from [prefix.dev](https://prefix.dev/). It's been really nice. I want to forget about a package manager. Pixi let's me do that.
 
 # Pixi for Bioinformatics
 
@@ -34,7 +34,7 @@ Just thought I'd add a quick TL;DR here. This is how easy it is to get started. 
 
 ### One way to install it just about everywhere
 
-Problem: Which way should you install?
+Problem: Which way should you install conda?
 
 - Anaconda
 - miniconda
@@ -108,7 +108,7 @@ pixi init --import environment.yml
 
 This will create a new project with the dependencies from the `environment.yml` file.
 
-# Conclusion
+<!-- TODO # Conclusion -->
 
 [^1]: https://x.com/NM_Reid/status/1825997577151525338
 
