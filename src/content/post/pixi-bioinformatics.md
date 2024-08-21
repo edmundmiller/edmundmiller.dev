@@ -1,6 +1,6 @@
 ---
-title:
-description: How to adopt pixi on an HPC cluster near you.
+title: Pixi: A Fresh Approach to Conda Package Management
+description: How to adopt pixi on an HPC cluster near you. Simplify your bioinformatics workflow with Pixi today!
 draft: true
 publish: 2024-08-21
 tags: ["bioinformatics", "python"]
