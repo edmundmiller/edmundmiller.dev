@@ -11,6 +11,24 @@ export const openringData: OpenringItem[] =
 [
   
   {
+    "title": "LinkedIn collaborative articles confuse me",
+    "link": "https://xeiaso.net/notes/2024/linkedin-collaborative-articles/",
+    "summary": `Toss an insight to your algorithmic overlords`,
+    "source_title": "Xe Iaso&#39;s blog",
+    "source_link": "https://xeiaso.net/",
+    "date": "September 6, 2024"
+  },
+  
+  {
+    "title": "Maintainers Minutes: September 2024",
+    "link": "https://nf-co.re/blog/2024/maintainers-minutes-2024-08-30/",
+    "summary": `Keeping you informed of the latest maintainers discussions`,
+    "source_title": "nf-core blog",
+    "source_link": "https://nf-co.re/",
+    "date": "August 30, 2024"
+  },
+  
+  {
     "title": "Rust for Linux revisited",
     "link": "https://drewdevault.com/2024/08/30/2024-08-30-Rust-in-Linux-revisited.html",
     "summary": `
@@ -24,24 +42,6 @@ conclusion consistent with Betteridge’s law of head…`,
     "source_title": "Drew DeVault&#39;s blog",
     "source_link": "https://drewdevault.com",
     "date": "August 30, 2024"
-  },
-  
-  {
-    "title": "What is the soul of a game?",
-    "link": "https://xeiaso.net/videos/2024/soul-of-game/",
-    "summary": `A video essay about Pikmin`,
-    "source_title": "Xe Iaso&#39;s blog",
-    "source_link": "https://xeiaso.net/",
-    "date": "August 30, 2024"
-  },
-  
-  {
-    "title": "Moving toward better support through the Community forum",
-    "link": "https://nextflow.io/blog/2024/better-support-through-community-forum-2024.html",
-    "summary": `Announcing a wave of improvements to the Community forum, including a sleeker design, better navigation and a one-size-fits-all category for support questions.`,
-    "source_title": "Nextflow Blog",
-    "source_link": "https://nextflow.io/",
-    "date": "August 28, 2024"
   },
   
 ];
