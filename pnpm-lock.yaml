@@ -89,8 +89,8 @@ devDependencies:
     specifier: 3.6.3
     version: 3.6.3(@typescript-eslint/parser@8.4.0)(eslint-plugin-import@2.30.0)(eslint@9.10.0)
   eslint-plugin-astro:
-    specifier: 1.2.3
-    version: 1.2.3(eslint@9.10.0)(typescript@5.5.4)
+    specifier: 1.2.4
+    version: 1.2.4(eslint@9.10.0)(typescript@5.5.4)
   eslint-plugin-deprecation:
     specifier: 3.0.0
     version: 3.0.0(eslint@9.10.0)(typescript@5.5.4)
@@ -1177,10 +1177,6 @@ packages:
     resolution: {integrity: sha512-R8gLRTZeyp03ymzP/6Lil/28tGeGEzhx1q2k703KGWRAI1VdvPIXdG70VJc2pAMw3NA6JKL5hhFu1sJX0Mnn/A==}
     engines: {node: '>=6.0.0'}
 
-  /@jridgewell/sourcemap-codec@1.4.15:
-    resolution: {integrity: sha512-eF2rxCRulEKXHTRiDrDy6erMYWqNw4LPdQ8UQA4huuxaQsVeRPFl2oM8oDGxMFhJUWZf9McpLtJasDDZb/Bpeg==}
-    dev: true
-
   /@jridgewell/sourcemap-codec@1.5.0:
     resolution: {integrity: sha512-gv3ZRaISU3fjPAgNsriBRqGWQL6quFx04YMPW/zD8XMLsU32mhCCbfbO6KZFLjvYpCZ8zyDEgqsgf+PwPaM7GQ==}
 
@@ -1876,11 +1872,6 @@ packages:
 
   /@typescript-eslint/types@7.14.1:
     resolution: {integrity: sha512-mL7zNEOQybo5R3AavY+Am7KLv8BorIv7HCYS5rKoNZKQD9tsfGUpO4KdAn3sSUvTiS4PQkr2+K0KJbxj8H9NDg==}
-    engines: {node: ^18.18.0 || >=20.0.0}
-    dev: true
-
-  /@typescript-eslint/types@7.15.0:
-    resolution: {integrity: sha512-aV1+B1+ySXbQH0pLK0rx66I3IkiZNidYobyfn0WFsdGhSXw+P3YOqeTq5GED458SfB24tg+ux3S+9g118hjlTw==}
     engines: {node: ^18.18.0 || >=20.0.0}
     dev: true
 
@@ -3430,15 +3421,15 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-astro@1.2.3(eslint@9.10.0)(typescript@5.5.4):
-    resolution: {integrity: sha512-asHT0VUs68oppVnTHfp/WgLqs0yCx9kG9AC/PKLmp+87imeh3nGHMdFm0qP46vHxTM0NLDEhvmjFdAVAqw+QPQ==}
+  /eslint-plugin-astro@1.2.4(eslint@9.10.0)(typescript@5.5.4):
+    resolution: {integrity: sha512-45uXKW6lxmYEa8Gkh5lCfwAnOyQD90AaMS2Bu9ans88f+pFkliqjGeexiKv73oiTcY3I0vlzTUk5GlqvYlkjyA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       eslint: '>=8.57.0'
     dependencies:
       '@eslint-community/eslint-utils': 4.4.0(eslint@9.10.0)
-      '@jridgewell/sourcemap-codec': 1.4.15
-      '@typescript-eslint/types': 7.15.0
+      '@jridgewell/sourcemap-codec': 1.5.0
+      '@typescript-eslint/types': 8.4.0
       astro-eslint-parser: 1.0.3(typescript@5.5.4)
       eslint: 9.10.0
       eslint-compat-utils: 0.5.1(eslint@9.10.0)
