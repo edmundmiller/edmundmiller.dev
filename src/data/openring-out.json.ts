@@ -11,12 +11,21 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "LinkedIn collaborative articles confuse me",
-    "link": "https://xeiaso.net/notes/2024/linkedin-collaborative-articles/",
-    "summary": `Toss an insight to your algorithmic overlords`,
+    "title": "I fixed the strawberry problem because OpenAI couldn&#39;t",
+    "link": "https://xeiaso.net/blog/2024/strawberry/",
+    "summary": `Remember kids: real winners cheat`,
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
-    "date": "September 6, 2024"
+    "date": "September 13, 2024"
+  },
+  
+  {
+    "title": "Addressing Bioinformatics Core Challenges with Nextflow and nf-core",
+    "link": "https://nextflow.io/blog/2024/addressing-bioinformatics-core-challenges.html",
+    "summary": `From managing complex pipelines to optimizing resource utilization, Nextflow offers a range of benefits that can streamline workflows and improve productivity for bioinformatics core groups.`,
+    "source_title": "Nextflow Blog",
+    "source_link": "https://nextflow.io/",
+    "date": "September 11, 2024"
   },
   
   {
@@ -25,22 +34,6 @@ export const openringData: OpenringItem[] =
     "summary": `Keeping you informed of the latest maintainers discussions`,
     "source_title": "nf-core blog",
     "source_link": "https://nf-co.re/",
-    "date": "August 30, 2024"
-  },
-  
-  {
-    "title": "Rust for Linux revisited",
-    "link": "https://drewdevault.com/2024/08/30/2024-08-30-Rust-in-Linux-revisited.html",
-    "summary": `
-Ugh. Drew’s blogging about Rust again.
-
-– You
-I promise to be nice.
-Two years ago, seeing the Rust-for-Linux project starting to get the ball
-rolling, I wrote “Does Rust belong in the Linux kernel?”, penning a
-conclusion consistent with Betteridge’s law of head…`,
-    "source_title": "Drew DeVault&#39;s blog",
-    "source_link": "https://drewdevault.com",
     "date": "August 30, 2024"
   },
   
