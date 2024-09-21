@@ -16,7 +16,7 @@ dependencies:
     version: 3.1.6
   '@astrojs/tailwind':
     specifier: 5.1.0
-    version: 5.1.0(astro@4.15.6)(tailwindcss@3.4.11)
+    version: 5.1.0(astro@4.15.6)(tailwindcss@3.4.12)
   '@wooorm/starry-night':
     specifier: 3.5.0
     version: 3.5.0
@@ -63,10 +63,10 @@ devDependencies:
     version: 2.6.2
   '@tailwindcss/aspect-ratio':
     specifier: 0.4.2
-    version: 0.4.2(tailwindcss@3.4.11)
+    version: 0.4.2(tailwindcss@3.4.12)
   '@tailwindcss/typography':
     specifier: 0.5.15
-    version: 0.5.15(tailwindcss@3.4.11)
+    version: 0.5.15(tailwindcss@3.4.12)
   '@types/eslint':
     specifier: 9.6.1
     version: 9.6.1
@@ -143,8 +143,8 @@ devDependencies:
     specifier: 4.0.0
     version: 4.0.0
   tailwindcss:
-    specifier: 3.4.11
-    version: 3.4.11
+    specifier: 3.4.12
+    version: 3.4.12
   typescript:
     specifier: 5.6.2
     version: 5.6.2
@@ -311,7 +311,7 @@ packages:
       zod: 3.23.8
     dev: false
 
-  /@astrojs/tailwind@5.1.0(astro@4.15.6)(tailwindcss@3.4.11):
+  /@astrojs/tailwind@5.1.0(astro@4.15.6)(tailwindcss@3.4.12):
     resolution: {integrity: sha512-BJoCDKuWhU9FT2qYg+fr6Nfb3qP4ShtyjXGHKA/4mHN94z7BGcmauQK23iy+YH5qWvTnhqkd6mQPQ1yTZTe9Ig==}
     peerDependencies:
       astro: ^3.0.0 || ^4.0.0
@@ -321,7 +321,7 @@ packages:
       autoprefixer: 10.4.20(postcss@8.4.47)
       postcss: 8.4.47
       postcss-load-config: 4.0.2(postcss@8.4.47)
-      tailwindcss: 3.4.11
+      tailwindcss: 3.4.12
     transitivePeerDependencies:
       - ts-node
     dev: false
@@ -352,7 +352,7 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/highlight': 7.24.7
-      picocolors: 1.0.1
+      picocolors: 1.1.0
     dev: false
 
   /@babel/compat-data@7.25.2:
@@ -481,7 +481,7 @@ packages:
       '@babel/helper-validator-identifier': 7.24.7
       chalk: 2.4.2
       js-tokens: 4.0.0
-      picocolors: 1.0.1
+      picocolors: 1.1.0
     dev: false
 
   /@babel/parser@7.25.6:
@@ -1596,15 +1596,15 @@ packages:
       string.prototype.codepointat: 0.2.1
     dev: false
 
-  /@tailwindcss/aspect-ratio@0.4.2(tailwindcss@3.4.11):
+  /@tailwindcss/aspect-ratio@0.4.2(tailwindcss@3.4.12):
     resolution: {integrity: sha512-8QPrypskfBa7QIMuKHg2TA7BqES6vhBrDLOv8Unb6FcFyd3TjKbc6lcmb9UPQHxfl24sXoJ41ux/H7qQQvfaSQ==}
     peerDependencies:
       tailwindcss: '>=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1'
     dependencies:
-      tailwindcss: 3.4.11
+      tailwindcss: 3.4.12
     dev: true
 
-  /@tailwindcss/typography@0.5.15(tailwindcss@3.4.11):
+  /@tailwindcss/typography@0.5.15(tailwindcss@3.4.12):
     resolution: {integrity: sha512-AqhlCXl+8grUz8uqExv5OTtgpjuVIwFTSXTrh8y9/pw6q2ek7fJ+Y8ZEVw7EB2DCcuCOtEjf9w3+J3rzts01uA==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || insiders || >=4.0.0-alpha.20'
@@ -1613,7 +1613,7 @@ packages:
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
-      tailwindcss: 3.4.11
+      tailwindcss: 3.4.12
     dev: true
 
   /@trysound/sax@0.2.0:
@@ -7097,7 +7097,7 @@ packages:
       css-tree: 2.3.1
       css-what: 6.1.0
       csso: 5.0.5
-      picocolors: 1.0.1
+      picocolors: 1.1.0
     dev: false
 
   /synckit@0.9.0:
@@ -7108,8 +7108,8 @@ packages:
       tslib: 2.6.3
     dev: true
 
-  /tailwindcss@3.4.11:
-    resolution: {integrity: sha512-qhEuBcLemjSJk5ajccN9xJFtM/h0AVCPaA6C92jNP+M2J8kX+eMJHI7R2HFKUvvAsMpcfLILMCFYSeDwpMmlUg==}
+  /tailwindcss@3.4.12:
+    resolution: {integrity: sha512-Htf/gHj2+soPb9UayUNci/Ja3d8pTmu9ONTfh4QY8r3MATTZOzmv6UYWF7ZwikEIC8okpfqmGqrmDehua8mF8w==}
     engines: {node: '>=14.0.0'}
     hasBin: true
     dependencies:
@@ -7126,7 +7126,7 @@ packages:
       micromatch: 4.0.8
       normalize-path: 3.0.0
       object-hash: 3.0.0
-      picocolors: 1.0.1
+      picocolors: 1.1.0
       postcss: 8.4.47
       postcss-import: 15.1.0(postcss@8.4.47)
       postcss-js: 4.0.1(postcss@8.4.47)
