@@ -11,12 +11,21 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "I fixed the strawberry problem because OpenAI couldn&#39;t",
-    "link": "https://xeiaso.net/blog/2024/strawberry/",
-    "summary": `Remember kids: real winners cheat`,
+    "title": "Make your Next.JS Docker images microscopic!",
+    "link": "https://xeiaso.net/notes/2024/small-nextjs-images/",
+    "summary": `Do standalone builds on Alpine`,
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
-    "date": "September 13, 2024"
+    "date": "September 22, 2024"
+  },
+  
+  {
+    "title": "Migration from Biocontainers to Seqera Containers: Part 1",
+    "link": "https://nf-co.re/blog/2024/seqera-containers-part-1/",
+    "summary": `What Seqera Containers is and why we want to move to it.`,
+    "source_title": "nf-core blog",
+    "source_link": "https://nf-co.re/",
+    "date": "September 17, 2024"
   },
   
   {
@@ -26,15 +35,6 @@ export const openringData: OpenringItem[] =
     "source_title": "Nextflow Blog",
     "source_link": "https://nextflow.io/",
     "date": "September 11, 2024"
-  },
-  
-  {
-    "title": "Maintainers Minutes: September 2024",
-    "link": "https://nf-co.re/blog/2024/maintainers-minutes-2024-08-30/",
-    "summary": `Keeping you informed of the latest maintainers discussions`,
-    "source_title": "nf-core blog",
-    "source_link": "https://nf-co.re/",
-    "date": "August 30, 2024"
   },
   
 ];
