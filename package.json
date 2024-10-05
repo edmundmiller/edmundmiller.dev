@@ -28,7 +28,7 @@
     "sharp": "0.33.5"
   },
   "devDependencies": {
-    "@astrojs/check": "0.9.3",
+    "@astrojs/check": "0.9.4",
     "@flydotio/dockerfile": "0.5.9",
     "@iconify-json/mdi": "1.2.0",
     "@pagefind/default-ui": "1.1.1",
