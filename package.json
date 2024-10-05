@@ -40,7 +40,7 @@
     "@typescript-eslint/parser": "8.7.0",
     "astro-eslint-parser": "1.0.3",
     "autoprefixer": "10.4.20",
-    "eslint": "9.11.1",
+    "eslint": "9.12.0",
     "eslint-import-resolver-typescript": "3.6.3",
     "eslint-plugin-astro": "1.2.4",
     "eslint-plugin-deprecation": "3.0.0",
