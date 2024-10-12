@@ -53,8 +53,8 @@ devDependencies:
     specifier: 0.5.9
     version: 0.5.9
   '@iconify-json/mdi':
-    specifier: 1.2.0
-    version: 1.2.0
+    specifier: 1.2.1
+    version: 1.2.1
   '@pagefind/default-ui':
     specifier: 1.1.1
     version: 1.1.1
@@ -944,8 +944,8 @@ packages:
     engines: {node: '>=18.18'}
     dev: true
 
-  /@iconify-json/mdi@1.2.0:
-    resolution: {integrity: sha512-E9/3l5Syg3wfuarorFodhn4s8YorxhH3U3U20LaNBNiqw1kFNIDWhF6HymuzAD35k7RH0OBasJ+ZUyFtVVV6eg==}
+  /@iconify-json/mdi@1.2.1:
+    resolution: {integrity: sha512-dSkQU78gsZV6Yxnq78+LuX7jzeFC/5NAmz7O3rh558GimGFcwMVY/OtqRowIzjqJBmMmWZft7wkFV4TrwRXjlg==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
