@@ -1,5 +1,4 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:js-app", ":semanticCommits", ":automergeAll", ":automergeBranch"],
-  "schedule": ["on saturday"]
+  "extends": ["config:js-app", ":semanticCommits", ":automergeAll", ":automergeBranch", "schedule:quarterly"]
 }
