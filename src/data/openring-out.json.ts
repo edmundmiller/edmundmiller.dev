@@ -11,12 +11,21 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "Migration from Biocontainers to Seqera Containers: Part 2",
-    "link": "https://nf-co.re/blog/2024/seqera-containers-part-2/",
-    "summary": `nf-core containers automation: how it&amp;#39;ll all work behind the curtain`,
+    "title": "Daisy-chaining workflows: the nf-cascade concept",
+    "link": "https://nextflow.io/blog/2024/nf-cascade.html",
+    "summary": `nf-cascade is a proof-of-concept Nextflow pipeline that demonstrates how multiple workflows, such as nf-core pipelines, can be seamlessly integrated and daisy-chained into a single workflow without modifying the original workflows.`,
+    "source_title": "Nextflow Blog",
+    "source_link": "https://nextflow.io/",
+    "date": "October 9, 2024"
+  },
+  
+  {
+    "title": "nf-core/tools - 3.0.0",
+    "link": "https://nf-co.re/blog/2024/tools-3_0_0/",
+    "summary": `What flavour of the nf-core template do you prefer?`,
     "source_title": "nf-core blog",
     "source_link": "https://nf-co.re/",
-    "date": "October 2, 2024"
+    "date": "October 7, 2024"
   },
   
   {
@@ -26,15 +35,6 @@ export const openringData: OpenringItem[] =
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
     "date": "September 26, 2024"
-  },
-  
-  {
-    "title": "My Journey with Nextflow: From Exploration to Automation",
-    "link": "https://nextflow.io/blog/2024/journey-from-exploration-to-automation.html",
-    "summary": `From traditional scripting to streamlined automation: Dr. Pritam Kumar Panda shares his transformative journey with Nextflow, now a vital tool in his bioinformatics career at DKFZ, Heidelberg.`,
-    "source_title": "Nextflow Blog",
-    "source_link": "https://nextflow.io/",
-    "date": "September 25, 2024"
   },
   
 ];
