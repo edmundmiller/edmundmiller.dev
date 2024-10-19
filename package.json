@@ -14,10 +14,10 @@
   },
   "dependencies": {
     "@astrojs/mdx": "3.1.8",
-    "@astrojs/rss": "4.0.8",
-    "@astrojs/sitemap": "3.2.0",
+    "@astrojs/rss": "4.0.9",
+    "@astrojs/sitemap": "3.2.1",
     "@astrojs/tailwind": "5.1.2",
-    "astro": "4.16.2",
+    "astro": "4.16.6",
     "@wooorm/starry-night": "3.5.0",
     "astro-analytics": "2.7.0",
     "astro-expressive-code": "0.37.0",
