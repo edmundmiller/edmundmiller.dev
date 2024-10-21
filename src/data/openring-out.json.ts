@@ -11,6 +11,15 @@ export const openringData: OpenringItem[] =
 [
   
   {
+    "title": "Docker builds over SSH",
+    "link": "https://xeiaso.net/notes/2024/docker-build-over-ssh/",
+    "summary": `Plan 9 clustering at home`,
+    "source_title": "Xe Iaso&#39;s blog",
+    "source_link": "https://xeiaso.net/",
+    "date": "October 18, 2024"
+  },
+  
+  {
     "title": "Daisy-chaining workflows: the nf-cascade concept",
     "link": "https://nextflow.io/blog/2024/nf-cascade.html",
     "summary": `nf-cascade is a proof-of-concept Nextflow pipeline that demonstrates how multiple workflows, such as nf-core pipelines, can be seamlessly integrated and daisy-chained into a single workflow without modifying the original workflows.`,
@@ -26,15 +35,6 @@ export const openringData: OpenringItem[] =
     "source_title": "nf-core blog",
     "source_link": "https://nf-co.re/",
     "date": "October 7, 2024"
-  },
-  
-  {
-    "title": "You&#39;re probably not vulnerable to the CUPS CVE",
-    "link": "https://xeiaso.net/notes/2024/cups-cve/",
-    "summary": `Unless your servers can print for some reason`,
-    "source_title": "Xe Iaso&#39;s blog",
-    "source_link": "https://xeiaso.net/",
-    "date": "September 26, 2024"
   },
   
 ];
