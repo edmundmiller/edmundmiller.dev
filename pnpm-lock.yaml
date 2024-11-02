@@ -27,8 +27,8 @@ dependencies:
     specifier: 2.7.0
     version: 2.7.0
   astro-expressive-code:
-    specifier: 0.37.1
-    version: 0.37.1(astro@4.16.8)
+    specifier: 0.38.0
+    version: 0.38.0(astro@4.16.8)
   astro-icon:
     specifier: 1.1.1
     version: 1.1.1
@@ -864,8 +864,8 @@ packages:
       levn: 0.4.1
     dev: true
 
-  /@expressive-code/core@0.37.1:
-    resolution: {integrity: sha512-nYgsK3uxK4W46v0IolHdB5+T6MQfy5weTpyB3kbzr11ur2UKUy2oHGhbWa+hRThfYEF1PM+TFxMtWU7amcjF8A==}
+  /@expressive-code/core@0.38.0:
+    resolution: {integrity: sha512-mpqXI69CFkkYES03mY5EQq/8WrEXohWq5RpFmjbOJjaW8yUOPQfm1KNBOirTBTjJekn3TOsXE82l8MFwKjTC7Q==}
     dependencies:
       '@ctrl/tinycolor': 4.1.0
       hast-util-select: 6.0.2
@@ -878,23 +878,23 @@ packages:
       unist-util-visit-parents: 6.0.1
     dev: false
 
-  /@expressive-code/plugin-frames@0.37.1:
-    resolution: {integrity: sha512-U1Pk8qmSlGaIvNpmo42pxVS+ROVkPUPtAgVR5OU9261zKw6r/MN7b5dCDE5B6QBqRi7iOS7/DQ/zYTzHcIQJQw==}
+  /@expressive-code/plugin-frames@0.38.0:
+    resolution: {integrity: sha512-EkZyv/H5+qxqSiqJjMXoMfG0BCGa8stXMdBu38Sf4joNmo5SxxSaTG2URXeWZqUUIChX+tWx5xprcUfbpsmY5g==}
     dependencies:
-      '@expressive-code/core': 0.37.1
+      '@expressive-code/core': 0.38.0
     dev: false
 
-  /@expressive-code/plugin-shiki@0.37.1:
-    resolution: {integrity: sha512-zzrX0kn6JMxm+0fKWpP1W8F3bLK8PYIUDvM5UUEplGjL5Z0otBqycHWalucl0Mk9aKX1UThXaUTuCQEVOkNSxg==}
+  /@expressive-code/plugin-shiki@0.38.0:
+    resolution: {integrity: sha512-n/sNSECIk+i6hW0KLv3VBNdd0ZGm0e/9ip/qjxKcaRtsZ0fPxYOBkXcSHcF87/v1kHlFRT91SxcZVXBc6FcJqw==}
     dependencies:
-      '@expressive-code/core': 0.37.1
-      shiki: 1.22.0
+      '@expressive-code/core': 0.38.0
+      shiki: 1.22.2
     dev: false
 
-  /@expressive-code/plugin-text-markers@0.37.1:
-    resolution: {integrity: sha512-AjZG/SyE41uWcpAae0w9DVtSii/YkdhOsjl6godLsI8vRGBdUdYvgoCebjb33gySa7g+9NcWxGp3oEKCBut1wA==}
+  /@expressive-code/plugin-text-markers@0.38.0:
+    resolution: {integrity: sha512-qpNnUJnzMqQ1xgOxRVn7BP74SPuBljARl72Ven2496jvpdrsZ3meHJogMJvBeQszA7Za+hz33IR7u08OgKStpQ==}
     dependencies:
-      '@expressive-code/core': 0.37.1
+      '@expressive-code/core': 0.38.0
     dev: false
 
   /@flydotio/dockerfile@0.5.9:
@@ -2466,13 +2466,13 @@ packages:
       - typescript
     dev: true
 
-  /astro-expressive-code@0.37.1(astro@4.16.8):
-    resolution: {integrity: sha512-SspiLKFGpLANBpAL9A+5NNbp0WjY2LBPP14doJ7Ej9TR0G1f4jIXbOGP7+ufoQjGy1He8J+K+1cjShdmpXUWBw==}
+  /astro-expressive-code@0.38.0(astro@4.16.8):
+    resolution: {integrity: sha512-9e+e4R4o91d0XdhEnhGP1GP2wZVl9UqSKFfd7i31rrJEpOb37J1pORVmo925dwvvlTu1KignK5SJyEzRfSYwmA==}
     peerDependencies:
       astro: ^4.0.0-beta || ^5.0.0-beta || ^3.3.0
     dependencies:
       astro: 4.16.8(typescript@5.6.3)
-      rehype-expressive-code: 0.37.1
+      rehype-expressive-code: 0.38.0
     dev: false
 
   /astro-icon@1.1.1:
@@ -3943,13 +3943,13 @@ packages:
       strip-final-newline: 2.0.0
     dev: false
 
-  /expressive-code@0.37.1:
-    resolution: {integrity: sha512-y7+5K2uJOt+Hy0KEPm83t974flu0O/DstvmezoiWXwV3Cwqf622CHMlWssaZ8uqFrJaJ1ES1cMcYXJtZSxe+9A==}
+  /expressive-code@0.38.0:
+    resolution: {integrity: sha512-2piHn2SqqpdngPUWr351sisVUlyNGD+rTkWoXJs2LXmDCEeYjjyA8DUDPT/oCUEyuQuPDm4XiQ3b5o6ZAy/5Kg==}
     dependencies:
-      '@expressive-code/core': 0.37.1
-      '@expressive-code/plugin-frames': 0.37.1
-      '@expressive-code/plugin-shiki': 0.37.1
-      '@expressive-code/plugin-text-markers': 0.37.1
+      '@expressive-code/core': 0.38.0
+      '@expressive-code/plugin-frames': 0.38.0
+      '@expressive-code/plugin-shiki': 0.38.0
+      '@expressive-code/plugin-text-markers': 0.38.0
     dev: false
 
   /extend-shallow@2.0.1:
@@ -6512,10 +6512,10 @@ packages:
       set-function-name: 2.0.2
     dev: true
 
-  /rehype-expressive-code@0.37.1:
-    resolution: {integrity: sha512-HK6RJubSfgC6jpfk7UpGQcEgpMP+dhKrUQ1MmnDFYT9mOHteoLJv09WMURpQrIvXDpKCiAsaWQUBfNqRxjfL2Q==}
+  /rehype-expressive-code@0.38.0:
+    resolution: {integrity: sha512-01Fsn7nKLIOdL9Y5UfMx0bjI/zJRi3HGKxnxj/b1t8n1RphQaN84d8pF17+rIsjrhlkkyZBJ23gli4Ozf3T60w==}
     dependencies:
-      expressive-code: 0.37.1
+      expressive-code: 0.38.0
     dev: false
 
   /rehype-external-links@3.0.0:
