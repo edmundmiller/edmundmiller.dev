@@ -11,12 +11,21 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "Docker builds over SSH",
-    "link": "https://xeiaso.net/notes/2024/docker-build-over-ssh/",
-    "summary": `Plan 9 clustering at home`,
+    "title": "My first deploys for a new Kubernetes cluster",
+    "link": "https://xeiaso.net/notes/2024/essential-k8s/",
+    "summary": `This is documentation for myself, but you may enjoy it too`,
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
-    "date": "October 18, 2024"
+    "date": "November 3, 2024"
+  },
+  
+  {
+    "title": "Announcing: Weekly Helpdesk",
+    "link": "https://nf-co.re/blog/2024/helpdesk/",
+    "summary": `A weekly drop-in sessions to connect and work together.`,
+    "source_title": "nf-core blog",
+    "source_link": "https://nf-co.re/",
+    "date": "October 28, 2024"
   },
   
   {
@@ -26,15 +35,6 @@ export const openringData: OpenringItem[] =
     "source_title": "Nextflow Blog",
     "source_link": "https://nextflow.io/",
     "date": "October 9, 2024"
-  },
-  
-  {
-    "title": "nf-core/tools - 3.0.0",
-    "link": "https://nf-co.re/blog/2024/tools-3_0_0/",
-    "summary": `What flavour of the nf-core template do you prefer?`,
-    "source_title": "nf-core blog",
-    "source_link": "https://nf-co.re/",
-    "date": "October 7, 2024"
   },
   
 ];
