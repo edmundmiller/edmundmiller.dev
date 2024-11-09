@@ -30,8 +30,8 @@ dependencies:
     specifier: 0.38.3
     version: 0.38.3(astro@4.16.10)
   astro-icon:
-    specifier: 1.1.1
-    version: 1.1.1
+    specifier: 1.1.2
+    version: 1.1.2
   rehype-external-links:
     specifier: 3.0.0
     version: 3.0.0
@@ -2462,8 +2462,8 @@ packages:
       rehype-expressive-code: 0.38.3
     dev: false
 
-  /astro-icon@1.1.1:
-    resolution: {integrity: sha512-HKBesWk2Faw/0+klLX+epQVqdTfSzZz/9+5vxXUjTJaN/HnpDf608gRPgHh7ZtwBPNJMEFoU5GLegxoDcT56OQ==}
+  /astro-icon@1.1.2:
+    resolution: {integrity: sha512-2qAHBtZLYuFEIMP0Ck0edyLi5fQmJjwP2Qbv41f8L4KAJ2sra/dH7q5lCOn4q0DHVtS0w3tPG8UKQRits3UPcg==}
     dependencies:
       '@iconify/tools': 4.0.5
       '@iconify/types': 2.0.0
