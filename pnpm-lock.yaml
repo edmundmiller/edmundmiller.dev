@@ -56,8 +56,8 @@ devDependencies:
     specifier: 1.2.1
     version: 1.2.1
   '@pagefind/default-ui':
-    specifier: 1.1.1
-    version: 1.1.1
+    specifier: 1.2.0
+    version: 1.2.0
   '@resvg/resvg-js':
     specifier: 2.6.2
     version: 2.6.2
@@ -1262,8 +1262,8 @@ packages:
     dev: true
     optional: true
 
-  /@pagefind/default-ui@1.1.1:
-    resolution: {integrity: sha512-ZM0zDatWDnac/VGHhQCiM7UgA4ca8jpjA+VfuTJyHJBaxGqZMQnm4WoTz9E0KFcue1Bh9kxpu7uWFZfwpZZk0A==}
+  /@pagefind/default-ui@1.2.0:
+    resolution: {integrity: sha512-MDSbm34veKpzFP5eJMh/pcPdrOc4FZKUsbpDsbdjSLC2ZeuTjsfDBNu9MGZaNUvGKUdlKk5JozQkVO/dzdSxrQ==}
     dev: true
 
   /@pagefind/linux-arm64@1.1.1:
