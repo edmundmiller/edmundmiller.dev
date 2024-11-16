@@ -19,7 +19,7 @@ jobs:
       - name: Check Nix flake inputs
         uses: DeterminateSystems/flake-checker-action@v9 # This action
       - name: Install Nix
-        uses: DeterminateSystems/nix-installer-action@v15
+        uses: DeterminateSystems/nix-installer-action@v16
       - name: Magic Nix Cache
         uses: DeterminateSystems/magic-nix-cache-action@v8
       - name: Run openring
