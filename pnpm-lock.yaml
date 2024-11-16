@@ -107,8 +107,8 @@ devDependencies:
     specifier: 3.9.1
     version: 3.9.1(astro-eslint-parser@1.1.0)(eslint@9.15.0)(typescript@5.6.3)
   eslint-plugin-regexp:
-    specifier: 2.6.0
-    version: 2.6.0(eslint@9.15.0)
+    specifier: 2.7.0
+    version: 2.7.0(eslint@9.15.0)
   eslint-plugin-typescript-sort-keys:
     specifier: 3.3.0
     version: 3.3.0(@typescript-eslint/parser@8.13.0)(eslint@9.15.0)(typescript@5.6.3)
@@ -794,11 +794,6 @@ packages:
     dependencies:
       eslint: 9.15.0
       eslint-visitor-keys: 3.4.3
-    dev: true
-
-  /@eslint-community/regexpp@4.10.1:
-    resolution: {integrity: sha512-Zm2NGpWELsQAD1xsJzGQpYfvICSsFkEpU0jxBjfdC6uNEWXcHnfs9hScFWtXVDVl+rBQJGrl4g1vcKIejpH9dA==}
-    engines: {node: ^12.0.0 || ^14.0.0 || >=16.0.0}
     dev: true
 
   /@eslint-community/regexpp@4.12.1:
@@ -3651,14 +3646,14 @@ packages:
       - typescript
     dev: true
 
-  /eslint-plugin-regexp@2.6.0(eslint@9.15.0):
-    resolution: {integrity: sha512-FCL851+kislsTEQEMioAlpDuK5+E5vs0hi1bF8cFlPlHcEjeRhuAzEsGikXRreE+0j4WhW2uO54MqTjXtYOi3A==}
+  /eslint-plugin-regexp@2.7.0(eslint@9.15.0):
+    resolution: {integrity: sha512-U8oZI77SBtH8U3ulZ05iu0qEzIizyEDXd+BWHvyVxTOjGwcDcvy/kEpgFG4DYca2ByRLiVPFZ2GeH7j1pdvZTA==}
     engines: {node: ^18 || >=20}
     peerDependencies:
       eslint: '>=8.44.0'
     dependencies:
       '@eslint-community/eslint-utils': 4.4.0(eslint@9.15.0)
-      '@eslint-community/regexpp': 4.10.1
+      '@eslint-community/regexpp': 4.12.1
       comment-parser: 1.4.1
       eslint: 9.15.0
       jsdoc-type-pratt-parser: 4.0.0
