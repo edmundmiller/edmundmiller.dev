@@ -11,12 +11,12 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "Follow me on Bluesky!",
-    "link": "https://xeiaso.net/notes/2024/follow-bluesky/",
-    "summary": `tl;dr: Follow @xeiaso.net on Bluesky`,
+    "title": "Getting a pointer to a constant in Go",
+    "link": "https://xeiaso.net/notes/2024/go-pointer-constant/",
+    "summary": `From least to most hacky`,
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
-    "date": "November 13, 2024"
+    "date": "November 25, 2024"
   },
   
   {
