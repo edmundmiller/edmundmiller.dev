@@ -11,21 +11,21 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "Training with Big Data on Any Cloud",
-    "link": "https://www.tigrisdata.com/blog/training-any-cloud/",
-    "summary": ``,
+    "title": "Soylent Green is people",
+    "link": "https://xeiaso.net/blog/2024/soylent-green-people/",
+    "summary": `Nuance about AI and the &amp;#39;danger&amp;#39; of datasets`,
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
-    "date": "December 3, 2024"
+    "date": "December 12, 2024"
   },
   
   {
-    "title": "Announcing: Weekly Helpdesk",
-    "link": "https://nf-co.re/blog/2024/helpdesk/",
-    "summary": `A weekly drop-in sessions to connect and work together.`,
+    "title": "nf-core/tools - 3.1.0",
+    "link": "https://nf-co.re/blog/2024/tools-3_1_0/",
+    "summary": `Everything is going crate`,
     "source_title": "nf-core blog",
     "source_link": "https://nf-co.re/",
-    "date": "October 28, 2024"
+    "date": "December 10, 2024"
   },
   
   {
