@@ -20,12 +20,13 @@ export type PaginationLink = {
   srLabel?: string;
 };
 
-export type SiteMeta = {
+export interface SiteMeta {
   title: string;
   description?: string;
   ogImage?: string | undefined;
-  articleDate?: string | undefined;
-};
+  articleDate?: string;
+  canonical?: string;
+}
 
 /** Webmentions */
 export type WebmentionsFeed = {

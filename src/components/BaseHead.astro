@@ -7,7 +7,7 @@ import "../styles/global.css";
 
 type Props = SiteMeta;
 
-const { articleDate, description, ogImage, title } = Astro.props;
+const { articleDate, description, ogImage, title, canonical } = Astro.props;
 
 const titleSeparator = "•";
 const siteTitle = `${title} ${titleSeparator} ${siteConfig.title}`;
@@ -84,3 +84,5 @@ const socialImageURL = new URL(ogImage ? ogImage : "/social-card.png", Astro.url
 {/* Analytics */}
 <script data-goatcounter="https://emiller.goatcounter.com/count" async src="//gc.zgo.at/count.js"
 ></script>
+
+{canonical && <link rel="canonical" href={canonical} />}
