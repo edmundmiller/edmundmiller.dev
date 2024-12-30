@@ -11,12 +11,15 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "Soylent Green is people",
-    "link": "https://xeiaso.net/blog/2024/soylent-green-people/",
-    "summary": `Nuance about AI and the &amp;#39;danger&amp;#39; of datasets`,
+    "title": "How to force a Linux device to boot from USB when the GPU is dead and you can&#39;t do it from the BIOS",
+    "link": "https://xeiaso.net/notes/2024/force-linux-boot-usb/",
+    "summary": `
+        tl;dr: use efibootmgr
+        Let&amp;#39;s say you have a Kingston DataTraveler with a Linux ISO on it and want to boot from it, but your GPU is broken or something and you can&amp;#39;t view output. Here&amp;#39;s what you do:
+        List the potential boot …`,
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
-    "date": "December 12, 2024"
+    "date": "December 28, 2024"
   },
   
   {
