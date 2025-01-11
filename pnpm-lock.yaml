@@ -6,29 +6,29 @@ settings:
 
 dependencies:
   '@astrojs/mdx':
-    specifier: 4.0.3
-    version: 4.0.3(astro@5.1.1)
+    specifier: 4.0.5
+    version: 4.0.5(astro@5.1.5)
   '@astrojs/rss':
-    specifier: 4.0.10
-    version: 4.0.10
+    specifier: 4.0.11
+    version: 4.0.11
   '@astrojs/sitemap':
     specifier: 3.2.1
     version: 3.2.1
   '@astrojs/tailwind':
     specifier: 5.1.4
-    version: 5.1.4(astro@5.1.1)(tailwindcss@3.4.17)
+    version: 5.1.4(astro@5.1.5)(tailwindcss@3.4.17)
   '@wooorm/starry-night':
     specifier: 3.5.0
     version: 3.5.0
   astro:
-    specifier: 5.1.1
-    version: 5.1.1(typescript@5.7.3)
+    specifier: 5.1.5
+    version: 5.1.5(typescript@5.7.3)
   astro-analytics:
     specifier: 2.7.0
     version: 2.7.0
   astro-expressive-code:
     specifier: 0.38.3
-    version: 0.38.3(astro@5.1.1)
+    version: 0.38.3(astro@5.1.5)
   astro-icon:
     specifier: 1.1.5
     version: 1.1.5
@@ -255,8 +255,8 @@ packages:
       - supports-color
     dev: false
 
-  /@astrojs/mdx@4.0.3(astro@5.1.1):
-    resolution: {integrity: sha512-8HcuyNG/KgYUAQWVzKFkboXcTOBCW6aQ0WK0Er/iSmVSF0y3yimg4/3QSt+Twv9dogpwIHL+E8iBJKqieFv4+g==}
+  /@astrojs/mdx@4.0.5(astro@5.1.5):
+    resolution: {integrity: sha512-JhMCm4wf94PNHQDWKyez2ZVLcG5R6Cyjk8TmpqYVRrOTuU3GIWeDAoum7Q1p05SFD+nYwvXOcv42/m8pE3Ylug==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=22.0.0}
     peerDependencies:
       astro: ^5.0.0
@@ -264,7 +264,7 @@ packages:
       '@astrojs/markdown-remark': 6.0.1
       '@mdx-js/mdx': 3.1.0(acorn@8.14.0)
       acorn: 8.14.0
-      astro: 5.1.1(typescript@5.7.3)
+      astro: 5.1.5(typescript@5.7.3)
       es-module-lexer: 1.5.4
       estree-util-visit: 2.0.0
       hast-util-to-html: 9.0.3
@@ -286,8 +286,8 @@ packages:
       prismjs: 1.29.0
     dev: false
 
-  /@astrojs/rss@4.0.10:
-    resolution: {integrity: sha512-2gFdHM763uUAySkdwPYrpi6dppOBJr9ddg5VbkKXctWze8d1JHgIBBY78zWIYs7KBJT58zxadsObVAVt55RDaw==}
+  /@astrojs/rss@4.0.11:
+    resolution: {integrity: sha512-3e3H8i6kc97KGnn9iaZBJpIkdoQi8MmR5zH5R+dWsfCM44lLTszOqy1OBfGGxDt56mpQkYVtZJWoxMyWuUZBfw==}
     dependencies:
       fast-xml-parser: 4.5.0
       kleur: 4.1.5
@@ -301,13 +301,13 @@ packages:
       zod: 3.23.8
     dev: false
 
-  /@astrojs/tailwind@5.1.4(astro@5.1.1)(tailwindcss@3.4.17):
+  /@astrojs/tailwind@5.1.4(astro@5.1.5)(tailwindcss@3.4.17):
     resolution: {integrity: sha512-EJ3uoTZZr0RYwTrVS2HgYN0+VbXvg7h87AtwpD5OzqS3GyMwRmzfOwHfORTxoWGQRrY9k/Fi+Awk60kwpvRL5Q==}
     peerDependencies:
       astro: ^3.0.0 || ^4.0.0 || ^5.0.0
       tailwindcss: ^3.0.24
     dependencies:
-      astro: 5.1.1(typescript@5.7.3)
+      astro: 5.1.5(typescript@5.7.3)
       autoprefixer: 10.4.20(postcss@8.4.49)
       postcss: 8.4.49
       postcss-load-config: 4.0.2(postcss@8.4.49)
@@ -2606,12 +2606,12 @@ packages:
       - typescript
     dev: true
 
-  /astro-expressive-code@0.38.3(astro@5.1.1):
+  /astro-expressive-code@0.38.3(astro@5.1.5):
     resolution: {integrity: sha512-Tvdc7RV0G92BbtyEOsfJtXU35w41CkM94fOAzxbQP67Wj5jArfserJ321FO4XA7WG9QMV0GIBmQq77NBIRDzpQ==}
     peerDependencies:
       astro: ^4.0.0-beta || ^5.0.0-beta || ^3.3.0
     dependencies:
-      astro: 5.1.1(typescript@5.7.3)
+      astro: 5.1.5(typescript@5.7.3)
       rehype-expressive-code: 0.38.3
     dev: false
 
@@ -2626,8 +2626,8 @@ packages:
       - supports-color
     dev: false
 
-  /astro@5.1.1(typescript@5.7.3):
-    resolution: {integrity: sha512-prpWC2PRs4P3FKQg6gZaU+VNMqbZi5pDvORGB2nrjfRjkrvF6/l4BqhvkJ6YQ0Ohm5rIMVz8ljgaRI77mLHbwg==}
+  /astro@5.1.5(typescript@5.7.3):
+    resolution: {integrity: sha512-Q9TE4aNlczxVoPDoXR3UcjLezL+70z0KbTRXovE4ybpx0mgNL1jsmSWtF3UFXB5+GTf9JK7om5fbIaaMReKcUg==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=22.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
     dependencies:
@@ -5208,13 +5208,8 @@ packages:
     resolution: {integrity: sha512-9Ri+o0JYgehTaVBBDoMqIl8GXtbWg711O3srftcHhZ0dqnETqLaoIK0x17fUw9rFSlK/0NlsKe0Ahhyl5pXE2g==}
     dev: false
 
-  /lru-cache@10.2.2:
-    resolution: {integrity: sha512-9hp3Vp2/hFQUiIwKo8XCeFVnrg8Pk3TYNPIR7tJADKi5YfcF7vEaK7avFHTlSy3kOKYaJQaalfEo6YuXdceBOQ==}
-    engines: {node: 14 || >=16.14}
-
   /lru-cache@10.4.3:
     resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
-    dev: false
 
   /magic-string@0.30.14:
     resolution: {integrity: sha512-5c99P1WKTed11ZC0HMJOj6CDIue6F8ySu+bJL+85q1zBEIY8IklrJ1eiKC2NDRh3Ct3FcvmJPyQHb9erXMTJNw==}
@@ -6283,7 +6278,7 @@ packages:
     resolution: {integrity: sha512-Xa4Nw17FS9ApQFJ9umLiJS4orGjm7ZzwUrwamcGQuHSzDyth9boKDaycYdDcZDuqYATXw4HFXgaqWTctW/v1HA==}
     engines: {node: '>=16 || 14 >=14.18'}
     dependencies:
-      lru-cache: 10.2.2
+      lru-cache: 10.4.3
       minipass: 7.1.2
 
   /path-type@4.0.0:
