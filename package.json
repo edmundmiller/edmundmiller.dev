@@ -20,7 +20,7 @@
     "astro": "5.1.5",
     "@wooorm/starry-night": "3.6.0",
     "astro-analytics": "2.7.0",
-    "astro-expressive-code": "0.38.3",
+    "astro-expressive-code": "0.39.0",
     "astro-icon": "1.1.5",
     "rehype-external-links": "3.0.0",
     "satori": "0.12.1",
