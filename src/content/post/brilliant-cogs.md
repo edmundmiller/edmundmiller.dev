@@ -7,6 +7,8 @@ tags: ["genomics", "bioinformatics", "tech-industry"]
 draft: true
 ---
 
+Full disclosure: I'm a startup person through and through. My entire career has been spent in the scrappy, move-fast-and-break-things world of startups. So when I talk about the empire, it's always been from the rebel perspective.
+
 In genomics, if you're aware of the landscape at all, there's [an 800-pound gorilla in our industry](https://sandiegomics.com/2023-sequencing-market-share-the-tide-is-turning-very-slowly/). _As of 2023 they had 77.6% of the market share._
 
 You don't really realize how insanely huge the empire is until your flying a X-wing right next to the death star. I'm extremely grateful that I got to experience being on the rebel side in my career. While it was exhilarating and exciting, it really made me start thinking about the economics of the genomics.
