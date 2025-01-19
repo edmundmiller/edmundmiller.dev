@@ -1,0 +1,57 @@
+---
+title: altair-upset: The Evolution of UpSet plots in Altair
+description: How I turned a Jupyter notebook into a full-fledged Python package for UpSet plots
+draft: true
+publishDate: 2025-01-19
+tags: ["python", "data-visualization", "bioinformatics", "altair"]
+---
+
+As a bioinformatician, I'm constantly juggling between different datasets that need set visualization. When I stumbled upon the original `upset-altair-notebook` from HMS-DBMI, it was like finding gold. But you know how it goes - you start with something cool, and suddenly your brain goes "what if we made this even better?"
+
+# The Journey
+
+The original notebook was great, but I needed something I could quickly pip install and use across projects. Plus, I needed to use [Altair](https://altair-viz.github.io) 5 for [marimo](https://marimo.io), I wanted to future-proof this tool for the community.
+
+Here's how it evolved:
+
+```bash
+# The old way
+git clone https://github.com/hms-dbmi/upset-altair-notebook
+conda env create -f environment.yml
+conda activate upset-altair-env
+jupyter notebook
+```
+
+```bash
+# The new way
+pip install altair-upset
+```
+
+# Making it Production-Ready
+
+First step was packaging. I'm a big fan of not reinventing the wheel, so I kept the core visualization logic but wrapped it in a proper Python package structure. This meant:
+
+```python
+import altair_upset as au
+
+# Create UpSet plot with one clean function call
+chart = au.UpSetAltair(
+    data=my_data,
+    sets=["gene_set1", "gene_set2", "gene_set3"],
+    title="Gene Set Intersections"
+)
+```
+
+# Version Control Magic
+
+Here's where it gets interesting - I created a snapshot of the functionality with Altair 4 before diving into Altair 5 compatibility with [syrupy](https://github.com/syrupy-project/syrupy).
+
+Why? Because I've learned from enough bioinformatics murder mysteries, breaking changes in dependencies can be a nightmare.
+
+And because I tried to just port the function to Altair 5 and wound-up with some really weird functionality.
+
+# What's Next?
+
+I'm keeping this project lean and focused. Want a feature? PRs welcome!
+
+Check it out on GitHub: [altair-upset](https://github.com/edmundmiller/altair-upset)
