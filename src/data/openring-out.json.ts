@@ -11,12 +11,25 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "CSSWind: bloat-free component styling",
-    "link": "https://xeiaso.net/blog/2025/tailwind-sans-bloat/",
-    "summary": `What you need when even HTMX is too much.`,
+    "title": "Block AI scrapers with Anubis",
+    "link": "https://xeiaso.net/blog/2025/anubis/",
+    "summary": `I got tired with all the AI scrapers that were bullying my git server, so I made a tool to stop them for good.`,
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
-    "date": "January 11, 2025"
+    "date": "January 19, 2025"
+  },
+  
+  {
+    "title": "No billionaires at FOSDEM",
+    "link": "https://drewdevault.com/2025/01/16/2025-01-16-No-Billionares-at-FOSDEM-please.html",
+    "summary": `Jack Dorsey, former CEO of Twitter, ousted board member of BlueSky, and grifter
+extraordinaire to the tune of a $5.6B net worth, is giving a keynote at
+FOSDEM.
+The FOSDEM keynote stage is one of the biggest platforms in the free software
+community. Janson is …`,
+    "source_title": "Drew DeVault&#39;s blog",
+    "source_link": "https://drewdevault.com",
+    "date": "January 16, 2025"
   },
   
   {
@@ -26,15 +39,6 @@ export const openringData: OpenringItem[] =
     "source_title": "nf-core blog",
     "source_link": "https://nf-co.re/",
     "date": "December 10, 2024"
-  },
-  
-  {
-    "title": "Daisy-chaining workflows: the nf-cascade concept",
-    "link": "https://nextflow.io/blog/2024/nf-cascade.html",
-    "summary": `nf-cascade is a proof-of-concept Nextflow pipeline that demonstrates how multiple workflows, such as nf-core pipelines, can be seamlessly integrated and daisy-chained into a single workflow without modifying the original workflows.`,
-    "source_title": "Nextflow Blog",
-    "source_link": "https://nextflow.io/",
-    "date": "October 9, 2024"
   },
   
 ];
