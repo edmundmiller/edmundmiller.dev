@@ -29,7 +29,7 @@ jupyter notebook
 pip install altair-upset
 ```
 
-# Making it Production-Ready
+# Making it easy to install
 
 First step was packaging. I'm a big fan of not reinventing the wheel, so I kept the core visualization logic but wrapped it in a proper Python package structure. This meant:
 
@@ -44,13 +44,13 @@ chart = au.UpSetAltair(
 )
 ```
 
-# Version Control Magic
+# Hitting Save Before the Boss Fight
 
-Here's where it gets interesting - I created a snapshot of the functionality with Altair 4 before diving into Altair 5 compatibility with [syrupy](https://github.com/syrupy-project/syrupy).
+Here's where it gets interesting - I created a snapshot of the Altair 4 functionality before diving into the Altair 5 boss battle. Think of it like saving your game before a major fight - if something goes wrong, you can always roll back to a working state.
 
-Why? Because I've learned from enough bioinformatics murder mysteries, breaking changes in dependencies can be a nightmare.
+Why? Because I've learned from enough bioinformatics murder mysteries that breaking changes in dependencies can be a nightmare. I tried to just port the function to Altair 5 and wound up with some really weird functionality that I couldn't make sense of.
 
-And because I tried to just port the function to Altair 5 and wound-up with some really weird functionality.
+The secret weapon here was [syrupy](https://github.com/syrupy-project/syrupy) - it let me capture the exact state of my plots before making any changes.
 
 # What's Next?
 
