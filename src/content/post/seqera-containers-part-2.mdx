@@ -1,13 +1,14 @@
 ---
 title: 'Migration from Biocontainers to Seqera Containers: Part 2'
-subtitle: "nf-core containers automation: how it'll all work behind the curtain"
-pubDate: 2024-10-02T09:16:00+01:00
+description: "nf-core containers automation: how it'll all work behind the curtain"
+publishDate: 2024-10-02T09:16:00+01:00
+canonical: "https://seqera.io/blog/migration-from-biocontainers-to-seqera-containers-part-2"
 headerImage: https://images.unsplash.com/photo-1711109631679-c9e1094d3118
 headerImageAlt: Photo by Rafael Garcin on Unsplash
-authors:
+author:
     - 'ewels'
     - 'edmundmiller'
-label:
+tags:
     - 'modules'
     - 'wave'
     - 'seqera containers'
@@ -33,7 +34,8 @@ You don't need to know or understand any of this as an end-user of nf-core pipel
 or even as a contributor to nf-core modules, but we thought it would be interesting to share the details.
 It's mostly to serve as an architectural plan for the nf-core maintainers and infrastructure teams.
 
-:::tip{.fa-hourglass-clock title="Too Long; Didn't Read"}
+:::tip
+{/* {.fa-hourglass-clock title="Too Long; Didn't Read"} */}
 
 -   Module contributors edit `environment.yml` files to update software dependencies
 -   Containers are automatically build for Docker + Singularity, `linux/amd64` + `linux/arm64`

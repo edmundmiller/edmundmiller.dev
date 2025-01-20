@@ -1,28 +1,24 @@
 ---
-title: 'Migration from Biocontainers to Seqera Containers: Part 1'
-subtitle: What Seqera Containers is and why we want to move to it.
-pubDate: 2024-09-17T09:20:00+01:00
+title: "Migration from Biocontainers to Seqera Containers: Part 1"
+description: What Seqera Containers is and why we want to move to it.
+publishDate: 2024-09-17T09:20:00+01:00
+canonical: "https://seqera.io/blog/migration-from-biocontainers-to-seqera-containers-part-1"
 headerImage: https://images.unsplash.com/photo-1517061391662-b09454c10462
 headerImageAlt: Photo by Barth Bailey on Unsplash
-authors:
-    - 'ewels'
-    - 'edmundmiller'
-label:
-    - 'modules'
-    - 'wave'
-    - 'seqera containers'
+author:
+  - "ewels"
+  - "edmundmiller"
+tags:
+  - "modules"
+  - "wave"
+  - "seqera containers"
 embedHeaderImage: false
+draft: false
 ---
 
-import { YouTube } from '@astro-community/astro-embed-youtube';
+import { YouTube } from "@astro-community/astro-embed-youtube";
 
-import butwhy from '@assets/images/blog/seqera-containers-part-1/simone-secci-49uySSA678U-unsplash.jpg';
-import mulled from '@assets/images/blog/seqera-containers-part-1/hannah-pemberton-bXi4eg4jyuU-unsplash.jpg';
-import disks from '@assets/images/blog/seqera-containers-part-1/behnam-norouzi-8FsybY-URs0-unsplash.jpg';
-import wave_logs from '@assets/images/blog/seqera-containers-part-1/logs_screenshot.png';
-import leaves from '@assets/images/blog/seqera-containers-part-1/providence-doucet-mE5MBZX5sko-unsplash.jpg';
-
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 
 ## Introduction
 
@@ -41,38 +37,44 @@ We're hugely grateful to all contributors for their work, as well as to Anaconda
 
 ## Change is on the breeze
 
-<Image class="d-block ms-3 mb-3 float-end rounded w-25 shadow" src={butwhy} alt="Photo by Simone Secci on Unsplash." />
+{/* <Image
+  class="d-block w-25 float-end mb-3 ms-3 rounded shadow"
+  src={butwhy}
+  alt="Photo by Simone Secci on Unsplash."
+/> */}
 
 Bioconda and BioContainers have worked very well for nf-core.
 However, we are now looking to migrate to a new system: Seqera Containers.
 
 The motivation comes down to a few key reasons:
 
--   Difficulties with BioContainers
-    -   [Mulled (multi-package) images](#mulled-multi-package-images)
-    -   [Slow Singularity image availability](#time-to-singularity-image)
-    -   [BioContainers API](#biocontainers-api)
-    -   [Reliability of hosting](#reliability-of-hosting)
--   New features we'd like
-    -   [Conda lock files](#exceptionally-reproducible)
-    -   Simplified developer workflow
-    -   [Better transparency](#trust-and-transparency)
+- Difficulties with BioContainers
+  - [Mulled (multi-package) images](#mulled-multi-package-images)
+  - [Slow Singularity image availability](#time-to-singularity-image)
+  - [BioContainers API](#biocontainers-api)
+  - [Reliability of hosting](#reliability-of-hosting)
+- New features we'd like
+  - [Conda lock files](#exceptionally-reproducible)
+  - Simplified developer workflow
+  - [Better transparency](#trust-and-transparency)
 
 With the new Seqera Containers setup we should be able to address these problems, as well as provide the additional features.
 
-:::tip{title="What's changing"}
+:::tip
+{/* {title="What's changing"} */}
 A detailed description of the proposed mechanism will come in part 2 of this blog post.
 Here are the key points:
 
--   Developers will _only_ need to edit the conda `environment.yml` (no process `container`)
--   Container images will be built by Wave and stored in Seqera Containers
--   Build logs and source files will be shown on the nf-core website module pages
--   Conda lock-files will be used for Conda users and CI tests
--   Software releases will be automatically bumped in modules, using [Renovate](https://renovatebot.com/)
--   There should be almost no change in how end-users run nf-core pipelines
-    :::
+- Developers will _only_ need to edit the conda `environment.yml` (no process `container`)
+- Container images will be built by Wave and stored in Seqera Containers
+- Build logs and source files will be shown on the nf-core website module pages
+- Conda lock-files will be used for Conda users and CI tests
+- Software releases will be automatically bumped in modules, using [Renovate](https://renovatebot.com/)
+- There should be almost no change in how end-users run nf-core pipelines
+  :::
 
-:::info{.fa-calendar-lines-pen title="Timeline" collapse}
+:::info
+{/* {.fa-calendar-lines-pen title="Timeline" collapse} */}
 
 This move has been in the works for over a year now.
 It started with discussions between nf-core maintainers and Seqera developers about what the community needed.
@@ -85,10 +87,10 @@ At each step, the discussion informed the planned infrastructure and setup for t
 
 Several steps are still needed to complete this migration:
 
--   nf-core/modules automation for fetching images and pinning conda-lock files and `meta.yml` references
--   nf-core/tools tooling for pipeline config file generation, with pipeline template update
--   Bulk update of nf-core/modules to use Seqera Containers
--   Update of nf-core pipelines to use the new modules
+- nf-core/modules automation for fetching images and pinning conda-lock files and `meta.yml` references
+- nf-core/tools tooling for pipeline config file generation, with pipeline template update
+- Bulk update of nf-core/modules to use Seqera Containers
+- Update of nf-core pipelines to use the new modules
 
 If all goes to plan, we hope to have all modules updated by the end of 2024.
 This work will be tracked in GitHub issues as usual,
@@ -108,11 +110,11 @@ The [BioContainers project](https://biocontainers.pro/) conveniently builds Dock
 This means that the nf-core module developer can find the matching [BioContainer](https://biocontainers.pro/) images for their Bioconda package, and then add the image URLs into the module's `main.nf` script (see [FastQC example](https://github.com/nf-core/modules/blob/f768b283dbd8fc79d0d92b0f68665d7bed94cabc/modules/nf-core/fastqc/main.nf#L6-L8)).
 The nf-core pipeline user then pulls the container images from quay.io or the Galaxy FTP server when they run the pipeline.
 
-<YouTube
-    id="https://www.youtube.com/watch?v=SE6ZCvh1ThQ"
-    poster="http://i3.ytimg.com/vi/SE6ZCvh1ThQ/hqdefault.jpg"
-    class="d-block ms-3 mb-3 float-end rounded w-50 shadow"
-/>
+{/* <YouTube
+  id="https://www.youtube.com/watch?v=SE6ZCvh1ThQ"
+  poster="http://i3.ytimg.com/vi/SE6ZCvh1ThQ/hqdefault.jpg"
+  class="d-block w-50 float-end mb-3 ms-3 rounded shadow"
+/> */}
 
 [Seqera Containers](https://seqera.io/containers/) was launched in spring 2024
 (see [Nextflow Summit talk](https://summit.nextflow.io/2024/boston/agenda/05-23--whats-new-in-the-nextflow/),
@@ -135,123 +137,124 @@ Building on-demand gives greater flexibility and scalability, especially for mul
 nf-core pipeline users won't need to interact with Wave directly.
 We simply plan to replace the mechanism for supplying the default container images specified in pipelines.
 
-:::info{.fa-list-check title="Feature comparison"}
+:::info
+{/* {.fa-list-check title="Feature comparison"} */}
 
 It's important to distinguish the differences between Wave and Seqera Containers.
 Here's a brief comparison of the features:
 
-<table class="table table-sm table-hover">
-    <thead>
-        <tr>
-            <td></td>
-            <th>BioContainers</th>
-            <th>Wave</th>
-            <th>Seqera&nbsp;Containers</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Support Bioconda packages</td>
-            <td>✅</td>
-            <td>✅</td>
-            <td>✅</td>
-        </tr>
-        <tr>
-            <td>Support all conda channels</td>
-            <td>❌</td>
-            <td>✅</td>
-            <td>✅</td>
-        </tr>
-        <tr>
-            <td>Support PyPI (pip) packages</td>
-            <td>❌</td>
-            <td>✅</td>
-            <td>✅</td>
-        </tr>
-        <tr>
-            <td>Docker + Singularity support</td>
-            <td>✅</td>
-            <td>✅</td>
-            <td>✅</td>
-        </tr>
-        <tr>
-            <td>Linux aarch64 and arm64</td>
-            <td>⏳ In progress</td>
-            <td>✅</td>
-            <td>✅</td>
-        </tr>
-        <tr>
-            <td>Multi-package containers</td>
-            <td>✅ Mulled</td>
-            <td>✅</td>
-            <td>✅</td>
-        </tr>
-        <tr>
-            <td>Conda lock files generated</td>
-            <td>❌</td>
-            <td>✅</td>
-            <td>✅</td>
-        </tr>
-        <tr>
-            <td>Container build logs</td>
-            <td>❌ CI logs short lived</td>
-            <td>✅</td>
-            <td>✅</td>
-        </tr>
-        <tr>
-            <td>Docker container security scans</td>
-            <td>✅ quay.io</td>
-            <td>✅ Trivy</td>
-            <td>✅ Trivy</td>
-        </tr>
-        <tr>
-            <td>SBOM manifests (software bill of materials)</td>
-            <td>❌</td>
-            <td>✅</td>
-            <td>✅</td>
-        </tr>
-        <tr>
-            <td>Long storage duration</td>
-            <td>✅ *</td>
-            <td>❌ 72 hours cache</td>
-            <td>✅ *</td>
-        </tr>
-        <tr>
-            <td>Pull delay for conda packages</td>
-            <td>✅ instant</td>
-            <td>❌ ~2-3 minutes for build on first request</td>
-            <td>✅ instant</td>
-        </tr>
-        <tr>
-            <td>Stable image URIs</td>
-            <td>✅</td>
-            <td>❌ Single-run</td>
-            <td>✅</td>
-        </tr>
-        <tr>
-            <td>Software required for end user</td>
-            <td>Docker / Singularity</td>
-            <td>Wave CLI / Nextflow, Docker / Singularity</td>
-            <td>Docker / Singularity</td>
-        </tr>
-        <tr>
-            <td>Offline support with downloaded images</td>
-            <td>✅</td>
-            <td>❌</td>
-            <td>✅</td>
-        </tr>
-        <tr>
-            <td>Guaranteed identical conda builds in future image pulls</td>
-            <td>✅</td>
-            <td>❌</td>
-            <td>✅</td>
-        </tr>
-    </tbody>
+<table class="table-sm table-hover table">
+  <thead>
+    <tr>
+      <td></td>
+      <th>BioContainers</th>
+      <th>Wave</th>
+      <th>Seqera&nbsp;Containers</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Support Bioconda packages</td>
+      <td>✅</td>
+      <td>✅</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Support all conda channels</td>
+      <td>❌</td>
+      <td>✅</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Support PyPI (pip) packages</td>
+      <td>❌</td>
+      <td>✅</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Docker + Singularity support</td>
+      <td>✅</td>
+      <td>✅</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Linux aarch64 and arm64</td>
+      <td>⏳ In progress</td>
+      <td>✅</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Multi-package containers</td>
+      <td>✅ Mulled</td>
+      <td>✅</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Conda lock files generated</td>
+      <td>❌</td>
+      <td>✅</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Container build logs</td>
+      <td>❌ CI logs short lived</td>
+      <td>✅</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Docker container security scans</td>
+      <td>✅ quay.io</td>
+      <td>✅ Trivy</td>
+      <td>✅ Trivy</td>
+    </tr>
+    <tr>
+      <td>SBOM manifests (software bill of materials)</td>
+      <td>❌</td>
+      <td>✅</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Long storage duration</td>
+      <td>✅ *</td>
+      <td>❌ 72 hours cache</td>
+      <td>✅ *</td>
+    </tr>
+    <tr>
+      <td>Pull delay for conda packages</td>
+      <td>✅ instant</td>
+      <td>❌ ~2-3 minutes for build on first request</td>
+      <td>✅ instant</td>
+    </tr>
+    <tr>
+      <td>Stable image URIs</td>
+      <td>✅</td>
+      <td>❌ Single-run</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Software required for end user</td>
+      <td>Docker / Singularity</td>
+      <td>Wave CLI / Nextflow, Docker / Singularity</td>
+      <td>Docker / Singularity</td>
+    </tr>
+    <tr>
+      <td>Offline support with downloaded images</td>
+      <td>✅</td>
+      <td>❌</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Guaranteed identical conda builds in future image pulls</td>
+      <td>✅</td>
+      <td>❌</td>
+      <td>✅</td>
+    </tr>
+  </tbody>
 </table>
 
 <small>
-    \* Forever is a long time. Seqera is committing to keeping images for a minimum of 5 years from the time of their
-    creation. BioContainers has no public policy.
+  \* Forever is a long time. Seqera is committing to keeping images for a minimum of 5 years from
+  the time of their creation. BioContainers has no public policy.
 </small>
 
 :::
@@ -260,11 +263,11 @@ Here's a brief comparison of the features:
 
 <div class="clearfix">
 
-<Image
-    class="d-block ms-3 mb-3 float-end rounded w-25 shadow clearfix"
-    src={mulled}
-    alt="Photo by Hannah Pemberton on Unsplash."
-/>
+{/* <Image
+  class="d-block w-25 clearfix float-end mb-3 ms-3 rounded shadow"
+  src={mulled}
+  alt="Photo by Hannah Pemberton on Unsplash."
+/> */}
 
 BioContainers is primarily set up to have a 1:1 relationship with Bioconda.
 This is great for bioinformatics tools as an image is created every time a package is published.
@@ -276,7 +279,8 @@ Unfortunately, generating mulled containers is not trivial.
 
 </div>
 
-:::tip{title="How to make a mulled BioContainer"}
+:::tip
+{/* {title="How to make a mulled BioContainer"} */}
 Luke Pembleton, Nextflow Ambassador, has a great blog post summarising the dark art of
 [Finding the right mulled biocontainer](https://lpembleton.rbind.io/posts/mulled-biocontainers/).
 Galaxy also has [documentation on the topic](https://docs.galaxyproject.org/en/master/admin/container_resolvers.html).
@@ -343,7 +347,11 @@ All Seqera Container images (Docker and Singularity) are hosted on custom infras
 
 ## Key features
 
-<Image class="d-block ms-3 mb-3 float-end rounded w-25 shadow" src={disks} alt="Photo by Behnam Norouzi on Unsplash." />
+{/* <Image
+  class="d-block w-25 float-end mb-3 ms-3 rounded shadow"
+  src={disks}
+  alt="Photo by Behnam Norouzi on Unsplash."
+/> */}
 
 ### Exceptionally reproducible
 
@@ -381,21 +389,22 @@ It is also more locked-down than regular Wave, only allowing Conda builds and no
 Second, the image URI includes a tag that has a hash of the input files used to request the image.
 We can use this to retrieve build details, which we will add to the nf-core website module page:
 
--   Build time, architecture and platform (Docker / Singularity)
--   `Dockerfile` / Singularity recipe and Conda `environment.yml`
--   Full build logs
--   Conda lock files with full package URLs and md5sums for entire dependency resolution
--   For Docker images: Trivy security scan and software bill of materials (SBOM)
+- Build time, architecture and platform (Docker / Singularity)
+- `Dockerfile` / Singularity recipe and Conda `environment.yml`
+- Full build logs
+- Conda lock files with full package URLs and md5sums for entire dependency resolution
+- For Docker images: Trivy security scan and software bill of materials (SBOM)
 
-:::info{title="Example Wave build details page" collapse}
+:::info
+{/* TODO {title="Example Wave build details page" collapse} */}
 
 We haven't built this yet, but here's what the Wave build details page looks like, which has the same information:
 
-<Image
-    class="d-block ms-3 mb-3 float-end rounded shadow"
-    src={wave_logs}
-    alt="Screenshot of a Wave container build details page."
-/>
+{/* <Image
+  class="d-block float-end mb-3 ms-3 rounded shadow"
+  src={wave_logs}
+  alt="Screenshot of a Wave container build details page."
+/> */}
 
 Wave build details page for the MultiQC v1.24.1 image: `community.wave.seqera.io/library/multiqc:1.24.1--789bc3917c8666da`
 
@@ -454,8 +463,8 @@ In part-two of this blog post we will dive into the details of how we intend to 
 
 We hope that the nf-core community is excited about these proposals, if you have any questions or concerns then please let us know in the nf-core Slack ❤️
 
-<Image
-    class="d-block ms-3 mb-3 float-end rounded w-100 shadow"
-    src={leaves}
-    alt="Photo by Providence Doucet on Unsplash."
-/>
+{/* <Image
+  class="d-block w-100 float-end mb-3 ms-3 rounded shadow"
+  src={leaves}
+  alt="Photo by Providence Doucet on Unsplash."
+/> */}
