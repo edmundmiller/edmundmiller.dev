@@ -1,16 +1,18 @@
 ---
-title: altair-upset: The Evolution of UpSet plots in Altair
+title: "altair-upset: The Evolution of UpSet plots in Altair"
 description: How I turned a Jupyter notebook into a full-fledged Python package for UpSet plots
 draft: true
 publishDate: 2025-01-19
 tags: ["python", "data-visualization", "bioinformatics", "altair"]
 ---
 
-As a bioinformatician, I'm constantly juggling between different datasets that need set visualization. When I stumbled upon the original `upset-altair-notebook` from HMS-DBMI, it was like finding gold. But you know how it goes - you start with something cool, and suddenly your brain goes "what if we made this even better?"
+[Altair](https://altair-viz.github.io) is the only plotting library that I've felt like loved me back. Maybe ggplot2 would love me back as well, but it's locked away in the tower of R.
+
+I went on a bit of a lark when I stumbled upon the [original upset-altair-notebook from HMS-DBMI](https://github.com/hms-dbmi/upset-altair-notebook). It was just a Jupyter Notebook, and only worked with Altair 4, which met none of my requirements.
 
 # The Journey
 
-The original notebook was great, but I needed something I could quickly pip install and use across projects. Plus, I needed to use [Altair](https://altair-viz.github.io) 5 for [marimo](https://marimo.io), I wanted to future-proof this tool for the community.
+The original notebook was great, but I needed something I could quickly pip install and use across projects. Plus, I needed to use Altair 5 for [marimo](https://marimo.io), I wanted to future-proof this tool for the community.
 
 Here's how it evolved:
 
