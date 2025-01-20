@@ -60,6 +60,26 @@ It was mostly just swapping out a properties calls that got moved.
 
 ![Shared Mutations of COVID Variants UpSet Plot](https://github.com/edmundmiller/altair-upset/blob/3ab3e4de21fcaf02dd0ea0211cc14d08238a689b/tests/__snapshots__/test_covid_mutations/test_covid_mutations_subset%5Bimage%5D.png?raw=true)
 
+# Lessons Learned Along the Way
+
+This was my first rodeo with creating a Python package from scratch, and boy was it a journey. Remember how I said Altair was the only plotting library that loved me back? Well, the Python packaging ecosystem...
+
+First off, PyPI takes security more seriously than that one PI who makes you wear a lab coat just to look at a computer. I accidentally pushed v0.2.0 and then tried to yank it back - spoiler alert: you can't. It's like trying to take back an email after hitting send. That version now lives in infamy, a permanent reminder that "move fast and break things" doesn't fly with package registries.
+
+But the real game-changer? Discovering [`uv`](https://docs.astral.sh/uv/) and [`pyproject.toml`](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/). After years of fighting with `setup.py` and virtual environments (and drowning in documentation that felt like it was written for people who already knew everything), this felt like finding the cheat codes. Finally, Python package management that doesn't feel like solving a Rubik's cube in the dark.
+
+```shell
+# The old way
+python setup.py develop  # pray it works
+pip install -e .  # pray harder
+python -m venv venv  # why do I need this again?
+
+# The new way
+uv sync
+```
+
+If you're just starting out with Python packaging, do yourself a favor - skip the history lesson and jump straight to `pyproject.toml`. Your future self will thank you.
+
 # What's Next?
 
 I'm keeping this project lean and focused. Want a feature? PRs welcome!
