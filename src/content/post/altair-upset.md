@@ -1,8 +1,8 @@
 ---
 title: "altair-upset: The Evolution of UpSet plots in Altair"
 description: How I turned a Jupyter notebook into a full-fledged Python package for UpSet plots
-draft: true
-publishDate: 2025-01-19
+draft: false
+publishDate: 2025-01-20
 tags: ["python", "data-visualization", "bioinformatics", "altair"]
 ---
 
@@ -51,6 +51,14 @@ Here's where it gets interesting - I created a snapshot of the Altair 4 function
 Why? Because I've learned from enough bioinformatics murder mysteries that breaking changes in dependencies can be a nightmare. I tried to just port the function to Altair 5 and wound up with some really weird functionality that I couldn't make sense of.
 
 The secret weapon here was [syrupy](https://github.com/syrupy-project/syrupy) - it let me capture the exact state of my plots before making any changes.
+
+# Migrating to Altair 5
+
+I think the [diff between the versions tells most of the story](https://github.com/edmundmiller/altair-upset/compare/0.1.1...0.2.0).
+
+It was mostly just swapping out a properties calls that got moved.
+
+![Shared Mutations of COVID Variants UpSet Plot](https://github.com/edmundmiller/altair-upset/blob/3ab3e4de21fcaf02dd0ea0211cc14d08238a689b/tests/__snapshots__/test_covid_mutations/test_covid_mutations_subset%5Bimage%5D.png?raw=true)
 
 # What's Next?
 
