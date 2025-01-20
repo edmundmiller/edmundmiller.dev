@@ -58,7 +58,7 @@ I think the [diff between the versions tells most of the story](https://github.c
 
 It was mostly just swapping out a properties calls that got moved.
 
-![Shared Mutations of COVID Variants UpSet Plot](https://github.com/edmundmiller/altair-upset/blob/3ab3e4de21fcaf02dd0ea0211cc14d08238a689b/tests/__snapshots__/test_covid_mutations/test_covid_mutations_subset%5Bimage%5D.png?raw=true)
+![Shared Mutations of COVID Variants UpSet Plot](https://raw.githubusercontent.com/edmundmiller/altair-upset/3ab3e4de21fcaf02dd0ea0211cc14d08238a689b/tests/__snapshots__/test_covid_mutations/test_covid_mutations_subset%5Bimage%5D.png)
 
 # Lessons Learned Along the Way
 
