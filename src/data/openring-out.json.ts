@@ -11,25 +11,25 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "Block AI scrapers with Anubis",
-    "link": "https://xeiaso.net/blog/2025/anubis/",
-    "summary": `I got tired with all the AI scrapers that were bullying my git server, so I made a tool to stop them for good.`,
+    "title": "GHSA-56w8-8ppj-2p4f: Bot protection bypass in Anubis",
+    "link": "https://xeiaso.net/notes/2025/GHSA-56w8-8ppj-2p4f/",
+    "summary": `Update your copy of Anubis, but it&amp;#39;s very minor`,
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
-    "date": "January 19, 2025"
+    "date": "January 26, 2025"
   },
   
   {
-    "title": "No billionaires at FOSDEM",
-    "link": "https://drewdevault.com/2025/01/16/2025-01-16-No-Billionares-at-FOSDEM-please.html",
-    "summary": `Jack Dorsey, former CEO of Twitter, ousted board member of BlueSky, and grifter
-extraordinaire to the tune of a $5.6B net worth, is giving a keynote at
-FOSDEM.
-The FOSDEM keynote stage is one of the biggest platforms in the free software
-community. Janson is …`,
+    "title": "Join us to discuss transparency and governance at FOSDEM &#39;25",
+    "link": "https://drewdevault.com/2025/01/23/2025-01-23-Transparency-and-governance-FOSDEM.html",
+    "summary": `Good news: it appears that Jack Dorsey’s FOSDEM talk has been cancelled!
+This is a follow up to two earlier posts, which you can read here: one and
+two.
+I say it “appears” so, because there has been no official statement from anyone
+to that effect. There has …`,
     "source_title": "Drew DeVault&#39;s blog",
     "source_link": "https://drewdevault.com",
-    "date": "January 16, 2025"
+    "date": "January 23, 2025"
   },
   
   {
