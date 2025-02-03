@@ -11,12 +11,12 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "GHSA-56w8-8ppj-2p4f: Bot protection bypass in Anubis",
-    "link": "https://xeiaso.net/notes/2025/GHSA-56w8-8ppj-2p4f/",
-    "summary": `Update your copy of Anubis, but it&amp;#39;s very minor`,
+    "title": "Nomadic Infrastructure Design for AI workloads",
+    "link": "https://xeiaso.net/talks/2025/nomadic-compute/",
+    "summary": `How to design your workloads to gracefully migrate between clouds`,
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
-    "date": "January 26, 2025"
+    "date": "January 27, 2025"
   },
   
   {
