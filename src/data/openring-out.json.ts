@@ -11,12 +11,14 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "Nomadic Infrastructure Design for AI workloads",
-    "link": "https://xeiaso.net/talks/2025/nomadic-compute/",
-    "summary": `How to design your workloads to gracefully migrate between clouds`,
+    "title": "&#34;No way to prevent this&#34; say users of only language where this regularly happens",
+    "link": "https://xeiaso.net/shitposts/no-way-to-prevent-this/CVE-2025-0725/",
+    "summary": `
+        In the hours following the release of CVE-2025-0725 for the project curl, site reliability workers
+        and systems administrators scrambled to desperately rebuild and patch all their systems to fix a buffer overflow involving malformed gzip str…`,
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
-    "date": "January 27, 2025"
+    "date": "February 5, 2025"
   },
   
   {
