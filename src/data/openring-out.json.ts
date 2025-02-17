@@ -11,6 +11,19 @@ export const openringData: OpenringItem[] =
 [
   
   {
+    "title": "A holistic perspective on intellectual property, part 1",
+    "link": "https://drewdevault.com/2025/02/13/2025-02-13-On-intellectual-property.html",
+    "summary": `I’d like to write about intellectual property in depth, in this first of a
+series of blog posts on the subject. I’m not a philosopher, but philosophy is
+the basis of reasonable politics so buckle up for a healthy Friday afternoon
+serving of it.
+To understand …`,
+    "source_title": "Drew DeVault&#39;s blog",
+    "source_link": "https://drewdevault.com",
+    "date": "February 13, 2025"
+  },
+  
+  {
     "title": "&#34;No way to prevent this&#34; say users of only language where this regularly happens",
     "link": "https://xeiaso.net/shitposts/no-way-to-prevent-this/CVE-2025-0725/",
     "summary": `
@@ -22,25 +35,12 @@ export const openringData: OpenringItem[] =
   },
   
   {
-    "title": "Join us to discuss transparency and governance at FOSDEM &#39;25",
-    "link": "https://drewdevault.com/2025/01/23/2025-01-23-Transparency-and-governance-FOSDEM.html",
-    "summary": `Good news: it appears that Jack Dorsey’s FOSDEM talk has been cancelled!
-This is a follow up to two earlier posts, which you can read here: one and
-two.
-I say it “appears” so, because there has been no official statement from anyone
-to that effect. There has …`,
-    "source_title": "Drew DeVault&#39;s blog",
-    "source_link": "https://drewdevault.com",
-    "date": "January 23, 2025"
-  },
-  
-  {
-    "title": "nf-core/tools - 3.1.0",
-    "link": "https://nf-co.re/blog/2024/tools-3_1_0/",
-    "summary": `Everything is going crate`,
+    "title": "Maintainers Minutes: January 2025",
+    "link": "https://nf-co.re/blog/2025/maintainers-minutes-2025-01-31/",
+    "summary": `Keeping you informed of the latest maintainers discussions`,
     "source_title": "nf-core blog",
     "source_link": "https://nf-co.re/",
-    "date": "December 10, 2024"
+    "date": "January 31, 2025"
   },
   
 ];
