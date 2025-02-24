@@ -11,6 +11,15 @@ export const openringData: OpenringItem[] =
 [
   
   {
+    "title": "Life pro tip: get your flu shot",
+    "link": "https://xeiaso.net/notes/2025/get-flu-shot/",
+    "summary": `I had put off getting my flu shot. I seriously regret this. Over the weekend, I&amp;#39;ve been in a blur of sleep and wakefulness as I suffered through the flu. Get your flu shot. This year&amp;#39;s flu is brutal.`,
+    "source_title": "Xe Iaso&#39;s blog",
+    "source_link": "https://xeiaso.net/",
+    "date": "February 17, 2025"
+  },
+  
+  {
     "title": "A holistic perspective on intellectual property, part 1",
     "link": "https://drewdevault.com/2025/02/13/2025-02-13-On-intellectual-property.html",
     "summary": `I’d like to write about intellectual property in depth, in this first of a
@@ -21,17 +30,6 @@ To understand …`,
     "source_title": "Drew DeVault&#39;s blog",
     "source_link": "https://drewdevault.com",
     "date": "February 13, 2025"
-  },
-  
-  {
-    "title": "&#34;No way to prevent this&#34; say users of only language where this regularly happens",
-    "link": "https://xeiaso.net/shitposts/no-way-to-prevent-this/CVE-2025-0725/",
-    "summary": `
-        In the hours following the release of CVE-2025-0725 for the project curl, site reliability workers
-        and systems administrators scrambled to desperately rebuild and patch all their systems to fix a buffer overflow involving malformed gzip str…`,
-    "source_title": "Xe Iaso&#39;s blog",
-    "source_link": "https://xeiaso.net/",
-    "date": "February 5, 2025"
   },
   
   {
