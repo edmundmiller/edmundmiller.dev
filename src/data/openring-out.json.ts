@@ -11,12 +11,21 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "Life pro tip: get your flu shot",
-    "link": "https://xeiaso.net/notes/2025/get-flu-shot/",
-    "summary": `I had put off getting my flu shot. I seriously regret this. Over the weekend, I&amp;#39;ve been in a blur of sleep and wakefulness as I suffered through the flu. Get your flu shot. This year&amp;#39;s flu is brutal.`,
+    "title": "Yoke is really cool",
+    "link": "https://xeiaso.net/blog/2025/yoke-k8s/",
+    "summary": `Infrastructure as code, but actually`,
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
-    "date": "February 17, 2025"
+    "date": "March 2, 2025"
+  },
+  
+  {
+    "title": "Maintainers Minutes: February 2025",
+    "link": "https://nf-co.re/blog/2025/maintainers-minutes-2025-02-28/",
+    "summary": `Keeping you informed of the latest maintainers discussions`,
+    "source_title": "nf-core blog",
+    "source_link": "https://nf-co.re/",
+    "date": "February 28, 2025"
   },
   
   {
@@ -30,15 +39,6 @@ To understand …`,
     "source_title": "Drew DeVault&#39;s blog",
     "source_link": "https://drewdevault.com",
     "date": "February 13, 2025"
-  },
-  
-  {
-    "title": "Maintainers Minutes: January 2025",
-    "link": "https://nf-co.re/blog/2025/maintainers-minutes-2025-01-31/",
-    "summary": `Keeping you informed of the latest maintainers discussions`,
-    "source_title": "nf-core blog",
-    "source_link": "https://nf-co.re/",
-    "date": "January 31, 2025"
   },
   
 ];
