@@ -11,21 +11,21 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "Yoke is really cool",
-    "link": "https://xeiaso.net/blog/2025/yoke-k8s/",
-    "summary": `Infrastructure as code, but actually`,
+    "title": "Opsec and you: how to navigate having things to hide",
+    "link": "https://xeiaso.net/talks/2025/opsec-and-you/",
+    "summary": `A discussion on operational security and privacy in modern life.`,
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
-    "date": "March 2, 2025"
+    "date": "March 13, 2025"
   },
   
   {
-    "title": "Maintainers Minutes: February 2025",
-    "link": "https://nf-co.re/blog/2025/maintainers-minutes-2025-02-28/",
-    "summary": `Keeping you informed of the latest maintainers discussions`,
+    "title": "nf-core weekly help desk is coming to Asia-Pacific!",
+    "link": "https://nf-co.re/blog/2025/apac-helpdesk-2025/",
+    "summary": `Join the APAC community for a weekly help desk.`,
     "source_title": "nf-core blog",
     "source_link": "https://nf-co.re/",
-    "date": "February 28, 2025"
+    "date": "March 10, 2025"
   },
   
   {
