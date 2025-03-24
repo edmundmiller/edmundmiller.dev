@@ -11,34 +11,33 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "Opsec and you: how to navigate having things to hide",
-    "link": "https://xeiaso.net/talks/2025/opsec-and-you/",
-    "summary": `A discussion on operational security and privacy in modern life.`,
-    "source_title": "Xe Iaso&#39;s blog",
-    "source_link": "https://xeiaso.net/",
-    "date": "March 13, 2025"
-  },
-  
-  {
-    "title": "nf-core weekly help desk is coming to Asia-Pacific!",
-    "link": "https://nf-co.re/blog/2025/apac-helpdesk-2025/",
-    "summary": `Join the APAC community for a weekly help desk.`,
+    "title": "Spring cleaning 2025",
+    "link": "https://nf-co.re/blog/2025/springcleaning/",
+    "summary": `🧹`,
     "source_title": "nf-core blog",
     "source_link": "https://nf-co.re/",
-    "date": "March 10, 2025"
+    "date": "March 20, 2025"
   },
   
   {
-    "title": "A holistic perspective on intellectual property, part 1",
-    "link": "https://drewdevault.com/2025/02/13/2025-02-13-On-intellectual-property.html",
-    "summary": `I’d like to write about intellectual property in depth, in this first of a
-series of blog posts on the subject. I’m not a philosopher, but philosophy is
-the basis of reasonable politics so buckle up for a healthy Friday afternoon
-serving of it.
-To understand …`,
+    "title": "I&#39;m testing Anubis in prod",
+    "link": "https://xeiaso.net/notes/2025/anubis-testing-prod/",
+    "summary": `Please let me know what URL resolvers I just broke.`,
+    "source_title": "Xe Iaso&#39;s blog",
+    "source_link": "https://xeiaso.net/",
+    "date": "March 20, 2025"
+  },
+  
+  {
+    "title": "Please stop externalizing your costs directly into my face",
+    "link": "https://drewdevault.com/2025/03/17/2025-03-17-Stop-externalizing-your-costs-on-me.html",
+    "summary": `This blog post is expressing personal experiences and opinions and doesn’t
+reflect any official policies of SourceHut.
+Over the past few months, instead of working on our priorities at SourceHut, I
+have spent anywhere from 20-100% of my time in any given wee…`,
     "source_title": "Drew DeVault&#39;s blog",
     "source_link": "https://drewdevault.com",
-    "date": "February 13, 2025"
+    "date": "March 17, 2025"
   },
   
 ];
