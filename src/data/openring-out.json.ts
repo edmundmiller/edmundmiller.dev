@@ -11,33 +11,33 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "Spring cleaning 2025",
-    "link": "https://nf-co.re/blog/2025/springcleaning/",
-    "summary": `🧹`,
-    "source_title": "nf-core blog",
-    "source_link": "https://nf-co.re/",
-    "date": "March 20, 2025"
-  },
-  
-  {
-    "title": "I&#39;m testing Anubis in prod",
-    "link": "https://xeiaso.net/notes/2025/anubis-testing-prod/",
-    "summary": `Please let me know what URL resolvers I just broke.`,
-    "source_title": "Xe Iaso&#39;s blog",
-    "source_link": "https://xeiaso.net/",
-    "date": "March 20, 2025"
-  },
-  
-  {
-    "title": "Please stop externalizing your costs directly into my face",
-    "link": "https://drewdevault.com/2025/03/17/2025-03-17-Stop-externalizing-your-costs-on-me.html",
-    "summary": `This blog post is expressing personal experiences and opinions and doesn’t
-reflect any official policies of SourceHut.
-Over the past few months, instead of working on our priorities at SourceHut, I
-have spent anywhere from 20-100% of my time in any given wee…`,
+    "title": "Using linkhut to signal-boost my bookmarks",
+    "link": "https://drewdevault.com/2025/03/27/2025-03-27-Using-linkhut.html",
+    "summary": `It must have been at least a year ago that I first noticed linkhut, and its
+flagship instance at ln.ht, appear on SourceHut, where it immediately caught
+my attention for its good taste in inspirations. Once upon a time, I had a
+Pinboard account, which is a s…`,
     "source_title": "Drew DeVault&#39;s blog",
     "source_link": "https://drewdevault.com",
-    "date": "March 17, 2025"
+    "date": "March 27, 2025"
+  },
+  
+  {
+    "title": "nf-core survey 2025: the results",
+    "link": "https://nf-co.re/blog/2025/survey-results-2025/",
+    "summary": `Results summary from the nf-core community survey 2025 `,
+    "source_title": "nf-core blog",
+    "source_link": "https://nf-co.re/",
+    "date": "March 26, 2025"
+  },
+  
+  {
+    "title": "The surreal joy of having an overprovisioned homelab",
+    "link": "https://xeiaso.net/talks/2025/surreal-joy-homelab/",
+    "summary": `Stand-up comedy about having a homelab.`,
+    "source_title": "Xe Iaso&#39;s blog",
+    "source_link": "https://xeiaso.net/",
+    "date": "March 25, 2025"
   },
   
 ];
