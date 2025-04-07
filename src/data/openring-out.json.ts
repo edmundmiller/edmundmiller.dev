@@ -11,15 +11,24 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "Using linkhut to signal-boost my bookmarks",
-    "link": "https://drewdevault.com/2025/03/27/2025-03-27-Using-linkhut.html",
-    "summary": `It must have been at least a year ago that I first noticed linkhut, and its
-flagship instance at ln.ht, appear on SourceHut, where it immediately caught
-my attention for its good taste in inspirations. Once upon a time, I had a
-Pinboard account, which is a s…`,
+    "title": "Life pro tip: put your active kubernetes context in your prompt",
+    "link": "https://xeiaso.net/notes/2025/kube-ps1/",
+    "summary": `kube_ps1 is love, kube_ps1 is life`,
+    "source_title": "Xe Iaso&#39;s blog",
+    "source_link": "https://xeiaso.net/",
+    "date": "April 5, 2025"
+  },
+  
+  {
+    "title": "A Firefox addon for putting prices into perspective",
+    "link": "https://drewdevault.com/2025/04/04/2025-04-04-Price-perspective.html",
+    "summary": `I had a fun idea for a small project this weekend, and so I quickly put it
+together over the couple of days. The result is Price Perspective.
+Humor me: have you ever bought something, considered the price, and wondered how
+that price would look to someone el…`,
     "source_title": "Drew DeVault&#39;s blog",
     "source_link": "https://drewdevault.com",
-    "date": "March 27, 2025"
+    "date": "April 4, 2025"
   },
   
   {
@@ -29,15 +38,6 @@ Pinboard account, which is a s…`,
     "source_title": "nf-core blog",
     "source_link": "https://nf-co.re/",
     "date": "March 26, 2025"
-  },
-  
-  {
-    "title": "The surreal joy of having an overprovisioned homelab",
-    "link": "https://xeiaso.net/talks/2025/surreal-joy-homelab/",
-    "summary": `Stand-up comedy about having a homelab.`,
-    "source_title": "Xe Iaso&#39;s blog",
-    "source_link": "https://xeiaso.net/",
-    "date": "March 25, 2025"
   },
   
 ];
