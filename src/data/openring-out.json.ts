@@ -11,6 +11,18 @@ export const openringData: OpenringItem[] =
 [
   
   {
+    "title": "Resistance from the tech sector",
+    "link": "https://drewdevault.com/2025/04/20/2025-04-20-Tech-sector-restistance.html",
+    "summary": `As of late, most of us have been reading the news with a sense of anxious
+trepidation. At least, those of us who read from a position of relative comfort
+and privilege. Many more read the news with fear. Some of us are already no
+longer in a position to read…`,
+    "source_title": "Drew DeVault&#39;s blog",
+    "source_link": "https://drewdevault.com",
+    "date": "April 20, 2025"
+  },
+  
+  {
     "title": "Anubis works",
     "link": "https://xeiaso.net/notes/2025/anubis-works/",
     "summary": `
@@ -54,15 +66,6 @@ export const openringData: OpenringItem[] =
     "source_title": "News - Functional Genomics Laboratory",
     "source_link": "https://taehoonkim.org/news/",
     "date": "April 10, 2025"
-  },
-  
-  {
-    "title": "State of the nf-core CI",
-    "link": "https://nf-co.re/blog/2025/state-of-nf-core-ci/",
-    "summary": `Run, CI, Run!`,
-    "source_title": "nf-core blog",
-    "source_link": "https://nf-co.re/",
-    "date": "April 9, 2025"
   },
   
 ];
