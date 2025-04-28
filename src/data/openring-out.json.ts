@@ -11,6 +11,15 @@ export const openringData: OpenringItem[] =
 [
   
   {
+    "title": "I&#39;m on GitHub Sponsors",
+    "link": "https://xeiaso.net/notes/2025/github-sponsors/",
+    "summary": `If you wanted to give me money but Patreon was causing grief, I&amp;#39;m on GitHub Sponsors now! Help me reach my goal of saving the world from AI scrapers with the power of anime.`,
+    "source_title": "Xe Iaso&#39;s blog",
+    "source_link": "https://xeiaso.net/",
+    "date": "April 21, 2025"
+  },
+  
+  {
     "title": "Resistance from the tech sector",
     "link": "https://drewdevault.com/2025/04/20/2025-04-20-Tech-sector-restistance.html",
     "summary": `As of late, most of us have been reading the news with a sense of anxious
@@ -20,18 +29,6 @@ longer in a position to read…`,
     "source_title": "Drew DeVault&#39;s blog",
     "source_link": "https://drewdevault.com",
     "date": "April 20, 2025"
-  },
-  
-  {
-    "title": "Anubis works",
-    "link": "https://xeiaso.net/notes/2025/anubis-works/",
-    "summary": `
-        That meme is not an understatement, Anubis has been deployed by the United Nations.
-        For your amusement, here is how the inner monologue of me finding out about this went:
-        AoiWhat. You can&amp;#39;t be serious, can you?CadeyIt&amp;#39;s real.…`,
-    "source_title": "Xe Iaso&#39;s blog",
-    "source_link": "https://xeiaso.net/",
-    "date": "April 12, 2025"
   },
   
   {
