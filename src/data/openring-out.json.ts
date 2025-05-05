@@ -11,6 +11,15 @@ export const openringData: OpenringItem[] =
 [
   
   {
+    "title": "Maintainers Minutes: April 2025",
+    "link": "https://nf-co.re/blog/2025/maintainers-minutes-2025-04-24/",
+    "summary": `Keeping you informed of the latest maintainers discussions`,
+    "source_title": "nf-core blog",
+    "source_link": "https://nf-co.re/",
+    "date": "May 2, 2025"
+  },
+  
+  {
     "title": "I&#39;m on GitHub Sponsors",
     "link": "https://xeiaso.net/notes/2025/github-sponsors/",
     "summary": `If you wanted to give me money but Patreon was causing grief, I&amp;#39;m on GitHub Sponsors now! Help me reach my goal of saving the world from AI scrapers with the power of anime.`,
@@ -29,40 +38,6 @@ longer in a position to read…`,
     "source_title": "Drew DeVault&#39;s blog",
     "source_link": "https://drewdevault.com",
     "date": "April 20, 2025"
-  },
-  
-  {
-    "title": "Jacob Roy story of his UTD journey and giving",
-    "link": "https://taehoonkim.org/news/2025/4/10/jacob-roy-story-of-utd-journey-and-giving",
-    "summary": `
-          
-        
-        
-
-        
-          
-            
-          
-            
-                
-                
-                
-                
-                
-                
-                
-                
-
-            
-          
-        
-          
-        
-
- …`,
-    "source_title": "News - Functional Genomics Laboratory",
-    "source_link": "https://taehoonkim.org/news/",
-    "date": "April 10, 2025"
   },
   
 ];
