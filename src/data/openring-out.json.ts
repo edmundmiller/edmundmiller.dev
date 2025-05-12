@@ -11,33 +11,33 @@ export const openringData: OpenringItem[] =
 [
   
   {
+    "title": "An year of the Linux Desktop",
+    "link": "https://xeiaso.net/blog/2025/yotld/",
+    "summary": `Forward and back and then forward and back and then go forward and back, then put one foot forward`,
+    "source_title": "Xe Iaso&#39;s blog",
+    "source_link": "https://xeiaso.net/",
+    "date": "May 7, 2025"
+  },
+  
+  {
+    "title": "The British Airways position on various border disputes",
+    "link": "https://drewdevault.com/2025/05/05/2025-05-05-BA-on-border-disputes.html",
+    "summary": `My spouse and I are on vacation in Japan, spending half our time seeing the
+sights and the other half working remotely and enjoying the experience of living
+in a different place for a while. To get here, we flew on British Airways from
+London to Tokyo, and I…`,
+    "source_title": "Drew DeVault&#39;s blog",
+    "source_link": "https://drewdevault.com",
+    "date": "May 5, 2025"
+  },
+  
+  {
     "title": "Maintainers Minutes: April 2025",
     "link": "https://nf-co.re/blog/2025/maintainers-minutes-2025-04-24/",
     "summary": `Keeping you informed of the latest maintainers discussions`,
     "source_title": "nf-core blog",
     "source_link": "https://nf-co.re/",
     "date": "May 2, 2025"
-  },
-  
-  {
-    "title": "I&#39;m on GitHub Sponsors",
-    "link": "https://xeiaso.net/notes/2025/github-sponsors/",
-    "summary": `If you wanted to give me money but Patreon was causing grief, I&amp;#39;m on GitHub Sponsors now! Help me reach my goal of saving the world from AI scrapers with the power of anime.`,
-    "source_title": "Xe Iaso&#39;s blog",
-    "source_link": "https://xeiaso.net/",
-    "date": "April 21, 2025"
-  },
-  
-  {
-    "title": "Resistance from the tech sector",
-    "link": "https://drewdevault.com/2025/04/20/2025-04-20-Tech-sector-restistance.html",
-    "summary": `As of late, most of us have been reading the news with a sense of anxious
-trepidation. At least, those of us who read from a position of relative comfort
-and privilege. Many more read the news with fear. Some of us are already no
-longer in a position to read…`,
-    "source_title": "Drew DeVault&#39;s blog",
-    "source_link": "https://drewdevault.com",
-    "date": "April 20, 2025"
   },
   
 ];
