@@ -11,12 +11,24 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "An year of the Linux Desktop",
-    "link": "https://xeiaso.net/blog/2025/yotld/",
-    "summary": `Forward and back and then forward and back and then go forward and back, then put one foot forward`,
+    "title": "Avoiding becoming the lone dependency peg with load-bearing anime",
+    "link": "https://xeiaso.net/blog/2025/avoiding-becoming-peg-dependency/",
+    "summary": `
+        While working on Anubis (a Web AI Firewall Utility designed to stop rampant scraping from taking out web services), one question in particular keeps coming up:
+        AoiWhy do you have an anime character in the challenge screen by default?
+       …`,
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
-    "date": "May 7, 2025"
+    "date": "May 23, 2025"
+  },
+  
+  {
+    "title": "nf-core supports now `main` branch names",
+    "link": "https://nf-co.re/blog/2025/switching-master-to-main/",
+    "summary": `Announcing the possibility to change a pipeline default branch to main`,
+    "source_title": "nf-core blog",
+    "source_link": "https://nf-co.re/",
+    "date": "May 19, 2025"
   },
   
   {
@@ -29,15 +41,6 @@ London to Tokyo, and I…`,
     "source_title": "Drew DeVault&#39;s blog",
     "source_link": "https://drewdevault.com",
     "date": "May 5, 2025"
-  },
-  
-  {
-    "title": "Maintainers Minutes: April 2025",
-    "link": "https://nf-co.re/blog/2025/maintainers-minutes-2025-04-24/",
-    "summary": `Keeping you informed of the latest maintainers discussions`,
-    "source_title": "nf-core blog",
-    "source_link": "https://nf-co.re/",
-    "date": "May 2, 2025"
   },
   
 ];
