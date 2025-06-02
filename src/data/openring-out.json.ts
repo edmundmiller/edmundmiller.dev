@@ -11,6 +11,40 @@ export const openringData: OpenringItem[] =
 [
   
   {
+    "title": "cytotoxic oxidative stress for cancer therapy",
+    "link": "https://taehoonkim.org/news/2025/5/28/k5lcl7cascox9hy20wtkhz4721jksx",
+    "summary": `
+          
+        
+        
+
+        
+          
+            
+          
+            
+                
+                
+                
+                
+                
+                
+                
+                
+
+            
+          
+        
+          
+        
+
+ …`,
+    "source_title": "News - Functional Genomics Laboratory",
+    "source_link": "https://taehoonkim.org/news/",
+    "date": "May 28, 2025"
+  },
+  
+  {
     "title": "Avoiding becoming the lone dependency peg with load-bearing anime",
     "link": "https://xeiaso.net/blog/2025/avoiding-becoming-peg-dependency/",
     "summary": `
@@ -29,18 +63,6 @@ export const openringData: OpenringItem[] =
     "source_title": "nf-core blog",
     "source_link": "https://nf-co.re/",
     "date": "May 19, 2025"
-  },
-  
-  {
-    "title": "The British Airways position on various border disputes",
-    "link": "https://drewdevault.com/2025/05/05/2025-05-05-BA-on-border-disputes.html",
-    "summary": `My spouse and I are on vacation in Japan, spending half our time seeing the
-sights and the other half working remotely and enjoying the experience of living
-in a different place for a while. To get here, we flew on British Airways from
-London to Tokyo, and I…`,
-    "source_title": "Drew DeVault&#39;s blog",
-    "source_link": "https://drewdevault.com",
-    "date": "May 5, 2025"
   },
   
 ];
