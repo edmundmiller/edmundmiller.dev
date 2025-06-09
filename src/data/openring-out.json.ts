@@ -11,6 +11,15 @@ export const openringData: OpenringItem[] =
 [
   
   {
+    "title": "nf-core/tools - 3.3",
+    "link": "https://nf-co.re/blog/2025/tools-3_3/",
+    "summary": `An nf-testic release`,
+    "source_title": "nf-core blog",
+    "source_link": "https://nf-co.re/",
+    "date": "June 3, 2025"
+  },
+  
+  {
     "title": "cytotoxic oxidative stress for cancer therapy",
     "link": "https://taehoonkim.org/news/2025/5/28/k5lcl7cascox9hy20wtkhz4721jksx",
     "summary": `
@@ -54,15 +63,6 @@ export const openringData: OpenringItem[] =
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
     "date": "May 23, 2025"
-  },
-  
-  {
-    "title": "nf-core supports now `main` branch names",
-    "link": "https://nf-co.re/blog/2025/switching-master-to-main/",
-    "summary": `Announcing the possibility to change a pipeline default branch to main`,
-    "source_title": "nf-core blog",
-    "source_link": "https://nf-co.re/",
-    "date": "May 19, 2025"
   },
   
 ];
