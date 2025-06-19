@@ -8,17 +8,61 @@ import WebMentions from "@/components/blog/webmentions/index.astro";
 import BaseLayout from "./Base.astro";
 
 interface Props {
-  post: CollectionEntry<"post">;
+  post?: CollectionEntry<"post">;
+  frontmatter?: {
+    title?: string;
+    description?: string;
+    publishDate?: string | Date;
+    updatedDate?: string | Date;
+    canonical?: string;
+    author?: string | string[];
+    ogImage?: string;
+    [key: string]: any;
+  };
 }
 
 const { post } = Astro.props;
-const {
-  data: { description, ogImage, publishDate, title, updatedDate, canonical },
-  slug,
-} = post;
+
+// Handle both content collection posts and MDX pages
+let description: string | undefined,
+  ogImage: string | undefined,
+  publishDate: Date,
+  title: string | undefined,
+  updatedDate: Date | undefined,
+  canonical: string | undefined,
+  author: string | string[] | undefined,
+  slug: string;
+
+if (post) {
+  // Content collection post
+  const postData = post.data;
+  description = postData.description;
+  ogImage = postData.ogImage;
+  publishDate = postData.publishDate;
+  title = postData.title;
+  updatedDate = postData.updatedDate;
+  canonical = postData.canonical;
+  author = postData.author;
+  slug = post.slug;
+} else {
+  // MDX page - get data from frontmatter
+  const frontmatter = Astro.props.frontmatter || {};
+  description = frontmatter.description;
+  ogImage = frontmatter.ogImage;
+  publishDate = frontmatter.publishDate ? new Date(frontmatter.publishDate) : new Date();
+  title = frontmatter.title;
+  updatedDate = frontmatter.updatedDate ? new Date(frontmatter.updatedDate) : undefined;
+  canonical = frontmatter.canonical;
+  author = frontmatter.author;
+  const pathSegments = Astro.url.pathname.split("/").filter(Boolean);
+  slug = pathSegments.length > 0 ? pathSegments[pathSegments.length - 1] : "page";
+}
+
 const socialImage = ogImage ?? `/og-image/${slug}.png`;
 const articleDate = updatedDate?.toISOString() ?? publishDate.toISOString();
-const { headings } = await post.render();
+
+// Only get headings for content collection posts
+const headings = post ? (await post.render()).headings : [];
 ---
 
 <BaseLayout
@@ -28,19 +72,95 @@ const { headings } = await post.render();
     ogImage: socialImage,
     title,
     canonical,
+    author,
   }}
 >
   <div class="gap-x-10 lg:flex lg:items-start">
     {!!headings.length && <TOC headings={headings} />}
     <article class="h-entry flex-grow break-words" data-pagefind-body>
-      <div id="blog-hero"><BlogHero content={post} /></div>
+      <div id="blog-hero">
+        {
+          post ? (
+            <BlogHero content={post} />
+          ) : (
+            <div class="blog-hero-mdx">
+              <h1 class="p-name title mb-3 sm:mb-1">{title}</h1>
+              <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
+                <p class="font-semibold">
+                  {publishDate.toLocaleDateString("en-US", {
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                  })}
+                </p>
+              </div>
+
+              {/* Authors section for MDX */}
+              {author && (
+                <div class="mt-3 flex flex-wrap items-center gap-x-2">
+                  <svg
+                    aria-hidden="true"
+                    class="h-5 w-5 text-accent"
+                    fill="none"
+                    focusable="false"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg>
+                  <span class="text-sm font-medium">
+                    Author: <span class="font-semibold text-accent-2">{author}</span>
+                  </span>
+                </div>
+              )}
+
+              {/* Canonical URL section for MDX */}
+              {canonical && (
+                <div class="mt-3 flex flex-wrap items-center gap-x-2">
+                  <svg
+                    aria-hidden="true"
+                    class="h-5 w-5 text-accent"
+                    fill="none"
+                    focusable="false"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                  </svg>
+                  <span class="text-sm">
+                    <span class="font-medium">Originally published at:</span>
+                    <a
+                      href={canonical}
+                      class="cactus-link ml-1 font-semibold"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {new URL(canonical).hostname}
+                    </a>
+                  </span>
+                </div>
+              )}
+            </div>
+          )
+        }
+      </div>
       <div
         class="prose prose-sm prose-cactus mt-12 prose-headings:font-semibold prose-headings:text-accent-2 prose-headings:before:absolute prose-headings:before:-ms-4 prose-headings:before:text-accent prose-headings:before:content-['#'] prose-th:before:content-none"
       >
         <div class="e-content">
           <slot />
         </div>
-        <WebMentions />
+        {post && <WebMentions />}
       </div>
     </article>
   </div>

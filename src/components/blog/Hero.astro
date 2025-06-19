@@ -18,6 +18,9 @@ const { remarkPluginFrontmatter } = await render();
 const dateTimeOptions: Intl.DateTimeFormatOptions = {
   month: "long",
 };
+
+// Handle authors - normalize to array for consistent display
+const authors = data.author ? (Array.isArray(data.author) ? data.author : [data.author]) : [];
 ---
 
 {
@@ -52,6 +55,74 @@ const dateTimeOptions: Intl.DateTimeFormatOptions = {
     )
   }
 </div>
+
+{/* Authors section */}
+{
+  authors.length > 0 && (
+    <div class="mt-3 flex flex-wrap items-center gap-x-2">
+      <svg
+        aria-hidden="true"
+        class="h-5 w-5 text-accent"
+        fill="none"
+        focusable="false"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="1.5"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+        <circle cx="12" cy="7" r="4" />
+      </svg>
+      <span class="text-sm font-medium">
+        {authors.length === 1 ? "Author:" : "Authors:"}
+        {authors.map((author, i) => (
+          <>
+            <span class="font-semibold text-accent-2">{author}</span>
+            {i < authors.length - 1 &&
+              (authors.length === 2 ? " and " : i === authors.length - 2 ? ", and " : ", ")}
+          </>
+        ))}
+      </span>
+    </div>
+  )
+}
+
+{/* Canonical URL section */}
+{
+  data.canonical && (
+    <div class="mt-3 flex flex-wrap items-center gap-x-2">
+      <svg
+        aria-hidden="true"
+        class="h-5 w-5 text-accent"
+        fill="none"
+        focusable="false"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="1.5"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+      </svg>
+      <span class="text-sm">
+        <span class="font-medium">Originally published at:</span>
+        <a
+          href={data.canonical}
+          class="cactus-link ml-1 font-semibold"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {new URL(data.canonical).hostname}
+        </a>
+      </span>
+    </div>
+  )
+}
+
 {
   !!data.tags?.length && (
     <div class="mt-3">

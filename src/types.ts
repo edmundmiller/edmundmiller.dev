@@ -14,11 +14,12 @@ export type SiteConfig = {
   };
 };
 
-export type PaginationLink = {
-  url: string;
-  text?: string;
-  srLabel?: string;
-};
+export type SocialObjects = {
+  name: string;
+  href: string;
+  linkTitle: string;
+  active: boolean;
+}[];
 
 export interface SiteMeta {
   title: string;
@@ -26,7 +27,14 @@ export interface SiteMeta {
   ogImage?: string | undefined;
   articleDate?: string;
   canonical?: string;
+  author?: string | string[];
 }
+
+export type PaginationLink = {
+  url: string;
+  text?: string;
+  srLabel?: string;
+};
 
 /** Webmentions */
 export type WebmentionsFeed = {

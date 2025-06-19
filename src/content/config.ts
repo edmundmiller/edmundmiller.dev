@@ -33,6 +33,7 @@ const post = defineCollection({
       tags: z.array(z.string()).default([]).transform(removeDupsAndLowerCase),
       ogImage: z.string().optional(),
       canonical: z.string().url().optional(),
+      author: z.string().or(z.array(z.string())).optional(),
     }),
 });
 
