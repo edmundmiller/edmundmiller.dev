@@ -4,8 +4,11 @@ import mdx from "@astrojs/mdx";
 import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
 import remarkUnwrapImages from "remark-unwrap-images";
+import remarkDirective from "remark-directive";
 import rehypeExternalLinks from "rehype-external-links";
+import rehypeRaw from "rehype-raw";
 import { remarkReadingTime } from "./src/utils/remark-reading-time";
+import { remarkAdmonitions } from "./src/utils/remark-admonitions";
 import icon from "astro-icon";
 import expressiveCode from "astro-expressive-code";
 import { expressiveCodeOptions } from "./src/site.config";
@@ -15,8 +18,9 @@ export default defineConfig({
   // ! Please remember to replace the following site property with your own domain
   site: "https://edmundmiller.dev/",
   markdown: {
-    remarkPlugins: [remarkUnwrapImages, remarkReadingTime],
+    remarkPlugins: [remarkUnwrapImages, remarkReadingTime, remarkDirective, remarkAdmonitions],
     rehypePlugins: [
+      rehypeRaw,
       [
         rehypeExternalLinks,
         {
@@ -38,7 +42,19 @@ export default defineConfig({
       applyBaseStyles: false,
     }),
     sitemap(),
-    mdx(),
+    mdx({
+      remarkPlugins: [remarkUnwrapImages, remarkReadingTime, remarkDirective, remarkAdmonitions],
+      rehypePlugins: [
+        rehypeRaw,
+        [
+          rehypeExternalLinks,
+          {
+            target: "_blank",
+            rel: ["nofollow, noopener, noreferrer"],
+          },
+        ],
+      ],
+    }),
   ],
   image: {
     domains: ["webmention.io"],

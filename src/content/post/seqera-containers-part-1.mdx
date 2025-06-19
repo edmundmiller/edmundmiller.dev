@@ -19,6 +19,7 @@ draft: true
 import { YouTube } from "@astro-community/astro-embed-youtube";
 
 import { Image } from "astro:assets";
+import Admonition from "../../components/Admonition.astro";
 
 ## Introduction
 
@@ -60,8 +61,7 @@ The motivation comes down to a few key reasons:
 
 With the new Seqera Containers setup we should be able to address these problems, as well as provide the additional features.
 
-:::tip
-{/* {title="What's changing"} */}
+<Admonition type="tip" title="What's changing">
 A detailed description of the proposed mechanism will come in part 2 of this blog post.
 Here are the key points:
 
@@ -71,10 +71,9 @@ Here are the key points:
 - Conda lock-files will be used for Conda users and CI tests
 - Software releases will be automatically bumped in modules, using [Renovate](https://renovatebot.com/)
 - There should be almost no change in how end-users run nf-core pipelines
-  :::
+</Admonition>
 
-:::info
-{/* {.fa-calendar-lines-pen title="Timeline" collapse} */}
+<Admonition type="info" title="Timeline" collapsible>
 
 This move has been in the works for over a year now.
 It started with discussions between nf-core maintainers and Seqera developers about what the community needed.
@@ -101,7 +100,7 @@ It's not too late to add your feedback! So if you have any questions or ideas, l
 
 Note that images from Seqera Containers can already be used in nf-core/modules, with the old syntax of using a `container` declaration (see [example](https://github.com/nf-core/modules/blob/b6b54f3929b0ba4a7c02a49191308ce1d8351f0d/modules/nf-core/bedtools/genomecov/main.nf#L6-L8)).
 
-:::
+</Admonition>
 
 ## BioContainers and Seqera Containers
 
@@ -137,8 +136,7 @@ Building on-demand gives greater flexibility and scalability, especially for mul
 nf-core pipeline users won't need to interact with Wave directly.
 We simply plan to replace the mechanism for supplying the default container images specified in pipelines.
 
-:::info
-{/* {.fa-list-check title="Feature comparison"} */}
+<Admonition type="info" title="Feature comparison">
 
 It's important to distinguish the differences between Wave and Seqera Containers.
 Here's a brief comparison of the features:
@@ -257,7 +255,7 @@ Here's a brief comparison of the features:
   the time of their creation. BioContainers has no public policy.
 </small>
 
-:::
+</Admonition>
 
 ### Mulled (multi-package) images
 
@@ -279,8 +277,7 @@ Unfortunately, generating mulled containers is not trivial.
 
 </div>
 
-:::tip
-{/* {title="How to make a mulled BioContainer"} */}
+<Admonition type="tip" title="How to make a mulled BioContainer">
 Luke Pembleton, Nextflow Ambassador, has a great blog post summarising the dark art of
 [Finding the right mulled biocontainer](https://lpembleton.rbind.io/posts/mulled-biocontainers/).
 Galaxy also has [documentation on the topic](https://docs.galaxyproject.org/en/master/admin/container_resolvers.html).
@@ -298,7 +295,7 @@ the process of finding the name of your container and how to update a container 
 
 Once the image is built and you know its address, the final step is to go to nf-core/modules,
 create a pull-request with the updated containers, and bump the versions in the conda `environment.yml`.
-:::
+</Admonition>
 
 This system works and, despite its complexity, is now a familiar process to many nf-core developers.
 However, it does present some problems.
@@ -395,8 +392,7 @@ We can use this to retrieve build details, which we will add to the nf-core webs
 - Conda lock files with full package URLs and md5sums for entire dependency resolution
 - For Docker images: Trivy security scan and software bill of materials (SBOM)
 
-:::info
-{/* TODO {title="Example Wave build details page" collapse} */}
+<Admonition type="info" title="Example Wave build details page" collapsible>
 
 We haven't built this yet, but here's what the Wave build details page looks like, which has the same information:
 
@@ -409,7 +405,7 @@ We haven't built this yet, but here's what the Wave build details page looks lik
 Wave build details page for the MultiQC v1.24.1 image: `community.wave.seqera.io/library/multiqc:1.24.1--789bc3917c8666da`
 
 The final part is the hash - from this we can infer the Wave Build ID and retrieve the build details: [https://wave.seqera.io/view/builds/789bc3917c8666da_1](https://wave.seqera.io/view/builds/789bc3917c8666da_1)
-:::
+</Admonition>
 
 The new conda lock files also allow enhanced reproducibility for Conda users and more stable CI tests - we'll come back to these in a future blog post / bytesize.
 

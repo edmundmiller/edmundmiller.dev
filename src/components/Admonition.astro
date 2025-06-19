@@ -1,0 +1,184 @@
+---
+interface Props {
+  type?: 'note' | 'tip' | 'info' | 'warning' | 'danger' | 'success' | 'example' | 'quote';
+  title?: string;
+  icon?: string;
+  collapsible?: boolean;
+  collapsed?: boolean;
+}
+
+const {
+  type = 'note',
+  title,
+  icon,
+  collapsible = false,
+  collapsed = false
+} = Astro.props;
+
+// Define type configurations
+const typeConfig = {
+  note: {
+    icon: icon || 'mdi:note-text',
+    bgColor: 'bg-blue-50 dark:bg-blue-950/30',
+    borderColor: 'border-blue-200 dark:border-blue-800',
+    iconColor: 'text-blue-600 dark:text-blue-400',
+    titleColor: 'text-blue-900 dark:text-blue-100',
+    defaultTitle: 'Note'
+  },
+  tip: {
+    icon: icon || 'mdi:lightbulb',
+    bgColor: 'bg-green-50 dark:bg-green-950/30',
+    borderColor: 'border-green-200 dark:border-green-800',
+    iconColor: 'text-green-600 dark:text-green-400',
+    titleColor: 'text-green-900 dark:text-green-100',
+    defaultTitle: 'Tip'
+  },
+  info: {
+    icon: icon || 'mdi:information',
+    bgColor: 'bg-cyan-50 dark:bg-cyan-950/30',
+    borderColor: 'border-cyan-200 dark:border-cyan-800',
+    iconColor: 'text-cyan-600 dark:text-cyan-400',
+    titleColor: 'text-cyan-900 dark:text-cyan-100',
+    defaultTitle: 'Info'
+  },
+  warning: {
+    icon: icon || 'mdi:alert',
+    bgColor: 'bg-yellow-50 dark:bg-yellow-950/30',
+    borderColor: 'border-yellow-200 dark:border-yellow-800',
+    iconColor: 'text-yellow-600 dark:text-yellow-400',
+    titleColor: 'text-yellow-900 dark:text-yellow-100',
+    defaultTitle: 'Warning'
+  },
+  danger: {
+    icon: icon || 'mdi:alert-octagon',
+    bgColor: 'bg-red-50 dark:bg-red-950/30',
+    borderColor: 'border-red-200 dark:border-red-800',
+    iconColor: 'text-red-600 dark:text-red-400',
+    titleColor: 'text-red-900 dark:text-red-100',
+    defaultTitle: 'Danger'
+  },
+  success: {
+    icon: icon || 'mdi:check-circle',
+    bgColor: 'bg-emerald-50 dark:bg-emerald-950/30',
+    borderColor: 'border-emerald-200 dark:border-emerald-800',
+    iconColor: 'text-emerald-600 dark:text-emerald-400',
+    titleColor: 'text-emerald-900 dark:text-emerald-100',
+    defaultTitle: 'Success'
+  },
+  example: {
+    icon: icon || 'mdi:file-document-edit',
+    bgColor: 'bg-purple-50 dark:bg-purple-950/30',
+    borderColor: 'border-purple-200 dark:border-purple-800',
+    iconColor: 'text-purple-600 dark:text-purple-400',
+    titleColor: 'text-purple-900 dark:text-purple-100',
+    defaultTitle: 'Example'
+  },
+  quote: {
+    icon: icon || 'mdi:format-quote-close',
+    bgColor: 'bg-gray-50 dark:bg-gray-950/30',
+    borderColor: 'border-gray-200 dark:border-gray-800',
+    iconColor: 'text-gray-600 dark:text-gray-400',
+    titleColor: 'text-gray-900 dark:text-gray-100',
+    defaultTitle: 'Quote'
+  }
+};
+
+const config = typeConfig[type];
+const displayTitle = title || config.defaultTitle;
+const uniqueId = `admonition-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<div
+  class={`admonition admonition-${type} rounded-lg border-l-4 p-4 my-6 ${config.bgColor} ${config.borderColor}`}
+  data-type={type}
+>
+  <div class="flex items-start">
+    <!-- Icon -->
+    <div class={`flex-shrink-0 ${config.iconColor} mr-3 mt-1`}>
+      <astro-icon name={config.icon} class="w-5 h-5" />
+    </div>
+
+    <div class="flex-1 min-w-0">
+      <!-- Title/Header -->
+      {collapsible ? (
+        <button
+          class={`admonition-toggle flex items-center justify-between w-full text-left font-semibold ${config.titleColor} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 rounded-sm`}
+          aria-expanded={!collapsed}
+          aria-controls={uniqueId}
+        >
+          <span class="flex items-center">
+            <span>{displayTitle}</span>
+          </span>
+          <astro-icon
+            name="mdi:chevron-down"
+            class={`w-4 h-4 transition-transform duration-200 ${collapsed ? '-rotate-90' : ''}`}
+          />
+        </button>
+      ) : (
+        <div class={`font-semibold ${config.titleColor} mb-2`}>
+          {displayTitle}
+        </div>
+      )}
+
+      <!-- Content -->
+      <div
+        id={uniqueId}
+        class={`admonition-content ${collapsible ? 'mt-2' : ''} ${collapsed && collapsible ? 'hidden' : ''}`}
+      >
+        <div class="prose prose-sm dark:prose-invert max-w-none">
+          <slot />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{collapsible && (
+  <script>
+    // Add click handlers for collapsible admonitions
+    document.addEventListener('DOMContentLoaded', function() {
+      const toggles = document.querySelectorAll('.admonition-toggle');
+
+      toggles.forEach(toggle => {
+        toggle.addEventListener('click', function() {
+          const content = document.getElementById(this.getAttribute('aria-controls'));
+          const chevron = this.querySelector('[data-icon="mdi:chevron-down"]');
+          const isExpanded = this.getAttribute('aria-expanded') === 'true';
+
+          // Toggle visibility
+          if (isExpanded) {
+            content.classList.add('hidden');
+            this.setAttribute('aria-expanded', 'false');
+            chevron.classList.add('-rotate-90');
+          } else {
+            content.classList.remove('hidden');
+            this.setAttribute('aria-expanded', 'true');
+            chevron.classList.remove('-rotate-90');
+          }
+        });
+      });
+    });
+  </script>
+)}
+
+<style>
+  .admonition {
+    @apply transition-all duration-200;
+  }
+
+  .admonition:hover {
+    @apply shadow-md;
+  }
+
+  .admonition-content .prose {
+    @apply text-gray-700 dark:text-gray-300;
+  }
+
+  .admonition-content .prose p:first-child {
+    @apply mt-0;
+  }
+
+  .admonition-content .prose p:last-child {
+    @apply mb-0;
+  }
+</style>

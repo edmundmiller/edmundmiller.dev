@@ -18,15 +18,20 @@
     "@astrojs/rss": "4.0.12",
     "@astrojs/sitemap": "3.4.1",
     "@astrojs/tailwind": "6.0.2",
+    "@types/hast": "^3.0.4",
+    "@types/mdast": "^4.0.4",
     "@wooorm/starry-night": "3.6.0",
     "astro": "5.9.4",
     "astro-analytics": "2.7.0",
     "astro-expressive-code": "0.39.0",
     "astro-icon": "1.1.5",
     "rehype-external-links": "3.0.0",
+    "rehype-raw": "^7.0.0",
+    "remark-directive": "^4.0.0",
     "satori": "0.12.2",
     "satori-html": "0.3.2",
-    "sharp": "0.33.5"
+    "sharp": "0.33.5",
+    "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.4",

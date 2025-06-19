@@ -1,0 +1,138 @@
+---
+title: "Admonitions Demo"
+description: "Demonstration of the admonitions/callouts system"
+publishDate: 2024-01-01
+layout: "../layouts/BlogPost.astro"
+---
+
+import Admonition from "../components/Admonition.astro";
+
+# Admonitions Demo
+
+This page demonstrates the various types of admonitions/callouts available on this blog.
+
+## Basic Admonitions
+
+<Admonition type="note">
+This is a basic note admonition. It uses the default styling and is perfect for providing additional information or context.
+</Admonition>
+
+<Admonition type="tip">
+This is a tip admonition. Use this to share helpful hints or best practices with your readers.
+</Admonition>
+
+<Admonition type="info">
+This is an info admonition. It's great for providing factual information or updates.
+</Admonition>
+
+<Admonition type="warning">
+This is a warning admonition. Use this to alert readers about potential issues or things to be careful about.
+</Admonition>
+
+<Admonition type="danger">
+This is a danger admonition. Reserve this for critical warnings or errors that could cause problems.
+</Admonition>
+
+<Admonition type="success">
+This is a success admonition. Perfect for highlighting positive outcomes or completed tasks.
+</Admonition>
+
+<Admonition type="example">
+This is an example admonition. Use this to showcase code examples or demonstrate concepts.
+</Admonition>
+
+<Admonition type="quote">
+This is a quote admonition. Great for highlighting important quotes or testimonials.
+</Admonition>
+
+## Custom Titles
+
+<Admonition type="tip" title="Custom Title Example">
+You can provide custom titles for your admonitions to make them more specific and contextual.
+</Admonition>
+
+<Admonition type="info" title="Pro Tip">
+Custom titles help readers quickly understand what the admonition is about.
+</Admonition>
+
+## Collapsible Admonitions
+
+<Admonition type="info" title="Click to Expand" collapsible>
+This admonition is collapsible! Click the title to expand or collapse the content. This is perfect for:
+
+- Optional detailed information
+- Lengthy explanations
+- Advanced topics that might overwhelm beginners
+- FAQ sections
+
+You can include **any markdown content** here, including:
+- Lists
+- Code blocks
+- Links
+- Images
+
+```javascript
+console.log("Even code blocks work!");
+```
+</Admonition>
+
+<Admonition type="warning" title="Advanced Configuration" collapsible collapsed>
+This admonition starts collapsed by default. It's useful for advanced or optional information that doesn't need to be immediately visible.
+
+Some use cases:
+- Technical details
+- Troubleshooting steps
+- Advanced configuration options
+- Detailed explanations
+</Admonition>
+
+## Real-world Examples
+
+<Admonition type="warning" title="Breaking Changes">
+**Version 2.0 introduces breaking changes:**
+
+- The old `config.js` format is no longer supported
+- API endpoints have been updated
+- Some function signatures have changed
+
+Please review the migration guide before upgrading.
+</Admonition>
+
+<Admonition type="tip" title="Performance Optimization">
+For better performance, consider:
+
+1. Enabling caching
+2. Using CDN for static assets
+3. Implementing lazy loading
+4. Minimizing bundle size
+
+These optimizations can improve your Core Web Vitals scores significantly.
+</Admonition>
+
+<Admonition type="example" title="Code Example">
+Here's how to use the new API:
+
+```typescript
+import { createClient } from '@my-api/client';
+
+const client = createClient({
+  apiKey: process.env.API_KEY,
+  version: 'v2'
+});
+
+const result = await client.fetchData();
+console.log(result);
+```
+
+Remember to handle errors appropriately in production code.
+</Admonition>
+
+<Admonition type="success" title="Migration Complete">
+🎉 Successfully migrated to the new admonitions system!
+
+All existing callouts have been converted and are now:
+- ✅ Accessible with proper ARIA attributes
+- ✅ Mobile-friendly and responsive
+- ✅ Dark mode compatible
+- ✅ Customizable with themes
+</Admonition>
