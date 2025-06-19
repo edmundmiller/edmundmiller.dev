@@ -4,6 +4,8 @@ import type { CollectionEntry } from "astro:content";
 import BlogHero from "@/components/blog/Hero.astro";
 import TOC from "@/components/blog/TOC.astro";
 import WebMentions from "@/components/blog/webmentions/index.astro";
+import Author from "@/components/Author.astro";
+import { createAuthorInfo } from "../utils/github";
 
 import BaseLayout from "./Base.astro";
 
@@ -63,6 +65,10 @@ const articleDate = updatedDate?.toISOString() ?? publishDate.toISOString();
 
 // Only get headings for content collection posts
 const headings = post ? (await post.render()).headings : [];
+
+// Process authors for consistent display
+const authors = author ? (Array.isArray(author) ? author : [author]) : [];
+const authorInfos = authors.map((username) => createAuthorInfo(username));
 ---
 
 <BaseLayout
@@ -96,7 +102,7 @@ const headings = post ? (await post.render()).headings : [];
               </div>
 
               {/* Authors section for MDX */}
-              {author && (
+              {authorInfos.length > 0 && (
                 <div class="mt-3 flex flex-wrap items-center gap-x-2">
                   <svg
                     aria-hidden="true"
@@ -114,8 +120,24 @@ const headings = post ? (await post.render()).headings : [];
                     <circle cx="12" cy="7" r="4" />
                   </svg>
                   <span class="text-sm font-medium">
-                    Author: <span class="font-semibold text-accent-2">{author}</span>
+                    {authorInfos.length === 1 ? "Author:" : "Authors:"}
                   </span>
+                  <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+                    {authorInfos.map((authorInfo, i) => (
+                      <div class="flex items-center">
+                        <Author author={authorInfo} size="sm" />
+                        {i < authorInfos.length - 1 && (
+                          <span class="ml-2 text-sm text-gray-500">
+                            {authorInfos.length === 2
+                              ? "and"
+                              : i === authorInfos.length - 2
+                                ? ", and"
+                                : ","}
+                          </span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               )}
 
