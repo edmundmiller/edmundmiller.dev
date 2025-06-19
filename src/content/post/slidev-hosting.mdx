@@ -1,0 +1,11 @@
+---
+title: Slidev Monorepos
+description: A WIP on how I host a Slidev Monorepo
+draft: true
+publishDate: 2024-07-01
+tags: ["webdev", "science"]
+---
+
+https://sli.dev/guide/hosting#multiple-entries slidev claims you can have multiple presentations built at once, but they all end up in dist in the first build slide. Also kinda difficult to have self contained presentions. I really just wanted a monorepo of presentations. Stumbled on this [GitHub Discussion](https://github.com/slidevjs/slidev/discussions/609) on the subject. Looked through the repos and this one is the move https://github.com/kxxt/slidev-template-repo.
+
+Copied it and threw some stuff together, it worked! Updated the CI to stuff from this year and then moved the hosting over to cloudflare pages. If you want to look at the slides: https://slides.applied-genomics.dev/
