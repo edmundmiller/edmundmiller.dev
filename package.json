@@ -8,6 +8,9 @@
     "build": "astro build",
     "postbuild": "pagefind --site dist",
     "preview": "astro preview",
+    "deploy": "astro build && wrangler deploy",
+    "deploy:staging": "astro build && wrangler deploy --env staging",
+    "wrangler": "wrangler",
     "format": "prettier -w --cache .",
     "check": "astro check",
     "lint": "pnpm dlx vale -- src/"

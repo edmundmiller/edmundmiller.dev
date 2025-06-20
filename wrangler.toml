@@ -1,0 +1,13 @@
+name = "edmundmiller-dev"
+compatibility_date = "2025-01-16"
+
+[assets]
+directory = "./dist"
+
+# Optional: Custom domain configuration (uncomment and update if you have a custom domain)
+# route = { pattern = "edmundmiller.dev/*", zone_name = "edmundmiller.dev" }
+
+# Optional: Environment variables for production
+# [env.production]
+# name = "edmundmiller-dev"
+# route = { pattern = "edmundmiller.dev/*", zone_name = "edmundmiller.dev" }

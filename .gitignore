@@ -27,3 +27,7 @@ pnpm-debug.log*
 
 # nix
 .devenv
+
+# wrangler
+.wrangler/
+.dev.vars
