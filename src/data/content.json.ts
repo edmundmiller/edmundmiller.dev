@@ -32,6 +32,15 @@ export const contentData: ContentItem[] = [
     tags: ["SLAS", "Laboratory Automation", "Nextflow", "Seqera"],
   },
   {
+    date: "2025-05-06", // Estimated date - Nextflow Summit Boston typically in May
+    event: "Nextflow Summit",
+    location: "Boston",
+    href: "https://summit.nextflow.io/2025/boston/agenda/seqera-fusion-x-nvidia-parabricks-for-accelerated-analysis/",
+    title: "Seqera Fusion x NVIDIA Parabricks for accelerated analysis",
+    medium: "conference",
+    tags: ["Nextflow", "Seqera", "NVIDIA", "Parabricks", "Fusion"],
+  },
+  {
     date: "2022-10-14",
     event: "Nextflow Summit",
     location: "Barcelona",
