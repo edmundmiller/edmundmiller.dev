@@ -23,6 +23,15 @@ export const contentData: ContentItem[] = [
     tags: ["Seqera", "Studios", "Nextflow", "Interactive Analysis"],
   },
   {
+    date: "2025-01-28",
+    event: "SLAS2025",
+    location: "San Diego",
+    href: "https://www.youtube.com/watch?v=tnF15h0PG1E",
+    title: "Event-driven bioinformatics data processing with Nextflow on the Seqera Platform",
+    medium: "conference",
+    tags: ["SLAS", "Laboratory Automation", "Nextflow", "Seqera"],
+  },
+  {
     date: "2022-10-14",
     event: "Nextflow Summit",
     location: "Barcelona",
