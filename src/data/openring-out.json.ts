@@ -11,13 +11,15 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "I fight bots in my free time",
-    "link": "https://xeiaso.net/talks/2025/bsdcan-anubis/",
+    "title": "Rolling the ladder up behind us",
+    "link": "https://xeiaso.net/blog/2025/rolling-ladder-behind-us/",
     "summary": `
-        I made Anubis, a lightweight, open-source Web Application Firewall designed to block automated bot attacks without frustrating real users. Anubis uses techniques like TLS fingerprinting and JavaScript proof of work to keep your site safe while sta…`,
+        Who will take over for us if we don&amp;#39;t train the next generation to replace us? A critique of craft, AI, and the legacy of human expertise.
+        
+      `,
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
-    "date": "June 15, 2025"
+    "date": "June 20, 2025"
   },
   
   {
