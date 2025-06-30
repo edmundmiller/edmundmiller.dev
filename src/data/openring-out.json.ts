@@ -11,15 +11,12 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "Rolling the ladder up behind us",
-    "link": "https://xeiaso.net/blog/2025/rolling-ladder-behind-us/",
-    "summary": `
-        Who will take over for us if we don&amp;#39;t train the next generation to replace us? A critique of craft, AI, and the legacy of human expertise.
-        
-      `,
+    "title": "Experimenting with Development containers",
+    "link": "https://xeiaso.net/notes/2025/devcontainers/",
+    "summary": `Development containers are cool and I want to see if they work out in practice.`,
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
-    "date": "June 20, 2025"
+    "date": "June 30, 2025"
   },
   
   {
