@@ -39,7 +39,7 @@ I personally don\'t use VS Code, I use [Doom
 Emacs](https://github.com/hlissner/doom-emacs) but that\'s a whole other
 beast. With that disclaimer I recommend VS Code to friends new to
 programming because it is the popular GUI editor of the hour. You can
-download it [here](https://code.visualstudio.com).
+download [VS Code](https://code.visualstudio.com).
 
 ## Fira Code
 
@@ -47,7 +47,7 @@ A fun little thing to make you feel like a special snowflake is to
 change your font in your editor. I like to recommend
 `FiraCode`{.verbatim} because it has ligature support with overwhelming
 you with options. You can see how to install it on your system and add
-it VS Code [here](https://github.com/tonsky/FiraCode/wiki).
+it VS Code at the [FiraCode installation guide](https://github.com/tonsky/FiraCode/wiki).
 
 ## Install nodejs
 
@@ -129,8 +129,8 @@ like. I\'ll be referring to it as `example-site`{.verbatim}.
 
 ## Clone the repo
 
-Using your `Integrated Terminal`{.verbatim} follow this
-[guide](https://help.github.com/en/articles/cloning-a-repository) to
+Using your `Integrated Terminal`{.verbatim} follow GitHub's
+[repository cloning guide](https://help.github.com/en/articles/cloning-a-repository) to
 clone your site. In my case it would be:
 
 ```bash

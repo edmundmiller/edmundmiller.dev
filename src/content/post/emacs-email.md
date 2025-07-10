@@ -58,7 +58,7 @@ any flag/label/tag back to Gmail. Enter
 [gmailieer](https://github.com/gauteh/gmailieer). Which was more of a
 pain to setup.
 
-To install from [here](https://launchpad.net/ubuntu/+source/gmailieer)
+To install from [Ubuntu's gmailieer package](https://launchpad.net/ubuntu/+source/gmailieer)
 
 ```bash
 sudo apt-get install gmailieer
@@ -124,7 +124,7 @@ synchronize_flags=true
 
 Next we need to setup the mail to be ran in the background every so
 often. This
-[guide](https://bostonenginerd.com/posts/notmuch-of-a-mail-setup-part-1-mbsync-msmtp-and-systemd/%0A)
+[BostonEnginerd's systemd mail setup guide](https://bostonenginerd.com/posts/notmuch-of-a-mail-setup-part-1-mbsync-msmtp-and-systemd/%0A)
 has a great setup for it.
 
 ```bash

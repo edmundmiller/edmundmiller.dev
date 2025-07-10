@@ -30,9 +30,9 @@ I'd tested out [Plausible](https://plausible.io) in the past. It looks cool, but
 
 I was pretty excited to try [Umami](https://umami.is), the last time I had looked at it a while ago before it had a cloud hosting option. I think this one might be the only one to give GoatCounter a run for it's money. It has a hobby pricing of _free_ so it'll be hard to justify Plausible's $9 a month for the same 10K views.
 
-My first stop was Fathom (you can check it out [here](https://usefathom.com/ref/DYRELW)). It's garnered quite a following, perhaps for its ease of use and solid feature set. However, at $15 a month, I couldn't quite make peace with their pricing, especially given our modest web traffic.
+My first stop was [Fathom](https://usefathom.com/ref/DYRELW). It's garnered quite a following, perhaps for its ease of use and solid feature set. However, at $15 a month, I couldn't quite make peace with their pricing, especially given our modest web traffic.
 
-Then, my attention turned to Plausible (find it [here](https://plausible.io)). There's no doubt it's slick, with a contemporary look and feel that can be quite enticing. Plus, it's built on the foundation of ClickHouse. However, the catch? They don't offer a free tier, and for something with such flash, I had to ask myself if it was too much for our needs.
+Then, my attention turned to [Plausible](https://plausible.io). There's no doubt it's slick, with a contemporary look and feel that can be quite enticing. Plus, it's built on the foundation of ClickHouse. However, the catch? They don't offer a free tier, and for something with such flash, I had to ask myself if it was too much for our needs.
 
 Finally, there was [Umami](https://umami.is). I had my eye on it some time ago, but back then, cloud hosting wasn't on the menu. What's especially exciting is its 'hobby' tier priced at _free_. When comparing that to Plausible's $9 per month for an equivalent 10K views, it's challenging to justify the cost of Plausible.
 
