@@ -1,14 +1,12 @@
 ---
-import type { CollectionEntry } from "astro:content";
-
-import { Image } from "astro:assets";
-
-import FormattedDate from "../FormattedDate.astro";
-import Author from "../Author.astro";
-import { createAuthorInfo } from "../../utils/github";
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import { createAuthorInfo } from '../../utils/github';
+import Author from '../Author.astro';
+import FormattedDate from '../FormattedDate.astro';
 
 interface Props {
-  content: CollectionEntry<"post">;
+  content: CollectionEntry<'post'>;
 }
 
 const {
@@ -18,11 +16,15 @@ const {
 const { remarkPluginFrontmatter } = await render();
 
 const dateTimeOptions: Intl.DateTimeFormatOptions = {
-  month: "long",
+  month: 'long',
 };
 
 // Handle authors - normalize to array and convert to AuthorInfo objects
-const authors = data.author ? (Array.isArray(data.author) ? data.author : [data.author]) : [];
+const authors = data.author
+  ? Array.isArray(data.author)
+    ? data.author
+    : [data.author]
+  : [];
 const authorInfos = authors.map((username) => createAuthorInfo(username));
 ---
 

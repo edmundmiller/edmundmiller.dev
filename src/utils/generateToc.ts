@@ -1,5 +1,5 @@
 // Heavy inspiration from starlight: https://github.com/withastro/starlight/blob/main/packages/starlight/utils/generateToC.ts
-import type { MarkdownHeading } from "astro";
+import type { MarkdownHeading } from 'astro';
 
 export interface TocItem extends MarkdownHeading {
   children: TocItem[];
@@ -23,15 +23,16 @@ function injectChild(items: TocItem[], item: TocItem): void {
 
 export function generateToc(
   headings: ReadonlyArray<MarkdownHeading>,
-  { maxHeadingLevel = 4, minHeadingLevel = 2 }: TocOpts = {},
+  { maxHeadingLevel = 4, minHeadingLevel = 2 }: TocOpts = {}
 ) {
   // by default this ignores/filters out h1 and h5 heading(s)
   const bodyHeadings = headings.filter(
-    ({ depth }) => depth >= minHeadingLevel && depth <= maxHeadingLevel,
+    ({ depth }) => depth >= minHeadingLevel && depth <= maxHeadingLevel
   );
   const toc: Array<TocItem> = [];
 
-  for (const heading of bodyHeadings) injectChild(toc, { ...heading, children: [] });
+  for (const heading of bodyHeadings)
+    injectChild(toc, { ...heading, children: [] });
 
   return toc;
 }

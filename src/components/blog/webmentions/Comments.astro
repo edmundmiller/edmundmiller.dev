@@ -1,8 +1,7 @@
 ---
-import type { WebmentionsChildren } from "@/types";
-
-import { Image } from "astro:assets";
-import { Icon } from "astro-icon/components";
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+import type { WebmentionsChildren } from '@/types';
 
 interface Props {
   mentions: WebmentionsChildren[];
@@ -10,10 +9,11 @@ interface Props {
 
 const { mentions } = Astro.props;
 
-const validComments = ["mention-of", "in-reply-to"];
+const validComments = ['mention-of', 'in-reply-to'];
 
 const comments = mentions.filter(
-  (mention) => validComments.includes(mention["wm-property"]) && mention.content?.text,
+  (mention) =>
+    validComments.includes(mention['wm-property']) && mention.content?.text
 );
 
 /**

@@ -11,16 +11,16 @@ export interface KnownAuthor {
 
 export const knownAuthors: Record<string, KnownAuthor> = {
   edmundmiller: {
-    username: "edmundmiller",
-    displayName: "Edmund Miller",
-    bio: "Bioinformatics, Biology, Genomics",
-    website: "https://edmundmiller.dev",
+    username: 'edmundmiller',
+    displayName: 'Edmund Miller',
+    bio: 'Bioinformatics, Biology, Genomics',
+    website: 'https://edmundmiller.dev',
   },
   ewels: {
-    username: "ewels",
-    displayName: "Phil Ewels",
-    bio: "Bioinformatics developer, nf-core co-founder",
-    website: "https://phil.ewels.co.uk",
+    username: 'ewels',
+    displayName: 'Phil Ewels',
+    bio: 'Bioinformatics developer, nf-core co-founder',
+    website: 'https://phil.ewels.co.uk',
   },
 };
 

@@ -1,37 +1,42 @@
-import { defineConfig } from "astro/config";
-import fs from "fs";
-import mdx from "@astrojs/mdx";
-import tailwind from "@astrojs/tailwind";
-import sitemap from "@astrojs/sitemap";
-import remarkUnwrapImages from "remark-unwrap-images";
-import remarkDirective from "remark-directive";
-import rehypeExternalLinks from "rehype-external-links";
-import rehypeRaw from "rehype-raw";
-import { remarkReadingTime } from "./src/utils/remark-reading-time";
-import { remarkAdmonitions } from "./src/utils/remark-admonitions";
-import icon from "astro-icon";
-import expressiveCode from "astro-expressive-code";
-import { expressiveCodeOptions } from "./src/site.config";
+import mdx from '@astrojs/mdx';
+import sitemap from '@astrojs/sitemap';
+import tailwind from '@astrojs/tailwind';
+import { defineConfig } from 'astro/config';
+import expressiveCode from 'astro-expressive-code';
+import icon from 'astro-icon';
+import fs from 'fs';
+import rehypeExternalLinks from 'rehype-external-links';
+import rehypeRaw from 'rehype-raw';
+import remarkDirective from 'remark-directive';
+import remarkUnwrapImages from 'remark-unwrap-images';
+import { expressiveCodeOptions } from './src/site.config';
+import { remarkAdmonitions } from './src/utils/remark-admonitions';
+import { remarkReadingTime } from './src/utils/remark-reading-time';
 
 // https://astro.build/config
 export default defineConfig({
   // ! Please remember to replace the following site property with your own domain
-  site: "https://edmundmiller.dev/",
+  site: 'https://edmundmiller.dev/',
   markdown: {
-    remarkPlugins: [remarkUnwrapImages, remarkReadingTime, remarkDirective, remarkAdmonitions],
+    remarkPlugins: [
+      remarkUnwrapImages,
+      remarkReadingTime,
+      remarkDirective,
+      remarkAdmonitions,
+    ],
     rehypePlugins: [
       rehypeRaw,
       [
         rehypeExternalLinks,
         {
-          target: "_blank",
-          rel: ["nofollow, noopener, noreferrer"],
+          target: '_blank',
+          rel: ['nofollow, noopener, noreferrer'],
         },
       ],
     ],
     remarkRehype: {
       footnoteLabelProperties: {
-        className: [""],
+        className: [''],
       },
     },
   },
@@ -43,37 +48,42 @@ export default defineConfig({
     }),
     sitemap(),
     mdx({
-      remarkPlugins: [remarkUnwrapImages, remarkReadingTime, remarkDirective, remarkAdmonitions],
+      remarkPlugins: [
+        remarkUnwrapImages,
+        remarkReadingTime,
+        remarkDirective,
+        remarkAdmonitions,
+      ],
       rehypePlugins: [
         rehypeRaw,
         [
           rehypeExternalLinks,
           {
-            target: "_blank",
-            rel: ["nofollow, noopener, noreferrer"],
+            target: '_blank',
+            rel: ['nofollow, noopener, noreferrer'],
           },
         ],
       ],
     }),
   ],
   image: {
-    domains: ["webmention.io"],
+    domains: ['webmention.io'],
   },
   // https://docs.astro.build/en/guides/prefetch/
   prefetch: true,
   vite: {
-    plugins: [rawFonts([".ttf", ".woff"])],
+    plugins: [rawFonts(['.ttf', '.woff'])],
     optimizeDeps: {
-      exclude: ["@resvg/resvg-js"],
+      exclude: ['@resvg/resvg-js'],
     },
   },
 });
 
 function rawFonts(ext: Array<string>) {
   return {
-    name: "vite-plugin-raw-fonts",
+    name: 'vite-plugin-raw-fonts',
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore:next-line
+    // @ts-expect-error:next-line
     transform(_, id) {
       if (ext.some((e) => id.endsWith(e))) {
         const buffer = fs.readFileSync(id);

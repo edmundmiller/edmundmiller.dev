@@ -1,4 +1,4 @@
-import { getKnownAuthor } from "../data/authors";
+import { getKnownAuthor } from '../data/authors';
 
 export interface GitHubUser {
   login: string;
@@ -27,7 +27,9 @@ const userCache = new Map<string, GitHubUser>();
  * @param username GitHub username
  * @returns Promise<GitHubUser | null>
  */
-export async function fetchGitHubUser(username: string): Promise<GitHubUser | null> {
+export async function fetchGitHubUser(
+  username: string
+): Promise<GitHubUser | null> {
   // Check cache first
   if (userCache.has(username)) {
     return userCache.get(username)!;
@@ -36,13 +38,15 @@ export async function fetchGitHubUser(username: string): Promise<GitHubUser | nu
   try {
     const response = await fetch(`https://api.github.com/users/${username}`, {
       headers: {
-        Accept: "application/vnd.github.v3+json",
-        "User-Agent": "edmundmiller.dev-blog",
+        Accept: 'application/vnd.github.v3+json',
+        'User-Agent': 'edmundmiller.dev-blog',
       },
     });
 
     if (!response.ok) {
-      console.warn(`Failed to fetch GitHub user ${username}: ${response.status}`);
+      console.warn(
+        `Failed to fetch GitHub user ${username}: ${response.status}`
+      );
       return null;
     }
 
@@ -94,7 +98,9 @@ export function createAuthorInfo(username: string): AuthorInfo {
  * @param username GitHub username
  * @returns Promise<AuthorInfo> with GitHub data if available
  */
-export async function getEnhancedAuthorInfo(username: string): Promise<AuthorInfo> {
+export async function getEnhancedAuthorInfo(
+  username: string
+): Promise<AuthorInfo> {
   const baseInfo = createAuthorInfo(username);
 
   const githubUser = await fetchGitHubUser(username);
@@ -121,7 +127,7 @@ export async function getEnhancedAuthorInfo(username: string): Promise<AuthorInf
  * @returns Promise<AuthorInfo[]>
  */
 export async function processAuthors(
-  authors: string | string[] | undefined,
+  authors: string | string[] | undefined
 ): Promise<AuthorInfo[]> {
   if (!authors) return [];
 

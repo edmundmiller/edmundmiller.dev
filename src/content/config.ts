@@ -1,4 +1,4 @@
-import { z, defineCollection } from "astro:content";
+import { defineCollection, z } from 'astro:content';
 
 function removeDupsAndLowerCase(array: string[]) {
   if (!array.length) return array;
@@ -8,7 +8,7 @@ function removeDupsAndLowerCase(array: string[]) {
 }
 
 const post = defineCollection({
-  type: "content",
+  type: 'content',
   schema: ({ image }) =>
     z.object({
       // FIXME Moved down to 60

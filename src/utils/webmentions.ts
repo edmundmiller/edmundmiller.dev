@@ -1,23 +1,27 @@
-import * as fs from "node:fs";
-import type { WebmentionsFeed, WebmentionsCache, WebmentionsChildren } from "@/types";
+import * as fs from 'node:fs';
+import type {
+  WebmentionsCache,
+  WebmentionsChildren,
+  WebmentionsFeed,
+} from '@/types';
 
 const DOMAIN = import.meta.env.SITE;
 const API_TOKEN = import.meta.env.WEBMENTION_API_KEY;
-const CACHE_DIR = ".data";
+const CACHE_DIR = '.data';
 const filePath = `${CACHE_DIR}/webmentions.json`;
-const validWebmentionTypes = ["like-of", "mention-of", "in-reply-to"];
+const validWebmentionTypes = ['like-of', 'mention-of', 'in-reply-to'];
 
 const hostName = new URL(DOMAIN).hostname;
 
 // Calls webmention.io api.
 async function fetchWebmentions(timeFrom: string | null, perPage = 1000) {
   if (!DOMAIN) {
-    console.warn("No domain specified. Please set in astro.config.ts");
+    console.warn('No domain specified. Please set in astro.config.ts');
     return null;
   }
 
   if (!API_TOKEN) {
-    console.warn("No webmention api token specified in .env");
+    console.warn('No webmention api token specified in .env');
     return null;
   }
 
@@ -36,11 +40,14 @@ async function fetchWebmentions(timeFrom: string | null, perPage = 1000) {
 }
 
 // Merge cached entries [a] with fresh webmentions [b], merge by wm-id
-function mergeWebmentions(a: WebmentionsCache, b: WebmentionsFeed): WebmentionsChildren[] {
+function mergeWebmentions(
+  a: WebmentionsCache,
+  b: WebmentionsFeed
+): WebmentionsChildren[] {
   return Array.from(
     [...a.children, ...b.children]
-      .reduce((map, obj) => map.set(obj["wm-id"], obj), new Map())
-      .values(),
+      .reduce((map, obj) => map.set(obj['wm-id'], obj), new Map())
+      .values()
   );
 }
 
@@ -48,11 +55,14 @@ function mergeWebmentions(a: WebmentionsCache, b: WebmentionsFeed): WebmentionsC
 export function filterWebmentions(webmentions: WebmentionsChildren[]) {
   return webmentions.filter((webmention) => {
     // make sure the mention has a property so we can sort them later
-    if (!validWebmentionTypes.includes(webmention["wm-property"])) return false;
+    if (!validWebmentionTypes.includes(webmention['wm-property'])) return false;
 
     // make sure 'mention-of' or 'in-reply-to' has text content.
-    if (webmention["wm-property"] === "mention-of" || webmention["wm-property"] === "in-reply-to") {
-      return webmention.content && webmention.content.text !== "";
+    if (
+      webmention['wm-property'] === 'mention-of' ||
+      webmention['wm-property'] === 'in-reply-to'
+    ) {
+      return webmention.content && webmention.content.text !== '';
     }
 
     return true;
@@ -77,7 +87,7 @@ function writeToCache(data: WebmentionsCache) {
 
 function getFromCache(): WebmentionsCache {
   if (fs.existsSync(filePath)) {
-    const data = fs.readFileSync(filePath, "utf-8");
+    const data = fs.readFileSync(filePath, 'utf-8');
     return JSON.parse(data);
   }
   // no cache found
@@ -111,5 +121,5 @@ let webMentions: WebmentionsCache;
 export async function getWebmentionsForUrl(url: string) {
   if (!webMentions) webMentions = await getAndCacheWebmentions();
 
-  return webMentions.children.filter((entry) => entry["wm-target"] === url);
+  return webMentions.children.filter((entry) => entry['wm-target'] === url);
 }

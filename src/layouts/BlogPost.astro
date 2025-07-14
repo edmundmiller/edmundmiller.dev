@@ -1,16 +1,15 @@
 ---
-import type { CollectionEntry } from "astro:content";
+import type { CollectionEntry } from 'astro:content';
+import Author from '@/components/Author.astro';
+import BlogHero from '@/components/blog/Hero.astro';
+import TOC from '@/components/blog/TOC.astro';
+import WebMentions from '@/components/blog/webmentions/index.astro';
+import { createAuthorInfo } from '../utils/github';
 
-import BlogHero from "@/components/blog/Hero.astro";
-import TOC from "@/components/blog/TOC.astro";
-import WebMentions from "@/components/blog/webmentions/index.astro";
-import Author from "@/components/Author.astro";
-import { createAuthorInfo } from "../utils/github";
-
-import BaseLayout from "./Base.astro";
+import BaseLayout from './Base.astro';
 
 interface Props {
-  post?: CollectionEntry<"post">;
+  post?: CollectionEntry<'post'>;
   frontmatter?: {
     title?: string;
     description?: string;
@@ -51,13 +50,18 @@ if (post) {
   const frontmatter = Astro.props.frontmatter || {};
   description = frontmatter.description;
   ogImage = frontmatter.ogImage;
-  publishDate = frontmatter.publishDate ? new Date(frontmatter.publishDate) : new Date();
+  publishDate = frontmatter.publishDate
+    ? new Date(frontmatter.publishDate)
+    : new Date();
   title = frontmatter.title;
-  updatedDate = frontmatter.updatedDate ? new Date(frontmatter.updatedDate) : undefined;
+  updatedDate = frontmatter.updatedDate
+    ? new Date(frontmatter.updatedDate)
+    : undefined;
   canonical = frontmatter.canonical;
   author = frontmatter.author;
-  const pathSegments = Astro.url.pathname.split("/").filter(Boolean);
-  slug = pathSegments.length > 0 ? pathSegments[pathSegments.length - 1] : "page";
+  const pathSegments = Astro.url.pathname.split('/').filter(Boolean);
+  slug =
+    pathSegments.length > 0 ? pathSegments[pathSegments.length - 1] : 'page';
 }
 
 const socialImage = ogImage ?? `/og-image/${slug}.png`;

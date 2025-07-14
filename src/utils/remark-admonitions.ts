@@ -1,16 +1,16 @@
-import { visit } from "unist-util-visit";
-import type { Root } from "mdast";
+import type { Root } from 'mdast';
+import { visit } from 'unist-util-visit';
 
 export function remarkAdmonitions() {
   return (tree: Root) => {
     visit(tree, (node: any) => {
       if (
-        node.type === "containerDirective" ||
-        node.type === "leafDirective" ||
-        node.type === "textDirective"
+        node.type === 'containerDirective' ||
+        node.type === 'leafDirective' ||
+        node.type === 'textDirective'
       ) {
         const data = node.data || (node.data = {});
-        const hName = "Admonition";
+        const hName = 'Admonition';
         const hProperties: any = {};
 
         // Set the type based on the directive name
@@ -21,15 +21,15 @@ export function remarkAdmonitions() {
         // Parse attributes from the directive
         if (node.attributes) {
           Object.entries(node.attributes).forEach(([key, value]) => {
-            if (key === "title") {
+            if (key === 'title') {
               hProperties.title = value;
-            } else if (key === "icon") {
+            } else if (key === 'icon') {
               hProperties.icon = value;
-            } else if (key === "collapse" || key === "collapsible") {
+            } else if (key === 'collapse' || key === 'collapsible') {
               hProperties.collapsible = true;
-              if (value === "true" || value === "") {
+              if (value === 'true' || value === '') {
                 hProperties.collapsed = false;
-              } else if (value === "false") {
+              } else if (value === 'false') {
                 hProperties.collapsed = false;
               } else {
                 hProperties.collapsed = true;
