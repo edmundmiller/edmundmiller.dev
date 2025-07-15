@@ -1,7 +1,18 @@
 ---
-import content from '@/data/content.json.ts';
-import PageLayout from '@/layouts/Base.astro';
-import { getFormattedDate } from '@/utils';
+// Talks data - replace with your actual content source
+interface Talk {
+  href: string;
+  event: string;
+  title: string;
+  tags?: string[];
+  desc?: string;
+  date?: string;
+  location: string;
+}
+
+const _content: Talk[] = [
+  // Add your talks here or import from a data file
+];
 ---
 
 <PageLayout meta={{ title: "Speaking" }}>
@@ -20,7 +31,7 @@ import { getFormattedDate } from '@/utils';
       <section aria-label="Talk list" class="h-feed">
         <div class="grid gap-6">
           {
-            content.map(({ href, event, title, tags, desc, date, location }) => (
+            content.map(({ href, event, title, date, location }) => (
               <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-950">
                 <div class="flex items-center justify-between">
                   {date && (

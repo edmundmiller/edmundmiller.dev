@@ -1,12 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import Author from '@/components/Author.astro';
-import BlogHero from '@/components/blog/Hero.astro';
-import TOC from '@/components/blog/TOC.astro';
-import WebMentions from '@/components/blog/webmentions/index.astro';
 import { createAuthorInfo } from '../utils/github';
-
-import BaseLayout from './Base.astro';
 
 interface Props {
   post?: CollectionEntry<'post'>;
@@ -18,11 +12,11 @@ interface Props {
     canonical?: string;
     author?: string | string[];
     ogImage?: string;
-    [key: string]: any;
+    [key: string]: unknown;
   };
 }
 
-const { post } = Astro.props;
+const { post } = Astro.props as Props;
 
 // Handle both content collection posts and MDX pages
 let description: string | undefined,
@@ -60,33 +54,35 @@ if (post) {
   canonical = frontmatter.canonical;
   author = frontmatter.author;
   const pathSegments = Astro.url.pathname.split('/').filter(Boolean);
-  slug =
-    pathSegments.length > 0 ? pathSegments[pathSegments.length - 1] : 'page';
+  slug = pathSegments.length > 0 ? pathSegments.at(-1) || 'page' : 'page';
 }
 
 const socialImage = ogImage ?? `/og-image/${slug}.png`;
 const articleDate = updatedDate?.toISOString() ?? publishDate.toISOString();
 
 // Only get headings for content collection posts
-const headings = post ? (await post.render()).headings : [];
+const _headings = post ? (await post.render()).headings : [];
 
 // Process authors for consistent display
 const authors = author ? (Array.isArray(author) ? author : [author]) : [];
-const authorInfos = authors.map((username) => createAuthorInfo(username));
+const _authorInfos = authors.map((username) => createAuthorInfo(username));
+
+// Create a clean meta object for BaseLayout
+const _meta = {
+  title: title || 'Untitled',
+  ...(description && { description }),
+  ...(socialImage && { ogImage: socialImage }),
+  ...(articleDate && { articleDate }),
+  ...(canonical && { canonical }),
+  ...(author && { author }),
+};
 ---
 
 <BaseLayout
-  meta={{
-    articleDate,
-    description,
-    ogImage: socialImage,
-    title,
-    canonical,
-    author,
-  }}
+  meta={_meta}
 >
   <div class="gap-x-10 lg:flex lg:items-start">
-    {!!headings.length && <TOC headings={headings} />}
+    {!!_headings.length && <TOC headings={_headings} />}
     <article class="h-entry flex-grow break-words" data-pagefind-body>
       <div id="blog-hero">
         {
@@ -106,7 +102,7 @@ const authorInfos = authors.map((username) => createAuthorInfo(username));
               </div>
 
               {/* Authors section for MDX */}
-              {authorInfos.length > 0 && (
+              {_authorInfos.length > 0 && (
                 <div class="mt-3 flex flex-wrap items-center gap-x-2">
                   <svg
                     aria-hidden="true"
@@ -124,17 +120,17 @@ const authorInfos = authors.map((username) => createAuthorInfo(username));
                     <circle cx="12" cy="7" r="4" />
                   </svg>
                   <span class="text-sm font-medium">
-                    {authorInfos.length === 1 ? "Author:" : "Authors:"}
+                    {_authorInfos.length === 1 ? "Author:" : "Authors:"}
                   </span>
                   <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
-                    {authorInfos.map((authorInfo, i) => (
+                    {_authorInfos.map((authorInfo, i) => (
                       <div class="flex items-center">
                         <Author author={authorInfo} size="sm" />
-                        {i < authorInfos.length - 1 && (
+                        {i < _authorInfos.length - 1 && (
                           <span class="ml-2 text-sm text-gray-500">
-                            {authorInfos.length === 2
+                            {_authorInfos.length === 2
                               ? "and"
-                              : i === authorInfos.length - 2
+                              : i === _authorInfos.length - 2
                                 ? ", and"
                                 : ","}
                           </span>
@@ -186,7 +182,7 @@ const authorInfos = authors.map((username) => createAuthorInfo(username));
         <div class="e-content">
           <slot />
         </div>
-        {post && <WebMentions />}
+        {/* post && <WebMentions /> */}
       </div>
     </article>
   </div>

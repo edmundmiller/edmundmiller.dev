@@ -16,18 +16,18 @@ const hostName = new URL(DOMAIN).hostname;
 // Calls webmention.io api.
 async function fetchWebmentions(timeFrom: string | null, perPage = 1000) {
   if (!DOMAIN) {
-    console.warn('No domain specified. Please set in astro.config.ts');
     return null;
   }
 
   if (!API_TOKEN) {
-    console.warn('No webmention api token specified in .env');
     return null;
   }
 
   let url = `https://webmention.io/api/mentions.jf2?domain=${hostName}&token=${API_TOKEN}&sort-dir=up&per-page=${perPage}`;
 
-  if (timeFrom) url += `&since${timeFrom}`;
+  if (timeFrom) {
+    url += `&since${timeFrom}`;
+  }
 
   const res = await fetch(url);
 
@@ -55,7 +55,9 @@ function mergeWebmentions(
 export function filterWebmentions(webmentions: WebmentionsChildren[]) {
   return webmentions.filter((webmention) => {
     // make sure the mention has a property so we can sort them later
-    if (!validWebmentionTypes.includes(webmention['wm-property'])) return false;
+    if (!validWebmentionTypes.includes(webmention['wm-property'])) {
+      return false;
+    }
 
     // make sure 'mention-of' or 'in-reply-to' has text content.
     if (
@@ -80,8 +82,9 @@ function writeToCache(data: WebmentionsCache) {
 
   // write data to cache json file
   fs.writeFile(filePath, fileContent, (err) => {
-    if (err) throw err;
-    console.log(`Webmentions saved to ${filePath}`);
+    if (err) {
+      throw err;
+    }
   });
 }
 
@@ -119,7 +122,9 @@ async function getAndCacheWebmentions() {
 let webMentions: WebmentionsCache;
 
 export async function getWebmentionsForUrl(url: string) {
-  if (!webMentions) webMentions = await getAndCacheWebmentions();
+  if (!webMentions) {
+    webMentions = await getAndCacheWebmentions();
+  }
 
   return webMentions.children.filter((entry) => entry['wm-target'] === url);
 }

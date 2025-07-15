@@ -32,7 +32,10 @@ export async function fetchGitHubUser(
 ): Promise<GitHubUser | null> {
   // Check cache first
   if (userCache.has(username)) {
-    return userCache.get(username)!;
+    const cachedUser = userCache.get(username);
+    if (cachedUser) {
+      return cachedUser;
+    }
   }
 
   try {
@@ -44,17 +47,13 @@ export async function fetchGitHubUser(
     });
 
     if (!response.ok) {
-      console.warn(
-        `Failed to fetch GitHub user ${username}: ${response.status}`
-      );
       return null;
     }
 
     const userData: GitHubUser = await response.json();
     userCache.set(username, userData);
     return userData;
-  } catch (error) {
-    console.warn(`Error fetching GitHub user ${username}:`, error);
+  } catch (_error) {
     return null;
   }
 }
@@ -124,12 +123,14 @@ export async function getEnhancedAuthorInfo(
 /**
  * Process multiple authors and enhance with GitHub data
  * @param authors Array of GitHub usernames or single username
- * @returns Promise<AuthorInfo[]>
+ * @returns AuthorInfo[]
  */
-export async function processAuthors(
+export function processAuthors(
   authors: string | string[] | undefined
 ): Promise<AuthorInfo[]> {
-  if (!authors) return [];
+  if (!authors) {
+    return [];
+  }
 
   const authorList = Array.isArray(authors) ? authors : [authors];
 

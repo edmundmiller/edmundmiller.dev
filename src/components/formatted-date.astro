@@ -8,9 +8,9 @@ type Props = HTMLAttributes<'time'> & {
   dateTimeOptions?: Intl.DateTimeFormatOptions;
 };
 
-const { date, dateTimeOptions, ...attrs } = Astro.props;
+const { date, dateTimeOptions, ...attrs } = Astro.props as Props;
 
-const postDate = getFormattedDate(date, dateTimeOptions);
+const _postDate = getFormattedDate(date, dateTimeOptions);
 ---
 
 <time datetime={date.toISOString()} {...attrs}>

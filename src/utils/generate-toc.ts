@@ -22,17 +22,18 @@ function injectChild(items: TocItem[], item: TocItem): void {
 }
 
 export function generateToc(
-  headings: ReadonlyArray<MarkdownHeading>,
+  headings: readonly MarkdownHeading[],
   { maxHeadingLevel = 4, minHeadingLevel = 2 }: TocOpts = {}
 ) {
   // by default this ignores/filters out h1 and h5 heading(s)
   const bodyHeadings = headings.filter(
     ({ depth }) => depth >= minHeadingLevel && depth <= maxHeadingLevel
   );
-  const toc: Array<TocItem> = [];
+  const toc: TocItem[] = [];
 
-  for (const heading of bodyHeadings)
+  for (const heading of bodyHeadings) {
     injectChild(toc, { ...heading, children: [] });
+  }
 
   return toc;
 }

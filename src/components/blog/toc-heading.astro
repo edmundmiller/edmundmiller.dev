@@ -7,7 +7,7 @@ interface Props {
 
 const {
   heading: { depth, slug, children, text },
-} = Astro.props;
+} = Astro.props as Props;
 ---
 
 <li class={`${depth > 2 ? "ms-2" : ""}`}>

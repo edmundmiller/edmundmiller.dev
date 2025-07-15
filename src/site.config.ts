@@ -1,4 +1,3 @@
-import fs from 'node:fs';
 import type { AstroExpressiveCodeOptions } from 'astro-expressive-code';
 import type { SiteConfig } from '@/types';
 
@@ -60,8 +59,9 @@ export const expressiveCodeOptions: AstroExpressiveCodeOptions = {
       const altTheme = styleVariants.find(
         (v) => v.theme.type !== baseTheme?.type
       )?.theme;
-      if (theme === baseTheme || theme === altTheme)
+      if (theme === baseTheme || theme === altTheme) {
         return `[data-theme='${theme.type}']`;
+      }
     }
     // return default selector
     return `[data-theme="${theme.name}"]`;

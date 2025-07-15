@@ -1,10 +1,10 @@
+import fs from 'node:fs';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
 import { defineConfig } from 'astro/config';
 import expressiveCode from 'astro-expressive-code';
 import icon from 'astro-icon';
-import fs from 'fs';
 import rehypeExternalLinks from 'rehype-external-links';
 import rehypeRaw from 'rehype-raw';
 import remarkDirective from 'remark-directive';
@@ -79,7 +79,7 @@ export default defineConfig({
   },
 });
 
-function rawFonts(ext: Array<string>) {
+function rawFonts(ext: string[]) {
   return {
     name: 'vite-plugin-raw-fonts',
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
