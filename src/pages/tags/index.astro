@@ -1,5 +1,6 @@
 ---
 import { getAllPosts, getUniqueTagsWithCount } from '@/data/post';
+import PageLayout from '@/layouts/base.astro';
 
 const allPosts = await getAllPosts();
 const _allTags = getUniqueTagsWithCount(allPosts);
@@ -10,11 +11,11 @@ const _meta = {
 };
 ---
 
-<PageLayout meta={meta}>
+<PageLayout meta={_meta}>
   <h1 class="title mb-6">Tags</h1>
   <ul class="space-y-4">
     {
-      allTags.map(([tag, val]) => (
+      _allTags.map(([tag, val]) => (
         <li class="flex items-center gap-x-2">
           <a
             class="cactus-link inline-block"

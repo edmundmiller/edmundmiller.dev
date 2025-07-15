@@ -1,4 +1,7 @@
 ---
+import PageLayout from '@/layouts/base.astro';
+import { getFormattedDate } from '@/utils';
+
 // Talks data - replace with your actual content source
 interface Talk {
   href: string;
@@ -31,7 +34,7 @@ const _content: Talk[] = [
       <section aria-label="Talk list" class="h-feed">
         <div class="grid gap-6">
           {
-            content.map(({ href, event, title, date, location }) => (
+            _content.map(({ href, event, title, date, location }) => (
               <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-950">
                 <div class="flex items-center justify-between">
                   {date && (

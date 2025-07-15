@@ -112,10 +112,10 @@ const _uniqueId = `admonition-${Math.random().toString(36).substring(2, 11)}`;
         <button
           class={`admonition-toggle flex items-center justify-between w-full text-left font-semibold ${config.titleColor} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 rounded-sm`}
           aria-expanded={!collapsed}
-          aria-controls={uniqueId}
+          aria-controls={_uniqueId}
         >
           <span class="flex items-center">
-            <span>{displayTitle}</span>
+            <span>{_displayTitle}</span>
           </span>
           <astro-icon
             name="mdi:chevron-down"
@@ -124,13 +124,13 @@ const _uniqueId = `admonition-${Math.random().toString(36).substring(2, 11)}`;
         </button>
       ) : (
         <div class={`font-semibold ${config.titleColor} mb-2`}>
-          {displayTitle}
+          {_displayTitle}
         </div>
       )}
 
       <!-- Content -->
       <div
-        id={uniqueId}
+        id={_uniqueId}
         class={`admonition-content ${collapsible ? 'mt-2' : ''} ${collapsed && collapsible ? 'hidden' : ''}`}
       >
         <div class="prose prose-sm dark:prose-invert max-w-none">

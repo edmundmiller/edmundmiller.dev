@@ -2,6 +2,9 @@
 import type { CollectionEntry } from 'astro:content';
 import type { GetStaticPaths, Page } from 'astro';
 import { getAllPosts, getUniqueTags, sortMDByDate } from '@/data/post';
+import PageLayout from '@/layouts/base.astro';
+import PostPreview from '@/components/blog/post-preview.astro';
+import Paginator from '@/components/paginator.astro';
 
 export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
   const allPosts = await getAllPosts();
@@ -47,7 +50,7 @@ const _paginationProps = {
 };
 ---
 
-<PageLayout meta={meta}>
+<PageLayout meta={_meta}>
   <h1 class="title mb-6 flex items-center">
     <a class="text-accent sm:hover:underline" href="/tags/">Tags</a>
     <span class="me-3 ms-2">→</span>
@@ -63,6 +66,6 @@ const _paginationProps = {
         ))
       }
     </ul>
-    <Pagination {...paginationProps} />
+    <Paginator {..._paginationProps} />
   </section>
 </PageLayout>

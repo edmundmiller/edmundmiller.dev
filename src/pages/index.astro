@@ -1,5 +1,9 @@
 ---
 import { getAllPosts, sortMDByDate } from '@/data/post';
+import PageLayout from '@/layouts/base.astro';
+import SocialList from '@/components/social-list.astro';
+import PostPreview from '@/components/blog/post-preview.astro';
+import Openring from '@/components/openring.astro';
 
 const MAX_POSTS = 10;
 const allPosts = await getAllPosts();
@@ -71,7 +75,7 @@ const cactusTech: { desc: string; href: string; title: string }[] = [
     <h2 class="h-feed title mb-4 text-xl">Posts</h2>
     <ul class="space-y-4">
       {
-        allPostsByDate.map((p) => (
+        _allPostsByDate.map((p) => (
           <li class="flex flex-col gap-x-2 sm:flex-row">
             <PostPreview post={p} />
           </li>

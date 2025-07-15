@@ -1,6 +1,10 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { createAuthorInfo } from '../utils/github';
+import BaseLayout from './base.astro';
+import TOC from '@/components/blog/toc.astro';
+import BlogHero from '@/components/blog/hero.astro';
+import Author from '@/components/author.astro';
 
 interface Props {
   post?: CollectionEntry<'post'>;

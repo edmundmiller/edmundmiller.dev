@@ -1,6 +1,7 @@
 ---
 import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
 import { getAllPosts } from '@/data/post';
+import PostLayout from '@/layouts/blog-post.astro';
 
 export const getStaticPaths = (async () => {
   const blogEntries = await getAllPosts();
