@@ -7,37 +7,43 @@ export interface OpenringItem {
   date: string;
 }
 
-export const openringData: OpenringItem[] = [
+export const openringData: OpenringItem[] =
+[
+  
   {
-    title: 'I fight bots in my free time',
-    link: 'https://xeiaso.net/talks/2025/bsdcan-anubis/',
-    summary: `
-        I made Anubis, a lightweight, open-source Web Application Firewall designed to block automated bot attacks without frustrating real users. Anubis uses techniques like TLS fingerprinting and JavaScript proof of work to keep your site safe while sta…`,
-    source_title: 'Xe Iaso&#39;s blog',
-    source_link: 'https://xeiaso.net/',
-    date: 'June 15, 2025',
+    "title": "TI-20250709-0001: IPv4 traffic failures for Techaro services",
+    "link": "https://anubis.techaro.lol/blog/incident/TI-20250709-0001",
+    "summary": `
+        Techaro services were down for IPv4 traffic on July 9th, 2025. This blogpost is a report of what happened, what actions were taken to resolve the situation, and what actions are being done in the near future to prevent this problem. Enjoy this inc…`,
+    "source_title": "Xe Iaso&#39;s blog",
+    "source_link": "https://xeiaso.net/",
+    "date": "July 9, 2025"
   },
+  
+  {
+    "title": "Meet the new meta.yml",
+    "link": "https://nf-co.re/blog/2025/modules-meta-yml/",
+    "summary": `Changes to the structure of the meta.yml file for nf-core modules`,
+    "source_title": "nf-core blog",
+    "source_link": "https://nf-co.re/",
+    "date": "July 7, 2025"
+  },
+  
+  {
+    "title": "Just speak the truth",
+    "link": "https://drewdevault.com/2025/06/30/Speak-the-truth.html",
+    "summary": `Today, we’re looking at two case studies in how to respond when reactionaries
+appear in your free software community.
+Exhibit A
 
-  {
-    title: 'Unionize or die',
-    link: 'https://drewdevault.com/2025/06/09/2025-06-09-Unionize-or-die.html',
-    summary: `Tech workers have long resisted the suggestion that we should be organized into
-unions. The topic is consistently met with a cold reception by tech workers when
-it is raised, and no big tech workforce is meaningfully organized. This is a
-fatal mistake – and …`,
-    source_title: 'Drew DeVault&#39;s blog',
-    source_link: 'https://drewdevault.com',
-    date: 'June 9, 2025',
+It is a technical decision.
+The technical reason is that the security team does not have the bandwidth to
+provide lifecycle maintena…`,
+    "source_title": "Drew DeVault&#39;s blog",
+    "source_link": "https://drewdevault.com",
+    "date": "June 30, 2025"
   },
-
-  {
-    title: 'nf-core/tools - 3.3',
-    link: 'https://nf-co.re/blog/2025/tools-3_3/',
-    summary: 'An nf-testic release',
-    source_title: 'nf-core blog',
-    source_link: 'https://nf-co.re/',
-    date: 'June 3, 2025',
-  },
+  
 ];
 
 export default openringData;
