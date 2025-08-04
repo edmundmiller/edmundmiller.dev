@@ -11,6 +11,15 @@ export const openringData: OpenringItem[] =
 [
   
   {
+    "title": "Maintainers Minutes: July 2025",
+    "link": "https://nf-co.re/blog/2025/maintainers-minutes-2025-07-31/",
+    "summary": `Keeping you informed of the latest maintainers discussions`,
+    "source_title": "nf-core blog",
+    "source_link": "https://nf-co.re/",
+    "date": "July 31, 2025"
+  },
+  
+  {
     "title": "TI-20250709-0001: IPv4 traffic failures for Techaro services",
     "link": "https://anubis.techaro.lol/blog/incident/TI-20250709-0001",
     "summary": `
@@ -18,15 +27,6 @@ export const openringData: OpenringItem[] =
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
     "date": "July 9, 2025"
-  },
-  
-  {
-    "title": "Meet the new meta.yml",
-    "link": "https://nf-co.re/blog/2025/modules-meta-yml/",
-    "summary": `Changes to the structure of the meta.yml file for nf-core modules`,
-    "source_title": "nf-core blog",
-    "source_link": "https://nf-co.re/",
-    "date": "July 7, 2025"
   },
   
   {
