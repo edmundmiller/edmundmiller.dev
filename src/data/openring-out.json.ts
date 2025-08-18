@@ -11,6 +11,15 @@ export const openringData: OpenringItem[] =
 [
   
   {
+    "title": "Who does your assistant serve?",
+    "link": "https://xeiaso.net/blog/2025/who-assistant-serve/",
+    "summary": `ChatGPT and its consequences have been a disaster for the human race.`,
+    "source_title": "Xe Iaso&#39;s blog",
+    "source_link": "https://xeiaso.net/",
+    "date": "August 17, 2025"
+  },
+  
+  {
     "title": "What&#39;s new with Himitsu 0.9?",
     "link": "https://drewdevault.com/2025/08/08/2025-08-08-Whats-new-with-himitsu.html",
     "summary": `Last week, Armin and I worked together on the latest release of Himitsu, a
@@ -23,22 +32,12 @@ closer look at the latest releas…`,
   },
   
   {
-    "title": "Maintainers Minutes: July 2025",
-    "link": "https://nf-co.re/blog/2025/maintainers-minutes-2025-07-31/",
-    "summary": `Keeping you informed of the latest maintainers discussions`,
+    "title": "Empowering bioinformatics communities with Nextflow and nf-core",
+    "link": "https://nf-co.re/blog/2025/paper-v2/",
+    "summary": `Next nf-core scientific article now published in Genome Biology!`,
     "source_title": "nf-core blog",
     "source_link": "https://nf-co.re/",
-    "date": "July 31, 2025"
-  },
-  
-  {
-    "title": "TI-20250709-0001: IPv4 traffic failures for Techaro services",
-    "link": "https://anubis.techaro.lol/blog/incident/TI-20250709-0001",
-    "summary": `
-        Techaro services were down for IPv4 traffic on July 9th, 2025. This blogpost is a report of what happened, what actions were taken to resolve the situation, and what actions are being done in the near future to prevent this problem. Enjoy this inc…`,
-    "source_title": "Xe Iaso&#39;s blog",
-    "source_link": "https://xeiaso.net/",
-    "date": "July 9, 2025"
+    "date": "August 6, 2025"
   },
   
 ];
