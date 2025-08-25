@@ -10,10 +10,10 @@ importers:
     dependencies:
       '@astro-community/astro-embed-youtube':
         specifier: 0.5.6
-        version: 0.5.6(astro@5.12.8(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0))
+        version: 0.5.6(astro@5.13.2(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0))
       '@astrojs/mdx':
         specifier: 4.3.0
-        version: 4.3.0(astro@5.12.8(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0))
+        version: 4.3.0(astro@5.13.2(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0))
       '@astrojs/rss':
         specifier: 4.0.12
         version: 4.0.12
@@ -22,7 +22,7 @@ importers:
         version: 3.4.1
       '@astrojs/tailwind':
         specifier: 6.0.2
-        version: 6.0.2(astro@5.12.8(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0))(tailwindcss@3.4.17)
+        version: 6.0.2(astro@5.13.2(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0))(tailwindcss@3.4.17)
       '@types/hast':
         specifier: 3.0.4
         version: 3.0.4
@@ -33,14 +33,14 @@ importers:
         specifier: 3.6.0
         version: 3.6.0
       astro:
-        specifier: 5.12.8
-        version: 5.12.8(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0)
+        specifier: 5.13.2
+        version: 5.13.2(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0)
       astro-analytics:
         specifier: 2.7.0
         version: 2.7.0
       astro-expressive-code:
         specifier: 0.39.0
-        version: 0.39.0(astro@5.12.8(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0))
+        version: 0.39.0(astro@5.13.2(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0))
       astro-icon:
         specifier: 1.1.5
         version: 1.1.5
@@ -162,8 +162,8 @@ packages:
   '@astrojs/internal-helpers@0.6.1':
     resolution: {integrity: sha512-l5Pqf6uZu31aG+3Lv8nl/3s4DbUzdlxTWDof4pEpto6GUJNhhCbelVi9dEyurOVyqaelwmS9oSyOWOENSfgo9A==}
 
-  '@astrojs/internal-helpers@0.7.1':
-    resolution: {integrity: sha512-7dwEVigz9vUWDw3nRwLQ/yH/xYovlUA0ZD86xoeKEBmkz9O6iELG1yri67PgAPW6VLL/xInA4t7H0CK6VmtkKQ==}
+  '@astrojs/internal-helpers@0.7.2':
+    resolution: {integrity: sha512-KCkCqR3Goym79soqEtbtLzJfqhTWMyVaizUi35FLzgGSzBotSw8DB1qwsu7U96ihOJgYhDk2nVPz+3LnXPeX6g==}
 
   '@astrojs/language-server@2.15.0':
     resolution: {integrity: sha512-wJHSjGApm5X8Rg1GvkevoatZBfvaFizY4kCPvuSYgs3jGCobuY3KstJGKC1yNLsRJlDweHruP+J54iKn9vEKoA==}
@@ -180,8 +180,8 @@ packages:
   '@astrojs/markdown-remark@6.3.2':
     resolution: {integrity: sha512-bO35JbWpVvyKRl7cmSJD822e8YA8ThR/YbUsciWNA7yTcqpIAL2hJDToWP5KcZBWxGT6IOdOkHSXARSNZc4l/Q==}
 
-  '@astrojs/markdown-remark@6.3.5':
-    resolution: {integrity: sha512-MiR92CkE2BcyWf3b86cBBw/1dKiOH0qhLgXH2OXA6cScrrmmks1Rr4Tl0p/lFpvmgQQrP54Pd1uidJfmxGrpWQ==}
+  '@astrojs/markdown-remark@6.3.6':
+    resolution: {integrity: sha512-bwylYktCTsLMVoCOEHbn2GSUA3c5KT/qilekBKA3CBng0bo1TYjNZPr761vxumRk9kJGqTOtU+fgCAp5Vwokug==}
 
   '@astrojs/mdx@4.3.0':
     resolution: {integrity: sha512-OGX2KvPeBzjSSKhkCqrUoDMyzFcjKt5nTE5SFw3RdoLf0nrhyCXBQcCyclzWy1+P+XpOamn+p+hm1EhpCRyPxw==}
@@ -1264,8 +1264,8 @@ packages:
   astro-icon@1.1.5:
     resolution: {integrity: sha512-CJYS5nWOw9jz4RpGWmzNQY7D0y2ZZacH7atL2K9DeJXJVaz7/5WrxeyIxO8KASk1jCM96Q4LjRx/F3R+InjJrw==}
 
-  astro@5.12.8:
-    resolution: {integrity: sha512-KkJ7FR+c2SyZYlpakm48XBiuQcRsrVtdjG5LN5an0givI/tLik+ePJ4/g3qrAVhYMjJOxBA2YgFQxANPiWB+Mw==}
+  astro@5.13.2:
+    resolution: {integrity: sha512-yjcXY0Ua3EwjpVd3GoUXa65HQ6qgmURBptA+M9GzE0oYvgfuyM7bIbH8IR/TWIbdefVUJR5b7nZ0oVnMytmyfQ==}
     engines: {node: 18.20.8 || ^20.3.0 || >=22.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
 
@@ -3135,9 +3135,6 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
-  ufo@1.5.4:
-    resolution: {integrity: sha512-UsUk3byDzKd04EyoZ7U4DOlxQaD14JUKQl6/P7wiX4FNvUfm3XL246n9W5AmqwW5RSFJ27NAuM0iLscAOYUiGQ==}
-
   ufo@1.6.1:
     resolution: {integrity: sha512-9a4/uxlTWJ4+a5i0ooc1rU7C7YOw3wT+UGqdeNNHWnOF9qcMBgLRS+4IYUqbczewFx4mLEig6gawh7X6mFlEkA==}
 
@@ -3615,9 +3612,9 @@ snapshots:
 
   '@antfu/utils@0.7.10': {}
 
-  '@astro-community/astro-embed-youtube@0.5.6(astro@5.12.8(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0))':
+  '@astro-community/astro-embed-youtube@0.5.6(astro@5.13.2(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0))':
     dependencies:
-      astro: 5.12.8(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0)
+      astro: 5.13.2(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0)
       lite-youtube-embed: 0.3.3
 
   '@astrojs/check@0.9.4(prettier-plugin-astro@0.14.1)(prettier@3.6.2)(typescript@5.8.3)':
@@ -3637,7 +3634,7 @@ snapshots:
 
   '@astrojs/internal-helpers@0.6.1': {}
 
-  '@astrojs/internal-helpers@0.7.1': {}
+  '@astrojs/internal-helpers@0.7.2': {}
 
   '@astrojs/language-server@2.15.0(prettier-plugin-astro@0.14.1)(prettier@3.6.2)(typescript@5.8.3)':
     dependencies:
@@ -3691,9 +3688,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/markdown-remark@6.3.5':
+  '@astrojs/markdown-remark@6.3.6':
     dependencies:
-      '@astrojs/internal-helpers': 0.7.1
+      '@astrojs/internal-helpers': 0.7.2
       '@astrojs/prism': 3.3.0
       github-slugger: 2.0.0
       hast-util-from-html: 2.0.3
@@ -3717,12 +3714,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/mdx@4.3.0(astro@5.12.8(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0))':
+  '@astrojs/mdx@4.3.0(astro@5.13.2(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0))':
     dependencies:
       '@astrojs/markdown-remark': 6.3.2
       '@mdx-js/mdx': 3.1.0(acorn@8.15.0)
       acorn: 8.15.0
-      astro: 5.12.8(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0)
+      astro: 5.13.2(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0)
       es-module-lexer: 1.7.0
       estree-util-visit: 2.0.0
       hast-util-to-html: 9.0.5
@@ -3751,9 +3748,9 @@ snapshots:
       stream-replace-string: 2.0.0
       zod: 3.25.67
 
-  '@astrojs/tailwind@6.0.2(astro@5.12.8(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0))(tailwindcss@3.4.17)':
+  '@astrojs/tailwind@6.0.2(astro@5.13.2(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0))(tailwindcss@3.4.17)':
     dependencies:
-      astro: 5.12.8(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0)
+      astro: 5.13.2(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0)
       autoprefixer: 10.4.21(postcss@8.5.6)
       postcss: 8.5.6
       postcss-load-config: 4.0.2(postcss@8.5.6)
@@ -4013,7 +4010,7 @@ snapshots:
       '@antfu/install-pkg': 0.1.1
       '@antfu/utils': 0.7.10
       '@iconify/types': 2.0.0
-      debug: 4.4.0
+      debug: 4.4.1
       kolorist: 1.8.0
       local-pkg: 0.5.0
       mlly: 1.7.1
@@ -4766,9 +4763,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  astro-expressive-code@0.39.0(astro@5.12.8(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0)):
+  astro-expressive-code@0.39.0(astro@5.13.2(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0)):
     dependencies:
-      astro: 5.12.8(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0)
+      astro: 5.13.2(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0)
       rehype-expressive-code: 0.39.0
 
   astro-icon@1.1.5:
@@ -4780,11 +4777,11 @@ snapshots:
       - debug
       - supports-color
 
-  astro@5.12.8(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0):
+  astro@5.13.2(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0):
     dependencies:
       '@astrojs/compiler': 2.12.2
-      '@astrojs/internal-helpers': 0.7.1
-      '@astrojs/markdown-remark': 6.3.5
+      '@astrojs/internal-helpers': 0.7.2
+      '@astrojs/markdown-remark': 6.3.6
       '@astrojs/telemetry': 3.3.0
       '@capsizecss/unpack': 2.4.0
       '@oslojs/encoding': 1.1.0
@@ -6424,7 +6421,7 @@ snapshots:
       acorn: 8.15.0
       pathe: 1.1.2
       pkg-types: 1.1.1
-      ufo: 1.5.4
+      ufo: 1.6.1
 
   mrmime@2.0.1: {}
 
@@ -7272,8 +7269,6 @@ snapshots:
       semver: 7.7.1
 
   typescript@5.8.3: {}
-
-  ufo@1.5.4: {}
 
   ufo@1.6.1: {}
 
