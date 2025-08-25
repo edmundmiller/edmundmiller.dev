@@ -11,33 +11,33 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "Who does your assistant serve?",
-    "link": "https://xeiaso.net/blog/2025/who-assistant-serve/",
-    "summary": `ChatGPT and its consequences have been a disaster for the human race.`,
+    "title": "Final Fantasy 14 on macOS with a 36 key keyboard",
+    "link": "https://xeiaso.net/notes/2025/xiv-mac/",
+    "summary": `Saving Eorzea with as few keys as possible`,
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
-    "date": "August 17, 2025"
+    "date": "August 24, 2025"
   },
   
   {
-    "title": "What&#39;s new with Himitsu 0.9?",
-    "link": "https://drewdevault.com/2025/08/08/2025-08-08-Whats-new-with-himitsu.html",
-    "summary": `Last week, Armin and I worked together on the latest release of Himitsu, a
-“secret storage manager” for Linux. I haven’t blogged about Himitsu since I
-announced it three years ago, and I thought it would be nice to give you a
-closer look at the latest releas…`,
-    "source_title": "Drew DeVault&#39;s blog",
-    "source_link": "https://drewdevault.com",
-    "date": "August 8, 2025"
-  },
-  
-  {
-    "title": "Empowering bioinformatics communities with Nextflow and nf-core",
-    "link": "https://nf-co.re/blog/2025/paper-v2/",
-    "summary": `Next nf-core scientific article now published in Genome Biology!`,
+    "title": "Introducing nf-core Advisories",
+    "link": "https://nf-co.re/blog/2025/advisories/",
+    "summary": `Timely technical issue alerts, no matter how remote you are.`,
     "source_title": "nf-core blog",
     "source_link": "https://nf-co.re/",
-    "date": "August 6, 2025"
+    "date": "August 21, 2025"
+  },
+  
+  {
+    "title": "Embedding Wren in Hare",
+    "link": "https://drewdevault.com/2025/08/20/2025-08-20-Hare-and-Wren.html",
+    "summary": `I’ve been on the lookout for a scripting language which can be neatly embedded
+into Hare programs. Perhaps the obvious candidate is Lua – but I’m not
+particularly enthusiastic about it. When I was evaluating the landscape of tools
+which are “like Lua, but no…`,
+    "source_title": "Drew DeVault&#39;s blog",
+    "source_link": "https://drewdevault.com",
+    "date": "August 20, 2025"
   },
   
 ];
