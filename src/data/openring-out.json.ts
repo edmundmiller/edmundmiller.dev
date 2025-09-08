@@ -11,12 +11,21 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "Why are my pipeline download tests failing?",
-    "link": "https://nf-co.re/blog/2025/refurbushing-the-pipeline-download/",
-    "summary": `Refurbishing the pipeline downloads command`,
+    "title": "Gratitude for nearly 19 years and counting",
+    "link": "https://taehoonkim.org/news/2025/9/2/gratitude-for-nearly-19-years-and-counting",
+    "summary": `Come November 20th, it will be 19 full years since I started my lab. It has been an amazing journey for me. Mentoring amidst the intense scientific competition has not been easy, but I am so proud of the work that my lab has contributed to the world. Many…`,
+    "source_title": "News - Functional Genomics Laboratory",
+    "source_link": "https://taehoonkim.org/news/",
+    "date": "September 2, 2025"
+  },
+  
+  {
+    "title": "Running nf-core pipelines on Google Colab",
+    "link": "https://nf-co.re/blog/2025/nf-core-colab-guide/",
+    "summary": `A guide to running and interacting with nf-core pipelines using Colab and VS Code`,
     "source_title": "nf-core blog",
     "source_link": "https://nf-co.re/",
-    "date": "August 28, 2025"
+    "date": "September 2, 2025"
   },
   
   {
@@ -26,18 +35,6 @@ export const openringData: OpenringItem[] =
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
     "date": "August 24, 2025"
-  },
-  
-  {
-    "title": "Embedding Wren in Hare",
-    "link": "https://drewdevault.com/2025/08/20/2025-08-20-Hare-and-Wren.html",
-    "summary": `I’ve been on the lookout for a scripting language which can be neatly embedded
-into Hare programs. Perhaps the obvious candidate is Lua – but I’m not
-particularly enthusiastic about it. When I was evaluating the landscape of tools
-which are “like Lua, but no…`,
-    "source_title": "Drew DeVault&#39;s blog",
-    "source_link": "https://drewdevault.com",
-    "date": "August 20, 2025"
   },
   
 ];
