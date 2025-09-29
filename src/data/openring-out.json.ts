@@ -11,15 +11,15 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "A better future for JavaScript that won&#39;t happen",
-    "link": "https://drewdevault.com/2025/09/17/2025-09-17-An-impossible-future-for-JS.html",
-    "summary": `In the wake of the largest supply-chain attack in history, the JavaScript
-community could have a moment of reckoning and decide: never again. As the panic
-and shame subsides, after compromised developers finish re-provisioning their
-workstations and rotating…`,
+    "title": "Cloudflare bankrolls fascists",
+    "link": "https://drewdevault.com/2025/09/24/2025-09-24-Cloudflare-and-fascists.html",
+    "summary": `US politics has been pretty fascist lately. The state is filling up
+concentration camps, engaging in mass state violence against people on the basis
+of racialized traits, deporting them to random countries without any respect for
+habeas corpus, exerting stat…`,
     "source_title": "Drew DeVault&#39;s blog",
     "source_link": "https://drewdevault.com",
-    "date": "September 17, 2025"
+    "date": "September 24, 2025"
   },
   
   {
