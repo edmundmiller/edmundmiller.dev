@@ -44,7 +44,7 @@
     "@pagefind/default-ui": "1.3.0",
     "@resvg/resvg-js": "2.6.2",
     "@tailwindcss/aspect-ratio": "0.4.2",
-    "@tailwindcss/typography": "0.5.16",
+    "@tailwindcss/typography": "0.5.19",
     "@types/eslint": "9.6.1",
     "astro-eslint-parser": "1.2.2",
     "autoprefixer": "10.4.21",
