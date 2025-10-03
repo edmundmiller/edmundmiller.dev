@@ -10,10 +10,10 @@ importers:
     dependencies:
       '@astro-community/astro-embed-youtube':
         specifier: 0.5.7
-        version: 0.5.7(astro@5.14.1(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0))
+        version: 0.5.7(astro@5.14.1(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.9.3)(yaml@2.5.0))
       '@astrojs/mdx':
         specifier: 4.3.6
-        version: 4.3.6(astro@5.14.1(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0))
+        version: 4.3.6(astro@5.14.1(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.9.3)(yaml@2.5.0))
       '@astrojs/rss':
         specifier: 4.0.12
         version: 4.0.12
@@ -22,7 +22,7 @@ importers:
         version: 3.6.0
       '@astrojs/tailwind':
         specifier: 6.0.2
-        version: 6.0.2(astro@5.14.1(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0))(tailwindcss@3.4.18)
+        version: 6.0.2(astro@5.14.1(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.9.3)(yaml@2.5.0))(tailwindcss@3.4.18)
       '@types/hast':
         specifier: 3.0.4
         version: 3.0.4
@@ -34,13 +34,13 @@ importers:
         version: 3.6.0
       astro:
         specifier: 5.14.1
-        version: 5.14.1(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0)
+        version: 5.14.1(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.9.3)(yaml@2.5.0)
       astro-analytics:
         specifier: 2.7.0
         version: 2.7.0
       astro-expressive-code:
         specifier: 0.39.0
-        version: 0.39.0(astro@5.14.1(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0))
+        version: 0.39.0(astro@5.14.1(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.9.3)(yaml@2.5.0))
       astro-icon:
         specifier: 1.1.5
         version: 1.1.5
@@ -68,7 +68,7 @@ importers:
     devDependencies:
       '@astrojs/check':
         specifier: 0.9.4
-        version: 0.9.4(prettier-plugin-astro@0.14.1)(prettier@3.6.2)(typescript@5.8.3)
+        version: 0.9.4(prettier-plugin-astro@0.14.1)(prettier@3.6.2)(typescript@5.9.3)
       '@biomejs/biome':
         specifier: 2.2.5
         version: 2.2.5
@@ -124,8 +124,8 @@ importers:
         specifier: 3.4.18
         version: 3.4.18
       typescript:
-        specifier: 5.8.3
-        version: 5.8.3
+        specifier: 5.9.3
+        version: 5.9.3
       ultracite:
         specifier: 5.0.35
         version: 5.0.35(@types/debug@4.1.12)(@types/node@20.14.8)(jiti@2.4.2)(yaml@2.5.0)
@@ -3271,8 +3271,8 @@ packages:
   typescript-auto-import-cache@0.3.3:
     resolution: {integrity: sha512-ojEC7+Ci1ij9eE6hp8Jl9VUNnsEKzztktP5gtYNRMrTmfXVwA1PITYYAkpxCvvupdSYa/Re51B6KMcv1CTZEUA==}
 
-  typescript@5.8.3:
-    resolution: {integrity: sha512-p1diW6TqL9L07nNxvRMM7hMMw4c5XOo/1ibL4aAIGmSAt9slTE1Xgw5KWuof2uTOvCg9BY7ZRi+GaF+7sfgPeQ==}
+  typescript@5.9.3:
+    resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -3796,17 +3796,17 @@ snapshots:
 
   '@antfu/utils@0.7.10': {}
 
-  '@astro-community/astro-embed-youtube@0.5.7(astro@5.14.1(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0))':
+  '@astro-community/astro-embed-youtube@0.5.7(astro@5.14.1(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.9.3)(yaml@2.5.0))':
     dependencies:
-      astro: 5.14.1(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0)
+      astro: 5.14.1(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.9.3)(yaml@2.5.0)
       lite-youtube-embed: 0.3.3
 
-  '@astrojs/check@0.9.4(prettier-plugin-astro@0.14.1)(prettier@3.6.2)(typescript@5.8.3)':
+  '@astrojs/check@0.9.4(prettier-plugin-astro@0.14.1)(prettier@3.6.2)(typescript@5.9.3)':
     dependencies:
-      '@astrojs/language-server': 2.15.0(prettier-plugin-astro@0.14.1)(prettier@3.6.2)(typescript@5.8.3)
+      '@astrojs/language-server': 2.15.0(prettier-plugin-astro@0.14.1)(prettier@3.6.2)(typescript@5.9.3)
       chokidar: 4.0.1
       kleur: 4.1.5
-      typescript: 5.8.3
+      typescript: 5.9.3
       yargs: 17.7.2
     transitivePeerDependencies:
       - prettier
@@ -3818,12 +3818,12 @@ snapshots:
 
   '@astrojs/internal-helpers@0.7.3': {}
 
-  '@astrojs/language-server@2.15.0(prettier-plugin-astro@0.14.1)(prettier@3.6.2)(typescript@5.8.3)':
+  '@astrojs/language-server@2.15.0(prettier-plugin-astro@0.14.1)(prettier@3.6.2)(typescript@5.9.3)':
     dependencies:
       '@astrojs/compiler': 2.10.3
       '@astrojs/yaml2ts': 0.2.1
       '@jridgewell/sourcemap-codec': 1.5.0
-      '@volar/kit': 2.4.5(typescript@5.8.3)
+      '@volar/kit': 2.4.5(typescript@5.9.3)
       '@volar/language-core': 2.4.5
       '@volar/language-server': 2.4.5
       '@volar/language-service': 2.4.5
@@ -3870,12 +3870,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/mdx@4.3.6(astro@5.14.1(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0))':
+  '@astrojs/mdx@4.3.6(astro@5.14.1(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.9.3)(yaml@2.5.0))':
     dependencies:
       '@astrojs/markdown-remark': 6.3.7
       '@mdx-js/mdx': 3.1.1
       acorn: 8.15.0
-      astro: 5.14.1(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0)
+      astro: 5.14.1(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.9.3)(yaml@2.5.0)
       es-module-lexer: 1.7.0
       estree-util-visit: 2.0.0
       hast-util-to-html: 9.0.5
@@ -3904,9 +3904,9 @@ snapshots:
       stream-replace-string: 2.0.0
       zod: 3.25.76
 
-  '@astrojs/tailwind@6.0.2(astro@5.14.1(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0))(tailwindcss@3.4.18)':
+  '@astrojs/tailwind@6.0.2(astro@5.14.1(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.9.3)(yaml@2.5.0))(tailwindcss@3.4.18)':
     dependencies:
-      astro: 5.14.1(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0)
+      astro: 5.14.1(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.9.3)(yaml@2.5.0)
       autoprefixer: 10.4.21(postcss@8.5.6)
       postcss: 8.5.6
       postcss-load-config: 4.0.2(postcss@8.5.6)
@@ -4889,12 +4889,12 @@ snapshots:
       loupe: 3.1.4
       tinyrainbow: 2.0.0
 
-  '@volar/kit@2.4.5(typescript@5.8.3)':
+  '@volar/kit@2.4.5(typescript@5.9.3)':
     dependencies:
       '@volar/language-service': 2.4.5
       '@volar/typescript': 2.4.5
       typesafe-path: 0.2.2
-      typescript: 5.8.3
+      typescript: 5.9.3
       vscode-languageserver-textdocument: 1.0.11
       vscode-uri: 3.0.8
 
@@ -5015,9 +5015,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  astro-expressive-code@0.39.0(astro@5.14.1(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0)):
+  astro-expressive-code@0.39.0(astro@5.14.1(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.9.3)(yaml@2.5.0)):
     dependencies:
-      astro: 5.14.1(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0)
+      astro: 5.14.1(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.9.3)(yaml@2.5.0)
       rehype-expressive-code: 0.39.0
 
   astro-icon@1.1.5:
@@ -5029,7 +5029,7 @@ snapshots:
       - debug
       - supports-color
 
-  astro@5.14.1(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.5.0):
+  astro@5.14.1(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.9.3)(yaml@2.5.0):
     dependencies:
       '@astrojs/compiler': 2.12.2
       '@astrojs/internal-helpers': 0.7.3
@@ -5079,7 +5079,7 @@ snapshots:
       smol-toml: 1.4.2
       tinyexec: 0.3.2
       tinyglobby: 0.2.14
-      tsconfck: 3.1.6(typescript@5.8.3)
+      tsconfck: 3.1.6(typescript@5.9.3)
       ultrahtml: 1.6.0
       unifont: 0.5.2
       unist-util-visit: 5.0.0
@@ -5092,7 +5092,7 @@ snapshots:
       yocto-spinner: 0.2.3
       zod: 3.25.76
       zod-to-json-schema: 3.24.6(zod@3.25.76)
-      zod-to-ts: 1.2.0(typescript@5.8.3)(zod@3.25.76)
+      zod-to-ts: 1.2.0(typescript@5.9.3)(zod@3.25.76)
     optionalDependencies:
       sharp: 0.34.4
     transitivePeerDependencies:
@@ -7537,9 +7537,9 @@ snapshots:
 
   ts-interface-checker@0.1.13: {}
 
-  tsconfck@3.1.6(typescript@5.8.3):
+  tsconfck@3.1.6(typescript@5.9.3):
     optionalDependencies:
-      typescript: 5.8.3
+      typescript: 5.9.3
 
   tslib@2.6.3: {}
 
@@ -7555,7 +7555,7 @@ snapshots:
     dependencies:
       semver: 7.7.1
 
-  typescript@5.8.3: {}
+  typescript@5.9.3: {}
 
   ufo@1.6.1: {}
 
@@ -8030,9 +8030,9 @@ snapshots:
     dependencies:
       zod: 3.25.76
 
-  zod-to-ts@1.2.0(typescript@5.8.3)(zod@3.25.76):
+  zod-to-ts@1.2.0(typescript@5.9.3)(zod@3.25.76):
     dependencies:
-      typescript: 5.8.3
+      typescript: 5.9.3
       zod: 3.25.76
 
   zod@3.25.76: {}
