@@ -11,6 +11,15 @@ export const openringData: OpenringItem[] =
 [
   
   {
+    "title": "Hastily made coffee video",
+    "link": "https://xeiaso.net/videos/2025/hastily-made-coffee-video/",
+    "summary": `I made a video about making coffee`,
+    "source_title": "Xe Iaso&#39;s blog",
+    "source_link": "https://xeiaso.net/",
+    "date": "September 30, 2025"
+  },
+  
+  {
     "title": "Cloudflare bankrolls fascists",
     "link": "https://drewdevault.com/2025/09/24/2025-09-24-Cloudflare-and-fascists.html",
     "summary": `US politics has been pretty fascist lately. The state is filling up
@@ -20,15 +29,6 @@ habeas corpus, exerting stat…`,
     "source_title": "Drew DeVault&#39;s blog",
     "source_link": "https://drewdevault.com",
     "date": "September 24, 2025"
-  },
-  
-  {
-    "title": "We all dodged a bullet",
-    "link": "https://xeiaso.net/notes/2025/we-dodged-a-bullet/",
-    "summary": `That NPM attack could have been so much worse.`,
-    "source_title": "Xe Iaso&#39;s blog",
-    "source_link": "https://xeiaso.net/",
-    "date": "September 9, 2025"
   },
   
   {
