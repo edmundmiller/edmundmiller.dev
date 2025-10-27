@@ -118,8 +118,8 @@ importers:
         specifier: 1.5.0
         version: 1.5.0
       remark-unwrap-images:
-        specifier: 4.0.1
-        version: 4.0.1
+        specifier: 5.0.0
+        version: 5.0.0
       tailwindcss:
         specifier: 3.4.18
         version: 3.4.18
@@ -2961,8 +2961,9 @@ packages:
   remark-stringify@11.0.0:
     resolution: {integrity: sha512-1OSmLd3awB/t8qdoEOMazZkNsfVTeY4fTsgzcQFdXNq8ToTN4ZGwrMnlda4K6smTFKD+GRV6O48i6Z4iKgPPpw==}
 
-  remark-unwrap-images@4.0.1:
-    resolution: {integrity: sha512-J9HibCHx0/X7ovgqaFe0otizCHpbb1s6Jh3IeiD5ibQm2Oz/OhCDXSKMEW5T54iBw5CxuqRL6BrYp+jLLdqBOw==}
+  remark-unwrap-images@5.0.0:
+    resolution: {integrity: sha512-s7WSIA6s98ywa93v/5x+wFeGgJSl1VJnNYgg//0MUgu12CyxVMi+vcCifXFEUtQfnnWSTXWOH6f8LkDBNLthrg==}
+    deprecated: 'Deprecated: use `rehype-unwrap-images` instead'
 
   request-light@0.5.8:
     resolution: {integrity: sha512-3Zjgh+8b5fhRJBQZoy+zbVKpAQGLyka0MPgW3zruTF4dFFJ8Fqcfu9YsAvi/rvdcaTeWG3MkbZv4WKxAn/84Lg==}
@@ -3090,6 +3091,7 @@ packages:
   sitemap@8.0.0:
     resolution: {integrity: sha512-+AbdxhM9kJsHtruUF39bwS/B0Fytw6Fr1o4ZAIAEqA6cke2xcoO2GleBw9Zw7nRzILVEgz7zBM5GiTJjie1G9A==}
     engines: {node: '>=14.0.0', npm: '>=6.0.0'}
+    deprecated: 'SECURITY: Multiple vulnerabilities fixed in 8.0.1 (XML injection, path traversal, command injection, protocol injection). Upgrade immediately: npm install sitemap@8.0.1'
     hasBin: true
 
   smol-toml@1.4.2:
@@ -7147,11 +7149,7 @@ snapshots:
       mdast-util-to-markdown: 2.1.0
       unified: 11.0.5
 
-  remark-unwrap-images@4.0.1:
-    dependencies:
-      '@types/mdast': 4.0.4
-      hast-util-whitespace: 3.0.0
-      unist-util-visit: 5.0.0
+  remark-unwrap-images@5.0.0: {}
 
   request-light@0.5.8: {}
 
