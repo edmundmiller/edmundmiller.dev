@@ -11,6 +11,15 @@ export const openringData: OpenringItem[] =
 [
   
   {
+    "title": "Using Assisted-by commit footers instead of banning AI tools",
+    "link": "https://xeiaso.net/notes/2025/assisted-by-footer/",
+    "summary": `It sounds like ceding ground to the pro-AI crowd, however if you get people to be honest about it then everyone benefits.`,
+    "source_title": "Xe Iaso&#39;s blog",
+    "source_link": "https://xeiaso.net/",
+    "date": "November 2, 2025"
+  },
+  
+  {
     "title": "What&#39;s up with FUTO?",
     "link": "https://drewdevault.com/2025/10/22/2025-10-22-Whats-up-with-FUTO.html",
     "summary": `Some time ago, I noticed some new organization called FUTO popping up here and
@@ -29,15 +38,6 @@ explored their webs…`,
     "source_title": "nf-core blog",
     "source_link": "https://nf-co.re/",
     "date": "October 20, 2025"
-  },
-  
-  {
-    "title": "First look at the DGX Spark",
-    "link": "https://xeiaso.net/blog/2025/dgx-spark-first-look/",
-    "summary": `A local supercomputer between the size of a Mac mini and a Mac mini.`,
-    "source_title": "Xe Iaso&#39;s blog",
-    "source_link": "https://xeiaso.net/",
-    "date": "October 14, 2025"
   },
   
 ];
