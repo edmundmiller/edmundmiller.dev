@@ -11,7 +11,7 @@ To use admonitions in your MDX posts, import the component and use it like this:
 title: "My Post"
 ---
 
-import Admonition from "../../components/admonition.astro";
+import Admonition from "../../components/Admonition.astro";
 
 <Admonition type="tip" title="Pro Tip">
 This is a helpful tip for readers!

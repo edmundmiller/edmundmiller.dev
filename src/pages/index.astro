@@ -1,9 +1,9 @@
 ---
 import { getAllPosts, sortMDByDate } from '@/data/post';
-import PageLayout from '@/layouts/base.astro';
+import PageLayout from '@/layouts/Base.astro';
 import SocialList from '@/components/social-list.astro';
 import PostPreview from '@/components/blog/post-preview.astro';
-import Openring from '@/components/openring.astro';
+import Openring from '@/components/Openring.astro';
 
 const MAX_POSTS = 10;
 const allPosts = await getAllPosts();
