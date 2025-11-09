@@ -2,7 +2,7 @@
 author: Edmund Miller
 publishDate: "2023-07-17T18:09Z"
 title: Site v3
-description: "Or is it like v5 at this point?"
+description: "Yet another blog rewrite - is this v5 at this point?"
 draft: false
 ---
 

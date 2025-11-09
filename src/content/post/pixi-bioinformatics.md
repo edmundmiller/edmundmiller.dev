@@ -1,5 +1,5 @@
 ---
-title: "Simplify Your Bioinformatics Workflow with Pixi: A Fresh Take on Conda"
+title: "Simplify Your Bioinformatics Workflow with Pixi"
 description: "How to adopt pixi on an HPC cluster near you. Simplify your bioinformatics workflow today, with Pixi!"
 draft: false
 publishDate: 2024-08-21
