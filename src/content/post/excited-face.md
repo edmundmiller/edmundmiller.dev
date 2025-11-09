@@ -1,6 +1,6 @@
 ---
 title: 🤗 Hype
-description: So what's exciting me about Hugging Face so far
+description: Exploring what's exciting about Hugging Face and its impact on ML reproducibility
 publishDate: "Mar 22 2024"
 draft: true
 tags: ["machine-learning"]

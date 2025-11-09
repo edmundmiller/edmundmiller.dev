@@ -1,6 +1,6 @@
 ---
 title: "DVC Import URL: Solving the Anonymous Access Puzzle"
-description: "Working with large datasets in bioinformatics often means juggling data provenance and accessibility. Learn how to solve the anonymous access challenge when importing external data with DVC."
+description: "Learn how to solve the anonymous access challenge when importing large bioinformatics datasets with DVC's import URL feature."
 publishDate: 2024-12-21
 tags: ["bioinformatics", "dvc", "data-science"]
 draft: true
