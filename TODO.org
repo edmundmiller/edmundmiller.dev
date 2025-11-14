@@ -1,0 +1,232 @@
+#+TITLE: Repository Audit Issues - edmundmiller.dev
+#+DATE: 2025-11-09
+#+AUTHOR: Claude Code Audit
+
+* CRITICAL [0/4]
+** TODO Fix variable reference error in Likes.astro
+   :PROPERTIES:
+   :FILE:     src/components/blog/webmentions/Likes.astro
+   :LINES:    14, 26-28
+   :END:
+   - Line 14 declares ~const _likesToShow~
+   - Lines 26-28 reference undefined ~likesToShow~ (missing underscore)
+   - *Impact*: Component will crash at runtime with "likesToShow is not defined"
+   - Also affects lowercase version: ~src/components/blog/webmentions/likes.astro~
+
+** TODO Fix variable reference error in Comments.astro
+   :PROPERTIES:
+   :FILE:     src/components/blog/webmentions/Comments.astro
+   :LINES:    12, 24, 27, 30
+   :END:
+   - Line 12 declares ~const _comments~
+   - Lines 24, 27, 30 reference undefined ~comments~ (missing underscore)
+   - *Impact*: Component will crash at runtime with "comments is not defined"
+   - Also affects lowercase version: ~src/components/blog/webmentions/comments.astro~
+
+** TODO Fix malformed rel attributes in astro.config.ts
+   :PROPERTIES:
+   :FILE:     astro.config.ts
+   :LINES:    33, 63
+   :END:
+   - Current: ~rel: ['nofollow, noopener, noreferrer']~ (single string in array)
+   - Should be: ~rel: ['nofollow', 'noopener', 'noreferrer']~ (separate strings)
+   - *Security Impact*: The rel attribute may not parse correctly, weakening security
+
+** TODO Fix type signature mismatch in github.ts processAuthors()
+   :PROPERTIES:
+   :FILE:     src/utils/github.ts
+   :LINES:    128-139
+   :END:
+   - Declared return type: ~Promise<AuthorInfo[]>~ (line 130)
+   - Line 132 returns: ~[]~ (not a Promise)
+   - Line 139 returns: ~authorList.map(...)~ (array, not Promise)
+   - *Impact*: TypeScript compilation error
+
+* HIGH [0/3]
+** TODO Remove duplicate lowercase component files
+   :PROPERTIES:
+   :PRIORITY: A
+   :END:
+   Delete all lowercase versions, keep capitalized (Astro convention):
+   - [ ] src/components/admonition.astro (keep Admonition.astro)
+   - [ ] src/components/author.astro (keep Author.astro)
+   - [ ] src/components/openring.astro (keep Openring.astro)
+   - [ ] src/components/paginator.astro (keep Paginator.astro)
+   - [ ] src/components/search.astro (keep Search.astro)
+   - [ ] src/components/blog/hero.astro (keep Hero.astro)
+   - [ ] src/components/blog/toc.astro (keep TOC.astro)
+   - [ ] src/components/blog/webmentions/comments.astro (keep Comments.astro)
+   - [ ] src/components/blog/webmentions/likes.astro (keep Likes.astro)
+   - [ ] src/layouts/footer.astro (keep Footer.astro)
+   - [ ] src/layouts/header.astro (keep Header.astro)
+   - [ ] src/layouts/base.astro (keep Base.astro)
+   - [ ] src/layouts/about.astro (keep About.astro)
+
+** TODO Add noreferrer to Openring.astro rel attribute
+   :PROPERTIES:
+   :FILE:     src/components/Openring.astro
+   :LINES:    28
+   :END:
+   - Current: ~rel="noopener"~
+   - Should be: ~rel="noopener noreferrer"~
+   - *Security Risk*: Violates security hardening rule for external links
+   - Also affects: ~src/components/openring.astro~
+
+** TODO Fix rel attribute in social-list.astro
+   :PROPERTIES:
+   :FILE:     src/components/social-list.astro
+   :LINES:    63
+   :END:
+   - Current: ~rel={`noopener noreferrer ${isWebmention ? "me authn" : ""}`}~
+   - Should be: ~rel={isWebmention ? "noopener noreferrer me authn" : "noopener noreferrer"}~
+
+* MEDIUM [0/4]
+** TODO Remove console.warn() usage in theme-provider.astro
+   :PROPERTIES:
+   :FILE:     src/components/theme-provider.astro
+   :LINES:    12
+   :END:
+   - Violates Ultracite rule "Don't use console"
+   - Replace with proper error handling or remove
+
+** TODO Address @ts-expect-error in remark-reading-time.ts
+   :PROPERTIES:
+   :FILE:     src/utils/remark-reading-time.ts
+   :LINES:    5
+   :END:
+   - Violates Ultracite rule against @ts-ignore directives
+   - Properly type the mdast-util-to-string import
+
+** TODO Address @ts-expect-error in tailwind.config.ts
+   :PROPERTIES:
+   :FILE:     tailwind.config.ts
+   :LINES:    41-42
+   :END:
+   - Comment indicates waiting for tailwindcss to expose theme type
+   - Consider alternative typing approach
+
+** TODO Remove unused processAuthors() function or implement usage
+   :PROPERTIES:
+   :FILE:     src/utils/github.ts
+   :LINES:    128-140
+   :END:
+   - Function defined but never called
+   - Either remove or implement proper usage
+
+* LOW [0/9]
+** TODO Update site description placeholder
+   :PROPERTIES:
+   :FILE:     src/site.config.ts
+   :LINES:    10
+   :END:
+   - Comment: "TODO Come up with a better description"
+   - Generic placeholder description needs replacement
+
+** TODO Adjust title length minimum
+   :PROPERTIES:
+   :FILE:     src/content/config.ts
+   :LINES:    16
+   :END:
+   - Comment: "FIXME Moved down to 60"
+   - Unclear context, needs review
+
+** TODO Adjust description length for SEO
+   :PROPERTIES:
+   :FILE:     src/content/config.ts
+   :LINES:    18
+   :END:
+   - Comment: "FIXME Bump this up to 50-160 for SEO"
+   - Description length needs adjustment
+
+** TODO Pull about page metadata from frontmatter
+   :PROPERTIES:
+   :FILE:     src/layouts/about.astro
+   :LINES:    8
+   :END:
+   - Comment: "<!-- FIXME Pull from frontmatter -->"
+   - About page metadata not properly implemented
+   - Also in: ~src/layouts/About.astro~
+
+** TODO Complete speaking engagement data
+   :PROPERTIES:
+   :FILE:     src/data/content.json.ts
+   :LINES:    132
+   :END:
+   - Comment: "TODO Find that one that I did with Evan in August 2021"
+   - Incomplete data entry
+
+** TODO Add Matrix icon to social-list
+   :PROPERTIES:
+   :FILE:     src/components/social-list.astro
+   :LINES:    31
+   :END:
+   - TODO comment about Matrix icon
+
+** TODO Update Bluesky profile link
+   :PROPERTIES:
+   :FILE:     src/components/social-list.astro
+   :LINES:    44
+   :END:
+   - TODO comment about Bluesky profile
+
+** TODO Declare SITE variable in env.d.ts
+   :PROPERTIES:
+   :FILE:     src/env.d.ts
+   :LINES:    11-16
+   :END:
+   - Only ~WEBMENTION_API_KEY~ is declared
+   - ~SITE~ environment variable used in multiple files but not typed
+
+** TODO Clean up commented-out code in index.astro
+   :PROPERTIES:
+   :FILE:     src/pages/index.astro
+   :LINES:    12-55
+   :END:
+   - Large commented-out section defining tech stack information
+   - Either delete or implement properly
+
+* REVIEW [0/2]
+** TODO Review biome.jsonc rule overrides
+   :PROPERTIES:
+   :FILE:     biome.jsonc
+   :LINES:    20-29
+   :END:
+   Overrides for ~src/utils/remark-*.ts~ disable critical rules:
+   - ~noExplicitAny~ (off)
+   - ~noAssignInExpressions~ (off)
+   - ~noShadowRestrictedNames~ (off)
+   - ~noForEach~ (off)
+   - ~noExcessiveCognitiveComplexity~ (off)
+
+   Consider if these are necessary or if utilities can be refactored.
+
+** TODO Consolidate deployment configuration
+   Multiple deployment targets configured:
+   - Wrangler for Cloudflare
+   - netlify.toml
+   - fly.toml
+
+   Clarify which is the primary deployment method.
+
+* Summary Statistics
+| Category | Count |
+|----------+-------|
+| Critical |     4 |
+| High     |     3 |
+| Medium   |     4 |
+| Low      |     9 |
+| Review   |     2 |
+|----------+-------|
+| *Total*  |  *22* |
+
+* Quick Wins (High Impact, Low Effort)
+1. Remove duplicate lowercase component files
+2. Fix rel attributes (astro.config.ts, Openring.astro)
+3. Fix variable reference errors in Comments and Likes components
+4. Remove console.warn() usage
+5. Delete unused processAuthors() function
+
+* Notes
+- Audit performed on branch: ~claude/audit-repo-issues-011CUwhpa7gkgojByW5LwPtB~
+- All issues have been verified through codebase exploration
+- Priority should be: CRITICAL → HIGH → MEDIUM → LOW → REVIEW

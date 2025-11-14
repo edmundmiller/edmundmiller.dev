@@ -1,6 +1,6 @@
 ---
 title: Rust Nextflow
-description: What Is This, a Crossover Episode?
+description: Exploring Rust binaries in Nextflow workflows - a crossover episode
 draft: true
 publishDate: "Nov 6 2023"
 ---
