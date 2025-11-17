@@ -9,7 +9,7 @@ const { mentions } = Astro.props as Props;
 
 const validComments = ['mention-of', 'in-reply-to'];
 
-const _comments = mentions.filter(
+const comments = mentions.filter(
   (mention) =>
     validComments.includes(mention['wm-property']) && mention.content?.text
 );
