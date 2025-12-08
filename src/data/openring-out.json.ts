@@ -11,6 +11,15 @@ export const openringData: OpenringItem[] =
 [
   
   {
+    "title": "New AI slop signal: code blocks with weird indentation",
+    "link": "https://xeiaso.net/notes/2025/slop-signal-indentation/",
+    "summary": `If the first line of a set of commands isn&amp;#39;t indented but the rest are: the post is AI slop`,
+    "source_title": "Xe Iaso&#39;s blog",
+    "source_link": "https://xeiaso.net/",
+    "date": "December 1, 2025"
+  },
+  
+  {
     "title": "nineteen and counting",
     "link": "https://taehoonkim.org/news/2025/11/22/nineteen-and-counting",
     "summary": `
@@ -45,21 +54,12 @@ export const openringData: OpenringItem[] =
   },
   
   {
-    "title": "nf-core/tools - 3.5.0",
-    "link": "https://nf-co.re/blog/2025/tools-3_5_0/",
-    "summary": `Hot topic release`,
+    "title": "Topic: Topics",
+    "link": "https://nf-co.re/blog/2025/version_topics/",
+    "summary": `How to adopt Topic channels in your favorite nf-core module`,
     "source_title": "nf-core blog",
     "source_link": "https://nf-co.re/",
     "date": "November 19, 2025"
-  },
-  
-  {
-    "title": "Valve is about to win the console generation",
-    "link": "https://xeiaso.net/blog/2025/valve-is-about-to-win-the-console-generation/",
-    "summary": `Valve does nothing and still wins`,
-    "source_title": "Xe Iaso&#39;s blog",
-    "source_link": "https://xeiaso.net/",
-    "date": "November 12, 2025"
   },
   
 ];
