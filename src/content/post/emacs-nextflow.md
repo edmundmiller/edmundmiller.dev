@@ -1,6 +1,6 @@
 ---
 title: Nextflow Emacs Workflow
-description: How I hack on Nextflow scripts using Emacs
+description: My setup and workflow for developing Nextflow scripts using Emacs
 draft: false
 publishDate: 2024-06-14
 tags: ["emacs", "nextflow"]

@@ -2,7 +2,7 @@
 author: Edmund Miller
 publishDate: "2022-06-14T22:10Z"
 title: I'm Starting a Writing Streak
-description: "We'll see how long it lasts this time!"
+description: "Starting a new writing streak - let's see how long it lasts this time!"
 tags: ["meta", "blog"]
 draft: false
 ---

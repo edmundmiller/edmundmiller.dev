@@ -9,9 +9,7 @@
 
   function setTheme(newTheme) {
     if (newTheme !== "light" && newTheme !== "dark") {
-      return console.warn(
-        `Invalid theme value '${newTheme}' received. Expected 'light' or 'dark'.`,
-      );
+      return;
     }
 
     const root = document.documentElement;

@@ -1,7 +1,7 @@
 ---
 author: Edmund Miller
 title: Nextflow Rclone
-description: Been dying to try out the rclone stageoutmode
+description: Exploring the rclone stageoutmode feature in Nextflow for cloud storage
 publishDate: "Sep 29 2023"
 draft: true
 tags: ["Nextflow"]
