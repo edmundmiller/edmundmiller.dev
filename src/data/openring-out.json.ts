@@ -11,6 +11,15 @@ export const openringData: OpenringItem[] =
 [
   
   {
+    "title": "Maintainers Minutes: November 2025",
+    "link": "https://nf-co.re/blog/2025/maintainers-minutes-2025-11-28/",
+    "summary": `Keeping you informed of the latest maintainers discussions`,
+    "source_title": "nf-core blog",
+    "source_link": "https://nf-co.re/",
+    "date": "December 8, 2025"
+  },
+  
+  {
     "title": "New AI slop signal: code blocks with weird indentation",
     "link": "https://xeiaso.net/notes/2025/slop-signal-indentation/",
     "summary": `If the first line of a set of commands isn&amp;#39;t indented but the rest are: the post is AI slop`,
@@ -51,15 +60,6 @@ export const openringData: OpenringItem[] =
     "source_title": "News - Functional Genomics Laboratory",
     "source_link": "https://taehoonkim.org/news/",
     "date": "November 20, 2025"
-  },
-  
-  {
-    "title": "Topic: Topics",
-    "link": "https://nf-co.re/blog/2025/version_topics/",
-    "summary": `How to adopt Topic channels in your favorite nf-core module`,
-    "source_title": "nf-core blog",
-    "source_link": "https://nf-co.re/",
-    "date": "November 19, 2025"
   },
   
 ];
