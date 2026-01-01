@@ -16,7 +16,7 @@
     "lint": "pnpm dlx vale -- src/"
   },
   "dependencies": {
-    "@astro-community/astro-embed-youtube": "0.5.7",
+    "@astro-community/astro-embed-youtube": "0.5.10",
     "@astrojs/mdx": "4.3.13",
     "@astrojs/rss": "4.0.14",
     "@astrojs/sitemap": "3.6.0",
