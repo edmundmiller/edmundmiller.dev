@@ -17,14 +17,14 @@
   },
   "dependencies": {
     "@astro-community/astro-embed-youtube": "0.5.7",
-    "@astrojs/mdx": "4.3.6",
-    "@astrojs/rss": "4.0.12",
+    "@astrojs/mdx": "4.3.13",
+    "@astrojs/rss": "4.0.14",
     "@astrojs/sitemap": "3.6.0",
     "@astrojs/tailwind": "6.0.2",
     "@types/hast": "3.0.4",
     "@types/mdast": "4.0.4",
     "@wooorm/starry-night": "3.6.0",
-    "astro": "5.15.9",
+    "astro": "5.16.6",
     "astro-analytics": "2.7.0",
     "astro-expressive-code": "0.39.0",
     "astro-icon": "1.1.5",
@@ -37,7 +37,7 @@
     "unist-util-visit": "5.0.0"
   },
   "devDependencies": {
-    "@astrojs/check": "0.9.4",
+    "@astrojs/check": "0.9.6",
     "@biomejs/biome": "2.2.5",
     "@flydotio/dockerfile": "0.7.10",
     "@iconify-json/mdi": "1.2.3",
