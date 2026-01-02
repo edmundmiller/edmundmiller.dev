@@ -30,8 +30,8 @@ importers:
         specifier: 4.0.4
         version: 4.0.4
       '@wooorm/starry-night':
-        specifier: 3.6.0
-        version: 3.6.0
+        specifier: 3.8.0
+        version: 3.8.0
       astro:
         specifier: 5.16.6
         version: 5.16.6(@types/node@20.14.8)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.9.3)(yaml@2.7.1)
@@ -1297,8 +1297,8 @@ packages:
   '@vscode/l10n@0.0.18':
     resolution: {integrity: sha512-KYSIHVmslkaCDyw013pphY+d7x1qV8IZupYfeIfzNA+nsaWHbn5uPuQRvdRFsa9zFzGeudPuoGoZ1Op4jrJXIQ==}
 
-  '@wooorm/starry-night@3.6.0':
-    resolution: {integrity: sha512-AoDrqWZCZVymY48BClDaSuLgOe5vnl99S4hrqqg5OJ44x9NHo4s5LzOypKC3e6jGIUqHDfaDMvou8pelkq3dCw==}
+  '@wooorm/starry-night@3.8.0':
+    resolution: {integrity: sha512-BWRm0tCzWCmv1ucBh6frL2uFRvYFj/LWmJzr+rJsdF/JsJ1+bBkeiyExH1iWQS18IH22HFu7f4QgG99OU1nklA==}
 
   acorn-jsx@5.3.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
@@ -2112,9 +2112,6 @@ packages:
   iconv-lite@0.6.3:
     resolution: {integrity: sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==}
     engines: {node: '>=0.10.0'}
-
-  import-meta-resolve@4.1.0:
-    resolution: {integrity: sha512-I6fiaX09Xivtk+THaMfAwnA3MVA5Big1WHF1Dfx9hFuvNIWpXnorlkzhcQf6ehrqQiiZECRt1poOAkPmer3ruw==}
 
   import-meta-resolve@4.2.0:
     resolution: {integrity: sha512-Iqv2fzaTQN28s/FwZAoFq0ZSs/7hMAHJVX+w8PZl3cY19Pxk6jFFalxQoIfW2826i/fDLXv8IiEZRIT0lDuWcg==}
@@ -4784,10 +4781,10 @@ snapshots:
 
   '@vscode/l10n@0.0.18': {}
 
-  '@wooorm/starry-night@3.6.0':
+  '@wooorm/starry-night@3.8.0':
     dependencies:
       '@types/hast': 3.0.4
-      import-meta-resolve: 4.1.0
+      import-meta-resolve: 4.2.0
       vscode-oniguruma: 2.0.1
       vscode-textmate: 9.1.0
 
@@ -5830,8 +5827,6 @@ snapshots:
   iconv-lite@0.6.3:
     dependencies:
       safer-buffer: 2.1.2
-
-  import-meta-resolve@4.1.0: {}
 
   import-meta-resolve@4.2.0: {}
 
