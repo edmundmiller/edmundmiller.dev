@@ -11,12 +11,12 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "Arcane Cheese with Doomtrain Extreme",
-    "link": "https://xeiaso.net/notes/2025/doomtrain-ex-cheese/",
-    "summary": `If you don&amp;#39;t play Final Fantasy 14, try to identify how many words in this post are in the bible.`,
+    "title": "2026 will be my year of the Linux desktop",
+    "link": "https://xeiaso.net/notes/2026/year-linux-desktop/",
+    "summary": `The meme will no longer be a dream.`,
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
-    "date": "December 24, 2025"
+    "date": "January 2, 2026"
   },
   
   {
