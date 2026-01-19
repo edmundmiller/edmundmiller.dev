@@ -11,55 +11,34 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "2026 will be my year of the Linux desktop",
-    "link": "https://xeiaso.net/notes/2026/year-linux-desktop/",
-    "summary": `The meme will no longer be a dream.`,
+    "title": "Tormentmaxxing &#39;simple requests&#39;",
+    "link": "https://xeiaso.net/notes/2026/tormentmaxxing-simple-requests/",
+    "summary": `Automating the full lifecycle of &amp;#39;quick&amp;#39; requests with Claude Code slash commands`,
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
-    "date": "January 2, 2026"
+    "date": "January 15, 2026"
   },
   
   {
-    "title": "Maintainers Minutes: November 2025",
-    "link": "https://nf-co.re/blog/2025/maintainers-minutes-2025-11-28/",
-    "summary": `Keeping you informed of the latest maintainers discussions`,
+    "title": "nf-core and AI",
+    "link": "https://nf-co.re/blog/2026/statement-on-ai/",
+    "summary": `Core team statement on AI within nf-core`,
     "source_title": "nf-core blog",
     "source_link": "https://nf-co.re/",
-    "date": "December 8, 2025"
+    "date": "January 14, 2026"
   },
   
   {
-    "title": "nineteen and counting",
-    "link": "https://taehoonkim.org/news/2025/11/22/nineteen-and-counting",
-    "summary": `
-          
-        
-        
-
-        
-          
-            
-          
-            
-                
-                
-                
-                
-                
-                
-                
-                
-
-            
-          
-        
-          
-        
-
- …`,
-    "source_title": "News - Functional Genomics Laboratory",
-    "source_link": "https://taehoonkim.org/news/",
-    "date": "November 20, 2025"
+    "title": "Redesigning my microkernel from the ground up",
+    "link": "https://drewdevault.com/2026/01/12/2026-01-12-Hermes-from-the-ground-up.html",
+    "summary": `As you may recall, circa 2022-2023 I was working on a
+microkernel written in Hare named Helios. Helios was largely inspired by and
+modelled after the design of seL4 and was my first
+major foray into modern OS development that was serious enough to get to a
+so…`,
+    "source_title": "Drew DeVault&#39;s blog",
+    "source_link": "https://drewdevault.com",
+    "date": "January 12, 2026"
   },
   
 ];
