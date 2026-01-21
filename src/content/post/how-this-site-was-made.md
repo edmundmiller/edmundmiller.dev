@@ -2,7 +2,7 @@
 author: Edmund Miller
 title: How This Site Was Made
 publishDate: "Aug 17 2023"
-description: "Seriously how many blog rewrite posts do I have?"
+description: "Another blog rewrite post - exploring how this site was built"
 tags: ["Emacs", "blog", "meta", "org-mode"]
 draft: true
 ---

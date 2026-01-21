@@ -7,8 +7,7 @@ export const siteConfig: SiteConfig = {
   // Meta property used to construct the meta title property, found in src/components/BaseHead.astro L:11
   title: 'Edmund Miller',
   // Meta property used as the default description meta property
-  // TODO Come up with a better description
-  description: "Bioinformatics, Biology, Genomics I don't know, I write code.",
+  description: 'PhD candidate in Functional Genomics researching nascent transcripts and regulatory regions. nf-core maintainer building reproducible bioinformatics workflows with Nextflow.',
   // HTML lang property, found in src/layouts/Base.astro L:18
   lang: 'en-US',
   // Meta property, found in src/components/BaseHead.astro L:42

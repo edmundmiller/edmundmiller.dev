@@ -2,7 +2,7 @@
 author: Edmund Miller
 publishDate: "2019-05-26T22:05:12Z"
 title: Learn Just Enough React to Move Out of your Parent\'s House
-description: "A Gen-Z's Guide to the 2019 Job Market."
+description: "A Gen-Z's perspective on navigating the 2019 job market and learning React"
 tag: ["javascript"]
 # TODO ogImage: "/social-card.png"
 # TODO Leaving these here as examples

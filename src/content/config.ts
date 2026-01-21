@@ -13,10 +13,10 @@ const post = defineCollection({
   type: 'content',
   schema: ({ image }) =>
     z.object({
-      // FIXME Moved down to 60
-      title: z.string().max(78),
-      // FIXME Bump this up to 50-160 for SEO
-      description: z.string().min(30).max(283),
+      // SEO optimal: Google displays up to ~60 characters in search results
+      title: z.string().max(60),
+      // SEO optimal: Google displays up to ~160 characters for meta descriptions
+      description: z.string().min(50).max(160),
       publishDate: z
         .string()
         .or(z.date())

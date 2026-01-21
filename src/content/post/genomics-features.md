@@ -1,6 +1,6 @@
 ---
 title: Intro to GenomicFeatures in Julia
-description: Comparision of GenomicRanges and GenomicFeatures
+description: Comparison of GenomicRanges and GenomicFeatures packages in Julia
 publishDate: 2023-08-16
 draft: true
 tags: ["Julia", "Genomics"]
