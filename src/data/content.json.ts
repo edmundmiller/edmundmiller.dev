@@ -31,6 +31,7 @@ export const contentData: ContentItem[] = [
     title:
       'Event-driven bioinformatics data processing with Nextflow on the Seqera Platform',
     medium: 'conference',
+    desc: 'Modern biological applications such as sequencing or cell imaging generate vast amounts of data, necessitating scalable, reproducible, and easily deployable data processing. An introduction to Nextflow and Seqera Platform showcasing how they can help automate complex data processing pipelines.',
     tags: ['SLAS', 'Laboratory Automation', 'Nextflow', 'Seqera'],
   },
   {
@@ -40,6 +41,7 @@ export const contentData: ContentItem[] = [
     href: 'https://summit.nextflow.io/2025/boston/agenda/seqera-fusion-x-nvidia-parabricks-for-accelerated-analysis/',
     title: 'Seqera Fusion x NVIDIA Parabricks for accelerated analysis',
     medium: 'conference',
+    desc: 'Parabricks is a set of GPU-accelerated analysis tools that now works with the Seqera Fusion file system. This presentation describes how to leverage these two systems together, potential use cases, as well as tips and tricks for implementing similar projects.',
     tags: ['Nextflow', 'Seqera', 'NVIDIA', 'Parabricks', 'Fusion'],
   },
   {
@@ -69,6 +71,7 @@ export const contentData: ContentItem[] = [
     title:
       'Nextflow and database uses: powering data engineering, exploring DuckDB, and beyond',
     medium: 'conference',
+    desc: 'A deep dive into Nextflow and database technologies. Exploring the evolving landscape of data engineering, the paradigm-shifting potential of DuckDB and Apache Arrow through biobear, and bridging the gap between file-based and database approaches for big data processing.',
     tags: ['Nextflow'],
   },
   // Juliacon 2023
