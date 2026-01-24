@@ -1,7 +1,7 @@
 ---
 title: "Quick Issue Capture with Tmux and Gum"
 description: "Building a frictionless workflow for capturing issues without leaving your terminal"
-draft: false
+draft: true
 publishDate: 2026-01-13
 tags: ["tools", "workflow", "tmux"]
 ---

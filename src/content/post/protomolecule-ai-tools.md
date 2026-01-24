@@ -4,7 +4,7 @@ description: "How building a global beads search tool became a lesson in iterati
 author: Edmund Miller
 publishDate: 2026-01-16
 tags: ["ai", "tools", "workflow", "tmux", "beads"]
-draft: false
+draft: true
 ---
 
 I've got 35 git repositories scattered across my home directory, each with its own `.beads/` directory tracking issues. [Beads](https://github.com/steveyegge/beads) is great for local issue tracking, but `bd list` only shows issues in the current repo. I wanted to search *all* of them at once.
