@@ -83,7 +83,7 @@ Over the following days, the tool evolved:
 
 What started as maybe 80 planned lines grew to 444. Not because of scope creep, but because reality is messier than plans.
 
-![Git log showing iterative commits](placeholder-iterations.png)
+<!-- TODO: Add screenshot -->
 
 Each iteration was small. Fix one thing, commit, use it, notice another thing. The protomolecule at work - adapting to what it found, repurposing the existing structure.
 
@@ -115,7 +115,7 @@ This wasn't "AI wrote my code." It was pair programming where my partner has ins
 
 ## The Result
 
-![bd-find-all popup showing the fzf interface](placeholder-bd-find-all-popup.png)
+<!-- TODO: Add screenshot -->
 
 Press `prefix + e` in tmux:
 

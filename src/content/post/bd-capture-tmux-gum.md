@@ -24,7 +24,7 @@ Combine them, and you get a popup form for instant issue capture.
 
 ## The Result
 
-![bd-capture popup showing the issue creation form](placeholder-bd-capture-popup.png)
+<!-- TODO: Add screenshot -->
 
 Press `prefix + i` in tmux, and a popup appears with:
 
@@ -56,7 +56,7 @@ PRIORITY_FULL=$(gum choose --header "Priority" --selected "P2 (Medium)" \
 
 Before creating the issue, it shows a confirmation summary:
 
-![Confirmation summary showing title, type, and priority](placeholder-confirmation.png)
+<!-- TODO: Add screenshot -->
 
 ```bash
 gum style --border rounded --padding "0 1" "$SUMMARY"
@@ -117,7 +117,7 @@ bd-capture-features -> Quick mode, start-working option
 
 Each agent worked in isolation, committed their changes, and then I merged them back to main. Three branches, three commits, all the features. The merge conflicts were minimal since each focused on different parts of the script.
 
-![Worktree list showing parallel branches](placeholder-worktrees.png)
+<!-- TODO: Add screenshot -->
 
 Is this overkill for a ~80 line bash script? Absolutely. Was it fun? Also yes.
 
