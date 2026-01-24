@@ -32,36 +32,44 @@ const _content: Talk[] = [
         </p>
       </div>
       <section aria-label="Talk list" class="h-feed">
-        <div class="grid gap-6">
-          {
-            _content.map(({ href, event, title, date, location }) => (
-              <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-950">
-                <div class="flex items-center justify-between">
-                  {date && (
-                    <time
-                      datetime={date}
-                      class="text-sm font-medium text-gray-500 dark:text-gray-400"
+        {_content.length > 0 ? (
+          <div class="grid gap-6">
+            {
+              _content.map(({ href, event, title, date, location }) => (
+                <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-950">
+                  <div class="flex items-center justify-between">
+                    {date && (
+                      <time
+                        datetime={date}
+                        class="text-sm font-medium text-gray-500 dark:text-gray-400"
+                      >
+                        {getFormattedDate(date)}
+                      </time>
+                    )}
+                    <a
+                      href={href}
+                      class="text-sm font-medium text-gray-900 hover:underline dark:text-gray-50"
                     >
-                      {getFormattedDate(date)}
-                    </time>
-                  )}
-                  <a
-                    href={href}
-                    class="text-sm font-medium text-gray-900 hover:underline dark:text-gray-50"
-                  >
-                    Watch Video
-                  </a>
+                      Watch Video
+                    </a>
+                  </div>
+                  <div class="mt-4">
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-50">{title}</h3>
+                    <p class="mt-2 text-gray-500 dark:text-gray-400">
+                      {event}, {location}
+                    </p>
+                  </div>
                 </div>
-                <div class="mt-4">
-                  <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-50">{title}</h3>
-                  <p class="mt-2 text-gray-500 dark:text-gray-400">
-                    {event}, {location}
-                  </p>
-                </div>
-              </div>
-            ))
-          }
-        </div>
+              ))
+            }
+          </div>
+        ) : (
+          <div class="rounded-lg border border-dashed border-gray-300 p-8 text-center dark:border-gray-700">
+            <p class="text-gray-500 dark:text-gray-400">
+              Talks coming soon! In the meantime, check out my <a href="/posts/" class="cactus-link">blog posts</a>.
+            </p>
+          </div>
+        )}
       </section>
     </div>
   </main>
