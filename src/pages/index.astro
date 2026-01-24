@@ -76,9 +76,9 @@ const cactusTech: { desc: string; href: string; title: string }[] = [
     <ul class="space-y-4">
       {
         _allPostsByDate.map((p) => (
-          <li class="flex flex-col gap-x-2 sm:flex-row">
-            <PostPreview post={p} />
-          </li>
+            <li class="flex flex-col gap-x-2 sm:flex-row">
+              <PostPreview post={p} withDesc />
+            </li>
         ))
       }
     </ul>
