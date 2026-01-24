@@ -61,6 +61,7 @@ export const contentData: ContentItem[] = [
     href: 'https://youtu.be/XuoIH5mYsZE?si=wmkZTqoucrez_VmH',
     title: 'nf-test at nf-core: empowering scalable and streamlined testing',
     medium: 'conference',
+    desc: 'The evolution of testing at nf-core: from the need for a testing framework, through pytest-workflow adoption, to nf-test for full pipelines, subworkflows and local modules. Highlights include snapshots, tags, CI configuration, and the transition from pytest-workflow to nf-test.',
     tags: ['Nextflow'],
   },
   {
@@ -82,6 +83,7 @@ export const contentData: ContentItem[] = [
     title: 'Exploring the State of Machine Learning for Biological Data',
     medium: 'conference',
     location: 'Boston',
+    desc: 'Exploring Julia for biological data analysis with BioJulia and Flux.jl. Discussion of challenges and opportunities using ML on high-dimensional, heterogeneous biological data, with examples of past and future applications.',
     tags: ['Julia', 'Machine Learning'],
   },
   {
@@ -91,6 +93,7 @@ export const contentData: ContentItem[] = [
     title: 'Unlocking the Power of Genomic Analysis in Julia',
     medium: 'conference',
     location: 'Boston',
+    desc: 'Using Julia for genomic data analysis with IntervalTrees and GenomicFeatures. Covers challenges of large-scale genomic data, integrating multiple data types, and bridging file-based and database approaches.',
     tags: ['Julia', 'genomics'],
   },
   // nf-core
