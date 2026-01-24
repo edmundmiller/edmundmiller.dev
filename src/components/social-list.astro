@@ -58,12 +58,12 @@ const _socialLinks: {
       _socialLinks.map(({ friendlyName, isWebmention, link, name }) => (
         <li class="flex">
           <a
-            class="inline-block p-1 sm:hover:text-link"
+            class="inline-flex rounded-md p-1 text-textColor transition-colors duration-200 hover:text-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
             href={link}
             rel={`noopener noreferrer ${isWebmention ? "me authn" : ""}`}
             target="_blank"
           >
-            <Icon aria-hidden="true" class="h-6 w-6" focusable="false" name={name} />
+            <Icon aria-hidden="true" class="h-7 w-7" focusable="false" name={name} />
             <span class="sr-only">{friendlyName}</span>
           </a>
         </li>
