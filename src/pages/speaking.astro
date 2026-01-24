@@ -1,21 +1,12 @@
 ---
 import PageLayout from '@/layouts/base.astro';
 import { getFormattedDate } from '@/utils';
+import { contentData } from '@/data/content.json';
 
-// Talks data - replace with your actual content source
-interface Talk {
-  href: string;
-  event: string;
-  title: string;
-  tags?: string[];
-  desc?: string;
-  date?: string;
-  location: string;
-}
-
-const _content: Talk[] = [
-  // Add your talks here or import from a data file
-];
+// Sort talks by date descending (newest first)
+const _content = contentData.sort(
+  (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+);
 ---
 
 <PageLayout meta={{ title: "Speaking" }}>
