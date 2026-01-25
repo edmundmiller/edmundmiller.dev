@@ -57,7 +57,8 @@ export const contentData: ContentItem[] = [
     title:
       'Workflow automation: Using the Aviti benchtop sequencing system and Nextflow Tower',
     medium: 'conference',
-    tags: ['Nextflow'],
+    desc: 'The Element AVITI System streams sequencing data to AWS, GCP, or local servers during runs, with FASTQ generation via bases2fastq. Partnering with Seqera Labs, we combined Tower event-driven automation with AVITI to simplify cloud setup, enable monitoring, and automate secondary analysis.',
+    tags: ['Nextflow', 'Element Biosciences', 'AVITI'],
   },
   {
     date: '2023-10-20',
@@ -114,6 +115,7 @@ export const contentData: ContentItem[] = [
     title: 'nf-test',
     location: 'Online',
     medium: 'online',
+    desc: 'Impressions of nf-test from a user perspective. nf-test is a simple test framework for Nextflow pipelines.',
     tags: ['testing', 'nf-core'],
   },
   {
@@ -134,6 +136,7 @@ export const contentData: ContentItem[] = [
     title: 'Pytest workflows/Github actions',
     location: 'Online',
     medium: 'online',
+    desc: 'What pytest-workflow is and what we use it for, how we test nf-core/modules, and how we test nf-core pipelines.',
     tags: ['testing', 'nf-core'],
   },
   {
