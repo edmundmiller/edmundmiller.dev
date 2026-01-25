@@ -28,6 +28,7 @@ export const contentData: ContentItem[] = [
     date: '2025-01-28',
     event: 'SLAS2025',
     location: 'San Diego',
+    href: 'https://seqera.io/events/slas-2025-international-conference-and-exhibition/',
     videoHref: 'https://www.youtube.com/watch?v=tnF15h0PG1E',
     title:
       'Event-driven bioinformatics data processing with Nextflow on the Seqera Platform',
@@ -40,6 +41,7 @@ export const contentData: ContentItem[] = [
     event: 'Nextflow Summit',
     location: 'Boston',
     href: 'https://summit.nextflow.io/2025/boston/agenda/seqera-fusion-x-nvidia-parabricks-for-accelerated-analysis/',
+    videoHref: 'https://www.youtube.com/watch?v=s3Zj3zAWqm8',
     title: 'Seqera Fusion x NVIDIA Parabricks for accelerated analysis',
     medium: 'conference',
     desc: 'Parabricks is a set of GPU-accelerated analysis tools that now works with the Seqera Fusion file system. This presentation describes how to leverage these two systems together, potential use cases, as well as tips and tricks for implementing similar projects.',
@@ -50,6 +52,7 @@ export const contentData: ContentItem[] = [
     event: 'Nextflow Summit',
     location: 'Barcelona',
     href: 'https://summit.nextflow.io/2022/program/oct-14-workflow-automation-using-the-aviti-benchtop-sequencing-system-and-nextflow-tower/',
+    videoHref: 'https://www.youtube.com/watch?v=xbI6rWqQN6A',
     title:
       'Workflow automation: Using the Aviti benchtop sequencing system and Nextflow Tower',
     medium: 'conference',
@@ -70,7 +73,8 @@ export const contentData: ContentItem[] = [
     date: '2023-11-29',
     event: 'Nextflow Summit',
     location: 'Boston',
-    href: 'https://summit.nextflow.io/boston/agenda/summit/nov-29-database-uses/',
+    href: 'https://summit.nextflow.io/2023/boston/agenda/summit/nov-29-database-uses/',
+    videoHref: 'https://www.youtube.com/watch?v=GknH1u3NtGI',
     title:
       'Nextflow and database uses: powering data engineering, exploring DuckDB, and beyond',
     medium: 'conference',
