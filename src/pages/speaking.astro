@@ -26,7 +26,7 @@ const _content = contentData.sort(
         {_content.length > 0 ? (
           <div class="grid gap-6">
             {
-              _content.map(({ href, event, title, date, location, desc }) => (
+              _content.map(({ href, videoHref, event, title, date, location, desc }) => (
                 <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-950">
                   <div class="flex items-center justify-between">
                     {date && (
@@ -37,15 +37,23 @@ const _content = contentData.sort(
                         {getFormattedDate(date)}
                       </time>
                     )}
-                    <a
-                      href={href}
-                      class="text-sm font-medium text-gray-900 hover:underline dark:text-gray-50"
-                    >
-                      Watch Video
-                    </a>
+                    {videoHref && (
+                      <a
+                        href={videoHref}
+                        class="text-sm font-medium text-gray-900 hover:underline dark:text-gray-50"
+                      >
+                        Watch Video
+                      </a>
+                    )}
                   </div>
                   <div class="mt-4">
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-50">{title}</h3>
+                    {href ? (
+                      <h3 class="text-lg font-semibold">
+                        <a href={href} class="text-gray-900 hover:underline dark:text-gray-50">{title}</a>
+                      </h3>
+                    ) : (
+                      <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-50">{title}</h3>
+                    )}
                     <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
                       {event}, {location}
                     </p>

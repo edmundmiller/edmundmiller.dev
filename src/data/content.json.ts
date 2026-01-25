@@ -1,7 +1,8 @@
 export interface ContentItem {
   desc?: string;
   event: string;
-  href: string;
+  href?: string; // Talk/event page
+  videoHref?: string; // Video recording
   title: string;
   medium: string;
   tags?: string[];
@@ -27,7 +28,7 @@ export const contentData: ContentItem[] = [
     date: '2025-01-28',
     event: 'SLAS2025',
     location: 'San Diego',
-    href: 'https://www.youtube.com/watch?v=tnF15h0PG1E',
+    videoHref: 'https://www.youtube.com/watch?v=tnF15h0PG1E',
     title:
       'Event-driven bioinformatics data processing with Nextflow on the Seqera Platform',
     medium: 'conference',
@@ -58,7 +59,8 @@ export const contentData: ContentItem[] = [
     date: '2023-10-20',
     event: 'Nextflow Summit',
     location: 'Barcelona',
-    href: 'https://youtu.be/XuoIH5mYsZE?si=wmkZTqoucrez_VmH',
+    href: 'https://summit.nextflow.io/2023/barcelona/agenda/summit/oct-20-nf-test-at-nf-core/',
+    videoHref: 'https://youtu.be/XuoIH5mYsZE?si=wmkZTqoucrez_VmH',
     title: 'nf-test at nf-core: empowering scalable and streamlined testing',
     medium: 'conference',
     desc: 'The evolution of testing at nf-core: from the need for a testing framework, through pytest-workflow adoption, to nf-test for full pipelines, subworkflows and local modules. Highlights include snapshots, tags, CI configuration, and the transition from pytest-workflow to nf-test.',
@@ -79,7 +81,8 @@ export const contentData: ContentItem[] = [
   {
     date: '2023-07-26',
     event: 'Juliacon',
-    href: 'https://www.youtube.com/watch?v=Q9eYgwvJfWE&pp',
+    href: 'https://pretalx.com/juliacon2023/talk/M9NFYN/',
+    videoHref: 'https://www.youtube.com/watch?v=Q9eYgwvJfWE',
     title: 'Exploring the State of Machine Learning for Biological Data',
     medium: 'conference',
     location: 'Boston',
@@ -89,7 +92,8 @@ export const contentData: ContentItem[] = [
   {
     date: '2023-07-26',
     event: 'Juliacon',
-    href: 'https://www.youtube.com/watch?v=egWrDz6RDRs',
+    href: 'https://pretalx.com/juliacon2023/talk/GQWVNS/',
+    videoHref: 'https://www.youtube.com/watch?v=egWrDz6RDRs',
     title: 'Unlocking the Power of Genomic Analysis in Julia',
     medium: 'conference',
     location: 'Boston',
@@ -100,7 +104,8 @@ export const contentData: ContentItem[] = [
   {
     date: '2022-12-06',
     event: 'nf-core/bytesize',
-    href: 'https://www.youtube.com/watch?v=K9B7JRkMpQ4',
+    href: 'https://nf-co.re/events/2022/bytesize_nftest',
+    videoHref: 'https://www.youtube.com/watch?v=K9B7JRkMpQ4',
     title: 'nf-test',
     location: 'Online',
     medium: 'online',
@@ -109,7 +114,8 @@ export const contentData: ContentItem[] = [
   {
     date: '2022-11-01',
     event: 'nf-core/bytesize',
-    href: 'https://www.youtube.com/watch?v=chayGGPTnfM',
+    href: 'https://nf-co.re/events/2022/bytesize_nascent',
+    videoHref: 'https://www.youtube.com/watch?v=chayGGPTnfM',
     title: 'nascent',
     location: 'Online',
     medium: 'online',
@@ -118,7 +124,8 @@ export const contentData: ContentItem[] = [
   {
     date: '2021-06-15',
     event: 'nf-core/bytesize',
-    href: 'https://www.youtube.com/watch?v=pjhscKyWH74',
+    href: 'https://nf-co.re/events/2021/bytesize-16-pytest-workflow',
+    videoHref: 'https://www.youtube.com/watch?v=pjhscKyWH74',
     title: 'Pytest workflows/Github actions',
     location: 'Online',
     medium: 'online',
@@ -127,7 +134,7 @@ export const contentData: ContentItem[] = [
   {
     date: '2023-04-20', // 2:00 – 3:00pm Denver time
     event: 'Bioinformatics Regional Resource',
-    href: 'https://drive.google.com/file/d/10UwuNCOHYcSkabAdmoQVCLfrF_N9OAXx/view',
+    videoHref: 'https://drive.google.com/file/d/10UwuNCOHYcSkabAdmoQVCLfrF_N9OAXx/view',
     title: 'Using nf-core to create Nextflow workflows',
     location: 'Online',
     medium: 'online',
@@ -140,7 +147,7 @@ export const contentData: ContentItem[] = [
   {
     date: '2022-08-03',
     event: 'Boston Debate League',
-    href: 'https://www.youtube.com/watch?v=ynYbuloRBzk',
+    videoHref: 'https://www.youtube.com/watch?v=ynYbuloRBzk',
     title: 'Intro to Biotech',
     location: 'Online',
     medium: 'online',
