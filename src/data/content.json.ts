@@ -18,6 +18,7 @@ export const contentData: ContentItem[] = [
     event: 'Seqera Webinar',
     location: 'Virtual',
     href: 'https://seqera.io/events/from-pipelines-to-interactive-analysis-closing-the-loop-with-seqera-studios/',
+    videoHref: 'https://www.youtube.com/watch?v=s3Zj3zAWqm8',
     title:
       'From Pipelines to Interactive Analysis: Closing the loop with Seqera Studios',
     medium: 'webinar',
@@ -37,11 +38,11 @@ export const contentData: ContentItem[] = [
     tags: ['SLAS', 'Laboratory Automation', 'Nextflow', 'Seqera'],
   },
   {
-    date: '2025-05-06', // Estimated date - Nextflow Summit Boston typically in May
+    date: '2025-05-15',
     event: 'Nextflow Summit',
     location: 'Boston',
     href: 'https://summit.nextflow.io/2025/boston/agenda/seqera-fusion-x-nvidia-parabricks-for-accelerated-analysis/',
-    videoHref: 'https://www.youtube.com/watch?v=s3Zj3zAWqm8',
+    videoHref: 'https://www.youtube.com/watch?v=xbI6rWqQN6A',
     title: 'Seqera Fusion x NVIDIA Parabricks for accelerated analysis',
     medium: 'conference',
     desc: 'Parabricks is a set of GPU-accelerated analysis tools that now works with the Seqera Fusion file system. This presentation describes how to leverage these two systems together, potential use cases, as well as tips and tricks for implementing similar projects.',
@@ -52,7 +53,7 @@ export const contentData: ContentItem[] = [
     event: 'Nextflow Summit',
     location: 'Barcelona',
     href: 'https://summit.nextflow.io/2022/program/oct-14-workflow-automation-using-the-aviti-benchtop-sequencing-system-and-nextflow-tower/',
-    videoHref: 'https://www.youtube.com/watch?v=xbI6rWqQN6A',
+    videoHref: 'https://www.youtube.com/watch?v=wUO4jlHZqdE',
     title:
       'Workflow automation: Using the Aviti benchtop sequencing system and Nextflow Tower',
     medium: 'conference',
@@ -63,7 +64,7 @@ export const contentData: ContentItem[] = [
     event: 'Nextflow Summit',
     location: 'Barcelona',
     href: 'https://summit.nextflow.io/2023/barcelona/agenda/summit/oct-20-nf-test-at-nf-core/',
-    videoHref: 'https://youtu.be/XuoIH5mYsZE?si=wmkZTqoucrez_VmH',
+    videoHref: 'https://www.youtube.com/watch?v=XuoIH5mYsZE',
     title: 'nf-test at nf-core: empowering scalable and streamlined testing',
     medium: 'conference',
     desc: 'The evolution of testing at nf-core: from the need for a testing framework, through pytest-workflow adoption, to nf-test for full pipelines, subworkflows and local modules. Highlights include snapshots, tags, CI configuration, and the transition from pytest-workflow to nf-test.',
@@ -85,7 +86,7 @@ export const contentData: ContentItem[] = [
   {
     date: '2023-07-26',
     event: 'Juliacon',
-    href: 'https://pretalx.com/juliacon2023/talk/M9NFYN/',
+    href: 'https://live.juliacon.org/talk/CSG8NU',
     videoHref: 'https://www.youtube.com/watch?v=Q9eYgwvJfWE',
     title: 'Exploring the State of Machine Learning for Biological Data',
     medium: 'conference',
@@ -96,7 +97,7 @@ export const contentData: ContentItem[] = [
   {
     date: '2023-07-26',
     event: 'Juliacon',
-    href: 'https://pretalx.com/juliacon2023/talk/GQWVNS/',
+    href: 'https://live.juliacon.org/talk/AJJRS3',
     videoHref: 'https://www.youtube.com/watch?v=egWrDz6RDRs',
     title: 'Unlocking the Power of Genomic Analysis in Julia',
     medium: 'conference',
@@ -118,8 +119,8 @@ export const contentData: ContentItem[] = [
   {
     date: '2022-11-01',
     event: 'nf-core/bytesize',
-    href: 'https://nf-co.re/events/2022/bytesize_nascent',
-    videoHref: 'https://www.youtube.com/watch?v=chayGGPTnfM',
+    href: 'https://nf-co.re/events/2022/bytesize-nascent',
+    videoHref: 'https://youtu.be/chayGGPTnfM',
     title: 'nascent',
     location: 'Online',
     medium: 'online',
@@ -128,8 +129,8 @@ export const contentData: ContentItem[] = [
   {
     date: '2021-06-15',
     event: 'nf-core/bytesize',
-    href: 'https://nf-co.re/events/2021/bytesize-16-pytest-workflow',
-    videoHref: 'https://www.youtube.com/watch?v=pjhscKyWH74',
+    href: 'https://nf-co.re/events/2021/bytesize-17-pytest-workflow',
+    videoHref: 'https://youtu.be/pjhscKyWH74',
     title: 'Pytest workflows/Github actions',
     location: 'Online',
     medium: 'online',
