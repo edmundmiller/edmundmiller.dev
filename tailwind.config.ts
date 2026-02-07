@@ -43,6 +43,12 @@ export default {
           'Courier New',
           'monospace',
         ],
+        'pixel-grid': [
+          'Geist Pixel Grid',
+          'Geist Pixel Square',
+          'ui-monospace',
+          'monospace',
+        ],
         sans: [...fontFamily.sans],
         serif: [...fontFamily.serif],
       },
@@ -140,7 +146,7 @@ export default {
           },
         },
         '.title': {
-          '@apply text-2xl font-semibold text-accent-2': {},
+          '@apply text-2xl font-pixel-grid text-accent-2': {},
         },
       });
     }),
