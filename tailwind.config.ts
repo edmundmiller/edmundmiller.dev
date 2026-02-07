@@ -31,7 +31,18 @@ export default {
         quote: 'hsl(var(--theme-quote) / <alpha-value>)',
       },
       fontFamily: {
-        // Add any custom fonts here
+        mono: [
+          'Geist Pixel Square',
+          'ui-monospace',
+          'SFMono-Regular',
+          'Roboto Mono',
+          'Menlo',
+          'Monaco',
+          'Liberation Mono',
+          'DejaVu Sans Mono',
+          'Courier New',
+          'monospace',
+        ],
         sans: [...fontFamily.sans],
         serif: [...fontFamily.serif],
       },
