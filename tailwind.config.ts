@@ -31,7 +31,24 @@ export default {
         quote: 'hsl(var(--theme-quote) / <alpha-value>)',
       },
       fontFamily: {
-        // Add any custom fonts here
+        mono: [
+          'Geist Pixel Square',
+          'ui-monospace',
+          'SFMono-Regular',
+          'Roboto Mono',
+          'Menlo',
+          'Monaco',
+          'Liberation Mono',
+          'DejaVu Sans Mono',
+          'Courier New',
+          'monospace',
+        ],
+        'pixel-grid': [
+          'Geist Pixel Grid',
+          'Geist Pixel Square',
+          'ui-monospace',
+          'monospace',
+        ],
         sans: [...fontFamily.sans],
         serif: [...fontFamily.serif],
       },
@@ -129,7 +146,7 @@ export default {
           },
         },
         '.title': {
-          '@apply text-2xl font-semibold text-accent-2': {},
+          '@apply text-2xl font-pixel-grid font-semibold text-accent-2': {},
         },
       });
     }),
