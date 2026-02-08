@@ -16,27 +16,6 @@
   font-display: swap;
 }
 
-@font-face {
-  font-family: 'Geist Pixel Circle';
-  src: url('/fonts/geist-pixel/GeistPixel-Circle.woff2') format('woff2');
-  font-weight: 500;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Geist Pixel Triangle';
-  src: url('/fonts/geist-pixel/GeistPixel-Triangle.woff2') format('woff2');
-  font-weight: 500;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Geist Pixel Line';
-  src: url('/fonts/geist-pixel/GeistPixel-Line.woff2') format('woff2');
-  font-weight: 500;
-  font-display: swap;
-}
-
 @layer base {
   :root,
   :root[data-theme="light"] {

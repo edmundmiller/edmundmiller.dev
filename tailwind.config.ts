@@ -146,7 +146,7 @@ export default {
           },
         },
         '.title': {
-          '@apply text-2xl font-pixel-grid text-accent-2': {},
+          '@apply text-2xl font-pixel-grid font-semibold text-accent-2': {},
         },
       });
     }),

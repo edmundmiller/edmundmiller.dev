@@ -77,6 +77,6 @@ export const expressiveCodeOptions: AstroExpressiveCodeOptions = {
     borderRadius: '4px',
     codePaddingInline: '1rem',
     codeFontFamily:
-      '"Geist Pixel Square", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;',
+      '"Geist Pixel Square", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
   },
 };
