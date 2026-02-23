@@ -11,12 +11,12 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "The Discourse has been Automated",
-    "link": "https://xeiaso.net/notes/2026/the-discourse-has-been-automated/",
-    "summary": `An AI agent submitted a PR to matplotlib, got rejected, and then wrote a callout blogpost attacking the maintainer. I have no idea how to feel about this.`,
+    "title": "Life Update: On medical leave",
+    "link": "https://xeiaso.net/notes/2026/life-update-medical-leave/",
+    "summary": `Taking some time off for medical reasons until early April`,
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
-    "date": "February 12, 2026"
+    "date": "February 20, 2026"
   },
   
   {
