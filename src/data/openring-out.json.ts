@@ -11,12 +11,12 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "Life Update: On medical leave",
-    "link": "https://xeiaso.net/notes/2026/life-update-medical-leave/",
-    "summary": `Taking some time off for medical reasons until early April`,
+    "title": "Killing my inner Necron",
+    "link": "https://xeiaso.net/blog/2026/killing-my-inner-necron/",
+    "summary": `On surviving surgery, confronting mortality, and finding peace on the other side.`,
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
-    "date": "February 20, 2026"
+    "date": "March 1, 2026"
   },
   
   {
