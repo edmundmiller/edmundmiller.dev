@@ -11,12 +11,21 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "Killing my inner Necron",
-    "link": "https://xeiaso.net/blog/2026/killing-my-inner-necron/",
-    "summary": `On surviving surgery, confronting mortality, and finding peace on the other side.`,
+    "title": "Vibe Coding Trip Report: Making a sponsor panel",
+    "link": "https://xeiaso.net/blog/2026/vibe-coding-sponsor-panel/",
+    "summary": `I needed to ship this before my surgery, so I vibe coded it. It turned out well enough.`,
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
-    "date": "March 1, 2026"
+    "date": "March 9, 2026"
+  },
+  
+  {
+    "title": "Making nf-core/configs strict syntax compliant",
+    "link": "https://nf-co.re/blog/2026/configs-strict-syntax/",
+    "summary": `Announcement and recommendations for updating nf-core/configs Nextflow strict syntax compliant`,
+    "source_title": "nf-core blog",
+    "source_link": "https://nf-co.re/",
+    "date": "March 5, 2026"
   },
   
   {
@@ -29,15 +38,6 @@ the implied threat of appeal…`,
     "source_title": "Drew DeVault&#39;s blog",
     "source_link": "https://drewdevault.com",
     "date": "January 29, 2026"
-  },
-  
-  {
-    "title": "nf-core and AI",
-    "link": "https://nf-co.re/blog/2026/statement-on-ai/",
-    "summary": `Core team statement on AI within nf-core`,
-    "source_title": "nf-core blog",
-    "source_link": "https://nf-co.re/",
-    "date": "January 14, 2026"
   },
   
 ];
