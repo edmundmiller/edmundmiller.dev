@@ -11,12 +11,12 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "Vibe Coding Trip Report: Making a sponsor panel",
-    "link": "https://xeiaso.net/blog/2026/vibe-coding-sponsor-panel/",
-    "summary": `I needed to ship this before my surgery, so I vibe coded it. It turned out well enough.`,
+    "title": "I don&#39;t know if I like working at higher levels of abstraction",
+    "link": "https://xeiaso.net/blog/2026/ai-abstraction/",
+    "summary": `AI tools push us to higher abstraction. I&amp;#39;m not sure I like what that costs us.`,
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
-    "date": "March 9, 2026"
+    "date": "March 11, 2026"
   },
   
   {
