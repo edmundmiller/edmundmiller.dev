@@ -11,12 +11,12 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "I don&#39;t know if I like working at higher levels of abstraction",
-    "link": "https://xeiaso.net/blog/2026/ai-abstraction/",
-    "summary": `AI tools push us to higher abstraction. I&amp;#39;m not sure I like what that costs us.`,
+    "title": "Homelab downtime update: The fight for DNS supremacy",
+    "link": "https://xeiaso.net/notes/2026/dns-fight/",
+    "summary": `Turns out everything DID NOT go offline somehow. Yay!`,
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
-    "date": "March 11, 2026"
+    "date": "March 18, 2026"
   },
   
   {
