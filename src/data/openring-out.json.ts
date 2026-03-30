@@ -11,6 +11,18 @@ export const openringData: OpenringItem[] =
 [
   
   {
+    "title": "tar: a slop-free alternative to rsync",
+    "link": "https://drewdevault.com/2026/03/28/2026-03-28-rsync-without-rsync.html",
+    "summary": `So apparently rsync is slop now. When I heard, I wanted to drop a quick
+note on my blog to give an alternative: tar. It doesn’t do everything that rsync
+does, in particular identifying and skipping up-to-date files, but tar + ssh can
+definitely accomodate th…`,
+    "source_title": "Drew DeVault&#39;s blog",
+    "source_link": "https://drewdevault.com",
+    "date": "March 28, 2026"
+  },
+  
+  {
     "title": "Homelab downtime update: The fight for DNS supremacy",
     "link": "https://xeiaso.net/notes/2026/dns-fight/",
     "summary": `Turns out everything DID NOT go offline somehow. Yay!`,
@@ -26,18 +38,6 @@ export const openringData: OpenringItem[] =
     "source_title": "nf-core blog",
     "source_link": "https://nf-co.re/",
     "date": "March 5, 2026"
-  },
-  
-  {
-    "title": "The cults of TDD and GenAI",
-    "link": "https://drewdevault.com/2026/01/29/2026-01-29-Cult-of-TDD-and-LLMs.html",
-    "summary": `I’ve gotten a lot of flack throughout my career over my disdain towards
-test-driven development (TDD). I have met a lot of people who swear by it! And,
-I have also met a lot of people who insisted that I adopt it, too, often with
-the implied threat of appeal…`,
-    "source_title": "Drew DeVault&#39;s blog",
-    "source_link": "https://drewdevault.com",
-    "date": "January 29, 2026"
   },
   
 ];
