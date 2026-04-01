@@ -52,7 +52,7 @@
     "mdast-util-to-string": "4.0.0",
     "pagefind": "1.4.0",
     "postcss": "8.5.8",
-    "postcss-html": "1.8.0",
+    "postcss-html": "1.8.1",
     "postcss-import": "16.1.1",
     "reading-time": "1.5.0",
     "remark-unwrap-images": "4.0.1",
