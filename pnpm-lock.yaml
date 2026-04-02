@@ -30,8 +30,8 @@ importers:
         specifier: 4.0.4
         version: 4.0.4
       '@wooorm/starry-night':
-        specifier: 3.8.0
-        version: 3.8.0
+        specifier: 3.9.0
+        version: 3.9.0
       astro:
         specifier: 5.18.1
         version: 5.18.1(@types/node@24.12.0)(jiti@2.4.2)(rollup@4.43.0)(typescript@5.9.3)(yaml@2.8.3)
@@ -1410,8 +1410,8 @@ packages:
   '@vscode/l10n@0.0.18':
     resolution: {integrity: sha512-KYSIHVmslkaCDyw013pphY+d7x1qV8IZupYfeIfzNA+nsaWHbn5uPuQRvdRFsa9zFzGeudPuoGoZ1Op4jrJXIQ==}
 
-  '@wooorm/starry-night@3.8.0':
-    resolution: {integrity: sha512-BWRm0tCzWCmv1ucBh6frL2uFRvYFj/LWmJzr+rJsdF/JsJ1+bBkeiyExH1iWQS18IH22HFu7f4QgG99OU1nklA==}
+  '@wooorm/starry-night@3.9.0':
+    resolution: {integrity: sha512-LXVGKfYhTuFhoRuPAHz2XolS/J45L4lI/lCSIBugDpklXYDUPrJyA8tk17u7G32fcFaGODJXH/YDwQDfUXdPRw==}
 
   acorn-jsx@5.3.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
@@ -4877,7 +4877,7 @@ snapshots:
 
   '@vscode/l10n@0.0.18': {}
 
-  '@wooorm/starry-night@3.8.0':
+  '@wooorm/starry-night@3.9.0':
     dependencies:
       '@types/hast': 3.0.4
       import-meta-resolve: 4.2.0
