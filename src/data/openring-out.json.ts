@@ -11,6 +11,15 @@ export const openringData: OpenringItem[] =
 [
   
   {
+    "title": "Introducing nf-core docs version 2",
+    "link": "https://nf-co.re/blog/2026/docs-v2/",
+    "summary": `Announcing the new nf-core docs: rebuilt, restructured, and shipped`,
+    "source_title": "nf-core blog",
+    "source_link": "https://nf-co.re/",
+    "date": "April 10, 2026"
+  },
+  
+  {
     "title": "Claude Code won April Fools Day this year",
     "link": "https://xeiaso.net/notes/2026/claude-code-wins-april-fools/",
     "summary": `They gave people a heckin tamagochi, what&amp;#39;s not to like?`,
@@ -29,15 +38,6 @@ definitely accomodate th…`,
     "source_title": "Drew DeVault&#39;s blog",
     "source_link": "https://drewdevault.com",
     "date": "March 28, 2026"
-  },
-  
-  {
-    "title": "Making nf-core/configs strict syntax compliant",
-    "link": "https://nf-co.re/blog/2026/configs-strict-syntax/",
-    "summary": `Announcement and recommendations for updating nf-core/configs Nextflow strict syntax compliant`,
-    "source_title": "nf-core blog",
-    "source_link": "https://nf-co.re/",
-    "date": "March 5, 2026"
   },
   
 ];
