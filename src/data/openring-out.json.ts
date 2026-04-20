@@ -11,6 +11,15 @@ export const openringData: OpenringItem[] =
 [
   
   {
+    "title": "Rewrote my blog with Zine",
+    "link": "https://drewdevault.com/blog/Rewrite-with-zine/",
+    "summary": `15 years ago, on December 11th, 2010, at the bold age of 17, I wrote my first blog post on the wonders of the Windows Phone 7 on Blogspot. I started blogging as a kid at the behest of a family friend at Microsoft, who promised she’d make sure I would beco…`,
+    "source_title": "Drew DeVault&#39;s blog",
+    "source_link": "https://drewdevault.com",
+    "date": "April 19, 2026"
+  },
+  
+  {
     "title": "Introducing nf-core docs version 2",
     "link": "https://nf-co.re/blog/2026/docs-v2/",
     "summary": `Announcing the new nf-core docs: rebuilt, restructured, and shipped`,
@@ -26,18 +35,6 @@ export const openringData: OpenringItem[] =
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
     "date": "April 1, 2026"
-  },
-  
-  {
-    "title": "tar: a slop-free alternative to rsync",
-    "link": "https://drewdevault.com/2026/03/28/2026-03-28-rsync-without-rsync.html",
-    "summary": `So apparently rsync is slop now. When I heard, I wanted to drop a quick
-note on my blog to give an alternative: tar. It doesn’t do everything that rsync
-does, in particular identifying and skipping up-to-date files, but tar + ssh can
-definitely accomodate th…`,
-    "source_title": "Drew DeVault&#39;s blog",
-    "source_link": "https://drewdevault.com",
-    "date": "March 28, 2026"
   },
   
 ];
