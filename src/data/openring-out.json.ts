@@ -11,12 +11,13 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "Rewrote my blog with Zine",
-    "link": "https://drewdevault.com/blog/Rewrite-with-zine/",
-    "summary": `15 years ago, on December 11th, 2010, at the bold age of 17, I wrote my first blog post on the wonders of the Windows Phone 7 on Blogspot. I started blogging as a kid at the behest of a family friend at Microsoft, who promised she’d make sure I would beco…`,
+    "title": "Addressing the harassment",
+    "link": "https://drewdevault.com/blog/Addressing-harassment/",
+    "summary": `
+            Kiwi Farms is a web forum that facilitates the discussion and harassment of online figures and communities. Their targets are often subject to organized group trolling and stalking, as well as doxing and real-life harassment. Kiwi Farms has be…`,
     "source_title": "Drew DeVault&#39;s blog",
     "source_link": "https://drewdevault.com",
-    "date": "April 19, 2026"
+    "date": "April 21, 2026"
   },
   
   {
