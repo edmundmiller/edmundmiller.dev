@@ -11,6 +11,15 @@ export const openringData: OpenringItem[] =
 [
   
   {
+    "title": "Maybe you shouldn&#39;t install new software for a bit",
+    "link": "https://xeiaso.net/blog/2026/abstain-from-install/",
+    "summary": `Oh boy yet more linux kernel vulns`,
+    "source_title": "Xe Iaso&#39;s blog",
+    "source_link": "https://xeiaso.net/",
+    "date": "May 7, 2026"
+  },
+  
+  {
     "title": "Remembering My Mother",
     "link": "https://taehoonkim.org/news/2026/5/1/remembering-my-mother",
     "summary": `My mother passed away suddenly last Saturday, 4/25. There aren’t enough words that can capture all the grief that I am feeling and all my memories of her. But I want to share how one small incident in our shared lives has enormously impacted how I pursue …`,
@@ -27,15 +36,6 @@ export const openringData: OpenringItem[] =
     "source_title": "Drew DeVault&#39;s blog",
     "source_link": "https://drewdevault.com",
     "date": "May 1, 2026"
-  },
-  
-  {
-    "title": "Welcoming new members to the nf-core core team",
-    "link": "https://nf-co.re/blog/2026/new-core-members/",
-    "summary": `A growing community, a stronger core`,
-    "source_title": "nf-core blog",
-    "source_link": "https://nf-co.re/",
-    "date": "April 29, 2026"
   },
   
 ];
