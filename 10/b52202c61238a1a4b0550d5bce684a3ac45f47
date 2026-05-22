@@ -1,0 +1,22 @@
+scripts/generate-agent-content.mjs
+  s_b1177deafa8abe::t_c810501a098449 1-73
+package.json
+  s_b1177deafa8abe::t_d10f61cb47f253 11-12
+  s_b1177deafa8abe::t_9fec02433c16ca 8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.11",
+  "base_commit_sha": "10b52202c61238a1a4b0550d5bce684a3ac45f47",
+  "prompts": {},
+  "sessions": {
+    "s_b1177deafa8abe": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "019e4d4f-bde8-73a3-aaae-0e31be593f11",
+        "model": "gpt-5.5"
+      },
+      "human_author": "Edmund Miller <git@edmundmiller.dev>"
+    }
+  }
+}
