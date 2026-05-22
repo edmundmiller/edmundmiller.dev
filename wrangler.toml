@@ -1,11 +1,12 @@
 name = "edmundmiller-dev"
 compatibility_date = "2025-01-16"
+main = "./src/worker.ts"
+route = { pattern = "edmundmiller.dev/*", zone_name = "edmundmiller.dev" }
 
 [assets]
 directory = "./dist"
-
-# Optional: Custom domain configuration (uncomment and update if you have a custom domain)
-# route = { pattern = "edmundmiller.dev/*", zone_name = "edmundmiller.dev" }
+binding = "ASSETS"
+run_worker_first = true
 
 # Optional: Environment variables for production
 # [env.production]
