@@ -1,0 +1,19 @@
+public/robots.txt
+  s_b1177deafa8abe::t_37bfb207c31751 3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.11",
+  "base_commit_sha": "c28300acdc79bb4ecd451e949a71a0c060acc721",
+  "prompts": {},
+  "sessions": {
+    "s_b1177deafa8abe": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "019e4d4f-bde8-73a3-aaae-0e31be593f11",
+        "model": "gpt-5.5"
+      },
+      "human_author": "Edmund Miller <git@edmundmiller.dev>"
+    }
+  }
+}
