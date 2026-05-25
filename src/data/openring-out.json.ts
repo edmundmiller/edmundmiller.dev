@@ -11,22 +11,25 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "Add an LLM policy for rust-lang/rust",
-    "link": "https://drewdevault.com/blog/LLM-policy-for-Rust/",
+    "title": "&#34;No way to prevent this&#34; say users of only package manager where this regularly happens",
+    "link": "https://xeiaso.net/shitposts/no-way-to-prevent-this/supply-chain/2026-art-template/",
     "summary": `
-            No comment on this PR may mention the following topics:Long-term social or economic impact of LLMsThe environmental impact of LLMsAnything to do with the copyright status of LLM outputMoral judgements about people who use LLMsWe have asked the…`,
-    "source_title": "Drew DeVault&#39;s blog",
-    "source_link": "https://drewdevault.com",
-    "date": "May 15, 2026"
+        In the hours following the news that art-template fell
+        victim to a supply chain attack via NPM, developers and systems administrators
+        scrambled ensure all of their projects were unaffected from a supply chain attack where attackers h…`,
+    "source_title": "Xe Iaso&#39;s blog",
+    "source_link": "https://xeiaso.net/",
+    "date": "May 21, 2026"
   },
   
   {
-    "title": "Amazonbot is finally respecting robots.txt",
-    "link": "https://xeiaso.net/notes/2026/amazonbot-respecting-robots-txt/",
-    "summary": `Thanks for giving me a viable business model Amazon!`,
-    "source_title": "Xe Iaso&#39;s blog",
-    "source_link": "https://xeiaso.net/",
-    "date": "May 14, 2026"
+    "title": "New blog design",
+    "link": "https://drewdevault.com/blog/New-design/",
+    "summary": `
+            I redesigned my blog! I decided to put some more personality into it this time, after over a decade of the minimalist style. This short post is just an excuse to show up in your feed reader so you can go look at it. Cheers!Also: I’m trying out…`,
+    "source_title": "Drew DeVault&#39;s blog",
+    "source_link": "https://drewdevault.com",
+    "date": "May 20, 2026"
   },
   
   {
