@@ -11,15 +11,21 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "&#34;No way to prevent this&#34; say users of only package manager where this regularly happens",
-    "link": "https://xeiaso.net/shitposts/no-way-to-prevent-this/supply-chain/2026-art-template/",
-    "summary": `
-        In the hours following the news that art-template fell
-        victim to a supply chain attack via NPM, developers and systems administrators
-        scrambled ensure all of their projects were unaffected from a supply chain attack where attackers h…`,
+    "title": "Dancing mad with sandboxing",
+    "link": "https://xeiaso.net/blog/2026/dancing-mad-sandboxing/",
+    "summary": `Kefka is a Go-native shell sandbox with coreutils, Python via WebAssembly, and more. Learn the works of madness that went into making this happen!`,
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
-    "date": "May 21, 2026"
+    "date": "May 28, 2026"
+  },
+  
+  {
+    "title": "Why parameters are strings all of a sudden",
+    "link": "https://nf-co.re/blog/2026/parameter-types/",
+    "summary": `A guide to mitigating typing issues in strict syntax`,
+    "source_title": "nf-core blog",
+    "source_link": "https://nf-co.re/",
+    "date": "May 26, 2026"
   },
   
   {
@@ -30,15 +36,6 @@ export const openringData: OpenringItem[] =
     "source_title": "Drew DeVault&#39;s blog",
     "source_link": "https://drewdevault.com",
     "date": "May 20, 2026"
-  },
-  
-  {
-    "title": "Remembering My Mother",
-    "link": "https://taehoonkim.org/news/2026/5/1/remembering-my-mother",
-    "summary": `My mother passed away suddenly last Saturday, 4/25. There aren’t enough words that can capture all the grief that I am feeling and all my memories of her. But I want to share how one small incident in our shared lives has enormously impacted how I pursue …`,
-    "source_title": "News - Functional Genomics Laboratory",
-    "source_link": "https://taehoonkim.org/news/",
-    "date": "May 1, 2026"
   },
   
 ];
