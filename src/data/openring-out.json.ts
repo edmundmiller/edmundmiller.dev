@@ -11,12 +11,23 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "Dancing mad with sandboxing",
-    "link": "https://xeiaso.net/blog/2026/dancing-mad-sandboxing/",
-    "summary": `Kefka is a Go-native shell sandbox with coreutils, Python via WebAssembly, and more. Learn the works of madness that went into making this happen!`,
+    "title": "Giving your Go apps Tigris superpowers",
+    "link": "https://www.tigrisdata.com/blog/storage-sdk-go/",
+    "summary": `
+        Tigris is S3-compatible, which means you can point the AWS SDK at it and most things just work. The catch is that the Tigris-exclusive features—bucket forking, snapshots, object renaming, and the like—need verbose workarounds because the AWS SDK d…`,
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
-    "date": "May 28, 2026"
+    "date": "June 9, 2026"
+  },
+  
+  {
+    "title": "The circus freaks of open source",
+    "link": "https://drewdevault.com/blog/Circus-freaks-of-FOSS/",
+    "summary": `
+            The masterwork of Terry A. Davis is his eclectic operating system, TempleOS, which he worked on until his tragic death in 2018. In terms of technical excellence, TempleOS rates well in some respects and poorly in others. For example, it earns …`,
+    "source_title": "Drew DeVault&#39;s blog",
+    "source_link": "https://drewdevault.com",
+    "date": "June 5, 2026"
   },
   
   {
@@ -26,16 +37,6 @@ export const openringData: OpenringItem[] =
     "source_title": "nf-core blog",
     "source_link": "https://nf-co.re/",
     "date": "May 26, 2026"
-  },
-  
-  {
-    "title": "New blog design",
-    "link": "https://drewdevault.com/blog/New-design/",
-    "summary": `
-            I redesigned my blog! I decided to put some more personality into it this time, after over a decade of the minimalist style. This short post is just an excuse to show up in your feed reader so you can go look at it. Cheers!Also: I’m trying out…`,
-    "source_title": "Drew DeVault&#39;s blog",
-    "source_link": "https://drewdevault.com",
-    "date": "May 20, 2026"
   },
   
 ];
