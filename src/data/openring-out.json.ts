@@ -11,13 +11,12 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "Giving your Go apps Tigris superpowers",
-    "link": "https://www.tigrisdata.com/blog/storage-sdk-go/",
-    "summary": `
-        Tigris is S3-compatible, which means you can point the AWS SDK at it and most things just work. The catch is that the Tigris-exclusive features—bucket forking, snapshots, object renaming, and the like—need verbose workarounds because the AWS SDK d…`,
+    "title": "Why are cached input tokens cheaper with AI services?",
+    "link": "https://xeiaso.net/notes/2026/why-llm-cached-token-cheaper/",
+    "summary": `TL;DR: the GPU doesn&amp;#39;t have to math as hard`,
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
-    "date": "June 9, 2026"
+    "date": "June 12, 2026"
   },
   
   {
