@@ -11,12 +11,12 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "Why are cached input tokens cheaper with AI services?",
-    "link": "https://xeiaso.net/notes/2026/why-llm-cached-token-cheaper/",
-    "summary": `TL;DR: the GPU doesn&amp;#39;t have to math as hard`,
+    "title": "I hate compilers",
+    "link": "https://xeiaso.net/notes/2026/anubis-wasm-vendor-binary/",
+    "summary": `You&amp;#39;d think that given the same bytes of input you&amp;#39;d get the same bytes of output. lol. lmao. No, you don&amp;#39;t. It&amp;#39;s complicated.`,
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
-    "date": "June 12, 2026"
+    "date": "June 18, 2026"
   },
   
   {
