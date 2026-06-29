@@ -11,12 +11,23 @@ export const openringData: OpenringItem[] =
 [
   
   {
-    "title": "I hate compilers",
-    "link": "https://xeiaso.net/notes/2026/anubis-wasm-vendor-binary/",
-    "summary": `You&amp;#39;d think that given the same bytes of input you&amp;#39;d get the same bytes of output. lol. lmao. No, you don&amp;#39;t. It&amp;#39;s complicated.`,
+    "title": "&#34;No way to prevent this&#34; say users of only language where this regularly happens",
+    "link": "https://xeiaso.net/shitposts/no-way-to-prevent-this/memory-safety/CVE-2026-8461/",
+    "summary": `
+        In the hours following the release of CVE-2026-8461 for the project FFmpeg, site reliability workers
+        and systems administrators scrambled to desperately rebuild and patch all their systems to fix an out-of-bounds write in the MagicYUV decod…`,
     "source_title": "Xe Iaso&#39;s blog",
     "source_link": "https://xeiaso.net/",
-    "date": "June 18, 2026"
+    "date": "June 25, 2026"
+  },
+  
+  {
+    "title": "Introducing the nf-core newsletter",
+    "link": "https://nf-co.re/blog/2026/newsletter-launch/",
+    "summary": `Community news, pipeline releases and events, gathered once a month and emailed to you if you want it`,
+    "source_title": "nf-core blog",
+    "source_link": "https://nf-co.re/",
+    "date": "June 23, 2026"
   },
   
   {
@@ -27,15 +38,6 @@ export const openringData: OpenringItem[] =
     "source_title": "Drew DeVault&#39;s blog",
     "source_link": "https://drewdevault.com",
     "date": "June 5, 2026"
-  },
-  
-  {
-    "title": "Why parameters are strings all of a sudden",
-    "link": "https://nf-co.re/blog/2026/parameter-types/",
-    "summary": `A guide to mitigating typing issues in strict syntax`,
-    "source_title": "nf-core blog",
-    "source_link": "https://nf-co.re/",
-    "date": "May 26, 2026"
   },
   
 ];
