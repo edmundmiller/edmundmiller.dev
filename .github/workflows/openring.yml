@@ -13,7 +13,7 @@ jobs:
       contents: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v6.0.3
 
         # openring
       - name: Check Nix flake inputs
@@ -24,6 +24,6 @@ jobs:
         uses: DeterminateSystems/magic-nix-cache-action@v8
       - name: Run openring
         run: nix develop --impure --command .github/openring.sh
-      - uses: stefanzweifel/git-auto-commit-action@v5
+      - uses: stefanzweifel/git-auto-commit-action@v5.2.0
         with:
           commit_message: Run Openring
