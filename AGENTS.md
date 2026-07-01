@@ -1,39 +1,74 @@
 # Agent Instructions
 
-This project uses **br** (Beads) for issue tracking. Run `br ready` to get started.
+Personal Astro site deployed as a Cloudflare Worker with static assets.
 
-## Quick Reference
+## Work Intake
+
+Use Beads:
 
 ```bash
-br ready              # Find available work
-br show <id>          # View issue details
-br update <id> --status in_progress  # Claim work
-br close <id>         # Complete work
-br sync --flush-only  # Export DB to .beads/issues.jsonl
+br ready
+br show <id>
+br update <id> --status in_progress
+br close <id>
+br sync --flush-only
 ```
 
-## Landing the Plane (Session Completion)
+## Deploy Model
 
-**When ending a work session**, you MUST complete ALL steps below. Work is NOT complete until `git push` succeeds.
+`wrangler.toml` is the source of truth.
 
-**MANDATORY WORKFLOW:**
+- Worker name: `edmundmiller-dev`
+- Worker entry: `src/worker.ts`
+- Asset directory: `dist`
+- Asset binding: `ASSETS`
+- Route: `edmundmiller.dev/*`
+- Zone: `edmundmiller.dev`
+- `run_worker_first = true`
 
-1. **File issues for remaining work** - Create issues for anything that needs follow-up
-2. **Run quality gates** (if code changed) - Tests, linters, builds
-3. **Update issue status** - Close finished work, update in-progress items
-4. **PUSH TO REMOTE** - This is MANDATORY:
-   ```bash
-   git pull --rebase
-   br sync --flush-only
-   git push
-   git status  # MUST show "up to date with origin"
-   ```
-5. **Clean up** - Clear stashes, prune remote branches
-6. **Verify** - All changes committed AND pushed
-7. **Hand off** - Provide context for next session
+`npm run deploy` builds Astro, generates agent content, then runs `wrangler deploy`.
 
-**CRITICAL RULES:**
-- Work is NOT complete until `git push` succeeds
-- NEVER stop before pushing - that leaves work stranded locally
-- NEVER say "ready to push when you are" - YOU must push
-- If push fails, resolve and retry until it succeeds
+Use `npm exec -- wrangler ...` if `pnpm` is not on PATH.
+
+## Common Commands
+
+```bash
+npm run build
+npm run check
+npm run lint
+npm run deploy
+npm exec -- wrangler deployments list
+npm exec -- wrangler whoami
+```
+
+`npm run build` writes `dist/` and runs `scripts/generate-agent-content.mjs`.
+
+## Cloudflare Checks
+
+Before changing deploy behavior, confirm live state:
+
+```bash
+npm exec -- wrangler deployments list
+npm exec -- wrangler whoami
+```
+
+Current verified deploy path uses Wrangler OAuth for account `57398029d3d0add95bdad89deaa41864`.
+
+Latest checked deployment: `2026-07-01T22:37:22Z`, version `8a7c6373-2001-4675-8a2d-f5382b3d65ac`.
+
+If Wrangler warns about missing unrelated OAuth scopes, do not treat that as a deploy blocker unless deploy/read commands fail.
+
+## Session Closeout
+
+Before final handoff:
+
+1. File follow-up Beads issues.
+2. Run relevant checks for changed code/content.
+3. Close or update Beads issues.
+4. `br sync --flush-only`
+5. Commit small, single-intent changes.
+6. `git pull --rebase`
+7. `git push`
+8. Verify `git status` is clean and up to date.
+
+Work is not done until push succeeds.
