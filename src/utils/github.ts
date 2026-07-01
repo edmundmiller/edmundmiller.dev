@@ -129,12 +129,14 @@ export function processAuthors(
   authors: string | string[] | undefined
 ): Promise<AuthorInfo[]> {
   if (!authors) {
-    return [];
+    return Promise.resolve([]);
   }
 
   const authorList = Array.isArray(authors) ? authors : [authors];
 
   // For static sites, we'll use the simpler createAuthorInfo without API calls
   // but keep this function for potential future enhancement
-  return authorList.map((username) => createAuthorInfo(username));
+  return Promise.resolve(
+    authorList.map((username) => createAuthorInfo(username))
+  );
 }
