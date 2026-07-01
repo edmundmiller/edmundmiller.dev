@@ -1,5 +1,5 @@
 ---
-import type { CollectionEntry } from 'astro:content';
+import { render, type CollectionEntry } from 'astro:content';
 import { createAuthorInfo } from '../utils/github';
 import BaseLayout from './base.astro';
 import TOC from '@/components/blog/toc.astro';
@@ -42,7 +42,7 @@ if (post) {
   updatedDate = postData.updatedDate;
   canonical = postData.canonical;
   author = postData.author;
-  slug = post.slug;
+  slug = post.id;
 } else {
   // MDX page - get data from frontmatter
   const frontmatter = Astro.props.frontmatter || {};
@@ -65,7 +65,7 @@ const socialImage = ogImage ?? `/og-image/${slug}.png`;
 const articleDate = updatedDate?.toISOString() ?? publishDate.toISOString();
 
 // Only get headings for content collection posts
-const _headings = post ? (await post.render()).headings : [];
+const _headings = post ? (await render(post)).headings : [];
 
 // Process authors for consistent display
 const authors = author ? (Array.isArray(author) ? author : [author]) : [];

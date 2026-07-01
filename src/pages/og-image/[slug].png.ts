@@ -1,12 +1,12 @@
-import { Resvg } from '@resvg/resvg-js';
-import type { APIContext, InferGetStaticPropsType } from 'astro';
-import satori, { type SatoriOptions } from 'satori';
-import { html } from 'satori-html';
-import RobotoMonoBold from '@/assets/roboto-mono-700.ttf';
-import RobotoMono from '@/assets/roboto-mono-regular.ttf';
-import { getAllPosts } from '@/data/post';
-import { siteConfig } from '@/site-config';
-import { getFormattedDate } from '@/utils';
+import { Resvg } from "@resvg/resvg-js";
+import type { APIContext, InferGetStaticPropsType } from "astro";
+import satori, { type SatoriOptions } from "satori";
+import { html } from "satori-html";
+import RobotoMonoBold from "@/assets/roboto-mono-700.ttf";
+import RobotoMono from "@/assets/roboto-mono-regular.ttf";
+import { getAllPosts } from "@/data/post";
+import { siteConfig } from "@/site-config";
+import { getFormattedDate } from "@/utils";
 
 const ogOptions: SatoriOptions = {
   width: 1200,
@@ -14,16 +14,16 @@ const ogOptions: SatoriOptions = {
   // debug: true,
   fonts: [
     {
-      name: 'Roboto Mono',
+      name: "Roboto Mono",
       data: Buffer.from(RobotoMono),
       weight: 400,
-      style: 'normal',
+      style: "normal",
     },
     {
-      name: 'Roboto Mono',
+      name: "Roboto Mono",
       data: Buffer.from(RobotoMonoBold),
       weight: 700,
-      style: 'normal',
+      style: "normal",
     },
   ],
 };
@@ -34,9 +34,16 @@ const markup = (title: string, pubDate: string) =>
       <p tw="text-2xl mb-6">${pubDate}</p>
       <h1 tw="text-6xl font-bold leading-snug text-white">${title}</h1>
     </div>
-    <div tw="flex items-center justify-between w-full p-10 border-t border-[#2bbc89] text-xl">
+    <div
+      tw="flex items-center justify-between w-full p-10 border-t border-[#2bbc89] text-xl"
+    >
       <div tw="flex items-center">
-        <svg height="60" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 272 480">
+        <svg
+          height="60"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 272 480"
+        >
           <path
             d="M181.334 93.333v-40L226.667 80v40l-45.333-26.667ZM136.001 53.333 90.667 26.667v426.666L136.001 480V53.333Z"
             fill="#B04304"
@@ -49,7 +56,10 @@ const markup = (title: string, pubDate: string) =>
             d="m136 53.333 45.333-26.666v120L226.667 120V80L272 53.333V160l-90.667 53.333v240L136 480V306.667L45.334 360V240l45.333-26.667v53.334L136 240V53.333Z"
             fill="#53C68C"
           ></path>
-          <path d="M45.334 240 0 213.334v120L45.334 360V240Z" fill="#B04304"></path>
+          <path
+            d="M45.334 240 0 213.334v120L45.334 360V240Z"
+            fill="#B04304"
+          ></path>
         </svg>
         <p tw="ml-3 font-semibold">${siteConfig.title}</p>
       </div>
@@ -63,15 +73,15 @@ export async function GET(context: APIContext) {
   const { title, pubDate } = context.props as Props;
 
   const postDate = getFormattedDate(pubDate, {
-    weekday: 'long',
-    month: 'long',
+    weekday: "long",
+    month: "long",
   });
   const svg = await satori(markup(title, postDate), ogOptions);
   const png = new Resvg(svg).render().asPng();
   return new Response(new Uint8Array(png), {
     headers: {
-      'Content-Type': 'image/png',
-      'Cache-Control': 'public, max-age=31536000, immutable',
+      "Content-Type": "image/png",
+      "Cache-Control": "public, max-age=31536000, immutable",
     },
   });
 }
@@ -81,7 +91,7 @@ export async function getStaticPaths() {
   return posts
     .filter(({ data }) => !data.ogImage)
     .map((post) => ({
-      params: { slug: post.slug },
+      params: { slug: post.id },
       props: {
         title: post.data.title,
         pubDate: post.data.updatedDate ?? post.data.publishDate,

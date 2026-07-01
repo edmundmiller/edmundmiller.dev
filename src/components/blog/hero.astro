@@ -1,5 +1,5 @@
 ---
-import type { CollectionEntry } from 'astro:content';
+import { render, type CollectionEntry } from 'astro:content';
 import { Image } from 'astro:assets';
 import { createAuthorInfo } from '../../utils/github';
 import FormattedDate from '@/components/formatted-date.astro';
@@ -9,11 +9,10 @@ interface Props {
   content: CollectionEntry<'post'>;
 }
 
-const {
-  content: { data, render },
-} = Astro.props as Props;
+const { content } = Astro.props as Props;
+const { data } = content;
 
-const { remarkPluginFrontmatter } = await render();
+const { remarkPluginFrontmatter } = await render(content);
 
 const _dateTimeOptions: Intl.DateTimeFormatOptions = {
   month: 'long',
