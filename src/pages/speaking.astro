@@ -7,9 +7,14 @@ import { contentData } from '@/data/content.json';
 const _content = contentData.sort(
   (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
 );
+const _meta = {
+  description:
+    "Conference talks by Edmund Miller about bioinformatics, nf-core, Nextflow, functional genomics, and reproducible scientific workflows.",
+  title: 'Speaking',
+};
 ---
 
-<PageLayout meta={{ title: "Speaking" }}>
+<PageLayout meta={_meta}>
   <!--
 // v0 by Vercel.
 // https://v0.dev/t/xhsg8l1j1aQ

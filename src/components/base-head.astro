@@ -6,10 +6,10 @@ import '../styles/global.css';
 
 type Props = SiteMeta;
 
-const { articleDate, description, ogImage, title, canonical } =
+const { articleDate, description, ogImage, title, canonical, robots } =
   Astro.props as Props;
 
-const titleSeparator = '•';
+const titleSeparator = '|';
 const _siteTitle = `${title} ${titleSeparator} ${siteConfig.title}`;
 const _canonicalURL = canonical
   ? new URL(canonical)
@@ -40,6 +40,7 @@ const _socialImageURL = new URL(
 <meta content={_siteTitle} name="title" />
 <meta content={description} name="description" />
 <meta content={siteConfig.author} name="author" />
+{robots && <meta content={robots} name="robots" />}
 
 {/* Theme Colour */}
 <meta content="" name="theme-color" />

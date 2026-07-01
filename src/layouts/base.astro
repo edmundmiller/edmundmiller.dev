@@ -18,6 +18,7 @@ const {
     ogImage,
     title,
     canonical,
+    robots,
   },
 } = Astro.props as Props;
 
@@ -28,6 +29,7 @@ const _baseHeadMeta: SiteMeta = {
   ...(articleDate && { articleDate }),
   ...(ogImage && { ogImage }),
   ...(canonical && { canonical }),
+  ...(robots && { robots }),
 };
 ---
 

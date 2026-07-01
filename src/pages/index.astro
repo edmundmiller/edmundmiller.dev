@@ -8,6 +8,11 @@ import Openring from '@/components/openring.astro';
 const MAX_POSTS = 10;
 const allPosts = await getAllPosts();
 const _allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
+const _meta = {
+  description:
+    'Bioinformatics engineer and PhD candidate writing about Nextflow, nf-core, functional genomics, reproducible workflows, and software for data-intensive science.',
+  title: 'Bioinformatics Engineer — Nextflow & nf-core',
+};
 
 /* Tech stack info (unused for now)
 const cactusTech: { desc: string; href: string; title: string }[] = [
@@ -55,7 +60,7 @@ const cactusTech: { desc: string; href: string; title: string }[] = [
 */
 ---
 
-<PageLayout meta={{ title: "Home" }}>
+<PageLayout meta={_meta}>
   <section>
     <h1 class="title mb-6">Hello!</h1>
     <p class="mb-4">
