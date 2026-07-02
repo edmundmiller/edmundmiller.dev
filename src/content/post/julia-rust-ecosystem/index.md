@@ -1,9 +1,9 @@
 ---
 author: Edmund Miller
-publishDate: "2022-07-01T14:42Z"
+publishDate: '2022-07-01T14:42Z'
 title: A Comparison of the Julia and Rust Ecosystems
 description: What they're getting right, and what's still missing.
-tags: ["Julia", "Rust"]
+tags: ['Julia', 'Rust']
 draft: true
 ---
 

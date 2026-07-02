@@ -3,7 +3,7 @@ title: The State of Reproducible Scripts
 description: Making scripts reproducible for your future self
 draft: true
 publishDate: 2024-08-21
-tags: ["bioinformatics", "python"]
+tags: ['bioinformatics', 'python']
 ---
 
 You know that ice breaker, where everyone asks "What's your biggest pet peeve?"

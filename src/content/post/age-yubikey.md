@@ -2,8 +2,8 @@
 title: Age of the Yubikey
 description: Trying to use age with a Yubikey. Ended up giving up and using 1password
 draft: true
-publishDate: "04 Jan 2024"
-tags: ["yubikey", "age"]
+publishDate: '04 Jan 2024'
+tags: ['yubikey', 'age']
 ---
 
 How I Set Up SSH Commit Signing and Rage Encryption with a YubiKey

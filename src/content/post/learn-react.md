@@ -1,9 +1,9 @@
 ---
 author: Edmund Miller
-publishDate: "2019-05-26T22:05:12Z"
+publishDate: '2019-05-26T22:05:12Z'
 title: Learn Just Enough React to Move Out of your Parent\'s House
 description: "A Gen-Z's Guide to the 2019 Job Market."
-tag: ["javascript"]
+tag: ['javascript']
 # TODO ogImage: "/social-card.png"
 # TODO Leaving these here as examples
 # coverImage:

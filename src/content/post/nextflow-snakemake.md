@@ -3,7 +3,7 @@ title: Nextflow vs Snakemake
 description: Nextflow and Snakemake comparison that actually takes a stance
 draft: true
 publishDate: 2024-06-10
-tags: ["bioinformatics", "nextflow", "snakemake"]
+tags: ['bioinformatics', 'nextflow', 'snakemake']
 ---
 
 In the past we did a Makefile based pipeline, and then moved on to Nextflow. The two have very different paradigmes a "pull" vs a "push" of the data.

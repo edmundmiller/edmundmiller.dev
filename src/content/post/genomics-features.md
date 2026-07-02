@@ -3,7 +3,7 @@ title: Intro to GenomicFeatures in Julia
 description: Comparision of GenomicRanges and GenomicFeatures
 publishDate: 2023-08-16
 draft: true
-tags: ["Julia", "Genomics"]
+tags: ['Julia', 'Genomics']
 ---
 
 <https://www.dominodatalab.com/blog/genomic-ranges-an-introduction-to-working-with-genomic-data>

@@ -1,10 +1,10 @@
 ---
 author: Edmund Miller
-publishDate: "2024-04-09"
-updatedDate: "2024-05-09"
+publishDate: '2024-04-09'
+updatedDate: '2024-05-09'
 title: Personal Site Analytics in 2024
 description: What's the move for something that gives you feedback and isn't creepy
-tags: ["blog"]
+tags: ['blog']
 draft: false
 ---
 

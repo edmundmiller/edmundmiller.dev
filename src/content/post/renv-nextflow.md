@@ -2,8 +2,8 @@
 author: Edmund Miller
 title: Reproducing R code in a container
 description: Building an renv environment in a Docker container for Nextflow
-publishDate: "Nov 26 2023"
-tags: ["Nextflow", "R", "bioinformatics", "murder-mystery", "software"]
+publishDate: 'Nov 26 2023'
+tags: ['Nextflow', 'R', 'bioinformatics', 'murder-mystery', 'software']
 draft: true
 ---
 

@@ -1,8 +1,8 @@
 ---
 author: Edmund Miller
-publishDate: "2020-03-15T09:53Z"
+publishDate: '2020-03-15T09:53Z'
 title: Thoughts on NixOS
-tags: ["nixos", "linux"]
+tags: ['nixos', 'linux']
 description: Highlighting its customization, stability, and how it simplifies development environments.
 ---
 

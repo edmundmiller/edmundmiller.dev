@@ -1,23 +1,23 @@
 ---
-title: "The Protomolecule Approach: Building Tools with AI"
+title: 'The Protomolecule Approach: Building Tools with AI'
 description: "How building a global beads search tool became a lesson in iterative AI collaboration - it's like pottery"
 author: Edmund Miller
 publishDate: 2026-01-16
-tags: ["ai", "tools", "workflow", "tmux", "beads"]
+tags: ['ai', 'tools', 'workflow', 'tmux', 'beads']
 draft: true
 ---
 
-I've got 35 git repositories scattered across my home directory, each with its own `.beads/` directory tracking issues. [Beads](https://github.com/steveyegge/beads) is great for local issue tracking, but `bd list` only shows issues in the current repo. I wanted to search *all* of them at once.
+I've got 35 git repositories scattered across my home directory, each with its own `.beads/` directory tracking issues. [Beads](https://github.com/steveyegge/beads) is great for local issue tracking, but `bd list` only shows issues in the current repo. I wanted to search _all_ of them at once.
 
 The idea was simple: what if I could hit a tmux keybinding and instantly fuzzy-search every issue across every project?
 
 ## The Protomolecule
 
-If you've read *The Expanse* (or watched the show), you know about the protomolecule. Without spoilers: it's an alien technology that doesn't create from scratch. It repurposes existing structures, adapts iteratively, and builds on what it finds.
+If you've read _The Expanse_ (or watched the show), you know about the protomolecule. Without spoilers: it's an alien technology that doesn't create from scratch. It repurposes existing structures, adapts iteratively, and builds on what it finds.
 
 That's the best metaphor I've found for building tools with AI.
 
-When I asked Claude to help build a global beads search, it didn't generate perfect code from nothing. It looked at my existing `bd-capture` script (a tmux popup for creating issues), understood the patterns in my dotfiles, and *repurposed* them into something new. Then we refined it. Then we refined it again.
+When I asked Claude to help build a global beads search, it didn't generate perfect code from nothing. It looked at my existing `bd-capture` script (a tmux popup for creating issues), understood the patterns in my dotfiles, and _repurposed_ them into something new. Then we refined it. Then we refined it again.
 
 It's like pottery. You start with a lump of clay, shape it, notice it's lopsided, adjust, notice the walls are too thick, thin them out. The final bowl doesn't come from a single perfect motion.
 
@@ -45,7 +45,7 @@ I tried it.
 
 "Hmm, B is buffers."
 
-So the AI read my tmux config. Not only did it find the `b`/`B` conflict with buffer management, it also spotted that I had *two* bindings for `r` - one for config reload, one for the file picker. A conflict I hadn't noticed.
+So the AI read my tmux config. Not only did it find the `b`/`B` conflict with buffer management, it also spotted that I had _two_ bindings for `r` - one for config reload, one for the file picker. A conflict I hadn't noticed.
 
 We settled on `prefix + e` (explore) for beads search and fixed the `r` conflict while we were at it. Two commits, two problems solved.
 
@@ -70,7 +70,7 @@ bd create --title="bd-find-all: home search is slow" --type=bug
 bd create --title="tmux prefix+d picker opens blank" --type=bug
 ```
 
-The AI didn't catch these issues. It couldn't. They only emerged from actually *using* the tool in real conditions. Human testing found them; beads tracked them for later.
+The AI didn't catch these issues. It couldn't. They only emerged from actually _using_ the tool in real conditions. Human testing found them; beads tracked them for later.
 
 ## The Pottery Phase
 
@@ -92,6 +92,7 @@ Each iteration was small. Fix one thing, commit, use it, notice another thing. T
 Looking back at the collaboration:
 
 **What I provided:**
+
 - The initial spark ("search all beads like fcf")
 - Taste ("that display is ugly")
 - Real-world testing ("home search is slow")
@@ -99,6 +100,7 @@ Looking back at the collaboration:
 - Judgment on when to ship vs. polish
 
 **What AI provided:**
+
 - Pattern recognition (bd-capture as template)
 - Implementation speed (first working version in minutes)
 - Config reading (spotting tmux conflicts)
@@ -106,6 +108,7 @@ Looking back at the collaboration:
 - Parallel exploration (checking multiple patterns at once)
 
 **What emerged from iteration:**
+
 - The actual tool
 - Bug fixes neither of us anticipated
 - A test suite
@@ -133,7 +136,7 @@ The whole search across 35 repos takes about 2 seconds. Not instant, but fast en
 
 The tool works, but that's not the interesting part.
 
-The interesting part is *how* it came to exist. Not through a single brilliant prompt. Not through AI autonomously solving my problem. Through iteration.
+The interesting part is _how_ it came to exist. Not through a single brilliant prompt. Not through AI autonomously solving my problem. Through iteration.
 
 The AI didn't replace my judgment - it amplified my ability to act on it. When I said "that's ugly," I didn't have to spend 20 minutes figuring out the jq incantation to fix it. When I noticed a keybinding conflict, I didn't have to grep through my config manually.
 

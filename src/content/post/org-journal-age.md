@@ -1,10 +1,10 @@
 ---
 author: Edmund Miller
-publishDate: "2023-12-15T11:00Z"
+publishDate: '2023-12-15T11:00Z'
 title: Using age with org-journal
 description: "Because gpg 2.4.1 borked Emacs's EasyPG, it just hangs on saving."
 draft: false
-tags: ["Emacs", "org-mode", "age"]
+tags: ['Emacs', 'org-mode', 'age']
 ---
 
 # The problem

@@ -3,128 +3,128 @@ version: alpha
 name: Edmund Miller
 description: Compact personal site for technical writing, projects, talks, and web-native notes.
 colors:
-  primary: "#CB2943"
-  light-bg: "#FAFAFA"
-  light-text: "#22272A"
-  light-link: "#56807A"
-  light-accent: "#CB2943"
-  light-heading: "#121212"
-  light-quote: "#CB2943"
-  dark-bg: "#1D1F20"
-  dark-text: "#C8C9CA"
-  dark-link: "#D47DA8"
-  dark-accent: "#29BC82"
-  dark-heading: "#EDEDED"
-  dark-quote: "#D7FFB8"
-  rule: "#666666"
-  focus: "#A1A1AA"
-  logo-brown: "#B04304"
-  logo-orange: "#FF5D01"
-  logo-green: "#53C68C"
+  primary: '#CB2943'
+  light-bg: '#FAFAFA'
+  light-text: '#22272A'
+  light-link: '#56807A'
+  light-accent: '#CB2943'
+  light-heading: '#121212'
+  light-quote: '#CB2943'
+  dark-bg: '#1D1F20'
+  dark-text: '#C8C9CA'
+  dark-link: '#D47DA8'
+  dark-accent: '#29BC82'
+  dark-heading: '#EDEDED'
+  dark-quote: '#D7FFB8'
+  rule: '#666666'
+  focus: '#A1A1AA'
+  logo-brown: '#B04304'
+  logo-orange: '#FF5D01'
+  logo-green: '#53C68C'
 typography:
   page:
-    fontFamily: "Geist Pixel Square, ui-monospace, SFMono-Regular, Roboto Mono, Menlo, Monaco, Liberation Mono, DejaVu Sans Mono, Courier New, monospace"
-    fontSize: "16px"
-    fontWeight: "400"
-    lineHeight: "24px"
+    fontFamily: 'Geist Pixel Square, ui-monospace, SFMono-Regular, Roboto Mono, Menlo, Monaco, Liberation Mono, DejaVu Sans Mono, Courier New, monospace'
+    fontSize: '16px'
+    fontWeight: '400'
+    lineHeight: '24px'
   title:
-    fontFamily: "Geist Pixel Grid, Geist Pixel Square, ui-monospace, monospace"
-    fontSize: "24px"
-    fontWeight: "600"
-    lineHeight: "32px"
+    fontFamily: 'Geist Pixel Grid, Geist Pixel Square, ui-monospace, monospace'
+    fontSize: '24px'
+    fontWeight: '600'
+    lineHeight: '32px'
   brand:
-    fontFamily: "Geist Pixel Grid, Geist Pixel Square, ui-monospace, monospace"
-    fontSize: "24px"
-    fontWeight: "700"
-    lineHeight: "32px"
+    fontFamily: 'Geist Pixel Grid, Geist Pixel Square, ui-monospace, monospace'
+    fontSize: '24px'
+    fontWeight: '700'
+    lineHeight: '32px'
   nav:
-    fontFamily: "Geist Pixel Square, ui-monospace, monospace"
-    fontSize: "16px"
-    fontWeight: "400"
-    lineHeight: "24px"
+    fontFamily: 'Geist Pixel Square, ui-monospace, monospace'
+    fontSize: '16px'
+    fontWeight: '400'
+    lineHeight: '24px'
   small:
-    fontFamily: "Geist Pixel Square, ui-monospace, monospace"
-    fontSize: "14px"
-    fontWeight: "400"
-    lineHeight: "20px"
+    fontFamily: 'Geist Pixel Square, ui-monospace, monospace'
+    fontSize: '14px'
+    fontWeight: '400'
+    lineHeight: '20px'
 rounded:
-  code: "2px"
-  control: "6px"
-  dialog: "6px"
-  admonition: "8px"
+  code: '2px'
+  control: '6px'
+  dialog: '6px'
+  admonition: '8px'
 spacing:
-  xs: "4px"
-  sm: "8px"
-  md: "16px"
-  lg: "24px"
-  xl: "64px"
+  xs: '4px'
+  sm: '8px'
+  md: '16px'
+  lg: '24px'
+  xl: '64px'
 components:
   page-shell:
-    backgroundColor: "{colors.light-bg}"
-    textColor: "{colors.light-text}"
-    typography: "{typography.page}"
-    padding: "64px 32px 0"
-    width: "768px max"
+    backgroundColor: '{colors.light-bg}'
+    textColor: '{colors.light-text}'
+    typography: '{typography.page}'
+    padding: '64px 32px 0'
+    width: '768px max'
   title:
-    typography: "{typography.title}"
-    textColor: "{colors.light-heading}"
+    typography: '{typography.title}'
+    textColor: '{colors.light-heading}'
   cactus-link:
-    textColor: "{colors.light-text}"
-    backgroundColor: "linear underline using {colors.light-text}; hover uses {colors.light-link}"
-    height: "6px underline image"
+    textColor: '{colors.light-text}'
+    backgroundColor: 'linear underline using {colors.light-text}; hover uses {colors.light-link}'
+    height: '6px underline image'
   header:
-    textColor: "{colors.light-heading}"
-    typography: "{typography.brand}"
-    padding: "0 0 112px"
-    size: "logo uses {colors.logo-brown}, {colors.logo-orange}, {colors.logo-green}"
+    textColor: '{colors.light-heading}'
+    typography: '{typography.brand}'
+    padding: '0 0 112px'
+    size: 'logo uses {colors.logo-brown}, {colors.logo-orange}, {colors.logo-green}'
   navigation-menu:
-    textColor: "{colors.light-accent}"
-    backgroundColor: "transparent desktop; rgba(250, 250, 250, 0.85) mobile"
-    padding: "16px"
+    textColor: '{colors.light-accent}'
+    backgroundColor: 'transparent desktop; rgba(250, 250, 250, 0.85) mobile'
+    padding: '16px'
   icon-button:
-    textColor: "{colors.light-text}"
-    backgroundColor: "{colors.light-bg}"
-    width: "36px"
-    height: "36px"
-    rounded: "{rounded.control}"
+    textColor: '{colors.light-text}'
+    backgroundColor: '{colors.light-bg}'
+    width: '36px'
+    height: '36px'
+    rounded: '{rounded.control}'
   search-dialog:
-    backgroundColor: "{colors.light-bg}"
-    textColor: "{colors.light-text}"
-    rounded: "{rounded.dialog}"
-    width: "768px max"
-    padding: "24px"
+    backgroundColor: '{colors.light-bg}'
+    textColor: '{colors.light-text}'
+    rounded: '{rounded.dialog}'
+    width: '768px max'
+    padding: '24px'
   post-preview:
-    textColor: "{colors.light-text}"
-    typography: "{typography.page}"
-    width: "date column 120px"
+    textColor: '{colors.light-text}'
+    typography: '{typography.page}'
+    width: 'date column 120px'
   prose:
-    textColor: "{colors.light-text}"
-    typography: "{typography.page}"
-    rounded: "{rounded.code}"
-    size: "rules use {colors.rule}; inline code uses dotted {colors.rule}"
+    textColor: '{colors.light-text}'
+    typography: '{typography.page}'
+    rounded: '{rounded.code}'
+    size: 'rules use {colors.rule}; inline code uses dotted {colors.rule}'
   admonition:
-    backgroundColor: "{colors.light-bg}"
-    textColor: "{colors.light-text}"
-    rounded: "{rounded.admonition}"
-    padding: "16px"
-    size: "4px left border; 20px icon"
+    backgroundColor: '{colors.light-bg}'
+    textColor: '{colors.light-text}'
+    rounded: '{rounded.admonition}'
+    padding: '16px'
+    size: '4px left border; 20px icon'
   dark-page-shell:
-    backgroundColor: "{colors.dark-bg}"
-    textColor: "{colors.dark-text}"
-    typography: "{typography.page}"
-    padding: "64px 32px 0"
-    width: "768px max"
+    backgroundColor: '{colors.dark-bg}'
+    textColor: '{colors.dark-text}'
+    typography: '{typography.page}'
+    padding: '64px 32px 0'
+    width: '768px max'
   dark-title:
-    typography: "{typography.title}"
-    textColor: "{colors.dark-heading}"
+    typography: '{typography.title}'
+    textColor: '{colors.dark-heading}'
   dark-link:
-    textColor: "{colors.dark-text}"
-    backgroundColor: "linear underline using {colors.dark-text}; hover uses {colors.dark-link}"
-    height: "6px underline image"
+    textColor: '{colors.dark-text}'
+    backgroundColor: 'linear underline using {colors.dark-text}; hover uses {colors.dark-link}'
+    height: '6px underline image'
   dark-accent:
-    textColor: "{colors.dark-accent}"
-    backgroundColor: "{colors.dark-bg}"
-    size: "theme-only token reference"
+    textColor: '{colors.dark-accent}'
+    backgroundColor: '{colors.dark-bg}'
+    size: 'theme-only token reference'
 ---
 
 # Design Contract

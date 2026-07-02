@@ -1,9 +1,9 @@
 ---
-title: "Brilliant Cogs: The Hidden Cost of Monopolies in Genomics"
-description: "A personal reflection on how talented engineers become brilliant cogs in big tech machines, through the lens of genomics and Star Wars"
+title: 'Brilliant Cogs: The Hidden Cost of Monopolies in Genomics'
+description: 'A personal reflection on how talented engineers become brilliant cogs in big tech machines, through the lens of genomics and Star Wars'
 author: Edmund Miller
 publishDate: 2024-01-16
-tags: ["genomics", "bioinformatics", "tech-industry"]
+tags: ['genomics', 'bioinformatics', 'tech-industry']
 draft: true
 ---
 
@@ -24,4 +24,3 @@ I think a lot of really amazing people get caught up in these huge companies and
 Maybe it's just the biologist in me, but I see business and the products and services they provide as organisms evolving to fill an ecological niche.
 
 So ultimately, when a product sucks, I think it's a reflection of both environment and business goals. Not a reflection on the people(cells) individual skills and ability. A lot of times the business(see "organism") gains a competitive advantage from vertical integration. Their product doesn't have to be good, they just have to make it hard enough for people to get out of their product that they won't bother and will just let the trash compactor get them.(Thought we were done with the Star Wars references, did you?)
-

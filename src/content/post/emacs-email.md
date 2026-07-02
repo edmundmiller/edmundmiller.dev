@@ -1,9 +1,9 @@
 ---
 author: Edmund Miller
-publishDate: "2019-01-20T22:49Z"
+publishDate: '2019-01-20T22:49Z'
 title: Emacs Email Config
 description: Setting up Email in Emacs with mbsync, and Notmuch.
-tags: ["Emacs"]
+tags: ['Emacs']
 draft: false
 ---
 

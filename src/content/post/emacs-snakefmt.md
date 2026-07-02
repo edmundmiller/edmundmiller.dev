@@ -2,9 +2,9 @@
 title: Formatting Snakemake using snakefmt in Emacs using Apheleia
 description: Learn how to set up snakefmt, the code formatter for Snakemake, in Doom Emacs using the Apheleia package. This post covers installing snakefmt with Nix, configuring it in Doom Emacs, and provides an overview of how Apheleia aims to simplify formatting code across languages in Emacs.
 draft: false
-publishDate: "2024-07-02"
-tags: ["emacs", "snakemake"]
-series: "Snakeflow"
+publishDate: '2024-07-02'
+tags: ['emacs', 'snakemake']
+series: 'Snakeflow'
 ---
 
 Dooms Emacs recently switched to using [Apheleia](https://github.com/radian-software/apheleia) as it's default formatter, thanks to a huge effort from [Ellis Kenyő](https://elken.dev) to refactor the [format module](https://docs.doomemacs.org/latest/?#/modules/editor/format).
@@ -75,8 +75,8 @@ Apheleia aims to remove specific Emacs packages for formatters. It's goal is to 
 
 > running a code formatter on save suffers from the following two problems:
 
->    1. It takes some time (e.g. around 200ms for Black on an empty file), which makes the editor feel less responsive.
->    2. It invariably moves your cursor (point) somewhere unexpected if the changes made by the code formatter are too close to point's position.
+> 1.  It takes some time (e.g. around 200ms for Black on an empty file), which makes the editor feel less responsive.
+> 2.  It invariably moves your cursor (point) somewhere unexpected if the changes made by the code formatter are too close to point's position.
 
 > Apheleia is an Emacs package which solves both of these problems comprehensively for all languages, allowing you to say goodbye to language-specific packages such as Blacken and prettier-js.
 
@@ -89,12 +89,13 @@ It's really simple to configure formatters in [Doom Emacs](https://github.com/do
 ```
 
 The `set-formatter!` macro takes:
+
 1. The name you want to give the formatter
-`snakefmt`
+   `snakefmt`
 2. The command you want ran (`--quiet` is used here often)
-`snakefmt -`
+   `snakefmt -`
 3. The modes you want associated with the formatter
-`snakemake-mode`
+   `snakemake-mode`
 
 Another example for [Alejandra](https://github.com/kamadorueda/alejandra) for Nix.
 

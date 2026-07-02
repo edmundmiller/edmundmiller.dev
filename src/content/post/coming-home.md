@@ -1,8 +1,8 @@
 ---
 title: Coming Home
 description: Why I'm giving up on my k8s-at-home dreams and running everything on NixOS
-publishDate: "Dec 15 2023"
-tags: ["k8s", "NixOS", "homelab"]
+publishDate: 'Dec 15 2023'
+tags: ['k8s', 'NixOS', 'homelab']
 draft: true
 ---
 

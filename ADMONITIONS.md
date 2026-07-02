@@ -8,13 +8,13 @@ To use admonitions in your MDX posts, import the component and use it like this:
 
 ```mdx
 ---
-title: "My Post"
+title: 'My Post'
 ---
 
-import Admonition from "../../components/admonition.astro";
+import Admonition from '../../components/admonition.astro';
 
 <Admonition type="tip" title="Pro Tip">
-This is a helpful tip for readers!
+  This is a helpful tip for readers!
 </Admonition>
 ```
 
@@ -36,6 +36,7 @@ The following admonition types are available:
 The `Admonition` component accepts the following props:
 
 ### `type` (required)
+
 - **Type:** `string`
 - **Options:** `'note' | 'tip' | 'info' | 'warning' | 'danger' | 'success' | 'example' | 'quote'`
 - **Default:** `'note'`
@@ -43,24 +44,28 @@ The `Admonition` component accepts the following props:
 The type of admonition, which determines the color scheme and default icon.
 
 ### `title` (optional)
+
 - **Type:** `string`
 - **Default:** Auto-generated based on type (e.g., "Note", "Tip", etc.)
 
 Custom title for the admonition.
 
 ### `icon` (optional)
+
 - **Type:** `string`
 - **Default:** Auto-generated based on type
 
 Custom icon name (MDI icon). Overrides the default icon for the type.
 
 ### `collapsible` (optional)
+
 - **Type:** `boolean`
 - **Default:** `false`
 
 Makes the admonition collapsible with a toggle button.
 
 ### `collapsed` (optional)
+
 - **Type:** `boolean`
 - **Default:** `false`
 
@@ -71,24 +76,20 @@ Whether the admonition should start collapsed (only works if `collapsible` is tr
 ### Basic Usage
 
 ```mdx
-<Admonition type="note">
-This is a simple note with default styling.
-</Admonition>
+<Admonition type="note">This is a simple note with default styling.</Admonition>
 
-<Admonition type="warning">
-This is a warning message.
-</Admonition>
+<Admonition type="warning">This is a warning message.</Admonition>
 ```
 
 ### Custom Titles
 
 ```mdx
 <Admonition type="tip" title="Performance Tip">
-Use lazy loading for images to improve page speed.
+  Use lazy loading for images to improve page speed.
 </Admonition>
 
 <Admonition type="danger" title="Breaking Change">
-This feature will be removed in v2.0.
+  This feature will be removed in v2.0.
 </Admonition>
 ```
 
@@ -99,13 +100,14 @@ This feature will be removed in v2.0.
 This content can be hidden or shown by clicking the title.
 
 You can include:
+
 - Lists
 - Code blocks
 - Any other markdown content
-</Admonition>
+  </Admonition>
 
 <Admonition type="example" title="Advanced Example" collapsible collapsed>
-This starts collapsed and contains advanced information.
+  This starts collapsed and contains advanced information.
 </Admonition>
 ```
 
@@ -113,7 +115,7 @@ This starts collapsed and contains advanced information.
 
 ```mdx
 <Admonition type="tip" icon="mdi:rocket" title="Speed Boost">
-Custom icons can make your admonitions more engaging.
+  Custom icons can make your admonitions more engaging.
 </Admonition>
 ```
 
@@ -152,14 +154,16 @@ Content here
 -->
 
 <!-- New -->
+
 <Admonition type="tip" title="My Tip">
-Content here
+  Content here
 </Admonition>
 ```
 
 ## Technical Details
 
 The admonitions are implemented as an Astro component that:
+
 - Uses Tailwind CSS for styling
 - Includes Material Design Icons (MDI) for icons
 - Supports both light and dark themes

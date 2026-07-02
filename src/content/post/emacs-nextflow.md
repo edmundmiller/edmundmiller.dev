@@ -3,7 +3,7 @@ title: Nextflow Emacs Workflow
 description: How I hack on Nextflow scripts using Emacs
 draft: false
 publishDate: 2024-06-14
-tags: ["emacs", "nextflow"]
+tags: ['emacs', 'nextflow']
 ---
 
 I was chatting with [David](https://dcgemperline.github.io/) at the recent Nextflow Summit in Boston about Emacs and comparing our various workflows. I thought I might turn this into a blog post after a question about [Emacs workflows on the Seqera discourse](https://community.seqera.io/t/what-is-your-nextflow-emacs-setup).

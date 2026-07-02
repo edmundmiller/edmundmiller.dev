@@ -1,9 +1,9 @@
 ---
 author: Edmund Miller
-publishDate: "2019-01-13T22:42Z"
+publishDate: '2019-01-13T22:42Z'
 title: CTRL to Caps Lock
 description: How to change your Capslock key to Ctrl. With a bonus ESC on tap.
-tags: ["linux"]
+tags: ['linux']
 ---
 
 I grew up in a household where `CTRL` has been mapped to

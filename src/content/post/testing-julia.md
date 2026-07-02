@@ -1,8 +1,8 @@
 ---
-publishDate: "2022-06-16T22:47Z"
+publishDate: '2022-06-16T22:47Z'
 title: Basic Testing Workflow in Julia
 description: A quick tour of Julia's testing framework and comparing it to Rust's ecosystem
-tags: ["Julia", "bioinformatics"]
+tags: ['Julia', 'bioinformatics']
 draft: true
 ---
 

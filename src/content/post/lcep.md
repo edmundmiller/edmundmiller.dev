@@ -3,7 +3,7 @@ title: Converting lcep to Julia
 description: Exploring the State of Machine Learning for Biological Data
 publishDate: 2024-06-01
 draft: true
-tags: ["Julia", "Genomics", "machine-learning"]
+tags: ['Julia', 'Genomics', 'machine-learning']
 ---
 
 This post is part of a follow-up blog series on a talk I gave a Juliacon
@@ -77,7 +77,7 @@ file](https://github.com/mlf-core/lcep/blob/d463c9984c5669659b2cb77ba7cac0ed0e27
 entry_points:
   main:
     parameters:
-      training-data: { type: string, default: "train.tsv" }
+      training-data: { type: string, default: 'train.tsv' }
 ```
 
 ### Julia

@@ -2,9 +2,9 @@
 author: Edmund Miller
 title: Nextflow Rclone
 description: Been dying to try out the rclone stageoutmode
-publishDate: "Sep 29 2023"
+publishDate: 'Sep 29 2023'
 draft: true
-tags: ["Nextflow"]
+tags: ['Nextflow']
 ---
 
 Okay, so like most people, I\'ve just been dying to try out the [nextlow

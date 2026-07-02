@@ -1,9 +1,9 @@
 ---
-title: "Simplify Your Bioinformatics Workflow with Pixi: A Fresh Take on Conda"
-description: "How to adopt pixi on an HPC cluster near you. Simplify your bioinformatics workflow today, with Pixi!"
+title: 'Simplify Your Bioinformatics Workflow with Pixi: A Fresh Take on Conda'
+description: 'How to adopt pixi on an HPC cluster near you. Simplify your bioinformatics workflow today, with Pixi!'
 draft: false
 publishDate: 2024-08-21
-tags: ["bioinformatics", "python"]
+tags: ['bioinformatics', 'python']
 ---
 
 Recently, Anaconda has decided to start charging users for access to the default channel. This change in policy has significant implications for the data science and machine learning community, as Anaconda is a widely used platform for managing Python and R packages.[^1][^2][^3] Prefix.dev has a [nice article summarizing the whole thing](https://prefix.dev/blog/towards_a_vendor_lock_in_free_conda_experience).

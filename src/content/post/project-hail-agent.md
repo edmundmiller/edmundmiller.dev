@@ -1,9 +1,9 @@
 ---
-title: "Project Hail Agent"
-description: "Project Hail Mary as a lens for science, engineering, AI agents, and what humans still do when execution gets cheap."
+title: 'Project Hail Agent'
+description: 'Project Hail Mary as a lens for science, engineering, AI agents, and what humans still do when execution gets cheap.'
 author: Edmund Miller
 publishDate: 2026-06-21
-tags: ["ai", "engineering", "science", "writing"]
+tags: ['ai', 'engineering', 'science', 'writing']
 draft: true
 ---
 
@@ -11,7 +11,7 @@ I have spent a lot of my life trying to figure out whether I am an engineer or a
 
 My job title currently says engineer. I have a PhD. I was raised by a software engineer, then spent the next decade training under scientists. That is not a clean identity graph. It is more like a merge conflict that has been open for years.
 
-That is why *Project Hail Mary* hit harder than I expected.
+That is why _Project Hail Mary_ hit harder than I expected.
 
 On the surface, it is a fun hard-science survival story. Underneath, it is one of the better pop-culture illustrations I have seen of the difference between engineering intelligence and scientific intelligence. Not because one is better. Because they are different kinds of power.
 
@@ -19,7 +19,7 @@ And that difference matters more now that we are building non-human engineers.
 
 ## Spoiler Warning
 
-Spoilers for *Project Hail Mary* below.
+Spoilers for _Project Hail Mary_ below.
 
 ## Rocky Is An Engineer
 
@@ -127,7 +127,7 @@ They may make it more important.
 
 ## Project Hail Agent
 
-Maybe the title is *Project Hail Agent*. Maybe it should be *Project Hail Claude*. The pun matters less than the discomfort underneath it.
+Maybe the title is _Project Hail Agent_. Maybe it should be _Project Hail Claude_. The pun matters less than the discomfort underneath it.
 
 Rocky is what we are trying to build: tireless, practical, fluent in the material of his world, able to turn constraints into artifacts.
 

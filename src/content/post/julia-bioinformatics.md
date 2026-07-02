@@ -1,9 +1,9 @@
 ---
 author: Edmund Miller
-publishDate: "2022-03-31T12:02Z"
+publishDate: '2022-03-31T12:02Z'
 title: "Why I'm hyped about Julia for Bioinformatics"
 description: Julia might just change the game for bioinformatics.
-tags: ["Julia", "Bioinformatics"]
+tags: ['Julia', 'Bioinformatics']
 ---
 
 Julia might just change the game for bioinformatics. Bioinformatics is

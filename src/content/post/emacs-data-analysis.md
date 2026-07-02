@@ -1,10 +1,10 @@
 ---
 title: Harnessing the Power of Emacs for Data Analysis on NixOS
 description: >
-    In this blog post, we explore the powerful combination of using Emacs, the highly extensible text editor, for data analysis tasks while using the NixOS operating system.
+  In this blog post, we explore the powerful combination of using Emacs, the highly extensible text editor, for data analysis tasks while using the NixOS operating system.
 draft: true
-publishDate: "04 Jan 2024"
-tags: ["emacs", "python", "Nix"]
+publishDate: '04 Jan 2024'
+tags: ['emacs', 'python', 'Nix']
 ---
 
 I'm writing this post to try to figure out what pain points I'm having with using Org-mode or Jupyter in Emacs.

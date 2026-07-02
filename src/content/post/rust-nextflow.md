@@ -2,7 +2,7 @@
 title: Rust Nextflow
 description: What Is This, a Crossover Episode?
 draft: true
-publishDate: "Nov 6 2023"
+publishDate: 'Nov 6 2023'
 ---
 
 Let\'s see, so I love a good crossover episode. As we could tell, I all

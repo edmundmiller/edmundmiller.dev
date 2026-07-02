@@ -1,9 +1,9 @@
 ---
-title: "altair-upset: The Evolution of UpSet plots in Altair"
+title: 'altair-upset: The Evolution of UpSet plots in Altair'
 description: How I turned a Jupyter notebook into a full-fledged Python package for UpSet plots
 draft: false
 publishDate: 2025-01-20
-tags: ["python", "data-visualization", "bioinformatics", "altair"]
+tags: ['python', 'data-visualization', 'bioinformatics', 'altair']
 ---
 
 [Altair](https://altair-viz.github.io) is the only plotting library that I've felt like loved me back. Maybe ggplot2 would love me back as well, but it's locked away in the tower of R.

@@ -1,8 +1,8 @@
 ---
-title: "DVC Import URL: Solving the Anonymous Access Puzzle"
-description: "Working with large datasets in bioinformatics often means juggling data provenance and accessibility. Learn how to solve the anonymous access challenge when importing external data with DVC."
+title: 'DVC Import URL: Solving the Anonymous Access Puzzle'
+description: 'Working with large datasets in bioinformatics often means juggling data provenance and accessibility. Learn how to solve the anonymous access challenge when importing external data with DVC.'
 publishDate: 2024-12-21
-tags: ["bioinformatics", "dvc", "data-science"]
+tags: ['bioinformatics', 'dvc', 'data-science']
 draft: true
 ---
 
@@ -17,9 +17,9 @@ DVC's import URL feature is genuinely excellent for data traceability. When you 
 ```yaml
 # dataset.dvc
 deps:
-- path: https://example.com/path/to/megatest/data
-  repo:
-    url: https://github.com/nf-core/test-datasets
+  - path: https://example.com/path/to/megatest/data
+    repo:
+      url: https://github.com/nf-core/test-datasets
 ```
 
 This automatic documentation is invaluable when you need to track data lineage months later.
@@ -40,6 +40,7 @@ dvc import-url https://your-data-source.com/data \
 This flag enables anonymous access to remote storage systems that support it, bypassing authentication requirements for public data. Without it, DVC assumes you need credentials—even for publicly available datasets.
 
 ### Quick Tips:
+
 - Always try `--fs-config allow_anonymous_login=true` first for public data
 - This works with various storage backends (S3, GCS, Azure)[^2]
 - Document this in your project README to save your teammates time
@@ -47,4 +48,5 @@ This flag enables anonymous access to remote storage systems that support it, by
 Sometimes the most useful blog posts are the ones that save someone else those 40 minutes of searching. Happy data versioning!
 
 [^1]: NF-core provides curated bioinformatics pipelines and test datasets
+
 [^2]: Check your specific storage backend's documentation for anonymous access support

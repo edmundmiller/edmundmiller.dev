@@ -16,7 +16,7 @@
     "check": "astro check",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
-    "lint:prose": "pnpm dlx vale -- src/"
+    "lint:prose": "corepack pnpm dlx @vvago/vale -- src/"
   },
   "dependencies": {
     "@astro-community/astro-embed-youtube": "0.5.10",

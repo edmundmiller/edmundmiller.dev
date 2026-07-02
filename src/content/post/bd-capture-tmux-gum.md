@@ -1,9 +1,9 @@
 ---
-title: "Quick Issue Capture with Tmux and Gum"
-description: "Building a frictionless workflow for capturing issues without leaving your terminal"
+title: 'Quick Issue Capture with Tmux and Gum'
+description: 'Building a frictionless workflow for capturing issues without leaving your terminal'
 draft: true
 publishDate: 2026-01-13
-tags: ["tools", "workflow", "tmux"]
+tags: ['tools', 'workflow', 'tmux']
 ---
 
 You know that feeling when you're deep in flow, finally making progress on something, and then you realize you need to track an issue? Suddenly you're alt-tabbing to a browser, finding the right repo, clicking through forms, and by the time you're done... what was I working on again?
