@@ -126,3 +126,25 @@ Of course there's already a package for [TailwindCSS using LSP](https://github.c
 ## Conclusion
 
 You can find [all of the code in my Doom Emacs config](https://github.com/edmundmiller/.doom.d/tree/main/modules/lang/astro). It's got everything, Tree-sitter, LSP, Prettier, and Tailwind CSS IntelliSense.
+
+## Related next steps
+
+If the Emacs and Astro crossover is what brought you here, these are good follow-ups:
+
+<ul>
+  <li>
+    <a href="/posts/emacs-nextflow/" data-goatcounter-event="emacs-astro-next-emacs-nextflow">
+      Read about my Emacs setup for Nextflow
+    </a>
+  </li>
+  <li>
+    <a href="/posts/openring-astro/" data-goatcounter-event="emacs-astro-next-openring">
+      See another Astro site-building note
+    </a>
+  </li>
+  <li>
+    <a href="/stack/" data-goatcounter-event="emacs-astro-next-stack">
+      Browse the rest of my software stack
+    </a>
+  </li>
+</ul>

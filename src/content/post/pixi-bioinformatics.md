@@ -110,6 +110,28 @@ This will create a new project with the dependencies from the `environment.yml` 
 
 <!-- TODO # Conclusion -->
 
+## Related next steps
+
+If you're thinking about Pixi because you want more reproducible bioinformatics workflows, you may also want to:
+
+<ul>
+  <li>
+    <a href="/posts/emacs-nextflow/" data-goatcounter-event="pixi-next-emacs-nextflow">
+      Set up a stronger Nextflow editing workflow
+    </a>
+  </li>
+  <li>
+    <a href="/speaking/" data-goatcounter-event="pixi-next-speaking">
+      Watch talks about Nextflow, nf-core, and reproducible data processing
+    </a>
+  </li>
+  <li>
+    <a href="/about/" data-goatcounter-event="pixi-next-about">
+      Learn more about the research context behind these workflow notes
+    </a>
+  </li>
+</ul>
+
 [^1]: https://x.com/NM_Reid/status/1825997577151525338
 
 [^2]: https://www.theregister.com/2024/08/08/anaconda_puts_the_squeeze_on/

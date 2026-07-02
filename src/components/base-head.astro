@@ -94,3 +94,95 @@ const _socialImageURL = new URL(
 {/* Analytics */}
 <script is:inline data-goatcounter="https://emiller.goatcounter.com/count" async src="//gc.zgo.at/count.js"
 ></script>
+<script is:inline>
+  (() => {
+    const clean = (value) =>
+      value
+        ?.toString()
+        .trim()
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "")
+        .slice(0, 80) || "unknown";
+
+    const titleFor = (element, fallback) =>
+      element?.getAttribute("aria-label") ||
+      element?.textContent?.trim().replace(/\s+/g, " ").slice(0, 120) ||
+      fallback;
+
+    const track = (path, title) => {
+      if (!window.goatcounter?.count) {
+        return;
+      }
+
+      window.goatcounter.count({
+        event: true,
+        path,
+        title,
+      });
+    };
+
+    document.addEventListener("click", (event) => {
+      const target = event.target instanceof Element ? event.target : null;
+
+      if (!target) {
+        return;
+      }
+
+      const searchResult = target.closest("#cactus__search .pagefind-ui__result-link");
+      if (searchResult) {
+        track("event:site-search:result-click", "Site search result click");
+        return;
+      }
+
+      const explicitEvent = target.closest("[data-goatcounter-event]");
+      if (explicitEvent) {
+        const eventName = explicitEvent.getAttribute("data-goatcounter-event");
+        track(`event:cta:${clean(eventName)}`, titleFor(explicitEvent, "CTA click"));
+        return;
+      }
+
+      const link = target.closest("a[href]");
+      if (!(link instanceof HTMLAnchorElement)) {
+        return;
+      }
+
+      const url = new URL(link.href, window.location.href);
+      const isWebLink = url.protocol === "http:" || url.protocol === "https:";
+      const isOutbound = isWebLink && url.origin !== window.location.origin;
+      const isEmail = url.protocol === "mailto:";
+
+      if (isOutbound || isEmail) {
+        const destination = isEmail ? "mailto" : url.hostname;
+        track(`event:outbound:${clean(destination)}`, titleFor(link, link.href));
+      }
+    });
+
+    document.addEventListener(
+      "submit",
+      (event) => {
+        const form = event.target;
+        if (!(form instanceof HTMLFormElement)) {
+          return;
+        }
+
+        const explicitEvent =
+          form.getAttribute("data-goatcounter-event") ||
+          form.getAttribute("data-goatcounter-form");
+
+        if (explicitEvent) {
+          track(`event:form:${clean(explicitEvent)}`, titleFor(form, "Form submission"));
+          return;
+        }
+
+        if (form.closest("#cactus__search") || form.classList.contains("pagefind-ui__form")) {
+          track("event:site-search:submit", "Site search submit");
+          return;
+        }
+
+        track("event:form:submit", titleFor(form, "Form submission"));
+      },
+      true
+    );
+  })();
+</script>

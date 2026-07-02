@@ -59,6 +59,7 @@ const _socialLinks: {
         <li class="flex">
           <a
             class="inline-flex rounded-md p-1 text-textColor transition-colors duration-200 hover:text-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
+            data-goatcounter-event={`social-${friendlyName.toLowerCase()}`}
             href={link}
             rel={`noopener noreferrer ${isWebmention ? "me authn" : ""}`}
             target="_blank"
