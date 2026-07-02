@@ -48,7 +48,7 @@
     "@resvg/resvg-js": "2.6.2",
     "@tailwindcss/aspect-ratio": "0.4.2",
     "@tailwindcss/typography": "0.5.20",
-    "autoprefixer": "10.4.27",
+    "autoprefixer": "10.5.2",
     "mdast-util-to-string": "4.0.0",
     "oxfmt": "^0.57.0",
     "oxlint": "^1.72.0",
