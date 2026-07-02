@@ -44,7 +44,7 @@
     "@astrojs/check": "0.9.9",
     "@flydotio/dockerfile": "0.7.10",
     "@iconify-json/mdi": "1.2.3",
-    "@pagefind/default-ui": "1.4.0",
+    "@pagefind/default-ui": "1.5.2",
     "@resvg/resvg-js": "2.6.2",
     "@tailwindcss/aspect-ratio": "0.4.2",
     "@tailwindcss/typography": "0.5.20",
