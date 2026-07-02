@@ -27,9 +27,7 @@ const userCache = new Map<string, GitHubUser>();
  * @param username GitHub username
  * @returns Promise<GitHubUser | null>
  */
-export async function fetchGitHubUser(
-  username: string
-): Promise<GitHubUser | null> {
+export async function fetchGitHubUser(username: string): Promise<GitHubUser | null> {
   // Check cache first
   if (userCache.has(username)) {
     const cachedUser = userCache.get(username);
@@ -97,9 +95,7 @@ export function createAuthorInfo(username: string): AuthorInfo {
  * @param username GitHub username
  * @returns Promise<AuthorInfo> with GitHub data if available
  */
-export async function getEnhancedAuthorInfo(
-  username: string
-): Promise<AuthorInfo> {
+export async function getEnhancedAuthorInfo(username: string): Promise<AuthorInfo> {
   const baseInfo = createAuthorInfo(username);
 
   const githubUser = await fetchGitHubUser(username);
@@ -125,9 +121,7 @@ export async function getEnhancedAuthorInfo(
  * @param authors Array of GitHub usernames or single username
  * @returns AuthorInfo[]
  */
-export function processAuthors(
-  authors: string | string[] | undefined
-): Promise<AuthorInfo[]> {
+export function processAuthors(authors: string | string[] | undefined): Promise<AuthorInfo[]> {
   if (!authors) {
     return Promise.resolve([]);
   }
@@ -136,7 +130,5 @@ export function processAuthors(
 
   // For static sites, we'll use the simpler createAuthorInfo without API calls
   // but keep this function for potential future enhancement
-  return Promise.resolve(
-    authorList.map((username) => createAuthorInfo(username))
-  );
+  return Promise.resolve(authorList.map((username) => createAuthorInfo(username)));
 }

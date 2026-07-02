@@ -43,12 +43,7 @@ export default {
           'Courier New',
           'monospace',
         ],
-        'pixel-grid': [
-          'Geist Pixel Grid',
-          'Geist Pixel Square',
-          'ui-monospace',
-          'monospace',
-        ],
+        'pixel-grid': ['Geist Pixel Grid', 'Geist Pixel Square', 'ui-monospace', 'monospace'],
         sans: [...fontFamily.sans],
         serif: [...fontFamily.serif],
       },

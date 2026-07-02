@@ -3,7 +3,7 @@
 /// <reference types="astro/client" />
 
 declare module '@pagefind/default-ui' {
-  declare class PagefindUI {
+  class PagefindUI {
     constructor(arg: unknown);
   }
 }

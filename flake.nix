@@ -52,7 +52,7 @@
           projectRootFile = ".git/config";
           programs.alejandra.enable = true;
           programs.deadnix.enable = true;
-          programs.prettier.enable = true;
+          programs.oxfmt.enable = true;
         };
       };
       flake = {

@@ -19,8 +19,7 @@ export const contentData: ContentItem[] = [
     location: 'Virtual',
     href: 'https://seqera.io/events/from-pipelines-to-interactive-analysis-closing-the-loop-with-seqera-studios/',
     videoHref: 'https://www.youtube.com/watch?v=s3Zj3zAWqm8',
-    title:
-      'From Pipelines to Interactive Analysis: Closing the loop with Seqera Studios',
+    title: 'From Pipelines to Interactive Analysis: Closing the loop with Seqera Studios',
     medium: 'webinar',
     desc: 'Explore how Studios streamlines the entire data lifecycle, enabling seamless transition from pipelines to secure interactive analysis environments.',
     tags: ['Seqera', 'Studios', 'Nextflow', 'Interactive Analysis'],
@@ -31,8 +30,7 @@ export const contentData: ContentItem[] = [
     location: 'San Diego',
     href: 'https://seqera.io/events/slas-2025-international-conference-and-exhibition/',
     videoHref: 'https://www.youtube.com/watch?v=tnF15h0PG1E',
-    title:
-      'Event-driven bioinformatics data processing with Nextflow on the Seqera Platform',
+    title: 'Event-driven bioinformatics data processing with Nextflow on the Seqera Platform',
     medium: 'conference',
     desc: 'Modern biological applications such as sequencing or cell imaging generate vast amounts of data, necessitating scalable, reproducible, and easily deployable data processing. An introduction to Nextflow and Seqera Platform showcasing how they can help automate complex data processing pipelines.',
     tags: ['SLAS', 'Laboratory Automation', 'Nextflow', 'Seqera'],
@@ -54,8 +52,7 @@ export const contentData: ContentItem[] = [
     location: 'Barcelona',
     href: 'https://summit.nextflow.io/2022/program/oct-14-workflow-automation-using-the-aviti-benchtop-sequencing-system-and-nextflow-tower/',
     videoHref: 'https://www.youtube.com/watch?v=wUO4jlHZqdE',
-    title:
-      'Workflow automation: Using the Aviti benchtop sequencing system and Nextflow Tower',
+    title: 'Workflow automation: Using the Aviti benchtop sequencing system and Nextflow Tower',
     medium: 'conference',
     desc: 'The Element AVITI System streams sequencing data to AWS, GCP, or local servers during runs, with FASTQ generation via bases2fastq. Partnering with Seqera Labs, we combined Tower event-driven automation with AVITI to simplify cloud setup, enable monitoring, and automate secondary analysis.',
     tags: ['Nextflow', 'Element Biosciences', 'AVITI'],
@@ -77,8 +74,7 @@ export const contentData: ContentItem[] = [
     location: 'Boston',
     href: 'https://summit.nextflow.io/2023/boston/agenda/summit/nov-29-database-uses/',
     videoHref: 'https://www.youtube.com/watch?v=GknH1u3NtGI',
-    title:
-      'Nextflow and database uses: powering data engineering, exploring DuckDB, and beyond',
+    title: 'Nextflow and database uses: powering data engineering, exploring DuckDB, and beyond',
     medium: 'conference',
     desc: 'A deep dive into Nextflow and database technologies. Exploring the evolving landscape of data engineering, the paradigm-shifting potential of DuckDB and Apache Arrow through biobear, and bridging the gap between file-based and database approaches for big data processing.',
     tags: ['Nextflow'],
@@ -147,8 +143,7 @@ export const contentData: ContentItem[] = [
     location: 'Online',
     medium: 'online',
     tags: ['nf-core'],
-    transcript:
-      'https://docs.google.com/document/d/1hsXII7VlMMfetui-J91eC1dc2XycIGR9QXbAtd_gwkg',
+    transcript: 'https://docs.google.com/document/d/1hsXII7VlMMfetui-J91eC1dc2XycIGR9QXbAtd_gwkg',
   },
   // TODO Find that one that I did with Evan in August 2021
   // Other

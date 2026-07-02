@@ -45,6 +45,12 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Run format check
+        run: pnpm format:check
+
+      - name: Run lint
+        run: pnpm lint
+
         # use astro check for issues
       - name: Run check
         run: pnpm astro check

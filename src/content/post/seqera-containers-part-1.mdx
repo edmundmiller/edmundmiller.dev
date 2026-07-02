@@ -1,25 +1,25 @@
 ---
-title: "Migration from Biocontainers to Seqera Containers: Part 1"
+title: 'Migration from Biocontainers to Seqera Containers: Part 1'
 description: What Seqera Containers is and why we want to move to it.
 publishDate: 2024-09-17T09:20:00+01:00
-canonical: "https://nf-co.re/blog/2024/seqera-containers-part-1"
+canonical: 'https://nf-co.re/blog/2024/seqera-containers-part-1'
 headerImage: https://images.unsplash.com/photo-1517061391662-b09454c10462
 headerImageAlt: Photo by Barth Bailey on Unsplash
 author:
-  - "ewels"
-  - "edmundmiller"
+  - 'ewels'
+  - 'edmundmiller'
 tags:
-  - "modules"
-  - "wave"
-  - "seqera containers"
+  - 'modules'
+  - 'wave'
+  - 'seqera containers'
 embedHeaderImage: false
 draft: false
 ---
 
-import { YouTube } from "@astro-community/astro-embed-youtube";
+import { YouTube } from '@astro-community/astro-embed-youtube';
 
-import { Image } from "astro:assets";
-import Admonition from "../../components/admonition.astro";
+import { Image } from 'astro:assets';
+import Admonition from '../../components/admonition.astro';
 
 ## Introduction
 
@@ -38,11 +38,7 @@ We're hugely grateful to all contributors for their work, as well as to Anaconda
 
 ## Change is on the breeze
 
-{/* <Image
-  class="d-block w-25 float-end mb-3 ms-3 rounded shadow"
-  src={butwhy}
-  alt="Photo by Simone Secci on Unsplash."
-/> */}
+{/* <Image class="d-block w-25 float-end mb-3 ms-3 rounded shadow" src={butwhy} alt="Photo by Simone Secci on Unsplash." /> */}
 
 Bioconda and BioContainers have worked very well for nf-core.
 However, we are now looking to migrate to a new system: Seqera Containers.
@@ -71,6 +67,9 @@ Here are the key points:
 - Conda lock-files will be used for Conda users and CI tests
 - Software releases will be automatically bumped in modules, using [Renovate](https://renovatebot.com/)
 - There should be almost no change in how end-users run nf-core pipelines
+
+{''}
+
 </Admonition>
 
 <Admonition type="info" title="Timeline" collapsible>
@@ -109,11 +108,7 @@ The [BioContainers project](https://biocontainers.pro/) conveniently builds Dock
 This means that the nf-core module developer can find the matching [BioContainer](https://biocontainers.pro/) images for their Bioconda package, and then add the image URLs into the module's `main.nf` script (see [FastQC example](https://github.com/nf-core/modules/blob/f768b283dbd8fc79d0d92b0f68665d7bed94cabc/modules/nf-core/fastqc/main.nf#L6-L8)).
 The nf-core pipeline user then pulls the container images from quay.io or the Galaxy FTP server when they run the pipeline.
 
-{/* <YouTube
-  id="https://www.youtube.com/watch?v=SE6ZCvh1ThQ"
-  poster="http://i3.ytimg.com/vi/SE6ZCvh1ThQ/hqdefault.jpg"
-  class="d-block w-50 float-end mb-3 ms-3 rounded shadow"
-/> */}
+{/* <YouTube id="https://www.youtube.com/watch?v=SE6ZCvh1ThQ" poster="http://i3.ytimg.com/vi/SE6ZCvh1ThQ/hqdefault.jpg" class="d-block w-50 float-end mb-3 ms-3 rounded shadow" /> */}
 
 [Seqera Containers](https://seqera.io/containers/) was launched in spring 2024
 (see [Nextflow Summit talk](https://summit.nextflow.io/2024/boston/agenda/05-23--whats-new-in-the-nextflow/),
@@ -261,11 +256,7 @@ Here's a brief comparison of the features:
 
 <div class="clearfix">
 
-{/* <Image
-  class="d-block w-25 clearfix float-end mb-3 ms-3 rounded shadow"
-  src={mulled}
-  alt="Photo by Hannah Pemberton on Unsplash."
-/> */}
+{/* <Image class="d-block w-25 clearfix float-end mb-3 ms-3 rounded shadow" src={mulled} alt="Photo by Hannah Pemberton on Unsplash." /> */}
 
 BioContainers is primarily set up to have a 1:1 relationship with Bioconda.
 This is great for bioinformatics tools as an image is created every time a package is published.
@@ -295,6 +286,7 @@ the process of finding the name of your container and how to update a container 
 
 Once the image is built and you know its address, the final step is to go to nf-core/modules,
 create a pull-request with the updated containers, and bump the versions in the conda `environment.yml`.
+
 </Admonition>
 
 This system works and, despite its complexity, is now a familiar process to many nf-core developers.
@@ -344,11 +336,7 @@ All Seqera Container images (Docker and Singularity) are hosted on custom infras
 
 ## Key features
 
-{/* <Image
-  class="d-block w-25 float-end mb-3 ms-3 rounded shadow"
-  src={disks}
-  alt="Photo by Behnam Norouzi on Unsplash."
-/> */}
+{/* <Image class="d-block w-25 float-end mb-3 ms-3 rounded shadow" src={disks} alt="Photo by Behnam Norouzi on Unsplash." /> */}
 
 ### Exceptionally reproducible
 
@@ -396,15 +384,12 @@ We can use this to retrieve build details, which we will add to the nf-core webs
 
 We haven't built this yet, but here's what the Wave build details page looks like, which has the same information:
 
-{/* <Image
-  class="d-block float-end mb-3 ms-3 rounded shadow"
-  src={wave_logs}
-  alt="Screenshot of a Wave container build details page."
-/> */}
+{/* <Image class="d-block float-end mb-3 ms-3 rounded shadow" src={wave_logs} alt="Screenshot of a Wave container build details page." /> */}
 
 Wave build details page for the MultiQC v1.24.1 image: `community.wave.seqera.io/library/multiqc:1.24.1--789bc3917c8666da`
 
 The final part is the hash - from this we can infer the Wave Build ID and retrieve the build details: [Wave build details for 789bc3917c8666da_1](https://wave.seqera.io/view/builds/789bc3917c8666da_1)
+
 </Admonition>
 
 The new conda lock files also allow enhanced reproducibility for Conda users and more stable CI tests - we'll come back to these in a future blog post / bytesize.
@@ -459,8 +444,4 @@ In part-two of this blog post we will dive into the details of how we intend to 
 
 We hope that the nf-core community is excited about these proposals, if you have any questions or concerns then please let us know in the nf-core Slack ❤️
 
-{/* <Image
-  class="d-block w-100 float-end mb-3 ms-3 rounded shadow"
-  src={leaves}
-  alt="Photo by Providence Doucet on Unsplash."
-/> */}
+{/* <Image class="d-block w-100 float-end mb-3 ms-3 rounded shadow" src={leaves} alt="Photo by Providence Doucet on Unsplash." /> */}

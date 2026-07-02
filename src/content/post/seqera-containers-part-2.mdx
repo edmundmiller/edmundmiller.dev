@@ -1,24 +1,24 @@
 ---
-title: "Migration from Biocontainers to Seqera Containers: Part 2"
+title: 'Migration from Biocontainers to Seqera Containers: Part 2'
 description: "nf-core containers automation: how it'll all work behind the curtain"
 publishDate: 2024-10-02T09:16:00+01:00
-canonical: "https://nf-co.re/blog/2024/seqera-containers-part-2"
+canonical: 'https://nf-co.re/blog/2024/seqera-containers-part-2'
 headerImage: https://images.unsplash.com/photo-1711109631679-c9e1094d3118
 headerImageAlt: Photo by Rafael Garcin on Unsplash
 author:
-  - "ewels"
-  - "edmundmiller"
+  - 'ewels'
+  - 'edmundmiller'
 tags:
-  - "modules"
-  - "wave"
-  - "seqera containers"
+  - 'modules'
+  - 'wave'
+  - 'seqera containers'
 embedHeaderImage: false
 draft: false
 ---
 
-import { Image } from "astro:assets";
-import { YouTube } from "@astro-community/astro-embed-youtube";
-import Admonition from "../../components/admonition.astro";
+import { Image } from 'astro:assets';
+import { YouTube } from '@astro-community/astro-embed-youtube';
+import Admonition from '../../components/admonition.astro';
 
 # Introduction
 
@@ -148,8 +148,8 @@ encapsulated within shared modules in the [nf-core/modules](https://github.com/n
 As such, we must start with containers at the module level.
 
 <Admonition type="tip">
-For the latest discussion and progress on _bulk-updating_ existing nf-core modules, see GitHub issue
-[nf-core/modules#6698](https://github.com/nf-core/modules/issues/6698).
+  For the latest discussion and progress on _bulk-updating_ existing nf-core modules, see GitHub
+  issue [nf-core/modules#6698](https://github.com/nf-core/modules/issues/6698).
 </Admonition>
 
 ### Changes to `main.nf`
@@ -281,10 +281,10 @@ Here's roughly how the `nextflow.config` file with the `-profile` config include
 <Admonition type="info" title="nextflow.config" collapsible>
 
 <Admonition type="note">
-Boilerplate code (eg. disabling other container engines) has been removed from this
-blog post code snippet for clarity. It will still be included in the pipelines.
-We may move this whole code block into it's own separate config file with `includeConfig`
-so that the main `nextflow.config` file is easier to read.
+  Boilerplate code (eg. disabling other container engines) has been removed from this blog post code
+  snippet for clarity. It will still be included in the pipelines. We may move this whole code block
+  into it's own separate config file with `includeConfig` so that the main `nextflow.config` file is
+  easier to read.
 </Admonition>
 
 ```groovy title="nextflow.config"
@@ -390,8 +390,8 @@ We have linting bots, template updates, slack workflows, pipeline announcements.
 In these sections, we'll cover _how_ we're going to build all of these shiny new things without manual intervention.
 
 <Admonition type="tip">
-For the latest updates on modules container automation, see
-[nf-core/modules#6694](https://github.com/nf-core/modules/issues/6694).
+  For the latest updates on modules container automation, see
+  [nf-core/modules#6694](https://github.com/nf-core/modules/issues/6694).
 </Admonition>
 
 ## Updating conda packages

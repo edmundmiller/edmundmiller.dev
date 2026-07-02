@@ -1,6 +1,6 @@
-import { defineCollection } from "astro:content";
-import { glob } from "astro/loaders";
-import { z } from "astro/zod";
+import { defineCollection } from 'astro:content';
+import { glob } from 'astro/loaders';
+import { z } from 'astro/zod';
 
 function removeDupsAndLowerCase(array: string[]) {
   if (!array.length) {
@@ -13,13 +13,13 @@ function removeDupsAndLowerCase(array: string[]) {
 
 const post = defineCollection({
   loader: glob({
-    pattern: "**/*.{md,mdx}",
-    base: "./src/content/post",
+    pattern: '**/*.{md,mdx}',
+    base: './src/content/post',
     generateId: ({ entry, data }) => {
-      if (typeof data.slug === "string") {
+      if (typeof data.slug === 'string') {
         return data.slug;
       }
-      return entry.replace(/\.(md|mdx)$/, "").replace(/\/index$/, "");
+      return entry.replace(/\.(md|mdx)$/, '').replace(/\/index$/, '');
     },
   }),
   schema: ({ image }) =>

@@ -1,7 +1,6 @@
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 
-const site = 'https://edmundmiller.dev';
 const dist = 'dist';
 const postsDir = 'src/content/post';
 
@@ -19,7 +18,7 @@ const frontmatter = (text) => {
       .split('\n')
       .map((line) => line.match(/^([A-Za-z0-9_-]+):\s*(.*)$/))
       .filter(Boolean)
-      .map(([, key, value]) => [key, value.replace(/^['"]|['"]$/g, '')])
+      .map(([, key, value]) => [key, value.replace(/^['"]|['"]$/g, '')]),
   );
 };
 const slugFrom = (name) => name.replace(/\.(md|mdx)$/, '');
@@ -47,7 +46,9 @@ for (const file of await postFiles(postsDir)) {
   if (data.draft === 'true') continue;
   posts.push({ ...file, ...data, body: stripFrontmatter(raw) });
 }
-posts.sort((a, b) => new Date(b.updatedDate || b.publishDate) - new Date(a.updatedDate || a.publishDate));
+posts.sort(
+  (a, b) => new Date(b.updatedDate || b.publishDate) - new Date(a.updatedDate || a.publishDate),
+);
 
 const intro = `# Edmund Miller\n\nBioinformatics, biology, genomics, and software engineering notes from Edmund Miller.\n`;
 const links = [
@@ -57,11 +58,23 @@ const links = [
   '- [RSS](/rss.xml)',
   '- [Sitemap](/sitemap-index.xml)',
 ];
-const postLinks = posts.map((post) => `- [${post.title || post.slug}](/posts/${post.slug}/index.md): ${post.description || ''}`);
+const postLinks = posts.map(
+  (post) =>
+    `- [${post.title || post.slug}](/posts/${post.slug}/index.md): ${post.description || ''}`,
+);
 
-await ensureWrite(join(dist, 'llms.txt'), `${intro}\n## Site\n${links.join('\n')}\n\n## Posts\n${postLinks.join('\n')}\n`);
-await ensureWrite(join(dist, 'index.md'), `${intro}\n## Recent posts\n${postLinks.slice(0, 10).join('\n')}\n`);
-await ensureWrite(join(dist, 'about', 'index.md'), `# About Edmund Miller\n\nEdmund Miller is a bioinformatics and functional genomics researcher who writes about reproducible workflows, genomics, and software.\n`);
+await ensureWrite(
+  join(dist, 'llms.txt'),
+  `${intro}\n## Site\n${links.join('\n')}\n\n## Posts\n${postLinks.join('\n')}\n`,
+);
+await ensureWrite(
+  join(dist, 'index.md'),
+  `${intro}\n## Recent posts\n${postLinks.slice(0, 10).join('\n')}\n`,
+);
+await ensureWrite(
+  join(dist, 'about', 'index.md'),
+  `# About Edmund Miller\n\nEdmund Miller is a bioinformatics and functional genomics researcher who writes about reproducible workflows, genomics, and software.\n`,
+);
 await ensureWrite(join(dist, 'posts', 'index.md'), `# Posts\n\n${postLinks.join('\n')}\n`);
 
 let full = `${intro}\n## Posts\n`;
