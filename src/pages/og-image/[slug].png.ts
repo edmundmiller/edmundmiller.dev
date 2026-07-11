@@ -66,6 +66,7 @@ export async function GET(context: APIContext) {
     weekday: 'long',
     month: 'long',
   });
+  // @ts-expect-error satori-html's VNode is valid satori input but conflicts with React's global JSX types.
   const svg = await satori(markup(title, postDate), ogOptions);
   const png = new Resvg(svg).render().asPng();
   return new Response(new Uint8Array(png), {

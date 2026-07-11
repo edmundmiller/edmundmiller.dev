@@ -29,6 +29,10 @@ export default {
         accent: 'hsl(var(--theme-accent) / <alpha-value>)',
         'accent-2': 'hsl(var(--theme-accent-2) / <alpha-value>)',
         quote: 'hsl(var(--theme-quote) / <alpha-value>)',
+        foreground: 'hsl(var(--theme-text) / <alpha-value>)',
+        'muted-foreground': 'hsl(var(--theme-text) / <alpha-value>)',
+        popover: 'hsl(var(--theme-bg) / <alpha-value>)',
+        'popover-foreground': 'hsl(var(--theme-text) / <alpha-value>)',
       },
       fontFamily: {
         mono: [

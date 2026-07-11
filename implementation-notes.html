@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dither Kit Implementation Notes</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        line-height: 1.5;
+        max-width: 900px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+      }
+      h1,
+      h2 {
+        line-height: 1.2;
+      }
+      .meta {
+        color: #555;
+      }
+      li {
+        margin-block: 0.5rem;
+      }
+      code {
+        background: #f4f4f4;
+        padding: 0.1rem 0.25rem;
+        border-radius: 0.25rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Dither Kit Implementation Notes</h1>
+    <p class="meta">Updated: 2026-07-11</p>
+    <h2>Design decisions</h2>
+    <ul>
+      <li>
+        <strong>Decision:</strong> Add one compact writing-cadence area chart near the post list.<br /><strong
+          >Why:</strong
+        >
+        It visualizes existing site content without creating a demo page or turning the text-first
+        home page into a dashboard.
+      </li>
+    </ul>
+    <h2>Deviations from spec</h2>
+    <ul>
+      <li>
+        <strong>Deviation:</strong> Stabilized dither-kit series registration and added strict
+        TypeScript guards inside the generated engine.<br /><strong>Why:</strong> The registry
+        source assumes React Compiler memoization and looser indexed-access settings; without the
+        callback fix, the hydrated Astro island entered an infinite update loop.
+      </li>
+    </ul>
+    <h2>Tradeoffs considered</h2>
+    <ul>
+      <li>
+        <strong>Options:</strong> Homepage writing cadence, about-page career timeline, or
+        standalone demo.<br /><strong>Chosen:</strong> Homepage writing cadence.<br /><strong
+          >Reason:</strong
+        >
+        Post dates provide honest local data and the chart directly supports the adjacent content.
+      </li>
+    </ul>
+    <h2>Open questions</h2>
+    <ul>
+      <li>None so far.</li>
+    </ul>
+  </body>
+</html>

@@ -4,10 +4,19 @@ import PageLayout from '@/layouts/base.astro';
 import SocialList from '@/components/social-list.astro';
 import PostPreview from '@/components/blog/post-preview.astro';
 import Openring from '@/components/openring.astro';
+import WritingCadenceChart from '@/components/writing-cadence-chart';
 
 const MAX_POSTS = 10;
 const allPosts = await getAllPosts();
 const _allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
+const postsByYear = Array.from(
+  allPosts.reduce((years, post) => {
+    const year = String(post.data.publishDate.getFullYear());
+    years.set(year, (years.get(year) ?? 0) + 1);
+    return years;
+  }, new Map<string, number>()),
+  ([year, posts]) => ({ year, posts }),
+).sort((a, b) => a.year.localeCompare(b.year));
 const _meta = {
   description:
     'Bioinformatics engineer and PhD candidate writing about Nextflow, nf-core, functional genomics, reproducible workflows, and software for data-intensive science.',
@@ -112,6 +121,10 @@ const cactusTech: { desc: string; href: string; title: string }[] = [
   </section>
   <section aria-label="Blog post list" class="mt-16">
     <h2 class="h-feed title mb-4 text-xl">Posts</h2>
+    <figure class="mb-10 border-y border-dashed border-textColor/30 py-5">
+      <figcaption class="mb-3 text-sm text-textColor/70">Writing cadence · posts per year</figcaption>
+      <WritingCadenceChart data={postsByYear} client:visible />
+    </figure>
     <ul class="space-y-4">
       {
         _allPostsByDate.map((p) => (

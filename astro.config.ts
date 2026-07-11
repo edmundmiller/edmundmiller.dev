@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import { unified } from '@astrojs/markdown-remark';
 import mdx from '@astrojs/mdx';
+import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import { defineConfig } from 'astro/config';
 import expressiveCode from 'astro-expressive-code';
@@ -37,7 +38,7 @@ export default defineConfig({
       },
     }),
   },
-  integrations: [expressiveCode(expressiveCodeOptions), icon(), sitemap(), mdx()],
+  integrations: [expressiveCode(expressiveCodeOptions), icon(), sitemap(), mdx(), react()],
   image: {
     domains: ['webmention.io'],
   },
