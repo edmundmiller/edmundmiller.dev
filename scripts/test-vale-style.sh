@@ -21,6 +21,7 @@ run_vale "$repo_root/tests/vale/needless-words.md" >"$output_dir/needless-words.
 run_vale "$repo_root/tests/vale/sentence-complexity.md" >"$output_dir/sentence-complexity.json"
 run_vale "$repo_root/tests/vale/readability.md" >"$output_dir/readability.json"
 run_vale "$repo_root/tests/vale/paragraph-length.md" >"$output_dir/paragraph-length.json"
+run_vale "$repo_root/tests/vale/suppression.mdx" >"$output_dir/suppression.json"
 
 node --input-type=module - "$output_dir" <<'NODE'
 import fs from 'node:fs';
@@ -49,6 +50,10 @@ assertRule('paragraph-length', 'WriteSimply.ParagraphLength');
 
 if (!alerts('plain-words').some((alert) => alert.Message.includes("Use 'Use' instead of 'Utilize'"))) {
   throw new Error('Expected sentence-initial substitutions to preserve capitalization');
+}
+
+if (!alerts('suppression').some((alert) => alert.Check === 'WriteSimply.SentenceLength')) {
+  throw new Error('Expected JSX-style MDX suppression to reproduce the documented suppression bug');
 }
 
 const brokenCountMessages = ['sentence-length', 'sentence-complexity']
