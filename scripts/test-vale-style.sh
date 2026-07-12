@@ -47,6 +47,10 @@ assertRule('sentence-complexity', 'WriteSimply.SentenceComplexity');
 assertRule('readability', 'WriteSimply.Readability');
 assertRule('paragraph-length', 'WriteSimply.ParagraphLength');
 
+if (!alerts('plain-words').some((alert) => alert.Message.includes("Use 'use' instead of 'Utilize'"))) {
+  throw new Error('Expected sentence-initial substitutions to reproduce the capitalization bug');
+}
+
 const brokenCountMessages = ['sentence-length', 'sentence-complexity']
   .flatMap(alerts)
   .filter((alert) => alert.Message.includes('%!s(int='));
