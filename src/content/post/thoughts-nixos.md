@@ -3,12 +3,12 @@ author: Edmund Miller
 publishDate: '2020-03-15T09:53Z'
 title: Thoughts on NixOS
 tags: ['nixos', 'linux']
-description: Highlighting its customization, stability, and how it simplifies development environments.
+description: What I liked about NixOS in 2020, where it was difficult, and why Nix shells became useful for development.
 ---
 
-NixOS is a dream. It allows you to program your os by declaring what you
-want in it. And then you can declare how you want your packages built.
-Most of the time you just want the default, but for example
+> This post describes my NixOS experience in March 2020. Commands and project details may have changed since then.
+
+NixOS let me describe an operating system in configuration instead of changing it by hand. Most packages used their defaults. When I needed a different feature, I could express that choice in the package definition:
 
 ```nix
 (polybar.override {
@@ -18,75 +18,52 @@ Most of the time you just want the default, but for example
 })
 ```
 
-It gives you the power to customize things when you want. And then
-contributing packages is more developer focused, it\'s just a PR away.
-It makes it really simple to mix bleeding edge, with stable.
+This override enabled MPD, PulseAudio, and network support in Polybar. The choice lived beside the rest of my system configuration.
 
-The rollbacks are another big initial selling point that you kind of
-forget about because things end up being so stable but they\'re the
-best. Basically in your grub you can select any generation you\'d like,
-so in case you wanted to try out a new kernel and that break you just
-rollback to the previous generation.
+## Rollbacks made experiments safer
 
-The drawbacks are you need to understand a bit of functional
-programming, and then on top of that you have to learn nix which is a
-dsl. There\'s nothing wrong with the language, just that it\'s another
-thing you have to learn.
+Each NixOS rebuild created a system generation. The boot menu kept earlier generations available. If a new kernel or configuration failed, I could boot the previous one and undo the change.
 
-It may also kill your hobby of ricing. It makes it so quick to reproduce
-a setup, that you can spend time actually thinking about the artistic
-portion and not symlinking config files, and getting the right package
-version on ubuntu. I follow a guy\'s dotfiles and he created a modular
-system, so your theme separate from the logic that sets up your WM, so
-you can carry your rice across WM easily and themeses across a wm.
+That made system experiments less risky. It also made the current state easier to explain because the configuration recorded how I built it.
 
-[Link to my Dotfiles](https://github.com/Emiller88/dotfiles)
+## The learning cost
 
-Guix, cuts out the dsl issue with nix as the language. I love a good
-lisp personally, and it\'s definately easier to pick up than nix. Nix/OS
-is also a pretty old project, so it\'s grown over time, so the tooling
-was build up over time so there\'s a bunch of different tools like
-nix-shell ,nixos-install, nixos-rebuild, nix-env that are all at the
-first level where as guix has all of those things under guix so it\'s
-better for new people to discover commands from. Again the main issue is
-they\'re going to die on the FOSS hill, but I think that\'ll get fixed
-with private package repos.
+NixOS still required me to learn the Nix language and some functional programming ideas. Its command-line tools also exposed the project's history. I used separate commands such as `nix-shell`, `nixos-install`, `nixos-rebuild`, and `nix-env`.
 
-Now that\'s just all for the OS. They can both be used for dev-tools
-which is where they really shine imo. You can use nix/guix on MacOS and
-any distro of your choosing. You can create your builds and dev
-environment for any language in them. So for example, you\'re just
-trying out python for the first time. You\'re overwhelmed with the 20
-different ways to set up a developement environment. With nix it\'s just
+The system was consistent after I understood those parts. Reaching that point took more work than installing packages on a conventional Linux distribution.
 
-```nix
-let pkgs = import <nixpkgs> {};
-    nanomsg-py = .... build expression for this python library;
-in pkgs.stdenv.mkShell {
-buildInputs = [
-    pkgs.pythonPackages.pip
-    nanomsg-py
-];
-shellHook = ''
-            alias pip="PIP_PREFIX='$(pwd)/_build/pip_packages' \pip"
-            export PYTHONPATH="$(pwd)/_build/pip_packages/lib/python2.7/site-packages:$PYTHONPATH"
-            unset SOURCE_DATE_EPOCH
-'';
-}
+## Reproducible visual customization
+
+Linux users often call extensive visual customization “ricing.” NixOS moved that work from copied files and manual symlinks into reusable modules.
+
+I followed a modular dotfiles setup that separated each theme from the window-manager logic. I could apply one theme to several window managers without repeating their configuration. My own [dotfiles repository](https://github.com/Emiller88/dotfiles) used the same idea.
+
+This did not remove the design work. It made a finished design easier to reproduce on another machine.
+
+## How Guix differed
+
+GNU Guix addressed two problems differently. It used Guile Scheme instead of the Nix language. It also grouped more operations under the `guix` command, which made related commands easier for me to discover.
+
+Guix followed stricter free-software rules than NixOS. That policy was a factual project difference. Whether it was helpful depended on the hardware and packages a user needed.
+
+I preferred Scheme's syntax, but NixOS had the package coverage I wanted. That was my practical reason for staying with NixOS in 2020.
+
+## Development shells were the lasting benefit
+
+Nix and Guix could also create development environments on other Linux distributions and macOS. This became more useful to me than configuring the operating system.
+
+One project required Node.js 10. I did not need to install it globally or manage several versions on my `PATH`. I opened a temporary shell instead:
+
+```bash
+nix-shell -p nodejs-10_x
 ```
 
-Another example that I had recently, was I needed an older version of
-node, but I didn\'t want to clutter up my path with multiple node
-packages I just wanted to build a project really quick with
-`node_10`{.verbatim}. All it was is `nix-shell -p
-node_10` and boom I had a shell with `node_10`{.verbatim} installed. So
-then you can combo the power of nix-shell with direnv, to automagically
-switch environments based on what project your in, and it\'s easy for
-your team to replicate also, and let\'s you be more language-agnostic
-because while tooling is awesome when it\'s good(rust for example, or
-node possibly) when it\'s scary or the community get\'s
-fragmented(python) it\'s a problem.
+The steps were simple:
 
-If anyone made it this far and you want more come hang out [in the Doom
-Emacs Discord](https://doomemacs.org/discord), you don\'t have to be an
-Emacs user even, but you might end up one.
+1. Nix downloaded the requested package and its dependencies.
+2. The shell exposed that Node.js version.
+3. Exiting the shell returned me to my normal environment.
+
+A project could record the same packages in a Nix expression. Teammates could then enter an equivalent shell. With `direnv`, entering the project directory could load that environment automatically.
+
+NixOS asked me to learn a new language and toolset. In return, it made system changes reversible and development environments reproducible. The development shells became the part I used most.
