@@ -31,3 +31,5 @@ pnpm-debug.log*
 # wrangler
 .wrangler/
 .dev.vars
+# br doctor per-run artifacts
+.doctor/
