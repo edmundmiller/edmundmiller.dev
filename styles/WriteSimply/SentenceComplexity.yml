@@ -1,0 +1,7 @@
+extends: occurrence
+message: This sentence has %s commas. Consider splitting it.
+link: https://paulgraham.com/simply.html
+level: suggestion
+scope: sentence
+max: 3
+token: ','

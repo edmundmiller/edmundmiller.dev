@@ -18,6 +18,7 @@ run_vale "$repo_root/tests/vale/good.md" >"$output_dir/good.json"
 run_vale "$repo_root/tests/vale/sentence-length.md" >"$output_dir/sentence-length.json"
 run_vale "$repo_root/tests/vale/plain-words.md" >"$output_dir/plain-words.json"
 run_vale "$repo_root/tests/vale/needless-words.md" >"$output_dir/needless-words.json"
+run_vale "$repo_root/tests/vale/sentence-complexity.md" >"$output_dir/sentence-complexity.json"
 
 node --input-type=module - "$output_dir" <<'NODE'
 import fs from 'node:fs';
@@ -40,4 +41,5 @@ if (goodAlerts.length > 0) {
 assertRule('sentence-length', 'WriteSimply.SentenceLength');
 assertRule('plain-words', 'WriteSimply.PlainWords');
 assertRule('needless-words', 'WriteSimply.NeedlessWords');
+assertRule('sentence-complexity', 'WriteSimply.SentenceComplexity');
 NODE
