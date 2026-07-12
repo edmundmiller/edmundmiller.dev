@@ -42,4 +42,11 @@ assertRule('sentence-length', 'WriteSimply.SentenceLength');
 assertRule('plain-words', 'WriteSimply.PlainWords');
 assertRule('needless-words', 'WriteSimply.NeedlessWords');
 assertRule('sentence-complexity', 'WriteSimply.SentenceComplexity');
+
+const brokenCountMessages = ['sentence-length', 'sentence-complexity']
+  .flatMap(alerts)
+  .filter((alert) => alert.Message.includes('%!s(int='));
+if (brokenCountMessages.length !== 2) {
+  throw new Error('Expected both occurrence rules to reproduce the count-formatting bug');
+}
 NODE
