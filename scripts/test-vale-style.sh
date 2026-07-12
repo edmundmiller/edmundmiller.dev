@@ -52,8 +52,8 @@ if (!alerts('plain-words').some((alert) => alert.Message.includes("Use 'Use' ins
   throw new Error('Expected sentence-initial substitutions to preserve capitalization');
 }
 
-if (!alerts('suppression').some((alert) => alert.Check === 'WriteSimply.SentenceLength')) {
-  throw new Error('Expected JSX-style MDX suppression to reproduce the documented suppression bug');
+if (alerts('suppression').some((alert) => alert.Check === 'WriteSimply.SentenceLength')) {
+  throw new Error('Expected HTML-style controls to suppress rules in mapped MDX');
 }
 
 const brokenCountMessages = ['sentence-length', 'sentence-complexity']

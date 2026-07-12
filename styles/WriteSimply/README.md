@@ -40,21 +40,18 @@ Run the site linter:
 npm run lint:prose
 ```
 
-Disable a rule around deliberate Markdown prose:
+Suppress local prose checks around deliberate Markdown or MDX prose:
 
 ```markdown
-<!-- vale WriteSimply.SentenceLength = NO -->
+<!-- vale off -->
 
 This sentence is long on purpose.
 
-<!-- vale WriteSimply.SentenceLength = YES -->
+<!-- vale on -->
 ```
 
-Use MDX comments in `.mdx` files:
-
-```mdx
-{/* vale WriteSimply.SentenceLength = NO */}
-```
+This repo maps MDX to Markdown, so both formats use the same HTML controls.
+Document-wide rules such as `WriteSimply.Readability` still run.
 
 ## Test
 
