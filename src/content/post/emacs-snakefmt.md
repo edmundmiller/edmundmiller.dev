@@ -1,105 +1,40 @@
 ---
-title: Formatting Snakemake using snakefmt in Emacs using Apheleia
-description: Learn how to set up snakefmt, the code formatter for Snakemake, in Doom Emacs using the Apheleia package. This post covers installing snakefmt with Nix, configuring it in Doom Emacs, and provides an overview of how Apheleia aims to simplify formatting code across languages in Emacs.
+title: Formatting Snakemake in Doom Emacs with snakefmt
+description: Connect the snakefmt executable to snakemake-mode through Doom Emacs and Apheleia with one formatter definition.
 draft: false
 publishDate: '2024-07-02'
 tags: ['emacs', 'snakemake']
 series: 'Snakeflow'
 ---
 
-Dooms Emacs recently switched to using [Apheleia](https://github.com/radian-software/apheleia) as it's default formatter, thanks to a huge effort from [Ellis Kenyő](https://elken.dev) to refactor the [format module](https://docs.doomemacs.org/latest/?#/modules/editor/format).
+Doom Emacs can connect `snakefmt` to `snakemake-mode` with one `set-formatter!` form. The setup needs the `snakefmt` executable and Doom's [format module](https://docs.doomemacs.org/latest/?#/modules/editor/format), which uses [Apheleia](https://github.com/radian-software/apheleia).
 
-I've been writing a bit of [Snakemake](https://snakemake.github.io/) for the [Applied Genomics Course](https://applied-genomics.dev/) that I teach in the Summer. The last time that I wrote much Snakemake(circa 2020), [snakefmt](https://github.com/snakemake/snakefmt) didn't exist yet. It follows the design and specifications of Black.
+I returned to [Snakemake](https://snakemake.github.io/) while teaching my [Applied Genomics course](https://applied-genomics.dev/) in summer 2024. When I last used Snakemake heavily around 2020, [snakefmt](https://github.com/snakemake/snakefmt) did not exist. Its Black-inspired formatting removed style decisions from the course examples.
 
-## Aside: Packaging up `snakefmt` with Nix
+## Installing snakefmt with Nix
 
-I've chosen the path less traveled, and use NixOS. Meaning I've sworn off using Conda, global pip installs, and other small conviences in the already narrow path that is using linux as a desktop environment.
+In 2024, snakefmt was not yet available in nixpkgs. I used [nix-init](https://github.com/nix-community/nix-init) to generate a package definition for version 0.10.2:
 
-While Snakemake itself is packaged up in nixpkgs, snakefmt hasn't made it to the most magical repo on GitHub yet.
-
-Recently though I found a handy tool for quickly generating package derivations, [nix-init](https://github.com/nix-community/nix-init).
-
-```sh
+```bash
 nix run github:nix-community/nix-init -- --url https://github.com/snakemake/snakefmt
 ```
 
-It pulls in the version and the dependencies, ✨Automagically✨.
-
-```nix title="snakefmt.nix"
-{
-  lib,
-  python3,
-  fetchFromGitHub,
-}:
-python3.pkgs.buildPythonApplication rec {
-  pname = "snakefmt";
-  version = "0.10.2";
-  pyproject = true;
-
-  src = fetchFromGitHub {
-    owner = "snakemake";
-    repo = "snakefmt";
-    rev = "v${version}";
-    hash = "sha256-Sp48yedUiL8NCF7WF9QdvaOGocPXIBZ5bXXj7r4RVIM=";
-  };
-
-  nativeBuildInputs = [
-    python3.pkgs.poetry-core
-  ];
-
-  propagatedBuildInputs = with python3.pkgs; [
-    black
-    click
-    importlib-metadata
-    toml
-  ];
-
-  pythonImportsCheck = ["snakefmt"];
-
-  meta = with lib; {
-    description = "The uncompromising Snakemake code formatter";
-    homepage = "https://github.com/snakemake/snakefmt";
-    changelog = "https://github.com/snakemake/snakefmt/blob/${src.rev}/CHANGELOG.md";
-    license = licenses.mit;
-    maintainers = with maintainers; [edmundmiller];
-    mainProgram = "snakefmt";
-  };
-}
-```
+That generated derivation was specific to the old release, so I no longer recommend copying it. [snakefmt is now packaged in nixpkgs](https://github.com/NixOS/nixpkgs/blob/master/pkgs/by-name/sn/snakefmt/package.nix). A current Nix user can install that package directly.
 
 ## Apheleia
 
-There are tons of code formatters out there. There's usually multiple for popular languages. Everyone's got an opinion on what style to use.
+[Apheleia](https://github.com/radian-software/apheleia) runs installed formatter executables asynchronously after a save. It applies their changes while preserving the cursor position. [Ellis Kenyő](https://elken.dev) helped move Doom's format module to this shared interface.
 
-Apheleia aims to remove specific Emacs packages for formatters. It's goal is to have one interface to run all of your formatters from Emacs.
-
-> running a code formatter on save suffers from the following two problems:
-
-> 1.  It takes some time (e.g. around 200ms for Black on an empty file), which makes the editor feel less responsive.
-> 2.  It invariably moves your cursor (point) somewhere unexpected if the changes made by the code formatter are too close to point's position.
-
-> Apheleia is an Emacs package which solves both of these problems comprehensively for all languages, allowing you to say goodbye to language-specific packages such as Blacken and prettier-js.
-
-The main opinion everyone shares is that a good code formatter should be fast, and therefore you should be able to forget about it.
-
-It's really simple to configure formatters in [Doom Emacs](https://github.com/doomemacs/doomemacs).
+Apheleia does not install snakefmt. Once `snakefmt` was on my `PATH`, this configuration connected it to `snakemake-mode`:
 
 ```emacs-lisp title="config.el"
 (set-formatter! 'snakefmt '("snakefmt" "-") :modes '(snakemake-mode))
 ```
 
-The `set-formatter!` macro takes:
+The form has three parts:
 
-1. The name you want to give the formatter
-   `snakefmt`
-2. The command you want ran (`--quiet` is used here often)
-   `snakefmt -`
-3. The modes you want associated with the formatter
-   `snakemake-mode`
+1. `snakefmt` names the formatter inside Doom.
+2. `("snakefmt" "-")` sends the current buffer to snakefmt through standard input.
+3. `snakemake-mode` limits the formatter to Snakefiles.
 
-Another example for [Alejandra](https://github.com/kamadorueda/alejandra) for Nix.
-
-```emacs-lisp title="config.el"
-;;; :lang nix
-(set-formatter! 'alejandra '("alejandra" "--quiet") :modes '(nix-mode))
-```
+That single definition gave my Snakemake files the same format-on-save behavior as the rest of my Doom configuration.
