@@ -2,80 +2,38 @@
 author: Edmund Miller
 publishDate: '2023-12-15T11:00Z'
 title: Using age with org-journal
-description: "Because gpg 2.4.1 borked Emacs's EasyPG, it just hangs on saving."
+description: How I replaced a broken GPG journal workflow with age while keeping org-journal and my existing SSH key.
 draft: false
 tags: ['Emacs', 'org-mode', 'age']
 ---
 
-# The problem
+## The problem
 
-Because [gpg 2.4.1 borked](https://dev.gnupg.org/T6481) Emacs\'s EasyPG.
-It just hangs on saving.
+In 2023, [GnuPG 2.4.1 broke EasyPG](https://dev.gnupg.org/T6481) in my setup. Emacs hung whenever it saved my encrypted journal.
 
-## Why not just use gpg?
+## Why I rejected the GPG workarounds
 
-There are some ways around it, and I was using the `fset` hack until I
-read this [post about the person who corrupted their encrypted
-files](https://www.reddit.com/r/emacs/comments/18d6fmt/how_to_lock_yourself_out_of_a_gpg_encrypted_file/).
-I also had to run the elisp on every new Emacs instance.
+An `fset` workaround restored saving, but I had to run it in every Emacs instance. A report about [losing access to encrypted files](https://www.reddit.com/r/emacs/comments/18d6fmt/how_to_lock_yourself_out_of_a_gpg_encrypted_file/) also reduced my confidence in continuing with an ad hoc fix.
 
-And then `lib-gcrypt` is marked as broken in NixOS if you use the
-`gnupg22` package(Version: 2.2.41), and a blowing past that stop sign
-sounded like a bad idea.
+NixOS also marked `lib-gcrypt` as broken with the `gnupg22` package I used at the time. Overriding that safety check did not seem appropriate for an encrypted journal.
 
-So I started thinking outside the box.
+I chose to replace GPG instead of working around both failures.
 
 ## Why [age](https://github.com/FiloSottile/age)?
 
-I started using it with [agenix](https://github.com/ryantm/agenix), just
-because [Henrik](https://github.com/hlissner/) started using it in his
-dotfiles. The [k8s@home
-template](https://github.com/onedr0p/flux-cluster-template) also
-eventually [switched from gpg to
-age](https://github.com/onedr0p/flux-cluster-template/pull/153) so I was
-already pretty comfortable with using age.
+I already used [age](https://github.com/FiloSottile/age) through [agenix](https://github.com/ryantm/agenix), after seeing it in [Henrik's dotfiles](https://github.com/hlissner/). The k8s@home template had also [moved from GPG to age](https://github.com/onedr0p/flux-cluster-template/pull/153).
 
-TL;DR [Age: the modern alternative to GPG ---
-nixFAQ](https://nixfaq.org/2021/01/age-the-modern-alternative-to-gpg.html):
-
-- Age is presented as a modern alternative to GPG that solves many of
-  its limitations while maintaining security.
-- Age stands for \"Actually Good Encryption\" and has implementations
-  in Go and Rust for improved security compared to GPG\'s C
-  implementation.
-- Age uses smaller keys that are easier to store physically and has a
-  simpler interface with no configuration options.
-- Files can be encrypted for multiple recipients simultaneously using
-  Age.
-- Age supports encrypting for SSH public keys in addition to its own
-  keys.
-- Age allows encrypting files for GitHub users by using their SSH keys
-  from their profile.
-- Age offers a better user experience than GPG while maintaining an
-  equally high level of security.
+Two age features mattered here. Its command-line interface was small, and it could encrypt to my existing SSH public key. I did not need another key-management system for one journal.
 
 ## Why still org-journal?
 
-I\'ve considered using
-[org-roam-dailies](https://www.orgroam.com/manual.html#org_002droam_002ddailies)
-instead of [org-journal](https://github.com/bastibe/org-journal).
-However, after some reflection, I\'m not entirely sure why. [Org Roam
-supports Age
-encryption](https://github.com/anticomputer/age.el#org-roam-support-for-age-encrypted-org-files),
-and [org-journal has several PR
-fixes](https://github.com/bastibe/org-journal/issues/400) for various
-issues that have been neglected (this is not a judgment of the
-maintainer, but problems like [journal files being decrypted whenever
-the calendar is
-invoked](https://github.com/bastibe/org-journal/issues/375) are
-troublesome). I think I was just seeking a quick solution to resume
-journaling.
+I considered moving to [org-roam-dailies](https://www.orgroam.com/manual.html#org_002droam_002ddailies), which also supported [age-encrypted Org files](https://github.com/anticomputer/age.el#org-roam-support-for-age-encrypted-org-files). That would have added a journal migration to an encryption repair.
 
-# Setup
+The immediate problem was saving encrypted entries. [org-journal](https://github.com/bastibe/org-journal) already fit the rest of my workflow, so I kept it.
 
-Now that you\'ve listened to me ramble on for a bit, here\'s the actual
-setup. This is using [Doom
-Emacs](https://github.com/doomemacs/doomemacs).
+## Setup
+
+This was my [Doom Emacs](https://github.com/doomemacs/doomemacs) configuration. First, I installed `age.el`:
 
 ```elisp title="packages.el"
 (package! age)
@@ -91,16 +49,14 @@ Emacs](https://github.com/doomemacs/doomemacs).
   (age-file-enable))
 ```
 
-Went with [rage](https://github.com/str4d/rage), because Rust. Also
-there\'s [pinentry support through
-rage](https://github.com/anticomputer/age.el#workaround-pinentry-support-through-rage).
+I chose [rage](https://github.com/str4d/rage) for its [pinentry support](https://github.com/anticomputer/age.el#workaround-pinentry-support-through-rage), and because it was written in Rust. `age-file-enable` then let Emacs handle files with an age suffix.
+
+Finally, I disabled org-journal's GPG encryption and changed the journal filename suffix:
 
 ```elisp title="config.el"
 (after! org
   (setq org-journal-encrypt-journal nil
-        org-journal-file-format "%Y%m%d.org.age")
+        org-journal-file-format "%Y%m%d.org.age"))
 ```
 
-Only thing I had to do then was turn off the built-in gpg support on
-org-journal, and update the naming scheme to have age as the suffix and
-it just worked.™
+org-journal continued creating daily files. Emacs passed each `.org.age` file to age for encryption and decryption. I could resume journaling without changing the journal system itself.
