@@ -12,9 +12,7 @@ Personal Astro site deployed as a Cloudflare Worker with static assets.
 
 ## Work Intake
 
-Use Beads:
-
-The tracked issue source of truth is [`.beads/issues.jsonl`](.beads/issues.jsonl); use `br` commands to read or change it, then flush with `br sync --flush-only`.
+Use `br`; [`.beads/issues.jsonl`](.beads/issues.jsonl) is the tracked source of truth. Never edit it directly.
 
 ```bash
 br ready
@@ -24,61 +22,27 @@ br close <id>
 br sync --flush-only
 ```
 
-## Deploy Model
+## Authoritative Sources
 
-`wrangler.toml` is the source of truth.
+- Scripts and checks: `package.json`
+- Worker deployment: `wrangler.toml`
+- Issues: `.beads/issues.jsonl` via `br`
 
-- Worker name: `edmundmiller-dev`
-- Worker entry: `src/worker.ts`
-- Asset directory: `dist`
-- Asset binding: `ASSETS`
-- Route: `edmundmiller.dev/*`
-- Zone: `edmundmiller.dev`
-- `run_worker_first = true`
+## Verification
 
-`npm run deploy` builds Astro, generates agent content, then runs `wrangler deploy`.
+Run checks matching the change. `npm run build` validates Astro output and regenerates agent content.
 
-Use `npm exec -- wrangler ...` if `pnpm` is not on PATH.
+## Deployment
 
-## Common Commands
+`npm run deploy` runs the full build and Wrangler deployment. Before changing deploy behavior or deploying, verify live access and state:
 
 ```bash
-npm run build
-npm run check
-npm run lint
-npm run deploy
-npm exec -- wrangler deployments list
 npm exec -- wrangler whoami
-```
-
-`npm run build` writes `dist/` and runs `scripts/generate-agent-content.mjs`.
-
-## Cloudflare Checks
-
-Before changing deploy behavior, confirm live state:
-
-```bash
 npm exec -- wrangler deployments list
-npm exec -- wrangler whoami
 ```
-
-Current verified deploy path uses Wrangler OAuth for account `57398029d3d0add95bdad89deaa41864`.
-
-Latest checked deployment: `2026-07-01T22:37:22Z`, version `8a7c6373-2001-4675-8a2d-f5382b3d65ac`.
 
 If Wrangler warns about missing unrelated OAuth scopes, do not treat that as a deploy blocker unless deploy/read commands fail.
 
 ## Session Closeout
 
-Before final handoff:
-
-1. File follow-up Beads issues.
-2. Run relevant checks for changed code/content.
-3. Close or update Beads issues.
-4. `br sync --flush-only`
-5. Commit small, single-intent changes.
-6. `git pull --rebase`
-7. `git push`
-8. Verify `git status` is clean and up to date.
-
-Work is not done until push succeeds.
+Flush br, commit only task-scoped changes, pull with rebase, push, then verify local/remote state. Work is not done until push succeeds.
