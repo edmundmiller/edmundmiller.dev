@@ -3,51 +3,38 @@ author: Edmund Miller
 publishDate: '2024-04-09'
 updatedDate: '2024-05-09'
 title: Personal Site Analytics in 2024
-description: What's the move for something that gives you feedback and isn't creepy
+description: Why GoatCounter remained my choice for private, low-maintenance analytics across two personal sites.
 tags: ['blog']
 draft: false
 ---
 
-If you've ever experienced the itch to refresh your online presence, you'll know the feeling all too well. Recently, I gave my personal website a facelift (keep your eyes peeled for that upcoming blog post!), and took on the task of revamping [my partner's site](https://monimiller.com/) as well. During this period of digital rejuvenation, I stumbled upon a nugget of wisdom from the [Blogging for Devs](https://bloggingfordevs.com/) email course. They insist on setting up site analytics, not just for the sake of data, but for a source of motivation to keep pushing forward.
+While redesigning this site and [my partner's site](https://monimiller.com/), I reconsidered how I measured their use. The [Blogging for Devs](https://bloggingfordevs.com/) course argued that analytics can motivate a writer to keep publishing. I wanted that feedback without tracking people across the web.
 
-This advice couldn't have come at a better time. Amidst the redesign, I found myself pondering over website analytics options. I have been utilizing [GoatCounter](https://www.goatcounter.com) for a while now, but as someone who strives to maintain efficiency (which I like to metaphorically describe as 'keeping my yak herd well shaven'), I'm always on the lookout for tools that streamline my workflow and bolster my motivation. Thus began my quest to find the perfect analytics tool to accompany my freshly updated sites.
+I already used [GoatCounter](https://www.goatcounter.com), but managing two sites exposed one missing feature. I compared it with Fathom, Plausible, and Umami before deciding whether to switch.
 
-## Requirements
+## What I needed
 
-The list I'm looking to tick-off:
+My analytics service had to meet four conditions:
 
-1. Not creepy
-2. Self-hostable
-3. But has a cloud option (I'm trying this new thing where I outsource my yak shaving)
+1. Respect visitor privacy.
+2. Support more than one site.
+3. Offer a hosted service with little maintenance.
+4. Allow self-hosting if my needs changed.
 
-Martin Tournoij, the author of GoatCounter, has a [good piece on analytics on personal websites](https://www.arp242.net/personal-analytics.html).
+The sites had little traffic, so enterprise features did not justify a large monthly bill. Martin Tournoij, GoatCounter's author, explains the broader case in [Analytics on personal websites](https://www.arp242.net/personal-analytics.html).
 
-## Initial Research
+## The 2024 comparison
 
-I tried [Fathom](https://usefathom.com/ref/DYRELW) first. It seemed popular, and it was alright but the pricing at $15 a month was unreasonable for our web traffic currently.
+[Fathom](https://usefathom.com/ref/DYRELW) offered a managed service with a simple interface. Its $15 monthly price in April 2024 was too high for these sites.
 
-I'd tested out [Plausible](https://plausible.io) in the past. It looks cool, but there's no free tier. It's self-hostable, built on [ClickHouse](https://clickhouse.com/), it's flashy, but probably overkill.
+[Plausible](https://plausible.io) could be self-hosted and used [ClickHouse](https://clickhouse.com/). Its hosted plan started at $9 per month for the traffic level I needed. I did not need its extra infrastructure or features.
 
-I was pretty excited to try [Umami](https://umami.is), the last time I had looked at it a while ago before it had a cloud hosting option. I think this one might be the only one to give GoatCounter a run for it's money. It has a hobby pricing of _free_ so it'll be hard to justify Plausible's $9 a month for the same 10K views.
+[Umami](https://umami.is) paired self-hosting with a free hosted hobby plan. That combination matched my requirements and made it the best alternative to GoatCounter.
 
-My first stop was [Fathom](https://usefathom.com/ref/DYRELW). It's garnered quite a following, perhaps for its ease of use and solid feature set. However, at $15 a month, I couldn't quite make peace with their pricing, especially given our modest web traffic.
+## Why I stayed with GoatCounter
 
-Then, my attention turned to [Plausible](https://plausible.io). There's no doubt it's slick, with a contemporary look and feel that can be quite enticing. Plus, it's built on the foundation of ClickHouse. However, the catch? They don't offer a free tier, and for something with such flash, I had to ask myself if it was too much for our needs.
+I planned to run Plausible, Umami, and GoatCounter together for a short comparison. Then I found that GoatCounter had added multiple sites under one login.
 
-Finally, there was [Umami](https://umami.is). I had my eye on it some time ago, but back then, cloud hosting wasn't on the menu. What's especially exciting is its 'hobby' tier priced at _free_. When comparing that to Plausible's $9 per month for an equivalent 10K views, it's challenging to justify the cost of Plausible.
+That feature removed my only reason to switch. Each site could keep separate settings and data while sharing the same account. GoatCounter still met my privacy and hosting requirements, and I already knew how to operate it.
 
-## Conclusion
-
-In summary, Umami is emerging as a strong contender. I'm going to use Plausible's free month to test Plausible, Umami, and GoatCounter together for a week or two since I've got it set up. Sorry for the slight performance hit for anyone reading this! 😬
-
-## **Update**
-
-Figured out GoatCounter added the ability to have multiple website under one login. This fixed my only grip with GoatCounter
-
-From the settings page:
-
-> Sites
-
-> Add GoatCounter to multiple websites by creating new sites. All sites will share the same users, and logins, but are otherwise completely separate. The current site’s settings are copied on creation, but are independent afterwards.
-
-> You can add as many as you want.
+The choice was not about finding the analytics service with the most features. I needed private analytics for two small sites without adding more maintenance. GoatCounter did that, so I kept it.
