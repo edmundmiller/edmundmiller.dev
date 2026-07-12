@@ -1,0 +1,7 @@
+extends: occurrence
+message: Keep sentences to 25 words or fewer (found %s).
+link: https://paulgraham.com/simply.html
+level: suggestion
+scope: sentence
+max: 25
+token: '\b\w+\b'
