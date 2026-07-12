@@ -1,3 +1,11 @@
+---
+purpose: Guide agents working across the edmundmiller.dev repository.
+applies_to: All repository files and workflows.
+entrypoint: Start with Work Intake, then use the task-specific section.
+verification: Run the relevant checks and verify br sync before handoff.
+update_when: Repository workflow, deployment, or verification changes.
+---
+
 # Agent Instructions
 
 Personal Astro site deployed as a Cloudflare Worker with static assets.
@@ -5,6 +13,8 @@ Personal Astro site deployed as a Cloudflare Worker with static assets.
 ## Work Intake
 
 Use Beads:
+
+The tracked issue source of truth is [`.beads/issues.jsonl`](.beads/issues.jsonl); use `br` commands to read or change it, then flush with `br sync --flush-only`.
 
 ```bash
 br ready
