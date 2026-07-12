@@ -30,30 +30,26 @@ import path from 'node:path';
 const outputDir = process.argv[2];
 const alerts = (name) =>
   Object.values(JSON.parse(fs.readFileSync(path.join(outputDir, `${name}.json`), 'utf8'))).flat();
-const assertRule = (fixture, rule) => {
-  if (!alerts(fixture).some((alert) => alert.Check === rule)) {
-    throw new Error(`Expected ${fixture}.md to trigger ${rule}`);
-  }
+const expectedChecks = {
+  good: [],
+  'needless-words': ['WriteSimply.NeedlessWords'],
+  'paragraph-length': ['WriteSimply.ParagraphLength'],
+  'plain-words': ['WriteSimply.PlainWords', 'WriteSimply.Readability'],
+  readability: ['WriteSimply.Readability'],
+  'sentence-complexity': ['WriteSimply.SentenceComplexity'],
+  'sentence-length': ['WriteSimply.Readability', 'WriteSimply.SentenceLength'],
+  suppression: ['WriteSimply.Readability'],
 };
 
-const goodAlerts = alerts('good');
-if (goodAlerts.length > 0) {
-  throw new Error(`Expected good.md to pass, found: ${goodAlerts.map((alert) => alert.Check).join(', ')}`);
+for (const [fixture, expected] of Object.entries(expectedChecks)) {
+  const actual = [...new Set(alerts(fixture).map((alert) => alert.Check))].sort();
+  if (actual.join() !== expected.join()) {
+    throw new Error(`Expected ${fixture} checks ${expected.join(', ') || 'none'}, found ${actual.join(', ') || 'none'}`);
+  }
 }
-
-assertRule('sentence-length', 'WriteSimply.SentenceLength');
-assertRule('plain-words', 'WriteSimply.PlainWords');
-assertRule('needless-words', 'WriteSimply.NeedlessWords');
-assertRule('sentence-complexity', 'WriteSimply.SentenceComplexity');
-assertRule('readability', 'WriteSimply.Readability');
-assertRule('paragraph-length', 'WriteSimply.ParagraphLength');
 
 if (!alerts('plain-words').some((alert) => alert.Message.includes("Use 'Use' instead of 'Utilize'"))) {
   throw new Error('Expected sentence-initial substitutions to preserve capitalization');
-}
-
-if (alerts('suppression').some((alert) => alert.Check === 'WriteSimply.SentenceLength')) {
-  throw new Error('Expected HTML-style controls to suppress rules in mapped MDX');
 }
 
 const brokenCountMessages = ['sentence-length', 'sentence-complexity']
