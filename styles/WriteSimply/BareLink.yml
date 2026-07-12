@@ -1,0 +1,6 @@
+extends: script
+message: Integrate this bare URL into prose or place it in a References section.
+link: https://paulgraham.com/simply.html
+level: suggestion
+scope: raw
+script: BareLink.tengo

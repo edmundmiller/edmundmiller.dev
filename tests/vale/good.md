@@ -7,3 +7,7 @@ The tool reads files, checks prose, reports problems, and exits.
 `Utilize` may appear in code without distracting the reader.
 
 Revision removes clutter. Concrete examples support claims. Clear structure helps readers follow an argument. Familiar words welcome a wider audience. Exact technical terms can remain when they carry needed meaning. A writer can still vary rhythm and tone. These checks only point toward passages that deserve another look.
+
+```text
+https://example.com/code-output
+```

@@ -1,0 +1,25 @@
+text := import("text")
+
+found := text.re_find("(?m)^https?://\\S+\\s*$", scope, -1)
+blocks := text.re_find("(?s)```.*?```", scope, -1)
+matches := []
+
+if !is_undefined(found) {
+    for groups in found {
+        link := groups[0]
+        inside_block := false
+
+        if !is_undefined(blocks) {
+            for block_groups in blocks {
+                block := block_groups[0]
+                if link.begin >= block.begin && link.end <= block.end {
+                    inside_block = true
+                }
+            }
+        }
+
+        if !inside_block {
+            matches = append(matches, {begin: link.begin, end: link.end})
+        }
+    }
+}
