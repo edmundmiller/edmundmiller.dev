@@ -1,0 +1,7 @@
+extends: occurrence
+message: Keep paragraphs to 100 words or fewer.
+link: https://paulgraham.com/simply.html
+level: suggestion
+scope: paragraph
+max: 100
+token: '\b\w+\b'

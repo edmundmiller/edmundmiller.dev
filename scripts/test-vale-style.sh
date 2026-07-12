@@ -20,6 +20,7 @@ run_vale "$repo_root/tests/vale/plain-words.md" >"$output_dir/plain-words.json"
 run_vale "$repo_root/tests/vale/needless-words.md" >"$output_dir/needless-words.json"
 run_vale "$repo_root/tests/vale/sentence-complexity.md" >"$output_dir/sentence-complexity.json"
 run_vale "$repo_root/tests/vale/readability.md" >"$output_dir/readability.json"
+run_vale "$repo_root/tests/vale/paragraph-length.md" >"$output_dir/paragraph-length.json"
 
 node --input-type=module - "$output_dir" <<'NODE'
 import fs from 'node:fs';
@@ -44,6 +45,7 @@ assertRule('plain-words', 'WriteSimply.PlainWords');
 assertRule('needless-words', 'WriteSimply.NeedlessWords');
 assertRule('sentence-complexity', 'WriteSimply.SentenceComplexity');
 assertRule('readability', 'WriteSimply.Readability');
+assertRule('paragraph-length', 'WriteSimply.ParagraphLength');
 
 const brokenCountMessages = ['sentence-length', 'sentence-complexity']
   .flatMap(alerts)
