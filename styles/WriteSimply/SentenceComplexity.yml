@@ -1,5 +1,5 @@
 extends: occurrence
-message: This sentence has %s commas. Consider splitting it.
+message: Consider splitting sentences with more than three commas.
 link: https://paulgraham.com/simply.html
 level: suggestion
 scope: sentence

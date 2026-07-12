@@ -1,5 +1,5 @@
 extends: occurrence
-message: Keep sentences to 25 words or fewer (found %s).
+message: Keep sentences to 25 words or fewer.
 link: https://paulgraham.com/simply.html
 level: suggestion
 scope: sentence

@@ -46,7 +46,7 @@ assertRule('sentence-complexity', 'WriteSimply.SentenceComplexity');
 const brokenCountMessages = ['sentence-length', 'sentence-complexity']
   .flatMap(alerts)
   .filter((alert) => alert.Message.includes('%!s(int='));
-if (brokenCountMessages.length !== 2) {
-  throw new Error('Expected both occurrence rules to reproduce the count-formatting bug');
+if (brokenCountMessages.length > 0) {
+  throw new Error('Occurrence rule messages contain broken count formatting');
 }
 NODE
