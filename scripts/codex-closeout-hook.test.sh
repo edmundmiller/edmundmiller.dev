@@ -6,6 +6,10 @@ hook="$root/scripts/codex-closeout-hook"
 tmp=$(mktemp -d)
 trap 'rm -rf "$tmp"' EXIT
 
+test -f "$root/.codex/config.toml"
+python3 -c 'import pathlib,tomllib,sys; tomllib.loads(pathlib.Path(sys.argv[1]).read_text())' \
+  "$root/.codex/config.toml"
+
 mkdir -p "$tmp/bin" "$tmp/repo"
 cat >"$tmp/bin/br" <<'EOF'
 #!/usr/bin/env bash
