@@ -4,9 +4,10 @@ set -euo pipefail
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 output_dir="$(mktemp -d)"
 trap 'rm -rf "$output_dir"' EXIT
+export PATH="$repo_root/node_modules/.bin:$PATH"
 
 run_vale() {
-  corepack pnpm exec vale \
+  "$repo_root/node_modules/.bin/vale" \
     --no-global \
     --config="$repo_root/.vale.ini" \
     --output=JSON \
@@ -38,7 +39,7 @@ const expectedChecks = {
   readability: ['WriteSimply.Readability'],
   'sentence-complexity': ['WriteSimply.SentenceComplexity'],
   'sentence-length': ['WriteSimply.Readability', 'WriteSimply.SentenceLength'],
-  suppression: ['WriteSimply.Readability', 'WriteSimply.SentenceLength'],
+  suppression: ['WriteSimply.Readability'],
 };
 
 for (const [fixture, expected] of Object.entries(expectedChecks)) {

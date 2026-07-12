@@ -40,7 +40,7 @@ Run the site linter:
 npm run lint:prose
 ```
 
-Suppress local prose checks around deliberate Markdown or MDX prose:
+Suppress local prose checks around deliberate Markdown prose:
 
 ```markdown
 <!-- vale off -->
@@ -50,8 +50,17 @@ This sentence is long on purpose.
 <!-- vale on -->
 ```
 
-This repo maps MDX to Markdown, so both formats use the same HTML controls.
-Document-wide rules such as `WriteSimply.Readability` still run.
+MDX uses JSX controls through Vale's native `mdx2vast` integration:
+
+```mdx
+{/* vale off */}
+
+This sentence is long on purpose.
+
+{/* vale on */}
+```
+
+Document-wide rules such as `WriteSimply.Readability` still run in both formats.
 
 ## Test
 
