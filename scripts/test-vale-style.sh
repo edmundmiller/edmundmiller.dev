@@ -23,7 +23,7 @@ run_vale "$repo_root/tests/vale/sentence-complexity.md" >"$output_dir/sentence-c
 run_vale "$repo_root/tests/vale/readability.md" >"$output_dir/readability.json"
 run_vale "$repo_root/tests/vale/paragraph-length.md" >"$output_dir/paragraph-length.json"
 run_vale "$repo_root/tests/vale/suppression.mdx" >"$output_dir/suppression.json"
-run_vale "$repo_root/tests/vale/thin-content.md" >"$output_dir/thin-content.json"
+run_vale "$repo_root/tests/vale/thin-content.mdx" >"$output_dir/thin-content.json"
 run_vale "$repo_root/tests/vale/draft-markers.md" >"$output_dir/draft-markers.json"
 run_vale "$repo_root/tests/vale/spoken-fillers.md" >"$output_dir/spoken-fillers.json"
 run_vale "$repo_root/tests/vale/bare-link.md" >"$output_dir/bare-link.json"
@@ -73,6 +73,10 @@ for (const phrase of ['upon saving', 'under the impression that', 'in its entire
   if (!alerts('plain-words').some((alert) => alert.Message.toLowerCase().includes(`instead of '${phrase}'`))) {
     throw new Error(`Expected a plain-word substitution for ${phrase}`);
   }
+}
+
+if (alerts('plain-words').some((alert) => alert.Action?.Name === 'replace')) {
+  throw new Error('Plain-word suggestions must not offer unsafe automatic replacements');
 }
 
 const brokenCountMessages = ['sentence-length', 'sentence-complexity']

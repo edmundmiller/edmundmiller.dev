@@ -1,7 +1,8 @@
 text := import("text")
 
 document := text.re_replace("(?s)^---.*?---", scope, "")
-document = text.re_replace("(?s)```.*?```", document, "")
+document = text.re_replace("(?s)```.*?```|~~~.*?~~~", document, "")
+document = text.re_replace("(?s)<[^>]*>", document, "")
 words := text.re_find("[[:alnum:]][[:alnum:]'-]*", document, -1)
 matches := []
 

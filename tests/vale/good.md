@@ -11,3 +11,8 @@ Revision removes clutter. Concrete examples support claims. Clear structure help
 ```text
 https://example.com/code-output
 ```
+
+<!-- prettier-ignore -->
+~~~text
+https://example.com/tilde-code-output
+~~~

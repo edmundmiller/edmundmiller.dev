@@ -1,7 +1,7 @@
 text := import("text")
 
 found := text.re_find("(?m)^https?://\\S+\\s*$", scope, -1)
-blocks := text.re_find("(?s)```.*?```", scope, -1)
+blocks := text.re_find("(?s)```.*?```|~~~.*?~~~", scope, -1)
 matches := []
 
 if !is_undefined(found) {

@@ -4,8 +4,6 @@ link: https://paulgraham.com/simply.html
 level: suggestion
 ignorecase: true
 capitalize: true
-action:
-  name: replace
 swap:
   'a large number of': many
   'at this point in time': now
