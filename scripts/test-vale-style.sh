@@ -38,7 +38,7 @@ const expectedChecks = {
   readability: ['WriteSimply.Readability'],
   'sentence-complexity': ['WriteSimply.SentenceComplexity'],
   'sentence-length': ['WriteSimply.Readability', 'WriteSimply.SentenceLength'],
-  suppression: ['WriteSimply.Readability'],
+  suppression: ['WriteSimply.Readability', 'WriteSimply.SentenceLength'],
 };
 
 for (const [fixture, expected] of Object.entries(expectedChecks)) {
