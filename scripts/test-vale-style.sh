@@ -30,6 +30,7 @@ run_vale "$repo_root/tests/vale/bare-link.md" >"$output_dir/bare-link.json"
 run_vale "$repo_root/tests/vale/long-quotation.md" >"$output_dir/long-quotation.json"
 run_vale "$repo_root/tests/vale/decorative-language.md" >"$output_dir/decorative-language.json"
 run_vale "$repo_root/tests/vale/parenthesis-spacing.md" >"$output_dir/parenthesis-spacing.json"
+run_vale "$repo_root/tests/vale/vague-praise.md" >"$output_dir/vague-praise.json"
 
 node --input-type=module - "$output_dir" <<'NODE'
 import fs from 'node:fs';
@@ -54,6 +55,7 @@ const expectedChecks = {
   'long-quotation': ['WriteSimply.LongQuotation', 'WriteSimply.Readability', 'WriteSimply.ThinContent'],
   'decorative-language': ['WriteSimply.DecorativeLanguage', 'WriteSimply.ThinContent'],
   'parenthesis-spacing': ['WriteSimply.ParenthesisSpacing', 'WriteSimply.ThinContent'],
+  'vague-praise': ['WriteSimply.ThinContent', 'WriteSimply.VaguePraise'],
 };
 
 for (const [fixture, expected] of Object.entries(expectedChecks)) {

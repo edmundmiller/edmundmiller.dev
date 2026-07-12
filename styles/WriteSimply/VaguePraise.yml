@@ -1,0 +1,10 @@
+extends: existence
+message: "Replace vague praise '%s' with concrete evidence."
+level: suggestion
+ignorecase: true
+tokens:
+  - 'really great'
+  - 'nice idea'
+  - 'cool package'
+  - 'solid feature set'
+  - 'strong contender'
