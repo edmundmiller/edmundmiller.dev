@@ -1,0 +1,7 @@
+extends: occurrence
+message: Paraphrase quotations longer than 50 words unless their exact wording matters.
+link: https://paulgraham.com/simply.html
+level: suggestion
+scope: blockquote
+max: 50
+token: '\b\w+\b'

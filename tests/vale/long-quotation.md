@@ -1,0 +1,1 @@
+> A long quotation can carry the argument for the writer instead of supporting a claim already made in their own words. Readers must then decide which parts matter and how those parts connect to the surrounding essay. Paraphrasing the source often reveals the useful idea faster while leaving room for a short phrase whose exact wording truly matters.
