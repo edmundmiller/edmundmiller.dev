@@ -24,6 +24,7 @@ run_vale "$repo_root/tests/vale/readability.md" >"$output_dir/readability.json"
 run_vale "$repo_root/tests/vale/paragraph-length.md" >"$output_dir/paragraph-length.json"
 run_vale "$repo_root/tests/vale/suppression.mdx" >"$output_dir/suppression.json"
 run_vale "$repo_root/tests/vale/thin-content.md" >"$output_dir/thin-content.json"
+run_vale "$repo_root/tests/vale/draft-markers.md" >"$output_dir/draft-markers.json"
 
 node --input-type=module - "$output_dir" <<'NODE'
 import fs from 'node:fs';
@@ -42,6 +43,7 @@ const expectedChecks = {
   'sentence-length': ['WriteSimply.Readability', 'WriteSimply.SentenceLength', 'WriteSimply.ThinContent'],
   suppression: ['WriteSimply.Readability', 'WriteSimply.ThinContent'],
   'thin-content': ['WriteSimply.ThinContent'],
+  'draft-markers': ['WriteSimply.DraftMarkers', 'WriteSimply.ThinContent'],
 };
 
 for (const [fixture, expected] of Object.entries(expectedChecks)) {
