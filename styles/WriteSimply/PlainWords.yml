@@ -3,6 +3,7 @@ message: Use '%s' instead of '%s' when the meaning stays the same.
 link: https://paulgraham.com/simply.html
 level: suggestion
 ignorecase: true
+capitalize: true
 action:
   name: replace
 swap:
