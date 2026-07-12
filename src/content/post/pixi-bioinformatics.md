@@ -1,68 +1,51 @@
 ---
-title: 'Simplify Your Bioinformatics Workflow with Pixi: A Fresh Take on Conda'
-description: 'How to adopt pixi on an HPC cluster near you. Simplify your bioinformatics workflow today, with Pixi!'
+title: 'Using Pixi for Bioinformatics Environments'
+description: How Pixi combines Conda packages, locked environments, and project tasks in one workflow for laptops and HPC systems.
 draft: false
 publishDate: 2024-08-21
 tags: ['bioinformatics', 'python']
 ---
 
-Recently, Anaconda has decided to start charging users for access to the default channel. This change in policy has significant implications for the data science and machine learning community, as Anaconda is a widely used platform for managing Python and R packages.[^1][^2][^3] Prefix.dev has a [nice article summarizing the whole thing](https://prefix.dev/blog/towards_a_vendor_lock_in_free_conda_experience).
+In 2024, discussion about Anaconda's terms made one distinction important: Conda is a package format and tool, while Anaconda maintains the `defaults` channel. [Prefix.dev summarized the channel policy and lock-in concerns](https://prefix.dev/blog/towards_a_vendor_lock_in_free_conda_experience).
 
-The Python ecosystem has recently seen a proliferation of attempts to completely rework its package managers. Several new projects have emerged, each aiming to address in the existing package managers. An issue that isn't really due that "pip and conda are bad". `pip` was released **April 4th, 2011** and `Anaconda` was first release **July 17th, 2012**. That's long before I even took an intro CS course my freshman year of college, so I'm not gonna judge what everyone else was doing then.
+My problem was more practical. Collaborators could use Anaconda, Miniconda, or Mamba. Micromamba and Mambaforge added two more choices. Projects then needed separate tools for activation, tasks, and lock files.
 
-The space is ripe for disruption. There have been some exciting complete rewrites that have come out recently with [ruff](https://docs.astral.sh/ruff) and [uv](https://docs.astral.sh/uv/) from Astral in the Python ecosystem. In the conda ecosystem, I've lost track of the different ways to install a conda package, Anaconda, miniconda, Mamba, micromamba, mambaforge. I can't keep up.
+[`Pixi`](https://pixi.sh/latest/) gave me one workflow for those jobs. It used the Conda package ecosystem while recording the project environment and commands together.
 
-I recently started using [`Pixi`](https://pixi.sh/latest/) from [prefix.dev](https://prefix.dev/). It's been really nice. I want to forget about a package manager. Pixi let's me do that.
+> These commands reflect my August 2024 setup. Check the current Pixi documentation before applying global configuration on a shared system.
 
-# Pixi for Bioinformatics
-
-## Set up on a server/locally
+## Optional global tools
 
 ```bash
 curl -fsSL https://pixi.sh/install.sh | bash
 # source ~/.bashrc
-pixi config append default-channels conda-forge --global
-pixi config append default-channels bioconda --global
-
-pixi global install -c bioconda nextflow
-pixi g i rclone
+pixi global install -c conda-forge -c bioconda nextflow
+pixi global install rclone
 ```
 
-Just thought I'd add a quick TL;DR here. This is how easy it is to get started. Works on your server, locally on your laptop. Makes me think of some other great [bioinformatics tools](https://www.nextflow.io/)...
+The same Pixi executable worked on my laptop and a remote server. Global installs were useful for stand-alone tools such as [Nextflow](https://www.nextflow.io/) and `rclone`. Project dependencies remained in the project manifest below.
 
-## Things every Bioinformatician loves to see
+## One project interface
 
-### One way to install it just about everywhere
+### Installation
 
-Problem: Which way should you install conda?
-
-- Anaconda
-- miniconda
-- Mamba
-- Micromamba
-- mambaforge
-
-Solution:
+Instead of choosing among several Conda installers, collaborators could begin with one command:
 
 ```bash
 curl -fsSL https://pixi.sh/install.sh | bash
 ```
 
-### Environment activation is automatic
+### Environment commands
 
-Problem: In every new terminal users have to run `conda activate applied-genomics`.[^5]
-
-Solution: Every project has the same commands
+Every project exposed the same commands, so users did not need to remember an environment name:
 
 - `pixi shell`
 - `pixi shell-hook`
 - `pixi run`
 
-### Tasks are built-in
+### Project tasks
 
-Problem: `snakemake --cores 4`
-
-Solution:
+Pixi stored common commands beside the environment. This project ran Snakemake before uploading its results:
 
 ```toml
 [tasks]
@@ -74,31 +57,20 @@ upload = { cmd = "rclone sync results/ box:THK_LAB_DATA/results/", depends-on = 
 pixi run upload
 ```
 
-Sure, you could have a Makefile, or reach for [just](https://github.com/casey/just). But that's just one more tool everyone you collaborate with has to learn.
+Make or [just](https://github.com/casey/just) could provide the same task layer. Pixi's built-in tasks avoided another prerequisite for this project.
 
-### Storing environment details is taken care of for you
+### Recorded dependency changes
 
-Problem: `conda install` doesn't update the `environment.yml`[^4]
-
-Solution: `pixi add` updates the `pixi.toml` for you.
-
-But wait there's more!
-It locks the version to avoid major version bumps automatically!
+`pixi add` changed the environment and updated `pixi.toml`. The dependency constraint recorded the compatible version range:
 
 ```toml
 [dependencies]
 python = ">=3.12.5,<4"
 ```
 
-In case python4 sneaks up on you.
+The same command updated `pixi.lock` with exact package versions. The manifest described what the project accepted. The lock file saved one complete result.
 
-### No built in lock file
-
-Problem: Versions in the `environment.yml` are only half the battle...[^6]
-
-Solution: `pixi add` updates the `pixi.lock` file as well behind the scenes!
-
-## It's gotta be difficult to migrate to, right?
+## Importing an existing Conda environment
 
 With [pixi you can import `environment.yml` files into a pixi project](https://pixi.sh/latest/switching_from/conda/#automated-switching).
 
@@ -106,9 +78,9 @@ With [pixi you can import `environment.yml` files into a pixi project](https://p
 pixi init --import environment.yml
 ```
 
-This will create a new project with the dependencies from the `environment.yml` file.
+The command created a Pixi project from `environment.yml`. I could review the new manifest before asking collaborators to switch.
 
-<!-- TODO # Conclusion -->
+Pixi's main benefit was not a new package source. It put installation, package changes, locks, and project commands behind one interface. That reduced the setup each bioinformatics project had to explain.
 
 ## Related next steps
 
@@ -131,15 +103,3 @@ If you're thinking about Pixi because you want more reproducible bioinformatics 
     </a>
   </li>
 </ul>
-
-[^1]: https://x.com/NM_Reid/status/1825997577151525338
-
-[^2]: https://www.theregister.com/2024/08/08/anaconda_puts_the_squeeze_on/
-
-[^3]: https://www.linkedin.com/feed/update/urn:li:share:7229549722070310912/
-
-[^4]: Which makes it really hard to reproduce research code as we've learned firsthand...
-
-[^5]: Remembering the environment name in every project is really the issue.
-
-[^6]: Going to avoid going off into the weeds here, there is [conda-lock](https://github.com/conda/conda-lock). Reach out [Jonathan Manning](https://github.com/pinin4fjords) for his upcoming TED talk on conda lock files.
