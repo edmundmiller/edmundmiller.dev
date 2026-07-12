@@ -29,6 +29,7 @@ run_vale "$repo_root/tests/vale/spoken-fillers.md" >"$output_dir/spoken-fillers.
 run_vale "$repo_root/tests/vale/bare-link.md" >"$output_dir/bare-link.json"
 run_vale "$repo_root/tests/vale/long-quotation.md" >"$output_dir/long-quotation.json"
 run_vale "$repo_root/tests/vale/decorative-language.md" >"$output_dir/decorative-language.json"
+run_vale "$repo_root/tests/vale/parenthesis-spacing.md" >"$output_dir/parenthesis-spacing.json"
 
 node --input-type=module - "$output_dir" <<'NODE'
 import fs from 'node:fs';
@@ -52,6 +53,7 @@ const expectedChecks = {
   'bare-link': ['WriteSimply.BareLink', 'WriteSimply.ThinContent'],
   'long-quotation': ['WriteSimply.LongQuotation', 'WriteSimply.Readability', 'WriteSimply.ThinContent'],
   'decorative-language': ['WriteSimply.DecorativeLanguage', 'WriteSimply.ThinContent'],
+  'parenthesis-spacing': ['WriteSimply.ParenthesisSpacing', 'WriteSimply.ThinContent'],
 };
 
 for (const [fixture, expected] of Object.entries(expectedChecks)) {
