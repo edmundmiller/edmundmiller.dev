@@ -67,6 +67,12 @@ if (!alerts('plain-words').some((alert) => alert.Message.includes("Use 'Use' ins
   throw new Error('Expected sentence-initial substitutions to preserve capitalization');
 }
 
+for (const phrase of ['upon saving', 'under the impression that', 'in its entirety']) {
+  if (!alerts('plain-words').some((alert) => alert.Message.toLowerCase().includes(`instead of '${phrase}'`))) {
+    throw new Error(`Expected a plain-word substitution for ${phrase}`);
+  }
+}
+
 const brokenCountMessages = ['sentence-length', 'sentence-complexity']
   .flatMap(alerts)
   .filter((alert) => alert.Message.includes('%!s(int='));
