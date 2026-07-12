@@ -1,0 +1,25 @@
+extends: existence
+message: Replace decorative phrase '%s' with a literal description unless the effect is deliberate.
+link: https://paulgraham.com/simply.html
+level: suggestion
+ignorecase: true
+tokens:
+  - '\bautomagically\b'
+  - '\b(?:began|embarked on|started) (?:a|the|this) journey\b'
+  - '\bboy was it a journey\b'
+  - '\bcheat codes?\b'
+  - '\bcrown jewel\b'
+  - '\bdown (?:a|the|this) rabbit hole\b'
+  - '\bfresh take\b'
+  - '\bfuture[- ]proof\b'
+  - '\bgame[- ]changer\b'
+  - '\bharness(?:ing)? the power\b'
+  - '\bmagic of automation\b'
+  - '\boutside the box\b'
+  - '\bpath less traveled\b'
+  - '\bperfect storm\b'
+  - '\brabbit hole\b'
+  - '\bripe for disruption\b'
+  - '\bseamless(?:ly)?\b'
+  - '\bspecial snowflake\b'
+  - '\bstanding on the shoulders of giants\b'

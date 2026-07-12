@@ -28,6 +28,7 @@ run_vale "$repo_root/tests/vale/draft-markers.md" >"$output_dir/draft-markers.js
 run_vale "$repo_root/tests/vale/spoken-fillers.md" >"$output_dir/spoken-fillers.json"
 run_vale "$repo_root/tests/vale/bare-link.md" >"$output_dir/bare-link.json"
 run_vale "$repo_root/tests/vale/long-quotation.md" >"$output_dir/long-quotation.json"
+run_vale "$repo_root/tests/vale/decorative-language.md" >"$output_dir/decorative-language.json"
 
 node --input-type=module - "$output_dir" <<'NODE'
 import fs from 'node:fs';
@@ -50,6 +51,7 @@ const expectedChecks = {
   'spoken-fillers': ['WriteSimply.SpokenFillers', 'WriteSimply.ThinContent'],
   'bare-link': ['WriteSimply.BareLink', 'WriteSimply.ThinContent'],
   'long-quotation': ['WriteSimply.LongQuotation', 'WriteSimply.Readability', 'WriteSimply.ThinContent'],
+  'decorative-language': ['WriteSimply.DecorativeLanguage', 'WriteSimply.ThinContent'],
 };
 
 for (const [fixture, expected] of Object.entries(expectedChecks)) {
