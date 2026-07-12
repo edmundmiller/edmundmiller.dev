@@ -1,142 +1,59 @@
 ---
 author: Edmund Miller
 publishDate: '2022-03-31T12:02Z'
-title: "Why I'm hyped about Julia for Bioinformatics"
-description: Julia might just change the game for bioinformatics.
+title: 'Why Julia Fits Bioinformatics'
+description: Julia can reduce the number of languages bioinformatics teams need without abandoning the tools they already trust.
 tags: ['Julia', 'Bioinformatics']
 ---
 
-Julia might just change the game for bioinformatics. Bioinformatics is
-starting to heat up as field, and I think we have a lot of unique issues
-starting from the days of [perl and the Human Genome
-Project](https://bioperl.org/articles/How_Perl_saved_human_genome.html).
+Bioinformatics teams often maintain code in R, Python, and Bash. Java and a compiled language may join that stack. Julia could reduce the spread. It offers strong numerical performance while calling the tools a team already trusts.
 
-Based off a recent recommendation from my friend
-[Teco](https://github.com/tecosaur)
+My friend [Teco](https://github.com/tecosaur) prompted me to look at Julia in 2022. I expected another scientific language. I found a practical way to write new code without first replacing decades of existing work.
 
-# Two Language Problem
+## More than a two-language problem
 
-Plenty of people have written about this with Julia. Lots of scientific
-communities may use a high-level \"scripting\" language to manage their
-business-logic and then drop into a low-level language such as
-C/Fortran/Rust to highly optimize the bottle-neck.
+Many scientific projects use one language for analysis and another for performance. Bioinformatics adds years of accumulated tools to that pair.
 
-In bioinformatics we have a 5 language problem. From the perl script
-written before the first generation of Next Generation Sequencing, to
-packages like DESeq2 that aren\'t going to leave anyone\'s toolbox
-anytime soon, but no one is going to rewrite, and instead are going to
-spend time teaching R to every incoming generation of bioinformaticians
-just so they can use these influential packages. That\'s not including
-python, Rust, and every bioinformatician\'s favorite, bash. That\'s not
-including if you want to contribute to any GATK cli tools written in
-Java.
+A team may depend on an old Perl script, an R package such as DESeq2, and Python code for sample tracking. Its workflows may use Bash, while tools such as GATK add Java. New performance work can introduce C or Rust.
 
-Now, workflow managers such as
-[Snakemake](https://snakemake.readthedocs.io/en/stable/) and
-[Nextflow](https://www.nextflow.io/) have fixed the majority of those.
-Just stick those scripts in a container that acts as a time-capsule of
-versions long forgotten and you can use them for just what you need and
-put them back in closet.
+[Snakemake](https://snakemake.readthedocs.io/en/stable/) and [Nextflow](https://www.nextflow.io/) help teams run these tools together. Containers preserve their dependencies. Neither choice answers which language a team should use for new libraries and analyses.
 
-But what about new scripts? When you\'re starting a new bioinformatics
-project in 2022, do you follow in the footsteps of the pioneers that
-came before you, and learn how to call C functions in an R package? Or
-would you rather just see this beauty:
+Julia is interesting because the same language can support interactive analysis and compiled numerical code. That does not remove every boundary, but it can prevent another language from entering the stack.
 
-<https://edmundmiller.dev/static/julia-100.png>
+![Julia reaches full speed without a separate compiled implementation](https://edmundmiller.dev/static/julia-100.png)
 
-## But what about my C functions that are highly optimized?
+## Existing code can stay
 
-What about our in-house python library that interacts with all of our
-sample tracking and pulling files temporarily from s3? \"I don\'t have
-time to figure out how to untangle that mess\" you say. The Julia
-community wants to keep all of those import scientific scripts written.
-Packages such as [RCall.jl](https://juliainterop.github.io/RCall.jl/),
-[PyCall.jl](https://www.juliapackages.com/p/pycall), and plenty of
-others housed under [Julia Interop](https://github.com/JuliaInterop)
-allow for legacy code to fit right into new code. As scientists we are
-constantly standing on the shoulders of giants, and Julia is enabling
-that.
+Adopting Julia does not require a complete rewrite. [RCall.jl](https://juliainterop.github.io/RCall.jl/) can call R, while [PyCall.jl](https://www.juliapackages.com/p/pycall) can call Python. The [JuliaInterop](https://github.com/JuliaInterop) organization maintains more bridges.
 
-# [BioJulia](https://biojulia.net/)
+That matters for a team with validated C functions or a Python library tied to internal systems. New Julia code can call those components while the team changes only what it needs to change.
 
-Julia has a wonderful open-source structure. Since it was created only a
-decade ago there\'s not a lot of legacy things to maintain and
-everything can be fresh and inclusive. Take for example the heavy use of
-organizations to house these code repositories, which prevents packages
-from going unmaintained and orphaned when the creator moves on.
+## The BioJulia community
 
-While it\'s a relatively small community they\'ve covered a wide range
-of the various file types that we deal with on a daily basis. I hope to
-dog food most of the packages to fill in some missing pieces, and
-improve documentation and create some content for the community. The
-part that I found difficult was finding the people based on the website.
-I joined the gitter to ask a question, but luckily someone saw the
-message and told me that most of the real-time chat happens in [the
-#biology channel in the Julia
-slack](https://julialang.slack.com/archives/CAKKFNYLD).
+[BioJulia](https://biojulia.net/) collects packages for common biological data formats and analyses. In 2022, the community was smaller than its R and Python counterparts. It had already covered many formats I used each day.
 
-# Designed for Scientific Computing
+Finding the active community took some effort. I first asked a question in Gitter. Someone there directed me to the [#biology channel in Julia Slack](https://julialang.slack.com/archives/CAKKFNYLD), where most live discussion happened.
 
-It seems like bioinformaticians always want to do things in the most
-efficient path, but solving for a different variable than most. [In a
-recent episode of screaming in the
-cloud](https://www.lastweekinaws.com/podcast/screaming-in-the-cloud/quantum-leaps-in-bioinformatics-with-lynn-langit/),
-[Lynn Langit](https://lynnlangit.com/) mentioned that in finance, they
-care about getting the results as quickly as possible. The cost of the
-computing isn\'t a factor. In bioinformatics, they\'re trying to solve
-for both time and cost, trying to find the local minimum between both.
-There are plenty of time results don\'t need to instant and waiting a
-few days to stretch a grant out is a necessary evil.
+I wanted to test these packages on real projects, improve documentation, and write about the missing pieces. That work would be more useful than claiming the ecosystem was already complete.
 
-Julia is fast, and that\'s been said numerous times, so you\'re probably
-guessing I\'m going to say you can save money by decreasing your compute
-time. While that\'s true the piece that I think people aren\'t solving
-for in that equation is developer time. Julia was designed from the
-ground up as a general programming language for scientists ([Why We
-Created
-Julia](https://julialang.org/blog/2012/02/why-we-created-julia/)).
+## Developer time is part of compute cost
 
-> We want a language that\'s open source, with a liberal license. We
-> want the speed of C with the dynamism of Ruby. We want a language
-> that\'s homoiconic, with true macros like Lisp, but with obvious,
-> familiar mathematical notation like Matlab. We want something as
-> usable for general programming as Python, as easy for statistics as R,
-> as natural for string processing as Perl, as powerful for linear
-> algebra as Matlab, as good at gluing programs together as the shell.
-> Something that is dirt simple to learn, yet keeps the most serious
-> hackers happy. We want it interactive and we want it compiled.
+Bioinformatics projects balance runtime, cloud cost, and grant limits. [Lynn Langit discussed that tradeoff](https://www.lastweekinaws.com/podcast/screaming-in-the-cloud/quantum-leaps-in-bioinformatics-with-lynn-langit/) on _Screaming in the Cloud_. A result tomorrow may be acceptable if running it today costs much more.
 
-That sounds like a bioinformatician\'s dream to me! Think of all of the
-time we can save on developer experience, not trying to hack out some
-extra speed, or fixing broken dependencies (or a complete lack of
-specified dependencies!). Allowing legacy code to be treated like the
-crown jewel in our metaphorical software crown, and wrapping it in some
-gold Julia code like it deserves.
+Developer time belongs in the same calculation. A faster program saves little if it takes months to write and remains hard to maintain.
 
-# Call to action
+Julia was [designed as a general programming language for scientists](https://julialang.org/blog/2012/02/why-we-created-julia/). Its creators wanted interactive work, compiled performance, familiar mathematics, and broad use in one open-source language. Bioinformatics needs that combination more than it needs another isolated fast tool.
 
-I plan on working to increase the visibility into Julia specifically for
-bioinformatics. I always love this Venn diagram to explain to people
-what bioinformatics is. I think it\'ll be natural to cover
-[JuliaData](https://github.com/JuliaData/),
-[JuliaStats](https://juliastats.org/), and
-[BioJulia](https://biojulia.net/) to cover all three and show people how
-the three intersect.
+Julia will not replace every established package. It can give teams one place for new analysis and performance code while letting proven tools remain in use. That is the practical reason I am excited about it.
 
-<http://acm.na.edu/img/bioInfoLab/bioinformatics_venn.png>
+## How to get started
 
-## How to get started with Julia
+- Browse [BioJulia](https://biojulia.net/) and its packages.
+- Explore [JuliaData](https://github.com/JuliaData/) and [JuliaStats](https://juliastats.org/).
+- Listen to the [Talk Julia podcast](https://www.talkjulia.com/).
+- Work through a course on [JuliaAcademy](https://juliaacademy.com/).
+- Read work from [Logan Kilpatrick](https://www.logankilpatrick.com/), then Julia's developer community advocate.
 
-- [Attend JuliaCon 2022](https://juliacon.org/2022/tickets/) (It\'s
-  online and free to attend!)
-- [Listen to the Talk Julia Podcast](https://www.talkjulia.com/)
-- [Go through some courses on JuliaAcademy](https://juliaacademy.com/)
-- Check out the work by [Logan Kilpatrick, the Julia Dev Community
-  Advocate](https://www.logankilpatrick.com/)
+### 2023 update
 
-### 2023 Update
-
-- [GitHub - BioJulia/BioTutorials: Tutorial Notebooks of
-  BioJulia](https://github.com/BioJulia/BioTutorials)
-- New Documenter.jl Docs!
+The [BioJulia tutorials](https://github.com/BioJulia/BioTutorials) now provide notebooks for learning the ecosystem. BioJulia projects also gained new Documenter.jl documentation.
