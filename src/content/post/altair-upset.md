@@ -6,15 +6,15 @@ publishDate: 2025-01-20
 tags: ['python', 'data-visualization', 'bioinformatics', 'altair']
 ---
 
-[Altair](https://altair-viz.github.io) is the only plotting library that I've felt like loved me back. Maybe ggplot2 would love me back as well, but it's locked away in the tower of R.
+[Altair](https://altair-viz.github.io) is the only plotting library that has felt like it loved me back.
 
-I went on a bit of a lark when I stumbled upon the [original upset-altair-notebook from HMS-DBMI](https://github.com/hms-dbmi/upset-altair-notebook). It was just a Jupyter Notebook, and only worked with Altair 4, which met none of my requirements.
+I found the [HMS-DBMI UpSet notebook](https://github.com/hms-dbmi/upset-altair-notebook) while looking for an Altair implementation of UpSet plots. Its visualization worked, but it lived in one Jupyter notebook and targeted Altair 4.
 
-# The Journey
+I needed a package that I could install across projects. It also needed Altair 5 for use with [marimo](https://marimo.io). That work became `altair-upset`.
 
-The original notebook was great, but I needed something I could quickly pip install and use across projects. Plus, I needed to use Altair 5 for [marimo](https://marimo.io), I wanted to future-proof this tool for the community.
+## From notebook to package
 
-Here's how it evolved:
+The original setup required cloning a repository and creating its environment:
 
 ```bash
 # The old way
@@ -25,63 +25,37 @@ jupyter notebook
 ```
 
 ```bash
-# The new way
+# The packaged version
 pip install altair-upset
 ```
 
-# Making it easy to install
-
-First step was packaging. I'm a big fan of not reinventing the wheel, so I kept the core visualization logic but wrapped it in a proper Python package structure. This meant:
+I kept the notebook's core visualization logic and wrapped it in a Python package. The package exposed one function for creating a chart:
 
 ```python
 import altair_upset as au
 
 # Create UpSet plot with one clean function call
-chart = au.UpSetAltair(
-    data=my_data,
-    sets=["gene_set1", "gene_set2", "gene_set3"],
-    title="Gene Set Intersections"
-)
+chart = au.UpSetAltair(data=my_data, sets=["gene_set1", "gene_set2", "gene_set3"], title="Gene Set Intersections")
 ```
 
-# Hitting Save Before the Boss Fight
+## Snapshot-testing the Altair 4 output
 
-Here's where it gets interesting - I created a snapshot of the Altair 4 functionality before diving into the Altair 5 boss battle. Think of it like saving your game before a major fight - if something goes wrong, you can always roll back to a working state.
+Before changing the Altair API calls, I recorded the existing chart output with [syrupy](https://github.com/syrupy-project/syrupy). The snapshot gave me a baseline for the migration.
 
-Why? Because I've learned from enough bioinformatics murder mysteries that breaking changes in dependencies can be a nightmare. I tried to just port the function to Altair 5 and wound up with some really weird functionality that I couldn't make sense of.
+My first Altair 5 port produced output I did not expect. Comparing it with the baseline showed whether each change preserved the chart's structure. This was more useful than checking only that the function ran.
 
-The secret weapon here was [syrupy](https://github.com/syrupy-project/syrupy) - it let me capture the exact state of my plots before making any changes.
-
-# Migrating to Altair 5
-
-I think the [diff between the versions tells most of the story](https://github.com/edmundmiller/altair-upset/compare/0.1.1...0.2.0).
-
-It was mostly just swapping out a properties calls that got moved.
+The [diff from version 0.1.1 to 0.2.0](https://github.com/edmundmiller/altair-upset/compare/0.1.1...0.2.0) shows the migration. Most changes updated property and configuration calls for Altair 5.
 
 ![Shared Mutations of COVID Variants UpSet Plot](https://raw.githubusercontent.com/edmundmiller/altair-upset/3ab3e4de21fcaf02dd0ea0211cc14d08238a689b/tests/__snapshots__/test_covid_mutations/test_covid_mutations_subset%5Bimage%5D.png)
 
-# Lessons Learned Along the Way
+## What I learned about packaging
 
-This was my first rodeo with creating a Python package from scratch, and boy was it a journey. Remember how I said Altair was the only plotting library that loved me back? Well, the Python packaging ecosystem...
+This was my first Python package. I accidentally published version 0.2.0 before I intended to. PyPI supports [yanking files](https://packaging.python.org/en/latest/specifications/file-yanking/) so installers usually avoid them. However, a published version number cannot be reused. I kept the release and treated the mistake as part of the package history.
 
-First off, PyPI takes security more seriously than that one PI who makes you wear a lab coat just to look at a computer. I accidentally pushed v0.2.0 and then tried to yank it back - spoiler alert: you can't. It's like trying to take back an email after hitting send. That version now lives in infamy, a permanent reminder that "move fast and break things" doesn't fly with package registries.
-
-But the real game-changer? Discovering [`uv`](https://docs.astral.sh/uv/) and [`pyproject.toml`](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/). After years of fighting with `setup.py` and virtual environments (and drowning in documentation that felt like it was written for people who already knew everything), this felt like finding the cheat codes. Finally, Python package management that doesn't feel like solving a Rubik's cube in the dark.
+[`pyproject.toml`](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/) gave the project one place for build metadata and tool configuration. [`uv`](https://docs.astral.sh/uv/) then reduced the local setup to one command:
 
 ```shell
-# The old way
-python setup.py develop  # pray it works
-pip install -e .  # pray harder
-python -m venv venv  # why do I need this again?
-
-# The new way
 uv sync
 ```
 
-If you're just starting out with Python packaging, do yourself a favor - skip the history lesson and jump straight to `pyproject.toml`. Your future self will thank you.
-
-# What's Next?
-
-I'm keeping this project lean and focused. Want a feature? PRs welcome!
-
-Check it out on GitHub: [altair-upset](https://github.com/edmundmiller/altair-upset)
+The result is a pip-installable, Altair 5-compatible package with snapshot tests for its plots. The source is available in the [`altair-upset` repository](https://github.com/edmundmiller/altair-upset).
