@@ -62,6 +62,14 @@ This sentence is long on purpose.
 
 Document-wide rules such as `WriteSimply.Readability` still run in both formats.
 
+### MDX prerequisite
+
+Vale requires the `mdx2vast` executable on `PATH` for native MDX parsing. This repo pins it as a development dependency. External consumers must [install `mdx2vast`](https://docs.vale.sh/formats/mdx) before linting `.mdx` files:
+
+```sh
+npm install --global mdx2vast
+```
+
 ## Test
 
 Each rule has a failing fixture, while `tests/vale/good.md` proves plain prose and inline code stay clean.
