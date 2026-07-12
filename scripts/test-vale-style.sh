@@ -23,6 +23,7 @@ run_vale "$repo_root/tests/vale/sentence-complexity.md" >"$output_dir/sentence-c
 run_vale "$repo_root/tests/vale/readability.md" >"$output_dir/readability.json"
 run_vale "$repo_root/tests/vale/paragraph-length.md" >"$output_dir/paragraph-length.json"
 run_vale "$repo_root/tests/vale/suppression.mdx" >"$output_dir/suppression.json"
+run_vale "$repo_root/tests/vale/thin-content.md" >"$output_dir/thin-content.json"
 
 node --input-type=module - "$output_dir" <<'NODE'
 import fs from 'node:fs';
@@ -33,13 +34,14 @@ const alerts = (name) =>
   Object.values(JSON.parse(fs.readFileSync(path.join(outputDir, `${name}.json`), 'utf8'))).flat();
 const expectedChecks = {
   good: [],
-  'needless-words': ['WriteSimply.NeedlessWords'],
+  'needless-words': ['WriteSimply.NeedlessWords', 'WriteSimply.ThinContent'],
   'paragraph-length': ['WriteSimply.ParagraphLength'],
-  'plain-words': ['WriteSimply.PlainWords', 'WriteSimply.Readability'],
-  readability: ['WriteSimply.Readability'],
-  'sentence-complexity': ['WriteSimply.SentenceComplexity'],
-  'sentence-length': ['WriteSimply.Readability', 'WriteSimply.SentenceLength'],
-  suppression: ['WriteSimply.Readability'],
+  'plain-words': ['WriteSimply.PlainWords', 'WriteSimply.Readability', 'WriteSimply.ThinContent'],
+  readability: ['WriteSimply.Readability', 'WriteSimply.ThinContent'],
+  'sentence-complexity': ['WriteSimply.SentenceComplexity', 'WriteSimply.ThinContent'],
+  'sentence-length': ['WriteSimply.Readability', 'WriteSimply.SentenceLength', 'WriteSimply.ThinContent'],
+  suppression: ['WriteSimply.Readability', 'WriteSimply.ThinContent'],
+  'thin-content': ['WriteSimply.ThinContent'],
 };
 
 for (const [fixture, expected] of Object.entries(expectedChecks)) {

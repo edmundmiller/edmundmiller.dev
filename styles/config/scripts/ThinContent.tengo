@@ -1,0 +1,10 @@
+text := import("text")
+
+document := text.re_replace("(?s)^---.*?---", scope, "")
+document = text.re_replace("(?s)```.*?```", document, "")
+words := text.re_find("[[:alnum:]][[:alnum:]'-]*", document, -1)
+matches := []
+
+if is_undefined(words) || len(words) < 100 {
+    matches = append(matches, {begin: 0, end: 1})
+}
