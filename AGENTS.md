@@ -43,6 +43,6 @@ npm exec -- wrangler deployments list
 
 If Wrangler warns about missing unrelated OAuth scopes, do not treat that as a deploy blocker unless deploy/read commands fail.
 
-## Session Closeout
+## Codex Automation
 
-Flush br, commit only task-scoped changes, pull with rebase, push, then verify local/remote state. Work is not done until push succeeds.
+The project Stop hook flushes br and blocks completion until task-scoped changes are committed and the branch is synchronized with its upstream.

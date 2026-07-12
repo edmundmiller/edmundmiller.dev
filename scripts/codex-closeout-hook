@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+set -uo pipefail
+
+payload=$(cat)
+cwd=$(printf '%s' "$payload" | python3 -c 'import json,sys; print(json.load(sys.stdin).get("cwd", ""))' 2>/dev/null) || cwd=
+test -n "$cwd" || cwd=$PWD
+
+repo=$(git -C "$cwd" rev-parse --show-toplevel 2>/dev/null) || exit 0
+cd "$repo" || exit 0
+
+block() {
+  python3 -c 'import json,sys; print(json.dumps({"decision":"block","reason":sys.argv[1]}))' "$1"
+  exit 0
+}
+
+if ! br sync --flush-only >/dev/null 2>&1; then
+  block "br sync --flush-only failed; fix it before stopping."
+fi
+
+status=$(git status --porcelain --untracked-files=all | grep -v '^?? \.codex/config\.toml$')
+if test -n "$status"; then
+  block "Repository has uncommitted changes; finish and commit task-scoped work before stopping."
+fi
+
+upstream=$(git rev-parse --abbrev-ref --symbolic-full-name '@{upstream}' 2>/dev/null) ||
+  block "Current branch has no upstream; push it with tracking before stopping."
+
+if ! git fetch --quiet; then
+  block "Could not fetch $upstream; restore remote access before stopping."
+fi
+
+read -r ahead behind < <(git rev-list --left-right --count "HEAD...$upstream")
+if ((ahead > 0 && behind > 0)); then
+  block "Branch diverged from $upstream; pull with rebase, resolve it, and push before stopping."
+fi
+if ((behind > 0)); then
+  block "Branch is behind $upstream; pull with rebase before stopping."
+fi
+if ((ahead > 0)); then
+  block "Branch has $ahead unpushed commit(s); push before stopping."
+fi

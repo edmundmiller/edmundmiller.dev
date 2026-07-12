@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "command": "repo=$(git rev-parse --show-toplevel 2>/dev/null) && bash \"$repo/scripts/codex-closeout-hook\"",
+            "timeout": 120,
+            "type": "command"
+          }
+        ]
+      }
+    ]
+  }
+}
