@@ -6,15 +6,17 @@ publishDate: 2024-06-14
 tags: ['emacs', 'nextflow']
 ---
 
-I was chatting with [David](https://dcgemperline.github.io/) at the recent Nextflow Summit in Boston about Emacs and comparing our various workflows. I thought I might turn this into a blog post after a question about [Emacs workflows on the Seqera discourse](https://community.seqera.io/t/what-is-your-nextflow-emacs-setup).
+At the 2024 Nextflow Summit in Boston, [David](https://dcgemperline.github.io/) and I compared our Emacs workflows. A related question on [Seqera Discourse](https://community.seqera.io/t/what-is-your-nextflow-emacs-setup) prompted me to document mine.
 
-When working with Nextflow and Emacs, my typical workflow involves having a local Emacs instance open with my project. I make changes to the source code within Emacs and run `nextflow run . -profile test,docker ...` in a separate terminal. I've tried integrated terminals in Emacs but it's just always _slightly off_, so I don't bother. Typically just have workspaces open with a Browser in workspace 1, Emacs in workspace 2, and a terminal open in workspace 3.
+For local work, I edit the project in Emacs and run `nextflow run . -profile test,docker ...` in a separate terminal. Integrated terminals in Emacs have always felt slightly off to me. I keep a browser, Emacs, and the terminal in three workspaces instead.
 
-For projects that require a remote system, such as an HPC cluster, I utilize [emacs-ssh-deploy](https://github.com/cjohansson/emacs-ssh-deploy). This tool automatically copies the file from my local machine to the appropriate directory on the server upon saving using `sftp`. To execute Nextflow, I simply ssh into the remote system and run `nextflow run . -profile ...` in a terminal.
+For work on an HPC cluster, I use [emacs-ssh-deploy](https://github.com/cjohansson/emacs-ssh-deploy). When I save a file, it copies that file over SFTP to the matching remote directory. I open a separate SSH session and run `nextflow run . -profile ...` there.
 
-I have considered developing a [Transient](https://magit.vc/manual/transient/)-based launcher for [`nextflow-mode`](https://github.com/edmundmiller/nextflow-mode), similar to the one added to `snakemake-mode`. However, I have found these launchers to be fragile when dealing with terminal output. [I even created one for the NodeJS framework, Jest](https://github.com/edmundmiller/emacs-jest), but have not used it extensively myself.
+I considered adding a [Transient](https://magit.vc/manual/transient/) launcher to [`nextflow-mode`](https://github.com/edmundmiller/nextflow-mode). `snakemake-mode` had a similar launcher. In my experience, connecting launchers to terminal output added fragile integration that I did not want to maintain. I had built [an Emacs launcher for Jest](https://github.com/edmundmiller/emacs-jest) and rarely used it.
 
-My goal is to keep my workflow simple and flexible, allowing for easy substitution of Emacs with other editors like Neovim, Helix, or Zed. As for my Emacs setup, I have been using [Doom Emacs](https://github.com/doomemacs/doomemacs) since 2018 [^1], and [my .doom.d configuration is available on GitHub](https://github.com/edmundmiller/.doom.d).
+The separation is useful beyond Emacs. Editing, file transfer, and execution remain independent steps. Replacing Emacs with Neovim, Helix, or Zed would change only the editor.
+
+I have used [Doom Emacs](https://github.com/doomemacs/doomemacs) since 2018.[^1] My [Doom configuration is available on GitHub](https://github.com/edmundmiller/.doom.d). These are the only Nextflow-specific pieces:
 
 The Nextflow specific parts of my config:
 
@@ -28,4 +30,4 @@ The Nextflow specific parts of my config:
   (set-docsets! 'nextflow-mode "Groovy"))
 ```
 
-[^1]: [Henrik](https://henrik.io/) really inspired my love of modules, and most of my development workflow.
+[^1]: [Henrik](https://henrik.io/) inspired my use of modules throughout this development workflow.
