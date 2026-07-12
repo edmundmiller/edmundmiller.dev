@@ -2,45 +2,26 @@
 author: Edmund Miller
 publishDate: '2019-01-13T22:42Z'
 title: CTRL to Caps Lock
-description: How to change your Capslock key to Ctrl. With a bonus ESC on tap.
+description: How I made Caps Lock send Escape on a tap and Control when held, first with QMK and then on an X11 laptop.
 tags: ['linux']
 ---
 
-I grew up in a household where `CTRL` has been mapped to
-`Caps Lock` on every computer. It was just something I had
-never questioned until recently. As a heavy `CTRL` user
-between Emacs and terminal apps now, I understand.I thought this would
-be fitting for a first blog post as kind of an origin story.
+I grew up in a household where every computer mapped Control to Caps Lock. I never questioned the choice. After spending more time in Emacs and terminal applications, I understood why the easier key position helped.
 
-So I got my first mechanical keyboard about a year and a half ago, and
-since it 's powered by [qmk](https://docs.qmk.fm/#/), I decided to
-replace where caps lock might have been on my planck, to
-`ESC` to make Vim and evil a little easier instead of using
-`jk` or other ways to switch back to normal mode.
+My first mechanical keyboard was a Planck powered by [QMK](https://docs.qmk.fm/). I placed Escape where Caps Lock would normally sit because Vim and Evil use it often.
 
-Fast-forward to recently and my mechanical keyboard family has grown
-with the addition of an ergodox-ez. The default bindings had a lot of
-keys that with a quick tap was a letter, and a hold became a modifier
-key. So I thought it might be useful to do this with `ESC`
-and `CTRL`. This is the line to make it happen with
-[qmk](https://docs.qmk.fm/#/).
+Later, an Ergodox EZ showed me QMK's tap-hold keys. One key could send a character when tapped and act as a modifier when held. I combined my Escape and Control mappings with one definition:
 
 ```c
 CTL_T(KC_ESC)
 ```
 
-But it wasn\'t just enough to have it on my keyboards. I needed this
-magic everywhere.
+A tap now sent Escape. Holding the same key sent Left Control. QMK's tap-hold settings controlled the timing.
 
-After mentioning what I had done on the Doom Emacs discord one of them
-found a [guide by Danny
-Guo](https://www.dannyguo.com/blog/remap-caps-lock-to-escape-and-control/)
-to set this up on most systems.
+## Applying the mapping to my laptop
 
-[Instructions for
-Ubuntu](https://www.dannyguo.com/blog/remap-caps-lock-to-escape-and-control/#xcape)
-however, under `gnome tweaks` under keyboard, additional
-layout options, Ctrl position, it was `Caps Lock as Ctrl`.
+Someone in the Doom Emacs Discord shared [Danny Guo's remapping guide](https://www.dannyguo.com/blog/remap-caps-lock-to-escape-and-control/). On my Ubuntu X11 session, I first opened GNOME Tweaks and selected “Caps Lock as Ctrl” under the Control-key position options.
 
-I now have ESC/CTRL set to caps lock on keyboards not powered by qmk,
-such as my laptops built in keyboard.
+That setting alone made Caps Lock act as Control. The guide's `xcape` step added Escape when I tapped the key.
+
+This gave my laptop's built-in keyboard the same behavior as my QMK keyboards. The `xcape` method targets X11, so Wayland sessions need a different remapping tool.
