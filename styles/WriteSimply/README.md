@@ -16,12 +16,24 @@ The rules are prompts for revision, not mechanical truth. Technical terms can be
 
 | Rule                             | Signal                                             |
 | -------------------------------- | -------------------------------------------------- |
+| `WriteSimply.BareLink`           | Standalone source links outside code blocks        |
+| `WriteSimply.DecorativeLanguage` | Stock metaphors and promotional phrases            |
+| `WriteSimply.DraftMarkers`       | Unresolved TODO, TBD, FIXME, and WIP markers       |
+| `WriteSimply.LongQuotation`      | Block quotations over 50 words                     |
 | `WriteSimply.NeedlessWords`      | Stock phrases that can usually be cut              |
 | `WriteSimply.ParagraphLength`    | Paragraphs over 100 words                          |
+| `WriteSimply.ParenthesisSpacing` | Missing space before an opening parenthesis        |
 | `WriteSimply.PlainWords`         | Formal words and phrases with plainer alternatives |
 | `WriteSimply.Readability`        | Document grade level above 10                      |
 | `WriteSimply.SentenceComplexity` | Sentences with more than three commas              |
 | `WriteSimply.SentenceLength`     | Sentences over 25 words                            |
+| `WriteSimply.SpokenFillers`      | Dictation residue such as “you know” and “I mean”  |
+| `WriteSimply.ThinContent`        | Posts with fewer than 100 prose words              |
+| `WriteSimply.VaguePraise`        | Praise that needs concrete support                 |
+
+## Review boundary
+
+Vale cannot judge thesis placement, idea order, conceptual repetition, factual support, relevance, or conclusion quality. Those remain editorial checklist items in Beads.
 
 ## Use
 
@@ -78,4 +90,4 @@ Each rule has a failing fixture, while `tests/vale/good.md` proves plain prose a
 npm run test:vale
 ```
 
-The style is package-ready: archive the top-level `WriteSimply/` directory for a Vale style-only release.
+The script-backed rules require a complete package containing `.vale.ini` and `styles/`, including `styles/config/scripts/`.
