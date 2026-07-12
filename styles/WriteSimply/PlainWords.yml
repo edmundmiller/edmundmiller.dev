@@ -1,0 +1,32 @@
+extends: substitution
+message: Use '%s' instead of '%s' when the meaning stays the same.
+link: https://paulgraham.com/simply.html
+level: suggestion
+ignorecase: true
+action:
+  name: replace
+swap:
+  'a large number of': many
+  'at this point in time': now
+  'due to the fact that': because
+  'for the purpose of': to
+  'has the ability to': can
+  'in order to': to
+  'is able to': can
+  'make use of': use
+  'with regard to': about
+  approximately: about
+  commence: start
+  facilitate: help
+  facilitated: helped
+  facilitates: helps
+  facilitating: helping
+  numerous: many
+  robust: strong|reliable
+  subsequent: next|later
+  subsequently: later
+  terminate: end
+  utilize: use
+  utilized: used
+  utilizes: uses
+  utilizing: using
