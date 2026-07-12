@@ -6,7 +6,7 @@ output_dir="$(mktemp -d)"
 trap 'rm -rf "$output_dir"' EXIT
 
 run_vale() {
-  corepack pnpm dlx @vvago/vale \
+  corepack pnpm exec vale \
     --no-global \
     --config="$repo_root/.vale.ini" \
     --output=JSON \

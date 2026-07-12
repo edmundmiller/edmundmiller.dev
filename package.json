@@ -16,7 +16,7 @@
     "check": "astro check",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
-    "lint:prose": "corepack pnpm dlx @vvago/vale -- src/",
+    "lint:prose": "vale --no-global --config=.vale.ini src/",
     "test:vale": "bash scripts/test-vale-style.sh",
     "test:hooks": "bash scripts/codex-closeout-hook.test.sh"
   },
@@ -62,6 +62,7 @@
     "@types/d3-shape": "^3.1.8",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
+    "@vvago/vale": "3.15.1",
     "autoprefixer": "10.5.2",
     "mdast-util-to-string": "4.0.0",
     "oxfmt": "^0.57.0",

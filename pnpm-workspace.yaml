@@ -1,4 +1,5 @@
 allowBuilds:
+  '@vvago/vale': true
   esbuild: true
   sharp: true
 minimumReleaseAgeExclude:

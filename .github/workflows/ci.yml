@@ -31,6 +31,9 @@ jobs:
       - name: Install dependencies
         run: corepack pnpm install --frozen-lockfile
 
+      - name: Test Vale style
+        run: corepack pnpm test:vale
+
       - name: Run format check
         run: corepack pnpm format:check
 
