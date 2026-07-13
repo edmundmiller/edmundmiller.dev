@@ -1,62 +1,49 @@
 ---
-title: Age of the Yubikey
-description: Trying to use age with a Yubikey. Ended up giving up and using 1password
+title: Age of the YubiKey
+description: Why I kept SSH signing and login keys on a YubiKey but used a separate local SSH key for age-encrypted journal files.
 draft: true
 publishDate: '04 Jan 2024'
 tags: ['yubikey', 'age']
 ---
 
-How I Set Up SSH Commit Signing and Rage Encryption with a YubiKey
+I wanted one YubiKey to handle Git commit signing, server login, and age encryption. The first two worked. Journal encryption required a separate local key in my final setup.
 
-<https://debugging.works/blog/yubikey-cheatsheet/>
-<https://xeiaso.net/blog/yubikey-ssh-key-storage/>
-<https://words.filippo.io/dispatches/passage/>
-<https://blog.nanax.fr/post/2023-10-31-yubikey-piv-setup/>
+## Moving Git signing to SSH
 
-Okay, the year is 2024, the year that I finally clean up some listings in my life. I&rsquo;m working for a long time, I&rsquo;ve just copied whatever Heinrich Lissner has done, and so therefore I&rsquo;ve religiously signed all of my Git commits over the past couple of years with GPG keys. However, recently I&rsquo;ve had my eye on for the past couple of years that you can sign your Git commits with an SSH key, and a year or so ago GitHub added the functionality to GitHub to get those commits verified. So I thought that was really cool, and I wanted to implement it. And so I&rsquo;d started, I already had to switch over to Age for my encrypted journal files on my computer, and wrote a blog post about that. However, I&rsquo;ve had a YubiKey that I started using for GPG, but then it turned out to be really slow to encrypt and sign stuff, and it was just painful to use. So I just use it for 2FA currently. But I also saw that YubiKey had added in OpenSSH that you could do direct keys on the YubiKey itself. So I thought that was a really cool functionality, I wanted to use that. So I did that, uploaded it to my GitHub, my brand new GitHub username, and went from there. And I just assumed that would work with Rage, and started trying to do it, and found that you can&rsquo;t, and it will essentially never be possible. So I got baited by the Age.gl convict. So I then went and just walked through and started down this path to try to get PIV SSH working with the YubiKey, and working with Rage then. And that was a whole gauntlet of things. So big break here. Some of the things I struggled with across the board were trying to find documentation on what is in these files in this example that the author of the package put out. And I thought I had those right, then. The squirrely thing that got me was I had encrypted a previous journal file last month, and when Org Journal goes through to decrypt stuff, it decrypts everything. So that was messing me up. That was what ultimately it was. So anyways, we&rsquo;ll walk through some of how I set it up here in 2023. Big break. So in conclusion, what I ended up with is I do have a signing SSH key and one that I use for GitHub, and then one that I also used to log into machines as well on my YubiKey, and then I have a separate SSH key that I use for encrypting files via Rage and Age on my computer. I could probably do YubiKey Agent and just have one key then. I&rsquo;m going to try both for a little while and see which one I prefer over that, and then go from there. And whether I want to keep two keys or just keep one key. So that&rsquo;s it.
+I had signed Git commits with a GPG key for several years. The YubiKey made those operations slow enough that I used it mostly for two-factor authentication.
 
-## Introduction
+GitHub's support for verified SSH signatures gave me another path. OpenSSH could create a resident security-key credential on the YubiKey:
 
-The year is 2024, the year that I finally clean up some lose-ends in my life. For the past few years, I&rsquo;ve been following in the footsteps of Heinrich Lissner, signing all of my Git commits with GPG keys. But times are changing, and so must my tools. I was captivated by the possibility of using my SSH key for commit signing, especially after GitHub began supporting it, verifying commits in the process. So, I embarked on a journey to update my setup to use a YubiKey for SSH commit signing while managing my encrypted journal files with Age.
+```bash
+ssh-keygen \
+  -t ed25519-sk \
+  -O resident \
+  -O verify-required \
+  -O no-touch-required \
+  -O application=ssh:github \
+  -C "edmundmiller"
+```
 
-\## The Draw of SSH-Key Signatures
+I added the public key to GitHub for commit signing. I also created a YubiKey-backed key for logging in to servers.
 
-Initially, I was using my YubiKey for GPG-based operations. However, its speed—or lack thereof—made encryption and signing tasks painfully slow. Resolving to use the key solely for 2FA (two-factor authentication), I was pleased to discover the ability to store direct keys on the YubiKey via OpenSSH. Transferring this functionality to GitHub under my new username, I was under the impression that this would all seamlessly integrate with Rage for encrypting my journal files. Alas, it did not.
+The [YubiKey SSH notes from Xe Iaso](https://xeiaso.net/blog/yubikey-ssh-key-storage/) and this [YubiKey cheat sheet](https://debugging.works/blog/yubikey-cheatsheet/) helped me understand the OpenSSH options.
 
-\## Hitting a Roadblock with Rage
+## Why age used another key
 
-In trying to bridge my YubiKey with Rage, I hit a wall. No matter the creativity employed, it just wouldn&rsquo;t mesh. Age.gl had led me to believe in the possibility, but the truth was more unforgiving. Resolved to find a solution, I plunged into the complexities of getting PIV SSH working with the YubiKey and integrating this setup with Rage.
+I already used [age](https://age-encryption.org/) and [rage](https://github.com/str4d/rage) for encrypted org-journal files. I assumed the new `ed25519-sk` key would also work as an age recipient.
 
-\## Digging into the Documentation
+It did not work in my setup. I explored the YubiKey PIV path, using [this PIV guide](https://blog.nanax.fr/post/2023-10-31-yubikey-piv-setup/) as a reference. That added more configuration than I wanted for a journal.
 
-One recurring challenge was the lack of clarity in available documentation—particularly concerning configuration files provided in examples by package authors. Despite initial hardships, I managed to decipher the setup.
+An older encrypted journal file also confused the test. org-journal tried to open entries from both encryption setups. Once I separated that old file, I could see which failure came from the key and which came from journal history.
 
-\### Encountering Unexpected Encryption Quirks
+## The setup I kept
 
-A peculiar issue arose when dealing with my previous month&rsquo;s journal, encrypted under the old system. Org Journal, which decrypts all entries during processing, was unexpectedly complicating my attempts to transition, as it couldn’t handle the new encryption method.
+I ended with three roles:
 
-\## The Resulting Setup: A Hybrid Approach
+- A YubiKey-backed SSH key signs Git commits on GitHub.
+- Another YubiKey-backed SSH key authenticates to servers.
+- A local SSH key encrypts journal files through age and rage.
 
-Eventually, I carved out a stable workflow:
+[`yubikey-agent`](https://github.com/FiloSottile/yubikey-agent) could reduce the number of keys, but I did not need that extra change to restore journaling. The separate encryption key was simple and worked with my existing age configuration.
 
-- \***\*Signing SSH Key\*\***: I created an SSH key for commit signing on GitHub and also for authenticating into servers.
-- \***\*Encryption SSH Key\*\***: A separate key is dedicated to file encryption via Rage and Age.
-- I contemplated the possibility of merging these roles using \`yubikey-agent\`, which might allow a single key for both purposes. However, I decided to experiment with both a single-key and dual-key setup before determining my preference.
-
-\## Conclusion: Key Lessons Learned
-
-The quest to streamline my security practices with a YubiKey led me down an unexpected path of trial, error, and discovery. As of 2023, the winning combination consists of distinct SSH keys on my YubiKey—one for committing to GitHub and server login, and another solely for file encryption. While I&rsquo;m tempted to unify them using \`yubikey-agent\`, I&rsquo;ll test both single and dual-key approaches to decide which suits my needs best.
-
-Keeping two keys or consolidating to one remains an open question. Here&rsquo;s to simplifying security without compromising on the robustness or functionality. Stay tuned for updates on which way I go.
-
-Remember, as with any development journey, the road less traveled often leads to the greatest discoveries.
-
-ChatGPT(4-1106-preview/General)>
-
-# More notes
-
-<https://gist.github.com/Kranzes/be4fffba5da3799ee93134dc68a4c67b>
-
-Command
-
-    ssh-keygen -t ed25519-sk -O resident -O verify-required -O no-touch-required -O application=ssh:github -C "edmundmiller"
+The YubiKey now protects the credentials that leave my laptop. The local age key protects the files that stay in my journal workflow. That was the practical boundary I kept.
