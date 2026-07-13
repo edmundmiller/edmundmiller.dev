@@ -1,11 +1,29 @@
 ---
-title: Slidev Monorepos
-description: A WIP on how I host a Slidev Monorepo
+title: Choosing a Slidev Monorepo Template
+description: Why I adapted an existing template to build several presentations from one repository.
 draft: true
 publishDate: 2024-07-01
 tags: ['webdev', 'science']
 ---
 
-https://sli.dev/guide/hosting#multiple-entries slidev claims you can have multiple presentations built at once, but they all end up in dist in the first build slide. Also kinda difficult to have self contained presentions. I really just wanted a monorepo of presentations. Stumbled on this [GitHub Discussion](https://github.com/slidevjs/slidev/discussions/609) on the subject. Looked through the repos and this one is the move https://github.com/kxxt/slidev-template-repo.
+I wanted one repository for several Slidev presentations. Each deck needed its own files and URL, while the deployed site needed an index of every deck.
 
-Copied it and threw some stuff together, it worked! Updated the CI to stuff from this year and then moved the hosting over to cloudflare pages. If you want to look at the slides: https://slides.applied-genomics.dev/
+Slidev can [build multiple Markdown entries](https://sli.dev/guide/hosting#multiple-builds). Each input becomes a folder in the output directory. That command solved the build step, but I still needed a repository layout and a landing page.
+
+## Finding a working layout
+
+A [Slidev discussion about multiple routes](https://github.com/slidevjs/slidev/discussions/609) led me to kxxt's [Slidev template repository](https://github.com/kxxt/slidev-template-repo). The template treats each presentation as a separate workspace and generates a directory listing for the deployed site.
+
+That matched my goal better than placing unrelated presentations in one Markdown file. A deck could keep its own assets and package settings without becoming a separate repository.
+
+## Adapting the template
+
+I copied the template, replaced its example decks, and updated its continuous-integration dependencies. I also changed the deployment target from GitHub Pages to Cloudflare Pages.
+
+The build still produces one static output tree. Cloudflare Pages publishes that tree, so each deck remains available below one site rather than requiring a separate project.
+
+The resulting presentations live at [slides.applied-genomics.dev](https://slides.applied-genomics.dev/).
+
+## Publication boundary
+
+This draft records the choice and result, not a reusable deployment guide. Before publishing it as a guide, I need to include the repository's workspace layout, build script, and Cloudflare Pages settings. Those details would let a reader reproduce the change instead of only following links.
