@@ -6,51 +6,28 @@ description: 'Or is it like v5 at this point?'
 draft: false
 ---
 
-Or is it like [v5 at this point](personal-rewrite.org)?
+Or was it [v5 at this point](/posts/personal-rewrite/)?
 
-In the lead up to [JuliaCon 2023](https://juliacon.org/2023/) I was
-throwing together the final touches on my presentations and talking to
-[Teco](https://tecosaur.net/) a lot about his presentation and started
-digging into the org file he used to create it. I had followed his
-beamer recommendations in the past, I just had never seen behind the
-curtain of how he does it.
+Before [JuliaCon 2023](https://juliacon.org/2023/), I was finishing my talks and comparing notes with [Teco](https://tecosaur.net/). I opened the Org source for his presentation to see how its publishing setup worked.
 
-Then it hit me. Why did I never try just using org export for my
-personal site? I continually searched for ways to write my posts in
-org-mode, but I always wanted to use the newest and fanciest web
-framework. Why? I\'m not a web developer. [I know enough to be
-dangerous](learn-react.org), but the things I was trying to do were
-vastly over complicated for a personal site. It\'s some static text, and
-some links. It was never going to need all of the functionality of
-astro. I mainly wanted to use astro because it would just ship html by
-default and be fast.
+That source showed me what my personal site required: static HTML, links, and a small stylesheet. Org's built-in HTML exporter already produced the first two.
 
-Spoiler alert, org-mode does that out of the box.
+I had kept choosing web frameworks because I wanted fast static output. I [knew enough React to assemble a site](/posts/learn-react/), but that did not mean the site needed a JavaScript application.
 
-# Scoping what I actually needed
+## What the publishing system needed
 
-1.  I love automated publishing. I literally don\'t think I could run a
-    website or software project without it. The thought of manually
-    walking through the build process manually is like nails on a
-    chalkboard for me. I should just push it to a repo, and boom
-    results. Manual steps are prone to me getting bored halfway through
-    and never finishing it.
-2.  I hate checking generated files into repos. That means html files,
-    coverted markdown files from org-export. It just clutters the
-    commits and you can\'t follow the history.
+I reduced the plan to two constraints:
 
-So from that I planned on:
+1. A push to the source repository should publish the site automatically.
+2. Generated HTML should stay out of Git so commits show only source changes.
+
+The build pipeline, not Org alone, would provide automated deployment and keep generated files out of the repository.
+
+## The implementation order
 
 1.  Start with plain html export
 2.  Get all of the content in the right places
-3.  Throw some css on there.
-4.  Then answer the age old question, do you really need JavaScript?[^1]
+3.  Add the CSS needed for the design
+4.  Add JavaScript only for a feature that required it
 
-[^1]:
-    I noticed [NvChad](https://nvchad.com/) used
-    [UnoCSS](https://unocss.dev/) and
-    [Solid.js](https://www.solidjs.com/), which seem minimal, while I
-    was looking for a [Doom
-    Emacs](https://github.com/doomemacs/doomemacs) like
-    [Neovim](https://neovim.io/) experience. Planning on using those
-    first.
+This was the plan in July 2023. The current site later returned to Astro, but the lesson held: choose tools from the site's requirements, not their novelty.
