@@ -1,108 +1,97 @@
 ---
-title: Harnessing the Power of Emacs for Data Analysis on NixOS
-description: >
-  In this blog post, we explore the powerful combination of using Emacs, the highly extensible text editor, for data analysis tasks while using the NixOS operating system.
+title: Reproducible Data Analysis with Emacs and Nix
+description: A working design for running Org Babel analyses in a project Nix environment.
 draft: true
 publishDate: '04 Jan 2024'
 tags: ['emacs', 'python', 'Nix']
 ---
 
-I'm writing this post to try to figure out what pain points I'm having with using Org-mode or Jupyter in Emacs.
+I want to run Python and R analyses from Org mode without maintaining another editor setup. NixOS makes ad hoc package installation awkward by design. That constraint is useful when the environment belongs to the project.
 
-I've tried to use VSCode for this, or the Jupyter web page. With the former, I'm always inundated with messages of "This plugin is out of date", "Syncing failed", and suffering from death by a thousand paper-cuts everytime I try to hit `ESC` to go to normal mode(It just doesn't seem to work right). The later, I just keep accidentally closing the tab every-time I hit `C-w` when I make a typo.
+The browser-based Jupyter interface also conflicts with my Emacs habits. For example, `C-w` closes a browser tab instead of deleting a word. I would rather keep the analysis, prose, and editor commands in one place.
 
-Sure, I could shave these yaks, but I already have a whole herd of yaks in my Emacs config that are well groomed.
+## Three requirements
 
-## What are my issues?
+The setup needs to satisfy three requirements:
 
-So NixOS has this thing where it doesn't let Python and R just go around and do their thing, installing packages here, there, and everywhere.
+1. A project must declare its Python and R packages in a reproducible Nix environment.
+2. The Org file must need only a few readable header arguments.
+3. The same analysis must run from Emacs or a noninteractive command.
 
-I've mostly gotten around those pain points with arguably better ways of doing things those tasks are trying to accomplish[^12].
+These requirements favor a small project around the Org document. They do not require embedding the entire Nix expression inside that document.
 
-But org-mode isn't always as clever.
+## Put the environment beside the analysis
 
-I also really like projects to be self-contained. Sometimes I'll leave them for a while, and I want it to be easy to pick them back up and not end up trying to reproduce the whole system.
+A checked-in `flake.nix` can define the development shell. It can include Emacs, Python, R, and the required analysis packages. The lock file records the selected Nix inputs.
 
-1. I want a Nix shell for the project, with an easy and clear way to pull in more Python and R packages as the analysis progresses. It should be simple an clear what's going on. It doesn't need to cover every persons use-case ever, just mine.
-2. Ideally I'd like this all contained within the org file itself.
-3. Minimal boilerplate in the org file. The header shouldn't be a web of illegible nix, and every `src` block shouldn't go off the page with options.
-4. A way to quickly rerun the analysis from the command line so I can walk away.
-5. A template for a new analysis.
-6. What are all the cool org-mode things I can do?
+This structure also keeps environment changes visible in Git. Adding a library changes the project definition instead of an untracked global environment.
 
-## Nix Shell and Org Mode
+I would add this small `.envrc` file beside the flake:
 
-[^1] https://discourse.nixos.org/t/nix-shells-in-emacs-org-mode-source-blocks/12673
+```sh
+use flake
+```
 
-[^5]: https://nixos.org/guides/nix-pills/10-developing-with-nix-shell
+[direnv](https://direnv.net/) loads the shell when a terminal enters the directory. In Emacs, [envrc](https://github.com/purcell/envrc) applies that environment to buffers in the project. Processes started from those buffers then receive the project environment.
 
-[^2]: https://github.com/AntonHakansson/org-nix-shell
+This approach keeps the boundary simple. Nix defines the tools, direnv activates them, and Org Babel runs them.
 
-[^3]: https://www.arcadianvisions.com/blog/2018/org-nix-direnv.html
+## Keep the Org configuration short
 
-[^4]: https://matthewbauer.us/blog/nix-and-org.html
+Language-specific properties can set shared options once near the top of the Org file:
 
-<!-- Also mentioned https://github.com/shlevy/nix-buffer -->
+```org
+#+title: Analysis
+#+property: header-args:python :session *python* :results output
+#+property: header-args:R :session *R* :results output
+```
 
-This turned out to be surprisingly easy. I found a thread of the NixOS Dicourse with my kind of people in it.[^1]
+Each source block can then focus on code:
 
-### Contained within the org file
+```org
+#+begin_src python
+import pandas as pd
+print(pd.__version__)
+#+end_src
+```
 
-### direnv and org-mode
+The `:results output` setting captures printed output. A session keeps language state between blocks while I work interactively. File-specific options can still override either default.
 
-https://github.com/purcell/envrc/issues/28
+Org supports other useful controls without adding editor plugins. Header arguments can cache results, write figures to files, or exclude setup code from exports. The [Org manual](https://orgmode.org/manual/Using-Header-Arguments.html) documents those options.
 
-### Minimal Boilerplate
+## Run the same document from the command line
 
-## Rerunning the Analysis
+The command-line path should enter the same Nix environment before starting Emacs:
 
-https://michaelneuper.com/posts/replace-jupyter-notebook-with-emacs-org-mode/
-Integrating with external tools and libraries
-Bonus: Importing existing Jupyter Notebooks into Org Mode
+```sh
+nix develop --command emacs --batch \
+  -l org -l ob-python -l ob-R analysis.org \
+  --eval '(setq org-confirm-babel-evaluate nil)' \
+  --eval '(org-babel-execute-buffer)'
+```
 
-## Template
+Disabling confirmation is appropriate only for a trusted, version-controlled document. The command should fail in automation when a block fails. Its generated results can then feed the same export process used interactively.
 
-<!-- TODO Propably gonna be a nix flake init -->
-<!-- TODO Maybe a quick org-mode template? -->
+A small wrapper script can hold this command. That gives a new project one obvious entry point without repeating batch options in documentation.
 
-## Cool Org Mode tricks
+## Start from a small template
 
-https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-python.html
+The reusable template only needs four pieces:
 
-# Literature Review
+- `flake.nix` and `flake.lock` for the tools and packages
+- `.envrc` for project activation
+- `analysis.org` for prose, code, and results
+- a script that executes the document in batch mode
 
-## Replacing Jupyter with Org Mode
+This is enough structure to resume an analysis after months away. It also keeps the editor setup separate from the scientific environment.
 
-[^5]: https://michaelneuper.com/posts/replace-jupyter-notebook-with-emacs-org-mode/
+The next step is to test this design with one mixed Python and R analysis. That test should verify interactive sessions, batch execution, figures, and exported results before this draft is published.
 
-[^6]: https://orgmode.org/worg/org-contrib/babel/examples/data-collection-analysis.html
+## References
 
-#### Nix Shell and Python
-
-https://github.com/the-nix-way/dev-templates/blob/main/python/flake.nix
-https://gist.github.com/bb010g/8a28a7d1fcdb021b42d1da71d2429a4b#venvshellhookshell
-https://nixos.org/manual/nixpkgs/stable/#ad-hoc-temporary-python-environment-with-nix-shell
-
-<!-- https://emacs.stackexchange.com/questions/17926/python-org-mode-source-block-output-is-always-none -->
-
-#### Python and Org Mode
-
-[^13]:
-    Needed `:results output`
-    https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-python.html
-
-## Org Mode Code Blocks
-
-[^7]: https://orgmode.org/manual/Using-Header-Arguments.html
-
-[^8]: https://orgmode.org/manual/Environment-of-a-Code-Block.html
-
-[^9]: https://orgmode.org/manual/Evaluating-Code-Blocks.html#Cache-results-of-evaluation-1
-
-[^10]: https://orgmode.org/manual/Results-of-Evaluation.html
-
-[^11]: https://orgmode.org/manual/Exporting-Code-Blocks.html
-
-[^12]: https://discourse.nixos.org/t/why-is-it-so-hard-to-use-a-python-package/19200
-
-https://github.com/doomemacs/doomemacs/issues/2416`
+- [Org Babel Python support](https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-python.html)
+- [Org Babel header arguments](https://orgmode.org/manual/Using-Header-Arguments.html)
+- [Org Babel result handling](https://orgmode.org/manual/Results-of-Evaluation.html)
+- [Org Babel code export](https://orgmode.org/manual/Exporting-Code-Blocks.html)
+- [Nix development environments](https://nixos.org/manual/nixpkgs/stable/#sec-pkgs-mkShell)
+- [envrc discussion about Org source blocks](https://github.com/purcell/envrc/issues/28)
