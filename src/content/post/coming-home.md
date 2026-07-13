@@ -1,119 +1,86 @@
 ---
 title: Coming Home
-description: Why I'm giving up on my k8s-at-home dreams and running everything on NixOS
+description: Why I'm replacing my Kubernetes homelab with simpler NixOS hosts
 publishDate: 'Dec 15 2023'
 tags: ['k8s', 'NixOS', 'homelab']
 draft: true
 ---
 
-Why I\'m quitting [K8s at Home](https://k8s-at-home.com/) and running
-everything on [NixOS](https://nixos.org/).
+I am replacing my three-node Kubernetes homelab with a few
+[NixOS](https://nixos.org/) hosts. The cluster works, but maintaining it
+costs more time than it saves.
 
-So, I wanted to... Let\'s see, how do I start this? Ever since I found a
-series of blog posts after ETH Denver in 2019 on creating a Kubernetes
-cluster to run a media server at home using Raspberry Pis and an
-external drive. I think it dates back even further in college I really
-had a dream of running a media server for my friends because we are
-constantly wanting to watch old random movies, TV shows that we\'re just
-struggling with all the streaming outlets at the time. So, the concept
-that I has been there for a while. So, I originally tried to do it with
-some Raspberry Pi\'s that I had laying around. Didn\'t really work out I
-got k3s installed and stuff connected but I could never find a clean
-solution to only use the VPN for qb.
+# How I got here
 
-So yeah, then I started to kind of play around with the various, you
-know, went through that implementation, couldn\'t quite get the VPN
-connecting to the torrent client was always just off. And so the dream
-died for a while. And then I\'d bring it back. And then it\'d die again
-because I would never get it up stuff. And then I found k8s@home. And I
-got pretty fare. And then it\'d die again, because I had a dream that
-this cluster would be a retirement home for all of my old laptops and
-single board computers collecting dust.
+In college, I wanted a media server for sharing old movies and television
+shows with friends. After ETHDenver in 2019, I found guides for running one
+on Kubernetes with Raspberry Pis and an external drive.
 
-Eventually I threw enough money at the hobby to get three intel NUCs
-setup and got the proper hardware. And it\'s kind of running just on its
-own right now[^1]. It seems to be working. The real issue, per se, is
-that I\'m not actually running updates like I should be despite the pull
-requests from renovate. The images are staying up to date, but the code
-is rotting because FluxCD seems to always be updating the syntax.So
-while I have learned all the Kubernetes lingo that I wanted to learn,
-after you learn all of the deployment, service, pod, ingress jargon, and
-peak behind the curtain the appeal kind of wears off.
+My first attempt used spare Raspberry Pis and k3s. I never found a reliable
+way to route only qBittorrent through a VPN.
 
-Or like it is awesome. It works. It\'s so cool. It\'s great. Lovely
-git-ops lovely tools. The real issue is that all the benefits that my
-naive self dreamed up five years ago, I wasn\'t actually seeing. I
-imagined a world where, the SD card dies on one of the Raspberry Pis and
-suddenly all of the pods switch over and the services never go down.
-Cool, right?
+Later, [k8s-at-home](https://k8s-at-home.com/) gave me a clearer path. I
+eventually bought three Intel NUCs and built a working cluster.
 
-Yeah, that doesn\'t actually happen with a three node cluster, even in
-high availability. The pod just kind of sit there in an unscheduled
-state waiting for the node to come back.
+Renovate kept the container images current, but I did not maintain the rest
+of the repository. FluxCD syntax changes accumulated while the cluster kept
+running.
 
-Obviously, this is why we have entire day jobs for people who do this on
-the regular. And if I did this for a day job, that\'d be cool. But this
-was literally just a side hobby to learn about Kubernetes. So I did it.
-I had a lot of fun with it. I learned a lot. It\'s come in handy to have
-a better understanding of Kubernetes
+My hoped-for failover also did not happen. When one node disappeared, pods in
+my setup often remained unscheduled until it returned.
 
-# Where am I going from here?
+The system may have been fixable. I did not want another operations job at
+home.
 
-I\'m going back to NixOS, it\'s been my bread and butter for the past 4
-years my bread and butter. I love it. It just works. Nixpkgs works at a
-blazingly fast pace and is an amazing community effort. If something
-doesn\'t work, I can hack on it and get it going.
+# What Kubernetes taught me
 
-It\'s declarative. So I just write out what I want and then it figures
-it out. I don\'t have to constantly be updating it based on new versions
-weekly and whatnot. I can wait for the biannual stable releases, and if
-I want a package from unstable, I can add an `unstable.<pkg>` and it\'ll
-get pulled from the bleeding edge.
+I learned about deployments, services, and pods. I also learned how ingress
+and GitOps fit into the system. That knowledge has helped me understand
+Kubernetes at work.
 
-# So what am I planning?
+The cluster completed its original job: it taught me Kubernetes. My homelab
+now needs dependable services with less maintenance.
 
-I\'m just going to run the NAS by itself for backups, syncing, storage
-as well on those. It\'s always been on NixOS. ThenI\'m just going to try
-to run [nix-infect](https://github.com/elitak/nixos-infect) on one the
-NUCs first, see what services I actually really want. If I need to
-scale, I\'ll just throw another NUC at it. It just another host config
-in [my dotfiles](https://github.com/Emiller88/dotfiles) away after all
+# Why NixOS fits
 
-# What happens if a node goes down?
+By late 2023, I had used NixOS for four years. Its declarative configuration
+lets me describe a machine and reproduce it later.
 
-Well, because of Nix, I\'m not really beholden to a specific piece of
-hardware. I can just spin up a new one just Nix install, and boom. I\'m
-off to the races and I have a new node up.
+I can stay on stable releases and pull selected packages from unstable
+through my existing configuration. If something breaks, I can inspect and
+change the relevant Nix expression.
 
-So it really let\'s you treat your pets like cattle. It\'s like the
-services that will clone your favorite dog for it.
+More importantly, each machine's configuration lives in
+[my dotfiles](https://github.com/Emiller88/dotfiles). I would rather maintain
+those files than a Kubernetes control plane.
 
-Then there\'s only two things that are needed, the config and the actual
-data, both of witch are already backed up. I\'m sure this change will
-allow me to do a better job of backing up the data and caring about that
-and less caring about the actual nodes, backing up fancy cloud databases
-and the yaml. [All of the yaml conflicts](https://noyaml.com/). I should
-say. So yeah, turn your back on. Turn your back on. Turn your back on.
+# The migration plan
 
-Most importantly, it\'s reproducible. Which is something I value a lot.
+The NAS already runs NixOS and will continue handling backups, syncing, and
+storage. I will test
+[nixos-infect](https://github.com/elitak/nixos-infect) on one NUC, then move
+only the services I still use.
 
-# The real thing that drew me in to k8s@home
+If I need more capacity, I can add another NUC and another host configuration.
 
-The other cool feature that I wanted to mention that I really got from
-the days of k8s@home was the creation of new services and then creating
-new subdomains on my home services domain. That was really cool. It was
-some magic to me that brought me in.
+# Recovering from failure
 
-But I\'m a lot older and little wiser now, and I\'m pretty sure I can do
-that in Nix in a similar fashion or even better. I was more afraid of
-the DNS than the Nix expressions 4 years ago. But now I\'ve realized
-that Kubernetes is even scarier than Nix.
+My machine configuration and service data are already backed up. If a host
+fails, I can install NixOS on a replacement, apply its configuration, and
+restore the data.
 
-So I\'m going back.
+That is the resilience I need. I do not need automatic failover for every
+home service.
 
-Worst case I\'ll just use
-[Tailscale](https://tailscale.com/edmundmiller). 🙃
+The NUCs survived the Kubernetes experiment. The hard drives I neglected
+while maintaining the cluster did not.
 
-# Footnotes
+# What I am keeping
 
-[^1]: Update the NUCs didn\'t give out but the HDD disks that I wasn\'t paying attention to be I was constantly wrangling cattle died.
+The k8s-at-home feature I valued most was automatic setup for new services and
+their subdomains. Four years ago, DNS felt harder to me than Nix expressions.
+
+I can reproduce that workflow in NixOS. If public DNS becomes more work than
+it is worth, I can use [Tailscale](https://tailscale.com/edmundmiller).
+
+So I am coming home to NixOS.
