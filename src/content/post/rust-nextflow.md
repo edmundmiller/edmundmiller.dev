@@ -5,32 +5,100 @@ draft: true
 publishDate: 'Nov 6 2023'
 ---
 
-Let\'s see, so I love a good crossover episode. As we could tell, I all
-my cross-ipper posts. So I get to talk into your new friend at the next
-little summit. And we noticed I was wearing a rest comp shirt, and so we
-started talking about rust, and we asked if I\'d ever used rust for the
-next one. So now, all right, I had, but I was using it in a, like, a
-pre-compiled bin, a binary, and then just dropping it in the bin
-directory. And while that was cool, you know, you got to use rust, but
-we just didn\'t. Snakebake had like native rust support, so. We got to
-talking and thinking, and then, you know, we were at side track by the
-hackathon. And then so after the summit, we were talking about things,
-because I had some issues in my slides, and there\'d be a beamer, and
-then we were talking about rust, and we ended up talking about nicks as
-well. I think it\'s not my message. I\'d plan to do the rust script
-thing, and he wanted to look at using cargo. And the rest is kind of
-history. So first and foremost, I just kind of made a very simple
-workflow. I just took the rust script in from Snakebake, and then I
-added a quick little test manifest script that used in Snakebake. With
-that, from that then, I set up this very simple little workflow. The
-only thing that does is just call that rust script, and then I gave it a
-run, and it failed. With like a ton of error messages, but the main line
-was like, just not such file directory, and you didn\'t know what to do
-with the create doc comment. So what I realized was I had not properly
-got waves set up on that, or I hadn\'t had a shabeng, so I had a
-shabeng. And then using Wave, I built it a Docker just for the sake of
-time, and then just had a rust script go to town. \[silence\]
+At the 2023 Nextflow Summit, a conversation about my RustConf shirt led to an experiment. Could a Nextflow process run a Rust source file directly?
 
-Yeah cool, that worked. Using the negative rust and rust script out of
-the box, built it, installed it, sick. Love it. Can\'t wait to use it,
-more in pipelines.
+I had already used Rust in Nextflow by placing a compiled binary in the pipeline's `bin/` directory. This experiment tested a different path. [`rust-script`](https://rust-script.org/) can compile and run one Rust file with an embedded Cargo manifest.
+
+The full experiment remains in my [`rust-nf` repository](https://github.com/Emiller88/rust-nf).
+
+## 1. Declare the script environment
+
+I adapted a Rust script from Snakemake's tests. Its crate-level documentation contained this Cargo manifest:
+
+````rust
+//! ```cargo
+//! [dependencies]
+//! csv = "1.1"
+//! serde = { version = "1.0", features = ["derive"] }
+//! ```
+````
+
+The process environment installed `rust-script` and its build tools:
+
+```yaml
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - rust-script>=0.15.0
+  - openssl
+  - c-compiler
+  - pkg-config
+```
+
+I then reduced the Nextflow process to one command. The script wrote `test.bed` directly instead of relying on Snakemake's injected objects.
+
+```nextflow
+process MANIFEST_RS {
+    conda "./env.yaml"
+
+    output:
+    path "test.bed"
+
+    script:
+    """
+    test-manifest.rs
+    """
+}
+```
+
+## 2. Run it and read the first failure
+
+I ran the workflow with the command recorded in Nextflow's history:
+
+```console
+nextflow run main.nf
+```
+
+The first script had no shebang. The task shell tried to read Rust as shell code, so the crate documentation became a command:
+
+```console
+/home/emiller/src/personal/rust-nf/bin/test-manifest.rs: line 1: //!: No such file or directory
+/home/emiller/src/personal/rust-nf/bin/test-manifest.rs: line 3: cargo: command not found
+```
+
+## 3. Add the interpreter
+
+The important fix was the first line of the Rust file:
+
+```rust
+#!/usr/bin/env rust-script
+```
+
+This told the operating system to pass the file to `rust-script`. A later run exposed the other half of that contract:
+
+```console
+/usr/bin/env: ‘rust-script’: No such file or directory
+```
+
+A correct shebang is not enough. The task environment must also provide the named interpreter.
+
+## 4. Separate the native and Wave results
+
+With `rust-script` available on the host, the process completed and wrote `test.bed`. The saved task output was:
+
+```console
+Loaded
+Reading BED file...
+Output written to test.bed
+```
+
+I also enabled Wave with the Conda environment. The task logs show Wave creating and pulling an image named from `rust-script` and the build dependencies. However, the preserved Wave attempts ended with exit code 130. They do not prove that the container run completed.
+
+The container lesson still holds: Wave can turn the declared package environment into the task image, but the image must contain the shebang interpreter. The verified success here was the native run, not the Wave run.
+
+## Takeaway
+
+Nextflow can launch a Rust source file from `bin/` like any other executable. The file needs execute permission, a `rust-script` shebang, and a task environment that contains `rust-script` plus its build tools.
+
+For a stable pipeline tool, I would still favor a compiled binary. For a small experiment, `rust-script` makes the source file itself executable and keeps its Rust dependencies beside the code. The next step is to repeat the successful task inside a pinned Wave image before treating this as a portable pattern.
