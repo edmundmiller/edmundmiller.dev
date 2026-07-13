@@ -1,9 +1,41 @@
 ---
-title: 🤗 Hype
-description: So what's exciting me about Hugging Face so far
+title: What Excited Me About Hugging Face
+description: How separate repositories for models, datasets, and demos can make machine-learning work easier to share and reproduce.
 publishDate: 'Mar 22 2024'
 draft: true
 tags: ['machine-learning']
 ---
 
-Okay, so what's exciting me about Hugging Face so far? I think for a long time there's been an issue with reproducibility in machine learning, in my opinion. I think people train it, and then they just toss their models out there, and that's awesome. And then they dump the project, and then they never touch it again. And it's like, okay, nobody can ever... It's hard to change the world, but it's like nobody can even reproduce or try running that locally or build on that code ever, because they may not even dump their models. They may not even add the version of the software that they installed. It's all just kind of chucked over the wall. Hugging Face seems to be doing is allowing these to actually be shared. And the problem with GitHub is they don't have unlimited large file storage. The split that they've had with Hugging Face, I've been playing around with it, and the split between models, data sets, spaces is refreshing on those. The models that is based in Git does not live in your Git repository of how you're training the model necessarily. You can, but you can also split those two up. And that allows you to then do really cool things like checkpoint in the training of your model, so you can go back and someone else can share each point of that model being checked in. How Hugging Face is paying for all of this space, I don't know. And storage, who knows? And then I really like the data sets. It gives a reproducible way for people to use them, pull them in quickly, less cleaning, less... Less reproducibility, or more reproducibility. I love that you can drop in a different... You can drop in a processing file and how to stream it. You can stream the data from their data sets, so you don't have to download the whole thing locally. You can also just download it. It's very flexible. It's a bit overwhelming, I think. As someone who kind of knows what they're doing and what they want in the space, I'm like, okay, I can find the tools, but I could not imagine jumping into this and being like, what's Git? That's kind of a problem. And then let's see. And then, yeah, spaces. Spaces are just so cool. I've never made a Streamlet app. I have a friend who does that. You can check her out here. And builds lots of them. She's... I'd seen it from the inception of it, I think, but never really toyed around with it. That was pretty awesome. Super easy to just, like, throw some stuff together and chuck it over the wall in that sense. But then you mix that in with Hugging Face, and then you mix that in with, like, oh, I can pull in my models, and then I'm, like, I'm pulling in different models on that. So stay tuned for the follow-up blog post on the small little project that I did and some concepts on that, because I think that might be interesting for some people to take a look at. But, yeah, overall, it's been a very interesting experience. Very bullish on the direction that they're going in that, and excited to see them make machine learning shareable and collaborative, kind of like GitHub did for coding and, like, upping the standard of these things and way less just magical, hand-waving, artisanal machine learning training. There's still a lot of features that I'm excited to play with, too, like actually training models and using the test data in that, because working with genomics data right now doesn't work very well within Hugging Face. They want, like, a text file or images, but stay tuned. I'm going to play around with some images files as well, I think.
+Machine-learning projects are hard to repeat when they publish code without models, data versions, or software details. In early 2024, [Hugging Face](https://huggingface.co/) gave me a clear way to share those pieces.
+
+Its split among models, datasets, and Spaces matched three different jobs. Each artifact could change at its own pace while remaining connected to the others.
+
+## Model repositories
+
+A model repository did not have to live inside the code that trained it. That separation let a project publish trained weights without filling the source repository with large files.
+
+It also made checkpoints easier to share. A collaborator could compare stages of training or start from a saved point instead of repeating the full run.
+
+The repository alone did not make a run repeatable. A useful model still needed its training code, package versions, input data, and test details. Hugging Face provided a place for the large file and its notes.
+
+## Dataset repositories
+
+Dataset repositories gave projects a named, versioned input. The datasets library could download a complete dataset or stream records without storing every file locally.
+
+Loading and cleanup code could live beside the data notes. That reduced the hidden steps between a public dataset and the version used by a model.
+
+This flexibility also made the platform feel large. A new user still needed to understand Git, repository versions, and the relationship between raw and processed data. The tools did not remove those concepts.
+
+## Spaces
+
+Spaces turned a small application into a hosted model demonstration. A demo could pull a model and dataset from their repositories, then expose the result through a web interface.
+
+That made an experiment easier to inspect than a notebook screenshot. Someone could try the model before cloning its code or downloading its weights.
+
+I used this pattern for a small project and planned to write about its implementation separately. The important point was the boundary: model, data, application, and training code remained distinct artifacts.
+
+## The genomics limit
+
+The platform felt most natural for text, images, and tabular examples. My genomics data did not fit those paths as cleanly. Large domain formats, reference files, and access controls added requirements that a general dataset repository did not solve.
+
+Hugging Face raised my expectations for sharing machine-learning work. It did not make every project repeatable by default. For genomics, I still needed a plan for domain files, source history, and restricted data.
