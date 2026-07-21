@@ -29,7 +29,7 @@
     "@types/hast": "3.0.4",
     "@types/mdast": "4.0.4",
     "@wooorm/starry-night": "3.10.0",
-    "astro": "7.0.5",
+    "astro": "7.1.0",
     "astro-analytics": "2.7.0",
     "astro-expressive-code": "0.44.0",
     "astro-icon": "1.1.5",
