@@ -2,7 +2,7 @@
 purpose: Enforce practical signals from Paul Graham's Write Simply with Vale.
 applies_to: Markdown and MDX prose.
 entrypoint: Enable WriteSimply through BasedOnStyles in .vale.ini.
-verification: Run npm run test:vale.
+verification: Run pnpm test:vale && pnpm lint:prose.
 update_when: Rules, thresholds, fixtures, or Vale integration change.
 ---
 
@@ -49,7 +49,17 @@ BasedOnStyles = WriteSimply
 Run the site linter:
 
 ```sh
-npm run lint:prose
+pnpm lint:prose
+```
+
+### Enforced baseline
+
+CI runs `pnpm lint:prose` against `src/`. The baseline records 402 suggestions across 50 source files (49 with findings). The command fails if any per-file `WriteSimply` count changes.
+
+Existing suggestions are explicit editorial debt, not a reason to bulk-rewrite historic prose. After a reviewed intentional prose revision, update the baseline:
+
+```sh
+pnpm lint:prose:baseline
 ```
 
 Suppress local prose checks around deliberate Markdown prose:

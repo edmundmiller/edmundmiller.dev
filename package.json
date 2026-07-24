@@ -16,7 +16,8 @@
     "check": "astro check",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
-    "lint:prose": "vale --no-global --config=.vale.ini src/",
+    "lint:prose": "node scripts/check-vale-baseline.mjs",
+    "lint:prose:baseline": "node scripts/check-vale-baseline.mjs --write",
     "test:vale": "bash scripts/test-vale-style.sh",
     "test:hooks": "bash scripts/codex-closeout-hook.test.sh"
   },

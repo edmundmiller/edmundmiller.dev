@@ -1,0 +1,265 @@
+{
+  "src/content/post/age-yubikey.md": {
+    "WriteSimply.DecorativeLanguage": 2,
+    "WriteSimply.ParagraphLength": 2,
+    "WriteSimply.ParenthesisSpacing": 1,
+    "WriteSimply.PlainWords": 1,
+    "WriteSimply.SentenceLength": 14,
+    "WriteSimply.SpokenFillers": 3
+  },
+  "src/content/post/altair-upset.md": {
+    "WriteSimply.DecorativeLanguage": 4,
+    "WriteSimply.SentenceLength": 2
+  },
+  "src/content/post/bd-capture-tmux-gum.md": {
+    "WriteSimply.DraftMarkers": 3,
+    "WriteSimply.SentenceLength": 1,
+    "WriteSimply.SpokenFillers": 1
+  },
+  "src/content/post/brilliant-cogs.md": {
+    "WriteSimply.ParenthesisSpacing": 2,
+    "WriteSimply.SentenceLength": 4
+  },
+  "src/content/post/building-catgpt.md": {
+    "WriteSimply.ThinContent": 1
+  },
+  "src/content/post/chaining-nextflow-snakemake.md": {
+    "WriteSimply.DraftMarkers": 1,
+    "WriteSimply.SentenceLength": 1,
+    "WriteSimply.SpokenFillers": 1,
+    "WriteSimply.ThinContent": 1
+  },
+  "src/content/post/coming-home.md": {
+    "WriteSimply.ParagraphLength": 3,
+    "WriteSimply.SentenceComplexity": 2,
+    "WriteSimply.SentenceLength": 10,
+    "WriteSimply.SpokenFillers": 4
+  },
+  "src/content/post/dvc-megatests.md": {
+    "WriteSimply.Readability": 1
+  },
+  "src/content/post/emacs-astro.md": {
+    "WriteSimply.DecorativeLanguage": 1,
+    "WriteSimply.DraftMarkers": 1,
+    "WriteSimply.SentenceComplexity": 1,
+    "WriteSimply.SentenceLength": 2,
+    "WriteSimply.SpokenFillers": 1
+  },
+  "src/content/post/emacs-data-analysis.md": {
+    "WriteSimply.BareLink": 7,
+    "WriteSimply.DecorativeLanguage": 1,
+    "WriteSimply.DraftMarkers": 2,
+    "WriteSimply.ParenthesisSpacing": 1,
+    "WriteSimply.SentenceLength": 3,
+    "WriteSimply.SpokenFillers": 1
+  },
+  "src/content/post/emacs-email.md": {
+    "WriteSimply.DraftMarkers": 2,
+    "WriteSimply.ParenthesisSpacing": 1,
+    "WriteSimply.SentenceComplexity": 1,
+    "WriteSimply.SentenceLength": 5
+  },
+  "src/content/post/emacs-mdx.mdx": {
+    "WriteSimply.ThinContent": 1
+  },
+  "src/content/post/emacs-nextflow.md": {
+    "WriteSimply.PlainWords": 2
+  },
+  "src/content/post/emacs-snakefmt.md": {
+    "WriteSimply.DecorativeLanguage": 2,
+    "WriteSimply.ParenthesisSpacing": 1,
+    "WriteSimply.SentenceLength": 1
+  },
+  "src/content/post/excited-face.md": {
+    "WriteSimply.ParagraphLength": 1,
+    "WriteSimply.SentenceComplexity": 4,
+    "WriteSimply.SentenceLength": 8,
+    "WriteSimply.SpokenFillers": 6
+  },
+  "src/content/post/first-post.md": {
+    "WriteSimply.SentenceComplexity": 1,
+    "WriteSimply.SentenceLength": 2,
+    "WriteSimply.SpokenFillers": 1
+  },
+  "src/content/post/genomics-features.md": {
+    "WriteSimply.DraftMarkers": 2,
+    "WriteSimply.ThinContent": 1
+  },
+  "src/content/post/how-this-site-was-made.md": {
+    "WriteSimply.DecorativeLanguage": 1,
+    "WriteSimply.DraftMarkers": 9,
+    "WriteSimply.SentenceComplexity": 1,
+    "WriteSimply.SentenceLength": 4
+  },
+  "src/content/post/hugging-face-ucsc.md": {
+    "WriteSimply.ParenthesisSpacing": 1,
+    "WriteSimply.Readability": 1,
+    "WriteSimply.SentenceLength": 2,
+    "WriteSimply.ThinContent": 1
+  },
+  "src/content/post/julia-bioinformatics.md": {
+    "WriteSimply.DecorativeLanguage": 2,
+    "WriteSimply.LongQuotation": 1,
+    "WriteSimply.PlainWords": 1,
+    "WriteSimply.SentenceLength": 10
+  },
+  "src/content/post/julia-rust-ecosystem/index.md": {
+    "WriteSimply.DraftMarkers": 7,
+    "WriteSimply.ThinContent": 1
+  },
+  "src/content/post/lcep.md": {
+    "WriteSimply.DraftMarkers": 5,
+    "WriteSimply.NeedlessWords": 1,
+    "WriteSimply.ParenthesisSpacing": 2,
+    "WriteSimply.SentenceLength": 6,
+    "WriteSimply.VaguePraise": 1
+  },
+  "src/content/post/learn-react.md": {
+    "WriteSimply.DecorativeLanguage": 1,
+    "WriteSimply.DraftMarkers": 2,
+    "WriteSimply.ParagraphLength": 1,
+    "WriteSimply.SentenceLength": 4,
+    "WriteSimply.SpokenFillers": 1
+  },
+  "src/content/post/markdown-iphone/index.mdx": {
+    "WriteSimply.BareLink": 3,
+    "WriteSimply.ParagraphLength": 1,
+    "WriteSimply.SentenceLength": 1,
+    "WriteSimply.SpokenFillers": 2
+  },
+  "src/content/post/nextflow-rclone.md": {
+    "WriteSimply.DecorativeLanguage": 2,
+    "WriteSimply.NeedlessWords": 1,
+    "WriteSimply.ParagraphLength": 3,
+    "WriteSimply.SentenceComplexity": 2,
+    "WriteSimply.SentenceLength": 4,
+    "WriteSimply.SpokenFillers": 5
+  },
+  "src/content/post/nextflow-snakemake.md": {
+    "WriteSimply.SentenceLength": 2,
+    "WriteSimply.VaguePraise": 1
+  },
+  "src/content/post/openring-astro.md": {
+    "WriteSimply.Readability": 1,
+    "WriteSimply.ThinContent": 1
+  },
+  "src/content/post/org-journal-age.md": {
+    "WriteSimply.DecorativeLanguage": 1,
+    "WriteSimply.SentenceLength": 2
+  },
+  "src/content/post/personal-analytics.md": {
+    "WriteSimply.PlainWords": 1,
+    "WriteSimply.SentenceLength": 4,
+    "WriteSimply.VaguePraise": 2
+  },
+  "src/content/post/personal-rewrite.md": {
+    "WriteSimply.DecorativeLanguage": 1,
+    "WriteSimply.DraftMarkers": 3,
+    "WriteSimply.ParagraphLength": 5,
+    "WriteSimply.SentenceComplexity": 1,
+    "WriteSimply.SentenceLength": 10
+  },
+  "src/content/post/pixi-bioinformatics.md": {
+    "WriteSimply.DecorativeLanguage": 2,
+    "WriteSimply.DraftMarkers": 1,
+    "WriteSimply.SentenceComplexity": 1,
+    "WriteSimply.SentenceLength": 2
+  },
+  "src/content/post/project-hail-agent.md": {
+    "WriteSimply.SentenceComplexity": 3,
+    "WriteSimply.SentenceLength": 2,
+    "WriteSimply.SpokenFillers": 1
+  },
+  "src/content/post/protomolecule-ai-tools.md": {
+    "WriteSimply.DraftMarkers": 2,
+    "WriteSimply.SentenceComplexity": 1,
+    "WriteSimply.SentenceLength": 2,
+    "WriteSimply.SpokenFillers": 1
+  },
+  "src/content/post/renv-nextflow.md": {
+    "WriteSimply.DecorativeLanguage": 1,
+    "WriteSimply.NeedlessWords": 1,
+    "WriteSimply.ParagraphLength": 2,
+    "WriteSimply.SentenceComplexity": 2,
+    "WriteSimply.SentenceLength": 10,
+    "WriteSimply.SpokenFillers": 3,
+    "WriteSimply.VaguePraise": 1
+  },
+  "src/content/post/reproducible-scripts.md": {
+    "WriteSimply.BareLink": 2,
+    "WriteSimply.DraftMarkers": 1,
+    "WriteSimply.SpokenFillers": 1
+  },
+  "src/content/post/restic-refactor.md": {
+    "WriteSimply.SentenceLength": 1
+  },
+  "src/content/post/rough-drafts-whisper.md": {
+    "WriteSimply.BareLink": 1,
+    "WriteSimply.ThinContent": 1
+  },
+  "src/content/post/rust-nextflow.md": {
+    "WriteSimply.ParagraphLength": 1,
+    "WriteSimply.SentenceComplexity": 2,
+    "WriteSimply.SentenceLength": 4,
+    "WriteSimply.SpokenFillers": 4
+  },
+  "src/content/post/seqera-containers-part-1.mdx": {
+    "WriteSimply.ParagraphLength": 2,
+    "WriteSimply.ParenthesisSpacing": 1,
+    "WriteSimply.PlainWords": 2,
+    "WriteSimply.Readability": 1,
+    "WriteSimply.SentenceLength": 24
+  },
+  "src/content/post/seqera-containers-part-2.mdx": {
+    "WriteSimply.DecorativeLanguage": 1,
+    "WriteSimply.DraftMarkers": 1,
+    "WriteSimply.LongQuotation": 1,
+    "WriteSimply.Readability": 1,
+    "WriteSimply.SentenceComplexity": 1,
+    "WriteSimply.SentenceLength": 13
+  },
+  "src/content/post/site-v3.md": {
+    "WriteSimply.ParagraphLength": 1,
+    "WriteSimply.SentenceLength": 1
+  },
+  "src/content/post/slidev-hosting.mdx": {
+    "WriteSimply.DraftMarkers": 1,
+    "WriteSimply.SentenceLength": 1
+  },
+  "src/content/post/testing-julia.md": {
+    "WriteSimply.LongQuotation": 1,
+    "WriteSimply.ParagraphLength": 1,
+    "WriteSimply.ParenthesisSpacing": 3,
+    "WriteSimply.SentenceComplexity": 1,
+    "WriteSimply.SentenceLength": 5
+  },
+  "src/content/post/thoughts-nixos.md": {
+    "WriteSimply.DecorativeLanguage": 1,
+    "WriteSimply.NeedlessWords": 1,
+    "WriteSimply.ParagraphLength": 2,
+    "WriteSimply.ParenthesisSpacing": 2,
+    "WriteSimply.SentenceComplexity": 2,
+    "WriteSimply.SentenceLength": 9,
+    "WriteSimply.SpokenFillers": 1
+  },
+  "src/content/post/writing-streak.md": {
+    "WriteSimply.LongQuotation": 1,
+    "WriteSimply.ParenthesisSpacing": 2,
+    "WriteSimply.SentenceLength": 1
+  },
+  "src/pages/about.mdx": {
+    "WriteSimply.ParenthesisSpacing": 1,
+    "WriteSimply.Readability": 1,
+    "WriteSimply.SentenceComplexity": 1,
+    "WriteSimply.SentenceLength": 2
+  },
+  "src/pages/admonitions-demo.mdx": {
+    "WriteSimply.Readability": 1
+  },
+  "src/pages/places.mdx": {
+    "WriteSimply.ThinContent": 1
+  },
+  "src/posts/AGENTS.md": {
+    "WriteSimply.ThinContent": 1
+  }
+}

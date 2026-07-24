@@ -32,11 +32,16 @@ run_vale "$repo_root/tests/vale/decorative-language.md" >"$output_dir/decorative
 run_vale "$repo_root/tests/vale/parenthesis-spacing.md" >"$output_dir/parenthesis-spacing.json"
 run_vale "$repo_root/tests/vale/vague-praise.md" >"$output_dir/vague-praise.json"
 
-node --input-type=module - "$output_dir" <<'NODE'
+node --input-type=module - "$output_dir" "$repo_root" <<'NODE'
 import fs from 'node:fs';
 import path from 'node:path';
+import { spawnSync } from 'node:child_process';
+import { tmpdir } from 'node:os';
+
 
 const outputDir = process.argv[2];
+const repoRoot = process.argv[3];
+
 const alerts = (name) =>
   Object.values(JSON.parse(fs.readFileSync(path.join(outputDir, `${name}.json`), 'utf8'))).flat();
 const expectedChecks = {
@@ -84,5 +89,37 @@ const brokenCountMessages = ['sentence-length', 'sentence-complexity']
   .filter((alert) => alert.Message.includes('%!s(int='));
 if (brokenCountMessages.length > 0) {
   throw new Error('Occurrence rule messages contain broken count formatting');
+}
+
+const baselineDirectory = fs.mkdtempSync(path.join(tmpdir(), 'vale-baseline-'));
+try {
+  const baselinePath = path.join(baselineDirectory, 'site-baseline.json');
+  const baseline = JSON.parse(fs.readFileSync(path.join(repoRoot, 'tests/vale/site-baseline.json'), 'utf8'));
+  const [file, checks] = Object.entries(baseline)[0];
+  const [check, count] = Object.entries(checks)[0];
+
+  const assertBaselineMismatch = (expectedCount) => {
+    baseline[file][check] = expectedCount;
+    fs.writeFileSync(baselinePath, JSON.stringify(baseline));
+
+    const result = spawnSync('node', [path.join(repoRoot, 'scripts/check-vale-baseline.mjs')], {
+      cwd: repoRoot,
+      encoding: 'utf8',
+      env: { ...process.env, VALE_BASELINE: baselinePath },
+    });
+    if (
+      result.status !== 1 ||
+      !result.stderr.includes('Vale baseline changed') ||
+      !result.stderr.includes(`expected ${expectedCount}, found ${count}`) ||
+      !result.stderr.includes('pnpm lint:prose:baseline')
+    ) {
+      throw new Error(`Expected baseline mismatch failure, got ${result.status}: ${result.stderr}`);
+    }
+  };
+
+  assertBaselineMismatch(count + 1);
+  assertBaselineMismatch(count - 1);
+} finally {
+  fs.rmSync(baselineDirectory, { force: true, recursive: true });
 }
 NODE

@@ -33,6 +33,8 @@ jobs:
 
       - name: Test Vale style
         run: corepack pnpm test:vale
+      - name: Run Vale site lint
+        run: corepack pnpm lint:prose
 
       - name: Run format check
         run: corepack pnpm format:check
