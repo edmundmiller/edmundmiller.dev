@@ -1,0 +1,15 @@
+extends: existence
+message: Cut '%s' unless it changes the meaning.
+link: https://paulgraham.com/simply.html
+level: suggestion
+scope: sentence
+ignorecase: true
+tokens:
+  - '\bas a matter of fact\b'
+  - '\bbasically\b'
+  - '\bfor all intents and purposes\b'
+  - '\bin my personal opinion\b'
+  - '\bit is important to note that\b'
+  - '\bit should be noted that\b'
+  - '\bneedless to say\b'
+  - '\bthe fact of the matter is\b'
