@@ -17,6 +17,7 @@ run_vale() {
 
 run_vale "$repo_root/tests/vale/good.md" >"$output_dir/good.json"
 run_vale "$repo_root/tests/vale/thin-content.mdx" >"$output_dir/thin-content.json"
+run_vale "$repo_root/tests/vale/readability.md" >"$output_dir/readability.json"
 
 node --input-type=module - "$output_dir" <<'NODE'
 import fs from 'node:fs';
@@ -28,6 +29,7 @@ const alerts = (name) =>
 const expectedChecks = {
   good: [],
   'thin-content': ['WriteSimply.ThinContent'],
+  readability: ['WriteSimply.Readability', 'WriteSimply.ThinContent'],
 };
 
 for (const [fixture, expected] of Object.entries(expectedChecks)) {

@@ -1,0 +1,7 @@
+extends: metric
+message: Aim for a Flesch-Kincaid grade level of 10 or lower (found %s).
+link: https://paulgraham.com/simply.html
+level: suggestion
+formula: |
+  (0.39 * (words / sentences)) + (11.8 * (syllables / words)) - 15.59
+condition: '> 10.0'

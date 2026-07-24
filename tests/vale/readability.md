@@ -1,0 +1,1 @@
+Epistemological abstractions obscure comprehensibility. Institutionalized terminology alienates international audiences. Conceptualizations become unnecessarily inaccessible.
