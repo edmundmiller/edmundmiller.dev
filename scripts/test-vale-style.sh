@@ -29,6 +29,7 @@ run_vale "$repo_root/tests/vale/plain-words.md" >"$output_dir/plain-words.json"
 run_vale "$repo_root/tests/vale/sentence-complexity.md" >"$output_dir/sentence-complexity.json"
 run_vale "$repo_root/tests/vale/sentence-length.md" >"$output_dir/sentence-length.json"
 run_vale "$repo_root/tests/vale/spoken-fillers.md" >"$output_dir/spoken-fillers.json"
+run_vale "$repo_root/tests/vale/vague-praise.md" >"$output_dir/vague-praise.json"
 
 node --input-type=module - "$output_dir" <<'NODE'
 import fs from 'node:fs';
@@ -52,6 +53,7 @@ const expectedChecks = {
   'sentence-complexity': ['WriteSimply.SentenceComplexity', 'WriteSimply.ThinContent'],
   'sentence-length': ['WriteSimply.Readability', 'WriteSimply.SentenceLength', 'WriteSimply.ThinContent'],
   'spoken-fillers': ['WriteSimply.SpokenFillers', 'WriteSimply.ThinContent'],
+  'vague-praise': ['WriteSimply.ThinContent', 'WriteSimply.VaguePraise'],
 };
 
 for (const [fixture, expected] of Object.entries(expectedChecks)) {
