@@ -20,6 +20,7 @@ run_vale "$repo_root/tests/vale/thin-content.mdx" >"$output_dir/thin-content.jso
 run_vale "$repo_root/tests/vale/readability.md" >"$output_dir/readability.json"
 run_vale "$repo_root/tests/vale/bare-link.md" >"$output_dir/bare-link.json"
 run_vale "$repo_root/tests/vale/decorative-language.md" >"$output_dir/decorative-language.json"
+run_vale "$repo_root/tests/vale/draft-markers.md" >"$output_dir/draft-markers.json"
 
 node --input-type=module - "$output_dir" <<'NODE'
 import fs from 'node:fs';
@@ -34,6 +35,7 @@ const expectedChecks = {
   readability: ['WriteSimply.Readability', 'WriteSimply.ThinContent'],
   'bare-link': ['WriteSimply.BareLink', 'WriteSimply.ThinContent'],
   'decorative-language': ['WriteSimply.DecorativeLanguage', 'WriteSimply.ThinContent'],
+  'draft-markers': ['WriteSimply.DraftMarkers', 'WriteSimply.ThinContent'],
 };
 
 for (const [fixture, expected] of Object.entries(expectedChecks)) {

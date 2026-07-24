@@ -1,0 +1,9 @@
+extends: existence
+message: "Resolve this draft marker before publishing: '%s'."
+link: https://paulgraham.com/simply.html
+level: suggestion
+scope: raw
+ignorecase: true
+nonword: true
+tokens:
+  - '(?m)^.*\b(?:TODO|TBD|FIXME|WIP)\b.*$'
