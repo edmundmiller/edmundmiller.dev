@@ -1,13 +1,18 @@
 {
-  description = "Description for the project";
+  description = "Development environment for edmundmiller.dev";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     devenv.url = "github:cachix/devenv";
-    nix2container.url = "github:nlewo/nix2container";
-    nix2container.inputs.nixpkgs.follows = "nixpkgs";
-    mk-shell-bin.url = "github:rrbutani/nix-mk-shell-bin";
+    devenv.inputs.nixpkgs.follows = "nixpkgs";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
     treefmt-nix.url = "github:numtide/treefmt-nix";
+    treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
+    devenv-root = {
+      url = "file+file:///dev/null";
+      flake = false;
+    };
   };
 
   nixConfig = {
@@ -24,41 +29,33 @@
       systems = ["x86_64-linux" "i686-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin"];
 
       perSystem = {pkgs, ...}: {
-        # Per-system attributes can be defined here. The self' and inputs'
-        # module parameters provide easy access to attributes of the same
-        # system.
-
-        # Equivalent to  inputs'.nixpkgs.legacyPackages.hello;
-        # packages.default = pkgs.hello
-
         devenv.shells.default = {
           name = "edmundmiller-dev";
+          devenv.root = pkgs.lib.mkOverride 999 (builtins.toString ./.);
+          devenv.dotfile = let
+            devenvRoot = builtins.readFile inputs.devenv-root.outPath;
+          in
+            pkgs.lib.mkIf (devenvRoot == "") (pkgs.lib.mkOverride 999 "/tmp/edmundmiller-dev");
+          languages.javascript = {
+            enable = true;
+            package = pkgs.nodejs_24;
+            lsp.enable = false;
+            pnpm = {
+              enable = true;
+              package = pkgs.pnpm_11.override {nodejs = pkgs.nodejs_24;};
+            };
+          };
 
-          imports = [
-            # This is just like the imports in devenv.nix.
-            # See https://devenv.sh/guides/using-with-flake-parts/#import-a-devenv-module
-            # ./devenv-foo.nix
-          ];
-
-          # https://devenv.sh/reference/options/
-          packages = [pkgs.emacs29 pkgs.openring];
-
-          scripts.build-site.exec = ''
-            emacs -Q --script ./publish.el
-          '';
+          packages = [pkgs.openring];
         };
 
         treefmt = {
-          projectRootFile = ".git/config";
+          projectRootFile = "flake.nix";
           programs.alejandra.enable = true;
           programs.deadnix.enable = true;
           programs.oxfmt.enable = true;
+          programs.oxfmt.excludes = ["src/content/post/lcep.md"];
         };
-      };
-      flake = {
-        # The usual flake attributes can be defined here, including system-
-        # agnostic ones like nixosModule and system-enumerating ones, although
-        # those are more easily expressed in perSystem.
       };
     };
 }
