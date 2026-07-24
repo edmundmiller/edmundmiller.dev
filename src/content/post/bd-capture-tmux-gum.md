@@ -1,130 +1,154 @@
 ---
 title: 'Quick Issue Capture with Tmux and Gum'
-description: 'Capturing repository issues from a tmux popup with Gum and beads'
+description: 'Building a frictionless workflow for capturing issues without leaving your terminal'
 draft: true
 publishDate: 2026-01-13
 tags: ['tools', 'workflow', 'tmux']
 ---
 
-I often noticed follow-up work while concentrating on another task. Typing a
-full `bd create` command interrupted me enough that I delayed recording the
-issue.
+You know that feeling when you're deep in flow, finally making progress on something, and then you realize you need to track an issue? Suddenly you're alt-tabbing to a browser, finding the right repo, clicking through forms, and by the time you're done... what was I working on again?
 
-I wanted a short form that opened inside tmux and used the current pane's
-repository. The result was `bd-capture`, a Bash script built with
-[Gum](https://github.com/charmbracelet/gum).
+I've been using [beads](https://github.com/edmundmiller/beads) lately for tracking issues locally in git repos. It's great, but even `bd create --title "..." --type bug --priority 2` is enough friction that I'd put off capturing things. And that defeats the whole point.
 
-This post describes the implementation merged on January 13, 2026. The script
-and tracker commands changed names later, so the examples are pinned to that
-version.
+What if I could capture issues without leaving tmux?
 
-## Capture flow
+## The Ingredients
 
-Pressing `prefix + i` opened a tmux popup in the pane's current directory. The
-form collected:
+Two tools make this possible:
 
-1. a required title
-2. an issue type
-3. a priority from P0 through P4
-4. an optional description
+**[Gum](https://github.com/charmbracelet/gum)** - Charm's toolkit for building interactive CLI forms. Think of it as a way to add nice prompts, selectors, and spinners to shell scripts.
 
-It then showed a confirmation summary and ran `bd create`. After creation, it
-copied the issue ID and offered to mark the issue as in progress.
+**Tmux popups** - A relatively recent tmux feature that overlays a temporary window on top of your current session. Perfect for quick interactions.
 
-Keeping the pane's directory mattered because beads found its repository from
-the local `.beads` directory. The script stopped with an error when that
-directory was absent.
+Combine them, and you get a popup form for instant issue capture.
 
-## Building the form with Gum
+## The Result
 
-[Beads](https://github.com/edmundmiller/beads) stored issues beside the code
-and exposed them through the `bd` command. Gum supplied the interactive inputs
-around that command.
+<!-- TODO: Add screenshot -->
 
-The required title used `gum input`:
+Press `prefix + i` in tmux, and a popup appears with:
+
+1. Title input
+2. Type selector (task, bug, feature, epic, chore)
+3. Priority selector (P0-P4)
+4. Optional description
+5. Confirmation summary
+6. "Start working on this?" prompt
+
+The whole thing takes about 5 seconds. Issue captured, flow state preserved.
+
+## How It Works
+
+The core is a bash script called `bd-capture` that chains together gum commands:
 
 ```bash
+# Title (required)
 TITLE=$(gum input --placeholder "Issue title..." --width 70 --header "Title")
-[[ -z "$TITLE" ]] && exit 0
-```
 
-The type and priority used `gum choose` with task and P2 selected by default:
-
-```bash
+# Type selection with task as default
 TYPE=$(gum choose --header "Type" --selected "task" \
     "task" "bug" "feature" "epic" "chore")
 
+# Priority selection
 PRIORITY_FULL=$(gum choose --header "Priority" --selected "P2 (Medium)" \
-    "P0 (Critical)" \
-    "P1 (High)" \
-    "P2 (Medium)" \
-    "P3 (Low)" \
-    "P4 (Backlog)")
-PRIORITY=$(echo "$PRIORITY_FULL" | cut -d' ' -f1)
+    "P0 (Critical)" "P1 (High)" "P2 (Medium)" "P3 (Low)" "P4 (Backlog)")
 ```
 
-The script assembled the command as an array. This kept each user value in its
-own shell argument:
+Before creating the issue, it shows a confirmation summary:
+
+<!-- TODO: Add screenshot -->
 
 ```bash
-CMD=(bd create --title "$TITLE" --type "$TYPE" --priority "$PRIORITY")
-[[ -n "$DESC" ]] && CMD+=(--description "$DESC")
+gum style --border rounded --padding "0 1" "$SUMMARY"
+gum confirm "Create this issue?"
 ```
 
-Before creation, `gum style` rendered the summary and `gum confirm` allowed a
-cancel. `gum spin` displayed progress while the command ran.
+And wraps the actual creation in a spinner for visual feedback:
 
-## Quick mode
+```bash
+gum spin --spinner dot --title "Creating issue..." -- bd create ...
+```
 
-The `--quick` flag skipped the type, priority, and description prompts:
+## Quick Mode
+
+For those times when even selecting type and priority is too much, there's a `--quick` flag:
 
 ```bash
 bd-capture --quick
 ```
 
-Quick mode required only a title. It created a P2 task with no description.
+This only prompts for title and uses sensible defaults (task, P2, no description). In and out in under 3 seconds.
 
-## Tmux keybinding
+## The Tmux Keybinding
 
-One tmux binding opened the form:
+The magic that ties it together is a single line in your tmux config:
 
-```bash
+```tmux
 bind i display-popup -E -w 80% -h 80% -d '#{pane_current_path}' "$DOTFILES_BIN/bd-capture"
 ```
 
-The `-E` option closed the popup after the script exited. The width and height
-options sized the form to 80 percent of the tmux client.
+- `-E` closes the popup when the command exits
+- `-w 80% -h 80%` gives it plenty of room
+- `-d '#{pane_current_path}'` respects your current directory (important for beads to find the right repo)
 
-The `-d '#{pane_current_path}'` option started the script in the current pane's
-directory. That connected one global keybinding to the correct repository.
+## What's Beads?
+
+Quick aside: [beads](https://github.com/edmundmiller/beads) is a lightweight issue tracker that lives in your git repo. Issues are stored as JSON in a `.beads/` directory and sync with your commits. No external service, no context switching to a web UI. Just issues alongside your code.
+
+The `bd` CLI lets you create, list, and manage issues from the terminal. `bd-capture` is just a nice wrapper for the create command.
+
+## The Meta Part: Parallel AI Agents
+
+Here's where it gets fun. After building the basic popup, I wanted to add a bunch of polish features:
+
+- Header banner and progress indicators
+- Confirmation summary before creation
+- Clipboard copy of issue ID
+- Quick mode flag
+- "Start working?" prompt after creation
+
+Instead of implementing these one by one, I created three git worktrees using [worktrunk](https://worktrunk.dev) and delegated each group of features to a separate AI agent:
+
+```
+bd-capture-ui       -> Header, progress, hints, spinner
+bd-capture-core     -> Confirmation, clipboard copy
+bd-capture-features -> Quick mode, start-working option
+```
+
+Each agent worked in isolation, committed their changes, and then I merged them back to main. Three branches, three commits, all the features. The merge conflicts were minimal since each focused on different parts of the script.
+
+<!-- TODO: Add screenshot -->
+
+Is this overkill for a ~80 line bash script? Absolutely. Was it fun? Also yes.
 
 ## Installation
 
-Gum is available from Nixpkgs:
+If you're using nix-darwin or NixOS, gum is in nixpkgs:
 
 ```nix
 user.packages = [ pkgs.gum ];
 ```
 
-It is also available through Homebrew:
+Or via homebrew:
 
 ```bash
 brew install gum
 ```
 
-The remaining pieces are the
-[January 2026 bd-capture script](https://github.com/edmundmiller/dotfiles/blob/05261192c0/bin/bd-capture)
-and the tmux binding above. Place the script in `$DOTFILES_BIN`, or change the
-binding to its installed location.
+Then drop the [bd-capture script](https://github.com/edmundmiller/dotfiles/blob/main/bin/bd-capture) in your PATH and add the tmux keybinding.
 
-## Implementation note
+## Wrapping Up
 
-I developed the UI, confirmation flow, and quick mode on three separate
-worktrees. The merge commit combined those independent changes into the script
-described here.
+Small friction reductions compound. Every time I capture an issue in 5 seconds instead of 30, I'm more likely to actually track things I should track. And staying in the terminal means staying in flow.
 
-## Conclusion
+The popup pattern works for more than just issue capture. I've seen similar setups for:
 
-The popup reduced issue capture to one keybinding and a short form. More
-importantly, it kept the new issue attached to the repository where I noticed
-the work.
+- Quick notes to a journal
+- Selecting git branches
+- Running common commands with parameters
+
+Gum makes building these surprisingly easy. If you're not already using it, give it a look.
+
+---
+
+Full implementation in my [dotfiles](https://github.com/edmundmiller/dotfiles/blob/main/bin/bd-capture).
