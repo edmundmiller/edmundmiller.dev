@@ -37,6 +37,12 @@ jobs:
           git diff --exit-code -- .agents/skills .pi/skills .opencode/skills
           test -z "$(git ls-files --others --exclude-standard -- .agents/skills .pi/skills .opencode/skills)"
 
+      - name: Test Vale style
+        run: corepack pnpm test:vale
+
+      - name: Run Vale site lint
+        run: corepack pnpm lint:prose
+
       - name: Run format check
         run: corepack pnpm format:check
 

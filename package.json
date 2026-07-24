@@ -16,7 +16,8 @@
     "check": "astro check",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
-    "lint:prose": "corepack pnpm dlx @vvago/vale -- src/",
+    "lint:prose": "node scripts/check-vale-baseline.mjs",
+    "lint:prose:baseline": "node scripts/check-vale-baseline.mjs --write",
     "test:vale": "bash scripts/test-vale-style.sh",
     "test:hooks": "bash scripts/codex-closeout-hook.test.sh",
     "skills:sync": "node scripts/sync-skills.mjs"

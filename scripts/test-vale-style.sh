@@ -16,43 +16,50 @@ run_vale() {
 }
 
 run_vale "$repo_root/tests/vale/good.md" >"$output_dir/good.json"
-run_vale "$repo_root/tests/vale/thin-content.mdx" >"$output_dir/thin-content.json"
-run_vale "$repo_root/tests/vale/readability.md" >"$output_dir/readability.json"
-run_vale "$repo_root/tests/vale/bare-link.md" >"$output_dir/bare-link.json"
-run_vale "$repo_root/tests/vale/decorative-language.md" >"$output_dir/decorative-language.json"
-run_vale "$repo_root/tests/vale/draft-markers.md" >"$output_dir/draft-markers.json"
-run_vale "$repo_root/tests/vale/long-quotation.md" >"$output_dir/long-quotation.json"
-run_vale "$repo_root/tests/vale/needless-words.md" >"$output_dir/needless-words.json"
-run_vale "$repo_root/tests/vale/paragraph-length.md" >"$output_dir/paragraph-length.json"
-run_vale "$repo_root/tests/vale/parenthesis-spacing.md" >"$output_dir/parenthesis-spacing.json"
-run_vale "$repo_root/tests/vale/plain-words.md" >"$output_dir/plain-words.json"
-run_vale "$repo_root/tests/vale/sentence-complexity.md" >"$output_dir/sentence-complexity.json"
 run_vale "$repo_root/tests/vale/sentence-length.md" >"$output_dir/sentence-length.json"
+run_vale "$repo_root/tests/vale/plain-words.md" >"$output_dir/plain-words.json"
+run_vale "$repo_root/tests/vale/needless-words.md" >"$output_dir/needless-words.json"
+run_vale "$repo_root/tests/vale/sentence-complexity.md" >"$output_dir/sentence-complexity.json"
+run_vale "$repo_root/tests/vale/readability.md" >"$output_dir/readability.json"
+run_vale "$repo_root/tests/vale/paragraph-length.md" >"$output_dir/paragraph-length.json"
+run_vale "$repo_root/tests/vale/suppression.mdx" >"$output_dir/suppression.json"
+run_vale "$repo_root/tests/vale/thin-content.mdx" >"$output_dir/thin-content.json"
+run_vale "$repo_root/tests/vale/draft-markers.md" >"$output_dir/draft-markers.json"
 run_vale "$repo_root/tests/vale/spoken-fillers.md" >"$output_dir/spoken-fillers.json"
+run_vale "$repo_root/tests/vale/bare-link.md" >"$output_dir/bare-link.json"
+run_vale "$repo_root/tests/vale/long-quotation.md" >"$output_dir/long-quotation.json"
+run_vale "$repo_root/tests/vale/decorative-language.md" >"$output_dir/decorative-language.json"
+run_vale "$repo_root/tests/vale/parenthesis-spacing.md" >"$output_dir/parenthesis-spacing.json"
 run_vale "$repo_root/tests/vale/vague-praise.md" >"$output_dir/vague-praise.json"
 
-node --input-type=module - "$output_dir" <<'NODE'
+node --input-type=module - "$output_dir" "$repo_root" <<'NODE'
 import fs from 'node:fs';
 import path from 'node:path';
+import { spawnSync } from 'node:child_process';
+import { tmpdir } from 'node:os';
+
 
 const outputDir = process.argv[2];
+const repoRoot = process.argv[3];
+
 const alerts = (name) =>
   Object.values(JSON.parse(fs.readFileSync(path.join(outputDir, `${name}.json`), 'utf8'))).flat();
 const expectedChecks = {
   good: [],
-  'thin-content': ['WriteSimply.ThinContent'],
-  readability: ['WriteSimply.Readability', 'WriteSimply.ThinContent'],
-  'bare-link': ['WriteSimply.BareLink', 'WriteSimply.ThinContent'],
-  'decorative-language': ['WriteSimply.DecorativeLanguage', 'WriteSimply.ThinContent'],
-  'draft-markers': ['WriteSimply.DraftMarkers', 'WriteSimply.ThinContent'],
-  'long-quotation': ['WriteSimply.LongQuotation', 'WriteSimply.Readability', 'WriteSimply.ThinContent'],
   'needless-words': ['WriteSimply.NeedlessWords', 'WriteSimply.ThinContent'],
   'paragraph-length': ['WriteSimply.ParagraphLength'],
-  'parenthesis-spacing': ['WriteSimply.ParenthesisSpacing', 'WriteSimply.ThinContent'],
   'plain-words': ['WriteSimply.PlainWords', 'WriteSimply.Readability', 'WriteSimply.ThinContent'],
+  readability: ['WriteSimply.Readability', 'WriteSimply.ThinContent'],
   'sentence-complexity': ['WriteSimply.SentenceComplexity', 'WriteSimply.ThinContent'],
   'sentence-length': ['WriteSimply.Readability', 'WriteSimply.SentenceLength', 'WriteSimply.ThinContent'],
+  suppression: ['WriteSimply.Readability', 'WriteSimply.ThinContent'],
+  'thin-content': ['WriteSimply.ThinContent'],
+  'draft-markers': ['WriteSimply.DraftMarkers', 'WriteSimply.ThinContent'],
   'spoken-fillers': ['WriteSimply.SpokenFillers', 'WriteSimply.ThinContent'],
+  'bare-link': ['WriteSimply.BareLink', 'WriteSimply.ThinContent'],
+  'long-quotation': ['WriteSimply.LongQuotation', 'WriteSimply.Readability', 'WriteSimply.ThinContent'],
+  'decorative-language': ['WriteSimply.DecorativeLanguage', 'WriteSimply.ThinContent'],
+  'parenthesis-spacing': ['WriteSimply.ParenthesisSpacing', 'WriteSimply.ThinContent'],
   'vague-praise': ['WriteSimply.ThinContent', 'WriteSimply.VaguePraise'],
 };
 
@@ -82,5 +89,37 @@ const brokenCountMessages = ['sentence-length', 'sentence-complexity']
   .filter((alert) => alert.Message.includes('%!s(int='));
 if (brokenCountMessages.length > 0) {
   throw new Error('Occurrence rule messages contain broken count formatting');
+}
+
+const baselineDirectory = fs.mkdtempSync(path.join(tmpdir(), 'vale-baseline-'));
+try {
+  const baselinePath = path.join(baselineDirectory, 'site-baseline.json');
+  const baseline = JSON.parse(fs.readFileSync(path.join(repoRoot, 'tests/vale/site-baseline.json'), 'utf8'));
+  const [file, checks] = Object.entries(baseline)[0];
+  const [check, count] = Object.entries(checks)[0];
+
+  const assertBaselineMismatch = (expectedCount) => {
+    baseline[file][check] = expectedCount;
+    fs.writeFileSync(baselinePath, JSON.stringify(baseline));
+
+    const result = spawnSync('node', [path.join(repoRoot, 'scripts/check-vale-baseline.mjs')], {
+      cwd: repoRoot,
+      encoding: 'utf8',
+      env: { ...process.env, VALE_BASELINE: baselinePath },
+    });
+    if (
+      result.status !== 1 ||
+      !result.stderr.includes('Vale baseline changed') ||
+      !result.stderr.includes(`expected ${expectedCount}, found ${count}`) ||
+      !result.stderr.includes('pnpm lint:prose:baseline')
+    ) {
+      throw new Error(`Expected baseline mismatch failure, got ${result.status}: ${result.stderr}`);
+    }
+  };
+
+  assertBaselineMismatch(count + 1);
+  assertBaselineMismatch(count - 1);
+} finally {
+  fs.rmSync(baselineDirectory, { force: true, recursive: true });
 }
 NODE
