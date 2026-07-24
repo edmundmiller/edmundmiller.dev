@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+output_dir="$(mktemp -d)"
+trap 'rm -rf "$output_dir"' EXIT
+export PATH="$repo_root/node_modules/.bin:$PATH"
+
+run_vale() {
+  "$repo_root/node_modules/.bin/vale" \
+    --no-global \
+    --config="$repo_root/.vale.ini" \
+    --output=JSON \
+    --no-exit \
+    "$1"
+}
+
+run_vale "$repo_root/tests/vale/good.md" >"$output_dir/good.json"
+
+node --input-type=module - "$output_dir" <<'NODE'
+import fs from 'node:fs';
+import path from 'node:path';
+
+const outputDir = process.argv[2];
+const alerts = (name) =>
+  Object.values(JSON.parse(fs.readFileSync(path.join(outputDir, `${name}.json`), 'utf8'))).flat();
+const expectedChecks = { good: [] };
+
+for (const [fixture, expected] of Object.entries(expectedChecks)) {
+  const actual = [...new Set(alerts(fixture).map((alert) => alert.Check))].sort();
+  if (actual.join() !== expected.join()) {
+    throw new Error(`Expected ${fixture} checks ${expected.join(', ') || 'none'}, found ${actual.join(', ') || 'none'}`);
+  }
+}
+NODE

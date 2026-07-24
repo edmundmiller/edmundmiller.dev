@@ -17,6 +17,7 @@
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
     "lint:prose": "corepack pnpm dlx @vvago/vale -- src/",
+    "test:vale": "bash scripts/test-vale-style.sh",
     "test:hooks": "bash scripts/codex-closeout-hook.test.sh",
     "skills:sync": "node scripts/sync-skills.mjs"
   },
@@ -62,8 +63,10 @@
     "@types/d3-shape": "^3.1.8",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
+    "@vvago/vale": "3.15.1",
     "autoprefixer": "10.5.2",
     "mdast-util-to-string": "4.0.0",
+    "mdx2vast": "0.3.1",
     "oxfmt": "^0.57.0",
     "oxlint": "^1.72.0",
     "pagefind": "1.5.2",
