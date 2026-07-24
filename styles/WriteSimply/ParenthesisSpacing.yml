@@ -1,0 +1,7 @@
+extends: existence
+message: Add a space before the parenthesis in '%s'.
+link: https://paulgraham.com/simply.html
+level: suggestion
+nonword: true
+tokens:
+  - '\b[[:alpha:]]+\('

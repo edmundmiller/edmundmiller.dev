@@ -24,6 +24,7 @@ run_vale "$repo_root/tests/vale/draft-markers.md" >"$output_dir/draft-markers.js
 run_vale "$repo_root/tests/vale/long-quotation.md" >"$output_dir/long-quotation.json"
 run_vale "$repo_root/tests/vale/needless-words.md" >"$output_dir/needless-words.json"
 run_vale "$repo_root/tests/vale/paragraph-length.md" >"$output_dir/paragraph-length.json"
+run_vale "$repo_root/tests/vale/parenthesis-spacing.md" >"$output_dir/parenthesis-spacing.json"
 
 node --input-type=module - "$output_dir" <<'NODE'
 import fs from 'node:fs';
@@ -42,6 +43,7 @@ const expectedChecks = {
   'long-quotation': ['WriteSimply.LongQuotation', 'WriteSimply.Readability', 'WriteSimply.ThinContent'],
   'needless-words': ['WriteSimply.NeedlessWords', 'WriteSimply.ThinContent'],
   'paragraph-length': ['WriteSimply.ParagraphLength'],
+  'parenthesis-spacing': ['WriteSimply.ParenthesisSpacing', 'WriteSimply.ThinContent'],
 };
 
 for (const [fixture, expected] of Object.entries(expectedChecks)) {
