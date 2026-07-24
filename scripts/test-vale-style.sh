@@ -27,6 +27,7 @@ run_vale "$repo_root/tests/vale/paragraph-length.md" >"$output_dir/paragraph-len
 run_vale "$repo_root/tests/vale/parenthesis-spacing.md" >"$output_dir/parenthesis-spacing.json"
 run_vale "$repo_root/tests/vale/plain-words.md" >"$output_dir/plain-words.json"
 run_vale "$repo_root/tests/vale/sentence-complexity.md" >"$output_dir/sentence-complexity.json"
+run_vale "$repo_root/tests/vale/sentence-length.md" >"$output_dir/sentence-length.json"
 
 node --input-type=module - "$output_dir" <<'NODE'
 import fs from 'node:fs';
@@ -48,6 +49,7 @@ const expectedChecks = {
   'parenthesis-spacing': ['WriteSimply.ParenthesisSpacing', 'WriteSimply.ThinContent'],
   'plain-words': ['WriteSimply.PlainWords', 'WriteSimply.Readability', 'WriteSimply.ThinContent'],
   'sentence-complexity': ['WriteSimply.SentenceComplexity', 'WriteSimply.ThinContent'],
+  'sentence-length': ['WriteSimply.Readability', 'WriteSimply.SentenceLength', 'WriteSimply.ThinContent'],
 };
 
 for (const [fixture, expected] of Object.entries(expectedChecks)) {
@@ -69,5 +71,12 @@ for (const phrase of ['upon saving', 'under the impression that', 'in its entire
 
 if (alerts('plain-words').some((alert) => alert.Action?.Name === 'replace')) {
   throw new Error('Plain-word suggestions must not offer unsafe automatic replacements');
+}
+
+const brokenCountMessages = ['sentence-length', 'sentence-complexity']
+  .flatMap(alerts)
+  .filter((alert) => alert.Message.includes('%!s(int='));
+if (brokenCountMessages.length > 0) {
+  throw new Error('Occurrence rule messages contain broken count formatting');
 }
 NODE

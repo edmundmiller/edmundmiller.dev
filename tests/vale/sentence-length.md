@@ -1,0 +1,1 @@
+Readers spend more energy on prose when a sentence carries several ideas through many clauses and keeps extending long after its central point should have ended.
