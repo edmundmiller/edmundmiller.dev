@@ -26,6 +26,7 @@ run_vale "$repo_root/tests/vale/needless-words.md" >"$output_dir/needless-words.
 run_vale "$repo_root/tests/vale/paragraph-length.md" >"$output_dir/paragraph-length.json"
 run_vale "$repo_root/tests/vale/parenthesis-spacing.md" >"$output_dir/parenthesis-spacing.json"
 run_vale "$repo_root/tests/vale/plain-words.md" >"$output_dir/plain-words.json"
+run_vale "$repo_root/tests/vale/sentence-complexity.md" >"$output_dir/sentence-complexity.json"
 
 node --input-type=module - "$output_dir" <<'NODE'
 import fs from 'node:fs';
@@ -46,6 +47,7 @@ const expectedChecks = {
   'paragraph-length': ['WriteSimply.ParagraphLength'],
   'parenthesis-spacing': ['WriteSimply.ParenthesisSpacing', 'WriteSimply.ThinContent'],
   'plain-words': ['WriteSimply.PlainWords', 'WriteSimply.Readability', 'WriteSimply.ThinContent'],
+  'sentence-complexity': ['WriteSimply.SentenceComplexity', 'WriteSimply.ThinContent'],
 };
 
 for (const [fixture, expected] of Object.entries(expectedChecks)) {

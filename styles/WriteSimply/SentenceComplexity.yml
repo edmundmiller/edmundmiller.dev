@@ -1,0 +1,7 @@
+extends: occurrence
+message: Consider splitting sentences with more than three commas.
+link: https://paulgraham.com/simply.html
+level: suggestion
+scope: sentence
+max: 3
+token: ','
