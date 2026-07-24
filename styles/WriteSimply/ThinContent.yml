@@ -1,0 +1,6 @@
+extends: script
+message: This file has little prose. Develop the idea, evidence, and conclusion.
+link: https://paulgraham.com/simply.html
+level: suggestion
+scope: raw
+script: ThinContent.tengo

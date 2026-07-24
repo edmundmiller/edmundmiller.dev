@@ -16,6 +16,7 @@ run_vale() {
 }
 
 run_vale "$repo_root/tests/vale/good.md" >"$output_dir/good.json"
+run_vale "$repo_root/tests/vale/thin-content.mdx" >"$output_dir/thin-content.json"
 
 node --input-type=module - "$output_dir" <<'NODE'
 import fs from 'node:fs';
@@ -24,7 +25,10 @@ import path from 'node:path';
 const outputDir = process.argv[2];
 const alerts = (name) =>
   Object.values(JSON.parse(fs.readFileSync(path.join(outputDir, `${name}.json`), 'utf8'))).flat();
-const expectedChecks = { good: [] };
+const expectedChecks = {
+  good: [],
+  'thin-content': ['WriteSimply.ThinContent'],
+};
 
 for (const [fixture, expected] of Object.entries(expectedChecks)) {
   const actual = [...new Set(alerts(fixture).map((alert) => alert.Check))].sort();
