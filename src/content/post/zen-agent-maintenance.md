@@ -11,7 +11,7 @@ I have started treating Codex less like a destination and more like a staging gr
 
 It is where I can move quickly: specify a piece of business logic, try an automation, inspect the result the next day, and decide whether it is worth keeping. Claude and Cursor can play a similar role. They are managed environments in which an idea can become concrete before I am certain that it deserves a permanent home.
 
-The important word is *temporary*. I do not want to accumulate chats or background tasks. I want to discover behavior that survives ordinary life. When one does—when it keeps solving a real problem, has understandable inputs and outputs, and repays the attention required to run it—I want to move it into a system I maintain: perhaps Flue or Eve for an explicit workflow, perhaps Hermes or OpenClaw for an agent.
+The important word is *temporary*. I do not want to accumulate chats or background tasks. I want to discover behavior that survives ordinary life. When one does—when it keeps solving a real problem, has understandable inputs and outputs, and repays the attention required to run it—I want to move it into a system I maintain: perhaps [Flue](https://flueframework.com/) or [Eve](https://eve.dev/docs/introduction) for an explicit workflow—the [Eve workshop](https://www.youtube.com/watch?v=eD8pV7nSIxY) is a useful introduction—perhaps Hermes or OpenClaw for an agent.
 
 That sounds backward. The usual promise of agents is that they eliminate maintenance. You tell a capable system what you want, it acts, and you get your time back. Why voluntarily graduate from a polished managed product into the work of owning prompts, tools, schedules, permissions, state, logs, and failures?
 
@@ -39,7 +39,7 @@ A managed agent is often the right place to ask: *What would this workflow even 
 
 That first version should be cheap to revise. It is still a hypothesis.
 
-The systems I maintain more directly have a different job. Flue and Eve make it natural to put an agent’s instructions, workflows, and evaluation surface in files I can read. Hermes and OpenClaw make a personal or broad agent feel less like a one-off conversation and more like an environment with an identity, tools, and boundaries. The products are different; the useful distinction is not their branding. It is whether I can make the behavior legible enough to own.
+The systems I maintain more directly have a different job. Flue and [Eve](https://eve.dev/docs/extensions) make it natural to put an agent’s instructions, workflows, and evaluation surface in files I can read. Hermes and OpenClaw make a personal or broad agent feel less like a one-off conversation and more like an environment with an identity, tools, and boundaries. The products are different; the useful distinction is not their branding. It is whether I can make the behavior legible enough to own.
 
 A workflow earns graduation when I can answer basic questions without hand-waving:
 
