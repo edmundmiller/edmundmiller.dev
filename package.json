@@ -17,7 +17,8 @@
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
     "lint:prose": "corepack pnpm dlx @vvago/vale -- src/",
-    "test:hooks": "bash scripts/codex-closeout-hook.test.sh"
+    "test:hooks": "bash scripts/codex-closeout-hook.test.sh",
+    "skills:sync": "node scripts/sync-skills.mjs"
   },
   "dependencies": {
     "@astro-community/astro-embed-youtube": "0.5.10",

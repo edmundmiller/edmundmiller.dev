@@ -31,6 +31,12 @@ jobs:
       - name: Install dependencies
         run: corepack pnpm install --frozen-lockfile
 
+      - name: Check synchronized skills
+        run: |
+          corepack pnpm skills:sync
+          git diff --exit-code -- .agents/skills .pi/skills .opencode/skills
+          test -z "$(git ls-files --others --exclude-standard -- .agents/skills .pi/skills .opencode/skills)"
+
       - name: Run format check
         run: corepack pnpm format:check
 

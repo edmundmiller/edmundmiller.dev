@@ -6,5 +6,30 @@
     ":automergeAll",
     ":automergeBranch",
     "schedule:quarterly"
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^skills\\.sources\\.json$/"],
+      "matchStrings": [
+        "\"source\": \"(?<packageName>https://github\\.com/[^\"]+)\",\\s+\"ref\": \"(?<currentDigest>[a-f0-9]{40})\""
+      ],
+      "currentValueTemplate": "main",
+      "datasourceTemplate": "git-refs",
+      "versioningTemplate": "git"
+    }
+  ],
+  "packageRules": [
+    {
+      "matchManagers": ["custom.regex"],
+      "matchFileNames": ["skills.sources.json"],
+      "groupName": "agent skills",
+      "commitMessageTopic": "agent skills",
+      "postUpgradeTasks": {
+        "commands": ["node scripts/sync-skills.mjs"],
+        "fileFilters": [".agents/skills/**", ".pi/skills/**", ".opencode/skills/**"],
+        "executionMode": "update"
+      }
+    }
   ]
 }
