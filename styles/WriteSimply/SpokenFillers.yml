@@ -1,0 +1,17 @@
+extends: existence
+message: Cut spoken filler '%s' or rewrite the sentence directly.
+link: https://paulgraham.com/simply.html
+level: suggestion
+scope: sentence
+ignorecase: true
+tokens:
+  - '\b(?:okay|alright),?\s+so\b'
+  - '\bbig break\b'
+  - '\bfirst and foremost\b'
+  - '\bI mean\b'
+  - '\bkind of\b'
+  - '\blet.s see\b'
+  - '\bso anyways?\b'
+  - '\bsort of\b'
+  - '\byou know\b'
+  - '\[silence\]'
