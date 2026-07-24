@@ -25,6 +25,7 @@ run_vale "$repo_root/tests/vale/long-quotation.md" >"$output_dir/long-quotation.
 run_vale "$repo_root/tests/vale/needless-words.md" >"$output_dir/needless-words.json"
 run_vale "$repo_root/tests/vale/paragraph-length.md" >"$output_dir/paragraph-length.json"
 run_vale "$repo_root/tests/vale/parenthesis-spacing.md" >"$output_dir/parenthesis-spacing.json"
+run_vale "$repo_root/tests/vale/plain-words.md" >"$output_dir/plain-words.json"
 
 node --input-type=module - "$output_dir" <<'NODE'
 import fs from 'node:fs';
@@ -44,6 +45,7 @@ const expectedChecks = {
   'needless-words': ['WriteSimply.NeedlessWords', 'WriteSimply.ThinContent'],
   'paragraph-length': ['WriteSimply.ParagraphLength'],
   'parenthesis-spacing': ['WriteSimply.ParenthesisSpacing', 'WriteSimply.ThinContent'],
+  'plain-words': ['WriteSimply.PlainWords', 'WriteSimply.Readability', 'WriteSimply.ThinContent'],
 };
 
 for (const [fixture, expected] of Object.entries(expectedChecks)) {
@@ -51,5 +53,19 @@ for (const [fixture, expected] of Object.entries(expectedChecks)) {
   if (actual.join() !== expected.join()) {
     throw new Error(`Expected ${fixture} checks ${expected.join(', ') || 'none'}, found ${actual.join(', ') || 'none'}`);
   }
+}
+
+if (!alerts('plain-words').some((alert) => alert.Message.includes("Use 'Use' instead of 'Utilize'"))) {
+  throw new Error('Expected sentence-initial substitutions to preserve capitalization');
+}
+
+for (const phrase of ['upon saving', 'under the impression that', 'in its entirety']) {
+  if (!alerts('plain-words').some((alert) => alert.Message.toLowerCase().includes(`instead of '${phrase}'`))) {
+    throw new Error(`Expected a plain-word substitution for ${phrase}`);
+  }
+}
+
+if (alerts('plain-words').some((alert) => alert.Action?.Name === 'replace')) {
+  throw new Error('Plain-word suggestions must not offer unsafe automatic replacements');
 }
 NODE
