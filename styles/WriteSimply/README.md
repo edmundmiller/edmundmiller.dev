@@ -28,7 +28,7 @@ The rules are prompts for revision, not mechanical truth. Technical terms can be
 | `WriteSimply.SentenceComplexity` | Sentences with more than three commas              |
 | `WriteSimply.SentenceLength`     | Sentences over 25 words                            |
 | `WriteSimply.SpokenFillers`      | Dictation residue such as “you know” and “I mean”  |
-| `WriteSimply.ThinContent`        | Posts with fewer than 100 prose words              |
+| `WriteSimply.ThinContent`        | Non-draft posts with fewer than 100 prose words    |
 | `WriteSimply.VaguePraise`        | Praise that needs concrete support                 |
 
 ## Review boundary
@@ -54,7 +54,7 @@ pnpm lint:prose
 
 ### Enforced baseline
 
-CI runs `pnpm lint:prose` against `src/`. The baseline records 402 suggestions across 50 source files (49 with findings). The command fails if any per-file `WriteSimply` count changes.
+CI runs `pnpm lint:prose` against `src/`. The baseline records 394 suggestions across 47 source files. The command fails if any per-file `WriteSimply` count changes.
 
 Existing suggestions are explicit editorial debt, not a reason to bulk-rewrite historic prose. After a reviewed intentional prose revision, update the baseline:
 

@@ -20,14 +20,10 @@
     "WriteSimply.ParenthesisSpacing": 2,
     "WriteSimply.SentenceLength": 4
   },
-  "src/content/post/building-catgpt.md": {
-    "WriteSimply.ThinContent": 1
-  },
   "src/content/post/chaining-nextflow-snakemake.md": {
     "WriteSimply.DraftMarkers": 1,
     "WriteSimply.SentenceLength": 1,
-    "WriteSimply.SpokenFillers": 1,
-    "WriteSimply.ThinContent": 1
+    "WriteSimply.SpokenFillers": 1
   },
   "src/content/post/coming-home.md": {
     "WriteSimply.ParagraphLength": 3,
@@ -59,9 +55,6 @@
     "WriteSimply.SentenceComplexity": 1,
     "WriteSimply.SentenceLength": 5
   },
-  "src/content/post/emacs-mdx.mdx": {
-    "WriteSimply.ThinContent": 1
-  },
   "src/content/post/emacs-nextflow.md": {
     "WriteSimply.PlainWords": 2
   },
@@ -82,8 +75,7 @@
     "WriteSimply.SpokenFillers": 1
   },
   "src/content/post/genomics-features.md": {
-    "WriteSimply.DraftMarkers": 2,
-    "WriteSimply.ThinContent": 1
+    "WriteSimply.DraftMarkers": 2
   },
   "src/content/post/how-this-site-was-made.md": {
     "WriteSimply.DecorativeLanguage": 1,
@@ -94,8 +86,7 @@
   "src/content/post/hugging-face-ucsc.md": {
     "WriteSimply.ParenthesisSpacing": 1,
     "WriteSimply.Readability": 1,
-    "WriteSimply.SentenceLength": 2,
-    "WriteSimply.ThinContent": 1
+    "WriteSimply.SentenceLength": 2
   },
   "src/content/post/julia-bioinformatics.md": {
     "WriteSimply.DecorativeLanguage": 2,
@@ -104,8 +95,7 @@
     "WriteSimply.SentenceLength": 10
   },
   "src/content/post/julia-rust-ecosystem/index.md": {
-    "WriteSimply.DraftMarkers": 7,
-    "WriteSimply.ThinContent": 1
+    "WriteSimply.DraftMarkers": 7
   },
   "src/content/post/lcep.md": {
     "WriteSimply.DraftMarkers": 5,
@@ -140,8 +130,7 @@
     "WriteSimply.VaguePraise": 1
   },
   "src/content/post/openring-astro.md": {
-    "WriteSimply.Readability": 1,
-    "WriteSimply.ThinContent": 1
+    "WriteSimply.Readability": 1
   },
   "src/content/post/org-journal-age.md": {
     "WriteSimply.DecorativeLanguage": 1,
@@ -194,8 +183,7 @@
     "WriteSimply.SentenceLength": 1
   },
   "src/content/post/rough-drafts-whisper.md": {
-    "WriteSimply.BareLink": 1,
-    "WriteSimply.ThinContent": 1
+    "WriteSimply.BareLink": 1
   },
   "src/content/post/rust-nextflow.md": {
     "WriteSimply.ParagraphLength": 1,

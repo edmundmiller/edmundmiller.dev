@@ -24,6 +24,9 @@ run_vale "$repo_root/tests/vale/readability.md" >"$output_dir/readability.json"
 run_vale "$repo_root/tests/vale/paragraph-length.md" >"$output_dir/paragraph-length.json"
 run_vale "$repo_root/tests/vale/suppression.mdx" >"$output_dir/suppression.json"
 run_vale "$repo_root/tests/vale/thin-content.mdx" >"$output_dir/thin-content.json"
+run_vale "$repo_root/tests/vale/thin-content-draft.mdx" >"$output_dir/thin-content-draft.json"
+run_vale "$repo_root/tests/vale/thin-content-body-draft.mdx" >"$output_dir/thin-content-body-draft.json"
+run_vale "$repo_root/tests/vale/thin-content-notdraft.mdx" >"$output_dir/thin-content-notdraft.json"
 run_vale "$repo_root/tests/vale/draft-markers.md" >"$output_dir/draft-markers.json"
 run_vale "$repo_root/tests/vale/spoken-fillers.md" >"$output_dir/spoken-fillers.json"
 run_vale "$repo_root/tests/vale/bare-link.md" >"$output_dir/bare-link.json"
@@ -54,7 +57,10 @@ const expectedChecks = {
   'sentence-length': ['WriteSimply.Readability', 'WriteSimply.SentenceLength', 'WriteSimply.ThinContent'],
   suppression: ['WriteSimply.Readability', 'WriteSimply.ThinContent'],
   'thin-content': ['WriteSimply.ThinContent'],
+  'thin-content-draft': [],
   'draft-markers': ['WriteSimply.DraftMarkers', 'WriteSimply.ThinContent'],
+  'thin-content-body-draft': ['WriteSimply.ThinContent'],
+  'thin-content-notdraft': ['WriteSimply.ThinContent'],
   'spoken-fillers': ['WriteSimply.SpokenFillers', 'WriteSimply.ThinContent'],
   'bare-link': ['WriteSimply.BareLink', 'WriteSimply.ThinContent'],
   'long-quotation': ['WriteSimply.LongQuotation', 'WriteSimply.Readability', 'WriteSimply.ThinContent'],
