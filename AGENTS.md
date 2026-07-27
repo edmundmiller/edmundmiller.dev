@@ -45,4 +45,4 @@ If Wrangler warns about missing unrelated OAuth scopes, do not treat that as a d
 
 ## Codex Automation
 
-The project Stop hook flushes br and blocks completion until task-scoped changes are committed and the branch is synchronized with its upstream.
+The project Stop hook flushes br and blocks once until task-scoped changes are committed and the branch is synchronized with its upstream. A forced continuation may stop normally so an irreconcilable condition cannot loop.
