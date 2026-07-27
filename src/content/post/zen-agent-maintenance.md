@@ -41,6 +41,8 @@ That first version should be cheap to revise. It is still a hypothesis.
 
 The systems I maintain more directly have a different job. Flue and [Eve](https://eve.dev/docs/extensions) make it natural to put an agent’s instructions, workflows, and evaluation surface in files I can read. Hermes and OpenClaw make a personal or broad agent feel less like a one-off conversation and more like an environment with an identity, tools, and boundaries. The products are different; the useful distinction is not their branding. It is whether I can make the behavior legible enough to own.
 
+Harrison Chase describes the same boundary as [owning your intelligence](https://x.com/hwchase17/status/2081002647814094888): controlling the agent system, its economics, quality, risk, and the feedback loop that improves it.
+
 A workflow earns graduation when I can answer basic questions without hand-waving:
 
 - What triggers it, and why then?
