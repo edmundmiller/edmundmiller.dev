@@ -3,12 +3,23 @@ set -euo pipefail
 
 root=$(cd "$(dirname "$0")/.." && pwd)
 hook="$root/scripts/codex-closeout-hook"
+dispatcher="$root/scripts/codex-stop-dispatch"
 tmp=$(mktemp -d)
 trap 'rm -rf "$tmp"' EXIT
 
 test -f "$root/.codex/config.toml"
 python3 -c 'import pathlib,tomllib,sys; tomllib.loads(pathlib.Path(sys.argv[1]).read_text())' \
   "$root/.codex/config.toml"
+python3 -c '
+import json, pathlib, sys
+command = json.loads(pathlib.Path(sys.argv[1]).read_text())["hooks"]["Stop"][0]["hooks"][0]["command"]
+assert "scripts/codex-stop-dispatch" in command
+assert "scripts/codex-closeout-hook" in command
+' "$root/.codex/hooks.json"
+
+output=$(printf '{"cwd":"%s","hook_event_name":"Stop","stop_hook_active":true}\n' "$root" |
+  bash "$dispatcher" scripts/codex-closeout-hook)
+test -z "$output"
 
 mkdir -p "$tmp/bin" "$tmp/repo"
 cat >"$tmp/bin/br" <<'EOF'
