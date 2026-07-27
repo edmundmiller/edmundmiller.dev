@@ -45,6 +45,15 @@ assert result["decision"] == "block"
 assert "uncommitted" in result["reason"]
 '
 
+output=$(printf '{"cwd":"%s","hook_event_name":"Stop","stop_hook_active":true}\n' "$tmp/repo" |
+  PATH="$tmp/bin:$PATH" bash "$hook")
+# Known regression: Codex already continued once, but the hook blocks again.
+printf '%s' "$output" | python3 -c '
+import json, sys
+result = json.load(sys.stdin)
+assert result["decision"] == "block"
+'
+
 git -C "$tmp/repo" add tracked
 git -C "$tmp/repo" commit -qm local
 output=$(printf '{"cwd":"%s","hook_event_name":"Stop"}\n' "$tmp/repo" |
