@@ -1,4 +1,11 @@
+import { initWorkersLogger, withEvlog } from 'evlog/workers';
+
 const MARKDOWN_ACCEPT = /(?:^|,)\s*text\/markdown\s*(?:;|,|$)/i;
+
+initWorkersLogger({
+  env: { service: 'edmundmiller-dev' },
+  stringify: false,
+});
 
 interface Env {
   ASSETS: {
@@ -6,14 +13,15 @@ interface Env {
   };
 }
 
-export default {
-  async fetch(request: Request, env: Env): Promise<Response> {
-    const url = new URL(request.url);
-    const assetRequest = markdownRequest(request, url) ?? request;
-    const response = await env.ASSETS.fetch(assetRequest);
-    return withAgentDiscoveryHeaders(response);
-  },
-};
+export default withEvlog<Env>(async (request, env, _ctx, log) => {
+  const url = new URL(request.url);
+  const markdownAssetRequest = markdownRequest(request, url);
+  const response = await env.ASSETS.fetch(markdownAssetRequest ?? request);
+
+  log.set({ representation: markdownAssetRequest ? 'markdown' : 'asset' });
+
+  return withAgentDiscoveryHeaders(response);
+});
 
 function markdownRequest(request: Request, url: URL): Request | undefined {
   if (request.method !== 'GET' && request.method !== 'HEAD') return;
