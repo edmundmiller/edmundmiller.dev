@@ -1,6 +1,6 @@
 ---
-title: 'Simplify Your Bioinformatics Workflow with Pixi: A Fresh Take on Conda'
-description: 'How to adopt pixi on an HPC cluster near you. Simplify your bioinformatics workflow today, with Pixi!'
+title: 'Pixi for Bioinformatics: Bioconda on HPC and Local Machines'
+description: 'Set up Pixi with conda-forge and Bioconda on an HPC cluster or laptop, install Nextflow, define tasks, and import an existing environment.yml.'
 draft: false
 publishDate: 2024-08-21
 tags: ['bioinformatics', 'python']
