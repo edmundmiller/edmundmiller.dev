@@ -1,8 +1,8 @@
 ---
 author: Edmund Miller
 publishDate: '2023-12-15T11:00Z'
-title: Using age with org-journal
-description: "Because gpg 2.4.1 borked Emacs's EasyPG, it just hangs on saving."
+title: Encrypt org-journal with age in Doom Emacs
+description: Set up age.el and rage in Doom Emacs, configure SSH key paths, and save org-journal entries as encrypted .org.age files when EasyPG hangs.
 draft: false
 tags: ['Emacs', 'org-mode', 'age']
 ---
