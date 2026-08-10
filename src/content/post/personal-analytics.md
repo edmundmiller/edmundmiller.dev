@@ -2,8 +2,8 @@
 author: Edmund Miller
 publishDate: '2024-04-09'
 updatedDate: '2024-05-09'
-title: Personal Site Analytics in 2024
-description: What's the move for something that gives you feedback and isn't creepy
+title: GoatCounter vs Umami for Personal Site Analytics
+description: I compared GoatCounter, Umami, Plausible, and Fathom to find personal-site analytics without creepy tracking or another yak-shaving project.
 tags: ['blog']
 draft: false
 ---
