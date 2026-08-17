@@ -2,7 +2,7 @@
 author: Edmund Miller
 publishDate: '2024-04-19'
 title: Setting up Doom Emacs for Astro Development
-description: The beauty of Astro is it's like the Nextflow of web frameworks
+description: Set up Astro in Doom Emacs with astro-ts-mode, Tree-sitter, lsp-mode, Apheleia and Prettier, plus Tailwind CSS IntelliSense.
 tags: ['Emacs', 'webdev', 'Astro']
 draft: false
 ---
