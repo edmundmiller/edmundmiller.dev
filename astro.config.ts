@@ -46,6 +46,9 @@ export default defineConfig({
   prefetch: true,
   vite: {
     plugins: [rawFonts(['.ttf', '.woff'])],
+    preview: {
+      allowedHosts: ['.onamp.dev'],
+    },
     optimizeDeps: {
       exclude: ['@resvg/resvg-js'],
     },
