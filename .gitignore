@@ -34,3 +34,6 @@ pnpm-debug.log*
 .dev.vars
 # br doctor per-run artifacts
 .doctor/
+
+# Amp orb portals
+.amp/portals/
