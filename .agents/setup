@@ -66,22 +66,10 @@ if ! br --version >/dev/null 2>&1; then
 fi
 
 step "Persist the orb toolchain"
-profile_dir="$HOME/.config/amp"
-profile_file="$profile_dir/edmundmiller-dev-orb-env.sh"
-profile_marker="# edmundmiller.dev orb environment"
-mkdir -p "$profile_dir"
-cat >"$profile_file" <<EOF
-if [[ \${PWD} == "$repo_root" ]]; then
-  export PATH="$node_dir/bin:\$HOME/.local/bin:\$PATH"
-fi
-EOF
-if ! grep -Fqx "$profile_marker" "$HOME/.bash_profile" 2>/dev/null; then
-  cat >>"$HOME/.bash_profile" <<EOF
-
-$profile_marker
-source "$profile_file"
-EOF
-fi
+mkdir -p "$HOME/.local/bin"
+for executable in node npm npx corepack pnpm pnpx; do
+  ln -sfn "$node_dir/bin/$executable" "$HOME/.local/bin/$executable"
+done
 
 step "Install project dependencies"
 cd "$repo_root"

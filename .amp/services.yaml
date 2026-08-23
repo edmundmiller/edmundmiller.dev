@@ -1,0 +1,7 @@
+services:
+  web:
+    command: corepack pnpm dev --host 0.0.0.0 --port "$PORT"
+    health: /
+    portal:
+      title: edmundmiller.dev
+      description: Astro development server

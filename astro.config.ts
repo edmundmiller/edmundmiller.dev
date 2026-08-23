@@ -45,6 +45,7 @@ export default defineConfig({
   // https://docs.astro.build/en/guides/prefetch/
   prefetch: true,
   vite: {
+    server: process.env.AMP_ORB ? { allowedHosts: true } : {},
     plugins: [rawFonts(['.ttf', '.woff'])],
     preview: {
       allowedHosts: ['.onamp.dev'],
