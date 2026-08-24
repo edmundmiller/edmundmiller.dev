@@ -1,0 +1,18 @@
+[
+  {
+    "fixture": "positive.md",
+    "count": 5,
+    "messages": [
+      "Cut 'It is important to note that' and state the point directly.",
+      "Cut 'as a matter of fact' and state the point directly."
+    ]
+  },
+  { "fixture": "negative.md", "count": 0 },
+  { "fixture": "code.md", "count": 0 },
+  { "fixture": "component.mdx", "count": 0 },
+  {
+    "fixture": "known-context-match.md",
+    "count": 1,
+    "messages": ["Cut 'it should be noted that' and state the point directly."]
+  }
+]

@@ -1,0 +1,10 @@
+extends: existence
+message: "Cut '%s' and state the point directly."
+level: suggestion
+ignorecase: true
+tokens:
+  - "\\bit is important to note that\\b"
+  - "\\bit should be noted that\\b"
+  - "\\bit is worth noting that\\b"
+  - "\\bneedless to say\\b"
+  - "\\bas a matter of fact\\b"
