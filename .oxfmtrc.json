@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/oxfmt/configuration_schema.json",
-  "ignorePatterns": [".agents/skills/**", ".beads/**", ".codex/**"],
+  "ignorePatterns": [".agents/skills/**", ".beads/**", ".codex/**", "styles/WriteSimply/**"],
   "printWidth": 100,
   "semi": true,
   "singleQuote": true,
