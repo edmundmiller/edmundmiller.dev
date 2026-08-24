@@ -1,0 +1,15 @@
+[
+  {
+    "fixture": "positive.md",
+    "count": 14,
+    "messages": ["Use 'Use' instead of 'Utilize'.", "Use 'Most' instead of 'A majority of'."]
+  },
+  { "fixture": "negative.md", "count": 0 },
+  { "fixture": "code.md", "count": 0 },
+  { "fixture": "component.mdx", "count": 0 },
+  {
+    "fixture": "known-false-positive.md",
+    "count": 1,
+    "messages": ["Use 'use' instead of 'utilization'."]
+  }
+]

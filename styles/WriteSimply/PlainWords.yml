@@ -1,0 +1,22 @@
+extends: substitution
+message: "Use '%s' instead of '%s'."
+level: suggestion
+ignorecase: true
+capitalize: true
+action:
+  name: replace
+swap:
+  utilize: use
+  utilization: use
+  prior to: before
+  subsequent to: after
+  in order to: to
+  in the event that: if
+  due to the fact that: because
+  for the purpose of: to
+  with the exception of: except
+  at this point in time: now
+  has the ability to: can
+  is able to: can
+  a large number of: many
+  a majority of: most
