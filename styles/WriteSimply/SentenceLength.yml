@@ -1,0 +1,6 @@
+extends: occurrence
+message: "This sentence has %d words; split or simplify it."
+level: suggestion
+scope: sentence
+max: 30
+token: '\b\w+\b'

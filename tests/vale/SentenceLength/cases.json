@@ -1,0 +1,15 @@
+[
+  {
+    "fixture": "positive.md",
+    "count": 1,
+    "messages": ["This sentence has 31 words; split or simplify it."]
+  },
+  { "fixture": "negative.md", "count": 0 },
+  { "fixture": "code.md", "count": 0 },
+  { "fixture": "component.mdx", "count": 0 },
+  {
+    "fixture": "known-tokenization-match.md",
+    "count": 1,
+    "messages": ["This sentence has 31 words; split or simplify it."]
+  }
+]
