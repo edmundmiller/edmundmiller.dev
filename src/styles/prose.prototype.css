@@ -1,0 +1,132 @@
+/* PROTOTYPE ONLY: a readable, framework-free replacement for generated Markdown prose. */
+.prose-prototype {
+  color: hsl(var(--theme-text));
+  font-size: 0.875rem;
+  line-height: 1.7142857;
+}
+
+.prose-prototype :where(p, ul, ol, pre, table, blockquote) {
+  margin-block: 1.25em;
+}
+
+.prose-prototype :where(h1, h2, h3, h4) {
+  color: hsl(var(--theme-accent-2));
+  font-family: 'Geist Pixel Grid', 'Geist Pixel Square', ui-monospace, monospace;
+  font-weight: 600;
+  line-height: 1.35;
+  margin-block: 1.6em 0.6em;
+  position: relative;
+}
+
+.prose-prototype :where(h1, h2, h3, h4)::before {
+  color: hsl(var(--theme-accent));
+  content: '#';
+  inset-inline-start: -1rem;
+  position: absolute;
+}
+
+.prose-prototype h1 {
+  font-size: 1.5rem;
+}
+
+.prose-prototype h2 {
+  font-size: 1.25rem;
+}
+
+.prose-prototype h3 {
+  font-size: 1.125rem;
+}
+
+.prose-prototype :where(a) {
+  background-image: linear-gradient(
+    transparent,
+    transparent 5px,
+    hsl(var(--theme-text)) 5px,
+    hsl(var(--theme-text))
+  );
+  background-position: bottom;
+  background-repeat: repeat-x;
+  background-size: 100% 6px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.prose-prototype :where(a:hover) {
+  background-image: linear-gradient(
+    transparent,
+    transparent 4px,
+    hsl(var(--theme-link)) 4px,
+    hsl(var(--theme-link))
+  );
+}
+
+.prose-prototype :where(strong) {
+  font-weight: 700;
+}
+
+.prose-prototype :where(code:not(pre code)) {
+  border: 1px dotted #666;
+  border-radius: 2px;
+  color: inherit;
+  font-size: 0.875rem;
+  padding-inline: 0.2em;
+}
+
+.prose-prototype :where(blockquote) {
+  border-inline-start: 0;
+  color: hsl(var(--theme-quote));
+  font-style: italic;
+  margin-inline: 0;
+  padding-inline-start: 1em;
+}
+
+.prose-prototype :where(hr) {
+  border: 0;
+  border-top: 0.5px dashed #666;
+  margin-block: 3em;
+}
+
+.prose-prototype :where(ul, ol) {
+  padding-inline-start: 1.625em;
+}
+
+.prose-prototype :where(li) {
+  padding-inline-start: 0.375em;
+}
+
+.prose-prototype :where(table) {
+  border-collapse: collapse;
+  inline-size: 100%;
+  text-align: start;
+}
+
+.prose-prototype :where(th) {
+  border-bottom: 1px dashed #666;
+  font-weight: 700;
+}
+
+.prose-prototype :where(th, td) {
+  padding: 0.6em;
+  vertical-align: top;
+}
+
+.prose-prototype :where(tfoot) {
+  border-top: 1px dashed #666;
+}
+
+.prose-prototype :where(sup) {
+  margin-inline-start: 0.125rem;
+}
+
+.prose-prototype :where(sup a)::before {
+  content: '[';
+}
+
+.prose-prototype :where(sup a)::after {
+  content: ']';
+}
+
+.prose-prototype :where(img, video) {
+  block-size: auto;
+  max-inline-size: 100%;
+}

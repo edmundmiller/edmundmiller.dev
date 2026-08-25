@@ -3,6 +3,7 @@ import { unified } from '@astrojs/markdown-remark';
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
+import stylex from '@stylexjs/unplugin';
 import { defineConfig } from 'astro/config';
 import expressiveCode from 'astro-expressive-code';
 import icon from 'astro-icon';
@@ -45,7 +46,14 @@ export default defineConfig({
   // https://docs.astro.build/en/guides/prefetch/
   prefetch: true,
   vite: {
-    plugins: [rawFonts(['.ttf', '.woff'])],
+    plugins: [
+      stylex.vite({
+        cssInjectionTarget: (fileName) => /(^|\/)base\.[^.]+\.css$/.test(fileName),
+        devMode: 'full',
+        useCSSLayers: false,
+      }),
+      rawFonts(['.ttf', '.woff']),
+    ],
     optimizeDeps: {
       exclude: ['@resvg/resvg-js'],
     },
