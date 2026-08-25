@@ -2,7 +2,9 @@ import * as stylex from '@stylexjs/stylex';
 
 const desktop = '@media (min-width: 640px)';
 
-const styles = stylex.create({
+export const marker = stylex.defaultMarker();
+
+export const styles = stylex.create({
   header: {
     alignItems: 'center',
     display: 'flex',
@@ -113,21 +115,3 @@ const styles = stylex.create({
     },
   },
 });
-
-function forAstro(props: ReturnType<typeof stylex.props>) {
-  return { class: props.className };
-}
-
-export const headerStyleProps = {
-  closeIcon: forAstro(stylex.props(styles.icon, styles.closeIcon)),
-  container: forAstro(stylex.props(styles.container)),
-  firstNavigationLink: forAstro(stylex.props(styles.navigationLink, styles.firstNavigationLink)),
-  header: forAstro(stylex.props(stylex.defaultMarker(), styles.header)),
-  homeLink: forAstro(stylex.props(styles.homeLink)),
-  logo: forAstro(stylex.props(styles.logo)),
-  menuIcon: forAstro(stylex.props(styles.icon, styles.menuIcon)),
-  mobileButton: forAstro(stylex.props(styles.mobileButton)),
-  name: forAstro(stylex.props(styles.name)),
-  navigation: forAstro(stylex.props(styles.navigation)),
-  navigationLink: forAstro(stylex.props(styles.navigationLink)),
-};

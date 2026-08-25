@@ -1,22 +1,23 @@
 ---
+import * as stylex from '@stylexjs/stylex';
 import { menuLinks } from '@/site-config';
 import Search from '@/components/search.astro';
 import ThemeToggle from '@/components/theme-toggle.astro';
-import { headerStyleProps } from './Header.stylex';
+import { marker, styles } from './Header.stylex';
 
 const _url = new URL(Astro.request.url);
 ---
 
-<header {...headerStyleProps.header} data-menu-open="false" id="main-header">
-  <div {...headerStyleProps.container}>
+<header {...stylex.props(marker, styles.header)} data-menu-open="false" id="main-header">
+  <div {...stylex.props(styles.container)}>
     <a
       aria-current={_url.pathname === "/" ? "page" : false}
-      {...headerStyleProps.homeLink}
+      {...stylex.props(styles.homeLink)}
       href="/"
     >
       <svg
         aria-hidden="true"
-        {...headerStyleProps.logo}
+        {...stylex.props(styles.logo)}
         fill="none"
         focusable="false"
         viewBox="0 0 272 480"
@@ -34,18 +35,18 @@ const _url = new URL(Astro.request.url);
           fill="#53C68C"></path>
         <path d="M45.334 240 0 213.334v120L45.334 360V240Z" fill="#B04304"></path>
       </svg>
-      <span {...headerStyleProps.name}>Edmund Miller</span>
+      <span {...stylex.props(styles.name)}>Edmund Miller</span>
     </a>
     <nav
       aria-label="Main menu"
-      {...headerStyleProps.navigation}
+      {...stylex.props(styles.navigation)}
       id="navigation-menu"
     >
       {
         menuLinks.map((link: { title: string; path: string }, index) => (
           <a
             aria-current={_url.pathname === link.path ? "page" : false}
-            {...(index === 0 ? headerStyleProps.firstNavigationLink : headerStyleProps.navigationLink)}
+            {...stylex.props(styles.navigationLink, index === 0 && styles.firstNavigationLink)}
             data-astro-prefetch
             href={link.path}
           >
@@ -62,13 +63,13 @@ const _url = new URL(Astro.request.url);
       aria-expanded="false"
       aria-haspopup="menu"
       aria-label="Open main menu"
-      {...headerStyleProps.mobileButton}
+      {...stylex.props(styles.mobileButton)}
       id="toggle-navigation-menu"
       type="button"
     >
       <svg
         aria-hidden="true"
-        {...headerStyleProps.menuIcon}
+        {...stylex.props(styles.icon, styles.menuIcon)}
         fill="none"
         focusable="false"
         id="line-svg"
@@ -82,7 +83,7 @@ const _url = new URL(Astro.request.url);
       </svg>
       <svg
         aria-hidden="true"
-        {...headerStyleProps.closeIcon}
+        {...stylex.props(styles.icon, styles.closeIcon)}
         fill="none"
         focusable="false"
         id="cross-svg"

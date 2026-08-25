@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build && node scripts/generate-agent-content.mjs",
+    "build": "NODE_ENV=production BABEL_ENV=production astro build && node scripts/generate-agent-content.mjs",
     "postbuild": "pagefind --site dist",
     "preview": "astro preview",
     "deploy": "npm run build && wrangler deploy",
@@ -24,14 +24,14 @@
     "@astro-community/astro-embed-youtube": "0.5.10",
     "@astrojs/markdown-remark": "7.2.0",
     "@astrojs/mdx": "7.0.1",
-    "@astrojs/react": "^6.0.1",
+    "@astrojs/react": "^6.0.2",
     "@astrojs/rss": "4.0.19",
     "@astrojs/sitemap": "3.7.3",
     "@stylexjs/stylex": "0.19.0",
     "@types/hast": "3.0.4",
     "@types/mdast": "4.0.4",
     "@wooorm/starry-night": "3.10.0",
-    "astro": "7.1.0",
+    "astro": "7.2.2",
     "astro-analytics": "2.7.0",
     "astro-expressive-code": "0.44.0",
     "astro-icon": "1.1.5",
@@ -58,7 +58,6 @@
     "@iconify-json/mdi": "1.2.3",
     "@pagefind/default-ui": "1.5.2",
     "@resvg/resvg-js": "2.6.2",
-    "@stylexjs/unplugin": "0.19.0",
     "@tailwindcss/aspect-ratio": "0.4.2",
     "@tailwindcss/typography": "0.5.20",
     "@types/d3-scale": "^4.0.9",
@@ -76,7 +75,8 @@
     "reading-time": "1.5.0",
     "remark-unwrap-images": "4.0.1",
     "tailwindcss": "3.4.19",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "unplugin-stylex": "0.6.3"
   },
   "packageManager": "pnpm@11.8.0"
 }

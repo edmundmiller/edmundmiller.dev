@@ -38,14 +38,6 @@ const _baseHeadMeta: SiteMeta = {
     <BaseHead
       {..._baseHeadMeta}
     />
-    {import.meta.env.DEV && <link href="/virtual:stylex.css" rel="stylesheet" />}
-    {
-      import.meta.env.DEV && (
-        <script is:inline type="module">
-          import('/@id/virtual:stylex:runtime');
-        </script>
-      )
-    }
   </head>
   <body>
     <ThemeProvider />
