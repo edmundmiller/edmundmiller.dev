@@ -31,6 +31,11 @@ jobs:
       - name: Install dependencies
         run: corepack pnpm install --frozen-lockfile
 
+      - name: Install pinned Vale
+        run: |
+          scripts/install-vale.sh
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+
       - name: Check synchronized skills
         run: |
           corepack pnpm skills:sync
@@ -42,6 +47,9 @@ jobs:
 
       - name: Run lint
         run: corepack pnpm lint
+
+      - name: Test Vale style
+        run: corepack pnpm test:vale
 
         # use astro check for issues
       - name: Run check

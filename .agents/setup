@@ -40,6 +40,9 @@ fi
 
 export PATH="$node_dir/bin:$HOME/.local/bin:$PATH"
 
+step "Install pinned Vale"
+"$repo_root/scripts/install-vale.sh"
+
 step "Activate pnpm 11.8.0"
 corepack enable
 corepack prepare pnpm@11.8.0 --activate
@@ -76,4 +79,5 @@ cd "$repo_root"
 corepack pnpm install --frozen-lockfile
 
 step "Setup complete"
-printf 'Node %s, pnpm %s, %s\n' "$(node --version)" "$(pnpm --version)" "$(br --version)"
+printf 'Node %s, pnpm %s, Vale %s, %s\n' \
+  "$(node --version)" "$(pnpm --version)" "$(vale --version)" "$(br --version)"

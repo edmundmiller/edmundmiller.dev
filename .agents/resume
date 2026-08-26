@@ -3,9 +3,11 @@ set -euo pipefail
 
 node_version="24.17.0"
 export PATH="$HOME/.local/share/node-v${node_version}/bin:$HOME/.local/bin:$PATH"
+vale_version="$(<"$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)/.vale-version")"
 
 printf 'Checking orb toolchain...\n'
 [[ "$(node --version)" == "v${node_version}" ]]
 [[ "$(pnpm --version)" == "11.8.0" ]]
+[[ "$(vale --version)" == "vale version ${vale_version}" ]]
 br --version >/dev/null
 printf 'Orb toolchain ready.\n'

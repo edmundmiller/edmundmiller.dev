@@ -4,10 +4,11 @@ import { spawnSync } from 'node:child_process';
 
 const root = resolve(import.meta.dirname, '..');
 const fixturesRoot = join(root, 'tests/vale');
-const vale = join(root, 'node_modules/.bin/vale');
+const vale = process.env.VALE ?? 'vale';
 
-if (!existsSync(vale)) {
-  throw new Error('Vale is not installed. Run `pnpm install`.');
+const version = spawnSync(vale, ['--version'], { encoding: 'utf8' });
+if (version.error || version.status !== 0) {
+  throw new Error('Vale is not installed. Run `.agents/setup`.');
 }
 
 if (!existsSync(fixturesRoot)) {
