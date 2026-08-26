@@ -164,7 +164,7 @@ Content here
 
 The admonitions are implemented as an Astro component that:
 
-- Uses Tailwind CSS for styling
+- Uses a colocated StyleX module for styling
 - Includes Material Design Icons (MDI) for icons
 - Supports both light and dark themes
 - Is fully responsive and mobile-friendly

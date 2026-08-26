@@ -1,7 +1,9 @@
 ---
+import * as stylex from '@stylexjs/stylex';
 import type { MarkdownHeading } from 'astro';
 import { generateToc } from 'src/utils/generate-toc';
 import TOCHeading from './toc-heading.astro';
+import { styles } from './toc.stylex';
 
 interface Props {
   headings: MarkdownHeading[];
@@ -10,11 +12,14 @@ interface Props {
 const { headings } = Astro.props as Props;
 
 const _toc = generateToc(headings);
+const _navigationStyle = stylex.attrs(styles.navigation);
+const _headingStyle = stylex.attrs(styles.heading);
+const _sectionListStyle = stylex.attrs(styles.sectionList);
 ---
 
-<aside class="sticky top-20 order-2 -me-32 hidden basis-64 lg:block">
-  <h2 class="font-semibold">Table of Contents</h2>
-  <ul class="mt-4 text-xs">
+<aside class={_navigationStyle.class} style={_navigationStyle.style}>
+  <h2 class={_headingStyle.class} style={_headingStyle.style}>Table of Contents</h2>
+  <ul class={_sectionListStyle.class} style={_sectionListStyle.style}>
     {_toc.map((heading) => <TOCHeading heading={heading} />)}
   </ul>
 </aside>

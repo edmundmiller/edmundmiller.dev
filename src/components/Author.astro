@@ -1,5 +1,7 @@
 ---
+import * as stylex from '@stylexjs/stylex';
 import type { AuthorInfo } from '../utils/github';
+import { styles } from './author.stylex';
 
 interface Props {
   author: AuthorInfo;
@@ -15,30 +17,40 @@ const {
   size = 'sm',
 } = Astro.props as Props;
 
-const _avatarSizes = {
-  sm: 'h-6 w-6',
-  md: 'h-8 w-8',
-  lg: 'h-12 w-12',
-};
-
-const _textSizes = {
-  sm: 'text-sm',
-  md: 'text-base',
-  lg: 'text-lg',
-};
+const _authorStyle = stylex.attrs(styles.author);
+const _avatarStyle = stylex.attrs(
+  styles.avatar,
+  size === 'sm' && styles.avatarSmall,
+  size === 'md' && styles.avatarMedium,
+  size === 'lg' && styles.avatarLarge,
+);
+const _profileLinkStyle = stylex.attrs(
+  styles.profileLink,
+  size === 'sm' && styles.textSmall,
+  size === 'md' && styles.textMedium,
+  size === 'lg' && styles.textLarge,
+);
+const _displayNameStyle = stylex.attrs(
+  styles.displayName,
+  size === 'sm' && styles.textSmall,
+  size === 'md' && styles.textMedium,
+  size === 'lg' && styles.textLarge,
+);
+const _bioStyle = stylex.attrs(styles.bio);
 
 // Escape underscores to prevent markdown interpretation
 const _escapedUsername = author.username.replace(/_/g, '\\_');
 ---
 
-<div class="author-info flex items-center gap-2">
+<div class:list={['author-info', _authorStyle.class]} style={_authorStyle.style}>
   {
     showAvatar && author.avatarUrl && (
       <img
         src={author.avatarUrl}
         alt={`${author.displayName} avatar`}
-        class={`rounded-full ${_avatarSizes[size]}`}
+        class={_avatarStyle.class}
         loading="lazy"
+        style={_avatarStyle.style}
       />
     )
   }
@@ -48,20 +60,23 @@ const _escapedUsername = author.username.replace(/_/g, '\\_');
       href={author.githubUrl}
       target="_blank"
       rel="noopener noreferrer"
-      class={`cactus-link font-semibold ${_textSizes[size]} hover:text-link focus:text-link`}
+      class={_profileLinkStyle.class}
       title={`View ${author.displayName}'s GitHub profile`}
+      style={_profileLinkStyle.style}
       set:html={`@${_escapedUsername}`}
     />
 
     {
       author.displayName !== author.username && (
-        <span class={`text-accent-2 ${_textSizes[size]} ml-1`}>({author.displayName})</span>
+        <span class={_displayNameStyle.class} style={_displayNameStyle.style}>
+          ({author.displayName})
+        </span>
       )
     }
 
     {
       showBio && author.bio && (
-        <p class="mt-1 max-w-xs text-xs text-gray-600 dark:text-gray-400">{author.bio}</p>
+        <p class={_bioStyle.class} style={_bioStyle.style}>{author.bio}</p>
       )
     }
   </div>

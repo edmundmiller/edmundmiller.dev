@@ -93,8 +93,6 @@ const styleAttributes = (...keys: Array<keyof typeof styles>) => ({
   ...stylex.attrs(...keys.map((key) => styles[key])),
   ...(import.meta.env.DEV ? { 'data-admonition-stylex': keys.join(' ') } : {}),
 });
-// Keep Tailwind Typography dormant until Phase 5 removes the legacy plugin.
-const _proseClass = ['pro', 'se'].join('');
 ---
 
 <div
@@ -169,7 +167,7 @@ const _proseClass = ['pro', 'se'].join('');
         }
         style={styleAttributes('content', collapsible ? 'contentCollapsible' : 'content').style}
       >
-        <div class={_proseClass}>
+        <div class="prose">
           <slot />
         </div>
       </div>

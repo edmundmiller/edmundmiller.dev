@@ -44,7 +44,7 @@ This is an Astro-based personal blog/website using the Astro Theme Cactus templa
 ### Key Integrations
 
 - **Search**: Pagefind static search (requires postbuild after build)
-- **Styling**: TailwindCSS with dark/light theme support
+- **Styling**: StyleX modules with CSS-backed dark/light themes; see `docs/stylex.md`
 - **Code Highlighting**: Expressive Code with dracula (dark) and github-light themes
 - **SEO**: Auto-generated OG images using Satori, RSS feed, sitemap
 - **Analytics**: Astro Analytics integration

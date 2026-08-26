@@ -40,7 +40,7 @@ const cactusLinkStyle = stylex.attrs(styles.cactusLink);
 // v0 by Vercel.
 // https://v0.dev/t/xhsg8l1j1aQ
 -->
-  <main class={pageStyle.class} style={pageStyle.style}>
+  <div class={pageStyle.class} style={pageStyle.style}>
     <div class={contentStyle.class} style={contentStyle.style}>
       <div>
         <h1 class={pageTitleStyle.class} style={pageTitleStyle.style}>My Conference Talks</h1>
@@ -76,14 +76,14 @@ const cactusLinkStyle = stylex.attrs(styles.cactusLink);
                   </div>
                   <div class={talkContentStyle.class} style={talkContentStyle.style}>
                     {href ? (
-                      <h3 class={talkTitleStyle.class} style={talkTitleStyle.style}>
+                      <h2 class={talkTitleStyle.class} style={talkTitleStyle.style}>
                         <a href={href} class={talkTitleLinkStyle.class} style={talkTitleLinkStyle.style}>{title}</a>
-                      </h3>
+                      </h2>
                     ) : (
-                      <h3
+                      <h2
                         class={talkTitleTextStyle.class}
                         style={talkTitleTextStyle.style}
-                      >{title}</h3>
+                      >{title}</h2>
                     )}
                     <p class={eventStyle.class} style={eventStyle.style}>
                       {event}, {location}
@@ -109,5 +109,5 @@ const cactusLinkStyle = stylex.attrs(styles.cactusLink);
         )}
       </section>
     </div>
-  </main>
+  </div>
 </PageLayout>

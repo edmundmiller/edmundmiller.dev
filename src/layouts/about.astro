@@ -18,13 +18,11 @@ const _meta = {
 };
 const _contentStyle = stylex.attrs(styles.content);
 const _proseStyle = stylex.attrs(styles.prose);
-// Keep Tailwind Typography dormant until Phase 5 removes the legacy plugin.
-const _proseClass = ['pro', 'se'].join('');
 ---
 
 <PageLayout meta={_meta}>
   <div class={_contentStyle.class} style={_contentStyle.style}>
-    <div class:list={[_proseClass, _proseStyle.class]} style={_proseStyle.style}>
+    <div class:list={['prose', _proseStyle.class]} style={_proseStyle.style}>
       <slot />
     </div>
   </div>

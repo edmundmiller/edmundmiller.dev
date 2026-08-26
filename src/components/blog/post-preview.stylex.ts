@@ -17,7 +17,10 @@ export const styles = stylex.create({
     fontStyle: 'italic',
   },
   draft: {
-    color: '#ef4444',
+    color: {
+      default: '#b91c1c',
+      ':is([data-theme="dark"] *)': '#f87171',
+    },
   },
   titleLink: {
     backgroundPosition: 'bottom',

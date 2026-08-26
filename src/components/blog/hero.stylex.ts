@@ -81,7 +81,10 @@ export const styles = stylex.create({
     width: '100%',
   },
   draft: {
-    color: '#ef4444',
+    color: {
+      default: '#b91c1c',
+      ':is([data-theme="dark"] *)': '#f87171',
+    },
     fontSize: '1rem',
     lineHeight: '1.5rem',
   },

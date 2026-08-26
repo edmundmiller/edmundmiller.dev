@@ -31,6 +31,8 @@ Regular CSS remains appropriate only for global reset and theme variables, fonts
 Markdown `.prose`, Pagefind, Expressive Code, microformats, third-party selectors, keyframes,
 reduced motion, and animation-heavy modules such as PipelineField. Inline styles are limited to
 genuinely dynamic data such as coordinates, computed colors, canvas values, and Motion state.
+Satori's `tw` attribute in the OG image generator is a third-party rendering contract, not a
+first-party styling interface.
 
 Run `pnpm run lint:stylex` in addition to Oxlint. `no-conflicting-props` stays disabled until inline
 data styles and semantic-class coexistence are fully migrated and tested.

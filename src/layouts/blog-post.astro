@@ -101,8 +101,6 @@ const _canonicalLinkStyle = stylex.attrs(styles.cactusLink);
 const _proseStyle = stylex.attrs(styles.prose);
 const _backToTopStyle = stylex.attrs(styles.backToTop);
 const _backToTopIconStyle = stylex.attrs(styles.backToTopIcon);
-// Keep Tailwind Typography dormant until Phase 5 removes the legacy plugin.
-const _proseClass = ['pro', 'se'].join('');
 ---
 
 <BaseLayout
@@ -213,7 +211,7 @@ const _proseClass = ['pro', 'se'].join('');
         }
       </div>
       <div
-        class:list={[_proseClass, _proseStyle.class]}
+        class:list={['prose', _proseStyle.class]}
         style={_proseStyle.style}
       >
         <div class="e-content">
