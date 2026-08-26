@@ -148,3 +148,44 @@ All existing callouts have been converted and are now:
 - ✅ Customizable with themes
 
 </Admonition>
+
+## Markdown Typography Fixture
+
+This section verifies [regular links](https://example.com), **strong text**, `inline code`, and a
+footnote reference.[^fixture]
+
+### Nested Lists
+
+1. First ordered item
+   - Nested unordered item
+   - Another nested item
+     1. Deep ordered item
+2. Second ordered item
+
+> A blockquote verifies quote marks, theme color, and multiline spacing.
+>
+> This is its second paragraph.
+
+| Element | Expected behavior          |
+| ------- | -------------------------- |
+| Heading | Pixel font and hash marker |
+| Table   | Dashed heading border      |
+
+![The site logo used as a Markdown image](/icon.svg)
+
+<video controls muted preload="none" poster="/social-card.png">
+  <track kind="captions" label="English" />
+</video>
+
+<div class="not-prose" data-testid="not-prose-fixture">
+  <h3>Not prose boundary</h3>
+  <p>This content must keep the global reset instead of prose descendant styling.</p>
+</div>
+
+```typescript title="Expressive Code fixture"
+const typographySource: 'regular-css' = 'regular-css';
+```
+
+---
+
+[^fixture]: The footnote verifies bracket markers, spacing, backlinks, and the generated footnote list.

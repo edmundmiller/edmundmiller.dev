@@ -1,7 +1,9 @@
 ---
+import * as stylex from '@stylexjs/stylex';
 import { render, type CollectionEntry } from 'astro:content';
 import { createAuthorInfo } from '../utils/github';
 import BaseLayout from './base.astro';
+import { styles } from './blog-post.stylex';
 import TOC from '@/components/blog/toc.astro';
 import BlogHero from '@/components/blog/hero.astro';
 import Author from '@/components/author.astro';
@@ -80,23 +82,48 @@ const _meta = {
   ...(canonical && { canonical }),
   ...(author && { author }),
 };
+
+const _shellStyle = stylex.attrs(styles.shell);
+const _articleStyle = stylex.attrs(styles.article);
+const _titleStyle = stylex.attrs(styles.heroTitle);
+const _metaRowStyle = stylex.attrs(styles.metaRow);
+const _dateStyle = stylex.attrs(styles.date);
+const _authorsStyle = stylex.attrs(styles.authors);
+const _authorIconStyle = stylex.attrs(styles.authorIcon);
+const _authorLabelStyle = stylex.attrs(styles.authorLabel);
+const _authorListStyle = stylex.attrs(styles.authorList);
+const _authorItemStyle = stylex.attrs(styles.authorItem);
+const _conjunctionStyle = stylex.attrs(styles.conjunction);
+const _canonicalStyle = stylex.attrs(styles.canonical);
+const _canonicalTextStyle = stylex.attrs(styles.canonicalText);
+const _canonicalLabelStyle = stylex.attrs(styles.canonicalLabel);
+const _canonicalLinkStyle = stylex.attrs(styles.cactusLink);
+const _proseStyle = stylex.attrs(styles.prose);
+const _backToTopStyle = stylex.attrs(styles.backToTop);
+const _backToTopIconStyle = stylex.attrs(styles.backToTopIcon);
+// Keep Tailwind Typography dormant until Phase 5 removes the legacy plugin.
+const _proseClass = ['pro', 'se'].join('');
 ---
 
 <BaseLayout
   meta={_meta}
 >
-  <div class="gap-x-10 lg:flex lg:items-start">
+  <div class={_shellStyle.class} style={_shellStyle.style}>
     {!!_headings.length && <TOC headings={_headings} />}
-    <article class="h-entry flex-grow break-words" data-pagefind-body>
+    <article
+      class:list={['h-entry', _articleStyle.class]}
+      data-pagefind-body
+      style={_articleStyle.style}
+    >
       <div id="blog-hero">
         {
           post ? (
             <BlogHero content={post} />
           ) : (
             <div class="blog-hero-mdx">
-              <h1 class="p-name title mb-3 sm:mb-1">{title}</h1>
-              <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
-                <p class="font-semibold">
+              <h1 class:list={['p-name', _titleStyle.class]} style={_titleStyle.style}>{title}</h1>
+              <div class={_metaRowStyle.class} style={_metaRowStyle.style}>
+                <p class={_dateStyle.class} style={_dateStyle.style}>
                   {publishDate.toLocaleDateString("en-US", {
                     month: "long",
                     day: "numeric",
@@ -107,10 +134,10 @@ const _meta = {
 
               {/* Authors section for MDX */}
               {_authorInfos.length > 0 && (
-                <div class="mt-3 flex flex-wrap items-center gap-x-2">
+                <div class={_authorsStyle.class} style={_authorsStyle.style}>
                   <svg
                     aria-hidden="true"
-                    class="h-5 w-5 text-accent"
+                    class={_authorIconStyle.class}
                     fill="none"
                     focusable="false"
                     stroke="currentColor"
@@ -119,19 +146,20 @@ const _meta = {
                     stroke-width="1.5"
                     viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg"
+                    style={_authorIconStyle.style}
                   >
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                     <circle cx="12" cy="7" r="4" />
                   </svg>
-                  <span class="text-sm font-medium">
+                  <span class={_authorLabelStyle.class} style={_authorLabelStyle.style}>
                     {_authorInfos.length === 1 ? "Author:" : "Authors:"}
                   </span>
-                  <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+                  <div class={_authorListStyle.class} style={_authorListStyle.style}>
                     {_authorInfos.map((authorInfo, i) => (
-                      <div class="flex items-center">
+                      <div class={_authorItemStyle.class} style={_authorItemStyle.style}>
                         <Author author={authorInfo} size="sm" />
                         {i < _authorInfos.length - 1 && (
-                          <span class="ml-2 text-sm text-gray-500">
+                          <span class={_conjunctionStyle.class} style={_conjunctionStyle.style}>
                             {_authorInfos.length === 2
                               ? "and"
                               : i === _authorInfos.length - 2
@@ -147,10 +175,10 @@ const _meta = {
 
               {/* Canonical URL section for MDX */}
               {canonical && (
-                <div class="mt-3 flex flex-wrap items-center gap-x-2">
+                <div class={_canonicalStyle.class} style={_canonicalStyle.style}>
                   <svg
                     aria-hidden="true"
-                    class="h-5 w-5 text-accent"
+                    class={_authorIconStyle.class}
                     fill="none"
                     focusable="false"
                     stroke="currentColor"
@@ -159,17 +187,21 @@ const _meta = {
                     stroke-width="1.5"
                     viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg"
+                    style={_authorIconStyle.style}
                   >
                     <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
                     <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
                   </svg>
-                  <span class="text-sm">
-                    <span class="font-medium">Originally published at:</span>
+                  <span class={_canonicalTextStyle.class} style={_canonicalTextStyle.style}>
+                    <span class={_canonicalLabelStyle.class} style={_canonicalLabelStyle.style}
+                      >Originally published at:</span
+                    >
                     <a
                       href={canonical}
-                      class="cactus-link ml-1 font-semibold"
+                      class={_canonicalLinkStyle.class}
                       target="_blank"
                       rel="noopener noreferrer"
+                      style={_canonicalLinkStyle.style}
                     >
                       {new URL(canonical).hostname}
                     </a>
@@ -181,7 +213,8 @@ const _meta = {
         }
       </div>
       <div
-        class="prose prose-sm prose-cactus mt-12 prose-headings:font-pixel-grid prose-headings:font-semibold prose-headings:text-accent-2 prose-headings:before:absolute prose-headings:before:-ms-4 prose-headings:before:text-accent prose-headings:before:content-['#'] prose-th:before:content-none"
+        class:list={[_proseClass, _proseStyle.class]}
+        style={_proseStyle.style}
       >
         <div class="e-content">
           <slot />
@@ -192,18 +225,20 @@ const _meta = {
   </div>
   <button
     aria-label="Back to Top"
-    class="z-90 fixed bottom-8 end-4 flex h-10 w-10 translate-y-28 items-center justify-center rounded-full border-2 border-transparent bg-zinc-200 text-3xl opacity-0 transition-all duration-300 hover:border-zinc-400 data-[show=true]:translate-y-0 data-[show=true]:opacity-100 dark:bg-zinc-700 sm:end-8 sm:h-12 sm:w-12"
+    class={_backToTopStyle.class}
     data-show="false"
     id="to-top-btn"
+    style={_backToTopStyle.style}
     ><svg
       aria-hidden="true"
-      class="h-6 w-6"
+      class={_backToTopIconStyle.class}
       fill="none"
       focusable="false"
       stroke="currentColor"
       stroke-width="2"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
+      style={_backToTopIconStyle.style}
     >
       <path d="M4.5 15.75l7.5-7.5 7.5 7.5" stroke-linecap="round" stroke-linejoin="round"></path>
     </svg>
@@ -228,3 +263,7 @@ const _meta = {
   const observer = new IntersectionObserver(callback);
   observer.observe(targetHeader);
 </script>
+
+<style is:global>
+  @import '../styles/prose.css';
+</style>

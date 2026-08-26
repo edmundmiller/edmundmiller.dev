@@ -1,4 +1,7 @@
 ---
+import * as stylex from '@stylexjs/stylex';
+import { styles } from './admonition.stylex';
+
 interface Props {
   type?:
     | 'note'
@@ -27,66 +30,58 @@ const {
 const typeConfig = {
   note: {
     icon: icon || 'mdi:note-text',
-    bgColor: 'bg-blue-50 dark:bg-blue-950/30',
-    borderColor: 'border-blue-200 dark:border-blue-800',
-    iconColor: 'text-blue-600 dark:text-blue-400',
-    titleColor: 'text-blue-900 dark:text-blue-100',
+    containerStyle: styles.noteContainer,
+    iconStyle: styles.noteIcon,
+    titleStyle: styles.noteTitle,
     defaultTitle: 'Note',
   },
   tip: {
     icon: icon || 'mdi:lightbulb',
-    bgColor: 'bg-green-50 dark:bg-green-950/30',
-    borderColor: 'border-green-200 dark:border-green-800',
-    iconColor: 'text-green-600 dark:text-green-400',
-    titleColor: 'text-green-900 dark:text-green-100',
+    containerStyle: styles.tipContainer,
+    iconStyle: styles.tipIcon,
+    titleStyle: styles.tipTitle,
     defaultTitle: 'Tip',
   },
   info: {
     icon: icon || 'mdi:information',
-    bgColor: 'bg-cyan-50 dark:bg-cyan-950/30',
-    borderColor: 'border-cyan-200 dark:border-cyan-800',
-    iconColor: 'text-cyan-600 dark:text-cyan-400',
-    titleColor: 'text-cyan-900 dark:text-cyan-100',
+    containerStyle: styles.infoContainer,
+    iconStyle: styles.infoIcon,
+    titleStyle: styles.infoTitle,
     defaultTitle: 'Info',
   },
   warning: {
     icon: icon || 'mdi:alert',
-    bgColor: 'bg-yellow-50 dark:bg-yellow-950/30',
-    borderColor: 'border-yellow-200 dark:border-yellow-800',
-    iconColor: 'text-yellow-600 dark:text-yellow-400',
-    titleColor: 'text-yellow-900 dark:text-yellow-100',
+    containerStyle: styles.warningContainer,
+    iconStyle: styles.warningIcon,
+    titleStyle: styles.warningTitle,
     defaultTitle: 'Warning',
   },
   danger: {
     icon: icon || 'mdi:alert-octagon',
-    bgColor: 'bg-red-50 dark:bg-red-950/30',
-    borderColor: 'border-red-200 dark:border-red-800',
-    iconColor: 'text-red-600 dark:text-red-400',
-    titleColor: 'text-red-900 dark:text-red-100',
+    containerStyle: styles.dangerContainer,
+    iconStyle: styles.dangerIcon,
+    titleStyle: styles.dangerTitle,
     defaultTitle: 'Danger',
   },
   success: {
     icon: icon || 'mdi:check-circle',
-    bgColor: 'bg-emerald-50 dark:bg-emerald-950/30',
-    borderColor: 'border-emerald-200 dark:border-emerald-800',
-    iconColor: 'text-emerald-600 dark:text-emerald-400',
-    titleColor: 'text-emerald-900 dark:text-emerald-100',
+    containerStyle: styles.successContainer,
+    iconStyle: styles.successIcon,
+    titleStyle: styles.successTitle,
     defaultTitle: 'Success',
   },
   example: {
     icon: icon || 'mdi:file-document-edit',
-    bgColor: 'bg-purple-50 dark:bg-purple-950/30',
-    borderColor: 'border-purple-200 dark:border-purple-800',
-    iconColor: 'text-purple-600 dark:text-purple-400',
-    titleColor: 'text-purple-900 dark:text-purple-100',
+    containerStyle: styles.exampleContainer,
+    iconStyle: styles.exampleIcon,
+    titleStyle: styles.exampleTitle,
     defaultTitle: 'Example',
   },
   quote: {
     icon: icon || 'mdi:format-quote-close',
-    bgColor: 'bg-gray-50 dark:bg-gray-950/30',
-    borderColor: 'border-gray-200 dark:border-gray-800',
-    iconColor: 'text-gray-600 dark:text-gray-400',
-    titleColor: 'text-gray-900 dark:text-gray-100',
+    containerStyle: styles.quoteContainer,
+    iconStyle: styles.quoteIcon,
+    titleStyle: styles.quoteTitle,
     defaultTitle: 'Quote',
   },
 };
@@ -94,36 +89,67 @@ const typeConfig = {
 const config = typeConfig[type];
 const _displayTitle = title || config.defaultTitle;
 const _uniqueId = `admonition-${Math.random().toString(36).substring(2, 11)}`;
+const styleAttributes = (...keys: Array<keyof typeof styles>) => ({
+  ...stylex.attrs(...keys.map((key) => styles[key])),
+  ...(import.meta.env.DEV ? { 'data-admonition-stylex': keys.join(' ') } : {}),
+});
+// Keep Tailwind Typography dormant until Phase 5 removes the legacy plugin.
+const _proseClass = ['pro', 'se'].join('');
 ---
 
 <div
-  class={`admonition admonition-${type} rounded-lg border-l-4 p-4 my-6 ${config.bgColor} ${config.borderColor}`}
+  class:list={[
+    'admonition',
+    `admonition-${type}`,
+    styleAttributes('container').class,
+    stylex.attrs(config.containerStyle).class,
+  ]}
   data-type={type}
+  data-admonition-stylex={import.meta.env.DEV ? `container ${type}Container` : undefined}
+  style={styleAttributes('container').style}
 >
-  <div class="flex items-start">
+  <div {...styleAttributes('header')}>
     <!-- Icon -->
-    <div class={`flex-shrink-0 ${config.iconColor} mr-3 mt-1`}>
-      <astro-icon name={config.icon} class="w-5 h-5" />
+    <div
+      class:list={[styleAttributes('icon').class, stylex.attrs(config.iconStyle).class]}
+      data-admonition-stylex={import.meta.env.DEV ? `icon ${type}Icon` : undefined}
+      style={styleAttributes('icon').style}
+    >
+      <astro-icon name={config.icon} {...styleAttributes('iconGraphic')} />
     </div>
 
-    <div class="flex-1 min-w-0">
+    <div {...styleAttributes('body')}>
       <!-- Title/Header -->
       {collapsible ? (
         <button
-          class={`admonition-toggle flex items-center justify-between w-full text-left font-semibold ${config.titleColor} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 rounded-sm`}
+          class:list={[
+            'admonition-toggle',
+            styleAttributes('toggle').class,
+            stylex.attrs(config.titleStyle).class,
+          ]}
+          data-admonition-stylex={import.meta.env.DEV ? `toggle ${type}Title` : undefined}
           aria-expanded={!collapsed}
           aria-controls={_uniqueId}
+          style={styleAttributes('toggle').style}
         >
-          <span class="flex items-center">
+          <span>
             <span>{_displayTitle}</span>
           </span>
           <astro-icon
             name="mdi:chevron-down"
-            class={`w-4 h-4 transition-transform duration-200 ${collapsed ? '-rotate-90' : ''}`}
+            {...styleAttributes('chevron')}
+            data-expanded={(!collapsed).toString()}
           />
         </button>
       ) : (
-        <div class={`font-semibold ${config.titleColor} mb-2`}>
+        <div
+          class:list={[
+            styleAttributes('staticTitle').class,
+            stylex.attrs(config.titleStyle).class,
+          ]}
+          data-admonition-stylex={import.meta.env.DEV ? `staticTitle ${type}Title` : undefined}
+          style={styleAttributes('staticTitle').style}
+        >
           {_displayTitle}
         </div>
       )}
@@ -131,9 +157,19 @@ const _uniqueId = `admonition-${Math.random().toString(36).substring(2, 11)}`;
       <!-- Content -->
       <div
         id={_uniqueId}
-        class={`admonition-content ${collapsible ? 'mt-2' : ''} ${collapsed && collapsible ? 'hidden' : ''}`}
+        class:list={[
+          'admonition-content',
+          styleAttributes('content', collapsible ? 'contentCollapsible' : 'content').class,
+        ]}
+        data-expanded={(!(collapsed && collapsible)).toString()}
+        data-admonition-stylex={
+          import.meta.env.DEV
+            ? `content ${collapsible ? 'contentCollapsible' : ''}`.trim()
+            : undefined
+        }
+        style={styleAttributes('content', collapsible ? 'contentCollapsible' : 'content').style}
       >
-        <div class="prose prose-sm dark:prose-invert max-w-none">
+        <div class={_proseClass}>
           <slot />
         </div>
       </div>
@@ -142,51 +178,66 @@ const _uniqueId = `admonition-${Math.random().toString(36).substring(2, 11)}`;
 </div>
 
 {collapsible && (
-  <script is:inline>
-    // Add click handlers for collapsible admonitions
-    document.addEventListener('DOMContentLoaded', function() {
-      const toggles = document.querySelectorAll('.admonition-toggle');
+  <script>
+    import { styles as initialStyles } from "./admonition.stylex";
 
-      toggles.forEach(function(toggle) {
-        toggle.addEventListener('click', function() {
-          const content = document.getElementById(this.getAttribute('aria-controls'));
-          const chevron = this.querySelector('[data-icon="mdi:chevron-down"]');
-          const isExpanded = this.getAttribute('aria-expanded') === 'true';
+    const browserWindow = window as Window & {
+      __admonitionClickHandler?: (event: MouseEvent) => void;
+    };
 
-          // Toggle visibility
-          if (isExpanded) {
-            if (content) content.classList.add('hidden');
-            this.setAttribute('aria-expanded', 'false');
-            if (chevron) chevron.classList.add('-rotate-90');
-          } else {
-            if (content) content.classList.remove('hidden');
-            this.setAttribute('aria-expanded', 'true');
-            if (chevron) chevron.classList.remove('-rotate-90');
-          }
+    if (browserWindow.__admonitionClickHandler) {
+      document.removeEventListener("click", browserWindow.__admonitionClickHandler);
+    }
+
+    browserWindow.__admonitionClickHandler = (event) => {
+      const toggle = (event.target as Element).closest<HTMLButtonElement>(".admonition-toggle");
+
+      if (!toggle) return;
+
+      const content = document.getElementById(toggle.getAttribute("aria-controls")!);
+      const chevron = toggle.querySelector(
+        'astro-icon[name="mdi:chevron-down"], [data-icon="mdi:chevron-down"]',
+      );
+      const expanded = toggle.getAttribute("aria-expanded") !== "true";
+
+      toggle.setAttribute("aria-expanded", expanded.toString());
+      content?.setAttribute("data-expanded", expanded.toString());
+      chevron?.setAttribute("data-expanded", expanded.toString());
+    };
+
+    document.addEventListener("click", browserWindow.__admonitionClickHandler);
+
+    if (import.meta.hot) {
+      type AdmonitionStyles = typeof initialStyles;
+      type StyleKey = keyof AdmonitionStyles;
+
+      let currentStyles = initialStyles;
+
+      const classTokens = (sheet: AdmonitionStyles, keys: StyleKey[]) => {
+        const compiledStyles = Object.assign({}, ...keys.map((key) => sheet[key]));
+
+        return Object.entries(compiledStyles)
+          .filter(([property, value]) => property !== "$$css" && typeof value === "string")
+          .flatMap(([, value]) => (value as string).split(/\s+/))
+          .filter(Boolean);
+      };
+
+      import.meta.hot.accept("./admonition.stylex", (nextModule) => {
+        if (!nextModule) return;
+
+        document.querySelectorAll<Element>("[data-admonition-stylex]").forEach((element) => {
+          const keys = element.getAttribute("data-admonition-stylex")?.split(/\s+/) as
+            | StyleKey[]
+            | undefined;
+
+          if (!keys?.length) return;
+
+          element.classList.remove(...classTokens(currentStyles, keys));
+          element.classList.add(...classTokens(nextModule.styles, keys));
         });
+
+        currentStyles = nextModule.styles;
       });
-    });
+    }
   </script>
 )}
-
-<style>
-  .admonition {
-    @apply transition-all duration-200;
-  }
-
-  .admonition:hover {
-    @apply shadow-md;
-  }
-
-  .admonition-content .prose {
-    @apply text-gray-700 dark:text-gray-300;
-  }
-
-  .admonition-content .prose p:first-child {
-    @apply mt-0;
-  }
-
-  .admonition-content .prose p:last-child {
-    @apply mb-0;
-  }
-</style>
