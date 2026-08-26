@@ -1,10 +1,12 @@
 ---
+import * as stylex from '@stylexjs/stylex';
 import { getAllPosts, sortMDByDate } from '@/data/post';
 import PageLayout from '@/layouts/base.astro';
 import SocialList from '@/components/social-list.astro';
 import PostPreview from '@/components/blog/post-preview.astro';
 import Openring from '@/components/openring.astro';
 import WritingCadenceChart from '@/components/writing-cadence-chart';
+import { styles } from './_index.stylex';
 
 const MAX_POSTS = 10;
 const allPosts = await getAllPosts();
@@ -22,6 +24,22 @@ const _meta = {
     'Bioinformatics engineer and PhD candidate writing about Nextflow, nf-core, functional genomics, reproducible workflows, and software for data-intensive science.',
   title: 'Bioinformatics Engineer — Nextflow & nf-core',
 };
+
+const introductionTitleStyle = stylex.attrs(styles.introductionTitle);
+const introductionParagraphStyle = stylex.attrs(styles.introductionParagraph);
+const introductionClosingStyle = stylex.attrs(styles.introductionClosing);
+const startHereStyle = stylex.attrs(styles.startHere);
+const sectionTitleStyle = stylex.attrs(styles.sectionTitle);
+const startHereDescriptionStyle = stylex.attrs(styles.startHereDescription);
+const startHereLinksStyle = stylex.attrs(styles.startHereLinks);
+const cactusLinkStyle = stylex.attrs(styles.cactusLink);
+const postsStyle = stylex.attrs(styles.posts);
+const cadenceStyle = stylex.attrs(styles.cadence);
+const cadenceCaptionStyle = stylex.attrs(styles.cadenceCaption);
+const postListStyle = stylex.attrs(styles.postList);
+const postStyle = stylex.attrs(styles.post);
+const allPostsLinkStyle = stylex.attrs(styles.cactusLink, styles.allPostsLink);
+const openringSpacingStyle = stylex.attrs(styles.openringSpacing);
 
 /* Tech stack info (unused for now)
 const cactusTech: { desc: string; href: string; title: string }[] = [
@@ -71,47 +89,50 @@ const cactusTech: { desc: string; href: string; title: string }[] = [
 
 <PageLayout meta={_meta}>
   <section>
-    <h1 class="title mb-6">Hello!</h1>
-    <p class="mb-4">
+    <h1 class={introductionTitleStyle.class} style={introductionTitleStyle.style}>Hello!</h1>
+    <p class={introductionParagraphStyle.class} style={introductionParagraphStyle.style}>
       I'm <a href="https://edmundmiller.dev/" class="h-card" rel="me">Edmund Miller</a>, a PhD
       candidate with a broad range of interests, primarily in Functional Genomics. I got into
       bioinformatics after realizing I didn't have golden hands at the bench during undergrad.
     </p>
-    <p class="mb-4">
+    <p class={introductionParagraphStyle.class} style={introductionParagraphStyle.style}>
       That taste of programming got me dabbling in writing smart contracts and web apps. Through my
       research experience I acquired a taste for processing data with reproducible, high-throughput
       workflows.
     </p>
-    <p class="mb-6">
+    <p class={introductionClosingStyle.class} style={introductionClosingStyle.style}>
       I saw the light in March 2020 when I found <a href="https://nf-co.re/">nf-core</a> and tossed
       aside the reptilian workflow manager for <a href="https://www.nextflow.io/">Nextflow</a>. I love
       a good crossover episode of technologies and I'm always trying to push the envelope.
     </p>
     <SocialList />
   </section>
-  <section aria-labelledby="start-here" class="mt-12 rounded-lg border border-accent/30 p-6">
-    <h2 class="title mb-3 text-xl" id="start-here">Start here</h2>
-    <p class="mb-4">
+  <section aria-labelledby="start-here" class={startHereStyle.class} style={startHereStyle.style}>
+    <h2 class={sectionTitleStyle.class} id="start-here" style={sectionTitleStyle.style}>Start here</h2>
+    <p class={startHereDescriptionStyle.class} style={startHereDescriptionStyle.style}>
       If you're here for bioinformatics tooling, reproducible workflows, or Emacs-shaped developer
       ergonomics, these are the best next steps.
     </p>
-    <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+    <div class={startHereLinksStyle.class} style={startHereLinksStyle.style}>
       <a
-        class="cactus-link"
+        class={cactusLinkStyle.class}
+        style={cactusLinkStyle.style}
         data-goatcounter-event="home-start-posts"
         href="/posts/"
       >
         Read the technical posts
       </a>
       <a
-        class="cactus-link"
+        class={cactusLinkStyle.class}
+        style={cactusLinkStyle.style}
         data-goatcounter-event="home-start-speaking"
         href="/speaking/"
       >
         See conference talks
       </a>
       <a
-        class="cactus-link"
+        class={cactusLinkStyle.class}
+        style={cactusLinkStyle.style}
         data-goatcounter-event="home-start-about"
         href="/about/"
       >
@@ -119,26 +140,30 @@ const cactusTech: { desc: string; href: string; title: string }[] = [
       </a>
     </div>
   </section>
-  <section aria-label="Blog post list" class="mt-16">
-    <h2 class="h-feed title mb-4 text-xl">Posts</h2>
-    <figure class="mb-10 border-y border-dashed border-textColor/30 py-5">
-      <figcaption class="mb-3 text-sm text-textColor/70">Writing cadence · posts per year</figcaption>
+  <section aria-label="Blog post list" class={postsStyle.class} style={postsStyle.style}>
+    <h2 class:list={['h-feed', sectionTitleStyle.class]} style={sectionTitleStyle.style}>Posts</h2>
+    <figure class={cadenceStyle.class} style={cadenceStyle.style}>
+      <figcaption class={cadenceCaptionStyle.class} style={cadenceCaptionStyle.style}>Writing cadence · posts per year</figcaption>
       <WritingCadenceChart data={postsByYear} client:visible />
     </figure>
-    <ul class="space-y-4">
+    <ul class={postListStyle.class} style={postListStyle.style}>
       {
         _allPostsByDate.map((p) => (
-            <li class="flex flex-col gap-x-2 sm:flex-row">
+            <li class={postStyle.class} style={postStyle.style}>
               <PostPreview post={p} withDesc />
             </li>
         ))
       }
     </ul>
-    <a href="/posts/" class="mt-6 inline-flex items-center gap-1 text-sm cactus-link">
+    <a
+      href="/posts/"
+      class={allPostsLinkStyle.class}
+      style={allPostsLinkStyle.style}
+    >
       View all posts
       <span aria-hidden="true">&rarr;</span>
     </a>
   </section>
-  <section class="mt-16"></section>
+  <section class={openringSpacingStyle.class} style={openringSpacingStyle.style}></section>
   <Openring />
 </PageLayout>
