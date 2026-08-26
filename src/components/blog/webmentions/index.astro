@@ -1,7 +1,9 @@
 ---
+import * as stylex from '@stylexjs/stylex';
 import Comments from './comments.astro';
 import Likes from './likes.astro';
 import { getWebmentionsForUrl } from '@/utils';
+import { styles } from './index.stylex';
 
 const url = new URL(Astro.url.pathname, Astro.site);
 
@@ -9,18 +11,23 @@ const webMentions = await getWebmentionsForUrl(`${url}`);
 if (!webMentions.length) {
   return;
 }
+
+const dividerStyle = stylex.attrs(styles.divider);
+const headingStyle = stylex.attrs(styles.heading);
+const responsesStyle = stylex.attrs(styles.responses);
+const attributionStyle = stylex.attrs(styles.attribution);
 ---
 
 {
   !!webMentions.length && (
     <>
-      <hr class="border-solid" />
-      <h2 class="mb-8 before:hidden">Webmentions for this post</h2>
-      <div class="space-y-10">
+      <hr class={dividerStyle.class} style={dividerStyle.style} />
+      <h2 class={headingStyle.class} style={headingStyle.style}>Webmentions for this post</h2>
+      <div class={responsesStyle.class} style={responsesStyle.style}>
         <Likes mentions={webMentions} />
         <Comments mentions={webMentions} />
       </div>
-      <p class="mt-8">
+      <p class={attributionStyle.class} style={attributionStyle.style}>
         Responses powered by{" "}
         <a href="https://webmention.io" rel="noopener noreferrer" target="_blank">
           Webmentions

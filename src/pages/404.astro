@@ -1,5 +1,7 @@
 ---
+import * as stylex from '@stylexjs/stylex';
 import PageLayout from '@/layouts/base.astro';
+import { styles } from './_404.stylex';
 
 const _meta = {
   description:
@@ -7,12 +9,20 @@ const _meta = {
   robots: 'noindex, follow',
   title: 'Oops! You found a missing page!',
 };
+
+const pageTitleStyle = stylex.attrs(styles.pageTitle);
+const guidanceStyle = stylex.attrs(styles.guidance);
+const imageFrameStyle = stylex.attrs(styles.imageContainer);
 ---
 
 <PageLayout meta={_meta}>
-  <h1 class="title mb-6">404 | Oops something went wrong</h1>
-  <p class="mb-8">Please use the navigation to find your way back</p>
-  <div class="my-4 grid justify-center">
+  <h1 class={pageTitleStyle.class} style={pageTitleStyle.style}>
+    404 | Oops something went wrong
+  </h1>
+  <p class={guidanceStyle.class} style={guidanceStyle.style}>
+    Please use the navigation to find your way back
+  </p>
+  <div class={imageFrameStyle.class} style={imageFrameStyle.style}>
     <img
       alt="A juggler doing the boston mess pattern"
       loading="eager"

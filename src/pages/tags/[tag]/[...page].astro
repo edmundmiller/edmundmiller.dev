@@ -1,10 +1,12 @@
 ---
+import * as stylex from '@stylexjs/stylex';
 import type { CollectionEntry } from 'astro:content';
 import type { GetStaticPaths, Page } from 'astro';
 import { getAllPosts, getUniqueTags, sortMDByDate } from '@/data/post';
 import PageLayout from '@/layouts/base.astro';
 import PostPreview from '@/components/blog/post-preview.astro';
 import Paginator from '@/components/paginator.astro';
+import { styles } from './_tag-posts.stylex';
 
 export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
   const allPosts = await getAllPosts();
@@ -48,19 +50,26 @@ const _paginationProps = {
     },
   }),
 };
+
+const pageTitleStyle = stylex.attrs(styles.pageTitle);
+const tagsLinkStyle = stylex.attrs(styles.tagsLink);
+const separatorStyle = stylex.attrs(styles.separator);
+const tagNameStyle = stylex.attrs(styles.tagName);
+const postListStyle = stylex.attrs(styles.postList);
+const postStyle = stylex.attrs(styles.post);
 ---
 
 <PageLayout meta={_meta}>
-  <h1 class="title mb-6 flex items-center">
-    <a class="text-accent sm:hover:underline" href="/tags/">Tags</a>
-    <span class="me-3 ms-2">→</span>
-    <span class="text-xl">#{tag}</span>
+  <h1 class={pageTitleStyle.class} style={pageTitleStyle.style}>
+    <a class={tagsLinkStyle.class} href="/tags/" style={tagsLinkStyle.style}>Tags</a>
+    <span class={separatorStyle.class} style={separatorStyle.style}>→</span>
+    <span class={tagNameStyle.class} style={tagNameStyle.style}>#{tag}</span>
   </h1>
   <section aria-label="Blog post list">
-    <ul class="space-y-8">
+    <ul class={postListStyle.class} style={postListStyle.style}>
       {
         page.data.map((p) => (
-          <li class="flex flex-col flex-wrap gap-2 sm:flex-row [&_q]:basis-full">
+          <li class={postStyle.class} style={postStyle.style}>
             <PostPreview as="h2" post={p} withDesc />
           </li>
         ))

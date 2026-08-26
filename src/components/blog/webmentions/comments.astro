@@ -1,7 +1,9 @@
 ---
+import * as stylex from '@stylexjs/stylex';
 import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import type { WebmentionsChildren } from '@/types';
+import { styles } from './comments.stylex';
 
 interface Props {
   mentions: WebmentionsChildren[];
@@ -16,70 +18,92 @@ const comments = mentions.filter(
     validComments.includes(mention['wm-property']) && mention.content?.text
 );
 
-/**
- ! show a link to the mention 
-
- */
+const summaryStyle = stylex.attrs(styles.summary);
+const listStyle = stylex.attrs(styles.list);
+const commentStyle = stylex.attrs(styles.comment);
+const profileLinkStyle = stylex.attrs(styles.profileLink);
+const avatarStyle = stylex.attrs(styles.avatar);
+const unlinkedAvatarStyle = stylex.attrs(styles.avatar, styles.avatarWithoutLink);
+const contentStyle = stylex.attrs(styles.content);
+const commentHeaderStyle = stylex.attrs(styles.commentHeader);
+const authorNameStyle = stylex.attrs(styles.authorName);
+const sourceLinkStyle = stylex.attrs(styles.sourceLink);
+const accessibleLabelStyle = stylex.attrs(styles.accessibleLabel);
+const sourceIconStyle = stylex.attrs(styles.sourceIcon);
+const commentTextStyle = stylex.attrs(styles.commentText);
 ---
 
 {
   !!comments.length && (
     <div>
-      <p class="mb-0 text-accent-2">
+      <p class={summaryStyle.class} style={summaryStyle.style}>
         <strong>{comments.length}</strong> Mention{comments.length > 1 ? "s" : ""}
       </p>
-      <ul class="mt-0 divide-y divide-textColor/20 ps-0" role="list">
+      <ul class={listStyle.class} role="list" style={listStyle.style}>
         {comments.map((mention) => (
-          <li class="my-0 flex items-start gap-x-5 py-5">
+          <li class={commentStyle.class} style={commentStyle.style}>
             {mention.author?.photo && mention.author.photo !== "" ? (
               mention.author.url && mention.author.url !== "" ? (
                 <a
-                  class="not-prose shrink-0 overflow-hidden rounded-full outline-none ring-2 ring-textColor hover:ring-4 hover:ring-link focus-visible:ring-4 focus-visible:ring-link"
+                  class:list={['not-prose', profileLinkStyle.class]}
                   href={mention.author.url}
                   rel="noopener noreferrer"
+                  style={profileLinkStyle.style}
                   target="_blank"
                   title={mention.author.name}
                 >
                   <Image
                     alt={mention.author?.name}
-                    class="my-0 h-12 w-12"
+                    class={avatarStyle.class}
                     height={48}
                     src={mention.author?.photo}
+                    style={avatarStyle.style}
                     width={48}
                   />
                 </a>
               ) : (
                 <Image
                   alt={mention.author?.name}
-                  class="my-0 h-12 w-12 rounded-full"
+                  class={unlinkedAvatarStyle.class}
                   height={48}
                   src={mention.author?.photo}
+                  style={unlinkedAvatarStyle.style}
                   width={48}
                 />
               )
             ) : null}
-            <div class="flex-auto">
-              <div class="flex items-center justify-between gap-x-2">
-                <p class="my-0 line-clamp-1 font-semibold text-accent-2">{mention.author?.name}</p>
+            <div class={contentStyle.class} style={contentStyle.style}>
+              <div class={commentHeaderStyle.class} style={commentHeaderStyle.style}>
+                <p class={authorNameStyle.class} style={authorNameStyle.style}>
+                  {mention.author?.name}
+                </p>
                 <a
                   aria-labelledby="cmt-source"
-                  class="not-prose hover:text-link"
+                  class:list={['not-prose', sourceLinkStyle.class]}
                   href={mention.url}
                   rel="noopener noreferrer"
+                  style={sourceLinkStyle.style}
                   target="_blank"
                 >
-                  <span class="hidden" id="cmt-source">
+                  <span
+                    class={accessibleLabelStyle.class}
+                    id="cmt-source"
+                    style={accessibleLabelStyle.style}
+                  >
                     Vist the source of this webmention
                   </span>
                   <Icon
                     aria-hidden="true"
-                    class="h-5 w-5"
+                    class={sourceIconStyle.class}
                     focusable="false"
                     name="mdi:open-in-new"
+                    style={sourceIconStyle.style}
                   />
                 </a>
               </div>
-              <p class="mb-0 mt-1 break-words [word-break:break-word]">{mention.content?.text}</p>
+              <p class={commentTextStyle.class} style={commentTextStyle.style}>
+                {mention.content?.text}
+              </p>
             </div>
           </li>
         ))}

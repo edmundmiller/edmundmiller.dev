@@ -1,6 +1,8 @@
 ---
+import * as stylex from '@stylexjs/stylex';
 import { getAllPosts, getUniqueTagsWithCount } from '@/data/post';
 import PageLayout from '@/layouts/base.astro';
+import { styles } from './_index.stylex';
 
 const allPosts = await getAllPosts();
 const _allTags = getUniqueTagsWithCount(allPosts);
@@ -9,23 +11,30 @@ const _meta = {
   description: "A list of all the topics I've written about in my posts",
   title: 'All Tags',
 };
+
+const pageTitleStyle = stylex.attrs(styles.pageTitle);
+const tagListStyle = stylex.attrs(styles.tagList);
+const tagStyle = stylex.attrs(styles.tag);
+const tagLinkStyle = stylex.attrs(styles.tagLink);
+const postCountStyle = stylex.attrs(styles.count);
 ---
 
 <PageLayout meta={_meta}>
-  <h1 class="title mb-6">Tags</h1>
-  <ul class="space-y-4">
+  <h1 class={pageTitleStyle.class} style={pageTitleStyle.style}>Tags</h1>
+  <ul class={tagListStyle.class} style={tagListStyle.style}>
     {
       _allTags.map(([tag, val]) => (
-        <li class="flex items-center gap-x-2">
+        <li class={tagStyle.class} style={tagStyle.style}>
           <a
-            class="cactus-link inline-block"
+            class={tagLinkStyle.class}
             data-astro-prefetch
             href={`/tags/${tag}/`}
+            style={tagLinkStyle.style}
             title={`View posts with the tag: ${tag}`}
           >
             &#35;{tag}
           </a>
-          <span class="inline-block">
+          <span class={postCountStyle.class} style={postCountStyle.style}>
             - {val} Post{val > 1 && "s"}
           </span>
         </li>
