@@ -25,6 +25,15 @@ const _socialImageURL = new URL(
 <meta content="IE=edge" http-equiv="X-UA-Compatible" />
 <title>{_siteTitle}</title>
 
+{
+  import.meta.env.DEV && (
+    <>
+      <link href="/virtual:stylex.css" rel="stylesheet" />
+      <script is:inline src="/@id/virtual:stylex:runtime" type="module"></script>
+    </>
+  )
+}
+
 {/* Icons / Favicon */}
 <link href="/favicon.ico" rel="icon" sizes="any" />
 <link href="/icon.svg" rel="icon" type="image/svg+xml" />

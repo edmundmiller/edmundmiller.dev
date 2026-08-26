@@ -3,6 +3,7 @@ import { unified } from '@astrojs/markdown-remark';
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
+import stylex from '@stylexjs/unplugin';
 import { defineConfig } from 'astro/config';
 import expressiveCode from 'astro-expressive-code';
 import icon from 'astro-icon';
@@ -46,7 +47,15 @@ export default defineConfig({
   prefetch: true,
   vite: {
     server: process.env.AMP_ORB ? { allowedHosts: true } : {},
-    plugins: [rawFonts(['.ttf', '.woff'])],
+    plugins: [
+      stylex.vite({
+        cssInjectionTarget: (fileName) => /(^|\/)base\.[^/]+\.css$/.test(fileName),
+        devMode: 'full',
+        runtimeInjection: false,
+        useCSSLayers: false,
+      }),
+      rawFonts(['.ttf', '.woff']),
+    ],
     preview: {
       allowedHosts: ['.onamp.dev'],
     },

@@ -27,6 +27,7 @@ br sync --flush-only
 - Scripts and checks: `package.json`
 - Worker deployment: `wrangler.toml`
 - Issues: `.beads/issues.jsonl` via `br`
+- Styling: [`docs/stylex.md`](docs/stylex.md)
 
 ## Verification
 
