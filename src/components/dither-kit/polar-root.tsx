@@ -1,13 +1,26 @@
 'use client';
 
+import * as stylex from '@stylexjs/stylex';
 import { Children, type ComponentType, isValidElement, type ReactNode } from 'react';
 import type { ChartConfig, Margins } from './chart-context';
 import { CommonChartContext } from './common-context';
 import type { BloomInput } from './dither-paint';
-import { cn } from './lib';
 import { axisAtAngle, sliceAtAngle } from './polar';
 import { PolarChartContext, usePolarController } from './polar-context';
 import { useChartDimensions } from './use-chart-dimensions';
+
+const styles = stylex.create({
+  root: {
+    height: '100%',
+    position: 'relative',
+    width: '100%',
+  },
+  svg: {
+    inset: 0,
+    overflow: 'visible',
+    position: 'absolute',
+  },
+});
 
 type Row = Record<string, unknown>;
 
@@ -114,13 +127,15 @@ export function PolarRoot<TData extends Row>({
     }
     ctx.setCursor(clientX - rect.left, clientY - rect.top);
   };
+  const rootProps = stylex.props(styles.root);
 
   return (
     <PolarChartContext value={ctx}>
       <CommonChartContext value={ctx.common}>
         <div
           ref={ref}
-          className={cn('relative h-full w-full', className)}
+          {...rootProps}
+          className={[rootProps.className, className].filter(Boolean).join(' ')}
           onPointerEnter={() => ctx.setMouseInChart(true)}
           onPointerMove={(e) => onMove(e.clientX, e.clientY)}
           onPointerLeave={() => {
@@ -132,7 +147,7 @@ export function PolarRoot<TData extends Row>({
             <svg
               width={size.width}
               height={size.height}
-              className="absolute inset-0 overflow-visible"
+              {...stylex.props(styles.svg)}
               aria-hidden
               role="presentation"
             >
@@ -147,7 +162,7 @@ export function PolarRoot<TData extends Row>({
             <svg
               width={size.width}
               height={size.height}
-              className="absolute inset-0 overflow-visible"
+              {...stylex.props(styles.svg)}
               role="img"
               aria-label="Chart"
             >

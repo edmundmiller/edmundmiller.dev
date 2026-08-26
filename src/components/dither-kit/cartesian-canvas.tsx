@@ -1,5 +1,6 @@
 'use client';
 
+import * as stylex from '@stylexjs/stylex';
 import { type RefObject, useEffect, useRef } from 'react';
 import { type ChartContextValue, useChart } from './chart-context';
 import {
@@ -11,6 +12,17 @@ import {
   resample,
 } from './dither-paint';
 import { rgb } from './palette';
+
+const styles = stylex.create({
+  canvas: {
+    imageRendering: 'pixelated',
+    pointerEvents: 'none',
+    position: 'absolute',
+  },
+  bloom: {
+    transition: 'opacity 220ms ease',
+  },
+});
 
 type Star = { key: string; xi: number; depth: number; phase: number };
 type Surface = { top: number[]; floor: number[] };
@@ -361,17 +373,12 @@ export function CartesianCanvas() {
 
   return (
     <>
-      <canvas
-        ref={canvasRef}
-        className="pointer-events-none absolute"
-        style={{ ...pos, imageRendering: 'pixelated' }}
-      />
+      <canvas ref={canvasRef} {...stylex.props(styles.canvas)} style={pos} />
       <canvas
         ref={bloomRef}
-        className="pointer-events-none absolute"
+        {...stylex.props(styles.canvas, styles.bloom)}
         style={{
           ...pos,
-          transition: 'opacity 220ms ease',
           ...(bloom ?? { opacity: 0 }),
         }}
       />

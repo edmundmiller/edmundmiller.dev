@@ -1,3 +1,4 @@
+import * as stylex from '@stylexjs/stylex';
 import { type ReactNode, useEffect } from 'react';
 import {
   type AreaVariant,
@@ -6,6 +7,12 @@ import {
   useChartPart,
 } from './chart-context';
 import { SeriesContext } from './series-context';
+
+const styles = stylex.create({
+  hitArea: {
+    cursor: 'pointer',
+  },
+});
 
 export type SeriesProps = {
   dataKey: string;
@@ -73,7 +80,7 @@ function CartesianSeries({
     <>
       {hitPath && (
         // biome-ignore lint/a11y/noStaticElementInteractions: progressive enhancement; the Legend offers the same toggle accessibly
-        <path d={hitPath} fill="transparent" style={{ cursor: 'pointer' }} onClick={onClick} />
+        <path {...stylex.props(styles.hitArea)} d={hitPath} fill="transparent" onClick={onClick} />
       )}
       <SeriesContext value={{ dataKey, seed, dimmed }}>{children}</SeriesContext>
     </>

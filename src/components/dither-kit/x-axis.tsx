@@ -1,6 +1,17 @@
 'use client';
 
+import * as stylex from '@stylexjs/stylex';
+import { colors, fonts } from '../../styles/tokens.stylex';
 import { useChartPart } from './chart-context';
+
+const styles = stylex.create({
+  ticks: {
+    color: colors.text,
+    fill: 'currentColor',
+    fontFamily: fonts.body,
+    fontSize: '10px',
+  },
+});
 
 export function XAxis({
   dataKey,
@@ -20,7 +31,7 @@ export function XAxis({
   const y = ctx.plot.height + tickMargin;
 
   return (
-    <g className="fill-current font-mono text-[10px] text-muted-foreground">
+    <g {...stylex.props(styles.ticks)}>
       {ctx.data.map((row, i) => {
         if (i % step !== 0) return null;
         const raw = dataKey ? row[dataKey] : i;

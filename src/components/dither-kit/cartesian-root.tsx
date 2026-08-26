@@ -1,3 +1,4 @@
+import * as stylex from '@stylexjs/stylex';
 import { Children, type ComponentType, isValidElement, type ReactNode } from 'react';
 import {
   type ChartConfig,
@@ -8,9 +9,21 @@ import {
 } from './chart-context';
 import { CommonChartContext } from './common-context';
 import type { BloomInput } from './dither-paint';
-import { cn } from './lib';
 import type { StackType } from './scales';
 import { useChartDimensions } from './use-chart-dimensions';
+
+const styles = stylex.create({
+  root: {
+    height: '100%',
+    position: 'relative',
+    width: '100%',
+  },
+  svg: {
+    inset: 0,
+    overflow: 'visible',
+    position: 'absolute',
+  },
+});
 
 type Row = Record<string, unknown>;
 
@@ -129,13 +142,15 @@ export function CartesianRoot<TData extends Row>({
     ctx.setCursorX(clientX - rect.left);
     onHoverChange?.(index);
   };
+  const rootProps = stylex.props(styles.root);
 
   return (
     <ChartContext value={ctx}>
       <CommonChartContext value={ctx.common}>
         <div
           ref={ref}
-          className={cn('relative h-full w-full', className)}
+          {...rootProps}
+          className={[rootProps.className, className].filter(Boolean).join(' ')}
           onPointerEnter={() => ctx.setMouseInChart(true)}
           onPointerMove={interactive ? (e) => onMove(e.clientX) : undefined}
           onPointerLeave={() => {
@@ -148,7 +163,7 @@ export function CartesianRoot<TData extends Row>({
             <svg
               width={size.width}
               height={size.height}
-              className="absolute inset-0 overflow-visible"
+              {...stylex.props(styles.svg)}
               aria-hidden
               role="presentation"
             >
@@ -160,7 +175,7 @@ export function CartesianRoot<TData extends Row>({
             <svg
               width={size.width}
               height={size.height}
-              className="absolute inset-0 overflow-visible"
+              {...stylex.props(styles.svg)}
               role="img"
               aria-label="Chart"
             >

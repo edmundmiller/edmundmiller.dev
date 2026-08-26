@@ -1,4 +1,11 @@
+import * as stylex from '@stylexjs/stylex';
 import { useChartPart } from './chart-context';
+
+const styles = stylex.create({
+  grid: {
+    stroke: '#e5e7eb',
+  },
+});
 
 export function Grid({
   horizontal = true,
@@ -14,7 +21,7 @@ export function Grid({
   const { width } = ctx.plot;
 
   return (
-    <g className="stroke-border" strokeDasharray={strokeDasharray}>
+    <g {...stylex.props(styles.grid)} strokeDasharray={strokeDasharray}>
       {horizontal &&
         ctx.y
           .ticks(4)

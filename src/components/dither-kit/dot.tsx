@@ -1,8 +1,15 @@
 'use client';
 
+import * as stylex from '@stylexjs/stylex';
 import { useChart } from './chart-context';
 import { rgb, type Seed } from './palette';
 import { useSeries } from './series-context';
+
+const styles = stylex.create({
+  points: {
+    transition: 'opacity 300ms ease',
+  },
+});
 
 export type DotVariant = 'border' | 'colored-border' | 'filled';
 
@@ -36,9 +43,9 @@ export function Dot({ variant = 'border', r = 2 }: { variant?: DotVariant; r?: n
   return (
     // Fade in once the fill has drawn so dots don't float over the entrance.
     <g
+      {...stylex.props(styles.points)}
       style={{
         opacity: ctx.entranceDone ? 1 : 0,
-        transition: 'opacity 300ms ease',
       }}
     >
       {band.map((b, i) => (

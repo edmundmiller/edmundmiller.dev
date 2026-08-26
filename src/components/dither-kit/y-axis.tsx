@@ -1,4 +1,15 @@
+import * as stylex from '@stylexjs/stylex';
+import { colors, fonts } from '../../styles/tokens.stylex';
 import { useChartPart } from './chart-context';
+
+const styles = stylex.create({
+  ticks: {
+    color: colors.text,
+    fill: 'currentColor',
+    fontFamily: fonts.body,
+    fontSize: '10px',
+  },
+});
 
 export function YAxis({
   tickFormatter,
@@ -13,7 +24,7 @@ export function YAxis({
   if (!ctx.ready) return null;
 
   return (
-    <g className="fill-current font-mono text-[10px] text-muted-foreground">
+    <g {...stylex.props(styles.ticks)}>
       {ctx.y.ticks(tickCount).map((t) => (
         <text
           key={t}
