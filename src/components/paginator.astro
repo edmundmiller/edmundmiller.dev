@@ -1,5 +1,7 @@
 ---
+import * as stylex from '@stylexjs/stylex';
 import type { PaginationLink } from '@/types';
+import { styles } from './paginator.stylex';
 
 interface Props {
   nextUrl?: PaginationLink;
@@ -7,20 +9,43 @@ interface Props {
 }
 
 const { nextUrl, prevUrl } = Astro.props as Props;
+
+const navigationStyle = stylex.attrs(styles.navigation);
+const previousLinkStyle = stylex.attrs(styles.previousLink);
+const nextLinkStyle = stylex.attrs(styles.nextLink);
+const accessibleLabelStyle = stylex.attrs(styles.accessibleLabel);
 ---
 
 {
   (prevUrl || nextUrl) && (
-    <nav class="mt-8 flex items-center gap-x-4">
+    <nav class={navigationStyle.class} style={navigationStyle.style}>
       {prevUrl && (
-        <a class="me-auto py-2 sm:hover:text-accent" data-astro-prefetch href={prevUrl.url}>
-          {prevUrl.srLabel && <span class="sr-only">{prevUrl.srLabel}</span>}
+        <a
+          class={previousLinkStyle.class}
+          data-astro-prefetch
+          href={prevUrl.url}
+          style={previousLinkStyle.style}
+        >
+          {prevUrl.srLabel && (
+            <span class={accessibleLabelStyle.class} style={accessibleLabelStyle.style}>
+              {prevUrl.srLabel}
+            </span>
+          )}
           {prevUrl.text ? prevUrl.text : "Previous"}
         </a>
       )}
       {nextUrl && (
-        <a class="ms-auto py-2 sm:hover:text-accent" data-astro-prefetch href={nextUrl.url}>
-          {nextUrl.srLabel && <span class="sr-only">{nextUrl.srLabel}</span>}
+        <a
+          class={nextLinkStyle.class}
+          data-astro-prefetch
+          href={nextUrl.url}
+          style={nextLinkStyle.style}
+        >
+          {nextUrl.srLabel && (
+            <span class={accessibleLabelStyle.class} style={accessibleLabelStyle.style}>
+              {nextUrl.srLabel}
+            </span>
+          )}
           {nextUrl.text ? nextUrl.text : "Next"}
         </a>
       )}

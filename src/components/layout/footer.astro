@@ -1,23 +1,30 @@
 ---
+import * as stylex from '@stylexjs/stylex';
 import { siteConfig, menuLinks } from '@/site-config';
+import { styles } from './footer.stylex';
 
 const _year = new Date().getFullYear();
+
+const footerStyle = stylex.attrs(styles.footer);
+const copyrightStyle = stylex.attrs(styles.copyright);
+const creditStyle = stylex.attrs(styles.credit);
+const navigationStyle = stylex.attrs(styles.navigation);
+const navigationLinkStyle = stylex.attrs(styles.navigationLink);
 ---
 
-<footer
-  class="mt-auto flex w-full flex-col items-center justify-center gap-y-2 pb-4 pt-20 text-center align-top font-semibold text-gray-600 dark:text-gray-400 sm:flex-row sm:justify-between sm:text-xs"
->
-  <div class="me-0 sm:me-4">
+<footer class={footerStyle.class} style={footerStyle.style}>
+  <div class={copyrightStyle.class} style={copyrightStyle.style}>
     &copy; {siteConfig.author}
-    {_year}.<span class="inline-block">&nbsp;🚀&nbsp;Astro Cactus</span>
+    {_year}.<span class={creditStyle.class} style={creditStyle.style}>&nbsp;🚀&nbsp;Astro Cactus</span>
   </div>
   <nav
     aria-label="More on this site"
-    class="flex gap-x-2 sm:gap-x-0 sm:divide-x sm:divide-gray-500"
+    class={navigationStyle.class}
+    style={navigationStyle.style}
   >
     {
       menuLinks.map((link: { title: string; path: string }) => (
-        <a class="px-4 py-2 sm:py-0 sm:hover:text-textColor sm:hover:underline" href={link.path}>
+        <a class={navigationLinkStyle.class} href={link.path} style={navigationLinkStyle.style}>
           {link.title}
         </a>
       ))

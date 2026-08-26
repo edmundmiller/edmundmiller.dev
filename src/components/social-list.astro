@@ -1,5 +1,7 @@
 ---
+import * as stylex from '@stylexjs/stylex';
 import { Icon } from 'astro-icon/components';
+import { styles } from './social-list.stylex';
 
 /** 
 	Uses https://www.astroicon.dev/getting-started/
@@ -49,23 +51,39 @@ const _socialLinks: {
   //    isWebmention: true
   // },
 ];
+
+const socialListStyle = stylex.attrs(styles.socialList);
+const linksStyle = stylex.attrs(styles.links);
+const itemStyle = stylex.attrs(styles.item);
+const linkStyle = stylex.attrs(styles.link);
+const iconStyle = stylex.attrs(styles.icon);
+const accessibleLabelStyle = stylex.attrs(styles.accessibleLabel);
 ---
 
-<div class="flex flex-wrap items-end gap-x-2">
+<div class={socialListStyle.class} style={socialListStyle.style}>
   <p>Find me on</p>
-  <ul class="flex flex-1 items-center gap-x-2 sm:flex-initial">
+  <ul class={linksStyle.class} style={linksStyle.style}>
     {
       _socialLinks.map(({ friendlyName, isWebmention, link, name }) => (
-        <li class="flex">
+        <li class={itemStyle.class} style={itemStyle.style}>
           <a
-            class="inline-flex rounded-md p-1 text-textColor transition-colors duration-200 hover:text-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
+            class={linkStyle.class}
             data-goatcounter-event={`social-${friendlyName.toLowerCase()}`}
             href={link}
             rel={`noopener noreferrer ${isWebmention ? "me authn" : ""}`}
+            style={linkStyle.style}
             target="_blank"
           >
-            <Icon aria-hidden="true" class="h-7 w-7" focusable="false" name={name} />
-            <span class="sr-only">{friendlyName}</span>
+            <Icon
+              aria-hidden="true"
+              class={iconStyle.class}
+              focusable="false"
+              name={name}
+              style={iconStyle.style}
+            />
+            <span class={accessibleLabelStyle.class} style={accessibleLabelStyle.style}>
+              {friendlyName}
+            </span>
           </a>
         </li>
       ))

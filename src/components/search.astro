@@ -2,18 +2,25 @@
 // Heavy inspiration taken from Astro Starlight -> https://github.com/withastro/starlight/blob/main/packages/starlight/components/Search.astro
 
 import '@pagefind/default-ui/css/ui.css';
+import * as stylex from '@stylexjs/stylex';
+import { styles } from './search.stylex';
+
+const styleAttributes = (...keys: Array<keyof typeof styles>) => ({
+  ...stylex.attrs(...keys.map((key) => styles[key])),
+  ...(import.meta.env.DEV ? { 'data-search-stylex': keys.join(' ') } : {}),
+});
 ---
 
-<site-search class="ms-auto" id="search">
+<site-search {...styleAttributes('search')} id="search">
   <button
-    class="flex h-9 w-9 items-center justify-center rounded-md ring-zinc-400 transition-all hover:ring-2"
+    {...styleAttributes('openButton')}
     data-goatcounter-event="site-search-open"
     data-open-modal
     disabled
   >
     <svg
       aria-label="search"
-      class="h-7 w-7"
+      {...styleAttributes('searchIcon')}
       fill="none"
       height="16"
       stroke="currentColor"
@@ -30,16 +37,20 @@ import '@pagefind/default-ui/css/ui.css';
   </button>
   <dialog
     aria-label="search"
-    class="h-full max-h-full w-full max-w-full border border-zinc-400 bg-bgColor shadow backdrop:backdrop-blur sm:mx-auto sm:mb-auto sm:mt-16 sm:h-max sm:max-h-[calc(100%-8rem)] sm:min-h-[15rem] sm:w-5/6 sm:max-w-[48rem] sm:rounded-md"
+    {...styleAttributes('dialog')}
   >
-    <div class="dialog-frame flex flex-col gap-4 p-6 pt-12 sm:pt-6">
+    <div
+      class:list={['dialog-frame', styleAttributes('dialogFrame').class]}
+      data-search-stylex={import.meta.env.DEV ? 'dialogFrame' : undefined}
+      style={styleAttributes('dialogFrame').style}
+    >
       <button
-        class="ms-auto cursor-pointer rounded-md bg-zinc-200 p-2 font-semibold dark:bg-zinc-700"
+        {...styleAttributes('closeButton')}
         data-close-modal>Close</button
       >
       {
         import.meta.env.DEV ? (
-          <div class="mx-auto text-center">
+          <div {...styleAttributes('developmentMessage')}>
             <p>
               Search is only available in production builds. <br />
               Try building and previewing the site to test it out locally.
@@ -56,6 +67,8 @@ import '@pagefind/default-ui/css/ui.css';
 </site-search>
 
 <script>
+  import { styles as initialStyles } from "./search.stylex";
+
   class SiteSearch extends HTMLElement {
     private closeBtn: HTMLButtonElement;
     private dialog: HTMLDialogElement;
@@ -133,6 +146,43 @@ import '@pagefind/default-ui/css/ui.css';
   }
 
   customElements.define("site-search", SiteSearch);
+
+  if (import.meta.hot) {
+    type SearchStyles = typeof initialStyles;
+    type StyleKey = keyof SearchStyles;
+
+    let currentStyles = initialStyles;
+
+    const classTokens = (sheet: SearchStyles, keys: StyleKey[]) => {
+      const compiledStyles = Object.assign({}, ...keys.map((key) => sheet[key]));
+
+      return Object.entries(compiledStyles)
+        .filter(([property, value]) => property !== "$$css" && typeof value === "string")
+        .flatMap(([, value]) => (value as string).split(/\s+/))
+        .filter(Boolean);
+    };
+
+    import.meta.hot.accept("./search.stylex", (nextModule) => {
+      if (!nextModule) {
+        return;
+      }
+
+      document.querySelectorAll<Element>("[data-search-stylex]").forEach((element) => {
+        const keys = element.getAttribute("data-search-stylex")?.split(/\s+/) as
+          | StyleKey[]
+          | undefined;
+
+        if (!keys?.length) {
+          return;
+        }
+
+        element.classList.remove(...classTokens(currentStyles, keys));
+        element.classList.add(...classTokens(nextModule.styles, keys));
+      });
+
+      currentStyles = nextModule.styles;
+    });
+  }
 </script>
 
 <style is:global>
@@ -147,7 +197,7 @@ import '@pagefind/default-ui/css/ui.css';
     overflow: hidden;
   }
   #cactus__search .pagefind-ui__search-clear:focus {
-    outline: 1px solid theme("colors.accent-2");
+    outline: 1px solid hsl(var(--theme-accent-2));
   }
   #cactus__search .pagefind-ui__search-clear::before {
     content: "";
@@ -155,7 +205,7 @@ import '@pagefind/default-ui/css/ui.css';
       center / 60% no-repeat;
     mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' %3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M6 18L18 6M6 6l12 12'%3E%3C/path%3E%3C/svg%3E")
       center / 60% no-repeat;
-    background-color: theme("colors.accent");
+    background-color: hsl(var(--theme-accent));
     display: block;
     width: 100%;
     height: 100%;
@@ -172,8 +222,8 @@ import '@pagefind/default-ui/css/ui.css';
     background-image: linear-gradient(
       transparent,
       transparent 5px,
-      theme("colors.textColor") 5px,
-      theme("colors.textColor")
+      hsl(var(--theme-text)) 5px,
+      hsl(var(--theme-text))
     );
   }
 
@@ -182,13 +232,13 @@ import '@pagefind/default-ui/css/ui.css';
     background-image: linear-gradient(
       transparent,
       transparent 4px,
-      theme("colors.link") 4px,
-      theme("colors.link")
+      hsl(var(--theme-link)) 4px,
+      hsl(var(--theme-link))
     );
   }
 
   #cactus__search mark {
-    color: theme("colors.quote");
+    color: hsl(var(--theme-quote));
     background-color: transparent;
     font-weight: 600;
   }
@@ -196,10 +246,10 @@ import '@pagefind/default-ui/css/ui.css';
 
 <style>
   #cactus__search {
-    --pagefind-ui-primary: theme("colors.accent");
-    --pagefind-ui-text: theme("colors.textColor");
-    --pagefind-ui-background: theme("colors.bgColor");
-    --pagefind-ui-border: theme("colors.zinc.400");
+    --pagefind-ui-primary: hsl(var(--theme-accent));
+    --pagefind-ui-text: hsl(var(--theme-text));
+    --pagefind-ui-background: hsl(var(--theme-bg));
+    --pagefind-ui-border: #a1a1aa;
     --pagefind-ui-border-width: 1px;
   }
 </style>

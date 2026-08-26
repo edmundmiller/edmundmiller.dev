@@ -1,3 +1,8 @@
-<a class="sr-only focus:not-sr-only focus:fixed focus:start-1 focus:top-1.5" href="#main"
-  >skip to content
-</a>
+---
+import * as stylex from '@stylexjs/stylex';
+import { styles } from './skip-link.stylex';
+
+const linkStyle = stylex.attrs(styles.link);
+---
+
+<a class={linkStyle.class} href="#main" style={linkStyle.style}>skip to content</a>

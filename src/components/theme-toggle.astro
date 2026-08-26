@@ -1,12 +1,19 @@
-<theme-toggle class="ms-2 sm:ms-4">
-  <button
-    class="relative h-9 w-9 rounded-md p-2 ring-zinc-400 transition-all hover:ring-2"
-    type="button"
-  >
-    <span class="sr-only">Dark Theme</span>
+---
+import * as stylex from '@stylexjs/stylex';
+import { styles } from './theme-toggle.stylex';
+
+const styleAttributes = (...keys: Array<keyof typeof styles>) => ({
+  ...stylex.attrs(...keys.map((key) => styles[key])),
+  ...(import.meta.env.DEV ? { 'data-theme-toggle-stylex': keys.join(' ') } : {}),
+});
+---
+
+<theme-toggle {...styleAttributes('toggle')}>
+  <button {...styleAttributes('button')} type="button">
+    <span {...styleAttributes('accessibleLabel')}>Dark Theme</span>
     <svg
       aria-hidden="true"
-      class="absolute start-1/2 top-1/2 h-7 w-7 -translate-x-1/2 -translate-y-1/2 scale-100 opacity-100 transition-all dark:scale-0 dark:opacity-0"
+      {...styleAttributes('icon', 'sunIcon')}
       fill="none"
       focusable="false"
       id="sun-svg"
@@ -37,7 +44,7 @@
     </svg>
     <svg
       aria-hidden="true"
-      class="absolute start-1/2 top-1/2 h-7 w-7 -translate-x-1/2 -translate-y-1/2 scale-0 opacity-0 transition-all dark:scale-100 dark:opacity-100"
+      {...styleAttributes('icon', 'moonIcon')}
       fill="none"
       focusable="false"
       id="moon-svg"
@@ -58,6 +65,7 @@
 <script>
   // Note that if you fire the theme-change event outside of this component, it will not be reflected in the button's aria-checked attribute
   import { rootInDarkMode } from "@/utils";
+  import { styles as initialStyles } from "./theme-toggle.stylex";
 
   class ThemeToggle extends HTMLElement {
     #controller: AbortController | undefined;
@@ -96,4 +104,41 @@
   }
 
   customElements.define("theme-toggle", ThemeToggle);
+
+  if (import.meta.hot) {
+    type ThemeToggleStyles = typeof initialStyles;
+    type StyleKey = keyof ThemeToggleStyles;
+
+    let currentStyles = initialStyles;
+
+    const classTokens = (sheet: ThemeToggleStyles, keys: StyleKey[]) => {
+      const compiledStyles = Object.assign({}, ...keys.map((key) => sheet[key]));
+
+      return Object.entries(compiledStyles)
+        .filter(([property, value]) => property !== "$$css" && typeof value === "string")
+        .flatMap(([, value]) => (value as string).split(/\s+/))
+        .filter(Boolean);
+    };
+
+    import.meta.hot.accept("./theme-toggle.stylex", (nextModule) => {
+      if (!nextModule) {
+        return;
+      }
+
+      document.querySelectorAll<Element>("[data-theme-toggle-stylex]").forEach((element) => {
+        const keys = element.getAttribute("data-theme-toggle-stylex")?.split(/\s+/) as
+          | StyleKey[]
+          | undefined;
+
+        if (!keys?.length) {
+          return;
+        }
+
+        element.classList.remove(...classTokens(currentStyles, keys));
+        element.classList.add(...classTokens(nextModule.styles, keys));
+      });
+
+      currentStyles = nextModule.styles;
+    });
+  }
 </script>
