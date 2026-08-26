@@ -1,5 +1,7 @@
 ---
+import * as stylex from '@stylexjs/stylex';
 import type { TocItem } from '@/utils';
+import { styles } from './toc-heading.stylex';
 
 interface Props {
   heading: TocItem;
@@ -8,13 +10,22 @@ interface Props {
 const {
   heading: { depth, slug, children, text },
 } = Astro.props as Props;
+
+const _itemStyle = stylex.attrs(depth > 2 && styles.childItem);
+const _anchorStyle = stylex.attrs(
+  styles.anchor,
+  depth <= 2 && styles.sectionAnchor,
+  depth > 2 && styles.childAnchor,
+);
+const _markerStyle = stylex.attrs(styles.marker);
 ---
 
-<li class={`${depth > 2 ? "ms-2" : ""}`}>
+<li class={_itemStyle.class} style={_itemStyle.style}>
   <a
     aria-label={`Scroll to section: ${text}`}
-    class={`block line-clamp-2 hover:text-accent ${depth <= 2 ? "mt-3" : "mt-2 text-[0.6875rem]"}`}
-    href={`#${slug}`}><span class="me-0.5">#</span>{text}</a
+    class={_anchorStyle.class}
+    href={`#${slug}`}
+    style={_anchorStyle.style}><span class={_markerStyle.class} style={_markerStyle.style}>#</span>{text}</a
   >
   {
     !!children.length && (

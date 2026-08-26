@@ -1,7 +1,9 @@
 ---
+import * as stylex from '@stylexjs/stylex';
 import type { CollectionEntry } from 'astro:content';
 import type { HTMLTag, Polymorphic } from 'astro/types';
 import FormattedDate from '@/components/formatted-date.astro';
+import { styles } from './post-preview.stylex';
 
 type Props<T extends HTMLTag> = Polymorphic<{ as: T }> & {
   post: CollectionEntry<'post'>;
@@ -10,20 +12,32 @@ type Props<T extends HTMLTag> = Polymorphic<{ as: T }> & {
 
 const { as: Tag = 'div', post, withDesc = false } = Astro.props as Props<'div'>;
 const _postDate = post.data.updatedDate ?? post.data.publishDate;
+const _dateStyle = stylex.attrs(styles.date);
+const _draftStyle = stylex.attrs(styles.draft);
+const _titleLinkStyle = stylex.attrs(styles.titleLink);
+const _descriptionStyle = stylex.attrs(styles.description);
 ---
 
 <FormattedDate
-  class="dt-published min-w-[120px] text-gray-600 dark:text-gray-400"
+  class:list={['dt-published', _dateStyle.class]}
   date={_postDate}
+  style={_dateStyle.style}
 />
 <Tag>
-  {post.data.draft && <span class="text-red-500">(Draft) </span>}
+  {post.data.draft && <span class={_draftStyle.class} style={_draftStyle.style}>(Draft) </span>}
   <a
-    class="p-name cactus-link transition-colors duration-200 hover:text-link"
+    class:list={['p-name', _titleLinkStyle.class]}
     data-astro-prefetch
     href={`/posts/${post.id}/`}
+    style={_titleLinkStyle.style}
   >
     {post.data.title}
   </a>
 </Tag>
-{withDesc && <q class="p-summary line-clamp-3 block italic">{post.data.description}</q>}
+{
+  withDesc && (
+    <q class:list={['p-summary', _descriptionStyle.class]} style={_descriptionStyle.style}>
+      {post.data.description}
+    </q>
+  )
+}
