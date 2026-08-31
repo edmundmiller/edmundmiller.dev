@@ -11,7 +11,7 @@ I have started treating Codex less like a destination and more like a staging gr
 
 It is where I can move quickly: specify a piece of business logic, try an automation, inspect the result the next day, and decide whether it is worth keeping. Claude and Cursor can play a similar role. They are managed environments in which an idea can become concrete before I am certain that it deserves a permanent home.
 
-The important word is *temporary*. I do not want to accumulate chats or background tasks. I want to discover behavior that survives ordinary life. When one does—when it keeps solving a real problem, has understandable inputs and outputs, and repays the attention required to run it—I want to move it into a system I maintain: perhaps [Flue](https://flueframework.com/) or [Eve](https://eve.dev/docs/introduction) for an explicit workflow—the [Eve workshop](https://www.youtube.com/watch?v=eD8pV7nSIxY) is a useful introduction—perhaps Hermes or OpenClaw for an agent.
+The important word is _temporary_. I do not want to accumulate chats or background tasks. I want to discover behavior that survives ordinary life. When one does—when it keeps solving a real problem, has understandable inputs and outputs, and repays the attention required to run it—I want to move it into a system I maintain: perhaps [Flue](https://flueframework.com/) or [Eve](https://eve.dev/docs/introduction) for an explicit workflow—the [Eve workshop](https://www.youtube.com/watch?v=eD8pV7nSIxY) is a useful introduction—perhaps Hermes or OpenClaw for an agent.
 
 That sounds backward. The usual promise of agents is that they eliminate maintenance. You tell a capable system what you want, it acts, and you get your time back. Why voluntarily graduate from a polished managed product into the work of owning prompts, tools, schedules, permissions, state, logs, and failures?
 
@@ -35,7 +35,7 @@ It should become inspectable.
 
 I do not think of this as a hierarchy in which an owned agent is inherently superior to a managed one. It is a lifecycle.
 
-A managed agent is often the right place to ask: *What would this workflow even be?* I can use Codex, Claude, or Cursor to write down the rules, sketch the tool calls, and test whether the task is coherent. I think of that as writing business-rules notes: ordinary decisions about groceries, reminders, research, finances, and a home-assistant-like system of preferences and constraints.
+A managed agent is often the right place to ask: _What would this workflow even be?_ I can use Codex, Claude, or Cursor to write down the rules, sketch the tool calls, and test whether the task is coherent. I think of that as writing business-rules notes: ordinary decisions about groceries, reminders, research, finances, and a home-assistant-like system of preferences and constraints.
 
 That first version should be cheap to revise. It is still a hypothesis.
 
@@ -57,7 +57,7 @@ This is where agent building resembles a practice that software culture sometime
 
 ## Pirsig’s lesson is attention
 
-*Zen and the Art of Motorcycle Maintenance* is useful here, but not because an agent is literally a motorcycle. Pirsig gives a way to think about the relationship between technical competence and lived experience.
+_Zen and the Art of Motorcycle Maintenance_ is useful here, but not because an agent is literally a motorcycle. Pirsig gives a way to think about the relationship between technical competence and lived experience.
 
 The classical view of an agent is easy to recognize: prompts, schemas, permissions, retries, durable state, logs, evals, and tests. I want all of that. An agent that cannot show its work, tolerate a restart, or distinguish a fact from a guess is not trustworthy merely because it is charming.
 
@@ -77,9 +77,9 @@ A self-maintained agent can be a beautiful machine that never improves anything 
 
 That is why I do not want to begin by building infrastructure. The managed staging ground is a safeguard against that impulse. It lets me test the value of a behavior before I commit to its machinery. A workflow should graduate because it has earned maintenance, not because I am eager to maintain it.
 
-The question is not: *Can this become an agent?*
+The question is not: _Can this become an agent?_
 
-It is: *What human capacity will this protect or improve, and is an agent the smallest honest way to do it?*
+It is: _What human capacity will this protect or improve, and is an agent the smallest honest way to do it?_
 
 Sometimes the correct answer is a reminder, a checklist, a script, or a conversation. Sometimes a managed chat is enough. Sometimes the enduring value lies in making the workflow explicit and owning its operation. The point is to preserve that judgment rather than bury it inside the most autonomous-looking system available.
 

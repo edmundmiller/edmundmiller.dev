@@ -1,9 +1,10 @@
 ---
+import '@fontsource-variable/roboto-mono';
 import { getAllPosts, sortMDByDate } from '@/data/post';
 import PageLayout from '@/layouts/base.astro';
-import SocialList from '@/components/social-list.astro';
 import PostPreview from '@/components/blog/post-preview.astro';
 import Openring from '@/components/openring.astro';
+import PipelineField from '@/components/pipeline-field';
 import WritingCadenceChart from '@/components/writing-cadence-chart';
 
 const MAX_POSTS = 10;
@@ -70,54 +71,45 @@ const cactusTech: { desc: string; href: string; title: string }[] = [
 ---
 
 <PageLayout meta={_meta}>
-  <section>
-    <h1 class="title mb-6">Hello!</h1>
-    <p class="mb-4">
-      I'm <a href="https://edmundmiller.dev/" class="h-card" rel="me">Edmund Miller</a>, a PhD
-      candidate with a broad range of interests, primarily in Functional Genomics. I got into
-      bioinformatics after realizing I didn't have golden hands at the bench during undergrad.
-    </p>
-    <p class="mb-4">
-      That taste of programming got me dabbling in writing smart contracts and web apps. Through my
-      research experience I acquired a taste for processing data with reproducible, high-throughput
-      workflows.
-    </p>
-    <p class="mb-6">
-      I saw the light in March 2020 when I found <a href="https://nf-co.re/">nf-core</a> and tossed
-      aside the reptilian workflow manager for <a href="https://www.nextflow.io/">Nextflow</a>. I love
-      a good crossover episode of technologies and I'm always trying to push the envelope.
-    </p>
-    <SocialList />
-  </section>
-  <section aria-labelledby="start-here" class="mt-12 rounded-lg border border-accent/30 p-6">
-    <h2 class="title mb-3 text-xl" id="start-here">Start here</h2>
-    <p class="mb-4">
-      If you're here for bioinformatics tooling, reproducible workflows, or Emacs-shaped developer
-      ergonomics, these are the best next steps.
-    </p>
-    <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-      <a
-        class="cactus-link"
-        data-goatcounter-event="home-start-posts"
-        href="/posts/"
-      >
-        Read the technical posts
-      </a>
-      <a
-        class="cactus-link"
-        data-goatcounter-event="home-start-speaking"
-        href="/speaking/"
-      >
-        See conference talks
-      </a>
-      <a
-        class="cactus-link"
-        data-goatcounter-event="home-start-about"
-        href="/about/"
-      >
-        Learn what I'm working on
-      </a>
+  <section class="home-hero" aria-labelledby="home-hero-title">
+    <div class="home-hero__stage">
+      <p class="home-hero__eyebrow">Functional genomics · workflow engineering</p>
+      <div class="home-hero__layout">
+        <div class="home-hero__copy">
+          <h1 id="home-hero-title" class="home-hero__title">I make biological data move.</h1>
+          <p class="home-hero__support">
+            I’m Edmund Miller, a bioinformatics engineer and PhD candidate building reproducible
+            pipelines for functional genomics—and writing down what survives contact with real data.
+          </p>
+          <nav class="home-hero__actions" aria-label="Homepage shortcuts">
+            <a
+              class="home-hero__action home-hero__action--primary"
+              data-goatcounter-event="home-start-posts"
+              href="/posts/"
+            >
+              Read the work
+            </a>
+            <a
+              class="home-hero__action"
+              data-goatcounter-event="home-start-speaking"
+              href="/speaking/"
+            >
+              See the talks
+            </a>
+          </nav>
+        </div>
+        <div class="home-hero__pipeline">
+          <PipelineField client:visible />
+        </div>
+      </div>
     </div>
+  </section>
+  <section class="home-intro" aria-labelledby="home-intro-title">
+    <h2 id="home-intro-title" class="title mb-3 text-xl">From bench to pipelines</h2>
+    <p>
+      I got into bioinformatics after realizing I didn’t have golden hands at the bench. Programming
+      stuck; now I build reproducible, high-throughput workflows with Nextflow and nf-core.
+    </p>
   </section>
   <section aria-label="Blog post list" class="mt-16">
     <h2 class="h-feed title mb-4 text-xl">Posts</h2>
@@ -142,3 +134,174 @@ const cactusTech: { desc: string; href: string; title: string }[] = [
   <section class="mt-16"></section>
   <Openring />
 </PageLayout>
+
+<style>
+  .home-hero {
+    width: min(70rem, calc(100vw - 2rem));
+    margin-inline: 50%;
+    transform: translateX(-50%);
+  }
+
+  .home-hero__stage {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #141718;
+    background: #030303;
+    color: #f5f6f3;
+    padding: clamp(1.5rem, 4vw, 3.5rem);
+  }
+
+  .home-hero__stage::before,
+  .home-hero__stage::after {
+    position: absolute;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-color: #35d19a;
+    content: '';
+    pointer-events: none;
+  }
+
+  .home-hero__stage::before {
+    top: 0.75rem;
+    left: 0.75rem;
+    border-top: 1px solid;
+    border-left: 1px solid;
+  }
+
+  .home-hero__stage::after {
+    right: 0.75rem;
+    bottom: 0.75rem;
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+  }
+
+  .home-hero__eyebrow {
+    margin: 0 0 clamp(2rem, 5vw, 4.5rem);
+    color: #8b9499;
+    font-family: 'Geist Pixel Square', ui-monospace, monospace;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+
+  .home-hero__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+    align-items: center;
+    gap: clamp(2rem, 5vw, 4.5rem);
+  }
+
+  .home-hero__copy,
+  .home-hero__pipeline {
+    min-width: 0;
+  }
+
+  .home-hero__title {
+    max-width: 9ch;
+    margin: 0;
+    color: #f5f6f3;
+    font-family: 'Geist Pixel Grid', 'Geist Pixel Square', ui-monospace, monospace;
+    font-size: clamp(2.75rem, 6vw, 5rem);
+    font-weight: 500;
+    line-height: 0.94;
+    text-wrap: balance;
+  }
+
+  .home-hero__support {
+    max-width: 38rem;
+    margin: 1.75rem 0 0;
+    color: #8b9499;
+    font-family: 'Roboto Mono Variable', 'Roboto Mono', ui-monospace, monospace;
+    font-size: clamp(0.875rem, 1.4vw, 1rem);
+    line-height: 1.7;
+    text-wrap: pretty;
+  }
+
+  .home-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+
+  .home-hero__action {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #8b9499;
+    color: #f5f6f3;
+    padding: 0.625rem 1rem;
+    font-family: 'Geist Pixel Square', ui-monospace, monospace;
+    font-size: 0.75rem;
+    line-height: 1;
+    text-decoration: none;
+    transition:
+      border-color 150ms ease-out,
+      background-color 150ms ease-out,
+      color 150ms ease-out;
+  }
+
+  .home-hero__action:hover {
+    border-color: #f5f6f3;
+    background: #141718;
+  }
+
+  .home-hero__action--primary {
+    border-color: #35d19a;
+    background: #35d19a;
+    color: #030303;
+  }
+
+  .home-hero__action--primary:hover {
+    border-color: #f5f6f3;
+    background: #f5f6f3;
+  }
+
+  .home-hero__action:focus-visible {
+    outline: 2px solid #35d19a;
+    outline-offset: 3px;
+  }
+
+  .home-intro {
+    margin-top: 3rem;
+  }
+
+  .home-intro p {
+    font-family: 'Roboto Mono Variable', 'Roboto Mono', ui-monospace, monospace;
+    line-height: 1.7;
+    text-wrap: pretty;
+  }
+
+  @media (max-width: 639px) {
+    .home-hero__stage {
+      padding: 1.5rem 1.25rem;
+    }
+
+    .home-hero__eyebrow {
+      max-width: 24rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .home-hero__layout {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.5rem;
+    }
+
+    .home-hero__title {
+      max-width: 8ch;
+      font-size: clamp(2.6rem, 13vw, 3.6rem);
+    }
+
+    .home-hero__pipeline {
+      margin-inline: -0.5rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+
+    .home-hero__action {
+      transition: none;
+    }
+  }
+</style>

@@ -1,0 +1,173 @@
+.pipeline-field {
+  position: relative;
+  min-height: 20rem;
+  margin: 0;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.pipeline-field__renderer,
+.pipeline-field__topology,
+.pipeline-field__stages {
+  position: absolute;
+  inset: 0;
+}
+
+.pipeline-field__renderer {
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 200ms ease-out;
+}
+
+.pipeline-field[data-motion='allowed'] .pipeline-field__renderer {
+  opacity: 0.58;
+}
+
+.pipeline-field__canvas,
+.pipeline-field__canvas canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.pipeline-field__canvas canvas {
+  display: block;
+}
+
+.pipeline-field__topology {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.pipeline-field__path {
+  fill: none;
+  stroke: #8b9499;
+  stroke-width: 0.32;
+  stroke-dasharray: 0.012 0.018;
+  vector-effect: non-scaling-stroke;
+}
+
+.pipeline-field__signal {
+  transform: translate(8px, 39px);
+  transform-box: view-box;
+  transform-origin: 0 0;
+}
+
+.pipeline-field[data-motion='allowed'][data-signal-visible='true'] .pipeline-field__signal {
+  animation: pipeline-signal-travel 5.5s linear infinite;
+}
+
+.pipeline-field__signal-ring {
+  fill: #030303;
+  stroke: #e4435e;
+  stroke-width: 0.38;
+  vector-effect: non-scaling-stroke;
+}
+
+.pipeline-field__signal-core {
+  fill: #e4435e;
+}
+
+.pipeline-field__stages {
+  z-index: 2;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  pointer-events: none;
+}
+
+.pipeline-field__stage {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: #f5f6f3;
+  font-family: 'Geist Pixel Square', ui-monospace, monospace;
+  font-size: clamp(0.67rem, 1.3vw, 0.78rem);
+  font-weight: 500;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.pipeline-field__stage--sample {
+  top: 65%;
+  left: 3%;
+  color: #e4435e;
+}
+
+.pipeline-field__stage--qc {
+  top: 22%;
+  left: 38%;
+}
+
+.pipeline-field__stage--nf-core {
+  top: 75%;
+  left: 48%;
+}
+
+.pipeline-field__stage--insight {
+  top: 48%;
+  right: 2%;
+  color: #35d19a;
+}
+
+.pipeline-field__node {
+  width: 0.52rem;
+  height: 0.52rem;
+  flex: none;
+  border: 1px solid currentColor;
+  background: #030303;
+}
+
+@keyframes pipeline-signal-travel {
+  0%,
+  100% {
+    transform: translate(8px, 39px);
+  }
+
+  31% {
+    transform: translate(43px, 17px);
+  }
+
+  65% {
+    transform: translate(53px, 46px);
+  }
+
+  86% {
+    transform: translate(88px, 30px);
+  }
+}
+
+@media (max-width: 639px) {
+  .pipeline-field {
+    min-height: 17rem;
+  }
+
+  .pipeline-field__stage--sample {
+    left: 1%;
+  }
+
+  .pipeline-field__stage--qc {
+    left: 36%;
+  }
+
+  .pipeline-field__stage--nf-core {
+    left: 45%;
+  }
+
+  .pipeline-field__stage--insight {
+    right: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pipeline-field__renderer {
+    display: none;
+  }
+
+  .pipeline-field__signal {
+    animation: none;
+  }
+}
