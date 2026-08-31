@@ -3,6 +3,13 @@
     "ultracite": {
       "command": "npx",
       "args": ["-y", "mcp-remote", "https://www.ultracite.ai/api/mcp/http"]
+    },
+    "cogny": {
+      "type": "http",
+      "url": "https://app.cogny.com/mcp/w/2b731322-8e9a-455d-b29f-a52acd839b94",
+      "headers": {
+        "Authorization": "Bearer ${COGNY_API_KEY}"
+      }
     }
   }
 }
