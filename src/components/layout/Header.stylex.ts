@@ -31,10 +31,6 @@ export const styles = stylex.create({
       default: 'inline-flex',
       [small]: 'inline-block',
     },
-    filter: {
-      default: 'grayscale(1)',
-      ':hover': 'none',
-    },
     position: {
       default: 'static',
       [small]: 'relative',
@@ -45,28 +41,6 @@ export const styles = stylex.create({
     flexDirection: {
       default: 'row',
       [small]: 'column',
-    },
-  },
-  logo: {
-    insetInlineStart: {
-      default: 'auto',
-      [small]: '-4.5rem',
-    },
-    marginInlineEnd: {
-      default: '0.75rem',
-      [small]: 0,
-    },
-    position: {
-      default: 'static',
-      [small]: 'absolute',
-    },
-    height: {
-      default: '2.5rem',
-      [small]: '5rem',
-    },
-    width: {
-      default: '1.5rem',
-      [small]: '3rem',
     },
   },
   menuButton: {

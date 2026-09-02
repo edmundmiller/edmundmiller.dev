@@ -4,112 +4,142 @@
 </dna-helix-header-orb>
 
 <script>
-  type AvatarOrbDot = {
-    depth: number;
-    strand: 'green' | 'orange' | null;
+  /**
+   * A double helix bent into a lambda, drawn as two colored backbones with neutral rungs.
+   *
+   * Geometry lives in "mark units": the lambda is about 1 unit tall. Each helix is an axis
+   * polyline sampled at a fixed step; every sample carries its arc length and unit normal so
+   * the two backbones can be offset by ±sin(theta) and depth-sorted by cos(theta) per frame.
+   */
+  type AxisSample = {
+    normalX: number;
+    normalY: number;
+    s: number;
     x: number;
     y: number;
   };
 
-  const AVATAR_SIZE = 460;
-  const MARK_BOUNDS = {
-    height: 275,
-    left: 135,
-    top: 90,
-    width: 190,
-  } as const;
-  const SAMPLE_STEP = 7;
-  const HIGHLIGHT_CYCLE_MS = 3600;
-  const STRAND_CROSSINGS = [115, 160, 195, 232, 270, 315] as const;
+  type HelixAxis = {
+    /** Arc length along the overall build path at which this helix begins drawing. */
+    buildOffset: number;
+    length: number;
+    /** Twist angle at s = 0 so a branch stays continuous with its parent at the junction. */
+    phaseOffset: number;
+    samples: AxisSample[];
+  };
 
-  function deterministicUnitValue(x: number, y: number) {
-    const value = Math.sin(x * 12.9898 + y * 78.233) * 43758.5453;
-    return value - Math.floor(value);
+  type StrandColor = 'green' | 'orange';
+
+  const STRAND_COLORS: Record<StrandColor, string> = {
+    green: '#53c68c',
+    orange: '#ff5d01',
+  };
+
+  const AXIS_STEP = 0.012;
+  const HELIX_AMPLITUDE = 0.078;
+  const HELIX_PERIOD = 0.3;
+  const RUNGS_PER_TWIST = 5;
+
+  const BUILD_DELAY_MS = 180;
+  const BUILD_MS = 2200;
+  const REPLAY_COOLDOWN_MS = 900;
+  const ROTATION_PERIOD_MS = 8000;
+  const SHIMMER_INTERVAL_MS = 6000;
+  const SHIMMER_SWEEP_MS = 1400;
+
+  const MAIN_START = { x: 0.22, y: 0.02 };
+  const MAIN_END = { x: 0.76, y: 0.98 };
+  /** Two full twists down the main stroke, where both backbones cross the axis. */
+  const JUNCTION_S = HELIX_PERIOD * 2;
+  const LEG_END = { x: 0.14, y: 0.98 };
+  const MARK_CENTER = { x: 0.45, y: 0.5 };
+  const MARK_HEIGHT = 1.02;
+
+  function buildAxis(
+    from: { x: number; y: number },
+    to: { x: number; y: number },
+    buildOffset: number,
+    phaseOffset: number,
+  ): HelixAxis {
+    const deltaX = to.x - from.x;
+    const deltaY = to.y - from.y;
+    const length = Math.hypot(deltaX, deltaY);
+    const normalX = -deltaY / length;
+    const normalY = deltaX / length;
+    const samples: AxisSample[] = [];
+
+    for (let s = 0; s <= length + AXIS_STEP / 2; s += AXIS_STEP) {
+      const clampedS = Math.min(s, length);
+      const t = clampedS / length;
+      samples.push({
+        normalX,
+        normalY,
+        s: clampedS,
+        x: from.x + deltaX * t,
+        y: from.y + deltaY * t,
+      });
+    }
+
+    return { buildOffset, length, phaseOffset, samples };
   }
 
-  function sampleDnaHelixAvatar(image: HTMLImageElement) {
-    const samplingCanvas = document.createElement('canvas');
-    samplingCanvas.width = AVATAR_SIZE;
-    samplingCanvas.height = AVATAR_SIZE;
-    const context = samplingCanvas.getContext('2d', { willReadFrequently: true });
-    if (!context) {
-      return [];
-    }
-
-    context.drawImage(image, 0, 0, AVATAR_SIZE, AVATAR_SIZE);
-    const pixels = context.getImageData(0, 0, AVATAR_SIZE, AVATAR_SIZE).data;
-    const dots: AvatarOrbDot[] = [];
-
-    for (let y = MARK_BOUNDS.top; y < MARK_BOUNDS.top + MARK_BOUNDS.height; y += SAMPLE_STEP) {
-      for (
-        let x = MARK_BOUNDS.left;
-        x < MARK_BOUNDS.left + MARK_BOUNDS.width;
-        x += SAMPLE_STEP
-      ) {
-        let darkestLuminance = 255;
-        for (let sampleY = y - 2; sampleY <= y + 2; sampleY += 2) {
-          for (let sampleX = x - 2; sampleX <= x + 2; sampleX += 2) {
-            const pixelOffset = (sampleY * AVATAR_SIZE + sampleX) * 4;
-            const red = pixels[pixelOffset] ?? 255;
-            const green = pixels[pixelOffset + 1] ?? 255;
-            const blue = pixels[pixelOffset + 2] ?? 255;
-            darkestLuminance = Math.min(
-              darkestLuminance,
-              red * 0.2126 + green * 0.7152 + blue * 0.0722,
-            );
-          }
-        }
-
-        if (darkestLuminance >= 120) {
-          continue;
-        }
-
-        dots.push({
-          depth: deterministicUnitValue(x, y) * 2 - 1,
-          strand: null,
-          x,
-          y,
-        });
-      }
-    }
-
-    const dotsByRow = new Map<number, AvatarOrbDot[]>();
-    for (const dot of dots) {
-      const rowDots = dotsByRow.get(dot.y) ?? [];
-      rowDots.push(dot);
-      dotsByRow.set(dot.y, rowDots);
-    }
-
-    for (const rowDots of dotsByRow.values()) {
-      const leftEdge = Math.min(...rowDots.map((dot) => dot.x));
-      const rightEdge = Math.max(...rowDots.map((dot) => dot.x));
-      const swapsBelowRow = STRAND_CROSSINGS.filter((crossingY) => crossingY > rowDots[0]!.y).length;
-      const leftStrand = swapsBelowRow % 2 === 0 ? 'green' : 'orange';
-      const rightStrand = leftStrand === 'green' ? 'orange' : 'green';
-
-      for (const dot of rowDots) {
-        const distanceFromLeftEdge = dot.x - leftEdge;
-        const distanceFromRightEdge = rightEdge - dot.x;
-        if (distanceFromLeftEdge <= SAMPLE_STEP && distanceFromLeftEdge <= distanceFromRightEdge) {
-          dot.strand = leftStrand;
-        } else if (distanceFromRightEdge <= SAMPLE_STEP) {
-          dot.strand = rightStrand;
-        }
-      }
-    }
-
-    return dots.sort((left, right) => left.depth - right.depth);
+  function pointOnAxis(axis: HelixAxis, s: number) {
+    const first = axis.samples[0]!;
+    const last = axis.samples[axis.samples.length - 1]!;
+    const t = s / axis.length;
+    return {
+      normalX: first.normalX,
+      normalY: first.normalY,
+      s,
+      x: first.x + (last.x - first.x) * t,
+      y: first.y + (last.y - first.y) * t,
+    };
   }
 
-  /** Progressively enhances the static DNA avatar with a compact dot-orb animation. */
+  const MAIN_AXIS = buildAxis(MAIN_START, MAIN_END, 0, 0);
+  const JUNCTION = pointOnAxis(MAIN_AXIS, JUNCTION_S);
+  const LEG_AXIS = buildAxis(
+    { x: JUNCTION.x, y: JUNCTION.y },
+    LEG_END,
+    JUNCTION_S,
+    (Math.PI * 2 * JUNCTION_S) / HELIX_PERIOD,
+  );
+  const HELICES = [LEG_AXIS, MAIN_AXIS] as const;
+  const BUILD_LENGTH = Math.max(
+    ...HELICES.map((helix) => helix.buildOffset + helix.length),
+  );
+
+  function clamp01(value: number) {
+    return Math.min(1, Math.max(0, value));
+  }
+
+  function easeBuild(progress: number) {
+    return 1 - Math.pow(1 - clamp01(progress), 1.8);
+  }
+
+  function lerp(from: number, to: number, amount: number) {
+    return from + (to - from) * amount;
+  }
+
+  type FrameState = {
+    /** Arc length of the build front along the overall build path. */
+    buildFront: number;
+    /** 0..1 how far the build is; 1 once settled. */
+    buildProgress: number;
+    isDarkMode: boolean;
+    /** Arc length of the shimmer band along the build path, or null while idle. */
+    shimmerFront: number | null;
+    twistPhase: number;
+  };
+
+  /** Progressively enhances the static DNA avatar with a self-building helix lambda. */
   class DnaHelixHeaderOrb extends HTMLElement {
     private animationFrame = 0;
-    private avatarDots: AvatarOrbDot[] = [];
+    private buildStartedAt = 0;
     private readonly canvas: HTMLCanvasElement;
     private readonly context: CanvasRenderingContext2D;
-    private didEnhance = false;
     private height = 1;
-    private readonly image: HTMLImageElement;
+    private readonly hoverTarget: HTMLElement;
     private isVisible = true;
     private readonly motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
     private readonly resizeObserver: ResizeObserver;
@@ -121,131 +151,281 @@
       super();
       this.canvas = this.querySelector('canvas')!;
       this.context = this.canvas.getContext('2d')!;
-      this.image = this.querySelector('img')!;
+      this.hoverTarget = this.closest('a') ?? this;
       this.resizeObserver = new ResizeObserver(this.resizeHeaderOrb);
-      this.themeObserver = new MutationObserver(this.redrawHeaderOrbForTheme);
+      this.themeObserver = new MutationObserver(this.redrawHeaderOrb);
       this.visibilityObserver = new IntersectionObserver(this.updateVisibility);
     }
 
     connectedCallback() {
+      this.buildStartedAt = performance.now() + BUILD_DELAY_MS;
+      this.dataset.enhanced = 'true';
       this.resizeObserver.observe(this);
       this.themeObserver.observe(document.documentElement, {
         attributeFilter: ['data-theme'],
         attributes: true,
       });
       this.visibilityObserver.observe(this);
-      this.motionPreference.addEventListener('change', this.syncMotionPreference);
+      this.motionPreference.addEventListener('change', this.redrawHeaderOrb);
+      this.hoverTarget.addEventListener('pointerenter', this.replayBuild);
+      this.hoverTarget.addEventListener('focus', this.replayBuild);
       document.addEventListener('visibilitychange', this.requestHeaderOrbFrame);
       this.resizeHeaderOrb();
-      this.syncMotionPreference();
     }
 
     disconnectedCallback() {
-      if (this.animationFrame) {
-        cancelAnimationFrame(this.animationFrame);
-      }
-      this.image.removeEventListener('load', this.handleAvatarLoad);
+      this.cancelHeaderOrbFrame();
       this.resizeObserver.disconnect();
       this.themeObserver.disconnect();
       this.visibilityObserver.disconnect();
-      this.motionPreference.removeEventListener('change', this.syncMotionPreference);
+      this.motionPreference.removeEventListener('change', this.redrawHeaderOrb);
+      this.hoverTarget.removeEventListener('pointerenter', this.replayBuild);
+      this.hoverTarget.removeEventListener('focus', this.replayBuild);
       document.removeEventListener('visibilitychange', this.requestHeaderOrbFrame);
+    }
+
+    private get shouldAnimate() {
+      return this.isVisible && !document.hidden && !this.motionPreference.matches;
+    }
+
+    private cancelHeaderOrbFrame() {
+      if (this.animationFrame) {
+        cancelAnimationFrame(this.animationFrame);
+        this.animationFrame = 0;
+      }
+    }
+
+    private frameState(time: number): FrameState {
+      const isDarkMode = document.documentElement.dataset.theme === 'dark';
+      if (this.motionPreference.matches) {
+        return {
+          buildFront: BUILD_LENGTH,
+          buildProgress: 1,
+          isDarkMode,
+          shimmerFront: null,
+          twistPhase: 0,
+        };
+      }
+
+      const buildProgress = easeBuild((time - this.buildStartedAt) / BUILD_MS);
+      const sinceSettled = time - this.buildStartedAt - BUILD_MS;
+      const shimmerElapsed = sinceSettled % SHIMMER_INTERVAL_MS;
+      const shimmerFront =
+        sinceSettled >= 0 && shimmerElapsed < SHIMMER_SWEEP_MS
+          ? (shimmerElapsed / SHIMMER_SWEEP_MS) * (BUILD_LENGTH + 0.3) - 0.15
+          : null;
+
+      return {
+        buildFront: buildProgress * BUILD_LENGTH,
+        buildProgress,
+        isDarkMode,
+        shimmerFront,
+        twistPhase: (time / ROTATION_PERIOD_MS) * Math.PI * 2,
+      };
     }
 
     private readonly drawHeaderOrb = (time: number) => {
       this.animationFrame = 0;
-      this.context.clearRect(0, 0, this.width, this.height);
+      const { context } = this;
+      const state = this.frameState(time);
+      const size = Math.min(this.width, this.height);
+      const scale = ((size * 0.9) / MARK_HEIGHT) * lerp(0.94, 1, easeBuild(state.buildProgress));
+      const amplitude = HELIX_AMPLITUDE * scale;
+      const nearWidth = size * 0.06;
+      const farWidth = size * 0.034;
+      const rungWidth = size * 0.024;
+      const neutral = state.isDarkMode ? '#c7c3bb' : '#242526';
+      const farAlpha = state.isDarkMode ? 0.42 : 0.5;
 
-      const shortestSide = Math.min(this.width, this.height);
-      const centerX = this.width / 2;
-      const centerY = this.height / 2;
-      const isDarkMode = document.documentElement.dataset.theme === 'dark';
-      const scale = (shortestSide * 0.96) / MARK_BOUNDS.height;
-      const breath = 1 + Math.sin(time * 0.0018) * 0.025;
-      const tilt = Math.sin(time * 0.00045) * 0.14;
-      const highlightProgress = (time % HIGHLIGHT_CYCLE_MS) / HIGHLIGHT_CYCLE_MS;
-      const highlightCenter = 1.12 - highlightProgress * 1.24;
+      const toCanvasX = (x: number) => this.width / 2 + (x - MARK_CENTER.x) * scale;
+      const toCanvasY = (y: number) => this.height / 2 + (y - MARK_CENTER.y) * scale;
 
-      for (const dot of this.avatarDots) {
-        const sourceX = (dot.x - (MARK_BOUNDS.left + MARK_BOUNDS.width / 2)) * scale * breath;
-        const sourceY = (dot.y - (MARK_BOUNDS.top + MARK_BOUNDS.height / 2)) * scale * breath;
-        const depthOffset = dot.depth * shortestSide * 0.045;
-        const x = centerX + sourceX * Math.cos(tilt) + depthOffset * Math.sin(tilt);
-        const y = centerY + sourceY + depthOffset * 0.06;
-        const normalizedY = (dot.y - MARK_BOUNDS.top) / MARK_BOUNDS.height;
-        const distanceFromHighlight = Math.abs(normalizedY - highlightCenter);
-        const highlight = dot.strand
-          ? Math.exp(-(distanceFromHighlight * distanceFromHighlight) / 0.01)
-          : 0;
-        const baseRadius = Math.max(0.5, shortestSide * 0.0095);
+      context.clearRect(0, 0, this.width, this.height);
+      context.lineCap = 'round';
+      context.lineJoin = 'round';
 
-        this.context.beginPath();
-        this.context.fillStyle = isDarkMode ? '#c7c3bb' : '#242526';
-        this.context.globalAlpha = isDarkMode ? 0.82 : 0.92;
-        this.context.shadowBlur = 0;
-        this.context.arc(x, y, baseRadius, 0, Math.PI * 2);
-        this.context.fill();
+      type BackboneSegment = {
+        alpha: number;
+        color: string;
+        depth: number;
+        fromX: number;
+        fromY: number;
+        toX: number;
+        toY: number;
+        width: number;
+      };
+      type Rung = { alpha: number; fromX: number; fromY: number; toX: number; toY: number };
+      type LeadGlow = { color: string; radius: number; x: number; y: number };
 
-        if (dot.strand && highlight > 0.04) {
-          const highlightRadius = baseRadius + shortestSide * highlight * 0.005;
-          this.context.beginPath();
-          this.context.fillStyle = dot.strand === 'green' ? '#53c68c' : '#ff5d01';
-          this.context.globalAlpha = 0.2 + highlight * 0.8;
-          this.context.arc(x, y, highlightRadius, 0, Math.PI * 2);
-          this.context.fill();
+      const farSegments: BackboneSegment[] = [];
+      const nearSegments: BackboneSegment[] = [];
+      const rungs: Rung[] = [];
+      const leadGlows: LeadGlow[] = [];
+
+      for (const helix of HELICES) {
+        const helixFront = state.buildFront - helix.buildOffset;
+        if (helixFront <= 0) {
+          continue;
+        }
+
+        const strandPoint = (sample: AxisSample, strand: StrandColor) => {
+          const theta =
+            (Math.PI * 2 * sample.s) / HELIX_PERIOD +
+            helix.phaseOffset +
+            state.twistPhase +
+            (strand === 'orange' ? Math.PI : 0);
+          const offset = Math.sin(theta) * amplitude;
+          return {
+            depth: Math.cos(theta),
+            x: toCanvasX(sample.x) + sample.normalX * offset,
+            y: toCanvasY(sample.y) + sample.normalY * offset,
+          };
+        };
+
+        const shimmerAt = (s: number) => {
+          if (state.shimmerFront === null) {
+            return 0;
+          }
+          const distance = (helix.buildOffset + s - state.shimmerFront) / 0.16;
+          return Math.exp(-distance * distance);
+        };
+
+        const drawnLength = Math.min(helixFront, helix.length);
+        const lastIndex = Math.min(
+          helix.samples.length - 1,
+          Math.floor(drawnLength / AXIS_STEP) + 1,
+        );
+
+        for (const strand of ['green', 'orange'] as const) {
+          let previous = strandPoint(helix.samples[0]!, strand);
+          for (let index = 1; index <= lastIndex; index += 1) {
+            const sample = helix.samples[index]!;
+            const clippedSample =
+              sample.s > drawnLength ? pointOnAxis(helix, drawnLength) : sample;
+            const current = strandPoint(clippedSample, strand);
+            const depth = (previous.depth + current.depth) / 2;
+            const nearness = (depth + 1) / 2;
+            const shimmer = shimmerAt(clippedSample.s);
+            const segment: BackboneSegment = {
+              alpha: Math.min(1, lerp(farAlpha, 1, nearness) + shimmer * 0.4),
+              color: STRAND_COLORS[strand],
+              depth,
+              fromX: previous.x,
+              fromY: previous.y,
+              toX: current.x,
+              toY: current.y,
+              width: lerp(farWidth, nearWidth, nearness) * (1 + shimmer * 0.22),
+            };
+            (depth < 0 ? farSegments : nearSegments).push(segment);
+            previous = current;
+            if (clippedSample !== sample) {
+              break;
+            }
+          }
+
+          if (state.buildProgress < 1 && helixFront < helix.length) {
+            leadGlows.push({
+              color: STRAND_COLORS[strand],
+              radius: nearWidth * 0.9,
+              x: previous.x,
+              y: previous.y,
+            });
+          }
+        }
+
+        const rungSpacing = HELIX_PERIOD / RUNGS_PER_TWIST;
+        for (let s = rungSpacing / 2; s < helix.length; s += rungSpacing) {
+          const reveal = clamp01((helixFront - s) / 0.08);
+          if (reveal <= 0) {
+            continue;
+          }
+          const sample = pointOnAxis(helix, s);
+          const green = strandPoint(sample, 'green');
+          const orange = strandPoint(sample, 'orange');
+          const midX = (green.x + orange.x) / 2;
+          const midY = (green.y + orange.y) / 2;
+          rungs.push({
+            alpha: (state.isDarkMode ? 0.5 : 0.42) * reveal,
+            fromX: lerp(midX, green.x, reveal),
+            fromY: lerp(midY, green.y, reveal),
+            toX: lerp(midX, orange.x, reveal),
+            toY: lerp(midY, orange.y, reveal),
+          });
         }
       }
 
-      this.context.globalAlpha = 1;
-      this.context.shadowBlur = 0;
-      if (!this.didEnhance) {
-        this.didEnhance = true;
-        this.dataset.enhanced = 'true';
+      const strokeSegments = (segments: BackboneSegment[]) => {
+        for (const segment of segments) {
+          context.globalAlpha = segment.alpha;
+          context.strokeStyle = segment.color;
+          context.lineWidth = segment.width;
+          context.beginPath();
+          context.moveTo(segment.fromX, segment.fromY);
+          context.lineTo(segment.toX, segment.toY);
+          context.stroke();
+        }
+      };
+
+      farSegments.sort((left, right) => left.depth - right.depth);
+      strokeSegments(farSegments);
+
+      context.strokeStyle = neutral;
+      context.lineWidth = rungWidth;
+      for (const rung of rungs) {
+        context.globalAlpha = rung.alpha;
+        context.beginPath();
+        context.moveTo(rung.fromX, rung.fromY);
+        context.lineTo(rung.toX, rung.toY);
+        context.stroke();
       }
 
-      if (this.isVisible && !document.hidden && !this.motionPreference.matches) {
+      nearSegments.sort((left, right) => left.depth - right.depth);
+      strokeSegments(nearSegments);
+
+      if (leadGlows.length > 0) {
+        context.shadowBlur = size * 0.14;
+        for (const glow of leadGlows) {
+          context.globalAlpha = 0.95;
+          context.fillStyle = glow.color;
+          context.shadowColor = glow.color;
+          context.beginPath();
+          context.arc(glow.x, glow.y, glow.radius, 0, Math.PI * 2);
+          context.fill();
+        }
+        context.shadowBlur = 0;
+      }
+
+      context.globalAlpha = 1;
+
+      if (this.shouldAnimate) {
         this.animationFrame = requestAnimationFrame(this.drawHeaderOrb);
       }
     };
 
-    private readonly handleAvatarLoad = () => {
-      this.avatarDots = sampleDnaHelixAvatar(this.image);
-      this.drawHeaderOrb(performance.now());
+    private readonly redrawHeaderOrb = () => {
+      if (this.motionPreference.matches) {
+        this.cancelHeaderOrbFrame();
+        this.drawHeaderOrb(performance.now());
+      } else {
+        this.requestHeaderOrbFrame();
+      }
     };
 
-    private readonly loadAvatarDots = () => {
-      if (this.avatarDots.length > 0) {
+    private readonly replayBuild = () => {
+      const now = performance.now();
+      if (
+        this.motionPreference.matches ||
+        now - this.buildStartedAt < BUILD_MS + REPLAY_COOLDOWN_MS
+      ) {
         return;
       }
-      if (this.image.complete) {
-        this.handleAvatarLoad();
-      } else {
-        this.image.addEventListener('load', this.handleAvatarLoad, { once: true });
-      }
+      this.buildStartedAt = now;
+      this.requestHeaderOrbFrame();
     };
 
     private readonly requestHeaderOrbFrame = () => {
-      if (
-        this.avatarDots.length > 0 &&
-        !(
-          this.animationFrame ||
-          document.hidden ||
-          this.motionPreference.matches ||
-          !this.isVisible
-        )
-      ) {
+      if (!this.animationFrame && this.shouldAnimate) {
         this.animationFrame = requestAnimationFrame(this.drawHeaderOrb);
-      }
-    };
-
-    private readonly redrawHeaderOrbForTheme = () => {
-      if (this.avatarDots.length === 0) {
-        return;
-      }
-      if (this.motionPreference.matches) {
-        this.drawHeaderOrb(0);
-      } else {
-        this.requestHeaderOrbFrame();
       }
     };
 
@@ -257,36 +437,15 @@
       this.canvas.width = Math.round(this.width * pixelRatio);
       this.canvas.height = Math.round(this.height * pixelRatio);
       this.context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
-      if (this.avatarDots.length > 0 && this.motionPreference.matches) {
-        this.drawHeaderOrb(0);
-      } else {
-        this.requestHeaderOrbFrame();
-      }
-    };
-
-    private readonly syncMotionPreference = () => {
-      if (this.motionPreference.matches) {
-        if (this.animationFrame) {
-          cancelAnimationFrame(this.animationFrame);
-          this.animationFrame = 0;
-        }
-        this.loadAvatarDots();
-        if (this.avatarDots.length > 0) {
-          this.drawHeaderOrb(0);
-        }
-      } else {
-        this.loadAvatarDots();
-        this.requestHeaderOrbFrame();
-      }
+      this.redrawHeaderOrb();
     };
 
     private readonly updateVisibility = ([entry]: IntersectionObserverEntry[]) => {
       this.isVisible = entry?.isIntersecting ?? true;
-      if (!this.isVisible && this.animationFrame) {
-        cancelAnimationFrame(this.animationFrame);
-        this.animationFrame = 0;
-      } else {
+      if (this.isVisible) {
         this.requestHeaderOrbFrame();
+      } else {
+        this.cancelHeaderOrbFrame();
       }
     };
   }
@@ -304,8 +463,6 @@
     height: 2.75rem;
     flex: none;
     margin-inline-end: 0.75rem;
-    overflow: hidden;
-    border-radius: 50%;
   }
 
   img,
@@ -318,6 +475,7 @@
 
   img {
     object-fit: cover;
+    border-radius: 50%;
     transition: opacity 150ms ease-out;
   }
 
