@@ -47,60 +47,139 @@
   const SHIMMER_INTERVAL_MS = 6000;
   const SHIMMER_SWEEP_MS = 1400;
 
-  const MAIN_START = { x: 0.22, y: 0.02 };
-  const MAIN_END = { x: 0.76, y: 0.98 };
+  type Point = { x: number; y: number };
+  /** Cubic Bézier control points. */
+  type Curve = readonly [Point, Point, Point, Point];
+
+  /**
+   * The main stroke: steep at the top, bowing left through the middle, flaring right at the
+   * foot the way a handwritten lambda does.
+   */
+  const MAIN_CURVE: Curve = [
+    { x: 0.18, y: 0.02 },
+    { x: 0.22, y: 0.3 },
+    { x: 0.38, y: 0.6 },
+    { x: 0.66, y: 0.98 },
+  ];
   /** Two full twists down the main stroke, where both backbones cross the axis. */
   const JUNCTION_S = HELIX_PERIOD * 2;
-  const LEG_END = { x: 0.14, y: 0.98 };
-  const MARK_CENTER = { x: 0.45, y: 0.5 };
-  const MARK_HEIGHT = 1.02;
+  /** The leg leaves the junction steeply and bows gently outward to the lower left. */
+  const LEG_CONTROL_OFFSETS: readonly [Point, Point, Point] = [
+    { x: -0.08, y: 0.13 },
+    { x: -0.19, y: 0.27 },
+    { x: -0.31, y: 0.42 },
+  ];
+  /** Fraction of the element the finished mark should fill along its longer side. */
+  const MARK_FILL = 0.86;
 
-  function buildAxis(
-    from: { x: number; y: number },
-    to: { x: number; y: number },
-    buildOffset: number,
-    phaseOffset: number,
-  ): HelixAxis {
-    const deltaX = to.x - from.x;
-    const deltaY = to.y - from.y;
-    const length = Math.hypot(deltaX, deltaY);
-    const normalX = -deltaY / length;
-    const normalY = deltaX / length;
+  function bezierPoint(curve: Curve, t: number): Point {
+    const inverse = 1 - t;
+    const a = inverse * inverse * inverse;
+    const b = 3 * inverse * inverse * t;
+    const c = 3 * inverse * t * t;
+    const d = t * t * t;
+    return {
+      x: a * curve[0].x + b * curve[1].x + c * curve[2].x + d * curve[3].x,
+      y: a * curve[0].y + b * curve[1].y + c * curve[2].y + d * curve[3].y,
+    };
+  }
+
+  function bezierTangent(curve: Curve, t: number): Point {
+    const inverse = 1 - t;
+    const a = 3 * inverse * inverse;
+    const b = 6 * inverse * t;
+    const c = 3 * t * t;
+    return {
+      x:
+        a * (curve[1].x - curve[0].x) +
+        b * (curve[2].x - curve[1].x) +
+        c * (curve[3].x - curve[2].x),
+      y:
+        a * (curve[1].y - curve[0].y) +
+        b * (curve[2].y - curve[1].y) +
+        c * (curve[3].y - curve[2].y),
+    };
+  }
+
+  /** Samples a curve at even arc-length steps so twist and rung spacing stay uniform. */
+  function buildAxis(curve: Curve, buildOffset: number, phaseOffset: number): HelixAxis {
+    const FINE_STEPS = 400;
+    const finePoints: Array<Point & { s: number; t: number }> = [];
+    let length = 0;
+    let previous = bezierPoint(curve, 0);
+    finePoints.push({ ...previous, s: 0, t: 0 });
+    for (let index = 1; index <= FINE_STEPS; index += 1) {
+      const t = index / FINE_STEPS;
+      const point = bezierPoint(curve, t);
+      length += Math.hypot(point.x - previous.x, point.y - previous.y);
+      finePoints.push({ ...point, s: length, t });
+      previous = point;
+    }
+
     const samples: AxisSample[] = [];
-
+    let fineIndex = 0;
     for (let s = 0; s <= length + AXIS_STEP / 2; s += AXIS_STEP) {
       const clampedS = Math.min(s, length);
-      const t = clampedS / length;
+      while (fineIndex < finePoints.length - 2 && finePoints[fineIndex + 1]!.s < clampedS) {
+        fineIndex += 1;
+      }
+      const from = finePoints[fineIndex]!;
+      const to = finePoints[fineIndex + 1]!;
+      const span = to.s - from.s || 1;
+      const mix = clamp01((clampedS - from.s) / span);
+      const t = lerp(from.t, to.t, mix);
+      const tangent = bezierTangent(curve, t);
+      const tangentLength = Math.hypot(tangent.x, tangent.y) || 1;
       samples.push({
-        normalX,
-        normalY,
+        normalX: -tangent.y / tangentLength,
+        normalY: tangent.x / tangentLength,
         s: clampedS,
-        x: from.x + deltaX * t,
-        y: from.y + deltaY * t,
+        x: lerp(from.x, to.x, mix),
+        y: lerp(from.y, to.y, mix),
       });
     }
 
     return { buildOffset, length, phaseOffset, samples };
   }
 
-  function pointOnAxis(axis: HelixAxis, s: number) {
-    const first = axis.samples[0]!;
-    const last = axis.samples[axis.samples.length - 1]!;
-    const t = s / axis.length;
+  /** Interpolates position and normal between the two evenly spaced samples around `s`. */
+  function pointOnAxis(axis: HelixAxis, s: number): AxisSample {
+    const clampedS = Math.min(Math.max(0, s), axis.length);
+    const index = Math.min(axis.samples.length - 2, Math.floor(clampedS / AXIS_STEP));
+    const from = axis.samples[index]!;
+    const to = axis.samples[index + 1] ?? from;
+    const span = to.s - from.s || 1;
+    const mix = clamp01((clampedS - from.s) / span);
+    const normalX = lerp(from.normalX, to.normalX, mix);
+    const normalY = lerp(from.normalY, to.normalY, mix);
+    const normalLength = Math.hypot(normalX, normalY) || 1;
     return {
-      normalX: first.normalX,
-      normalY: first.normalY,
-      s,
-      x: first.x + (last.x - first.x) * t,
-      y: first.y + (last.y - first.y) * t,
+      normalX: normalX / normalLength,
+      normalY: normalY / normalLength,
+      s: clampedS,
+      x: lerp(from.x, to.x, mix),
+      y: lerp(from.y, to.y, mix),
     };
   }
 
-  const MAIN_AXIS = buildAxis(MAIN_START, MAIN_END, 0, 0);
+  function clamp01(value: number) {
+    return Math.min(1, Math.max(0, value));
+  }
+
+  function lerp(from: number, to: number, amount: number) {
+    return from + (to - from) * amount;
+  }
+
+  const MAIN_AXIS = buildAxis(MAIN_CURVE, 0, 0);
   const JUNCTION = pointOnAxis(MAIN_AXIS, JUNCTION_S);
   const LEG_AXIS = buildAxis(
-    { x: JUNCTION.x, y: JUNCTION.y },
-    LEG_END,
+    [
+      JUNCTION,
+      ...(LEG_CONTROL_OFFSETS.map((offset) => ({
+        x: JUNCTION.x + offset.x,
+        y: JUNCTION.y + offset.y,
+      })) as [Point, Point, Point]),
+    ],
     JUNCTION_S,
     (Math.PI * 2 * JUNCTION_S) / HELIX_PERIOD,
   );
@@ -109,16 +188,30 @@
     ...HELICES.map((helix) => helix.buildOffset + helix.length),
   );
 
-  function clamp01(value: number) {
-    return Math.min(1, Math.max(0, value));
-  }
+  /** Bounds of the finished mark including backbone offset, used to center and fit it. */
+  const MARK_BOUNDS = (() => {
+    let minX = Infinity;
+    let minY = Infinity;
+    let maxX = -Infinity;
+    let maxY = -Infinity;
+    for (const helix of HELICES) {
+      for (const sample of helix.samples) {
+        minX = Math.min(minX, sample.x - HELIX_AMPLITUDE);
+        maxX = Math.max(maxX, sample.x + HELIX_AMPLITUDE);
+        minY = Math.min(minY, sample.y - HELIX_AMPLITUDE);
+        maxY = Math.max(maxY, sample.y + HELIX_AMPLITUDE);
+      }
+    }
+    return {
+      centerX: (minX + maxX) / 2,
+      centerY: (minY + maxY) / 2,
+      height: maxY - minY,
+      width: maxX - minX,
+    };
+  })();
 
   function easeBuild(progress: number) {
     return 1 - Math.pow(1 - clamp01(progress), 1.8);
-  }
-
-  function lerp(from: number, to: number, amount: number) {
-    return from + (to - from) * amount;
   }
 
   type FrameState = {
@@ -229,16 +322,17 @@
       const { context } = this;
       const state = this.frameState(time);
       const size = Math.min(this.width, this.height);
-      const scale = ((size * 0.9) / MARK_HEIGHT) * lerp(0.94, 1, easeBuild(state.buildProgress));
+      const fitScale = (size * MARK_FILL) / Math.max(MARK_BOUNDS.width, MARK_BOUNDS.height);
+      const scale = fitScale * lerp(0.94, 1, easeBuild(state.buildProgress));
       const amplitude = HELIX_AMPLITUDE * scale;
-      const nearWidth = size * 0.06;
-      const farWidth = size * 0.034;
-      const rungWidth = size * 0.024;
+      const nearWidth = size * 0.046;
+      const farWidth = size * 0.027;
+      const rungWidth = size * 0.02;
       const neutral = state.isDarkMode ? '#c7c3bb' : '#242526';
       const farAlpha = state.isDarkMode ? 0.42 : 0.5;
 
-      const toCanvasX = (x: number) => this.width / 2 + (x - MARK_CENTER.x) * scale;
-      const toCanvasY = (y: number) => this.height / 2 + (y - MARK_CENTER.y) * scale;
+      const toCanvasX = (x: number) => this.width / 2 + (x - MARK_BOUNDS.centerX) * scale;
+      const toCanvasY = (y: number) => this.height / 2 + (y - MARK_BOUNDS.centerY) * scale;
 
       context.clearRect(0, 0, this.width, this.height);
       context.lineCap = 'round';
