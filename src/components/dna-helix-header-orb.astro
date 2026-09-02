@@ -6,6 +6,7 @@
 <script>
   type AvatarOrbDot = {
     depth: number;
+    strand: 'green' | 'orange' | null;
     x: number;
     y: number;
   };
@@ -18,6 +19,8 @@
     width: 190,
   } as const;
   const SAMPLE_STEP = 7;
+  const HIGHLIGHT_CYCLE_MS = 3600;
+  const STRAND_CROSSINGS = [115, 160, 195, 232, 270, 315] as const;
 
   function deterministicUnitValue(x: number, y: number) {
     const value = Math.sin(x * 12.9898 + y * 78.233) * 43758.5453;
@@ -63,9 +66,35 @@
 
         dots.push({
           depth: deterministicUnitValue(x, y) * 2 - 1,
+          strand: null,
           x,
           y,
         });
+      }
+    }
+
+    const dotsByRow = new Map<number, AvatarOrbDot[]>();
+    for (const dot of dots) {
+      const rowDots = dotsByRow.get(dot.y) ?? [];
+      rowDots.push(dot);
+      dotsByRow.set(dot.y, rowDots);
+    }
+
+    for (const rowDots of dotsByRow.values()) {
+      const leftEdge = Math.min(...rowDots.map((dot) => dot.x));
+      const rightEdge = Math.max(...rowDots.map((dot) => dot.x));
+      const swapsBelowRow = STRAND_CROSSINGS.filter((crossingY) => crossingY > rowDots[0]!.y).length;
+      const leftStrand = swapsBelowRow % 2 === 0 ? 'green' : 'orange';
+      const rightStrand = leftStrand === 'green' ? 'orange' : 'green';
+
+      for (const dot of rowDots) {
+        const distanceFromLeftEdge = dot.x - leftEdge;
+        const distanceFromRightEdge = rightEdge - dot.x;
+        if (distanceFromLeftEdge <= SAMPLE_STEP && distanceFromLeftEdge <= distanceFromRightEdge) {
+          dot.strand = leftStrand;
+        } else if (distanceFromRightEdge <= SAMPLE_STEP) {
+          dot.strand = rightStrand;
+        }
       }
     }
 
@@ -84,6 +113,7 @@
     private isVisible = true;
     private readonly motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
     private readonly resizeObserver: ResizeObserver;
+    private readonly themeObserver: MutationObserver;
     private readonly visibilityObserver: IntersectionObserver;
     private width = 1;
 
@@ -93,11 +123,16 @@
       this.context = this.canvas.getContext('2d')!;
       this.image = this.querySelector('img')!;
       this.resizeObserver = new ResizeObserver(this.resizeHeaderOrb);
+      this.themeObserver = new MutationObserver(this.redrawHeaderOrbForTheme);
       this.visibilityObserver = new IntersectionObserver(this.updateVisibility);
     }
 
     connectedCallback() {
       this.resizeObserver.observe(this);
+      this.themeObserver.observe(document.documentElement, {
+        attributeFilter: ['data-theme'],
+        attributes: true,
+      });
       this.visibilityObserver.observe(this);
       this.motionPreference.addEventListener('change', this.syncMotionPreference);
       document.addEventListener('visibilitychange', this.requestHeaderOrbFrame);
@@ -111,6 +146,7 @@
       }
       this.image.removeEventListener('load', this.handleAvatarLoad);
       this.resizeObserver.disconnect();
+      this.themeObserver.disconnect();
       this.visibilityObserver.disconnect();
       this.motionPreference.removeEventListener('change', this.syncMotionPreference);
       document.removeEventListener('visibilitychange', this.requestHeaderOrbFrame);
@@ -123,10 +159,12 @@
       const shortestSide = Math.min(this.width, this.height);
       const centerX = this.width / 2;
       const centerY = this.height / 2;
-      const isDarkMode = document.documentElement.classList.contains('dark');
+      const isDarkMode = document.documentElement.dataset.theme === 'dark';
       const scale = (shortestSide * 0.96) / MARK_BOUNDS.height;
       const breath = 1 + Math.sin(time * 0.0018) * 0.025;
       const tilt = Math.sin(time * 0.00045) * 0.14;
+      const highlightProgress = (time % HIGHLIGHT_CYCLE_MS) / HIGHLIGHT_CYCLE_MS;
+      const highlightCenter = 1.12 - highlightProgress * 1.24;
 
       for (const dot of this.avatarDots) {
         const sourceX = (dot.x - (MARK_BOUNDS.left + MARK_BOUNDS.width / 2)) * scale * breath;
@@ -134,21 +172,28 @@
         const depthOffset = dot.depth * shortestSide * 0.045;
         const x = centerX + sourceX * Math.cos(tilt) + depthOffset * Math.sin(tilt);
         const y = centerY + sourceY + depthOffset * 0.06;
-        const signal = (Math.sin(dot.x * 0.025 + dot.y * 0.018 - time * 0.0022) + 1) / 2;
-        const radius = Math.max(0.42, shortestSide * (0.0075 + signal * 0.0035));
+        const normalizedY = (dot.y - MARK_BOUNDS.top) / MARK_BOUNDS.height;
+        const distanceFromHighlight = Math.abs(normalizedY - highlightCenter);
+        const highlight = dot.strand
+          ? Math.exp(-(distanceFromHighlight * distanceFromHighlight) / 0.01)
+          : 0;
+        const baseRadius = Math.max(0.5, shortestSide * 0.0095);
 
         this.context.beginPath();
-        this.context.fillStyle = isDarkMode
-          ? signal > 0.78
-            ? '#ffd08a'
-            : '#ff7a1a'
-          : signal > 0.78
-            ? '#ff5d01'
-            : '#8f3b0b';
-        this.context.globalAlpha = 0.55 + signal * 0.45;
+        this.context.fillStyle = isDarkMode ? '#c7c3bb' : '#242526';
+        this.context.globalAlpha = isDarkMode ? 0.82 : 0.92;
         this.context.shadowBlur = 0;
-        this.context.arc(x, y, radius, 0, Math.PI * 2);
+        this.context.arc(x, y, baseRadius, 0, Math.PI * 2);
         this.context.fill();
+
+        if (dot.strand && highlight > 0.04) {
+          const highlightRadius = baseRadius + shortestSide * highlight * 0.005;
+          this.context.beginPath();
+          this.context.fillStyle = dot.strand === 'green' ? '#53c68c' : '#ff5d01';
+          this.context.globalAlpha = 0.2 + highlight * 0.8;
+          this.context.arc(x, y, highlightRadius, 0, Math.PI * 2);
+          this.context.fill();
+        }
       }
 
       this.context.globalAlpha = 1;
@@ -190,6 +235,17 @@
         )
       ) {
         this.animationFrame = requestAnimationFrame(this.drawHeaderOrb);
+      }
+    };
+
+    private readonly redrawHeaderOrbForTheme = () => {
+      if (this.avatarDots.length === 0) {
+        return;
+      }
+      if (this.motionPreference.matches) {
+        this.drawHeaderOrb(0);
+      } else {
+        this.requestHeaderOrbFrame();
       }
     };
 
