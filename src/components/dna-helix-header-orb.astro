@@ -5,11 +5,17 @@
 
 <script>
   /**
-   * A double helix bent into a lambda, drawn as two colored backbones with neutral rungs.
+   * A DNA replication fork drawn as a lambda, in the cartoon style of the original mark.
    *
-   * Geometry lives in "mark units": the lambda is about 1 unit tall. Each helix is an axis
-   * polyline sampled at a fixed step; every sample carries its arc length and unit normal so
-   * the two backbones can be offset by ±sin(theta) and depth-sorted by cos(theta) per frame.
+   * The parental duplex runs from the top of the lambda to the junction. There the two
+   * template strands unwind: green continues down the right leg and gets a continuous new
+   * (leading) strand, orange takes the left leg and gets its new (lagging) strand as short
+   * Okazaki fragments with gaps between them. Building the mark replays that: templates
+   * unwind first, new strands are synthesized a little behind them.
+   *
+   * Geometry lives in "mark units": the lambda is about 1 unit tall. Each helix axis is a
+   * Bézier curve resampled at even arc length; every sample carries its arc length and unit
+   * normal so the two strands can be offset by ±lens(sin theta) and depth-sorted by cos(theta).
    */
   type AxisSample = {
     normalX: number;
@@ -29,6 +35,21 @@
   };
 
   type StrandColor = 'green' | 'orange';
+  type StrandRole = 'template' | 'leading' | 'lagging';
+
+  /** A run of one strand along an axis, from arc length `from` to `to`. */
+  type StrandPiece = {
+    color: StrandColor;
+    from: number;
+    role: StrandRole;
+    to: number;
+  };
+
+  type Helix = {
+    axis: HelixAxis;
+    /** Side 0 is offset by +lens(sin theta); side 1 sits half a turn around. */
+    sides: readonly [StrandPiece[], StrandPiece[]];
+  };
 
   const STRAND_COLORS: Record<StrandColor, string> = {
     green: '#53c68c',
@@ -36,14 +57,27 @@
   };
 
   const AXIS_STEP = 0.012;
-  const HELIX_AMPLITUDE = 0.078;
+  const HELIX_AMPLITUDE = 0.08;
   const HELIX_PERIOD = 0.3;
+  /** Below 1 fattens each half-turn into a lens and sharpens the pinch at crossings. */
+  const LENS_EXPONENT = 0.8;
   const RUNGS_PER_TWIST = 5;
+  /** Base-pair ticks reach this far from each strand toward the middle. */
+  const RUNG_REACH = 0.36;
+
+  /** How far (arc length) the new strands trail the unwinding templates while building. */
+  const SYNTHESIS_LAG = 0.14;
+  /** Okazaki fragments are short and leave visible gaps. */
+  const FRAGMENT_LENGTH = 0.11;
+  const FRAGMENT_GAP = 0.05;
+  const FRAGMENT_LEAD_IN = 0.06;
+  /** Each fragment is laid down this much faster than the templates unwind. */
+  const FRAGMENT_SPEED = 2.2;
 
   const BUILD_DELAY_MS = 180;
-  const BUILD_MS = 2200;
+  const BUILD_MS = 2600;
   const REPLAY_COOLDOWN_MS = 900;
-  const ROTATION_PERIOD_MS = 8000;
+  const ROTATION_PERIOD_MS = 10000;
   const SHIMMER_INTERVAL_MS = 6000;
   const SHIMMER_SWEEP_MS = 1400;
 
@@ -51,26 +85,31 @@
   /** Cubic Bézier control points. */
   type Curve = readonly [Point, Point, Point, Point];
 
-  /**
-   * The main stroke: steep at the top, bowing left through the middle, flaring right at the
-   * foot the way a handwritten lambda does.
-   */
+  /** The main stroke: nearly straight, with a gentle flare to the right at the foot. */
   const MAIN_CURVE: Curve = [
     { x: 0.18, y: 0.02 },
-    { x: 0.22, y: 0.3 },
-    { x: 0.38, y: 0.6 },
+    { x: 0.27, y: 0.32 },
+    { x: 0.42, y: 0.6 },
     { x: 0.66, y: 0.98 },
   ];
-  /** Two full twists down the main stroke, where both backbones cross the axis. */
+  /** Two full twists down the main stroke, where both strands cross the axis. */
   const JUNCTION_S = HELIX_PERIOD * 2;
-  /** The leg leaves the junction steeply and bows gently outward to the lower left. */
+  /** The leg leaves the junction and runs down to the lower left with a slight bow. */
   const LEG_CONTROL_OFFSETS: readonly [Point, Point, Point] = [
-    { x: -0.08, y: 0.13 },
-    { x: -0.19, y: 0.27 },
+    { x: -0.09, y: 0.13 },
+    { x: -0.2, y: 0.27 },
     { x: -0.31, y: 0.42 },
   ];
   /** Fraction of the element the finished mark should fill along its longer side. */
   const MARK_FILL = 0.86;
+
+  function clamp01(value: number) {
+    return Math.min(1, Math.max(0, value));
+  }
+
+  function lerp(from: number, to: number, amount: number) {
+    return from + (to - from) * amount;
+  }
 
   function bezierPoint(curve: Curve, t: number): Point {
     const inverse = 1 - t;
@@ -162,12 +201,29 @@
     };
   }
 
-  function clamp01(value: number) {
-    return Math.min(1, Math.max(0, value));
+  /** Axis samples strictly inside (from, to), bracketed by interpolated end points. */
+  function axisRun(axis: HelixAxis, from: number, to: number): AxisSample[] {
+    const run = [pointOnAxis(axis, from)];
+    const firstIndex = Math.floor(from / AXIS_STEP) + 1;
+    const lastIndex = Math.min(axis.samples.length - 1, Math.ceil(to / AXIS_STEP) - 1);
+    for (let index = firstIndex; index <= lastIndex; index += 1) {
+      run.push(axis.samples[index]!);
+    }
+    run.push(pointOnAxis(axis, to));
+    return run;
   }
 
-  function lerp(from: number, to: number, amount: number) {
-    return from + (to - from) * amount;
+  function okazakiFragments(length: number): StrandPiece[] {
+    const fragments: StrandPiece[] = [];
+    for (let from = FRAGMENT_LEAD_IN; from < length - FRAGMENT_GAP; from += FRAGMENT_LENGTH + FRAGMENT_GAP) {
+      fragments.push({
+        color: 'green',
+        from,
+        role: 'lagging',
+        to: Math.min(length, from + FRAGMENT_LENGTH),
+      });
+    }
+    return fragments;
   }
 
   const MAIN_AXIS = buildAxis(MAIN_CURVE, 0, 0);
@@ -181,21 +237,40 @@
       })) as [Point, Point, Point]),
     ],
     JUNCTION_S,
-    (Math.PI * 2 * JUNCTION_S) / HELIX_PERIOD,
-  );
-  const HELICES = [LEG_AXIS, MAIN_AXIS] as const;
-  const BUILD_LENGTH = Math.max(
-    ...HELICES.map((helix) => helix.buildOffset + helix.length),
+    // The leg's side 0 carries the orange template, which sits half a turn from green.
+    (Math.PI * 2 * JUNCTION_S) / HELIX_PERIOD + Math.PI,
   );
 
-  /** Bounds of the finished mark including backbone offset, used to center and fit it. */
+  const MAIN_HELIX: Helix = {
+    axis: MAIN_AXIS,
+    sides: [
+      [{ color: 'green', from: 0, role: 'template', to: MAIN_AXIS.length }],
+      [
+        { color: 'orange', from: 0, role: 'template', to: JUNCTION_S },
+        { color: 'orange', from: JUNCTION_S, role: 'leading', to: MAIN_AXIS.length },
+      ],
+    ],
+  };
+  const LEG_HELIX: Helix = {
+    axis: LEG_AXIS,
+    sides: [
+      [{ color: 'orange', from: 0, role: 'template', to: LEG_AXIS.length }],
+      okazakiFragments(LEG_AXIS.length),
+    ],
+  };
+  const HELICES = [LEG_HELIX, MAIN_HELIX] as const;
+  const BUILD_LENGTH =
+    Math.max(...HELICES.map((helix) => helix.axis.buildOffset + helix.axis.length)) +
+    SYNTHESIS_LAG;
+
+  /** Bounds of the finished mark including strand offset, used to center and fit it. */
   const MARK_BOUNDS = (() => {
     let minX = Infinity;
     let minY = Infinity;
     let maxX = -Infinity;
     let maxY = -Infinity;
     for (const helix of HELICES) {
-      for (const sample of helix.samples) {
+      for (const sample of helix.axis.samples) {
         minX = Math.min(minX, sample.x - HELIX_AMPLITUDE);
         maxX = Math.max(maxX, sample.x + HELIX_AMPLITUDE);
         minY = Math.min(minY, sample.y - HELIX_AMPLITUDE);
@@ -210,8 +285,21 @@
     };
   })();
 
+  /** How far along its own axis a strand piece has been laid down for a given build front. */
+  function pieceFront(helix: Helix, piece: StrandPiece, buildFront: number) {
+    const local = buildFront - helix.axis.buildOffset;
+    switch (piece.role) {
+      case 'template':
+        return local;
+      case 'leading':
+        return local - SYNTHESIS_LAG;
+      case 'lagging':
+        return piece.from + Math.max(0, local - SYNTHESIS_LAG - piece.from) * FRAGMENT_SPEED;
+    }
+  }
+
   function easeBuild(progress: number) {
-    return 1 - Math.pow(1 - clamp01(progress), 1.8);
+    return 1 - Math.pow(1 - clamp01(progress), 1.7);
   }
 
   type FrameState = {
@@ -225,7 +313,20 @@
     twistPhase: number;
   };
 
-  /** Progressively enhances the static DNA avatar with a self-building helix lambda. */
+  type StrandSegment = {
+    alpha: number;
+    color: string;
+    depth: number;
+    fromX: number;
+    fromY: number;
+    toX: number;
+    toY: number;
+    width: number;
+  };
+  type Tick = { alpha: number; fromX: number; fromY: number; toX: number; toY: number };
+  type LeadGlow = { color: string; radius: number; x: number; y: number };
+
+  /** Progressively enhances the static DNA avatar with a self-replicating helix lambda. */
   class DnaHelixHeaderOrb extends HTMLElement {
     private animationFrame = 0;
     private buildStartedAt = 0;
@@ -325,11 +426,14 @@
       const fitScale = (size * MARK_FILL) / Math.max(MARK_BOUNDS.width, MARK_BOUNDS.height);
       const scale = fitScale * lerp(0.94, 1, easeBuild(state.buildProgress));
       const amplitude = HELIX_AMPLITUDE * scale;
-      const nearWidth = size * 0.046;
-      const farWidth = size * 0.027;
-      const rungWidth = size * 0.02;
+      const nearWidth = size * 0.038;
+      const farWidth = size * 0.031;
+      const tickWidth = size * 0.018;
       const neutral = state.isDarkMode ? '#c7c3bb' : '#242526';
-      const farAlpha = state.isDarkMode ? 0.42 : 0.5;
+      const farAlpha = state.isDarkMode ? 0.66 : 0.72;
+      const shadowOffset = size * 0.035;
+      const shadowColor = state.isDarkMode ? '#000000' : '#242526';
+      const shadowAlpha = state.isDarkMode ? 0.4 : 0.14;
 
       const toCanvasX = (x: number) => this.width / 2 + (x - MARK_BOUNDS.centerX) * scale;
       const toCanvasY = (y: number) => this.height / 2 + (y - MARK_BOUNDS.centerY) * scale;
@@ -338,37 +442,25 @@
       context.lineCap = 'round';
       context.lineJoin = 'round';
 
-      type BackboneSegment = {
-        alpha: number;
-        color: string;
-        depth: number;
-        fromX: number;
-        fromY: number;
-        toX: number;
-        toY: number;
-        width: number;
-      };
-      type Rung = { alpha: number; fromX: number; fromY: number; toX: number; toY: number };
-      type LeadGlow = { color: string; radius: number; x: number; y: number };
-
-      const farSegments: BackboneSegment[] = [];
-      const nearSegments: BackboneSegment[] = [];
-      const rungs: Rung[] = [];
+      const farSegments: StrandSegment[] = [];
+      const nearSegments: StrandSegment[] = [];
+      const ticks: Tick[] = [];
       const leadGlows: LeadGlow[] = [];
+      const isBuilding = state.buildProgress < 1;
 
       for (const helix of HELICES) {
-        const helixFront = state.buildFront - helix.buildOffset;
-        if (helixFront <= 0) {
+        if (state.buildFront <= helix.axis.buildOffset) {
           continue;
         }
 
-        const strandPoint = (sample: AxisSample, strand: StrandColor) => {
+        const strandPoint = (sample: AxisSample, side: 0 | 1) => {
           const theta =
             (Math.PI * 2 * sample.s) / HELIX_PERIOD +
-            helix.phaseOffset +
+            helix.axis.phaseOffset +
             state.twistPhase +
-            (strand === 'orange' ? Math.PI : 0);
-          const offset = Math.sin(theta) * amplitude;
+            side * Math.PI;
+          const wave = Math.sin(theta);
+          const offset = Math.sign(wave) * Math.pow(Math.abs(wave), LENS_EXPONENT) * amplitude;
           return {
             depth: Math.cos(theta),
             x: toCanvasX(sample.x) + sample.normalX * offset,
@@ -380,100 +472,138 @@
           if (state.shimmerFront === null) {
             return 0;
           }
-          const distance = (helix.buildOffset + s - state.shimmerFront) / 0.16;
+          const distance = (helix.axis.buildOffset + s - state.shimmerFront) / 0.16;
           return Math.exp(-distance * distance);
         };
 
-        const drawnLength = Math.min(helixFront, helix.length);
-        const lastIndex = Math.min(
-          helix.samples.length - 1,
-          Math.floor(drawnLength / AXIS_STEP) + 1,
-        );
-
-        for (const strand of ['green', 'orange'] as const) {
-          let previous = strandPoint(helix.samples[0]!, strand);
-          for (let index = 1; index <= lastIndex; index += 1) {
-            const sample = helix.samples[index]!;
-            const clippedSample =
-              sample.s > drawnLength ? pointOnAxis(helix, drawnLength) : sample;
-            const current = strandPoint(clippedSample, strand);
-            const depth = (previous.depth + current.depth) / 2;
-            const nearness = (depth + 1) / 2;
-            const shimmer = shimmerAt(clippedSample.s);
-            const segment: BackboneSegment = {
-              alpha: Math.min(1, lerp(farAlpha, 1, nearness) + shimmer * 0.4),
-              color: STRAND_COLORS[strand],
-              depth,
-              fromX: previous.x,
-              fromY: previous.y,
-              toX: current.x,
-              toY: current.y,
-              width: lerp(farWidth, nearWidth, nearness) * (1 + shimmer * 0.22),
-            };
-            (depth < 0 ? farSegments : nearSegments).push(segment);
-            previous = current;
-            if (clippedSample !== sample) {
-              break;
+        for (const side of [0, 1] as const) {
+          for (const piece of helix.sides[side]) {
+            const front = pieceFront(helix, piece, state.buildFront);
+            if (front <= piece.from) {
+              continue;
             }
-          }
+            const drawnTo = Math.min(piece.to, front);
+            const widthScale = piece.role === 'template' ? 1 : 0.85;
+            const run = axisRun(helix.axis, piece.from, drawnTo);
+            let previous = strandPoint(run[0]!, side);
+            for (let index = 1; index < run.length; index += 1) {
+              const sample = run[index]!;
+              const current = strandPoint(sample, side);
+              const depth = (previous.depth + current.depth) / 2;
+              const nearness = (depth + 1) / 2;
+              const shimmer = shimmerAt(sample.s);
+              (depth < 0 ? farSegments : nearSegments).push({
+                alpha: Math.min(1, lerp(farAlpha, 1, nearness) + shimmer * 0.4),
+                color: STRAND_COLORS[piece.color],
+                depth,
+                fromX: previous.x,
+                fromY: previous.y,
+                toX: current.x,
+                toY: current.y,
+                width: lerp(farWidth, nearWidth, nearness) * widthScale * (1 + shimmer * 0.22),
+              });
+              previous = current;
+            }
 
-          if (state.buildProgress < 1 && helixFront < helix.length) {
-            leadGlows.push({
-              color: STRAND_COLORS[strand],
-              radius: nearWidth * 0.9,
-              x: previous.x,
-              y: previous.y,
-            });
+            if (isBuilding && front < piece.to) {
+              leadGlows.push({
+                color: STRAND_COLORS[piece.color],
+                radius: nearWidth * (piece.role === 'template' ? 0.8 : 1.05),
+                x: previous.x,
+                y: previous.y,
+              });
+            }
           }
         }
 
         const rungSpacing = HELIX_PERIOD / RUNGS_PER_TWIST;
-        for (let s = rungSpacing / 2; s < helix.length; s += rungSpacing) {
-          const reveal = clamp01((helixFront - s) / 0.08);
+        for (let s = rungSpacing / 2; s < helix.axis.length; s += rungSpacing) {
+          let reveal = 1;
+          for (const side of [0, 1] as const) {
+            const piece = helix.sides[side].find((candidate) => candidate.from <= s && s < candidate.to);
+            if (!piece) {
+              reveal = 0;
+              break;
+            }
+            reveal = Math.min(reveal, clamp01((pieceFront(helix, piece, state.buildFront) - s) / 0.05));
+          }
           if (reveal <= 0) {
             continue;
           }
-          const sample = pointOnAxis(helix, s);
-          const green = strandPoint(sample, 'green');
-          const orange = strandPoint(sample, 'orange');
-          const midX = (green.x + orange.x) / 2;
-          const midY = (green.y + orange.y) / 2;
-          rungs.push({
-            alpha: (state.isDarkMode ? 0.5 : 0.42) * reveal,
-            fromX: lerp(midX, green.x, reveal),
-            fromY: lerp(midY, green.y, reveal),
-            toX: lerp(midX, orange.x, reveal),
-            toY: lerp(midY, orange.y, reveal),
-          });
+
+          const sample = pointOnAxis(helix.axis, s);
+          const a = strandPoint(sample, 0);
+          const b = strandPoint(sample, 1);
+          const spread = Math.hypot(b.x - a.x, b.y - a.y) / (2 * amplitude);
+          const alpha = clamp01((spread - 0.3) / 0.3) * reveal;
+          if (alpha <= 0) {
+            continue;
+          }
+          const reach = RUNG_REACH * reveal;
+          ticks.push(
+            {
+              alpha,
+              fromX: a.x,
+              fromY: a.y,
+              toX: lerp(a.x, b.x, reach),
+              toY: lerp(a.y, b.y, reach),
+            },
+            {
+              alpha,
+              fromX: b.x,
+              fromY: b.y,
+              toX: lerp(b.x, a.x, reach),
+              toY: lerp(b.y, a.y, reach),
+            },
+          );
         }
       }
 
-      const strokeSegments = (segments: BackboneSegment[]) => {
+      const strokeLine = (line: { fromX: number; fromY: number; toX: number; toY: number }) => {
+        context.beginPath();
+        context.moveTo(line.fromX, line.fromY);
+        context.lineTo(line.toX, line.toY);
+        context.stroke();
+      };
+
+      // Cartoon drop shadow: the whole mark once more, offset, in one flat tone.
+      context.save();
+      context.translate(shadowOffset, shadowOffset);
+      context.strokeStyle = shadowColor;
+      context.globalAlpha = shadowAlpha;
+      for (const segment of farSegments) {
+        context.lineWidth = segment.width;
+        strokeLine(segment);
+      }
+      for (const segment of nearSegments) {
+        context.lineWidth = segment.width;
+        strokeLine(segment);
+      }
+      context.lineWidth = tickWidth;
+      for (const tick of ticks) {
+        strokeLine(tick);
+      }
+      context.restore();
+
+      const strokeSegments = (segments: StrandSegment[]) => {
+        segments.sort((left, right) => left.depth - right.depth);
         for (const segment of segments) {
           context.globalAlpha = segment.alpha;
           context.strokeStyle = segment.color;
           context.lineWidth = segment.width;
-          context.beginPath();
-          context.moveTo(segment.fromX, segment.fromY);
-          context.lineTo(segment.toX, segment.toY);
-          context.stroke();
+          strokeLine(segment);
         }
       };
 
-      farSegments.sort((left, right) => left.depth - right.depth);
       strokeSegments(farSegments);
 
       context.strokeStyle = neutral;
-      context.lineWidth = rungWidth;
-      for (const rung of rungs) {
-        context.globalAlpha = rung.alpha;
-        context.beginPath();
-        context.moveTo(rung.fromX, rung.fromY);
-        context.lineTo(rung.toX, rung.toY);
-        context.stroke();
+      context.lineWidth = tickWidth;
+      for (const tick of ticks) {
+        context.globalAlpha = tick.alpha * (state.isDarkMode ? 0.7 : 0.62);
+        strokeLine(tick);
       }
 
-      nearSegments.sort((left, right) => left.depth - right.depth);
       strokeSegments(nearSegments);
 
       if (leadGlows.length > 0) {
