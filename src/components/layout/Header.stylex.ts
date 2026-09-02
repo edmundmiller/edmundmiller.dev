@@ -20,7 +20,7 @@ export const styles = stylex.create({
     display: 'flex',
     paddingInlineStart: {
       default: 0,
-      [small]: '4.5rem',
+      [small]: '4rem',
     },
     position: 'relative',
     marginBottom: '7rem',
@@ -31,16 +31,16 @@ export const styles = stylex.create({
       default: 'inline-flex',
       [small]: 'inline-block',
     },
-    position: {
-      default: 'static',
-      [small]: 'relative',
-    },
   },
   identity: {
     display: 'flex',
     flexDirection: {
       default: 'row',
       [small]: 'column',
+    },
+    position: {
+      default: 'static',
+      [small]: 'relative',
     },
   },
   menuButton: {

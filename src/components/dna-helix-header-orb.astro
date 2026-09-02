@@ -1,5 +1,4 @@
 <dna-helix-header-orb aria-hidden="true">
-  <img src="/dna-helix-avatar.jpg" alt="" decoding="async" />
   <canvas aria-hidden="true"></canvas>
 </dna-helix-header-orb>
 
@@ -364,7 +363,6 @@
 
     connectedCallback() {
       this.buildStartedAt = performance.now() + BUILD_DELAY_MS;
-      this.dataset.enhanced = 'true';
       this.resizeObserver.observe(this);
       this.themeObserver.observe(document.documentElement, {
         attributeFilter: ['data-theme'],
@@ -433,8 +431,14 @@
       this.animationFrame = 0;
       const { context } = this;
       const state = this.frameState(time);
-      const size = Math.min(this.width, this.height);
-      const fitScale = (size * MARK_FILL) / Math.max(MARK_BOUNDS.width, MARK_BOUNDS.height);
+      // The box is roughly the mark's aspect; `size` is the square that would hold the mark
+      // at this fit, so stroke widths and the shadow keep scaling with the mark, not the box.
+      const maxExtent = Math.max(MARK_BOUNDS.width, MARK_BOUNDS.height);
+      const size = Math.min(
+        (this.width * maxExtent) / MARK_BOUNDS.width,
+        (this.height * maxExtent) / MARK_BOUNDS.height,
+      );
+      const fitScale = (size * MARK_FILL) / maxExtent;
       const scale = fitScale * lerp(0.94, 1, easeBuild(state.buildProgress));
       const amplitude = HELIX_AMPLITUDE * scale;
       const nearWidth = size * 0.038;
@@ -694,61 +698,35 @@
 </script>
 
 <style>
+  /* The box follows the mark's own proportions (about 0.68 wide per unit tall). */
   dna-helix-header-orb {
     position: relative;
     display: block;
-    width: 2.75rem;
+    width: 1.875rem;
     height: 2.75rem;
     flex: none;
     margin-inline-end: 0.75rem;
   }
 
-  img,
   canvas {
     position: absolute;
+    display: block;
     width: 100%;
     height: 100%;
     inset: 0;
   }
 
-  img {
-    object-fit: cover;
-    border-radius: 50%;
-    transition: opacity 150ms ease-out;
-  }
-
-  canvas {
-    display: block;
-    opacity: 0;
-    transition: opacity 150ms ease-out;
-  }
-
-  dna-helix-header-orb[data-enhanced='true'] img {
-    opacity: 0;
-  }
-
-  dna-helix-header-orb[data-enhanced='true'] canvas {
-    opacity: 1;
-  }
-
   @media (min-width: 640px) {
+    /* Hangs in the header's start padding: left edge on the content column, centered on
+       the name + nav block so it shares an axis with the controls on the right. */
     dna-helix-header-orb {
       position: absolute;
-      width: 4rem;
+      width: 2.75rem;
       height: 4rem;
-      inset-block-start: -0.75rem;
-      inset-inline-start: -4.5rem;
+      inset-block-start: 50%;
+      inset-inline-start: -4rem;
       margin-inline-end: 0;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    img {
-      transition: none;
-    }
-
-    canvas {
-      transition: none;
+      transform: translateY(-50%);
     }
   }
 </style>
