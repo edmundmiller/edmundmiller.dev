@@ -47,6 +47,8 @@
 
   type Helix = {
     axis: HelixAxis;
+    /** Arc length over which the strands peel apart from the axis at the start. */
+    forkRampIn: number;
     /** Side 0 is offset by +lens(sin theta); side 1 sits half a turn around. */
     sides: readonly [StrandPiece[], StrandPiece[]];
   };
@@ -68,9 +70,11 @@
   /** How far (arc length) the new strands trail the unwinding templates while building. */
   const SYNTHESIS_LAG = 0.14;
   /** Okazaki fragments are short and leave visible gaps. */
-  const FRAGMENT_LENGTH = 0.11;
-  const FRAGMENT_GAP = 0.05;
-  const FRAGMENT_LEAD_IN = 0.06;
+  const FRAGMENT_LENGTH = 0.16;
+  const FRAGMENT_GAP = 0.045;
+  const FRAGMENT_LEAD_IN = 0.09;
+  /** The leg's strands separate gradually from the fork instead of bulging out at once. */
+  const FORK_RAMP_IN = 0.16;
   /** Each fragment is laid down this much faster than the templates unwind. */
   const FRAGMENT_SPEED = 2.2;
 
@@ -109,6 +113,11 @@
 
   function lerp(from: number, to: number, amount: number) {
     return from + (to - from) * amount;
+  }
+
+  function smoothstep(value: number) {
+    const t = clamp01(value);
+    return t * t * (3 - 2 * t);
   }
 
   function bezierPoint(curve: Curve, t: number): Point {
@@ -243,6 +252,7 @@
 
   const MAIN_HELIX: Helix = {
     axis: MAIN_AXIS,
+    forkRampIn: 0,
     sides: [
       [{ color: 'green', from: 0, role: 'template', to: MAIN_AXIS.length }],
       [
@@ -253,6 +263,7 @@
   };
   const LEG_HELIX: Helix = {
     axis: LEG_AXIS,
+    forkRampIn: FORK_RAMP_IN,
     sides: [
       [{ color: 'orange', from: 0, role: 'template', to: LEG_AXIS.length }],
       okazakiFragments(LEG_AXIS.length),
@@ -433,7 +444,8 @@
       const farAlpha = state.isDarkMode ? 0.66 : 0.72;
       const shadowOffset = size * 0.035;
       const shadowColor = state.isDarkMode ? '#000000' : '#242526';
-      const shadowAlpha = state.isDarkMode ? 0.4 : 0.14;
+      // The cutout shadow only earns its place once the mark is big enough to carry it.
+      const shadowAlpha = (state.isDarkMode ? 0.4 : 0.14) * smoothstep((size - 40) / 48);
 
       const toCanvasX = (x: number) => this.width / 2 + (x - MARK_BOUNDS.centerX) * scale;
       const toCanvasY = (y: number) => this.height / 2 + (y - MARK_BOUNDS.centerY) * scale;
@@ -460,7 +472,9 @@
             state.twistPhase +
             side * Math.PI;
           const wave = Math.sin(theta);
-          const offset = Math.sign(wave) * Math.pow(Math.abs(wave), LENS_EXPONENT) * amplitude;
+          const ramp = helix.forkRampIn > 0 ? smoothstep(sample.s / helix.forkRampIn) : 1;
+          const offset =
+            Math.sign(wave) * Math.pow(Math.abs(wave), LENS_EXPONENT) * amplitude * ramp;
           return {
             depth: Math.cos(theta),
             x: toCanvasX(sample.x) + sample.normalX * offset,
