@@ -1,18 +1,26 @@
----
-purpose: Guide agents working across the edmundmiller.dev repository.
-applies_to: All repository files and workflows.
-entrypoint: Start with Work Intake, then use the task-specific section.
-verification: Run the relevant checks and verify br sync before handoff.
-update_when: Repository workflow, deployment, or verification changes.
----
-
 # Agent Instructions
 
 Personal Astro site deployed as a Cloudflare Worker with static assets.
 
-## Work Intake
+Complete the requested local work through a reviewable result, including resolving failures caused
+by the change. Publishing, pushing, merging, and deploying require user authorization; a local task
+or automation hook is not that authorization.
 
-Use `br`; [`.beads/issues.jsonl`](.beads/issues.jsonl) is the tracked source of truth. Never edit it directly.
+## Repository contracts
+
+- Commands and checks: `package.json`. `npm run build` validates Astro output, regenerates agent
+  content, and runs Pagefind via `postbuild`. Documentation-only edits need no site build.
+- Deployment: `wrangler.toml` and `src/worker.ts`.
+- First-party styling: [`docs/stylex.md`](docs/stylex.md), including the StyleX boundaries and check.
+- Posts: `src/content/post/`; schema and slug rules: `src/content.config.ts`.
+- Skills: `.agents/skills/`, shared via symlinks with `.pi/skills/` and `.opencode/skills/`.
+  `npm run skills:sync` imports `skills.sources.json` pins and applies `.agents/skills.patch`.
+  Include local skill edits in that patch; CI checks that syncing reproduces the tracked files.
+
+## Issue tracking
+
+Use `br` to update [`.beads/issues.jsonl`](.beads/issues.jsonl), the tracked issue source; direct edits
+bypass its database. For issue work:
 
 ```bash
 br ready
@@ -22,28 +30,20 @@ br close <id>
 br sync --flush-only
 ```
 
-## Authoritative Sources
-
-- Scripts and checks: `package.json`
-- Worker deployment: `wrangler.toml`
-- Issues: `.beads/issues.jsonl` via `br`
-- Styling: [`docs/stylex.md`](docs/stylex.md)
-
-## Verification
-
-Run checks matching the change. `npm run build` validates Astro output and regenerates agent content.
-
 ## Deployment
 
-`npm run deploy` runs the full build and Wrangler deployment. Before changing deploy behavior or deploying, verify live access and state:
+`npm run deploy` builds and deploys with Wrangler. Before changing deployment behavior or performing
+an authorized deployment, verify live access and state:
 
 ```bash
 npm exec -- wrangler whoami
 npm exec -- wrangler deployments list
 ```
 
-If Wrangler warns about missing unrelated OAuth scopes, do not treat that as a deploy blocker unless deploy/read commands fail.
+Unrelated missing OAuth-scope warnings are not blockers if the required read/deploy commands work.
 
 ## Codex Automation
 
-The project Stop hook flushes br and blocks once until task-scoped changes are committed and the branch is synchronized with its upstream. A forced continuation may stop normally so an irreconcilable condition cannot loop.
+The Stop hook flushes `br` and blocks on uncommitted work or an unsynchronized upstream. It permits
+a forced continuation to stop. For local-only work, report the unpushed commit rather than following
+the hook's push instruction; leave unrelated work intact.

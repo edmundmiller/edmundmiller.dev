@@ -83,6 +83,18 @@ try {
     cpSync(sourceSkill, stagedSkill, { recursive: true });
   }
 
+  // Apply repository guidance before replacing installed skills; upstream drift fails here.
+  execFileSync(
+    'git',
+    [
+      'apply',
+      '--directory',
+      relative(projectRoot, stagingDir),
+      join(projectRoot, '.agents/skills.patch'),
+    ],
+    { cwd: projectRoot, stdio: 'inherit' },
+  );
+
   for (const { name } of skills) {
     const destination = join(agentsDir, name);
     const stagedSkill = join(stagingDir, name);
