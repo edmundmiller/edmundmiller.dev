@@ -75,7 +75,7 @@
     "postcss-html": "1.8.1",
     "postcss-import": "16.1.1",
     "reading-time": "1.5.0",
-    "remark-unwrap-images": "4.0.1",
+    "remark-unwrap-images": "5.0.0",
     "typescript": "5.9.3"
   },
   "packageManager": "pnpm@11.8.0"
