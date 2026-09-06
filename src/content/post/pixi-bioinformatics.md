@@ -1,6 +1,6 @@
 ---
-title: 'Pixi for Bioinformatics: Bioconda on HPC and Local Machines'
-description: 'Set up Pixi with conda-forge and Bioconda on an HPC cluster or laptop, install Nextflow, define tasks, and import an existing environment.yml.'
+title: 'Pixi + Bioconda for bioinformatics (HPC and laptop)'
+description: 'Install Pixi with conda-forge and Bioconda, add Nextflow, define tasks, and import an existing environment.yml on a cluster or local machine.'
 draft: false
 publishDate: 2024-08-21
 tags: ['bioinformatics', 'python']
@@ -14,7 +14,7 @@ The space is ripe for disruption. There have been some exciting complete rewrite
 
 I recently started using [`Pixi`](https://pixi.sh/latest/) from [prefix.dev](https://prefix.dev/). It's been really nice. I want to forget about a package manager. Pixi let's me do that.
 
-# Pixi for Bioinformatics
+## Pixi for Bioinformatics
 
 ## Set up on a server/locally
 
