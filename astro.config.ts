@@ -43,8 +43,7 @@ export default defineConfig({
     expressiveCode(expressiveCodeOptions),
     icon(),
     sitemap({
-      filter: (page) =>
-        !page.includes('/admonitions-demo') && !page.includes('/places'),
+      filter: (page) => !page.includes('/admonitions-demo') && !page.includes('/places'),
     }),
     mdx(),
     react(),
