@@ -39,7 +39,16 @@ export default defineConfig({
       },
     }),
   },
-  integrations: [expressiveCode(expressiveCodeOptions), icon(), sitemap(), mdx(), react()],
+  integrations: [
+    expressiveCode(expressiveCodeOptions),
+    icon(),
+    sitemap({
+      filter: (page) =>
+        !page.includes('/admonitions-demo') && !page.includes('/places'),
+    }),
+    mdx(),
+    react(),
+  ],
   image: {
     domains: ['webmention.io'],
   },
