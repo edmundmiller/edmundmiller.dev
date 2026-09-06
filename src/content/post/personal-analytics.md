@@ -3,7 +3,7 @@ author: Edmund Miller
 publishDate: '2024-04-09'
 updatedDate: '2024-05-09'
 title: 'GoatCounter vs Umami (and Plausible, Fathom) for a personal site'
-description: 'Privacy-friendly personal-site analytics: GoatCounter vs Umami vs Plausible vs Fathom — self-hostable options without creepy tracking.
+description: 'Privacy-friendly personal-site analytics: GoatCounter vs Umami vs Plausible vs Fathom — self-hostable options without creepy tracking.'
 tags: ['blog']
 draft: false
 ---

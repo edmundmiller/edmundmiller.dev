@@ -2,7 +2,7 @@
 author: Edmund Miller
 publishDate: '2024-04-19'
 title: 'Doom Emacs for Astro: Tree-sitter, LSP, Apheleia, Tailwind'
-description: 'Astro in Doom Emacs with astro-ts-mode, Tree-sitter, lsp-mode, Apheleia + Prettier, and Tailwind CSS IntelliSense — without broken template formatting.
+description: 'Astro in Doom Emacs with astro-ts-mode, Tree-sitter, lsp-mode, Apheleia + Prettier, and Tailwind CSS IntelliSense — without broken template formatting.'
 tags: ['Emacs', 'webdev', 'Astro']
 draft: false
 ---
