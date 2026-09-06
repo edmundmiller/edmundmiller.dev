@@ -32,6 +32,7 @@ let description: string | undefined,
   updatedDate: Date | undefined,
   canonical: string | undefined,
   author: string | string[] | undefined,
+  robots: string | undefined,
   slug: string;
 
 if (post) {
@@ -44,6 +45,7 @@ if (post) {
   updatedDate = postData.updatedDate;
   canonical = postData.canonical;
   author = postData.author;
+  robots = undefined;
   slug = post.id;
 } else {
   // MDX page - get data from frontmatter
@@ -59,6 +61,7 @@ if (post) {
     : undefined;
   canonical = frontmatter.canonical;
   author = frontmatter.author;
+  robots = typeof frontmatter.robots === 'string' ? frontmatter.robots : undefined;
   const pathSegments = Astro.url.pathname.split('/').filter(Boolean);
   slug = pathSegments.length > 0 ? pathSegments.at(-1) || 'page' : 'page';
 }
@@ -81,6 +84,7 @@ const _meta = {
   ...(articleDate && { articleDate }),
   ...(canonical && { canonical }),
   ...(author && { author }),
+  ...(robots && { robots }),
 };
 
 const _shellStyle = stylex.attrs(styles.shell);

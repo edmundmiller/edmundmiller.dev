@@ -8,6 +8,7 @@ interface Props {
   frontmatter?: {
     title?: string;
     description?: string;
+    robots?: string;
   };
 }
 
@@ -15,6 +16,7 @@ const { frontmatter = {} } = Astro.props as Props;
 const _meta = {
   description: frontmatter.description ?? siteConfig.description,
   title: frontmatter.title ?? 'About',
+  ...(frontmatter.robots && { robots: frontmatter.robots }),
 };
 const _contentStyle = stylex.attrs(styles.content);
 const _proseStyle = stylex.attrs(styles.prose);
