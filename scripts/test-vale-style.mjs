@@ -5,10 +5,15 @@ import { spawnSync } from 'node:child_process';
 const root = resolve(import.meta.dirname, '..');
 const fixturesRoot = join(root, 'tests/vale');
 const vale = process.env.VALE ?? 'vale';
+const fixtureConfig = join(fixturesRoot, '.vale.ini');
 
 const version = spawnSync(vale, ['--version'], { encoding: 'utf8' });
 if (version.error || version.status !== 0) {
   throw new Error('Vale is not installed. Run `.agents/setup`.');
+}
+
+if (!existsSync(join(root, 'styles/WriteSimply/PlainWords.yml'))) {
+  throw new Error('WriteSimply is missing. Run `pnpm vale:sync` (or `.agents/setup`).');
 }
 
 if (!existsSync(fixturesRoot)) {
@@ -26,7 +31,7 @@ for (const rule of readdirSync(fixturesRoot).sort()) {
     const fixture = join(ruleRoot, testCase.fixture);
     const result = spawnSync(
       vale,
-      ['--no-global', `--config=${join(root, '.vale.ini')}`, '--output=JSON', '--no-exit', fixture],
+      ['--no-global', `--config=${fixtureConfig}`, '--output=JSON', '--no-exit', fixture],
       {
         cwd: root,
         encoding: 'utf8',
