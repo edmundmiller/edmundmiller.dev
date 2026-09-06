@@ -2,11 +2,11 @@
 
 The site lints Markdown and MDX posts with Vale 3.18 and four styles:
 
-| Style | Source | Pin |
-| --- | --- | --- |
-| WriteSimply | [edmundmiller/WriteSimply](https://github.com/edmundmiller/WriteSimply) `v1.0.0` zip | SHA-256 `4a6fc7a06c9ccdd33c6ec8e7070ff12e567ad8bc97b533c174b6245a12c3a5a2` |
-| LLMCliches | [edmundmiller/vale-llm-cliches](https://github.com/edmundmiller/vale-llm-cliches) | `d74b5d40421855c3a82352a3177226dae6d3a58f` |
-| STE, STEDescriptive | private ClearTechnical | `8c58de412b17ecb30a590d6982e11e91b0fea459` |
+| Style               | Source                                                                               | Pin                                                                        |
+| ------------------- | ------------------------------------------------------------------------------------ | -------------------------------------------------------------------------- |
+| WriteSimply         | [edmundmiller/WriteSimply](https://github.com/edmundmiller/WriteSimply) `v1.0.0` zip | SHA-256 `4a6fc7a06c9ccdd33c6ec8e7070ff12e567ad8bc97b533c174b6245a12c3a5a2` |
+| LLMCliches          | [edmundmiller/vale-llm-cliches](https://github.com/edmundmiller/vale-llm-cliches)    | `d74b5d40421855c3a82352a3177226dae6d3a58f`                                 |
+| STE, STEDescriptive | private ClearTechnical                                                               | `8c58de412b17ecb30a590d6982e11e91b0fea459`                                 |
 
 This follows the nascent-manuscript / mill-docs pattern: a sync script installs
 pinned styles; the generated trees are not committed.

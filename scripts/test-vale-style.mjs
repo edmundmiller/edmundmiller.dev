@@ -15,6 +15,9 @@ if (version.error || version.status !== 0) {
 if (!existsSync(join(root, 'styles/WriteSimply/PlainWords.yml'))) {
   throw new Error('WriteSimply is missing. Run `pnpm vale:sync` (or `.agents/setup`).');
 }
+if (!existsSync(join(root, 'styles/LLMCliches/AIVocabulary.yml'))) {
+  throw new Error('LLMCliches is missing. Run `pnpm vale:sync` (or `.agents/setup`).');
+}
 
 if (!existsSync(fixturesRoot)) {
   process.stdout.write('Vale test harness ready; no rule fixtures installed.\n');
