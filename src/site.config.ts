@@ -8,7 +8,7 @@ export const siteConfig: SiteConfig = {
   title: 'Edmund Miller',
   // Meta property used as the default description meta property
   description:
-    'Bioinformatics engineer and PhD candidate writing about Nextflow, nf-core, functional genomics, reproducible workflows, and software for data-intensive science.',
+    'Bioinformatics engineer at Seqera (nf-core core team). Writing about Nextflow, nf-core, functional genomics, reproducible workflows, and software for data-intensive science.',
   // HTML lang property, found in src/layouts/Base.astro L:18
   lang: 'en-US',
   // Meta property, found in src/components/BaseHead.astro L:42
