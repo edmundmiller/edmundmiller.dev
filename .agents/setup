@@ -43,6 +43,9 @@ export PATH="$node_dir/bin:$HOME/.local/bin:$PATH"
 step "Install pinned Vale"
 "$repo_root/scripts/install-vale.sh"
 
+step "Sync pinned Vale styles"
+SKIP_CLEAR_TECHNICAL=1 "$repo_root/scripts/sync_vale_styles.sh"
+
 step "Activate pnpm 11.8.0"
 corepack enable
 corepack prepare pnpm@11.8.0 --activate

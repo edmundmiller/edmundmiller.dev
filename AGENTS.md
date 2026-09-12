@@ -16,6 +16,11 @@ or automation hook is not that authorization.
 - Skills: `.agents/skills/`, shared via symlinks with `.pi/skills/` and `.opencode/skills/`.
   `npm run skills:sync` imports `skills.sources.json` pins and applies `.agents/skills.patch`.
   Include local skill edits in that patch; CI checks that syncing reproduces the tracked files.
+- Vale: [`.vale.ini`](.vale.ini) and [`scripts/sync_vale_styles.sh`](scripts/sync_vale_styles.sh).
+  Pins WriteSimply v1.0.0, LLMCliches, and private ClearTechnical (STE /
+  STEDescriptive). Generated trees under `styles/{WriteSimply,LLMCliches,STE,STEDescriptive}/`
+  are gitignored. Cloud/CI without ClearTechnical access must set
+  `SKIP_CLEAR_TECHNICAL=1`. See [`docs/vale.md`](docs/vale.md).
 
 ## Issue tracking
 
