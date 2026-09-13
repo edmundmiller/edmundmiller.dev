@@ -8,8 +8,9 @@ or automation hook is not that authorization.
 
 ## Repository contracts
 
-- Commands and checks: `package.json`. `npm run build` validates Astro output, regenerates agent
-  content, and runs Pagefind via `postbuild`. Documentation-only edits need no site build.
+- Tool versions and task entrypoints: `mise.toml`; underlying commands: `package.json`.
+- `npm run build` validates Astro output, regenerates agent content, and runs Pagefind via
+  `postbuild`. Documentation-only edits need no site build.
 - Deployment: `wrangler.toml` and `src/worker.ts`.
 - First-party styling: [`docs/stylex.md`](docs/stylex.md), including the StyleX boundaries and check.
 - Posts: `src/content/post/`; schema and slug rules: `src/content.config.ts`.

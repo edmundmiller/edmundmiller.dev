@@ -1,9 +1,13 @@
 # Personal Site
 
 ```bash
-bun install
-bun dev
+mise trust
+mise run setup
+mise run dev
 ```
+
+The repository's [`mise.toml`](mise.toml) pins Node, pnpm, and Vale. Run `mise tasks`
+to list the setup, lint, test, build, and local preview tasks.
 
 <div align="center">
   <img alt="Astro Cactus logo" src="https://github.com/chrismwilliams/astro-theme-cactus/assets/12715988/85aa0d3c-ef6a-44e2-954d-ef035b4f4315" width="70" />

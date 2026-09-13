@@ -1,0 +1,29 @@
+[tools]
+node = "24.17.0"
+pnpm = "11.8.0"
+vale = "3.18.0"
+
+[tasks.setup]
+description = "Install project dependencies"
+run = "pnpm install --frozen-lockfile"
+
+[tasks.dev]
+description = "Start the Astro development server"
+run = "pnpm dev"
+
+[tasks.lint]
+description = "Run formatting, code, StyleX, and type checks"
+run = ["pnpm format:check", "pnpm lint", "pnpm lint:stylex", "pnpm check"]
+
+[tasks.test]
+description = "Run automated tests"
+run = ["pnpm test:vale", "pnpm test:hooks"]
+
+[tasks.build]
+description = "Build the production site and search index"
+run = "pnpm build"
+
+[tasks.preview]
+description = "Build and preview the production site locally"
+depends = ["build"]
+run = "pnpm preview"
