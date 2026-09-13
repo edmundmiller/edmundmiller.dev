@@ -36,6 +36,12 @@ jobs:
           scripts/install-vale.sh
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
 
+      - name: Sync pinned Vale styles
+        run: |
+          SKIP_CLEAR_TECHNICAL=1 scripts/sync_vale_styles.sh
+          test -f styles/WriteSimply/PlainWords.yml
+          test -f styles/LLMCliches/AIVocabulary.yml
+
       - name: Check synchronized skills
         run: |
           corepack pnpm skills:sync

@@ -2,7 +2,7 @@
   {
     "fixture": "positive.md",
     "count": 14,
-    "messages": ["Use 'Use' instead of 'Utilize'.", "Use 'Most' instead of 'A majority of'."]
+    "messages": ["Use 'Use' instead of 'Utilize'.", "Use 'Most of' instead of 'A majority of'."]
   },
   { "fixture": "negative.md", "count": 0 },
   { "fixture": "code.md", "count": 0 },

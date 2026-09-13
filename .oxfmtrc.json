@@ -1,6 +1,14 @@
 {
   "$schema": "./node_modules/oxfmt/configuration_schema.json",
-  "ignorePatterns": [".agents/skills/**", ".beads/**", ".codex/**", "styles/WriteSimply/**"],
+  "ignorePatterns": [
+    ".agents/skills/**",
+    ".beads/**",
+    ".codex/**",
+    "styles/WriteSimply/**",
+    "styles/LLMCliches/**",
+    "styles/STE/**",
+    "styles/STEDescriptive/**"
+  ],
   "printWidth": 100,
   "semi": true,
   "singleQuote": true,

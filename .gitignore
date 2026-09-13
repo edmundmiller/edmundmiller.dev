@@ -37,3 +37,9 @@ pnpm-debug.log*
 
 # Amp orb portals
 .amp/portals/
+
+# Generated Vale styles (scripts/sync_vale_styles.sh)
+styles/WriteSimply/
+styles/LLMCliches/
+styles/STE/
+styles/STEDescriptive/

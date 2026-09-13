@@ -17,6 +17,7 @@
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
     "lint:stylex": "eslint \"src/**/*.stylex.{ts,tsx}\"",
+    "vale:sync": "bash scripts/sync_vale_styles.sh",
     "lint:prose": "vale --no-global --config=.vale.ini src/content/post/",
     "test:vale": "node scripts/test-vale-style.mjs",
     "test:hooks": "bash scripts/codex-closeout-hook.test.sh",
