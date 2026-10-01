@@ -58,7 +58,7 @@
     "@iconify-json/mdi": "1.2.3",
     "@pagefind/default-ui": "1.5.2",
     "@resvg/resvg-js": "2.6.2",
-    "@stylexjs/eslint-plugin": "0.19.0",
+    "@stylexjs/eslint-plugin": "0.19.1",
     "@stylexjs/unplugin": "0.19.0",
     "@types/d3-scale": "4.0.9",
     "@types/d3-shape": "3.1.8",
