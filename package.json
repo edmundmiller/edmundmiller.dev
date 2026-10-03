@@ -65,7 +65,7 @@
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
     "autoprefixer": "10.5.2",
-    "cf": "1.0.0-beta.5",
+    "cf": "1.0.0-beta.12",
     "eslint": "9.39.5",
     "mdast-util-to-string": "4.0.0",
     "mdx2vast": "0.3.1",
