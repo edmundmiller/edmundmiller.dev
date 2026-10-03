@@ -1,5 +1,7 @@
 ---
 import * as stylex from '@stylexjs/stylex';
+import { Image } from 'astro:assets';
+import sequenceLandscape from '@/assets/illustrations/sequence-landscape.webp';
 import { getAllPosts, sortMDByDate } from '@/data/post';
 import PageLayout from '@/layouts/base.astro';
 import SocialList from '@/components/social-list.astro';
@@ -63,6 +65,13 @@ const openringSpacingStyle = stylex.attrs(styles.openringSpacing);
     </p>
     <SocialList />
   </section>
+  <Image
+    src={sequenceLandscape}
+    alt="Colorful genomic reads and coverage peaks becoming Texas hills and a limestone creek."
+    widths={[400, 768, 1254]}
+    sizes="(min-width: 768px) 704px, calc(100vw - 64px)"
+    {...stylex.attrs(styles.illustration)}
+  />
   <section aria-labelledby="start-here" class={startHereStyle.class} style={startHereStyle.style}>
     <h2 class={sectionTitleStyle.class} id="start-here" style={sectionTitleStyle.style}>Start here</h2>
     <p class={startHereDescriptionStyle.class} style={startHereDescriptionStyle.style}>

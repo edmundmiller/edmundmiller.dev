@@ -4,9 +4,19 @@ description: 'About Edmund Miller, Bioinformatics Engineer at Seqera and nf-core
 title: 'About'
 ---
 
+import { Image } from 'astro:assets';
+import afterHours from '@/assets/illustrations/after-hours.webp';
+
 # About Edmund Miller
 
 Edmund Miller is a Bioinformatics Engineer at Seqera and a member of the nf-core core team. He earned a Ph.D. in Molecular and Cell Biology (functional genomics) at the University of Texas at Dallas, where his research focused on nascent transcript identification and regulatory regions of the genome at scale. Since joining nf-core in 2020, he's worked across testing, subworkflows, and pipelines. After becoming a maintainer in 2022, his focus has been nascent, methylseq, and demultiplex.
+
+<Image
+  src={afterHours}
+  alt="An illustrated research desk with colorful genomic tracks on a monitor, an open notebook, plants, and a warm desk lamp."
+  widths={[400, 768, 1254]}
+  sizes="(min-width: 768px) 704px, calc(100vw - 64px)"
+/>
 
 ## FAQ
 

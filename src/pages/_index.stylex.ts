@@ -18,6 +18,12 @@ export const styles = stylex.create({
   introductionClosing: {
     marginBottom: '1.5rem',
   },
+  illustration: {
+    display: 'block',
+    marginBlockStart: '3rem',
+    height: 'auto',
+    width: '100%',
+  },
   startHere: {
     padding: '1.5rem',
     borderColor: 'hsl(var(--theme-accent) / 0.3)',

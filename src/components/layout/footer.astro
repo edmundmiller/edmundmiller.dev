@@ -1,5 +1,7 @@
 ---
 import * as stylex from '@stylexjs/stylex';
+import { Image } from 'astro:assets';
+import fieldNotes from '@/assets/illustrations/field-notes.webp';
 import { siteConfig, menuLinks } from '@/site-config';
 import { styles } from './footer.stylex';
 
@@ -13,6 +15,14 @@ const navigationLinkStyle = stylex.attrs(styles.navigationLink);
 ---
 
 <footer class={footerStyle.class} style={footerStyle.style}>
+  <Image
+    src={fieldNotes}
+    alt=""
+    widths={[400, 768, 1254]}
+    sizes="(min-width: 768px) 704px, calc(100vw - 64px)"
+    loading="lazy"
+    {...stylex.attrs(styles.illustration)}
+  />
   <div class={copyrightStyle.class} style={copyrightStyle.style}>
     &copy; {siteConfig.author}
     {_year}.<span class={creditStyle.class} style={creditStyle.style}>&nbsp;🚀&nbsp;Astro Cactus</span>

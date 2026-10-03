@@ -16,6 +16,7 @@ export const styles = stylex.create({
       default: 'column',
       [small]: 'row',
     },
+    flexWrap: 'wrap',
     fontSize: {
       default: '1rem',
       [small]: '0.75rem',
@@ -31,10 +32,15 @@ export const styles = stylex.create({
     },
     paddingBlockEnd: '1rem',
     paddingBlockStart: '5rem',
-    rowGap: '0.5rem',
+    rowGap: '1.5rem',
     textAlign: 'center',
     verticalAlign: 'top',
     marginTop: 'auto',
+    width: '100%',
+  },
+  illustration: {
+    display: 'block',
+    height: 'auto',
     width: '100%',
   },
   copyright: {
