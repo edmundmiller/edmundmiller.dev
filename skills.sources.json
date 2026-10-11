@@ -3,25 +3,25 @@
     {
       "name": "agent-browser",
       "source": "https://github.com/vercel-labs/agent-browser",
-      "ref": "83e415154c6b846a224cd9458765da006fc1e578",
+      "ref": "d9570915f4dd6504dee4070379d2c4f79d81dbb2",
       "path": "skills/agent-browser"
     },
     {
       "name": "web-design-guidelines",
       "source": "https://github.com/vercel-labs/agent-skills",
-      "ref": "fb0282c76b8bbd709e1a5dadb32bb4aa463cdd9b",
+      "ref": "063bee94c3f4df8453406c830b0a7df0f2860278",
       "path": "skills/web-design-guidelines"
     },
     {
       "name": "frontend-design",
       "source": "https://github.com/anthropics/skills",
-      "ref": "1f630fdf9259cec4a14913127dfd7c3b69ef72eb",
+      "ref": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
       "path": "skills/frontend-design"
     },
     {
       "name": "prototype",
       "source": "https://github.com/mattpocock/skills",
-      "ref": "ed37663cc5fbef691ddfecd080dff42f7e7e350d",
+      "ref": "49dd158d1076134a641b33efb035946536778336",
       "path": "skills/engineering/prototype"
     }
   ]
