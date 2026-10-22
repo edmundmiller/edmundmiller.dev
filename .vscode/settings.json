@@ -3,16 +3,5 @@
   "[markdown]": {
     "editor.wordWrap": "on"
   },
-  "prettier.documentSelectors": ["**/*.astro"],
-  "eslint.probe": [
-    "astro",
-    "javascript",
-    "javascriptreact",
-    "markdown",
-    "typescript",
-    "typescriptreact"
-  ],
-  "[astro]": {
-    "editor.defaultFormatter": "astro-build.astro-vscode"
-  }
+  "eslint.probe": ["javascript", "typescript"]
 }

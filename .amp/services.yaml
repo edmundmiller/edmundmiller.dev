@@ -4,4 +4,4 @@ services:
     health: /
     portal:
       title: edmundmiller.dev
-      description: Astro development server
+      description: Foldkit development server

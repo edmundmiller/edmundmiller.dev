@@ -8,7 +8,7 @@ description = "Install project dependencies"
 run = "pnpm install --frozen-lockfile"
 
 [tasks.dev]
-description = "Start the Astro development server"
+description = "Start the Foldkit development server"
 run = "pnpm dev"
 
 [tasks.lint]
@@ -17,7 +17,7 @@ run = ["pnpm format:check", "pnpm lint", "pnpm lint:stylex", "pnpm check"]
 
 [tasks.test]
 description = "Run automated tests"
-run = ["pnpm test:vale", "pnpm test:hooks"]
+run = ["pnpm test:vale", "pnpm test:hooks", "pnpm test:content", "pnpm build", "pnpm test:site"]
 
 [tasks.build]
 description = "Build the production site and search index"
