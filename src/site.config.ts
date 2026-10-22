@@ -1,17 +1,13 @@
-import type { AstroExpressiveCodeOptions } from 'astro-expressive-code';
-import type { SiteConfig } from '@/types';
+import type { RehypeExpressiveCodeOptions } from 'rehype-expressive-code';
+import type { SiteConfig } from './types.ts';
 
 export const siteConfig: SiteConfig = {
-  // Used as both a meta property (src/components/BaseHead.astro L:31 + L:49) & the generated satori png (src/pages/og-image/[slug].png.ts)
   author: 'Edmund Miller',
-  // Meta property used to construct the meta title property, found in src/components/BaseHead.astro L:11
   title: 'Edmund Miller',
   // Meta property used as the default description meta property
   description:
     'Bioinformatics engineer at Seqera (nf-core core team). Writing about Nextflow, nf-core, functional genomics, reproducible workflows, and software for data-intensive science.',
-  // HTML lang property, found in src/layouts/Base.astro L:18
   lang: 'en-US',
-  // Meta property, found in src/components/BaseHead.astro L:42
   ogLocale: 'en_US',
   // Date.prototype.toLocaleDateString() parameters, found in src/utils/date.ts.
   date: {
@@ -48,7 +44,7 @@ export const menuLinks: Array<{ title: string; path: string }> = [
 ];
 
 // https://expressive-code.com/reference/configuration/
-export const expressiveCodeOptions: AstroExpressiveCodeOptions = {
+export const expressiveCodeOptions: RehypeExpressiveCodeOptions = {
   // One dark, one light theme => https://expressive-code.com/guides/themes/#available-themes
   themes: ['dracula', 'github-light'],
   themeCssSelector(theme, { styleVariants }) {

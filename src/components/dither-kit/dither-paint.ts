@@ -1,5 +1,6 @@
-import type { AreaVariant } from './chart-context';
 import { rgb, type Seed } from './palette';
+
+export type AreaVariant = 'gradient' | 'dotted' | 'hatched' | 'solid';
 
 // 4×4 ordered (Bayer) matrix, normalized to 0–1 thresholds — the exact matrix
 // the legacy chart dithers with.

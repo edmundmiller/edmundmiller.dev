@@ -2,6 +2,10 @@
 dist/
 .output/
 .data/
+test-results/
+playwright-report/
+src/generated/
+public/generated/
 
 # dependencies
 node_modules/

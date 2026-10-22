@@ -51,10 +51,18 @@ jobs:
       - name: Test Vale style
         run: corepack pnpm test:vale
 
-        # use astro check for issues
       - name: Run check
-        run: corepack pnpm astro check
+        run: corepack pnpm check
+
+      - name: Test content compiler
+        run: corepack pnpm test:content
 
         # ensure build works
       - name: Run build
         run: corepack pnpm build
+
+      - name: Install test browser
+        run: corepack pnpm exec playwright install --with-deps chromium
+
+      - name: Test production site
+        run: corepack pnpm test:site

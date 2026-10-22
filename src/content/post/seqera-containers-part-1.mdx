@@ -16,11 +16,6 @@ embedHeaderImage: false
 draft: false
 ---
 
-import { YouTube } from '@astro-community/astro-embed-youtube';
-
-import { Image } from 'astro:assets';
-import Admonition from '../../components/admonition.astro';
-
 ## Introduction
 
 Dear nf-core community, the core team would like to inform you about some upcoming changes in how we would like to handle software containers... :package:
@@ -37,8 +32,6 @@ The Bioconda and BioContainer projects have been invaluable to nf-core's success
 We're hugely grateful to all contributors for their work, as well as to Anaconda, Quay.io and the Galaxy project for hosting these resources.
 
 ## Change is on the breeze
-
-{/* <Image class="d-block w-25 float-end mb-3 ms-3 rounded shadow" src={butwhy} alt="Photo by Simone Secci on Unsplash." /> */}
 
 Bioconda and BioContainers have worked very well for nf-core.
 However, we are now looking to migrate to a new system: Seqera Containers.
@@ -57,7 +50,7 @@ The motivation comes down to a few key reasons:
 
 With the new Seqera Containers setup we should be able to address these problems, as well as provide the additional features.
 
-<Admonition type="tip" title="What's changing">
+:::::::tip{title="What's changing"}
 A detailed description of the proposed mechanism will come in part 2 of this blog post.
 Here are the key points:
 
@@ -68,11 +61,9 @@ Here are the key points:
 - Software releases will be automatically bumped in modules, using [Renovate](https://renovatebot.com/)
 - There should be almost no change in how end-users run nf-core pipelines
 
-{''}
+:::::::
 
-</Admonition>
-
-<Admonition type="info" title="Timeline" collapsible>
+:::::::info{title="Timeline" collapsible="true"}
 
 This move has been in the works for over a year now.
 It started with discussions between nf-core maintainers and Seqera developers about what the community needed.
@@ -99,7 +90,7 @@ It's not too late to add your feedback! So if you have any questions or ideas, l
 
 Note that images from Seqera Containers can already be used in nf-core/modules, with the old syntax of using a `container` declaration (see [example](https://github.com/nf-core/modules/blob/b6b54f3929b0ba4a7c02a49191308ce1d8351f0d/modules/nf-core/bedtools/genomecov/main.nf#L6-L8)).
 
-</Admonition>
+:::::::
 
 ## BioContainers and Seqera Containers
 
@@ -107,8 +98,6 @@ Nearly all nf-core modules are bundled with a conda `environment.yml`, listing s
 The [BioContainers project](https://biocontainers.pro/) conveniently builds Docker and Singularity images for all tools on Bioconda automatically, hosting the images publicly on [quay.io](quay.io) and the Galaxy FTP servers, respectively.
 This means that the nf-core module developer can find the matching [BioContainer](https://biocontainers.pro/) images for their Bioconda package, and then add the image URLs into the module's `main.nf` script (see [FastQC example](https://github.com/nf-core/modules/blob/f768b283dbd8fc79d0d92b0f68665d7bed94cabc/modules/nf-core/fastqc/main.nf#L6-L8)).
 The nf-core pipeline user then pulls the container images from quay.io or the Galaxy FTP server when they run the pipeline.
-
-{/* <YouTube id="https://www.youtube.com/watch?v=SE6ZCvh1ThQ" poster="http://i3.ytimg.com/vi/SE6ZCvh1ThQ/hqdefault.jpg" class="d-block w-50 float-end mb-3 ms-3 rounded shadow" /> */}
 
 [Seqera Containers](https://seqera.io/containers/) was launched in spring 2024
 (see [Nextflow Summit talk](https://summit.nextflow.io/2024/boston/agenda/05-23--whats-new-in-the-nextflow/),
@@ -131,7 +120,7 @@ Building on-demand gives greater flexibility and scalability, especially for mul
 nf-core pipeline users won't need to interact with Wave directly.
 We simply plan to replace the mechanism for supplying the default container images specified in pipelines.
 
-<Admonition type="info" title="Feature comparison">
+:::::::info{title="Feature comparison"}
 
 It's important to distinguish the differences between Wave and Seqera Containers.
 Here's a brief comparison of the features:
@@ -250,13 +239,11 @@ Here's a brief comparison of the features:
   the time of their creation. BioContainers has no public policy.
 </small>
 
-</Admonition>
+:::::::
 
 ### Mulled (multi-package) images
 
 <div class="clearfix">
-
-{/* <Image class="d-block w-25 clearfix float-end mb-3 ms-3 rounded shadow" src={mulled} alt="Photo by Hannah Pemberton on Unsplash." /> */}
 
 BioContainers is primarily set up to have a 1:1 relationship with Bioconda.
 This is great for bioinformatics tools as an image is created every time a package is published.
@@ -268,7 +255,7 @@ Unfortunately, generating mulled containers is not trivial.
 
 </div>
 
-<Admonition type="tip" title="How to make a mulled BioContainer">
+:::::::tip{title="How to make a mulled BioContainer"}
 Luke Pembleton, Nextflow Ambassador, has a great blog post summarising the dark art of
 [Finding the right mulled biocontainer](https://lpembleton.rbind.io/posts/mulled-biocontainers/).
 Galaxy also has [documentation on the topic](https://docs.galaxyproject.org/en/master/admin/container_resolvers.html).
@@ -287,7 +274,7 @@ the process of finding the name of your container and how to update a container 
 Once the image is built and you know its address, the final step is to go to nf-core/modules,
 create a pull-request with the updated containers, and bump the versions in the conda `environment.yml`.
 
-</Admonition>
+:::::::
 
 This system works and, despite its complexity, is now a familiar process to many nf-core developers.
 However, it does present some problems.
@@ -336,8 +323,6 @@ All Seqera Container images (Docker and Singularity) are hosted on custom infras
 
 ## Key features
 
-{/* <Image class="d-block w-25 float-end mb-3 ms-3 rounded shadow" src={disks} alt="Photo by Behnam Norouzi on Unsplash." /> */}
-
 ### Exceptionally reproducible
 
 Seqera container images are hosted on long-term infrastructure and because their URLs will be hardcoded into pipeline configuration, they should be highly reproducible.
@@ -380,17 +365,15 @@ We can use this to retrieve build details, which we will add to the nf-core webs
 - Conda lock files with full package URLs and md5sums for entire dependency resolution
 - For Docker images: Trivy security scan and software bill of materials (SBOM)
 
-<Admonition type="info" title="Example Wave build details page" collapsible>
+:::::::info{title="Example Wave build details page" collapsible="true"}
 
 We haven't built this yet, but here's what the Wave build details page looks like, which has the same information:
-
-{/* <Image class="d-block float-end mb-3 ms-3 rounded shadow" src={wave_logs} alt="Screenshot of a Wave container build details page." /> */}
 
 Wave build details page for the MultiQC v1.24.1 image: `community.wave.seqera.io/library/multiqc:1.24.1--789bc3917c8666da`
 
 The final part is the hash - from this we can infer the Wave Build ID and retrieve the build details: [Wave build details for 789bc3917c8666da_1](https://wave.seqera.io/view/builds/789bc3917c8666da_1)
 
-</Admonition>
+:::::::
 
 The new conda lock files also allow enhanced reproducibility for Conda users and more stable CI tests - we'll come back to these in a future blog post / bytesize.
 
@@ -443,5 +426,3 @@ In part-two of this blog post we will dive into the details of how we intend to 
 ## In conclusion
 
 We hope that the nf-core community is excited about these proposals, if you have any questions or concerns then please let us know in the nf-core Slack ❤️
-
-{/* <Image class="d-block w-100 float-end mb-3 ms-3 rounded shadow" src={leaves} alt="Photo by Providence Doucet on Unsplash." /> */}

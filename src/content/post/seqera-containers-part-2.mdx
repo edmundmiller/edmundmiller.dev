@@ -16,10 +16,6 @@ embedHeaderImage: false
 draft: false
 ---
 
-import { Image } from 'astro:assets';
-import { YouTube } from '@astro-community/astro-embed-youtube';
-import Admonition from '../../components/admonition.astro';
-
 # Introduction
 
 In nf-core, we've been excited to adopt [Wave](https://seqera.io/wave/) to automate software container builds, and have been
@@ -33,7 +29,7 @@ You don't need to know or understand any of this as an end-user of nf-core pipel
 or even as a contributor to nf-core modules, but we thought it would be interesting to share the details.
 It's mostly to serve as an architectural plan for the nf-core maintainers and infrastructure teams.
 
-<Admonition type="tip" title="Too Long; Didn't Read">
+:::::::tip{title="Too Long; Didn't Read"}
 
 - Module contributors edit `environment.yml` files to update software dependencies
 - Containers are automatically build for Docker + Singularity, `linux/amd64` + `linux/arm64`
@@ -42,7 +38,7 @@ It's mostly to serve as an architectural plan for the nf-core maintainers and in
 - Pipelines auto-generate Nextflow config files when modules are updated
 - Pipeline usage remains basically unchanged
 
-</Admonition>
+:::::::
 
 # The end goal
 
@@ -136,10 +132,7 @@ would prefer to fetch images using the newer `oras` protocol.
 If you'd like to know more, check out the amazing [bytesize talk](https://nf-co.re/events/2024/bytesize_singularity_containers_hpc)
 by Marco Claudio De La Pierre ([@marcodelapierre](https://github.com/marcodelapierre/)) from June 2024:
 
-<YouTube
-  id="https://www.youtube.com/watch?v=zoCC_dkhjD0"
-  poster="http://i3.ytimg.com/vi/zoCC_dkhjD0/hqdefault.jpg"
-/>
+::youtube{id="zoCC_dkhjD0" title="Singularity containers on HPC"}
 
 ## Modules
 
@@ -147,10 +140,10 @@ All nf-core pipelines use a single container per process, and the majority of pr
 encapsulated within shared modules in the [nf-core/modules](https://github.com/nf-core/modules) repository.
 As such, we must start with containers at the module level.
 
-<Admonition type="tip">
-  For the latest discussion and progress on _bulk-updating_ existing nf-core modules, see GitHub
-  issue [nf-core/modules#6698](https://github.com/nf-core/modules/issues/6698).
-</Admonition>
+:::::::tip
+For the latest discussion and progress on _bulk-updating_ existing nf-core modules, see GitHub
+issue [nf-core/modules#6698](https://github.com/nf-core/modules/issues/6698).
+:::::::
 
 ### Changes to `main.nf`
 
@@ -278,14 +271,14 @@ they will import the exact same config files as the `singularity` and `conda` pr
 
 Here's roughly how the `nextflow.config` file with the `-profile` config includes will look:
 
-<Admonition type="info" title="nextflow.config" collapsible>
+:::::::info{title="nextflow.config" collapsible="true"}
 
-<Admonition type="note">
-  Boilerplate code (eg. disabling other container engines) has been removed from this blog post code
-  snippet for clarity. It will still be included in the pipelines. We may move this whole code block
-  into it's own separate config file with `includeConfig` so that the main `nextflow.config` file is
-  easier to read.
-</Admonition>
+::::::note
+Boilerplate code (eg. disabling other container engines) has been removed from this blog post code
+snippet for clarity. It will still be included in the pipelines. We may move this whole code block
+into it's own separate config file with `includeConfig` so that the main `nextflow.config` file is
+easier to read.
+::::::
 
 ```groovy title="nextflow.config"
 // Set container for docker amd64 by default
@@ -365,7 +358,7 @@ apptainer.registry   = 'oras://community.wave.seqera.io/library'
 singularity.registry = 'oras://community.wave.seqera.io/library'
 ```
 
-</Admonition>
+:::::::
 
 Note that there are a few changes here:
 
@@ -389,10 +382,10 @@ We have linting bots, template updates, slack workflows, pipeline announcements.
 
 In these sections, we'll cover _how_ we're going to build all of these shiny new things without manual intervention.
 
-<Admonition type="tip">
-  For the latest updates on modules container automation, see
-  [nf-core/modules#6694](https://github.com/nf-core/modules/issues/6694).
-</Admonition>
+:::::::tip
+For the latest updates on modules container automation, see
+[nf-core/modules#6694](https://github.com/nf-core/modules/issues/6694).
+:::::::
 
 ## Updating conda packages
 
@@ -474,13 +467,13 @@ Then PR reviewers will see failing tests and need to manually update the snapsho
 This means that we can automatically commit the updated snapshot file in the PR if
 the tool output is unchanged, saving the developer from taking this extra step.
 
-<Admonition type="tip">
+:::::::tip
 
 Note that in the above example, the versions are in the snapshot in plain text,
 not using an md5 hash. This is a change that we will roll out for all modules,
 as it makes verification in the PR much easier.
 
-</Admonition>
+:::::::
 
 ## Automatic version bumps with Renovate
 
@@ -556,7 +549,7 @@ We need to match this against the values that we find in the module `meta.yml` f
 This is why we duplicate the default docker container in both `main.nf` and `meta.yml` files -
 it allows us to link the module to the pipeline.
 
-<Admonition type="warning">
+:::::::warning
 
 Currently, `nextflow inspect` works by executing a dry-run of the pipeline.
 We can run using `-profile test`, but any processes that are skipped due to pipeline logic
@@ -566,14 +559,14 @@ This is a known limitation and we are currently working hard with the Nextflow t
 which will return all processes, regardless of whether they are skipped or not.
 This will be a requirement for progression with the Seqera Containers migration.
 
-</Admonition>
+:::::::
 
-<Admonition type="note">
+:::::::note
 
 This process of copying files and using string substituion is a bit of a hack.
 If you have any ideas on how to improve this, please let us know!
 
-</Admonition>
+:::::::
 
 ## Edge cases and local modules
 
@@ -627,8 +620,6 @@ and as a roadmap for developers.
 
 There are many pieces of work that must come together for its completion,
 including but not limited to:
-
-{/* TODO: Am I missing any? */}
 
 - Nextflow
   - Improve `nextflow inspect` to return all processes

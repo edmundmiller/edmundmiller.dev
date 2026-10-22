@@ -39,6 +39,12 @@ html {
   scroll-behavior: smooth;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
 body {
   display: flex;
   min-height: 100vh;

@@ -1,0 +1,695 @@
+/**
+ * A DNA replication fork drawn as a lambda, in the cartoon style of the original mark.
+ *
+ * The parental duplex runs from the top of the lambda to the junction. There the two
+ * template strands unwind: green continues down the right leg and gets a continuous new
+ * (leading) strand, orange takes the left leg and gets its new (lagging) strand as short
+ * Okazaki fragments with gaps between them. Building the mark replays that: templates
+ * unwind first, new strands are synthesized a little behind them.
+ *
+ * Geometry lives in "mark units": the lambda is about 1 unit tall. Each helix axis is a
+ * Bézier curve resampled at even arc length; every sample carries its arc length and unit
+ * normal so the two strands can be offset by ±lens(sin theta) and depth-sorted by cos(theta).
+ */
+type AxisSample = {
+  normalX: number;
+  normalY: number;
+  s: number;
+  x: number;
+  y: number;
+};
+
+type HelixAxis = {
+  /** Arc length along the overall build path at which this helix begins drawing. */
+  buildOffset: number;
+  length: number;
+  /** Twist angle at s = 0 so a branch stays continuous with its parent at the junction. */
+  phaseOffset: number;
+  samples: AxisSample[];
+};
+
+type StrandColor = 'green' | 'orange';
+type StrandRole = 'template' | 'leading' | 'lagging';
+
+/** A run of one strand along an axis, from arc length `from` to `to`. */
+type StrandPiece = {
+  color: StrandColor;
+  from: number;
+  role: StrandRole;
+  to: number;
+};
+
+type Helix = {
+  axis: HelixAxis;
+  /** Arc length over which the strands peel apart from the axis at the start. */
+  forkRampIn: number;
+  /** Side 0 is offset by +lens(sin theta); side 1 sits half a turn around. */
+  sides: readonly [StrandPiece[], StrandPiece[]];
+};
+
+const STRAND_COLORS: Record<StrandColor, string> = {
+  green: '#53c68c',
+  orange: '#ff5d01',
+};
+
+const AXIS_STEP = 0.012;
+const HELIX_AMPLITUDE = 0.08;
+const HELIX_PERIOD = 0.3;
+/** Below 1 fattens each half-turn into a lens and sharpens the pinch at crossings. */
+const LENS_EXPONENT = 0.8;
+const RUNGS_PER_TWIST = 5;
+/** Base-pair ticks reach this far from each strand toward the middle. */
+const RUNG_REACH = 0.36;
+
+/** How far (arc length) the new strands trail the unwinding templates while building. */
+const SYNTHESIS_LAG = 0.14;
+/** Okazaki fragments are short and leave visible gaps. */
+const FRAGMENT_LENGTH = 0.16;
+const FRAGMENT_GAP = 0.045;
+const FRAGMENT_LEAD_IN = 0.09;
+/** The leg's strands separate gradually from the fork instead of bulging out at once. */
+const FORK_RAMP_IN = 0.16;
+/** Each fragment is laid down this much faster than the templates unwind. */
+const FRAGMENT_SPEED = 2.2;
+
+const BUILD_DELAY_MS = 180;
+const BUILD_MS = 2600;
+const REPLAY_COOLDOWN_MS = 900;
+const ROTATION_PERIOD_MS = 10000;
+const SHIMMER_INTERVAL_MS = 6000;
+const SHIMMER_SWEEP_MS = 1400;
+
+type Point = { x: number; y: number };
+/** Cubic Bézier control points. */
+type Curve = readonly [Point, Point, Point, Point];
+
+/** The main stroke: nearly straight, with a gentle flare to the right at the foot. */
+const MAIN_CURVE: Curve = [
+  { x: 0.18, y: 0.02 },
+  { x: 0.27, y: 0.32 },
+  { x: 0.42, y: 0.6 },
+  { x: 0.66, y: 0.98 },
+];
+/** Two full twists down the main stroke, where both strands cross the axis. */
+const JUNCTION_S = HELIX_PERIOD * 2;
+/** The leg leaves the junction and runs down to the lower left with a slight bow. */
+const LEG_CONTROL_OFFSETS: readonly [Point, Point, Point] = [
+  { x: -0.09, y: 0.13 },
+  { x: -0.2, y: 0.27 },
+  { x: -0.31, y: 0.42 },
+];
+/** Fraction of the element the finished mark should fill along its longer side. */
+const MARK_FILL = 0.86;
+
+function clamp01(value: number) {
+  return Math.min(1, Math.max(0, value));
+}
+
+function lerp(from: number, to: number, amount: number) {
+  return from + (to - from) * amount;
+}
+
+function smoothstep(value: number) {
+  const t = clamp01(value);
+  return t * t * (3 - 2 * t);
+}
+
+function bezierPoint(curve: Curve, t: number): Point {
+  const inverse = 1 - t;
+  const a = inverse * inverse * inverse;
+  const b = 3 * inverse * inverse * t;
+  const c = 3 * inverse * t * t;
+  const d = t * t * t;
+  return {
+    x: a * curve[0].x + b * curve[1].x + c * curve[2].x + d * curve[3].x,
+    y: a * curve[0].y + b * curve[1].y + c * curve[2].y + d * curve[3].y,
+  };
+}
+
+function bezierTangent(curve: Curve, t: number): Point {
+  const inverse = 1 - t;
+  const a = 3 * inverse * inverse;
+  const b = 6 * inverse * t;
+  const c = 3 * t * t;
+  return {
+    x:
+      a * (curve[1].x - curve[0].x) + b * (curve[2].x - curve[1].x) + c * (curve[3].x - curve[2].x),
+    y:
+      a * (curve[1].y - curve[0].y) + b * (curve[2].y - curve[1].y) + c * (curve[3].y - curve[2].y),
+  };
+}
+
+/** Samples a curve at even arc-length steps so twist and rung spacing stay uniform. */
+function buildAxis(curve: Curve, buildOffset: number, phaseOffset: number): HelixAxis {
+  const FINE_STEPS = 400;
+  const finePoints: Array<Point & { s: number; t: number }> = [];
+  let length = 0;
+  let previous = bezierPoint(curve, 0);
+  finePoints.push({ ...previous, s: 0, t: 0 });
+  for (let index = 1; index <= FINE_STEPS; index += 1) {
+    const t = index / FINE_STEPS;
+    const point = bezierPoint(curve, t);
+    length += Math.hypot(point.x - previous.x, point.y - previous.y);
+    finePoints.push({ ...point, s: length, t });
+    previous = point;
+  }
+
+  const samples: AxisSample[] = [];
+  let fineIndex = 0;
+  for (let s = 0; s <= length + AXIS_STEP / 2; s += AXIS_STEP) {
+    const clampedS = Math.min(s, length);
+    while (fineIndex < finePoints.length - 2 && finePoints[fineIndex + 1]!.s < clampedS) {
+      fineIndex += 1;
+    }
+    const from = finePoints[fineIndex]!;
+    const to = finePoints[fineIndex + 1]!;
+    const span = to.s - from.s || 1;
+    const mix = clamp01((clampedS - from.s) / span);
+    const t = lerp(from.t, to.t, mix);
+    const tangent = bezierTangent(curve, t);
+    const tangentLength = Math.hypot(tangent.x, tangent.y) || 1;
+    samples.push({
+      normalX: -tangent.y / tangentLength,
+      normalY: tangent.x / tangentLength,
+      s: clampedS,
+      x: lerp(from.x, to.x, mix),
+      y: lerp(from.y, to.y, mix),
+    });
+  }
+
+  return { buildOffset, length, phaseOffset, samples };
+}
+
+/** Interpolates position and normal between the two evenly spaced samples around `s`. */
+function pointOnAxis(axis: HelixAxis, s: number): AxisSample {
+  const clampedS = Math.min(Math.max(0, s), axis.length);
+  const index = Math.min(axis.samples.length - 2, Math.floor(clampedS / AXIS_STEP));
+  const from = axis.samples[index]!;
+  const to = axis.samples[index + 1] ?? from;
+  const span = to.s - from.s || 1;
+  const mix = clamp01((clampedS - from.s) / span);
+  const normalX = lerp(from.normalX, to.normalX, mix);
+  const normalY = lerp(from.normalY, to.normalY, mix);
+  const normalLength = Math.hypot(normalX, normalY) || 1;
+  return {
+    normalX: normalX / normalLength,
+    normalY: normalY / normalLength,
+    s: clampedS,
+    x: lerp(from.x, to.x, mix),
+    y: lerp(from.y, to.y, mix),
+  };
+}
+
+/** Axis samples strictly inside (from, to), bracketed by interpolated end points. */
+function axisRun(axis: HelixAxis, from: number, to: number): AxisSample[] {
+  const run = [pointOnAxis(axis, from)];
+  const firstIndex = Math.floor(from / AXIS_STEP) + 1;
+  const lastIndex = Math.min(axis.samples.length - 1, Math.ceil(to / AXIS_STEP) - 1);
+  for (let index = firstIndex; index <= lastIndex; index += 1) {
+    run.push(axis.samples[index]!);
+  }
+  run.push(pointOnAxis(axis, to));
+  return run;
+}
+
+function okazakiFragments(length: number): StrandPiece[] {
+  const fragments: StrandPiece[] = [];
+  for (
+    let from = FRAGMENT_LEAD_IN;
+    from < length - FRAGMENT_GAP;
+    from += FRAGMENT_LENGTH + FRAGMENT_GAP
+  ) {
+    fragments.push({
+      color: 'green',
+      from,
+      role: 'lagging',
+      to: Math.min(length, from + FRAGMENT_LENGTH),
+    });
+  }
+  return fragments;
+}
+
+const MAIN_AXIS = buildAxis(MAIN_CURVE, 0, 0);
+const JUNCTION = pointOnAxis(MAIN_AXIS, JUNCTION_S);
+const LEG_AXIS = buildAxis(
+  [
+    JUNCTION,
+    ...(LEG_CONTROL_OFFSETS.map((offset) => ({
+      x: JUNCTION.x + offset.x,
+      y: JUNCTION.y + offset.y,
+    })) as [Point, Point, Point]),
+  ],
+  JUNCTION_S,
+  // The leg's side 0 carries the orange template, which sits half a turn from green.
+  (Math.PI * 2 * JUNCTION_S) / HELIX_PERIOD + Math.PI,
+);
+
+const MAIN_HELIX: Helix = {
+  axis: MAIN_AXIS,
+  forkRampIn: 0,
+  sides: [
+    [{ color: 'green', from: 0, role: 'template', to: MAIN_AXIS.length }],
+    [
+      { color: 'orange', from: 0, role: 'template', to: JUNCTION_S },
+      { color: 'orange', from: JUNCTION_S, role: 'leading', to: MAIN_AXIS.length },
+    ],
+  ],
+};
+const LEG_HELIX: Helix = {
+  axis: LEG_AXIS,
+  forkRampIn: FORK_RAMP_IN,
+  sides: [
+    [{ color: 'orange', from: 0, role: 'template', to: LEG_AXIS.length }],
+    okazakiFragments(LEG_AXIS.length),
+  ],
+};
+const HELICES = [LEG_HELIX, MAIN_HELIX] as const;
+const BUILD_LENGTH =
+  Math.max(...HELICES.map((helix) => helix.axis.buildOffset + helix.axis.length)) + SYNTHESIS_LAG;
+
+/** Bounds of the finished mark including strand offset, used to center and fit it. */
+const MARK_BOUNDS = (() => {
+  let minX = Infinity;
+  let minY = Infinity;
+  let maxX = -Infinity;
+  let maxY = -Infinity;
+  for (const helix of HELICES) {
+    for (const sample of helix.axis.samples) {
+      minX = Math.min(minX, sample.x - HELIX_AMPLITUDE);
+      maxX = Math.max(maxX, sample.x + HELIX_AMPLITUDE);
+      minY = Math.min(minY, sample.y - HELIX_AMPLITUDE);
+      maxY = Math.max(maxY, sample.y + HELIX_AMPLITUDE);
+    }
+  }
+  return {
+    centerX: (minX + maxX) / 2,
+    centerY: (minY + maxY) / 2,
+    height: maxY - minY,
+    width: maxX - minX,
+  };
+})();
+
+/** How far along its own axis a strand piece has been laid down for a given build front. */
+function pieceFront(helix: Helix, piece: StrandPiece, buildFront: number) {
+  const local = buildFront - helix.axis.buildOffset;
+  switch (piece.role) {
+    case 'template':
+      return local;
+    case 'leading':
+      return local - SYNTHESIS_LAG;
+    case 'lagging':
+      return piece.from + Math.max(0, local - SYNTHESIS_LAG - piece.from) * FRAGMENT_SPEED;
+  }
+}
+
+function easeBuild(progress: number) {
+  return 1 - Math.pow(1 - clamp01(progress), 1.7);
+}
+
+type FrameState = {
+  /** Arc length of the build front along the overall build path. */
+  buildFront: number;
+  /** 0..1 how far the build is; 1 once settled. */
+  buildProgress: number;
+  isDarkMode: boolean;
+  /** Arc length of the shimmer band along the build path, or null while idle. */
+  shimmerFront: number | null;
+  twistPhase: number;
+};
+
+type StrandSegment = {
+  alpha: number;
+  color: string;
+  depth: number;
+  fromX: number;
+  fromY: number;
+  toX: number;
+  toY: number;
+  width: number;
+};
+type Tick = { alpha: number; fromX: number; fromY: number; toX: number; toY: number };
+type LeadGlow = { color: string; radius: number; x: number; y: number };
+
+/** Progressively enhances the static DNA avatar with a self-replicating helix lambda. */
+export class LogoRenderer {
+  private animationFrame = 0;
+  private buildStartedAt = 0;
+  private readonly canvas: HTMLCanvasElement;
+  private readonly context: CanvasRenderingContext2D;
+  private height = 1;
+  private readonly hoverTarget: HTMLElement;
+  private isVisible = true;
+  private readonly motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+  private readonly resizeObserver: ResizeObserver;
+  private readonly themeObserver: MutationObserver;
+  private readonly visibilityObserver: IntersectionObserver;
+  private width = 1;
+
+  constructor(private readonly element: HTMLElement) {
+    this.canvas = element.querySelector('canvas')!;
+    this.context = this.canvas.getContext('2d')!;
+    this.hoverTarget = element.closest('a') ?? element;
+    this.resizeObserver = new ResizeObserver(this.resizeHeaderOrb);
+    this.themeObserver = new MutationObserver(this.redrawHeaderOrb);
+    this.visibilityObserver = new IntersectionObserver(this.updateVisibility);
+  }
+
+  connectedCallback() {
+    this.buildStartedAt = performance.now() + BUILD_DELAY_MS;
+    this.resizeObserver.observe(this.element);
+    this.themeObserver.observe(document.documentElement, {
+      attributeFilter: ['data-theme'],
+      attributes: true,
+    });
+    this.visibilityObserver.observe(this.element);
+    this.motionPreference.addEventListener('change', this.redrawHeaderOrb);
+    this.hoverTarget.addEventListener('pointerenter', this.replayBuild);
+    this.hoverTarget.addEventListener('focus', this.replayBuild);
+    document.addEventListener('visibilitychange', this.updateDocumentVisibility);
+    this.resizeHeaderOrb();
+  }
+
+  disconnectedCallback() {
+    this.cancelHeaderOrbFrame();
+    this.resizeObserver.disconnect();
+    this.themeObserver.disconnect();
+    this.visibilityObserver.disconnect();
+    this.motionPreference.removeEventListener('change', this.redrawHeaderOrb);
+    this.hoverTarget.removeEventListener('pointerenter', this.replayBuild);
+    this.hoverTarget.removeEventListener('focus', this.replayBuild);
+    document.removeEventListener('visibilitychange', this.updateDocumentVisibility);
+  }
+
+  private get shouldAnimate() {
+    return this.isVisible && !document.hidden && !this.motionPreference.matches;
+  }
+
+  private cancelHeaderOrbFrame() {
+    if (this.animationFrame) {
+      cancelAnimationFrame(this.animationFrame);
+      this.animationFrame = 0;
+    }
+  }
+
+  private frameState(time: number): FrameState {
+    const isDarkMode = document.documentElement.dataset.theme === 'dark';
+    if (this.motionPreference.matches) {
+      return {
+        buildFront: BUILD_LENGTH,
+        buildProgress: 1,
+        isDarkMode,
+        shimmerFront: null,
+        twistPhase: 0,
+      };
+    }
+
+    const buildProgress = easeBuild((time - this.buildStartedAt) / BUILD_MS);
+    const sinceSettled = time - this.buildStartedAt - BUILD_MS;
+    const shimmerElapsed = sinceSettled % SHIMMER_INTERVAL_MS;
+    const shimmerFront =
+      sinceSettled >= 0 && shimmerElapsed < SHIMMER_SWEEP_MS
+        ? (shimmerElapsed / SHIMMER_SWEEP_MS) * (BUILD_LENGTH + 0.3) - 0.15
+        : null;
+
+    return {
+      buildFront: buildProgress * BUILD_LENGTH,
+      buildProgress,
+      isDarkMode,
+      shimmerFront,
+      twistPhase: (time / ROTATION_PERIOD_MS) * Math.PI * 2,
+    };
+  }
+
+  private readonly drawHeaderOrb = (time: number) => {
+    this.animationFrame = 0;
+    const { context } = this;
+    const state = this.frameState(time);
+    // The box is roughly the mark's aspect; `size` is the square that would hold the mark
+    // at this fit, so stroke widths and the shadow keep scaling with the mark, not the box.
+    const maxExtent = Math.max(MARK_BOUNDS.width, MARK_BOUNDS.height);
+    const size = Math.min(
+      (this.width * maxExtent) / MARK_BOUNDS.width,
+      (this.height * maxExtent) / MARK_BOUNDS.height,
+    );
+    const fitScale = (size * MARK_FILL) / maxExtent;
+    const scale = fitScale * lerp(0.94, 1, easeBuild(state.buildProgress));
+    const amplitude = HELIX_AMPLITUDE * scale;
+    const nearWidth = size * 0.038;
+    const farWidth = size * 0.031;
+    const tickWidth = size * 0.018;
+    const neutral = state.isDarkMode ? '#c7c3bb' : '#242526';
+    const farAlpha = state.isDarkMode ? 0.66 : 0.72;
+    const shadowOffset = size * 0.035;
+    const shadowColor = state.isDarkMode ? '#000000' : '#242526';
+    // The cutout shadow only earns its place once the mark is big enough to carry it.
+    const shadowAlpha = (state.isDarkMode ? 0.4 : 0.14) * smoothstep((size - 40) / 48);
+
+    const toCanvasX = (x: number) => this.width / 2 + (x - MARK_BOUNDS.centerX) * scale;
+    const toCanvasY = (y: number) => this.height / 2 + (y - MARK_BOUNDS.centerY) * scale;
+
+    context.clearRect(0, 0, this.width, this.height);
+    context.lineCap = 'round';
+    context.lineJoin = 'round';
+
+    const farSegments: StrandSegment[] = [];
+    const nearSegments: StrandSegment[] = [];
+    const ticks: Tick[] = [];
+    const leadGlows: LeadGlow[] = [];
+    const isBuilding = state.buildProgress < 1;
+
+    for (const helix of HELICES) {
+      if (state.buildFront <= helix.axis.buildOffset) {
+        continue;
+      }
+
+      const strandPoint = (sample: AxisSample, side: 0 | 1) => {
+        const theta =
+          (Math.PI * 2 * sample.s) / HELIX_PERIOD +
+          helix.axis.phaseOffset +
+          state.twistPhase +
+          side * Math.PI;
+        const wave = Math.sin(theta);
+        const ramp = helix.forkRampIn > 0 ? smoothstep(sample.s / helix.forkRampIn) : 1;
+        const offset = Math.sign(wave) * Math.pow(Math.abs(wave), LENS_EXPONENT) * amplitude * ramp;
+        return {
+          depth: Math.cos(theta),
+          x: toCanvasX(sample.x) + sample.normalX * offset,
+          y: toCanvasY(sample.y) + sample.normalY * offset,
+        };
+      };
+
+      const shimmerAt = (s: number) => {
+        if (state.shimmerFront === null) {
+          return 0;
+        }
+        const distance = (helix.axis.buildOffset + s - state.shimmerFront) / 0.16;
+        return Math.exp(-distance * distance);
+      };
+
+      for (const side of [0, 1] as const) {
+        for (const piece of helix.sides[side]) {
+          const front = pieceFront(helix, piece, state.buildFront);
+          if (front <= piece.from) {
+            continue;
+          }
+          const drawnTo = Math.min(piece.to, front);
+          const widthScale = piece.role === 'template' ? 1 : 0.85;
+          const run = axisRun(helix.axis, piece.from, drawnTo);
+          let previous = strandPoint(run[0]!, side);
+          for (let index = 1; index < run.length; index += 1) {
+            const sample = run[index]!;
+            const current = strandPoint(sample, side);
+            const depth = (previous.depth + current.depth) / 2;
+            const nearness = (depth + 1) / 2;
+            const shimmer = shimmerAt(sample.s);
+            (depth < 0 ? farSegments : nearSegments).push({
+              alpha: Math.min(1, lerp(farAlpha, 1, nearness) + shimmer * 0.4),
+              color: STRAND_COLORS[piece.color],
+              depth,
+              fromX: previous.x,
+              fromY: previous.y,
+              toX: current.x,
+              toY: current.y,
+              width: lerp(farWidth, nearWidth, nearness) * widthScale * (1 + shimmer * 0.22),
+            });
+            previous = current;
+          }
+
+          if (isBuilding && front < piece.to) {
+            leadGlows.push({
+              color: STRAND_COLORS[piece.color],
+              radius: nearWidth * (piece.role === 'template' ? 0.8 : 1.05),
+              x: previous.x,
+              y: previous.y,
+            });
+          }
+        }
+      }
+
+      const rungSpacing = HELIX_PERIOD / RUNGS_PER_TWIST;
+      for (let s = rungSpacing / 2; s < helix.axis.length; s += rungSpacing) {
+        let reveal = 1;
+        for (const side of [0, 1] as const) {
+          const piece = helix.sides[side].find(
+            (candidate) => candidate.from <= s && s < candidate.to,
+          );
+          if (!piece) {
+            reveal = 0;
+            break;
+          }
+          reveal = Math.min(
+            reveal,
+            clamp01((pieceFront(helix, piece, state.buildFront) - s) / 0.05),
+          );
+        }
+        if (reveal <= 0) {
+          continue;
+        }
+
+        const sample = pointOnAxis(helix.axis, s);
+        const a = strandPoint(sample, 0);
+        const b = strandPoint(sample, 1);
+        const spread = Math.hypot(b.x - a.x, b.y - a.y) / (2 * amplitude);
+        const alpha = clamp01((spread - 0.3) / 0.3) * reveal;
+        if (alpha <= 0) {
+          continue;
+        }
+        const reach = RUNG_REACH * reveal;
+        ticks.push(
+          {
+            alpha,
+            fromX: a.x,
+            fromY: a.y,
+            toX: lerp(a.x, b.x, reach),
+            toY: lerp(a.y, b.y, reach),
+          },
+          {
+            alpha,
+            fromX: b.x,
+            fromY: b.y,
+            toX: lerp(b.x, a.x, reach),
+            toY: lerp(b.y, a.y, reach),
+          },
+        );
+      }
+    }
+
+    const strokeLine = (line: { fromX: number; fromY: number; toX: number; toY: number }) => {
+      context.beginPath();
+      context.moveTo(line.fromX, line.fromY);
+      context.lineTo(line.toX, line.toY);
+      context.stroke();
+    };
+
+    // Cartoon drop shadow: the whole mark once more, offset, in one flat tone.
+    context.save();
+    context.translate(shadowOffset, shadowOffset);
+    context.strokeStyle = shadowColor;
+    context.globalAlpha = shadowAlpha;
+    for (const segment of farSegments) {
+      context.lineWidth = segment.width;
+      strokeLine(segment);
+    }
+    for (const segment of nearSegments) {
+      context.lineWidth = segment.width;
+      strokeLine(segment);
+    }
+    context.lineWidth = tickWidth;
+    for (const tick of ticks) {
+      strokeLine(tick);
+    }
+    context.restore();
+
+    const strokeSegments = (segments: StrandSegment[]) => {
+      segments.sort((left, right) => left.depth - right.depth);
+      for (const segment of segments) {
+        context.globalAlpha = segment.alpha;
+        context.strokeStyle = segment.color;
+        context.lineWidth = segment.width;
+        strokeLine(segment);
+      }
+    };
+
+    strokeSegments(farSegments);
+
+    context.strokeStyle = neutral;
+    context.lineWidth = tickWidth;
+    for (const tick of ticks) {
+      context.globalAlpha = tick.alpha * (state.isDarkMode ? 0.7 : 0.62);
+      strokeLine(tick);
+    }
+
+    strokeSegments(nearSegments);
+
+    if (leadGlows.length > 0) {
+      context.shadowBlur = size * 0.14;
+      for (const glow of leadGlows) {
+        context.globalAlpha = 0.95;
+        context.fillStyle = glow.color;
+        context.shadowColor = glow.color;
+        context.beginPath();
+        context.arc(glow.x, glow.y, glow.radius, 0, Math.PI * 2);
+        context.fill();
+      }
+      context.shadowBlur = 0;
+    }
+
+    context.globalAlpha = 1;
+
+    if (this.shouldAnimate) {
+      this.animationFrame = requestAnimationFrame(this.drawHeaderOrb);
+    }
+  };
+
+  private readonly redrawHeaderOrb = () => {
+    if (this.motionPreference.matches) {
+      this.cancelHeaderOrbFrame();
+      this.drawHeaderOrb(performance.now());
+    } else {
+      this.requestHeaderOrbFrame();
+    }
+  };
+
+  private readonly replayBuild = () => {
+    const now = performance.now();
+    if (
+      this.motionPreference.matches ||
+      now - this.buildStartedAt < BUILD_MS + REPLAY_COOLDOWN_MS
+    ) {
+      return;
+    }
+    this.buildStartedAt = now;
+    this.requestHeaderOrbFrame();
+  };
+
+  private readonly requestHeaderOrbFrame = () => {
+    if (!this.animationFrame && this.shouldAnimate) {
+      this.animationFrame = requestAnimationFrame(this.drawHeaderOrb);
+    }
+  };
+
+  private readonly updateDocumentVisibility = () => {
+    if (document.hidden) this.cancelHeaderOrbFrame();
+    else this.requestHeaderOrbFrame();
+  };
+
+  private readonly resizeHeaderOrb = () => {
+    const bounds = this.element.getBoundingClientRect();
+    const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+    this.width = Math.max(1, bounds.width);
+    this.height = Math.max(1, bounds.height);
+    this.canvas.width = Math.round(this.width * pixelRatio);
+    this.canvas.height = Math.round(this.height * pixelRatio);
+    this.context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+    this.redrawHeaderOrb();
+  };
+
+  private readonly updateVisibility = ([entry]: IntersectionObserverEntry[]) => {
+    this.isVisible = entry?.isIntersecting ?? true;
+    if (this.isVisible) {
+      this.requestHeaderOrbFrame();
+    } else {
+      this.cancelHeaderOrbFrame();
+    }
+  };
+}

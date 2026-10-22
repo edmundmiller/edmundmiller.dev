@@ -1,51 +1,25 @@
-import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 
 const dist = 'dist';
-const postsDir = 'src/content/post';
 
 const ensureWrite = async (path, content) => {
   await mkdir(dirname(path), { recursive: true });
   await writeFile(path, content);
 };
 
-const stripFrontmatter = (text) => text.replace(/^---\n[\s\S]*?\n---\n?/, '').trim();
-const frontmatter = (text) => {
-  const match = text.match(/^---\n([\s\S]*?)\n---/);
-  if (!match) return {};
-  return Object.fromEntries(
-    match[1]
-      .split('\n')
-      .map((line) => line.match(/^([A-Za-z0-9_-]+):\s*(.*)$/))
-      .filter(Boolean)
-      .map(([, key, value]) => [key, value.replace(/^['"]|['"]$/g, '')]),
-  );
-};
-const slugFrom = (name) => name.replace(/\.(md|mdx)$/, '');
-
-async function postFiles(dir) {
-  const entries = await readdir(dir, { withFileTypes: true });
-  const files = [];
-  for (const entry of entries) {
-    const path = join(dir, entry.name);
-    if (entry.isDirectory()) {
-      const nested = await readdir(path);
-      const index = nested.find((name) => /^index\.mdx?$/.test(name));
-      if (index) files.push({ slug: entry.name, path: join(path, index) });
-    } else if (/\.mdx?$/.test(entry.name)) {
-      files.push({ slug: slugFrom(entry.name), path });
-    }
-  }
-  return files;
-}
-
-const posts = [];
-for (const file of await postFiles(postsDir)) {
-  const raw = await readFile(file.path, 'utf8');
-  const data = frontmatter(raw);
-  if (data.draft === 'true') continue;
-  posts.push({ ...file, ...data, body: stripFrontmatter(raw) });
-}
+const collection = JSON.parse(await readFile('src/generated/content.json', 'utf8'));
+const bodies = JSON.parse(await readFile('src/generated/markdown.json', 'utf8'));
+const posts = collection.posts
+  .filter((post) => !post.draft)
+  .map((post) => ({
+    title: post.title,
+    description: post.description,
+    publishDate: post.publishDate,
+    updatedDate: post.updatedDate,
+    slug: post.id,
+    body: bodies[post.id],
+  }));
 posts.sort(
   (a, b) => new Date(b.updatedDate || b.publishDate) - new Date(a.updatedDate || a.publishDate),
 );
