@@ -46,7 +46,7 @@ export const menuLinks: Array<{ title: string; path: string }> = [
 // https://expressive-code.com/reference/configuration/
 export const expressiveCodeOptions: RehypeExpressiveCodeOptions = {
   // One dark, one light theme => https://expressive-code.com/guides/themes/#available-themes
-  themes: ['dracula', 'github-light'],
+  themes: ['everforest-dark', 'everforest-light'],
   themeCssSelector(theme, { styleVariants }) {
     // If one dark and one light theme are available
     // generate theme CSS selectors compatible with cactus-theme dark mode switch
@@ -62,13 +62,34 @@ export const expressiveCodeOptions: RehypeExpressiveCodeOptions = {
   },
   useThemedScrollbars: false,
   styleOverrides: {
+    codeBackground: 'hsl(var(--theme-bg))',
+    codeForeground: 'hsl(var(--theme-text))',
+    borderColor: 'hsl(var(--theme-text) / 0.25)',
+    borderWidth: '1px',
+    focusBorder: 'hsl(var(--theme-accent))',
+    uiFontFamily: 'inherit',
     frames: {
       frameBoxShadowCssValue: 'none',
+      editorTabBarBackground: 'hsl(var(--theme-text) / 0.04)',
+      editorTabBarBorderColor: 'hsl(var(--theme-text) / 0.25)',
+      editorTabBarBorderBottomColor: 'hsl(var(--theme-text) / 0.25)',
+      editorActiveTabBackground: 'hsl(var(--theme-bg))',
+      editorActiveTabForeground: 'hsl(var(--theme-text))',
+      editorActiveTabIndicatorTopColor: 'hsl(var(--theme-accent))',
+      editorActiveTabIndicatorBottomColor: 'transparent',
+      terminalBackground: 'hsl(var(--theme-bg))',
+      terminalTitlebarBackground: 'hsl(var(--theme-text) / 0.04)',
+      terminalTitlebarForeground: 'hsl(var(--theme-text))',
+      terminalTitlebarBorderBottomColor: 'hsl(var(--theme-text) / 0.25)',
+    },
+    textMarkers: {
+      markBackground: 'hsl(var(--theme-accent) / 0.1)',
+      markBorderColor: 'hsl(var(--theme-accent) / 0.6)',
     },
     uiLineHeight: 'inherit',
     codeFontSize: '0.875rem',
     codeLineHeight: '1.7142857rem',
-    borderRadius: '4px',
+    borderRadius: '2px',
     codePaddingInline: '1rem',
     codeFontFamily:
       '"Geist Pixel Square", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
