@@ -1,6 +1,7 @@
 # Agent Instructions
 
-Personal Astro site deployed as a Cloudflare Worker with static assets.
+Personal site built entirely with Foldkit, deployed as a
+Cloudflare Worker with static assets.
 
 Complete the requested local work through a reviewable result, including resolving failures caused
 by the change. Publishing, pushing, merging, and deploying require user authorization; a local task
@@ -17,6 +18,10 @@ for that scope if instructions conflict.
   accessibility review, and `agent-browser` to inspect rendered behavior. Load only skills relevant
   to the task.
 - Runtime and deployment behavior: inspect `src/worker.ts` together with `wrangler.toml`.
+- Application: `src/app/model.ts` owns Model, Messages, Commands, and Subscriptions;
+  `src/app/view.ts` and `pages.ts` own native Foldkit views. `src/entry.server.ts` prerenders them.
+  Add interactive state to Model, not DOM listeners or framework islands. Scoped canvas resources
+  use Mount. Navigation uses Foldkit routing; assets/feeds retain full document loads.
 - Site metadata and navigation: `src/site.config.ts` is authoritative.
 - Content fields and post IDs: `src/content.config.ts` is authoritative.
 
@@ -26,9 +31,9 @@ checks over reading generated output or unrelated post history.
 ## Sources of truth and generated files
 
 - Tool versions and task entrypoints: `mise.toml`; underlying commands: `package.json`.
-- `dist/` is ignored generated output. Do not edit it. `pnpm build` recreates the Astro site, then
-  `scripts/generate-agent-content.mjs` writes the Markdown and `llms*.txt` representations, and the
-  `postbuild` lifecycle builds the Pagefind index.
+- `dist/`, `.output/`, `src/generated/`, and `public/generated/` are ignored generated output.
+  `scripts/compile-content.ts` validates Markdown and builds typed content data. `pnpm build`
+  prerenders Foldkit pages, generates feeds/OG/Markdown representations, and builds Pagefind.
 - First-party styling follows [`docs/stylex.md`](docs/stylex.md); the visual contract lives in
   `DESIGN.md`.
 - Skills: `.agents/skills/`, shared via symlinks with `.pi/skills/` and `.opencode/skills/`.
@@ -45,7 +50,7 @@ replace them with ad hoc equivalents.
 | ---------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | Repository guidance or Markdown docs outside `src/content/post/` | `pnpm exec oxfmt --check <files>`; verify referenced paths and commands                                                                      |
 | Post prose or frontmatter                                        | Follow `src/content/AGENTS.md`                                                                                                               |
-| TypeScript, React, or Astro behavior                             | `pnpm format:check`, `pnpm lint`, `pnpm check`; add `pnpm build` when output, routes, content loading, or generated agent content can change |
+| TypeScript or Foldkit behavior                                   | `pnpm format:check`, `pnpm lint`, `pnpm check`, `pnpm test:content`; add `pnpm build` and `pnpm test:site` for output or application changes |
 | First-party styles                                               | Checks above plus `pnpm lint:stylex`; inspect representative changed states in a browser                                                     |
 | Vale rules or fixtures                                           | `pnpm test:vale` and `pnpm lint:prose`                                                                                                       |
 | Codex closeout hooks                                             | `pnpm test:hooks`                                                                                                                            |

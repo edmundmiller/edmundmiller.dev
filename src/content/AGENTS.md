@@ -1,7 +1,7 @@
 # Post Writing
 
 This file applies to `src/content/` in addition to the repository root instructions. Keep instruction
-and support files outside `post/`: `src/content.config.ts` loads every Markdown and MDX file under
+and support files outside `post/`: `scripts/compile-content.ts` loads every Markdown and MDX file under
 that directory as a post.
 
 ## Content contract
@@ -14,8 +14,13 @@ that directory as a post.
 - Drafts remain available during development but are excluded from production collections and the
   generated agent-readable content. Use `draft: true` for unfinished posts instead of weakening
   validation or commenting out required metadata.
-- Keep Markdown for prose-only posts. Use MDX only when imports or components are needed, and keep
-  component imports relative to the post.
+- Write Markdown with declarative directives. Legacy `.mdx` filenames are accepted, but imports,
+  JSX, expressions, and scripts are not. Callouts use `:::note{title="Title"}` (or tip, info,
+  warning, danger, success, example, quote); add `collapsible="true"` and optionally
+  `collapsed="true"`. Use more colons for an outer nested callout. Videos use
+  `::youtube{id="VIDEO_ID_11" title="Accessible title"}`. Images use normal Markdown paths.
+- Content becomes typed data rendered by Foldkit. Interactive content must add a Message/update
+  case, not a DOM listener or another framework's component.
 
 ## Voice and prose
 
