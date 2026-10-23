@@ -46,16 +46,16 @@ checks over reading generated output or unrelated post history.
 Use the narrowest checks that cover the change. Commands below are repository entrypoints; do not
 replace them with ad hoc equivalents.
 
-| Change                                                           | Checks                                                                                                                                       |
-| ---------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| Repository guidance or Markdown docs outside `src/content/post/` | `pnpm exec oxfmt --check <files>`; verify referenced paths and commands                                                                      |
-| Post prose or frontmatter                                        | Follow `src/content/AGENTS.md`                                                                                                               |
-| TypeScript or Foldkit behavior                                   | `pnpm format:check`, `pnpm lint`, `pnpm check`, `pnpm test:content`; add `pnpm build` and `pnpm test:site` for output or application changes |
-| First-party styles                                               | Checks above plus `pnpm lint:stylex`; inspect representative changed states in a browser                                                     |
-| Vale rules or fixtures                                           | `pnpm test:vale` and `pnpm lint:prose`                                                                                                       |
-| Codex closeout hooks                                             | `pnpm test:hooks`                                                                                                                            |
-| Skill pins, patches, or imported skill files                     | `pnpm skills:sync`, then confirm `git diff --exit-code -- .agents/skills .pi/skills .opencode/skills`                                        |
-| Production/deployment configuration                              | `pnpm build`; inspect the Wrangler diff without deploying                                                                                    |
+| Change                                                           | Checks                                                                                                                                                        |
+| ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Repository guidance or Markdown docs outside `src/content/post/` | `pnpm exec oxfmt --check <files>`; verify referenced paths and commands                                                                                       |
+| Post prose or frontmatter                                        | Follow `src/content/AGENTS.md`                                                                                                                                |
+| TypeScript or Foldkit behavior                                   | `pnpm format:check`, `pnpm lint`, `pnpm check`, `pnpm test:content`, `pnpm test:app`; add `pnpm build` and `pnpm test:site` for output or application changes |
+| First-party styles                                               | Checks above plus `pnpm lint:stylex`; inspect representative changed states in a browser                                                                      |
+| Vale rules or fixtures                                           | `pnpm test:vale` and `pnpm lint:prose`                                                                                                                        |
+| Codex closeout hooks                                             | `pnpm test:hooks`                                                                                                                                             |
+| Skill pins, patches, or imported skill files                     | `pnpm skills:sync`, then confirm `git diff --exit-code -- .agents/skills .pi/skills .opencode/skills`                                                         |
+| Production/deployment configuration                              | `pnpm build`; inspect the Wrangler diff without deploying                                                                                                     |
 
 `mise run lint`, `mise run test`, and `mise run build` are the aggregate project task groups.
 Documentation-only edits do not require a site build. If a required check cannot run, report the

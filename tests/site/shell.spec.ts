@@ -143,6 +143,9 @@ test('narrow navigation, history, and system theme remain usable', async ({ page
   await page.goBack();
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Bioinformatics engineer');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await page.reload();
+  await expect(theme).toBeEnabled();
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
 });
 
 test('public pages contain readable content without JavaScript', async ({ browser }) => {
@@ -186,6 +189,9 @@ test('native chart, code copy, and fragment navigation', async ({ page, context 
   await expect(chartStatus).toContainText('Posts 7');
   await expect(year).toBeFocused();
   await page.getByRole('link', { name: 'Nextflow Emacs Workflow', exact: true }).click();
+  await expect(page.locator('[data-footnote-ref]').first()).toHaveAccessibleDescription(
+    /\bFootnotes\b/,
+  );
   const code = page.getByRole('button', { name: 'Copy code', exact: true }).nth(1);
   await code.click();
   await expect(code).toHaveText('Copied');
@@ -202,9 +208,7 @@ test('native chart, code copy, and fragment navigation', async ({ page, context 
   await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
 });
 
-test('search failures retry and stale results do not replace the latest query', async ({
-  page,
-}) => {
+test('search recovers when the real Pagefind module becomes available', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByRole('switch')).toBeEnabled();
   await page.route('**/pagefind/pagefind.js', (route) => route.abort());
@@ -218,13 +222,10 @@ test('search failures retry and stale results do not replace the latest query', 
   await expect(
     page.getByRole('dialog').getByRole('link', { name: 'Nextflow Emacs Workflow', exact: true }),
   ).toBeVisible();
+  // Scene checks filter dispatch; this checks the real Pagefind index honors it.
   await page.getByLabel('Filter by tag').selectOption('nixos');
+  await expect(page.getByRole('dialog').getByRole('status')).toHaveText(/\d+ results for nextflow/);
   await expect(
     page.getByRole('dialog').getByRole('link', { name: 'Nextflow Emacs Workflow', exact: true }),
   ).toHaveCount(0);
-  await query.fill('next');
-  await query.fill('nonexistent-search-xyz');
-  await expect(page.getByRole('dialog').getByRole('status')).toHaveText(
-    '0 results for nonexistent-search-xyz',
-  );
 });

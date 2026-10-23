@@ -9,7 +9,7 @@ import { Message } from './model';
 import { styles } from './widgets.stylex';
 import { LogoRenderer } from './widgets/logo';
 
-const MountLogo = Mount.define('MountLogo', {
+export const MountLogo = Mount.define('MountLogo', {
   messages: [Message.CompletedMountLogo],
   execute: ({ element }) =>
     Effect.acquireRelease(

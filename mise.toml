@@ -17,7 +17,14 @@ run = ["pnpm format:check", "pnpm lint", "pnpm lint:stylex", "pnpm check"]
 
 [tasks.test]
 description = "Run automated tests"
-run = ["pnpm test:vale", "pnpm test:hooks", "pnpm test:content", "pnpm build", "pnpm test:site"]
+run = [
+  "pnpm test:vale",
+  "pnpm test:hooks",
+  "pnpm test:content",
+  "pnpm test:app",
+  "pnpm build",
+  "pnpm test:site",
+]
 
 [tasks.build]
 description = "Build the production site and search index"

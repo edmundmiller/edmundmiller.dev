@@ -57,6 +57,9 @@ jobs:
       - name: Test content compiler
         run: corepack pnpm test:content
 
+      - name: Test Foldkit state and views
+        run: corepack pnpm test:app
+
         # ensure build works
       - name: Run build
         run: corepack pnpm build

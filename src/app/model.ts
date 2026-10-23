@@ -88,7 +88,7 @@ const Load = Command.define('Load', {
   execute: ({ href }) => load(href).pipe(Effect.as(Message.CompletedLoad())),
 });
 
-const PageEffects = Command.define('PageEffects', {
+export const PageEffects = Command.define('PageEffects', {
   args: { scroll: Schema.Boolean, track: Schema.Boolean },
   messages: [Message.CompletedPageEffects],
   execute: ({ scroll, track }) =>
@@ -129,7 +129,7 @@ const ReadTheme = Command.define('ReadTheme', {
     return Message.CompletedReadTheme({ theme, followsSystemTheme });
   }),
 });
-const ApplyTheme = Command.define('ApplyTheme', {
+export const ApplyTheme = Command.define('ApplyTheme', {
   args: { theme: Theme, persist: Schema.Boolean },
   messages: [Message.CompletedApplyTheme],
   execute: ({ theme, persist }) =>
@@ -151,7 +151,7 @@ const ApplyTheme = Command.define('ApplyTheme', {
       return Message.CompletedApplyTheme();
     }),
 });
-const ShowSearch = Command.define('ShowSearch', {
+export const ShowSearch = Command.define('ShowSearch', {
   messages: [Message.CompletedShowSearch],
   execute: Effect.sync(() => {
     document.querySelector<HTMLDialogElement>('#site-search-dialog')?.showModal();
@@ -159,7 +159,7 @@ const ShowSearch = Command.define('ShowSearch', {
     return Message.CompletedShowSearch();
   }),
 });
-const CloseSearch = Command.define('CloseSearch', {
+export const CloseSearch = Command.define('CloseSearch', {
   args: { restoreFocus: Schema.Boolean },
   messages: [Message.CompletedCloseSearch],
   execute: ({ restoreFocus }) =>
@@ -178,7 +178,7 @@ interface Pagefind {
     results: { data(): Promise<{ url: string; meta: { title: string }; excerpt: string }> }[];
   }>;
 }
-const Search = Command.define('Search', {
+export const Search = Command.define('Search', {
   args: { query: Schema.String, tag: Schema.String },
   messages: [Message.CompletedSearch],
   execute: ({ query, tag }) =>

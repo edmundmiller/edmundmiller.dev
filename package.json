@@ -22,7 +22,9 @@
     "test:vale": "node scripts/test-vale-style.mjs",
     "test:hooks": "bash scripts/codex-closeout-hook.test.sh",
     "test:site": "playwright test",
+    "test:parity": "node scripts/check-parity.ts",
     "test:content": "tsx --test tests/content/*.test.ts",
+    "test:app": "tsx scripts/compile-content.ts --production && vitest run",
     "skills:sync": "node scripts/sync-skills.mjs"
   },
   "dependencies": {
@@ -77,6 +79,7 @@
     "typescript": "5.9.3",
     "unified": "11.0.5",
     "vite": "8.3.3",
+    "vitest": "5.0.5",
     "wrangler": "4.143.0",
     "zod": "4.6.7"
   },
