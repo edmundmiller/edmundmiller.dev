@@ -220,9 +220,11 @@ export async function compileContent({
                 ? 'class'
                 : key === 'htmlFor'
                   ? 'for'
-                  : /^(aria|data)[A-Z]/.test(key)
-                    ? key.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
-                    : key.toLowerCase();
+                  : /^aria[A-Z]/.test(key)
+                    ? `aria-${key.slice(4).toLowerCase()}`
+                    : /^data[A-Z]/.test(key)
+                      ? key.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
+                      : key.toLowerCase();
             if (value !== false && value != null)
               attributes[name] = Array.isArray(value)
                 ? value.join(' ')

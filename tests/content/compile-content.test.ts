@@ -118,7 +118,11 @@ console.log(answer);
         .map((node) => text(node.children)),
       ['console.log(answer);'],
     );
-    assert(elements.some((node) => node.attributes['data-footnote-ref'] !== undefined));
+    const footnote = elements.find((node) => node.attributes['data-footnote-ref'] !== undefined);
+    assert(footnote);
+    assert.equal(footnote.attributes['aria-describedby'], 'footnote-label');
+    assert.equal(footnote.attributes['aria-described-by'], undefined);
+    assert(elements.some((node) => node.attributes.id === 'footnote-label'));
     assert(elements.some((node) => node.attributes['data-footnote-backref'] !== undefined));
     assert(elements.some((node) => node.attributes['data-testid'] === 'fixture'));
     assert(
