@@ -54,7 +54,7 @@
     "@types/d3-shape": "3.1.8",
     "@types/node": "26.6.5",
     "autoprefixer": "10.5.2",
-    "cf": "1.0.0-beta.5",
+    "cf": "1.0.0-beta.20",
     "eslint": "9.39.5",
     "gray-matter": "4.0.3",
     "hast-util-to-text": "4.0.2",
