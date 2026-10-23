@@ -74,7 +74,7 @@
     "remark-parse": "11.0.0",
     "remark-rehype": "11.1.2",
     "remark-smartypants": "3.0.3",
-    "remark-unwrap-images": "4.0.1",
+    "remark-unwrap-images": "5.0.0",
     "tsx": "4.23.15",
     "typescript": "5.9.3",
     "unified": "11.0.5",
