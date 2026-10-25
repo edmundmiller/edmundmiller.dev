@@ -2,7 +2,7 @@
 set -euo pipefail
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-node_version="24.17.0"
+node_version="24.22.0"
 node_dir="$HOME/.local/share/node-v${node_version}"
 
 case "$(uname -m)" in
