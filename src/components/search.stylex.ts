@@ -25,6 +25,12 @@ export const styles = stylex.create({
     height: '1.75rem',
     width: '1.75rem',
   },
+  backdrop: {
+    inset: 0,
+    backdropFilter: 'blur(8px)',
+    backgroundColor: 'rgb(0 0 0 / 0.1)',
+    position: 'fixed',
+  },
   dialog: {
     borderColor: '#a1a1aa',
     borderRadius: {
@@ -37,10 +43,7 @@ export const styles = stylex.create({
       default: 0,
       [small]: 'auto',
     },
-    backdropFilter: {
-      default: 'none',
-      '::backdrop': 'blur(8px)',
-    },
+    overflow: 'auto',
     backgroundColor: colors.background,
     boxShadow: '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
     marginBlockEnd: {
@@ -51,6 +54,7 @@ export const styles = stylex.create({
       default: 0,
       [small]: '4rem',
     },
+    position: 'relative',
     height: {
       default: '100%',
       [small]: 'max-content',

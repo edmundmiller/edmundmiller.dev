@@ -1,8 +1,9 @@
+import * as Dialog from '@foldkit/ui/dialog';
 import { Option } from 'effect';
 import { Command, Mount, Subscription, click, expect, given, role, scene } from 'foldkit/scene';
 import { fromString } from 'foldkit/url';
 import { test } from 'vitest';
-import { ApplyTheme, CloseSearch, init, Message, PageEffects, ShowSearch, update } from './model';
+import { ApplyTheme, init, Message, PageEffects, update } from './model';
 import { view } from './view';
 import { MountLogo } from './widgets';
 
@@ -24,20 +25,22 @@ test('menu and search controls coordinate opening, closing, and query preservati
     click(role('button', { name: 'Open main menu' })),
     click(role('button', { name: 'Search' })),
     expect(role('button', { name: 'Open main menu' })).toHaveAttr('aria-expanded', 'false'),
-    Command.expectExact(ShowSearch),
-    Command.resolve(ShowSearch, Message.CompletedShowSearch()),
+    Command.resolve(Dialog.ShowDialog, Dialog.Message.SucceededShowDialog()),
+    Mount.resolve(Dialog.AcquireResources, Dialog.Message.SucceededAcquireResources()),
     expect(role('searchbox', { name: 'Search' })).toHaveValue('nextflow'),
     click(role('button', { name: 'Close' })),
-    Command.expectExact(CloseSearch({ restoreFocus: true })),
-    Command.resolve(CloseSearch, Message.CompletedCloseSearch()),
+    Command.resolve(Dialog.CloseDialog, Dialog.Message.CompletedCloseDialog()),
+    Mount.expectEnded(Dialog.AcquireResources),
+    expect(role('searchbox', { name: 'Search' })).toBeAbsent(),
     Subscription.emit(Message.PressedEscape()),
     Command.expectNone(),
     click(role('button', { name: 'Search' })),
-    Command.resolve(ShowSearch, Message.CompletedShowSearch()),
+    Command.resolve(Dialog.ShowDialog, Dialog.Message.SucceededShowDialog()),
+    Mount.resolve(Dialog.AcquireResources, Dialog.Message.SucceededAcquireResources()),
     expect(role('searchbox', { name: 'Search' })).toHaveValue('nextflow'),
-    Subscription.emit(Message.PressedEscape()),
-    Command.expectExact(CloseSearch({ restoreFocus: true })),
-    Command.resolve(CloseSearch, Message.CompletedCloseSearch()),
+    click(role('button', { name: 'Close' })),
+    Command.resolve(Dialog.CloseDialog, Dialog.Message.CompletedCloseDialog()),
+    Mount.expectEnded(Dialog.AcquireResources),
   );
 });
 
@@ -53,10 +56,10 @@ test('callouts survive shell changes and same-page navigation but reset on leavi
     expect(role('button', { name: 'Timeline' })).toHaveAttr('aria-expanded', 'false'),
     // Routing notifications come from the runtime; actual link/history behavior stays in Playwright.
     Subscription.emit(Message.ChangedUrl({ url: articleUrl })),
-    Command.resolveAllExact(
-      [CloseSearch({ restoreFocus: false }), Message.CompletedCloseSearch()],
-      [PageEffects({ scroll: false, track: false }), Message.CompletedPageEffects()],
-    ),
+    Command.resolveAllExact([
+      PageEffects({ scroll: false, track: false }),
+      Message.CompletedPageEffects(),
+    ]),
     expect(role('button', { name: 'Timeline' })).toHaveAttr('aria-expanded', 'false'),
     click(role('button', { name: 'Open main menu' })),
     Subscription.emit(
@@ -64,20 +67,22 @@ test('callouts survive shell changes and same-page navigation but reset on leavi
         url: Option.getOrThrow(fromString('https://edmundmiller.dev/about/')),
       }),
     ),
-    Command.resolveAllExact(
-      [CloseSearch({ restoreFocus: false }), Message.CompletedCloseSearch()],
-      [PageEffects({ scroll: false, track: true }), Message.CompletedPageEffects()],
-    ),
+    Command.resolveAllExact([
+      PageEffects({ scroll: false, track: true }),
+      Message.CompletedPageEffects(),
+    ]),
     expect(role('heading', { level: 1 })).toHaveText('About Edmund Miller'),
     expect(role('button', { name: 'Open main menu' })).toHaveAttr('aria-expanded', 'false'),
     expect(role('switch', { name: 'Dark theme' })).toBeChecked(),
     click(role('button', { name: 'Search' })),
-    Command.resolve(ShowSearch, Message.CompletedShowSearch()),
+    Command.resolve(Dialog.ShowDialog, Dialog.Message.SucceededShowDialog()),
+    Mount.resolve(Dialog.AcquireResources, Dialog.Message.SucceededAcquireResources()),
     Subscription.emit(Message.ChangedUrl({ url: articleUrl })),
     Command.resolveAllExact(
-      [CloseSearch({ restoreFocus: false }), Message.CompletedCloseSearch()],
+      [Dialog.CloseDialog, Dialog.Message.CompletedCloseDialog()],
       [PageEffects({ scroll: false, track: true }), Message.CompletedPageEffects()],
     ),
+    Mount.expectEnded(Dialog.AcquireResources),
     expect(role('button', { name: 'Timeline' })).toHaveAttr('aria-expanded', 'true'),
     Subscription.emit(Message.PressedEscape()),
     Command.expectNone(),

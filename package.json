@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "@effect/platform-browser": "4.0.0",
+    "@foldkit/ui": "0.169.0",
     "@stylexjs/stylex": "0.19.1",
     "@types/hast": "3.0.5",
     "@types/mdast": "4.0.4",

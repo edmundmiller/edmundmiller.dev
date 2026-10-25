@@ -1,3 +1,4 @@
+import * as Dialog from '@foldkit/ui/dialog';
 import * as stylex from '@stylexjs/stylex';
 import { type Document, type HtmlBuilder } from 'foldkit/html';
 import { menuLinks, siteConfig } from '../site.config';
@@ -98,30 +99,38 @@ export const view = (model: Model, h: HtmlBuilder<Message>): Document => {
                     ),
                   ],
                 ),
-                h.dialog(
-                  [
-                    classes(search.dialog),
-                    h.Id('site-search-dialog'),
-                    h.AriaLabel('Search'),
-                    h.OnCancel(Message.ClosedSearch()),
-                  ],
-                  [
-                    h.div(
-                      [classes(search.dialogFrame)],
-                      [
-                        h.button(
-                          [
-                            classes(search.closeButton),
-                            h.Type('button'),
-                            h.OnClick(Message.ClosedSearch()),
-                          ],
-                          ['Close'],
-                        ),
-                        searchView(model, h),
-                      ],
-                    ),
-                  ],
-                ),
+                h.submodel({
+                  slotId: model.searchDialog.id,
+                  model: model.searchDialog,
+                  view: Dialog.view,
+                  viewInputs: {
+                    toView: ({ dialog, backdrop, panel, title, closeButton, isVisible }) =>
+                      h.dialog(
+                        [...dialog],
+                        isVisible
+                          ? [
+                              h.div([...backdrop, classes(search.backdrop)]),
+                              h.div(
+                                [...panel, classes(search.dialog)],
+                                [
+                                  h.div(
+                                    [classes(search.dialogFrame)],
+                                    [
+                                      h.button(
+                                        [...closeButton, classes(search.closeButton)],
+                                        ['Close'],
+                                      ),
+                                      searchView(model, h, title),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ]
+                          : [],
+                      ),
+                  },
+                  toParentMessage: (message) => Message.GotSearchDialogMessage({ message }),
+                }),
               ],
             ),
             h.div(

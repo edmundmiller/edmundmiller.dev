@@ -39,13 +39,36 @@ test('hydration preserves articles and widget state through shell interactions',
   const dialog = page.getByRole('dialog', { name: 'Search' });
   const query = dialog.getByRole('searchbox', { name: 'Search', exact: true });
   await expect(query).toBeFocused();
+  await expect(dialog).toHaveAttribute('aria-modal', 'true');
+  await expect(page.locator('html')).toHaveCSS('overflow', 'hidden');
+  await expect(page.locator('#main')).toHaveAttribute('inert', '');
+  const close = dialog.getByRole('button', { name: 'Close', exact: true });
+  await query.press('Shift+Tab');
+  await expect(close).toBeFocused();
+  await close.press('Shift+Tab');
+  await expect(dialog.getByLabel('Filter by tag')).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(close).toBeFocused();
+  // Clicking inside the panel must not trigger its sibling backdrop's close handler.
+  await dialog.getByText('Search', { exact: true }).click();
+  await expect(query).toBeFocused();
   await query.fill('nextflow');
   const result = dialog.getByRole('link', { name: 'Nextflow Emacs Workflow', exact: true });
   await expect(result).toBeVisible();
+  for (const control of [close, result]) {
+    await control.focus();
+    await expect(control).toBeFocused();
+    await page.keyboard.press('/');
+    await expect(query).toBeFocused();
+    await expect(query).toHaveValue('nextflow');
+  }
   await dialog.getByRole('button', { name: 'Close', exact: true }).click();
   await expect(dialog).not.toBeVisible();
-  await expect(page.getByRole('button', { name: 'Search', exact: true })).toBeFocused();
-  await page.keyboard.press('/');
+  // The shortcut restores its original focus; clicking Search restores that trigger instead.
+  await expect(theme).toBeFocused();
+  await expect(page.locator('html')).not.toHaveCSS('overflow', 'hidden');
+  await expect(page.locator('#main')).not.toHaveAttribute('inert', '');
+  await page.getByRole('button', { name: 'Search', exact: true }).click();
   await expect(query).toHaveValue('nextflow');
   await expect(query).toBeFocused();
   await query.press('/');
@@ -56,10 +79,18 @@ test('hydration preserves articles and widget state through shell interactions',
   await expect(page.getByRole('button', { name: 'Search', exact: true })).toBeFocused();
   await page.keyboard.press('/');
   await expect(query).toHaveValue('nextflow/');
+  await page.mouse.click(10, 10);
+  await expect(dialog).not.toBeVisible();
+  await expect(page.getByRole('button', { name: 'Search', exact: true })).toBeFocused();
+  await page.keyboard.press('/');
   await query.fill('nextflow');
   await result.click();
   await expect(page).toHaveURL(/\/posts\/emacs-nextflow\/?$/);
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Nextflow Emacs Workflow');
+  await expect(dialog).not.toBeVisible();
+  await expect(page.locator('#main')).toBeFocused();
+  await expect(page.locator('#main')).not.toHaveAttribute('inert', '');
+  await expect(page.locator('html')).not.toHaveCSS('overflow', 'hidden');
   await expect(page.getByRole('switch')).toHaveAttribute('aria-checked', 'true');
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     'href',
@@ -142,6 +173,19 @@ test('narrow navigation, history, and system theme remain usable', async ({ page
   await expect(theme).toHaveAttribute('aria-checked', 'false');
   await page.goBack();
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Bioinformatics engineer');
+  await menu.click();
+  await page.getByRole('button', { name: 'Search', exact: true }).click();
+  const dialog = page.getByRole('dialog', { name: 'Search' });
+  await expect(dialog.getByRole('searchbox')).toBeFocused();
+  await dialog.getByRole('searchbox').fill('nextflow');
+  await expect(
+    dialog.getByRole('link', { name: 'Nextflow Emacs Workflow', exact: true }),
+  ).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(dialog).not.toBeVisible();
+  await expect(menu).toHaveAttribute('aria-expanded', 'false');
+  await expect(page.getByRole('button', { name: 'Search', exact: true })).toBeFocused();
+  await expect(page.locator('html')).not.toHaveCSS('overflow', 'hidden');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.reload();
   await expect(theme).toBeEnabled();

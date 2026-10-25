@@ -1,5 +1,7 @@
-import { Effect, Schema, Stream } from 'effect';
-import { Command, Render, Subscription, type Runtime, type Update } from 'foldkit';
+import * as Dialog from '@foldkit/ui/dialog';
+import { Effect, Option, Schema, Stream } from 'effect';
+import { Command, Render, Subscription, Update, type Runtime } from 'foldkit';
+import { focus } from 'foldkit/dom';
 import { defineMessageUnion } from 'foldkit/message';
 import { UrlRequest, load, pushUrl } from 'foldkit/navigation';
 import { Url, toString as urlToString } from 'foldkit/url';
@@ -20,7 +22,7 @@ export const Model = Schema.Struct({
   followsSystemTheme: Schema.Boolean,
   isReady: Schema.Boolean,
   isMenuOpen: Schema.Boolean,
-  isSearchOpen: Schema.Boolean,
+  searchDialog: Dialog.Model,
   searchStatus: Schema.Literals(['idle', 'loading', 'ready', 'failed']),
   searchQuery: Schema.String,
   searchTag: Schema.String,
@@ -53,7 +55,8 @@ export const Message = defineMessageUnion({
   CompletedReadTheme: { theme: Theme, followsSystemTheme: Schema.Boolean },
   CompletedApplyTheme: {},
   RequestedSearch: {},
-  ClosedSearch: {},
+  CompletedFocusSearch: {},
+  GotSearchDialogMessage: { message: Dialog.Message },
   ChangedSearchQuery: { query: Schema.String },
   ChangedSearchTag: { tag: Schema.String },
   CompletedSearch: {
@@ -63,10 +66,37 @@ export const Message = defineMessageUnion({
     results: Schema.Array(SearchResult),
     total: Schema.Number,
   },
-  CompletedShowSearch: {},
-  CompletedCloseSearch: {},
 });
 export type Message = typeof Message.Type;
+
+const searchDialogFold = {
+  read: (model: Model) => Option.some(model.searchDialog),
+  write: (model: Model, searchDialog: Dialog.Model): Model => ({ ...model, searchDialog }),
+  toParentMessage: (message: Dialog.Message): Message =>
+    Message.GotSearchDialogMessage({ message }),
+  foldOutMessage: Dialog.OutMessage.match<Update.Step<Model, Message>>({
+    Opened: () => (model) => ({
+      model: { ...model, isMenuOpen: false },
+      commands:
+        model.searchStatus === 'failed'
+          ? [Search({ query: model.searchQuery, tag: model.searchTag })]
+          : [],
+    }),
+    Closed: () => (model) => ({ model }),
+  }),
+};
+const foldSearchDialog = Update.foldChild({ ...searchDialogFold, update: Dialog.update });
+const openSearchDialog = Update.foldChildStep({ ...searchDialogFold, update: Dialog.open });
+const closeSearchDialog = Update.foldChildStep({ ...searchDialogFold, update: Dialog.close });
+
+const FocusSearch = Command.define('FocusSearch', {
+  messages: [Message.CompletedFocusSearch],
+  execute: focus('#site-search-input').pipe(
+    // Closing or navigating before the DOM commit can remove the input.
+    Effect.ignore,
+    Effect.as(Message.CompletedFocusSearch()),
+  ),
+});
 
 const Navigate = Command.define('Navigate', {
   args: { url: Schema.String },
@@ -151,24 +181,6 @@ export const ApplyTheme = Command.define('ApplyTheme', {
       return Message.CompletedApplyTheme();
     }),
 });
-export const ShowSearch = Command.define('ShowSearch', {
-  messages: [Message.CompletedShowSearch],
-  execute: Effect.sync(() => {
-    document.querySelector<HTMLDialogElement>('#site-search-dialog')?.showModal();
-    document.querySelector<HTMLInputElement>('#site-search-input')?.focus();
-    return Message.CompletedShowSearch();
-  }),
-});
-export const CloseSearch = Command.define('CloseSearch', {
-  args: { restoreFocus: Schema.Boolean },
-  messages: [Message.CompletedCloseSearch],
-  execute: ({ restoreFocus }) =>
-    Effect.sync(() => {
-      document.querySelector<HTMLDialogElement>('#site-search-dialog')?.close();
-      if (restoreFocus) document.getElementById('open-search')?.focus();
-      return Message.CompletedCloseSearch();
-    }),
-});
 
 interface Pagefind {
   search(
@@ -223,7 +235,7 @@ export const init: Runtime.RoutingApplicationInit<Model, Message> = (url) => ({
     followsSystemTheme: true,
     isReady: false,
     isMenuOpen: false,
-    isSearchOpen: false,
+    searchDialog: Dialog.init({ id: 'site-search-dialog', focusSelector: '#site-search-input' }),
     searchStatus: 'idle',
     searchQuery: '',
     searchTag: '',
@@ -266,24 +278,29 @@ export const update = (model: Model, message: Message) =>
         }),
         External: ({ href }) => ({ model, commands: [Load({ href })] }),
       }),
-    ChangedUrl: ({ url }) => ({
-      model: {
-        ...model,
-        route: routeFromPath(url.pathname),
-        pathname: url.pathname,
-        isMenuOpen: false,
-        isSearchOpen: false,
-        scrollOnNavigation: false,
-        callouts: url.pathname === model.pathname ? model.callouts : {},
-        chartYear: null,
-        isHeroVisible: url.pathname === model.pathname ? model.isHeroVisible : true,
-        copiedCode: null,
-      },
-      commands: [
-        CloseSearch({ restoreFocus: false }),
-        PageEffects({ scroll: model.scrollOnNavigation, track: url.pathname !== model.pathname }),
-      ],
-    }),
+    ChangedUrl: ({ url }) =>
+      Update.combine(model, [
+        closeSearchDialog,
+        (current) => ({
+          model: {
+            ...current,
+            route: routeFromPath(url.pathname),
+            pathname: url.pathname,
+            isMenuOpen: false,
+            scrollOnNavigation: false,
+            callouts: url.pathname === model.pathname ? model.callouts : {},
+            chartYear: null,
+            isHeroVisible: url.pathname === model.pathname ? model.isHeroVisible : true,
+            copiedCode: null,
+          },
+          commands: [
+            PageEffects({
+              scroll: model.scrollOnNavigation,
+              track: url.pathname !== model.pathname,
+            }),
+          ],
+        }),
+      ]),
     ClickedCallout: ({ id, expanded }) => ({
       model: { ...model, callouts: { ...model.callouts, [id]: expanded } },
     }),
@@ -300,10 +317,7 @@ export const update = (model: Model, message: Message) =>
       commands: [Navigate({ url: model.pathname })],
     }),
     ClickedMenu: () => ({ model: { ...model, isMenuOpen: !model.isMenuOpen } }),
-    PressedEscape: () => ({
-      model: { ...model, isMenuOpen: false, isSearchOpen: false },
-      commands: model.isSearchOpen ? [CloseSearch({ restoreFocus: true })] : [],
-    }),
+    PressedEscape: () => ({ model: { ...model, isMenuOpen: false } }),
     CompletedReadTheme: ({ theme, followsSystemTheme }) => ({
       model: { ...model, theme, followsSystemTheme, isReady: true },
       commands: [ApplyTheme({ theme, persist: false })],
@@ -319,19 +333,9 @@ export const update = (model: Model, message: Message) =>
       model.followsSystemTheme
         ? { model: { ...model, theme }, commands: [ApplyTheme({ theme, persist: false })] }
         : { model },
-    RequestedSearch: () => ({
-      model: { ...model, isSearchOpen: true, isMenuOpen: false },
-      commands: [
-        ShowSearch(),
-        ...(model.searchStatus === 'failed'
-          ? [Search({ query: model.searchQuery, tag: model.searchTag })]
-          : []),
-      ],
-    }),
-    ClosedSearch: () => ({
-      model: { ...model, isSearchOpen: false },
-      commands: [CloseSearch({ restoreFocus: true })],
-    }),
+    RequestedSearch: () =>
+      model.searchDialog.isOpen ? { model, commands: [FocusSearch()] } : openSearchDialog(model),
+    GotSearchDialogMessage: ({ message: dialogMessage }) => foldSearchDialog(model, dialogMessage),
     ChangedSearchQuery: ({ query }) => searchUpdate(model, query, model.searchTag),
     ChangedSearchTag: ({ tag }) => searchUpdate(model, model.searchQuery, tag),
     CompletedSearch: ({ query, tag, succeeded, results, total }) =>
@@ -350,8 +354,7 @@ export const update = (model: Model, message: Message) =>
     CompletedPageEffects: () => ({ model }),
     CompletedMountLogo: () => ({ model }),
     CompletedApplyTheme: () => ({ model }),
-    CompletedShowSearch: () => ({ model }),
-    CompletedCloseSearch: () => ({ model }),
+    CompletedFocusSearch: () => ({ model }),
   });
 
 export const subscriptions = Subscription.make<Model, Message>()((entry) => ({
@@ -368,20 +371,6 @@ export const subscriptions = Subscription.make<Model, Message>()((entry) => ({
         ),
     },
   ),
-  searchBackdrop: entry(
-    {},
-    {
-      modelToDependencies: () => ({}),
-      dependenciesToStream: () =>
-        Stream.fromEventListener<MouseEvent>(document, 'click').pipe(
-          Stream.filter(
-            (event) =>
-              event.target instanceof HTMLDialogElement && event.target.id === 'site-search-dialog',
-          ),
-          Stream.map(() => Message.ClosedSearch()),
-        ),
-    },
-  ),
   keyboard: entry(
     {},
     {
@@ -390,15 +379,16 @@ export const subscriptions = Subscription.make<Model, Message>()((entry) => ({
         Stream.fromEventListener<KeyboardEvent>(window, 'keydown').pipe(
           Stream.filter(
             (event) =>
-              event.key === 'Escape' ||
-              (event.key === '/' &&
-                !event.ctrlKey &&
-                !event.metaKey &&
-                !event.altKey &&
-                !(
-                  event.target instanceof Element &&
-                  event.target.closest('input, textarea, select, [contenteditable]')
-                )),
+              !event.defaultPrevented &&
+              (event.key === 'Escape' ||
+                (event.key === '/' &&
+                  !event.ctrlKey &&
+                  !event.metaKey &&
+                  !event.altKey &&
+                  !(
+                    event.target instanceof Element &&
+                    event.target.closest('input, textarea, select, [contenteditable]')
+                  ))),
           ),
           Stream.map((event) => {
             if (event.key === 'Escape') {

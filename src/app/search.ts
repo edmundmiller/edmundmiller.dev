@@ -1,17 +1,21 @@
 import * as stylex from '@stylexjs/stylex';
-import type { Html, HtmlBuilder } from 'foldkit/html';
+import type { ChildAttribute, Html, HtmlBuilder } from 'foldkit/html';
 import content from '../generated/content.json';
 import { Message, type Model } from './model';
 import { styles } from './search.stylex';
 
 const tags = [...new Set(content.posts.flatMap((post) => post.tags))].sort();
 
-export function searchView(model: Model, h: HtmlBuilder<Message>): Html {
+export function searchView(
+  model: Model,
+  h: HtmlBuilder<Message>,
+  title: ReadonlyArray<ChildAttribute> = [],
+): Html {
   const cls = (style: stylex.StyleXStyles) => h.Class(stylex.props(style).className ?? '');
   return h.div(
     [h.Id('cactus__search'), cls(styles.root)],
     [
-      h.label([h.For('site-search-input')], ['Search']),
+      h.label([...title, h.For('site-search-input')], ['Search']),
       h.input([
         h.Id('site-search-input'),
         h.Type('search'),
