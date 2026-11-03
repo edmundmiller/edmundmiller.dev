@@ -29,10 +29,14 @@ jobs:
           corepack prepare pnpm@11.8.0 --activate
 
       - name: Install mise
-        uses: jdx/mise-action@v3
-        with:
-          version: 2026.10.25
-          install: false
+        run: |
+          installer="$(mktemp)"
+          trap 'rm -f "$installer"' EXIT
+          curl --fail --location --silent --show-error --retry 3 \
+            https://mise.run --output "$installer"
+          MISE_VERSION=v2026.10.25 MISE_INSTALL_PATH="$HOME/.local/bin/mise" sh "$installer"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          "$HOME/.local/bin/mise" trust
 
       - run: mise install
       - run: mise doctor project
