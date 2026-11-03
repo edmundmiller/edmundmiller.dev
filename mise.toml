@@ -3,6 +3,12 @@ node = "24.22.0"
 pnpm = "11.8.0"
 vale = "3.18.0"
 
+[doctor.checks.tasks]
+description = "Mise task definitions are valid"
+run = "mise tasks validate"
+hint = "Run `mise tasks validate` for details, then fix the reported task definitions in mise.toml."
+timeout = "10s"
+
 [tasks.setup]
 description = "Install project dependencies"
 run = "pnpm install --frozen-lockfile"

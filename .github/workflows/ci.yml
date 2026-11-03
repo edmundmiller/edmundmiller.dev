@@ -28,6 +28,15 @@ jobs:
           corepack enable
           corepack prepare pnpm@11.8.0 --activate
 
+      - name: Install mise
+        uses: jdx/mise-action@v3
+        with:
+          version: 2026.10.25
+          install: false
+
+      - run: mise install
+      - run: mise doctor project
+
       - name: Install dependencies
         run: corepack pnpm install --frozen-lockfile
 

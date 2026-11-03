@@ -74,8 +74,24 @@ for executable in node npm npx corepack pnpm pnpx; do
   ln -sfn "$node_dir/bin/$executable" "$HOME/.local/bin/$executable"
 done
 
-step "Install project dependencies"
 cd "$repo_root"
+
+step "Install mise 2026.10.25"
+if [[ ! -x "$HOME/.local/bin/mise" ]] || [[ "$("$HOME/.local/bin/mise" --version)" != 2026.10.25\ * ]]; then
+  installer="$(mktemp)"
+  trap 'rm -f "$installer"' EXIT
+  curl --fail --location --silent --show-error --retry 3 \
+    https://mise.run --output "$installer"
+  MISE_VERSION=v2026.10.25 MISE_INSTALL_PATH="$HOME/.local/bin/mise" sh "$installer"
+  rm -f "$installer"
+  trap - EXIT
+fi
+
+mise trust
+mise install
+mise doctor project
+
+step "Install project dependencies"
 corepack pnpm install --frozen-lockfile
 
 step "Setup complete"
