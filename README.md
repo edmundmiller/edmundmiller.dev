@@ -57,6 +57,7 @@ pnpm format:check
 pnpm lint
 pnpm lint:stylex
 pnpm check
+pnpm test:lint
 pnpm test:content
 pnpm test:app
 pnpm build
@@ -66,6 +67,9 @@ pnpm test:site
 
 To reuse an installed Chromium, set `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH`. `mise run test` also
 runs prose-rule and closeout-hook tests. `DESIGN.md` and `docs/stylex.md` govern styling.
+
+See [anti-slop tooling](docs/anti-slop.md) for approved staged activation: normal offline lint,
+the explicit strict proposal, semantic opt-ins, and disclosure scope. Full strict adoption remains pending.
 
 `test:app` runs [Foldkit Story and Scene](https://foldkit.dev/testing) tests colocated in
 `src/app/`. Story checks state transitions and Command arguments; Scene drives the real search

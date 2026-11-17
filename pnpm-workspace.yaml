@@ -1,3 +1,4 @@
+verifyDepsBeforeRun: false
 allowBuilds:
   '@vvago/vale': true
   esbuild: true

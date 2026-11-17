@@ -1,5 +1,7 @@
 # build output
 dist/
+# Pinned Jev fork ships its reviewed executable build as source-controlled tooling.
+!tools/oxlint/oxlint-plugin-jev/dist/
 .output/
 .data/
 test-results/
