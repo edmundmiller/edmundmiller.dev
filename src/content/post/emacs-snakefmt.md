@@ -1,6 +1,6 @@
 ---
-title: 'Doom Emacs: format Snakemake with Apheleia and snakefmt'
-description: 'Wire snakefmt into Doom Emacs Apheleia (set-formatter!), plus a Nix package for snakefmt when it is missing from nixpkgs.'
+title: 'How to format Snakemake in Doom Emacs with Apheleia'
+description: 'Add snakefmt to Apheleia in Doom Emacs with set-formatter!, and a Nix package when nixpkgs does not have snakefmt.'
 draft: false
 publishDate: '2024-07-02'
 tags: ['emacs', 'snakemake']
