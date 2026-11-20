@@ -1,4 +1,5 @@
 import { initWorkersLogger, withEvlog } from 'evlog/workers';
+import { legacyRedirectPath } from './redirects';
 
 const MARKDOWN_ACCEPT = /(?:^|,)\s*text\/markdown\s*(?:;|,|$)/i;
 
@@ -15,6 +16,12 @@ interface Env {
 
 export default withEvlog<Env>(async (request, env, _ctx, log) => {
   const url = new URL(request.url);
+  const redirectPath = legacyRedirectPath(url.pathname);
+  if (redirectPath && (request.method === 'GET' || request.method === 'HEAD')) {
+    log.set({ representation: 'redirect' });
+    return withAgentDiscoveryHeaders(Response.redirect(new URL(redirectPath, url.origin), 301));
+  }
+
   const markdownAssetRequest = markdownRequest(request, url);
   const response = await env.ASSETS.fetch(markdownAssetRequest ?? request);
 
