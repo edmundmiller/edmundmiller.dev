@@ -92,7 +92,9 @@ mise install
 mise doctor project
 
 step "Install project dependencies"
-corepack pnpm install --frozen-lockfile
+# Allow the one-time migration from a snapshot's project-local virtual store.
+# pnpm still checks the lockfile, store integrity, release age, and build allowlist.
+corepack pnpm install --frozen-lockfile --config.confirm-modules-purge=false
 
 step "Setup complete"
 printf 'Node %s, pnpm %s, Vale %s, %s\n' \

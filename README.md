@@ -16,6 +16,18 @@ pnpm dev
 images and agent-readable Markdown, then builds Pagefind's index. `pnpm preview` serves the result.
 Search needs a production build. Development includes drafts; production excludes them.
 
+### Amp orbs
+
+`.pnpmfile.mjs` enables pnpm's global virtual store only when `AMP_ORB=1`. The package manager,
+resolved versions, build-script allowlist, release-age policy, and store-integrity checks stay unchanged.
+CI and local machines keep their existing configuration.
+
+Amp snapshots retain both `node_modules` and the pnpm store. Matching snapshots skip setup;
+stale snapshots rerun `.agents/setup` against the restored dependencies and cache. The global
+store speeds up rebuilding a missing dependency tree from that cache, not a fully cold install.
+Keep the backing store while using its linked `node_modules`; do not copy the dependency tree
+alone to another machine. `.agents/resume` only checks the toolchain and never installs packages.
+
 ## One application, explicit state
 
 - `src/app/model.ts`: schema-backed Model/Messages, pure update, Effect Commands and Subscriptions.

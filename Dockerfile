@@ -25,7 +25,7 @@ RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential node-gyp pkg-config python-is-python3
 
 # Install node modules
-COPY --link .npmrc package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY --link .npmrc .pnpmfile.mjs package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 RUN pnpm install --frozen-lockfile --prod=false
 
 # Copy application code
