@@ -42,5 +42,6 @@ export const renderDocument: Server.DocumentRenderer = (application, assets) =>
 <link href="/rss.xml" rel="alternate" title="Edmund Miller" type="application/rss+xml">
 <link href="https://webmention.io/edmundmiller.dev/webmention" rel="webmention">
 <script>(()=>{let t;try{t=localStorage.getItem('theme')}catch{}document.documentElement.dataset.theme=t==='light'||t==='dark'?t:matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'})()</script>
+<script src="https://ampcode.com/w/pw_RKfjOYzjHUryv3I_8omJo0DPTMfeqRki4153vgFyGF4.js" async></script>
 <script data-goatcounter="https://emiller.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>`,
   });

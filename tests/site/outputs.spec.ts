@@ -1,6 +1,19 @@
 import { expect, test } from '@playwright/test';
 import sharp from 'sharp';
 
+test('feedback widget is installed once and loads asynchronously across page types', async ({
+  page,
+}) => {
+  await page.route('https://ampcode.com/**', (route) => route.abort());
+  await page.route('**/count.js', (route) => route.abort());
+  for (const path of ['/', '/about/', '/posts/emacs-nextflow/', '/404.html']) {
+    await page.goto(path);
+    const widget = page.locator('head script[src^="https://ampcode.com/w/pw_"]');
+    await expect(widget).toHaveCount(1);
+    await expect(widget).toHaveAttribute('async', '');
+  }
+});
+
 test('published articles remain discoverable through feeds, Markdown, and social metadata', async ({
   page,
   request,
