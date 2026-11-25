@@ -1,11 +1,11 @@
 import * as stylex from '@stylexjs/stylex';
-import { colors, motion } from '../../styles/tokens.stylex';
+import { colors, effects, motion } from '../../styles/tokens.stylex';
 
 export const styles = stylex.create({
   date: {
     color: {
-      default: '#4b5563',
-      ':is([data-theme="dark"] *)': '#9ca3af',
+      default: colors.muted,
+      ':is([data-theme="dark"] *)': colors.mutedDark,
     },
     minWidth: '120px',
   },
@@ -18,17 +18,15 @@ export const styles = stylex.create({
   },
   draft: {
     color: {
-      default: '#b91c1c',
-      ':is([data-theme="dark"] *)': '#f87171',
+      default: colors.draft,
+      ':is([data-theme="dark"] *)': colors.draftDark,
     },
   },
   titleLink: {
     backgroundPosition: 'bottom',
     backgroundImage: {
-      default:
-        'linear-gradient(transparent, transparent 5px, hsl(var(--theme-text)) 5px, hsl(var(--theme-text)))',
-      ':hover':
-        'linear-gradient(transparent, transparent 4px, hsl(var(--theme-link)) 4px, hsl(var(--theme-link)))',
+      default: effects.cactusUnderline,
+      ':hover': effects.cactusUnderlineHover,
     },
     backgroundRepeat: 'repeat-x',
     backgroundSize: '100% 6px',

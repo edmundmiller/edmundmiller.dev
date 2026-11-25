@@ -1,5 +1,5 @@
 import * as stylex from '@stylexjs/stylex';
-import { colors, motion } from '../styles/tokens.stylex';
+import { colors, effects, motion } from '../styles/tokens.stylex';
 
 const small = '@media (min-width: 640px)';
 
@@ -12,7 +12,7 @@ export const styles = stylex.create({
     alignItems: 'center',
     boxShadow: {
       default: 'none',
-      ':hover': '0 0 0 2px #a1a1aa',
+      ':hover': effects.controlRing,
     },
     display: 'flex',
     justifyContent: 'center',
@@ -28,11 +28,11 @@ export const styles = stylex.create({
   backdrop: {
     inset: 0,
     backdropFilter: 'blur(8px)',
-    backgroundColor: 'rgb(0 0 0 / 0.1)',
+    backgroundColor: colors.backdrop,
     position: 'fixed',
   },
   dialog: {
-    borderColor: '#a1a1aa',
+    borderColor: colors.focus,
     borderRadius: {
       default: 0,
       [small]: '0.375rem',
@@ -45,7 +45,7 @@ export const styles = stylex.create({
     },
     overflow: 'auto',
     backgroundColor: colors.background,
-    boxShadow: '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
+    boxShadow: effects.dialogShadow,
     marginBlockEnd: {
       default: 0,
       [small]: 'auto',
@@ -90,8 +90,8 @@ export const styles = stylex.create({
     padding: '0.5rem',
     borderRadius: '0.375rem',
     backgroundColor: {
-      default: '#e4e4e7',
-      ':is([data-theme="dark"] *)': '#3f3f46',
+      default: colors.surface,
+      ':is([data-theme="dark"] *)': colors.surfaceDark,
     },
     cursor: 'pointer',
     fontWeight: 600,

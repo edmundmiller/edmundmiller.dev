@@ -41,7 +41,7 @@ export const styles = stylex.create({
     display: 'block',
   },
   attribution: {
-    color: '#555555',
+    color: colors.attribution,
     fontSize: '0.875rem',
     lineHeight: '1.25rem',
     textAlign: 'end',

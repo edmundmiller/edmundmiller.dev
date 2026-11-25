@@ -1,5 +1,5 @@
 import * as stylex from '@stylexjs/stylex';
-import { motion } from '../styles/tokens.stylex';
+import { effects, motion } from '../styles/tokens.stylex';
 
 const small = '@media (min-width: 640px)';
 
@@ -15,7 +15,7 @@ export const styles = stylex.create({
     borderRadius: '0.375rem',
     boxShadow: {
       default: 'none',
-      ':hover': '0 0 0 2px #a1a1aa',
+      ':hover': effects.controlRing,
     },
     position: 'relative',
     transitionDuration: motion.fast,

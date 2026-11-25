@@ -15,6 +15,7 @@
     "format": "oxfmt .",
     "format:check": "oxfmt --check .",
     "check": "tsx scripts/compile-content.ts --production && tsc --noEmit",
+    "prelint": "pnpm lint:stylex",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
     "lint:strict": "oxlint -c oxlint.strict.config.mjs",
@@ -30,6 +31,7 @@
     "test:parity": "node scripts/check-parity.ts",
     "test:content": "tsx --test tests/content/*.test.ts",
     "test:app": "tsx scripts/compile-content.ts --production && vitest run",
+    "test:design": "node --test tests/lint/design-system.test.mjs",
     "test:lint": "tsc --project tools/oxlint/tsconfig.json && node scripts/test-anti-slop.mjs",
     "skills:sync": "node scripts/sync-skills.mjs"
   },

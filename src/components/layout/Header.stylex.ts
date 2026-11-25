@@ -1,5 +1,5 @@
 import * as stylex from '@stylexjs/stylex';
-import { colors, fonts, motion } from '../../styles/tokens.stylex';
+import { colors, effects, fonts, motion } from '../../styles/tokens.stylex';
 
 const small = '@media (min-width: 640px)';
 
@@ -124,11 +124,11 @@ export const styles = stylex.create({
       [small]: 'none',
     },
     backgroundColor: {
-      default: 'color-mix(in srgb, hsl(var(--theme-bg)) 85%, transparent)',
+      default: colors.navigation,
       [small]: 'transparent',
     },
     boxShadow: {
-      default: '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
+      default: effects.dialogShadow,
       [small]: 'none',
     },
     color: colors.accent,

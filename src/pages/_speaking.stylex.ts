@@ -1,4 +1,5 @@
 import * as stylex from '@stylexjs/stylex';
+import { colors, effects } from '../styles/tokens.stylex';
 
 const medium = '@media (min-width: 768px)';
 const large = '@media (min-width: 1024px)';
@@ -35,8 +36,8 @@ export const styles = stylex.create({
   },
   introduction: {
     color: {
-      default: '#6b7280',
-      ':is([data-theme="dark"] *)': '#9ca3af',
+      default: colors.subtle,
+      ':is([data-theme="dark"] *)': colors.mutedDark,
     },
     marginTop: '0.5rem',
   },
@@ -47,17 +48,17 @@ export const styles = stylex.create({
   talk: {
     padding: '1.5rem',
     borderColor: {
-      default: '#e5e7eb',
-      ':is([data-theme="dark"] *)': '#1f2937',
+      default: colors.border,
+      ':is([data-theme="dark"] *)': colors.borderDark,
     },
     borderRadius: '0.5rem',
     borderStyle: 'solid',
     borderWidth: '1px',
     backgroundColor: {
-      default: '#ffffff',
-      ':is([data-theme="dark"] *)': '#030712',
+      default: colors.panel,
+      ':is([data-theme="dark"] *)': colors.panelDark,
     },
-    boxShadow: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
+    boxShadow: effects.panelShadow,
   },
   talkMeta: {
     alignItems: 'center',
@@ -66,8 +67,8 @@ export const styles = stylex.create({
   },
   metadata: {
     color: {
-      default: '#6b7280',
-      ':is([data-theme="dark"] *)': '#9ca3af',
+      default: colors.subtle,
+      ':is([data-theme="dark"] *)': colors.mutedDark,
     },
     fontSize: '0.875rem',
     fontWeight: 500,
@@ -79,8 +80,8 @@ export const styles = stylex.create({
       ':hover': 'underline',
     },
     color: {
-      default: '#111827',
-      ':is([data-theme="dark"] *)': '#f9fafb',
+      default: colors.strong,
+      ':is([data-theme="dark"] *)': colors.strongDark,
     },
     fontSize: '0.875rem',
     fontWeight: 500,
@@ -96,8 +97,8 @@ export const styles = stylex.create({
   },
   talkTitleText: {
     color: {
-      default: '#111827',
-      ':is([data-theme="dark"] *)': '#f9fafb',
+      default: colors.strong,
+      ':is([data-theme="dark"] *)': colors.strongDark,
     },
   },
   talkTitleLink: {
@@ -106,14 +107,14 @@ export const styles = stylex.create({
       ':hover': 'underline',
     },
     color: {
-      default: '#111827',
-      ':is([data-theme="dark"] *)': '#f9fafb',
+      default: colors.strong,
+      ':is([data-theme="dark"] *)': colors.strongDark,
     },
   },
   event: {
     color: {
-      default: '#6b7280',
-      ':is([data-theme="dark"] *)': '#9ca3af',
+      default: colors.subtle,
+      ':is([data-theme="dark"] *)': colors.mutedDark,
     },
     fontSize: '0.875rem',
     lineHeight: '1.25rem',
@@ -121,16 +122,16 @@ export const styles = stylex.create({
   },
   description: {
     color: {
-      default: '#4b5563',
-      ':is([data-theme="dark"] *)': '#d1d5db',
+      default: colors.muted,
+      ':is([data-theme="dark"] *)': colors.descriptionDark,
     },
     marginTop: '0.75rem',
   },
   emptyState: {
     padding: '2rem',
     borderColor: {
-      default: '#d1d5db',
-      ':is([data-theme="dark"] *)': '#374151',
+      default: colors.descriptionDark,
+      ':is([data-theme="dark"] *)': colors.emptyBorderDark,
     },
     borderRadius: '0.5rem',
     borderStyle: 'dashed',
@@ -139,17 +140,15 @@ export const styles = stylex.create({
   },
   emptyStateText: {
     color: {
-      default: '#6b7280',
-      ':is([data-theme="dark"] *)': '#9ca3af',
+      default: colors.subtle,
+      ':is([data-theme="dark"] *)': colors.mutedDark,
     },
   },
   cactusLink: {
     backgroundPosition: 'bottom',
     backgroundImage: {
-      default:
-        'linear-gradient(transparent, transparent 5px, hsl(var(--theme-text)) 5px, hsl(var(--theme-text)))',
-      ':hover':
-        'linear-gradient(transparent, transparent 4px, hsl(var(--theme-link)) 4px, hsl(var(--theme-link)))',
+      default: effects.cactusUnderline,
+      ':hover': effects.cactusUnderlineHover,
     },
     backgroundRepeat: 'repeat-x',
     backgroundSize: '100% 6px',

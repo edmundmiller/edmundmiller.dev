@@ -1,5 +1,5 @@
 import * as stylex from '@stylexjs/stylex';
-import { colors } from '../../../styles/tokens.stylex';
+import { colors, effects } from '../../../styles/tokens.stylex';
 
 export const styles = stylex.create({
   summary: {
@@ -20,9 +20,9 @@ export const styles = stylex.create({
     borderRadius: '9999px',
     overflow: 'hidden',
     boxShadow: {
-      default: '0 0 0 2px hsl(var(--theme-text))',
-      ':focus-visible': '0 0 0 4px hsl(var(--theme-link))',
-      ':hover': '0 0 0 4px hsl(var(--theme-link))',
+      default: effects.avatarRing,
+      ':focus-visible': effects.avatarFocus,
+      ':hover': effects.avatarFocus,
     },
     display: 'inline-block',
     outlineColor: 'transparent',

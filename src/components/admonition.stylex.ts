@@ -1,5 +1,5 @@
 import * as stylex from '@stylexjs/stylex';
-import { motion } from '../styles/tokens.stylex';
+import { admonitionColors as colors, effects, motion } from '../styles/tokens.stylex';
 
 export const styles = stylex.create({
   body: {
@@ -26,7 +26,7 @@ export const styles = stylex.create({
     borderInlineStartWidth: '4px',
     boxShadow: {
       default: 'none',
-      ':hover': '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+      ':hover': effects.admonitionShadow,
     },
     transitionDuration: motion.normal,
     transitionProperty: 'all',
@@ -42,35 +42,35 @@ export const styles = stylex.create({
   },
   dangerContainer: {
     backgroundColor: {
-      default: '#fef2f2',
-      ':is([data-theme="dark"] *)': 'rgb(69 10 10 / 0.3)',
+      default: colors.dangerBackground,
+      ':is([data-theme="dark"] *)': colors.dangerBackgroundDark,
     },
     borderInlineStartColor: {
-      default: '#fecaca',
-      ':is([data-theme="dark"] *)': '#991b1b',
+      default: colors.dangerBorder,
+      ':is([data-theme="dark"] *)': colors.dangerBorderDark,
     },
   },
   dangerIcon: {
-    color: { default: '#dc2626', ':is([data-theme="dark"] *)': '#f87171' },
+    color: { default: colors.dangerIcon, ':is([data-theme="dark"] *)': colors.dangerIconDark },
   },
   dangerTitle: {
-    color: { default: '#7f1d1d', ':is([data-theme="dark"] *)': '#fee2e2' },
+    color: { default: colors.dangerTitle, ':is([data-theme="dark"] *)': colors.dangerTitleDark },
   },
   exampleContainer: {
     backgroundColor: {
-      default: '#faf5ff',
-      ':is([data-theme="dark"] *)': 'rgb(59 7 100 / 0.3)',
+      default: colors.exampleBackground,
+      ':is([data-theme="dark"] *)': colors.exampleBackgroundDark,
     },
     borderInlineStartColor: {
-      default: '#e9d5ff',
-      ':is([data-theme="dark"] *)': '#6b21a8',
+      default: colors.exampleBorder,
+      ':is([data-theme="dark"] *)': colors.exampleBorderDark,
     },
   },
   exampleIcon: {
-    color: { default: '#9333ea', ':is([data-theme="dark"] *)': '#c084fc' },
+    color: { default: colors.exampleIcon, ':is([data-theme="dark"] *)': colors.exampleIconDark },
   },
   exampleTitle: {
-    color: { default: '#581c87', ':is([data-theme="dark"] *)': '#f3e8ff' },
+    color: { default: colors.exampleTitle, ':is([data-theme="dark"] *)': colors.exampleTitleDark },
   },
   header: {
     alignItems: 'flex-start',
@@ -87,51 +87,51 @@ export const styles = stylex.create({
   },
   infoContainer: {
     backgroundColor: {
-      default: '#ecfeff',
-      ':is([data-theme="dark"] *)': 'rgb(8 51 68 / 0.3)',
+      default: colors.infoBackground,
+      ':is([data-theme="dark"] *)': colors.infoBackgroundDark,
     },
     borderInlineStartColor: {
-      default: '#a5f3fc',
-      ':is([data-theme="dark"] *)': '#155e75',
+      default: colors.infoBorder,
+      ':is([data-theme="dark"] *)': colors.infoBorderDark,
     },
   },
   infoIcon: {
-    color: { default: '#0891b2', ':is([data-theme="dark"] *)': '#22d3ee' },
+    color: { default: colors.infoIcon, ':is([data-theme="dark"] *)': colors.infoIconDark },
   },
   infoTitle: {
-    color: { default: '#164e63', ':is([data-theme="dark"] *)': '#cffafe' },
+    color: { default: colors.infoTitle, ':is([data-theme="dark"] *)': colors.infoTitleDark },
   },
   noteContainer: {
     backgroundColor: {
-      default: '#eff6ff',
-      ':is([data-theme="dark"] *)': 'rgb(23 37 84 / 0.3)',
+      default: colors.noteBackground,
+      ':is([data-theme="dark"] *)': colors.noteBackgroundDark,
     },
     borderInlineStartColor: {
-      default: '#bfdbfe',
-      ':is([data-theme="dark"] *)': '#1e40af',
+      default: colors.noteBorder,
+      ':is([data-theme="dark"] *)': colors.noteBorderDark,
     },
   },
   noteIcon: {
-    color: { default: '#2563eb', ':is([data-theme="dark"] *)': '#60a5fa' },
+    color: { default: colors.noteIcon, ':is([data-theme="dark"] *)': colors.noteIconDark },
   },
   noteTitle: {
-    color: { default: '#1e3a8a', ':is([data-theme="dark"] *)': '#dbeafe' },
+    color: { default: colors.noteTitle, ':is([data-theme="dark"] *)': colors.noteTitleDark },
   },
   quoteContainer: {
     backgroundColor: {
-      default: '#f9fafb',
-      ':is([data-theme="dark"] *)': 'rgb(3 7 18 / 0.3)',
+      default: colors.quoteBackground,
+      ':is([data-theme="dark"] *)': colors.quoteBackgroundDark,
     },
     borderInlineStartColor: {
-      default: '#e5e7eb',
-      ':is([data-theme="dark"] *)': '#1f2937',
+      default: colors.quoteBorder,
+      ':is([data-theme="dark"] *)': colors.quoteBorderDark,
     },
   },
   quoteIcon: {
-    color: { default: '#4b5563', ':is([data-theme="dark"] *)': '#9ca3af' },
+    color: { default: colors.quoteIcon, ':is([data-theme="dark"] *)': colors.quoteIconDark },
   },
   quoteTitle: {
-    color: { default: '#111827', ':is([data-theme="dark"] *)': '#f3f4f6' },
+    color: { default: colors.quoteTitle, ':is([data-theme="dark"] *)': colors.quoteTitleDark },
   },
   staticTitle: {
     fontWeight: 600,
@@ -139,35 +139,35 @@ export const styles = stylex.create({
   },
   successContainer: {
     backgroundColor: {
-      default: '#ecfdf5',
-      ':is([data-theme="dark"] *)': 'rgb(2 44 34 / 0.3)',
+      default: colors.successBackground,
+      ':is([data-theme="dark"] *)': colors.successBackgroundDark,
     },
     borderInlineStartColor: {
-      default: '#a7f3d0',
-      ':is([data-theme="dark"] *)': '#065f46',
+      default: colors.successBorder,
+      ':is([data-theme="dark"] *)': colors.successBorderDark,
     },
   },
   successIcon: {
-    color: { default: '#059669', ':is([data-theme="dark"] *)': '#34d399' },
+    color: { default: colors.successIcon, ':is([data-theme="dark"] *)': colors.successIconDark },
   },
   successTitle: {
-    color: { default: '#064e3b', ':is([data-theme="dark"] *)': '#d1fae5' },
+    color: { default: colors.successTitle, ':is([data-theme="dark"] *)': colors.successTitleDark },
   },
   tipContainer: {
     backgroundColor: {
-      default: '#f0fdf4',
-      ':is([data-theme="dark"] *)': 'rgb(5 46 22 / 0.3)',
+      default: colors.tipBackground,
+      ':is([data-theme="dark"] *)': colors.tipBackgroundDark,
     },
     borderInlineStartColor: {
-      default: '#bbf7d0',
-      ':is([data-theme="dark"] *)': '#166534',
+      default: colors.tipBorder,
+      ':is([data-theme="dark"] *)': colors.tipBorderDark,
     },
   },
   tipIcon: {
-    color: { default: '#16a34a', ':is([data-theme="dark"] *)': '#4ade80' },
+    color: { default: colors.tipIcon, ':is([data-theme="dark"] *)': colors.tipIconDark },
   },
   tipTitle: {
-    color: { default: '#14532d', ':is([data-theme="dark"] *)': '#dcfce7' },
+    color: { default: colors.tipTitle, ':is([data-theme="dark"] *)': colors.tipTitleDark },
   },
   toggle: {
     borderRadius: '0.125rem',
@@ -175,7 +175,7 @@ export const styles = stylex.create({
     alignItems: 'center',
     boxShadow: {
       default: 'none',
-      ':focus-visible': '0 0 0 2px hsl(var(--theme-bg)), 0 0 0 4px #3b82f6',
+      ':focus-visible': effects.admonitionFocus,
     },
     display: 'flex',
     fontWeight: 600,
@@ -185,18 +185,18 @@ export const styles = stylex.create({
   },
   warningContainer: {
     backgroundColor: {
-      default: '#fefce8',
-      ':is([data-theme="dark"] *)': 'rgb(66 32 6 / 0.3)',
+      default: colors.warningBackground,
+      ':is([data-theme="dark"] *)': colors.warningBackgroundDark,
     },
     borderInlineStartColor: {
-      default: '#fef08a',
-      ':is([data-theme="dark"] *)': '#854d0e',
+      default: colors.warningBorder,
+      ':is([data-theme="dark"] *)': colors.warningBorderDark,
     },
   },
   warningIcon: {
-    color: { default: '#ca8a04', ':is([data-theme="dark"] *)': '#facc15' },
+    color: { default: colors.warningIcon, ':is([data-theme="dark"] *)': colors.warningIconDark },
   },
   warningTitle: {
-    color: { default: '#713f12', ':is([data-theme="dark"] *)': '#fef9c3' },
+    color: { default: colors.warningTitle, ':is([data-theme="dark"] *)': colors.warningTitleDark },
   },
 });

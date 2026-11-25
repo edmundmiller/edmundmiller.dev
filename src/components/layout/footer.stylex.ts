@@ -8,8 +8,8 @@ export const styles = stylex.create({
   footer: {
     alignItems: 'center',
     color: {
-      default: '#4b5563',
-      ':is([data-theme="dark"] *)': '#9ca3af',
+      default: colors.muted,
+      ':is([data-theme="dark"] *)': colors.mutedDark,
     },
     display: 'flex',
     flexDirection: {
@@ -73,7 +73,7 @@ export const styles = stylex.create({
     },
     borderInlineStartColor: {
       default: 'transparent',
-      [small]: '#6b7280',
+      [small]: colors.subtle,
     },
     borderInlineStartStyle: {
       default: 'none',

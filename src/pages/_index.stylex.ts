@@ -1,5 +1,5 @@
 import * as stylex from '@stylexjs/stylex';
-import { colors, fonts } from '../styles/tokens.stylex';
+import { colors, effects, fonts } from '../styles/tokens.stylex';
 
 const small = '@media (min-width: 640px)';
 
@@ -26,7 +26,7 @@ export const styles = stylex.create({
   },
   startHere: {
     padding: '1.5rem',
-    borderColor: 'hsl(var(--theme-accent) / 0.3)',
+    borderColor: colors.accentBorder,
     borderRadius: '0.5rem',
     borderStyle: 'solid',
     borderWidth: '1px',
@@ -58,10 +58,8 @@ export const styles = stylex.create({
   cactusLink: {
     backgroundPosition: 'bottom',
     backgroundImage: {
-      default:
-        'linear-gradient(transparent, transparent 5px, hsl(var(--theme-text)) 5px, hsl(var(--theme-text)))',
-      ':hover':
-        'linear-gradient(transparent, transparent 4px, hsl(var(--theme-link)) 4px, hsl(var(--theme-link)))',
+      default: effects.cactusUnderline,
+      ':hover': effects.cactusUnderlineHover,
     },
     backgroundRepeat: 'repeat-x',
     backgroundSize: '100% 6px',
@@ -72,12 +70,12 @@ export const styles = stylex.create({
   cadence: {
     borderBlockStyle: 'dashed',
     paddingBlock: '1.25rem',
-    borderBlockColor: 'hsl(var(--theme-text) / 0.3)',
+    borderBlockColor: colors.textBorder,
     borderBlockWidth: '1px',
     marginBottom: '2.5rem',
   },
   cadenceCaption: {
-    color: 'hsl(var(--theme-text) / 0.7)',
+    color: colors.caption,
     fontSize: '0.875rem',
     lineHeight: '1.25rem',
     marginBottom: '0.75rem',

@@ -1,5 +1,5 @@
 import * as stylex from '@stylexjs/stylex';
-import { colors, fonts } from '../../styles/tokens.stylex';
+import { colors, effects, fonts } from '../../styles/tokens.stylex';
 
 const small = '@media (min-width: 640px)';
 
@@ -35,10 +35,8 @@ export const styles = stylex.create({
   cactusLink: {
     backgroundPosition: 'bottom',
     backgroundImage: {
-      default:
-        'linear-gradient(transparent, transparent 5px, hsl(var(--theme-text)) 5px, hsl(var(--theme-text)))',
-      ':hover':
-        'linear-gradient(transparent, transparent 4px, hsl(var(--theme-link)) 4px, hsl(var(--theme-link)))',
+      default: effects.cactusUnderline,
+      ':hover': effects.cactusUnderlineHover,
     },
     backgroundRepeat: 'repeat-x',
     backgroundSize: '100% 6px',
@@ -61,8 +59,8 @@ export const styles = stylex.create({
   },
   conjunction: {
     color: {
-      default: '#6b7280',
-      ':is([data-theme="dark"] *)': '#9ca3af',
+      default: colors.subtle,
+      ':is([data-theme="dark"] *)': colors.mutedDark,
     },
     fontSize: '0.875rem',
     lineHeight: '1.25rem',
@@ -82,8 +80,8 @@ export const styles = stylex.create({
   },
   draft: {
     color: {
-      default: '#b91c1c',
-      ':is([data-theme="dark"] *)': '#f87171',
+      default: colors.draft,
+      ':is([data-theme="dark"] *)': colors.draftDark,
     },
     fontSize: '1rem',
     lineHeight: '1.5rem',
@@ -110,10 +108,8 @@ export const styles = stylex.create({
   tagLink: {
     backgroundPosition: 'bottom',
     backgroundImage: {
-      default:
-        'linear-gradient(transparent, transparent 5px, hsl(var(--theme-text)) 5px, hsl(var(--theme-text)))',
-      ':hover':
-        'linear-gradient(transparent, transparent 4px, hsl(var(--theme-link)) 4px, hsl(var(--theme-link)))',
+      default: effects.cactusUnderline,
+      ':hover': effects.cactusUnderlineHover,
     },
     backgroundRepeat: 'repeat-x',
     backgroundSize: '100% 6px',
@@ -136,7 +132,7 @@ export const styles = stylex.create({
   updated: {
     padding: '0.25rem',
     borderRadius: '0.5rem',
-    backgroundColor: 'color-mix(in srgb, hsl(var(--theme-quote)) 10%, transparent)',
+    backgroundColor: colors.updated,
     color: colors.quote,
   },
   updatedDate: {

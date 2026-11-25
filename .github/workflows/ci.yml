@@ -61,6 +61,9 @@ jobs:
       - name: Run lint
         run: corepack pnpm lint
 
+      - name: Test design system rules
+        run: corepack pnpm test:design
+
       - name: Test Vale style
         run: corepack pnpm test:vale
 

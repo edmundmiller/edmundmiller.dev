@@ -5,7 +5,7 @@ export const styles = stylex.create({
   root: { gap: '0.75rem', display: 'grid' },
   input: {
     padding: '0.75rem',
-    borderColor: '#a1a1aa',
+    borderColor: colors.focus,
     borderRadius: '0.375rem',
     borderStyle: 'solid',
     borderWidth: '1px',

@@ -19,7 +19,7 @@ run = "pnpm dev"
 
 [tasks.lint]
 description = "Run formatting, code, StyleX, and type checks"
-run = ["pnpm format:check", "pnpm lint", "pnpm lint:stylex", "pnpm check"]
+run = ["pnpm format:check", "pnpm lint", "pnpm check"]
 
 [tasks.test]
 description = "Run automated tests"
@@ -28,6 +28,7 @@ run = [
   "pnpm test:hooks",
   "pnpm test:content",
   "pnpm test:app",
+  "pnpm test:design",
   "pnpm build",
   "pnpm test:site",
 ]

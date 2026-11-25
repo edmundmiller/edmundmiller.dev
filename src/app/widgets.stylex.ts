@@ -1,5 +1,5 @@
 import * as stylex from '@stylexjs/stylex';
-import { colors, fonts } from '../styles/tokens.stylex';
+import { colors, effects, fonts } from '../styles/tokens.stylex';
 
 export const styles = stylex.create({
   chart: { color: colors.text, position: 'relative', height: '13rem', width: '100%' },
@@ -13,14 +13,14 @@ export const styles = stylex.create({
     whiteSpace: 'nowrap',
   },
   tooltip: {
-    borderColor: '#e5e7eb',
+    borderColor: colors.border,
     borderRadius: '0.375rem',
     borderStyle: 'solid',
     borderWidth: '1px',
     paddingBlock: '0.25rem',
     paddingInline: '0.5rem',
     backgroundColor: colors.background,
-    boxShadow: '0 1px 2px 0 #0000000d',
+    boxShadow: effects.tooltipShadow,
     color: colors.text,
     fontFamily: fonts.body,
     fontSize: '11px',
@@ -35,7 +35,7 @@ export const styles = stylex.create({
   value: { gap: '0.375rem', alignItems: 'center', display: 'flex' },
   swatch: {
     borderRadius: '1px',
-    backgroundColor: 'rgb(40,210,110)',
+    backgroundColor: colors.chart,
     height: '0.5rem',
     width: '0.5rem',
   },

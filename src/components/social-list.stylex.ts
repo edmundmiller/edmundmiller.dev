@@ -1,5 +1,5 @@
 import * as stylex from '@stylexjs/stylex';
-import { colors, motion } from '../styles/tokens.stylex';
+import { colors, effects, motion } from '../styles/tokens.stylex';
 
 const small = '@media (min-width: 640px)';
 
@@ -31,7 +31,7 @@ export const styles = stylex.create({
     },
     boxShadow: {
       default: 'none',
-      ':focus-visible': '0 0 0 2px hsl(var(--theme-accent) / 0.6)',
+      ':focus-visible': effects.socialFocus,
     },
     color: {
       default: colors.text,

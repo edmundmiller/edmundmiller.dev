@@ -1,5 +1,5 @@
 import * as stylex from '@stylexjs/stylex';
-import { colors } from '../styles/tokens.stylex';
+import { colors, effects } from '../styles/tokens.stylex';
 
 export const styles = stylex.create({
   author: {
@@ -24,8 +24,8 @@ export const styles = stylex.create({
   },
   bio: {
     color: {
-      default: '#4b5563',
-      ':is([data-theme="dark"] *)': '#9ca3af',
+      default: colors.muted,
+      ':is([data-theme="dark"] *)': colors.mutedDark,
     },
     fontSize: '0.75rem',
     lineHeight: '1rem',
@@ -39,10 +39,8 @@ export const styles = stylex.create({
   profileLink: {
     backgroundPosition: 'bottom',
     backgroundImage: {
-      default:
-        'linear-gradient(transparent, transparent 5px, hsl(var(--theme-text)) 5px, hsl(var(--theme-text)))',
-      ':hover':
-        'linear-gradient(transparent, transparent 4px, hsl(var(--theme-link)) 4px, hsl(var(--theme-link)))',
+      default: effects.cactusUnderline,
+      ':hover': effects.cactusUnderlineHover,
     },
     backgroundRepeat: 'repeat-x',
     backgroundSize: '100% 6px',
