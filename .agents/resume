@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Reapply the setup workaround when snapshots skip setup or the orb wakes.
+sudo -n sysctl -w vm.overcommit_memory=1
+
 node_version="24.22.0"
 export PATH="$HOME/.local/share/node-v${node_version}/bin:$HOME/.local/bin:$PATH"
 vale_version="$(<"$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)/.vale-version")"

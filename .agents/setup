@@ -15,6 +15,11 @@ step() {
   printf '\n==> %s\n' "$1"
 }
 
+step "Allow Oxlint JavaScript plugin memory reservations"
+# Oxlint reserves ~4 GiB per allocator; no-swap orbs reject it under heuristic overcommit.
+# Remove when https://github.com/oxc-project/oxc/issues/20331 is fixed in the pinned version.
+sudo -n sysctl -w vm.overcommit_memory=1
+
 step "Install Node.js ${node_version}"
 if [[ ! -x "$node_dir/bin/node" ]]; then
   archive="node-v${node_version}-linux-${node_arch}.tar.xz"

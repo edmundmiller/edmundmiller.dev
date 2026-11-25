@@ -26,7 +26,13 @@ Amp snapshots retain both `node_modules` and the pnpm store. Matching snapshots 
 stale snapshots rerun `.agents/setup` against the restored dependencies and cache. The global
 store speeds up rebuilding a missing dependency tree from that cache, not a fully cold install.
 Keep the backing store while using its linked `node_modules`; do not copy the dependency tree
-alone to another machine. `.agents/resume` only checks the toolchain and never installs packages.
+alone to another machine. `.agents/resume` checks the toolchain and reapplies the orb memory
+setting below; it never installs packages.
+
+The setup and resume hooks set `vm.overcommit_memory=1` inside the orb so Oxlint's JavaScript
+plugins can reserve large virtual-memory arenas without allocating that much physical memory.
+This works around [Oxlint #20331](https://github.com/oxc-project/oxc/issues/20331). These hooks do
+not run as part of ordinary local development or CI commands.
 
 ## One application, explicit state
 
